@@ -12992,29 +12992,29 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/MachineAdapters/MachineAdapterFailureScenarios.cs : importer le contrat de diagnostic Atari depuis Common.Exceptions après son déplacement.
   - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : viser le ProcessCore déplacé et contrôler les propriétaires Common des hôtes et clients effectivement implémentés ; exécuter les vérifications et le build Debug complet.
 
-- [ ] Réunir les codecs de protocole sous le même propriétaire CoreHostFunctions que dans Example.
-  - [ ] Modifier src/GWGUI.Emulation.Amstrad/Common/Functions/CoreFunctions.Host.cs : permettre de compléter CoreHostFunctions dans le fichier de codecs existants.
-  - [ ] Déplacer src/GWGUI.Emulation.Amstrad/Common/Functions/CoreHostProtocol.cs vers src/GWGUI.Emulation.Amstrad/Common/Functions/CoreFunctions.Host.Protocol.cs : intégrer ses méthodes et ses options JSON dans CoreHostFunctions sans modifier les octets ni les validations.
-  - [ ] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/CoreHost.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
-  - [ ] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/ProcessCore.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
-  - [ ] Modifier src/GWGUI.Emulation.Commodore/Common/Functions/CoreFunctions.Host.cs : permettre de compléter CoreHostFunctions dans le fichier de codecs existants.
-  - [ ] Déplacer src/GWGUI.Emulation.Commodore/Common/Functions/CoreHostProtocol.cs vers src/GWGUI.Emulation.Commodore/Common/Functions/CoreFunctions.Host.Protocol.cs : intégrer ses méthodes et ses options JSON dans CoreHostFunctions sans modifier les octets ni les validations.
-  - [ ] Modifier src/GWGUI.Emulation.Commodore/Common/Services/CoreHost.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
-  - [ ] Modifier src/GWGUI.Emulation.Commodore/Common/Services/ProcessCore.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
-  - [ ] Modifier src/GWGUI.Emulation.Nec/Common/Functions/CoreFunctions.Host.cs : permettre de compléter CoreHostFunctions dans le fichier de codecs existants.
-  - [ ] Déplacer src/GWGUI.Emulation.Nec/Common/Functions/CoreHostProtocol.cs vers src/GWGUI.Emulation.Nec/Common/Functions/CoreFunctions.Host.Protocol.cs : intégrer ses méthodes et ses options JSON dans CoreHostFunctions sans modifier les octets ni les validations.
-  - [ ] Modifier src/GWGUI.Emulation.Nec/Common/Services/CoreHost.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
-  - [ ] Modifier src/GWGUI.Emulation.Nec/Common/Services/ProcessCore.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
-  - [ ] Modifier src/GWGUI.Emulation.Nintendo/Common/Functions/CoreFunctions.Host.cs : permettre de compléter CoreHostFunctions dans le fichier de codecs existants.
-  - [ ] Déplacer src/GWGUI.Emulation.Nintendo/Common/Functions/CoreHostProtocol.cs vers src/GWGUI.Emulation.Nintendo/Common/Functions/CoreFunctions.Host.Protocol.cs : intégrer ses méthodes et ses options JSON dans CoreHostFunctions sans modifier les octets ni les validations.
-  - [ ] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/CoreHost.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
-  - [ ] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/ProcessCore.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
-  - [ ] Modifier src/GWGUI.Emulation.Sega/Common/Functions/CoreFunctions.Host.cs : permettre de compléter CoreHostFunctions dans le fichier de codecs existants.
-  - [ ] Déplacer src/GWGUI.Emulation.Sega/Common/Functions/CoreHostProtocol.cs vers src/GWGUI.Emulation.Sega/Common/Functions/CoreFunctions.Host.Protocol.cs : intégrer ses méthodes et ses options JSON dans CoreHostFunctions sans modifier les octets ni les validations.
-  - [ ] Modifier src/GWGUI.Emulation.Sega/Common/Services/CoreHost.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
-  - [ ] Modifier src/GWGUI.Emulation.Sega/Common/Services/ProcessCore.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
-  - [ ] Modifier src/GWGUI.Emulation.Sony/Common/Functions/CoreFunctions.Host.cs : permettre de compléter CoreHostFunctions dans le fichier de codecs existants.
-  - [ ] Déplacer src/GWGUI.Emulation.Sony/Common/Functions/CoreHostProtocol.cs vers src/GWGUI.Emulation.Sony/Common/Functions/CoreFunctions.Host.Protocol.cs : intégrer ses méthodes et ses options JSON dans CoreHostFunctions sans modifier les octets ni les validations.
-  - [ ] Modifier src/GWGUI.Emulation.Sony/Common/Services/CoreHost.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
-  - [ ] Modifier src/GWGUI.Emulation.Sony/Common/Services/ProcessCore.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
-  - [ ] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : contrôler le propriétaire unique des codecs et leurs appels compilés dans les six familles ; exécuter les vérifications et le build Debug complet.
+- [x] Réunir les codecs de protocole sous le même propriétaire CoreHostFunctions que dans Example.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Functions/CoreFunctions.Host.cs : permettre de compléter CoreHostFunctions dans le fichier de codecs existants.
+  - [x] Déplacer src/GWGUI.Emulation.Amstrad/Common/Functions/CoreHostProtocol.cs vers src/GWGUI.Emulation.Amstrad/Common/Functions/CoreFunctions.Host.Protocol.cs : intégrer ses méthodes et ses options JSON dans CoreHostFunctions sans modifier les octets ni les validations.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/CoreHost.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
+  - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/ProcessCore.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Functions/CoreFunctions.Host.cs : permettre de compléter CoreHostFunctions dans le fichier de codecs existants.
+  - [x] Déplacer src/GWGUI.Emulation.Commodore/Common/Functions/CoreHostProtocol.cs vers src/GWGUI.Emulation.Commodore/Common/Functions/CoreFunctions.Host.Protocol.cs : intégrer ses méthodes et ses options JSON dans CoreHostFunctions sans modifier les octets ni les validations.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/CoreHost.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
+  - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/ProcessCore.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Functions/CoreFunctions.Host.cs : permettre de compléter CoreHostFunctions dans le fichier de codecs existants.
+  - [x] Déplacer src/GWGUI.Emulation.Nec/Common/Functions/CoreHostProtocol.cs vers src/GWGUI.Emulation.Nec/Common/Functions/CoreFunctions.Host.Protocol.cs : intégrer ses méthodes et ses options JSON dans CoreHostFunctions sans modifier les octets ni les validations.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/CoreHost.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
+  - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/ProcessCore.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Functions/CoreFunctions.Host.cs : permettre de compléter CoreHostFunctions dans le fichier de codecs existants.
+  - [x] Déplacer src/GWGUI.Emulation.Nintendo/Common/Functions/CoreHostProtocol.cs vers src/GWGUI.Emulation.Nintendo/Common/Functions/CoreFunctions.Host.Protocol.cs : intégrer ses méthodes et ses options JSON dans CoreHostFunctions sans modifier les octets ni les validations.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/CoreHost.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
+  - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/ProcessCore.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Functions/CoreFunctions.Host.cs : permettre de compléter CoreHostFunctions dans le fichier de codecs existants.
+  - [x] Déplacer src/GWGUI.Emulation.Sega/Common/Functions/CoreHostProtocol.cs vers src/GWGUI.Emulation.Sega/Common/Functions/CoreFunctions.Host.Protocol.cs : intégrer ses méthodes et ses options JSON dans CoreHostFunctions sans modifier les octets ni les validations.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/CoreHost.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
+  - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/ProcessCore.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Functions/CoreFunctions.Host.cs : permettre de compléter CoreHostFunctions dans le fichier de codecs existants.
+  - [x] Déplacer src/GWGUI.Emulation.Sony/Common/Functions/CoreHostProtocol.cs vers src/GWGUI.Emulation.Sony/Common/Functions/CoreFunctions.Host.Protocol.cs : intégrer ses méthodes et ses options JSON dans CoreHostFunctions sans modifier les octets ni les validations.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/CoreHost.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
+  - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/ProcessCore.cs : appeler les codecs sous le propriétaire Common CoreHostFunctions au lieu de CoreHostProtocol.
+  - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : contrôler le propriétaire unique des codecs et leurs appels compilés dans les six familles ; exécuter les vérifications et le build Debug complet.

@@ -15,6 +15,32 @@ namespace GWGUI.Tests.Emulation;
 public sealed class ArchitectureValidationTests
 {
     [Fact]
+    public void NativeHostCodecsBelongToTheCommonHostFunctions()
+    {
+        foreach (var family in new[] { "Amstrad", "Commodore", "Nec", "Nintendo", "Sega", "Sony" })
+        {
+            var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
+            var root = "GWGUI.Emulation." + family;
+            var owner = assembly.GetType(root + ".Common.Functions.CoreHostFunctions", throwOnError: true)!;
+            Assert.Null(assembly.GetType(root + ".Common.Functions.CoreHostProtocol"));
+            var json = Assert.IsType<System.Text.Json.JsonSerializerOptions>(owner.GetField("JsonOptions", BindingFlags.NonPublic | BindingFlags.Static)!.GetValue(null));
+            Assert.True(json.PropertyNameCaseInsensitive);
+            Assert.Equal("hostName", json.PropertyNamingPolicy!.ConvertName("HostName"));
+            foreach (var name in new[] { "WriteString", "ReadString", "WriteBytes", "ReadBytes", "WriteInput", "ReadInput", "WriteSharedFrame" })
+            {
+                var method = owner.GetMethod(name, BindingFlags.NonPublic | BindingFlags.Static)!;
+                Assert.NotNull(method);
+                Assert.Contains(GetCompiledCalls(method), call => call.Method.DeclaringType == typeof(IEmulationHostProtocol) && call.Method.Name == name);
+            }
+            var clients = new[] { assembly.GetType(root + ".Common.Services.CoreHost", true)!, assembly.GetType(root + ".Common.Services.ProcessCore", true)! };
+            var calls = clients.Concat(clients.SelectMany(type => type.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic)))
+                .SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+                .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
+            foreach (var name in new[] { "WriteString", "ReadString", "ReadInput", "WriteInput", "WriteSharedFrame" })
+                Assert.Contains(calls, call => call.Method.DeclaringType == owner && call.Method.Name == name);
+        }
+    }
+    [Fact]
     public void HostRuntimeHooksUseTheSameCommonPolicyInEveryClient()
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()

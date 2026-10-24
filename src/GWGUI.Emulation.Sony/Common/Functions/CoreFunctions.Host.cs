@@ -5,7 +5,7 @@ using GWGUI.Emulation;
 namespace GWGUI.Emulation.Sony.Common.Functions;
 
 /// <summary>Accès commun au contrat de transport et de durée de vie des hôtes de cœur.</summary>
-internal static class CoreHostFunctions
+internal static partial class CoreHostFunctions
 {
     /// <summary>Fournit les opérations de configuration et de fichiers par leur interface publique commune.</summary>
     /// <remarks>Le module conserve ses chemins, verrous, projections et annulation ; le service possède les flux qu’il ouvre.</remarks>

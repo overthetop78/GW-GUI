@@ -10,7 +10,7 @@ using GWGUI.Emulation;
 namespace GWGUI.Emulation.Amstrad.Common.Functions;
 
 
-internal static class CoreHostProtocol
+internal static partial class CoreHostFunctions
 {
     internal static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
     internal static void WriteString(BinaryWriter writer, string? value) => CommonCoreHostFunctions.Protocol.WriteString(writer, value);

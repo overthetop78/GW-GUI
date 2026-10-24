@@ -1,4 +1,4 @@
-using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
+using CommonCoreHostFunctions = GWGUI.Emulation.Nintendo.Common.Functions.CoreHostFunctions;
 
 using System.IO.Pipes;
 using System.IO.MemoryMappedFiles;
@@ -8,10 +8,10 @@ using GWGUI.Emulation;
 
 using System.IO;
 
-namespace GWGUI.Emulation.Sony.Common.Functions;
+namespace GWGUI.Emulation.Nintendo.Common.Functions;
 
 
-internal static class CoreHostProtocol
+internal static partial class CoreHostFunctions
 {
     internal static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
     internal static void WriteString(BinaryWriter writer, string? value) => CommonCoreHostFunctions.Protocol.WriteString(writer, value);

@@ -1,5 +1,4 @@
-using CommonCoreHostFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreHostFunctions;
-using System.IO;
+using CommonCoreHostFunctions = GWGUI.Emulation.Sony.Common.Functions.CoreHostFunctions;
 
 using System.IO.Pipes;
 using System.IO.MemoryMappedFiles;
@@ -7,10 +6,12 @@ using System.Runtime.Versioning;
 using System.Text.Json;
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Commodore.Common.Functions;
+using System.IO;
+
+namespace GWGUI.Emulation.Sony.Common.Functions;
 
 
-internal static class CoreHostProtocol
+internal static partial class CoreHostFunctions
 {
     internal static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
     internal static void WriteString(BinaryWriter writer, string? value) => CommonCoreHostFunctions.Protocol.WriteString(writer, value);
@@ -25,3 +26,5 @@ internal static class CoreHostProtocol
     internal static void WriteLedStates(BinaryWriter writer, IReadOnlyDictionary<int, bool> states) => CommonCoreHostFunctions.Protocol.WriteLedStates(writer, states);
     internal static IReadOnlyDictionary<int, bool> ReadLedStates(BinaryReader reader) => CommonCoreHostFunctions.Protocol.ReadLedStates(reader, ProcessCoreConstants.TransportName);
 }
+
+

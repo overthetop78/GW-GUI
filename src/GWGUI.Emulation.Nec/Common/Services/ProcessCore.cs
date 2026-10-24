@@ -63,7 +63,7 @@ internal sealed class ProcessCore : IEmulatorCore
     {
         Begin(HostCommand.GetDiskStatus);
         CompleteRequest();
-        return System.Text.Json.JsonSerializer.Deserialize<DiskStatus>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException();
+        return System.Text.Json.JsonSerializer.Deserialize<DiskStatus>(Response.ReadString(), CommonCoreHostFunctions.JsonOptions) ?? throw new InvalidDataException();
     }
 
     /// <inheritdoc/>
@@ -155,8 +155,8 @@ internal sealed class ProcessCore : IEmulatorCore
             CommonCoreHostFunctions.Protocol.WriteInitializationRequest(ref _writer, _corePath ?? string.Empty,
                 () => _sessionDirectory,
                 () => _saveDirectory,
-                CoreHostProtocol.WriteString,
-                () => JsonSerializer.Serialize(configuration, CoreHostProtocol.JsonOptions));
+                CommonCoreHostFunctions.WriteString,
+                () => JsonSerializer.Serialize(configuration, CommonCoreHostFunctions.JsonOptions));
             CompleteRequest();
             CoreSha256 = Response.ReadString();
             FramesPerSecond = Response.ReadDouble();
@@ -164,8 +164,8 @@ internal sealed class ProcessCore : IEmulatorCore
             MinimumAudioLatencyMilliseconds = Response.ReadInt32();
             SupportsSaveStates = Response.ReadBoolean();
             ReadRuntimeStatus(Response);
-            Options = JsonSerializer.Deserialize<IReadOnlyList<CoreOption>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
-            Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
+            Options = JsonSerializer.Deserialize<IReadOnlyList<CoreOption>>(Response.ReadString(), CommonCoreHostFunctions.JsonOptions) ?? [];
+            Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), CommonCoreHostFunctions.JsonOptions) ?? [];
             CoreName = Response.ReadString();
             CoreVersion = Response.ReadString();
             SupportedContentExtensions = Response.ReadString().Split('|', StringSplitOptions.RemoveEmptyEntries).ToHashSet(StringComparer.OrdinalIgnoreCase);
@@ -186,7 +186,7 @@ internal sealed class ProcessCore : IEmulatorCore
     public void RunFrame()
     {
         Begin(HostCommand.RunFrame);
-        CoreHostProtocol.WriteInput(_writer!, _input.Consume());
+        CommonCoreHostFunctions.WriteInput(_writer!, _input.Consume());
         CommonCoreHostFunctions.Protocol.WriteAudioBufferStatus(_writer!, OutputAudioStatus);
         CompleteRequest();
         LatestVideoFrame = CommonCoreHostFunctions.Protocol.ReadSharedFrame(Response,
@@ -203,7 +203,7 @@ internal sealed class ProcessCore : IEmulatorCore
         DiskCount = Response.ReadInt32();
         CurrentDiskIndex = Response.ReadInt32();
         if (Response.ReadBoolean())
-            Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
+            Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), CommonCoreHostFunctions.JsonOptions) ?? [];
         LedStates = CommonCoreHostFunctions.Protocol.ReadLedStates(Response, _displayName);
         ShutdownRequested = Response.ReadBoolean();
         ControllerFeedback = CommonCoreHostFunctions.Protocol.ReadControllerFeedback(Response);
@@ -222,7 +222,7 @@ internal sealed class ProcessCore : IEmulatorCore
     public void SetInput(EmulationInputSnapshot snapshot) => _input.Update(snapshot);
     public void InsertMedia(MediaConfiguration media)
     {
-        StringRequest(HostCommand.InsertMedia, JsonSerializer.Serialize(media with { Path = Path.GetFullPath(media.Path) }, CoreHostProtocol.JsonOptions));
+        StringRequest(HostCommand.InsertMedia, JsonSerializer.Serialize(media with { Path = Path.GetFullPath(media.Path) }, CommonCoreHostFunctions.JsonOptions));
         if ((media.SlotIndex ?? media.MountOrder) < DiskCount) CurrentDiskIndex = media.SlotIndex ?? media.MountOrder;
     }
     public void SetControllerPortDevice(int port, PeripheralCategory peripheral)
@@ -259,7 +259,7 @@ internal sealed class ProcessCore : IEmulatorCore
     public void LoadState(ReadOnlySpan<byte> state)
     {
         Begin(HostCommand.LoadState);
-        CoreHostProtocol.WriteBytes(_writer!, state);
+        CommonCoreHostFunctions.WriteBytes(_writer!, state);
         CompleteRequest();
     }
 

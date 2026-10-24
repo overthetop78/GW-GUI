@@ -34,14 +34,14 @@ internal static class CoreHost
                             case HostCommand.Initialize:
                                 var (corePath, session, saves, configuration) =
                                     CommonCoreHostFunctions.Protocol.ReadInitializationRequest(reader,
-                                        CoreHostProtocol.ReadString,
-                                        static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(CoreExceptions.HostConfigurationInvalid()));
+                                        CommonCoreHostFunctions.ReadString,
+                                        static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CommonCoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreExceptions.HostConfigurationInvalid()));
                                 CommonCoreHostFunctions.Protocol.DisposePreviousCore(ref core);
                                 core = createCore(configuration, corePath);
                                 core.Initialize(configuration, session, saves);
                                 writer.Write(true);
                                 CommonCoreHostFunctions.Protocol.WriteCoreInitialization<IEmulatorCore, MachineConfiguration, CoreOption>(
-                                    writer, core, CoreHostProtocol.JsonOptions, ref lastDiagnosticCount, '|',
+                                    writer, core, CommonCoreHostFunctions.JsonOptions, ref lastDiagnosticCount, '|',
                                     static (statusWriter, currentCore) =>
                                     {
                                         statusWriter.Write(currentCore.MinimumAudioLatencyMilliseconds);
@@ -49,16 +49,16 @@ internal static class CoreHost
                                         CommonCoreHostFunctions.Protocol.WriteRuntimeStatus(statusWriter, currentCore.Region, currentCore.BufferedAudioFrames, currentCore.AudioOverrunCount, currentCore.AudioUnderrunCount);
                                     });
                                 CommonCoreHostFunctions.Protocol.WriteDiskSelection(writer, core.DiskCount, core.CurrentDiskIndex);
-                                CoreHostProtocol.WriteLedStates(writer, core.LedStates);
+                                CommonCoreHostFunctions.WriteLedStates(writer, core.LedStates);
                                 writer.Write(core.ShutdownRequested);
                                 CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, core.ControllerFeedback);
                                 break;
                             case HostCommand.RunFrame:
                                 var activeCore = EnsureCore(core);
                                 CommonCoreHostFunctions.Protocol.RunCoreFrame<IEmulatorCore, MachineConfiguration, CoreOption>(
-                                    reader, writer, activeCore, CoreHostProtocol.ReadInput,
-                                    (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),
-                                    static (statusWriter, currentCore) => CommonCoreHostFunctions.Protocol.WriteDiskSelection(statusWriter, currentCore.DiskCount, currentCore.CurrentDiskIndex), CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,
+                                    reader, writer, activeCore, CommonCoreHostFunctions.ReadInput,
+                                    (frameWriter, pendingFrame) => CommonCoreHostFunctions.WriteSharedFrame(frameWriter, pendingFrame, videoMap),
+                                    static (statusWriter, currentCore) => CommonCoreHostFunctions.Protocol.WriteDiskSelection(statusWriter, currentCore.DiskCount, currentCore.CurrentDiskIndex), CommonCoreHostFunctions.WriteLedStates, static () => CommonCoreHostFunctions.JsonOptions,
                                     ref lastVideoSequence, ref lastDiagnosticCount);
                                 writer.Write(activeCore.ShutdownRequested);
                                 CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, activeCore.ControllerFeedback);
@@ -69,8 +69,8 @@ internal static class CoreHost
                                 break;
                             default:
                                 if (!CommonCoreHostFunctions.Protocol.TryExecuteCoreCommand<MediaConfiguration, PeripheralCategory>((byte)command, reader, writer,
-                                        () => EnsureCore(core), static requestReader => System.Text.Json.JsonSerializer.Deserialize<MediaConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(),
-                                        CoreHostProtocol.ReadBytes, static (statusWriter, status) => statusWriter.Write(System.Text.Json.JsonSerializer.Serialize(status, CoreHostProtocol.JsonOptions)), static value => (PeripheralCategory)value, WriteSuccess))
+                                        () => EnsureCore(core), static requestReader => System.Text.Json.JsonSerializer.Deserialize<MediaConfiguration>(requestReader.ReadString(), CommonCoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(),
+                                        CommonCoreHostFunctions.ReadBytes, static (statusWriter, status) => statusWriter.Write(System.Text.Json.JsonSerializer.Serialize(status, CommonCoreHostFunctions.JsonOptions)), static value => (PeripheralCategory)value, WriteSuccess))
                                     throw new InvalidDataException(CoreExceptions.UnknownHostCommand((byte)command));
                                 break;
                         }
