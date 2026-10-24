@@ -14600,3 +14600,36 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Créer tests/GWGUI.LocalEmulationTests/Emulation/ExampleFirmwareSamplesIntegrationTests.cs : vérifier temporairement l’analyse et la préparation des ROM et banques, les fichiers copiés et la fermeture des flux ; supprimer le dossier possédé dans finally.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ExampleFirmwareSamplesTests.cs : terminer la compilation des cas de banque et vérifier les scénarios en mémoire ainsi que le scénario temporaire de préparation.
     - [x] Supprimer tests/GWGUI.LocalEmulationTests/Emulation/ExampleFirmwareSamplesIntegrationTests.cs : retirer le scénario utilisant des fichiers après son exécution, avec ses artefacts temporaires ; conserver les vérifications autonomes en mémoire et valider le build de tous les modules.
+
+- [x] Préserver les champs sérialisés participant aux empreintes des sauvegardes.
+  - [x] Revenir sur la suppression de ReleaseMouseBinding après identification de son usage indirect par sérialisation.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Contracts/InputContracts.cs : supprimer le paramètre ReleaseMouseBinding, sans modifier les données actives ni leurs valeurs par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Machines/Common/Contracts/InputContracts.cs : supprimer le paramètre ReleaseMouseBinding, sans modifier les données actives ni leurs valeurs par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Contracts/InputContracts.cs : supprimer le paramètre ReleaseMouseBinding, sans modifier les données actives ni leurs valeurs par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Machines/Common/Contracts/InputContracts.cs : supprimer le paramètre ReleaseMouseBinding, sans modifier les données actives ni leurs valeurs par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Contracts/InputContracts.cs : supprimer le paramètre ReleaseMouseBinding, sans modifier les données actives ni leurs valeurs par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Machines/Common/Contracts/InputContracts.cs : supprimer le paramètre ReleaseMouseBinding, sans modifier les données actives ni leurs valeurs par défaut.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Contracts/InputContracts.cs : supprimer le paramètre ReleaseMouseBinding, sans modifier les données actives ni leurs valeurs par défaut.
+  - [x] Préserver les empreintes des sauvegardes qui sérialisent la configuration complète.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Contracts/InputContracts.cs : rétablir ReleaseMouseBinding, présent dans le document utilisé pour calculer l’empreinte de configuration des sauvegardes.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Machines/Common/Contracts/InputContracts.cs : rétablir ReleaseMouseBinding, présent dans le document utilisé pour calculer l’empreinte de configuration des sauvegardes.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Contracts/InputContracts.cs : rétablir ReleaseMouseBinding, présent dans le document utilisé pour calculer l’empreinte de configuration des sauvegardes.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Machines/Common/Contracts/InputContracts.cs : rétablir ReleaseMouseBinding, présent dans le document utilisé pour calculer l’empreinte de configuration des sauvegardes.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Contracts/InputContracts.cs : rétablir ReleaseMouseBinding, présent dans le document utilisé pour calculer l’empreinte de configuration des sauvegardes.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Machines/Common/Contracts/InputContracts.cs : rétablir ReleaseMouseBinding, présent dans le document utilisé pour calculer l’empreinte de configuration des sauvegardes.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Contracts/InputContracts.cs : rétablir ReleaseMouseBinding, présent dans le document utilisé pour calculer l’empreinte de configuration des sauvegardes.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier la conservation de ReleaseMouseBinding pour les sept contrats qui le possèdent, puis exécuter les contrôles ciblés ; la validation du build suit le raccordement d’Example ci-dessous.
+
+- [x] Livrer Example par le mécanisme normal des modules, dans tous les builds de l’application.
+  - [x] Raccorder son manifeste et retirer le chargement particulier.
+    - [x] Créer src/GWGUI.Emulation.Example/module.json : déclarer example avec son assembly, sa version, l’API hôte et le catalogue selon le même schéma que les autres modules.
+    - [x] Modifier src/GWGUI.Emulation.Example/GWGUI.Emulation.Example.csproj : copier module.json dans les sorties de compilation et de publication comme les autres modules.
+    - [x] Modifier src/GWGUI.Emulation.Example/Modules/ExampleModuleFactory.cs : documenter le chargement par le manifeste et les interfaces habituelles.
+    - [x] Modifier src/GWGUI.App/Services/Emulation/EmulationModuleRegistry.cs : supprimer DiscoverIntegrated et le chemin BuiltIn ; utiliser la découverte existante par module.json pour tous les modules.
+  - [x] Fournir Example dans les sorties locales et les paquets de l’application.
+    - [x] Modifier scripts/local-building/build.ps1 : inclure systématiquement example dans la sélection normale des modules, même avec --modules=0 ; supprimer la publication séparée vers BuiltIn.
+    - [x] Modifier scripts/release/package/package.ps1 : livrer Modules/example par les fonctions de publication et de copie existantes, avec son manifeste et sans recopier le SDK.
+  - [x] Vérifier le raccordement effectif et les deux modes de build.
+    - [x] Créer tests/GWGUI.LocalEmulationTests/Emulation/Modules/ExampleModuleDiscoveryIntegrationTests.cs : vérifier temporairement la découverte du vrai Modules/example dans le build, ses deux machines et les trois émulateurs par les interfaces publiques, sans écrire sur les médias.
+    - [x] Modifier src/GWGUI.Emulation.Example/GWGUI.Emulation.Example.csproj : reprendre la cible existante RemoveHostProvidedAssembliesFromCopyLocal pour exclure les DLL fournies par l’hôte, puis revalider les deux modes de build et le SDK unique.
+    - [x] Supprimer tests/GWGUI.LocalEmulationTests/Emulation/Modules/ExampleModuleDiscoveryIntegrationTests.cs : retirer le contrôle temporaire après son exécution sur les builds sans modules supplémentaires et avec tous les modules ; vérifier la présence de leurs DLL et l’absence de BuiltIn ; recompiler uniquement le projet de tests pour retirer aussi la classe temporaire de ses sorties.

@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <!-- Le build livre cet exemple avec l’application. Sa fabrique est chargée par l’API habituelle,
-       sans ProjectReference dans App, module.json, téléchargement ni bibliothèque native simulée à générer. -->
+  <!-- Le build livre systématiquement cet exemple dans Modules/example. Le manifeste et les
+       interfaces assurent son chargement habituel, sans référence directe depuis App. -->
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -8,6 +8,7 @@
     <AssemblyName>gwgui.emulation.example</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <None Update="module.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     <!-- Seule l’API publique du SDK est disponible : aucune autorisation InternalsVisibleTo. -->
     <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />
   </ItemGroup>
@@ -20,4 +21,11 @@
       <LogicalName>GWGUI.Emulation.Example.Resources.%(Filename).$([System.IO.Path]::GetFileName($([System.IO.Path]::GetDirectoryName('%(Identity)')))).resources</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
+  <!-- Comme les autres modules, Example utilise les assemblies fournies par l’hôte.
+       La publication conserve ses propres fichiers et évite une seconde copie du SDK. -->
+  <Target Name="RemoveHostProvidedAssembliesFromCopyLocal" AfterTargets="ResolveAssemblyReferences">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="$([System.String]::Copy('%(ReferenceCopyLocalPaths.Filename)').StartsWith('gwgui.'))" />
+    </ItemGroup>
+  </Target>
 </Project>

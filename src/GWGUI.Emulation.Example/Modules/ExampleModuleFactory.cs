@@ -1,8 +1,8 @@
 using GWGUI.Emulation.Example.Common.Services;
 namespace GWGUI.Emulation.Example.Modules;
 
-/// <summary>Fabrique intégrée chargée par son interface publique, identique à celles des modules externes.</summary>
-/// <remarks>L’absence de module.json est volontaire : Example suit la version et la distribution de l’application.</remarks>
+/// <summary>Fabrique du module Example chargée par son manifeste et son interface publique, comme les autres modules.</summary>
+/// <remarks>Le build fournit systématiquement ce module avec l’application, y compris sans sélection d’émulateurs supplémentaires.</remarks>
 public sealed class ExampleModuleFactory : IEmulationModuleFactory
 {
     /// <summary>Identifiant invariant commun à la fabrique et à la façade du mock.</summary>

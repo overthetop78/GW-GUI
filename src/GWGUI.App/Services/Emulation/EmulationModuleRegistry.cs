@@ -11,41 +11,10 @@ internal static class EmulationModuleRegistry
 {
     private static readonly HttpClient HttpClient = new();
     private static readonly Lazy<IReadOnlyList<LoadedEmulationModule>> LoadedModules = new(() => Discover(Path.Combine(AppContext.BaseDirectory, "Modules"), StoragePaths.DataDirectory, WriteDiagnostic));
-    // Les composants livrés avec l’application utilisent les mêmes fabriques publiques, sans
-    // référence de compilation vers leurs types ni inscription nominative dans ce registre.
-    private static readonly Lazy<IReadOnlyList<IEmulationModule>> IntegratedModules = new(() => DiscoverIntegrated(Path.Combine(AppContext.BaseDirectory, "BuiltIn", "Emulation"), StoragePaths.DataDirectory, WriteDiagnostic));
     internal static IReadOnlyList<LoadedEmulationModule> Packages => LoadedModules.Value;
-    internal static IReadOnlyList<IEmulationModule> Modules => IntegratedModules.Value.Concat(Packages.Select(package => package.Module)).DistinctBy(module => module.Id, StringComparer.OrdinalIgnoreCase).ToArray();
+    internal static IReadOnlyList<IEmulationModule> Modules => Packages.Select(package => package.Module).ToArray();
 
     internal static IEmulationModuleLocalization? FindLocalization(string? moduleId) => string.IsNullOrWhiteSpace(moduleId) ? null : Modules.FirstOrDefault(module => string.Equals(module.Id, moduleId, StringComparison.OrdinalIgnoreCase)) as IEmulationModuleLocalization;
-
-    /// <summary>Charge les fabriques intégrées par le même contrat et le même contexte isolé que les paquets.</summary>
-    /// <remarks>Ces composants suivent la version de l’application. Ils ne sont pas ajoutés à Packages,
-    /// qui représente exclusivement les modules installables et leurs manifestes de mise à jour.</remarks>
-    internal static IReadOnlyList<IEmulationModule> DiscoverIntegrated(string directory, string dataDirectory, Action<string, Exception?> diagnostic)
-    {
-        var modules = new Dictionary<string, IEmulationModule>(StringComparer.OrdinalIgnoreCase);
-        if (!Directory.Exists(directory)) return [];
-        foreach (var component in Directory.EnumerateDirectories(directory).OrderBy(path => path, StringComparer.OrdinalIgnoreCase))
-        foreach (var path in Directory.EnumerateFiles(component, "*.dll").OrderBy(path => path, StringComparer.OrdinalIgnoreCase))
-        {
-            try
-            {
-                var assembly = new EmulationModuleLoadContext(path).LoadEntryAssembly();
-                foreach (var type in FactoryTypes(assembly, diagnostic))
-                {
-                    var factory = (IEmulationModuleFactory)Activator.CreateInstance(type)!;
-                    if (string.IsNullOrWhiteSpace(factory.Id) || factory.Id.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0 || factory.Id is "." or "..") throw new InvalidDataException(nameof(factory.Id));
-                    var root = Path.Combine(dataDirectory, "Emulation", "Machines", factory.Id);
-                    var module = factory.Create(new EmulationModuleContext(dataDirectory, root, HttpClient));
-                    if (module is null || !string.Equals(module.Id, factory.Id, StringComparison.OrdinalIgnoreCase)) throw new InvalidDataException(nameof(module.Id));
-                    modules.Add(module.Id, module);
-                }
-            }
-            catch (Exception error) { diagnostic($"Loading integrated emulation component '{path}'", error); }
-        }
-        return modules.Values.OrderBy(module => module.Id, StringComparer.OrdinalIgnoreCase).ToArray();
-    }
 
     internal static IReadOnlyList<LoadedEmulationModule> Discover(string directory, string dataDirectory, Action<string, Exception?> diagnostic)
     {

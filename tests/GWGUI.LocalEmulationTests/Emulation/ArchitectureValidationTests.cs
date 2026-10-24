@@ -25,6 +25,7 @@ public sealed class ArchitectureValidationTests
         Assert.Equal(24, assemblies.Length);
         var counts = new Dictionary<string, int> { ["Controllers"] = 0, ["KeyboardBindings"] = 0, ["MouseMappings"] = 0 };
         var preservedWireNames = 0;
+        var releaseBindings = 0;
         var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
         foreach (var assembly in assemblies)
         {
@@ -55,8 +56,16 @@ public sealed class ArchitectureValidationTests
                     values[wireName] = new Dictionary<string, string> { ["action"] = "Keyboard:A" };
                 }
             }
+            // La configuration entière participe à l’empreinte des sauvegardes : un champ
+            // sérialisé doit rester conservé même sans lecteur explicite dans le runtime.
+            values["releaseMouseBinding"] = "Keyboard:Escape";
             var restored = JsonSerializer.Deserialize(JsonSerializer.Serialize(values), configuration, options)!;
             using var serialized = JsonDocument.Parse(JsonSerializer.Serialize(restored, configuration, options));
+            if (configuration.GetProperty("ReleaseMouseBinding") is not null)
+            {
+                releaseBindings++;
+                Assert.Equal("Keyboard:Escape", serialized.RootElement.GetProperty("releaseMouseBinding").GetString());
+            }
             foreach (var name in counts.Keys)
             {
                 if (configuration.GetProperty(name) is not { } property) continue;
@@ -77,6 +86,7 @@ public sealed class ArchitectureValidationTests
         Assert.Equal(20, counts["KeyboardBindings"]);
         Assert.Equal(5, counts["MouseMappings"]);
         Assert.Equal(19, preservedWireNames);
+        Assert.Equal(7, releaseBindings);
     }
 
     [Theory]
