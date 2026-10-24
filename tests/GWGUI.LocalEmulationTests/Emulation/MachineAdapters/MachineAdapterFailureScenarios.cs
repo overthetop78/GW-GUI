@@ -125,10 +125,11 @@ internal static class MachineAdapterFailureScenarios
         public void RunFrame(){Interlocked.Increment(ref Frames);FrameEntered.TrySetResult();if(BlockFrame){if(!FrameRelease.Wait(TimeSpan.FromSeconds(5)))throw new TimeoutException();BlockFrame=false;}if(FrameError is {} error)throw error;}
         public void Stop(){Stops++;Stopped.TrySetResult();}
         public void Dispose(){Disposals++;FrameRelease.Set();}
-        public void InsertMedia(string path){MediaCalls.Add("Insert");FrameAtInsert=Volatile.Read(ref Frames);Assert.Equal(Path.GetFullPath(ExpectedMediaPath),path);if(MediaError is {} error)throw error;}
+        public void SetControllerPortDevice(int port, GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.PeripheralCategory peripheral) { }
+        public void InsertMedia(MediaConfiguration media){var path=media.Path;MediaCalls.Add("Insert");FrameAtInsert=Volatile.Read(ref Frames);Assert.Equal(Path.GetFullPath(ExpectedMediaPath),path);if(MediaError is {} error)throw error;}
         public void HardReset()=>throw new InvalidOperationException("unexpected reset");
         public void SetInput(EmulationInputSnapshot snapshot)=>throw new InvalidOperationException("unexpected input");
-        public void EjectMedia(){MediaCalls.Add("Eject");FrameAtEject=Volatile.Read(ref Frames);}
+        public void EjectMedia(EmulationMediaSlot slot){MediaCalls.Add("Eject");FrameAtEject=Volatile.Read(ref Frames);}
         public void SelectDisk(int index)=>throw new InvalidOperationException("unexpected disk selection");
         public byte[] SaveState()=>throw new InvalidOperationException("unexpected save");
         public void LoadState(ReadOnlySpan<byte> state)=>throw new InvalidOperationException("unexpected load");

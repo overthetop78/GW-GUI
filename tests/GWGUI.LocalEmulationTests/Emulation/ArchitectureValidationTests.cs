@@ -1161,7 +1161,7 @@ public sealed class ArchitectureValidationTests
                 peripheralConverters++;
             }
         }
-        Assert.Equal(17, converters);
+        Assert.Equal(24, converters);
         Assert.Equal(16, peripheralConverters);
     }
 
@@ -4167,7 +4167,7 @@ public sealed class ArchitectureValidationTests
             var hostCalls = assembly.GetTypes().Where(type => type.FullName!.Contains(".CoreHost", StringComparison.Ordinal))
                 .SelectMany(type => type.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly))
                 .Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
-            Assert.Contains(hostCalls, call => call.Method.Name is "TryExecuteCoreCommand" or "TryExecutePathMediaCommand");
+            Assert.Contains(hostCalls, call => call.Method.Name == "TryExecuteCoreCommand");
             Assert.DoesNotContain(hostCalls, call => call.Method == operation); // Les hôtes utilisent tous le dispatcher commun.
         }
         Assert.Equal(23, processes);
@@ -4420,6 +4420,8 @@ public sealed class ArchitectureValidationTests
             var root = factory.Namespace![..factory.Namespace.LastIndexOf(".Modules", StringComparison.Ordinal)];
             var contract = module.GetType(root + ".Common.Interfaces.IEmulatorCore", throwOnError: true)!;
             Assert.Contains(state, contract.GetInterfaces());
+            var commandsContract = Assert.Single(contract.GetInterfaces(), type => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(IEmulationCoreCommands<,>));
+            Assert.Equal("MediaConfiguration", commandsContract.GetGenericArguments()[0].Name);
             Assert.DoesNotContain(contract.GetMethods(), method => method.Name is "SaveMediaChanges" or "HasUnsavedMediaChanges");
             var machine = module.GetType(root + ".Common.Services.Machine", throwOnError: true)!;
             var map = machine.GetInterfaceMap(typeof(IEmulationMedia));
@@ -4446,13 +4448,14 @@ public sealed class ArchitectureValidationTests
                 if (core.Name == "ProcessCore")
                 {
                     processCount++;
-                    var typedMedia = core.GetInterfaces().Any(type => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(IEmulationCoreCommands<,>));
-                    Assert.True(Calls(core).Count(call => call.Method.Name == "WriteMediaSlot" && call.Method.DeclaringType == typeof(IEmulationHostProtocol)) >= (typedMedia ? 3 : 2), root);
+                    var mediaType = commandsContract.GetGenericArguments()[0];
+                    Assert.Contains(Calls(core), call => call.Method is MethodInfo method && method.DeclaringType == typeof(System.Text.Json.JsonSerializer) && method.Name == "Serialize" && method.IsGenericMethod && method.GetGenericArguments().Contains(mediaType));
+                    Assert.True(Calls(core).Count(call => call.Method.Name == "WriteMediaSlot" && call.Method.DeclaringType == typeof(IEmulationHostProtocol)) >= 3, root);
                 }
             }
             var host = module.GetTypes().SingleOrDefault(type => type.Name == "CoreHost");
             if (host is null) continue;
-            Assert.Contains(Calls(host), call => call.Method.DeclaringType == typeof(IEmulationHostProtocol) && call.Method.Name is "TryExecuteCoreCommand" or "TryExecutePathMediaCommand");
+            Assert.Contains(Calls(host), call => call.Method.DeclaringType == typeof(IEmulationHostProtocol) && call.Method.Name == "TryExecuteCoreCommand");
             var commands = Assert.Single(module.GetTypes(), type => type.IsEnum && type.Name == "HostCommand");
             Assert.Equal(12, Convert.ToInt32(Enum.Parse(commands, "SaveMediaChanges")));
             Assert.Equal(14, Convert.ToInt32(Enum.Parse(commands, "HasUnsavedMediaChanges")));

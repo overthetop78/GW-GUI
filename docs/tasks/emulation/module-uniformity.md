@@ -12340,6 +12340,90 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/CoreInitializationRequestTests.cs : importer explicitement GWGUI.Emulation.Enums pour les statuts du cœur synthétique.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/StateIdentityComparisonTests.cs : importer explicitement GWGUI.Emulation.Enums pour les statuts du cœur synthétique.
     - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le contrat public complet, ses implémentations et les appels de fermeture dans les 24 familles ; exécuter les vérifications et le build Debug complet.
+  - [x] Réunir les commandes de médias dans le contrat typé commun aux 24 familles.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationHostProtocol.cs : réunir les commandes typées et par chemin dans TryExecuteCoreCommand, avec le callback de succès existant ; écrire la sélection de disque à partir de ses deux valeurs.
+    - [x] Modifier src/GWGUI.Emulation/Services/EmulationHostProtocolService.cs : relayer la signature unique des commandes et le codec de sélection de disque.
+    - [x] Modifier src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Host.cs : réunir les deux répartiteurs en conservant les en-têtes et les codecs ; retirer le traitement spécialisé par chemin.
+    - [x] Supprimer src/GWGUI.Emulation/Interfaces/IEmulationCorePathMediaCommands.cs : retirer le contrat de commandes remplacé par IEmulationCoreCommands.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorCore.cs : utiliser les commandes de MediaConfiguration et PeripheralCategory du contrat commun ; conserver les compteurs de sélection utilisés par la machine.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/MediaFunctions.cs : convertir un média public en configuration locale pour son insertion sans perdre son lecteur ni sa protection.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs : transmettre les insertions typées et les lecteurs d’éjection par la file existante.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Machine.cs : raccorder les opérations publiques de médias aux commandes typées, avec un seul changement de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/ProcessCore.cs : sérialiser MediaConfiguration, le lecteur complet et les commandes de ports dans le protocole existant.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Interop/Services/ExternalCore.cs : adapter les commandes typées aux traitements natifs existants d’insertion, d’éjection et de périphériques, en conservant les conversions et restrictions du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Services/CoreHost.cs : utiliser le répartiteur commun typé avec les en-têtes de succès existants et les codecs de la famille.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Emulators/Common/Enums/HostEnums.cs : déclarer la commande commune de ports au code déjà réservé.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorCore.cs : utiliser les commandes de MediaConfiguration et PeripheralCategory du contrat commun ; conserver les compteurs de sélection utilisés par la machine.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/MediaFunctions.cs : convertir un média public en configuration locale pour son insertion sans perdre son lecteur ni sa protection.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Machine.Lifecycle.cs : transmettre les insertions typées et les lecteurs d’éjection par la file existante.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Machine.cs : raccorder les opérations publiques de médias aux commandes typées, avec un seul changement de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs : sérialiser MediaConfiguration, le lecteur complet et les commandes de ports dans le protocole existant.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ExternalCore.cs : adapter les commandes typées aux traitements natifs existants d’insertion, d’éjection et de périphériques, en conservant les conversions et restrictions du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/CoreHost.cs : utiliser le répartiteur commun typé avec les en-têtes de succès existants et les codecs de la famille.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Enums/HostEnums.cs : déclarer la commande commune de ports au code déjà réservé.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Interfaces/IEmulatorCore.cs : utiliser les commandes de MediaConfiguration et PeripheralCategory du contrat commun ; conserver les compteurs de sélection utilisés par la machine.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/MediaFunctions.cs : convertir un média public en configuration locale pour son insertion sans perdre son lecteur ni sa protection.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/Machine.Lifecycle.cs : transmettre les insertions typées et les lecteurs d’éjection par la file existante.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/Machine.cs : raccorder les opérations publiques de médias aux commandes typées, avec un seul changement de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs : sérialiser MediaConfiguration, le lecteur complet et les commandes de ports dans le protocole existant.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ExternalCore.cs : adapter les commandes typées aux traitements natifs existants d’insertion, d’éjection et de périphériques, en conservant les conversions et restrictions du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/CoreHost.cs : utiliser le répartiteur commun typé avec les en-têtes de succès existants et les codecs de la famille.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Enums/HostEnums.cs : déclarer la commande commune de ports au code déjà réservé.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Interfaces/IEmulatorCore.cs : utiliser les commandes de MediaConfiguration et PeripheralCategory du contrat commun ; conserver les compteurs de sélection utilisés par la machine.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/MediaFunctions.cs : convertir un média public en configuration locale pour son insertion sans perdre son lecteur ni sa protection.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs : transmettre les insertions typées et les lecteurs d’éjection par la file existante.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Machine.cs : raccorder les opérations publiques de médias aux commandes typées, avec un seul changement de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ProcessCore.cs : sérialiser MediaConfiguration, le lecteur complet et les commandes de ports dans le protocole existant.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/ExternalCore.cs : adapter les commandes typées aux traitements natifs existants d’insertion, d’éjection et de périphériques, en conservant les conversions et restrictions du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Services/CoreHost.cs : utiliser le répartiteur commun typé avec les en-têtes de succès existants et les codecs de la famille.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Emulators/Common/Interop/Enums/HostEnums.cs : déclarer la commande commune de ports au code déjà réservé.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Interfaces/IEmulatorCore.cs : utiliser les commandes de MediaConfiguration et PeripheralCategory du contrat commun ; conserver les compteurs de sélection utilisés par la machine.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/MediaFunctions.cs : convertir un média public en configuration locale pour son insertion sans perdre son lecteur ni sa protection.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs : transmettre les insertions typées et les lecteurs d’éjection par la file existante.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Machine.cs : raccorder les opérations publiques de médias aux commandes typées, avec un seul changement de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ProcessCore.cs : sérialiser MediaConfiguration, le lecteur complet et les commandes de ports dans le protocole existant.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/ExternalCore.cs : adapter les commandes typées aux traitements natifs existants d’insertion, d’éjection et de périphériques, en conservant les conversions et restrictions du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Services/CoreHost.cs : utiliser le répartiteur commun typé avec les en-têtes de succès existants et les codecs de la famille.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Enums/HostEnums.cs : déclarer la commande commune de ports au code déjà réservé.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Interfaces/IEmulatorCore.cs : utiliser les commandes de MediaConfiguration et PeripheralCategory du contrat commun ; conserver les compteurs de sélection utilisés par la machine.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/MediaFunctions.cs : convertir un média public en configuration locale pour son insertion sans perdre son lecteur ni sa protection.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Machine.Lifecycle.cs : transmettre les insertions typées et les lecteurs d’éjection par la file existante.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Machine.cs : raccorder les opérations publiques de médias aux commandes typées, avec un seul changement de sélection.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs : sérialiser MediaConfiguration, le lecteur complet et les commandes de ports dans le protocole existant.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ExternalCore.cs : adapter les commandes typées aux traitements natifs existants d’insertion, d’éjection et de périphériques, en conservant les conversions et restrictions du cœur.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/CoreHost.cs : utiliser le répartiteur commun typé avec les en-têtes de succès existants et les codecs de la famille.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Enums/HostEnums.cs : déclarer la commande commune de ports au code déjà réservé.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Emulators/Common/Interop/Services/ProcessCore.cs : parenthéser la résolution de lecteur nullable avant la comparaison avec le nombre des images.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Emulators/Common/Interop/Services/ProcessCore.cs : parenthéser la résolution de lecteur nullable avant la comparaison avec le nombre des images.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Services/ProcessCore.cs : parenthéser la résolution de lecteur nullable avant la comparaison avec le nombre des images.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs : adapter le cœur synthétique aux commandes typées sans modifier les scénarios vérifiés.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/MachineAdapters/MachineAdapterFailureScenarios.cs : adapter le cœur synthétique aux commandes typées sans modifier les scénarios vérifiés.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sega/SegaMachineLifecycleTests.cs : adapter le cœur synthétique aux commandes typées sans modifier les scénarios vérifiés.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/ControllerFeedbackTests.cs : adapter le cœur synthétique aux commandes typées sans modifier les scénarios vérifiés.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/MultichannelAudioTests.cs : adapter le cœur synthétique aux commandes typées sans modifier les scénarios vérifiés.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/Sony/NativeShutdownTests.cs : adapter le cœur synthétique aux commandes typées sans modifier les scénarios vérifiés.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Interfaces/IEmulatorCore.cs : remplacer les déclarations locales par le même contrat de commandes typées ; conserver les compteurs.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/MediaFunctions.cs : convertir le média public vers sa description locale et conserver son lecteur.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Lifecycle.cs : utiliser les descriptions typées et le lecteur complet dans la file des commandes.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Machine.cs : raccorder les opérations publiques aux commandes typées de la même façon que les autres familles.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/CoreHostCommandTests.cs : vérifier le répartiteur unique avec les deux en-têtes et les descriptions typées, en conservant les contrôles de charge utile.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/CoreHostCommandTests.cs : retirer le nom de contrat obsolète resté dans le cœur synthétique après le renommage des scénarios.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/CoreHostCommandTests.cs : vérifier aussi le port et le périphérique avec un en-tête de succès, désormais commun aux six hôtes.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/MediaFunctions.cs : employer le nom ToModule déjà commun aux convertisseurs ; conserver une seule conversion par média.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/Machine.Lifecycle.cs : appeler le convertisseur ToModule sous le nom uniforme.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/MediaFunctions.cs : employer le nom ToModule déjà commun aux convertisseurs ; conserver une seule conversion par média.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/Machine.Lifecycle.cs : appeler le convertisseur ToModule sous le nom uniforme.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Machines/Common/Functions/MediaFunctions.cs : employer le nom ToModule déjà commun aux convertisseurs ; conserver une seule conversion par média.
+    - [x] Modifier src/GWGUI.Emulation.Microsoft/Common/Services/Machine.Lifecycle.cs : appeler le convertisseur ToModule sous le nom uniforme.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Machines/Common/Functions/MediaFunctions.cs : employer le nom ToModule déjà commun aux convertisseurs ; conserver une seule conversion par média.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/Machine.Lifecycle.cs : appeler le convertisseur ToModule sous le nom uniforme.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Machines/Common/Functions/MediaFunctions.cs : employer le nom ToModule déjà commun aux convertisseurs ; conserver une seule conversion par média.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/Machine.Lifecycle.cs : appeler le convertisseur ToModule sous le nom uniforme.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/MediaFunctions.cs : employer le nom ToModule déjà commun aux convertisseurs ; conserver une seule conversion par média.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/Machine.Lifecycle.cs : appeler le convertisseur ToModule sous le nom uniforme.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/MediaFunctions.cs : employer le nom ToModule déjà commun aux convertisseurs ; conserver une seule conversion par média.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/Machine.Lifecycle.cs : appeler le convertisseur ToModule sous le nom uniforme.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier le même contrat de commandes et le même répartiteur dans les 24 familles, puis exécuter les vérifications et le build Debug complet.
   - [ ] Uniformiser les interfaces de cœur en conservant les commandes existantes.
     - [x] Modifier src/GWGUI.Emulation.Acorn/Common/Interfaces/IEmulatorCore.cs : réunir les contrats de runtime, statut, commandes de médias et retours audio ; exposer les opérations existantes de réinitialisation, fermeture demandée, identité et état du processus, enregistrement des médias et état des changements, sans perdre les commandes par chemin.
     - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Interfaces/IEmulatorCore.cs : réunir les contrats de runtime, statut, commandes de médias et retours audio ; exposer les opérations existantes de réinitialisation, fermeture demandée, identité et état du processus, enregistrement des médias et état des changements, sans perdre les commandes par chemin.

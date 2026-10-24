@@ -41,7 +41,7 @@ internal static class CoreHost
                                         statusWriter.Write(currentCore.SupportsSaveStates);
                                         CommonCoreHostFunctions.Protocol.WriteRuntimeStatus(statusWriter, currentCore.Region, currentCore.BufferedAudioFrames, currentCore.AudioOverrunCount, currentCore.AudioUnderrunCount);
                                     });
-                                CommonCoreHostFunctions.Protocol.WriteDiskSelection(writer, core);
+                                CommonCoreHostFunctions.Protocol.WriteDiskSelection(writer, core.DiskCount, core.CurrentDiskIndex);
                                 CoreHostProtocol.WriteLedStates(writer, core.LedStates);
                                 writer.Write(core.ShutdownRequested);
                                 CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, core.ControllerFeedback);
@@ -51,7 +51,7 @@ internal static class CoreHost
                                 CommonCoreHostFunctions.Protocol.RunCoreFrame<ExternalCore, MachineConfiguration, CoreOption>(
                                     reader, writer, activeCore, CoreHostProtocol.ReadInput,
                                     (frameWriter, pendingFrame) => CoreHostProtocol.WriteSharedFrame(frameWriter, pendingFrame, videoMap),
-                                    CommonCoreHostFunctions.Protocol.WriteDiskSelection, CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,
+                                    static (statusWriter, currentCore) => CommonCoreHostFunctions.Protocol.WriteDiskSelection(statusWriter, currentCore.DiskCount, currentCore.CurrentDiskIndex), CoreHostProtocol.WriteLedStates, static () => CoreHostProtocol.JsonOptions,
                                     ref lastVideoSequence, ref lastDiagnosticCount);
                                 writer.Write(activeCore.ShutdownRequested);
                                 CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, activeCore.ControllerFeedback);
@@ -61,8 +61,9 @@ internal static class CoreHost
                                 WriteSuccess(writer);
                                 break;
                             default:
-                                if (!CommonCoreHostFunctions.Protocol.TryExecutePathMediaCommand((byte)command, reader, writer,
-                                        () => EnsureCore(core), CoreHostProtocol.ReadBytes, WriteSuccess, static (statusWriter, status) => statusWriter.Write(System.Text.Json.JsonSerializer.Serialize(status, CoreHostProtocol.JsonOptions))))
+                                if (!CommonCoreHostFunctions.Protocol.TryExecuteCoreCommand<MediaConfiguration, PeripheralCategory>((byte)command, reader, writer,
+                                        () => EnsureCore(core), static requestReader => System.Text.Json.JsonSerializer.Deserialize<MediaConfiguration>(requestReader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(),
+                                        CoreHostProtocol.ReadBytes, static (statusWriter, status) => statusWriter.Write(System.Text.Json.JsonSerializer.Serialize(status, CoreHostProtocol.JsonOptions)), static value => (PeripheralCategory)value, WriteSuccess))
                                     throw new InvalidDataException(CoreExceptions.UnknownHostCommand((byte)command));
                                 break;
                         }

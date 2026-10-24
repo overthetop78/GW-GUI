@@ -6,7 +6,8 @@ internal enum HostCommand : byte
     HasUnsavedMediaChanges = CoreHostConstants.HasUnsavedMediaChangesCommand,
 
     Initialize = CoreHostConstants.FirstHostCommandId, RunFrame, HardReset, Stop, InsertMedia, EjectMedia,
-    SaveState, LoadState, SetOption, SelectDisk, Dispose, SoftReset = CoreHostConstants.SoftResetCommand,
+    SaveState, LoadState, SetOption, SelectDisk, Dispose, SetControllerPortDevice = CoreHostConstants.SetControllerPortDeviceCommand,
+    SoftReset = CoreHostConstants.SoftResetCommand,
     /// <summary>Consulte les images disponibles et leur sélection sans modifier le média.</summary>
     GetDiskStatus = CoreHostConstants.GetDiskStatusCommand
 }

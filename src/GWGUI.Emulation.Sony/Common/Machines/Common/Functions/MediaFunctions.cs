@@ -5,6 +5,19 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 
 internal static class EmulationMediaConversionFunctions
 {
+    /// <summary>Adapte le média reçu de la machine sans perdre son indice de lecteur ni sa protection.</summary>
+    /// <remarks>Cette description rejoint la file de commandes. Les conversions natives et le montage restent possédés par le cœur.</remarks>
+    internal static MediaConfiguration ToModule(EmulationMedia media) => new(media.Path, media.Type switch
+    {
+        EmulationMediaType.Floppy => MediaCategory.Floppy,
+        EmulationMediaType.Cassette => MediaCategory.Cassette,
+        EmulationMediaType.Cartridge => MediaCategory.Cartridge,
+        EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
+        EmulationMediaType.HardDisk => MediaCategory.HardDisk,
+        EmulationMediaType.MemoryCard => MediaCategory.MemoryCard,
+        _ => throw new ArgumentOutOfRangeException(nameof(media))
+    }, IsReadOnly: media.IsReadOnly, IsInserted: media.IsInserted, MountOrder: media.Slot.Index, SlotIndex: media.Slot.Index);
+
     internal static MachineConfiguration WithMedia(MachineConfiguration configuration, IEnumerable<EmulationMedia> media)
     {
         var mounted = media.ToArray();
@@ -21,17 +34,7 @@ internal static class EmulationMediaConversionFunctions
         return configuration with
         {
         Options = options,
-        Media = mounted.Where(item => !cards.Any(device => device.Slot == item.Slot)).Select((item, index) => new MediaConfiguration(item.Path,
-            item.Type switch
-            {
-                EmulationMediaType.Floppy => MediaCategory.Floppy,
-                EmulationMediaType.Cassette => MediaCategory.Cassette,
-                EmulationMediaType.Cartridge => MediaCategory.Cartridge,
-                EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
-                EmulationMediaType.MemoryCard => MediaCategory.MemoryCard,
-                EmulationMediaType.HardDisk => MediaCategory.HardDisk,
-                _ => throw new ArgumentOutOfRangeException(nameof(media), item.Type, null)
-            }, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted, MountOrder: index, SlotIndex: item.Slot.Index)).ToArray()
+        Media = mounted.Where(item => !cards.Any(device => device.Slot == item.Slot)).Select((item, index) => ToModule(item) with { MountOrder = index }).ToArray()
         };
     }
 

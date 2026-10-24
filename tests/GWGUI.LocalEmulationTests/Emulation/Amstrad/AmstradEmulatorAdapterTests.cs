@@ -616,8 +616,9 @@ public sealed class AmstradEmulatorAdapterTests
         public void SoftReset() => SoftResetCount++;
         public void Stop() { }
         public void SetInput(EmulationInputSnapshot snapshot) { }
-        public void InsertMedia(string path) { }
-        public void EjectMedia() { }
+        public void SetControllerPortDevice(int port, PeripheralCategory peripheral) { }
+        public void InsertMedia(MediaConfiguration media) { }
+        public void EjectMedia(EmulationMediaSlot slot) { }
         public void SelectDisk(int index) { }
         public byte[] SaveState() => [];
         public void LoadState(ReadOnlySpan<byte> state) { }

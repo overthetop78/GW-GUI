@@ -132,25 +132,20 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     public void SetAudioMuted(bool muted) => _audio.SetMuted(muted);
 
-    public ValueTask InsertMediaAsync(string path, CancellationToken cancellationToken = default) =>
+    public ValueTask InsertMediaAsync(EmulationMedia media, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>
         {
-            var fullPath = Path.GetFullPath(path);
-            _core.InsertMedia(fullPath);
-            var index = Math.Max(0, _core.CurrentDiskIndex);
+            var fullPath = Path.GetFullPath(media.Path);
+            _core.InsertMedia(EmulationMediaConversionFunctions.ToModule(media with { Path = fullPath }));
+            var index = media.Slot.Index;
             if (index < _mediaPaths.Count) _mediaPaths[index] = fullPath;
             else _mediaPaths.Add(fullPath);
             _currentDiskPath = fullPath;
-        }, cancellationToken, EmulationMessageCategory.Media,
-            EmulationMessageCode.MediaOperationFailed);
+        }, cancellationToken, EmulationMessageCategory.Media, EmulationMessageCode.MediaOperationFailed);
 
-    public ValueTask EjectMediaAsync(CancellationToken cancellationToken = default) =>
-        QueueCommand(() => { _core.EjectMedia(); _currentDiskPath = null; }, cancellationToken,
+    public ValueTask EjectMediaAsync(EmulationMediaSlot slot, CancellationToken cancellationToken = default) =>
+        QueueCommand(() => { _core.EjectMedia(slot); _currentDiskPath = null; }, cancellationToken,
             EmulationMessageCategory.Media, EmulationMessageCode.MediaOperationFailed);
-
-    public ValueTask InsertFloppyAsync(string path, CancellationToken cancellationToken = default) => InsertMediaAsync(path, cancellationToken);
-
-    public ValueTask EjectFloppyAsync(CancellationToken cancellationToken = default) => EjectMediaAsync(cancellationToken);
 
     public ValueTask SelectDiskAsync(int index, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>

@@ -53,6 +53,7 @@ internal sealed class ExternalCore : IEmulatorCore
     private ExternalCoreApi.GetMemorySize? _getMemorySize;
     private string? _conversionDirectory;
     private MachineFactory? _adapter;
+    private MachineConfiguration? _configuration;
 
     internal ExternalCore(string corePath) => _corePath = corePath;
 
@@ -80,6 +81,7 @@ internal sealed class ExternalCore : IEmulatorCore
 
     public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
+        _configuration = configuration;
         _conversionDirectory = Path.Combine(sessionDirectory, ExternalCoreConstants.ConvertedMedia);
         ConfigurationValidationFunctions.ValidateForSave(configuration);
         foreach (var slot in EmulatorCatalog.CreateAdapter(configuration.Core).GetFirmwareSlots(configuration))
@@ -216,7 +218,7 @@ internal sealed class ExternalCore : IEmulatorCore
     {
         if (_host is not null) _host.Input = snapshot;
     }
-    public void InsertMedia(string path)
+    private void InsertMediaPath(string path)
     {
         var diskControl = (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl;
         try { diskControl.Insert(path); }
@@ -227,7 +229,7 @@ internal sealed class ExternalCore : IEmulatorCore
             diskControl.Insert(converted);
         }
     }
-    public void EjectMedia() => (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl.Eject();
+    private void EjectMediaPath() => (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl.Eject();
     public void SelectDisk(int index) => (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl.Select(index);
 
     private static bool LoadGame(ExternalCoreApi.LoadGame loadGame, string path)
@@ -243,6 +245,31 @@ internal sealed class ExternalCore : IEmulatorCore
         {
             Marshal.FreeHGlobal(game);
         }
+    }
+
+    /// <inheritdoc/>
+    public void InsertMedia(MediaConfiguration media)
+    {
+        var index = media.SlotIndex ?? 0;
+        if (index < 0) throw new ArgumentOutOfRangeException(nameof(media));
+        if (index < DiskCount && index != CurrentDiskIndex) SelectDisk(index);
+        InsertMediaPath(media.Path);
+    }
+    /// <inheritdoc/>
+    public void EjectMedia(EmulationMediaSlot slot)
+    {
+        SelectDisk(slot.Index);
+        EjectMediaPath();
+    }
+    /// <inheritdoc/>
+    public void SetControllerPortDevice(int port, PeripheralCategory peripheral)
+    {
+        var configuration = _configuration ?? throw new InvalidOperationException();
+        var host = _host ?? throw new InvalidOperationException();
+        if (port < 0 || port >= (_adapter ?? throw new InvalidOperationException()).ControllerPortCount(configuration) || !Enum.IsDefined(peripheral)) throw new ArgumentOutOfRangeException(nameof(port));
+        var device = (_adapter ?? throw new InvalidOperationException()).ControllerDevice(host.ControllerPorts, port, peripheral == PeripheralCategory.Automatic ? ControllerCatalog.Default(ModelCatalog.Get(configuration.Model)) : peripheral);
+        Export<ExternalCoreApi.SetControllerPortDevice>(ExternalCoreConstants.RetroSetControllerPortDevice)((uint)port, device);
+        host.Feedback.ResetPort(port);
     }
 
     public byte[] SaveState()

@@ -184,8 +184,26 @@ internal sealed class ProcessCore : IEmulatorCore
     public void SoftReset() => SimpleRequest(HostCommand.SoftReset);
     public void Stop() => SimpleRequest(HostCommand.Stop);
     public void SetInput(EmulationInputSnapshot snapshot) => _input.Update(snapshot);
-    public void InsertMedia(string path) => StringRequest(HostCommand.InsertMedia, Path.GetFullPath(path));
-    public void EjectMedia() => SimpleRequest(HostCommand.EjectMedia);
+    public void InsertMedia(MediaConfiguration media)
+    {
+        StringRequest(HostCommand.InsertMedia, JsonSerializer.Serialize(media with { Path = Path.GetFullPath(media.Path) }, CoreHostProtocol.JsonOptions));
+        if (media.MountOrder < DiskCount) CurrentDiskIndex = media.MountOrder;
+    }
+    public void SetControllerPortDevice(int port, PeripheralCategory peripheral)
+    {
+        Begin(HostCommand.SetControllerPortDevice);
+        _writer!.Write(port);
+        _writer.Write((int)peripheral);
+        CompleteRequest();
+    }
+
+    public void EjectMedia(EmulationMediaSlot slot)
+    {
+        Begin(HostCommand.EjectMedia);
+        CommonCoreHostFunctions.Protocol.WriteMediaSlot(_writer!, slot);
+        CompleteRequest();
+        CurrentDiskIndex = slot.Index;
+    }
 
     public void SelectDisk(int index)
     {

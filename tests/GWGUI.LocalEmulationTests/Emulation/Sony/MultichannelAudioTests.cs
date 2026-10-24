@@ -218,8 +218,8 @@ public sealed class MultichannelAudioTests
         public void SetOption(string key, string value) => throw new NotSupportedException();
         public void HardReset() => throw new NotSupportedException();
         public void SoftReset() => throw new NotSupportedException();
-        public void InsertMedia(string path) => throw new NotSupportedException();
-        public void EjectMedia() => throw new NotSupportedException();
+        public void InsertMedia(MediaConfiguration media) => throw new NotSupportedException();
+        public void EjectMedia(EmulationMediaSlot slot) => throw new NotSupportedException();
         public void SelectDisk(int index) => throw new NotSupportedException();
         public byte[] SaveState() => throw new NotSupportedException();
         public void LoadState(ReadOnlySpan<byte> state) => throw new NotSupportedException();

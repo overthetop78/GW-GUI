@@ -266,9 +266,24 @@ internal sealed partial class ExternalCore : IEmulatorCore
                 _host!.SetControllerType(port, PeripheralCategory.None);
             }
     }
-    public void InsertMedia(string path) => (_host ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized))).DiskControl.Insert(path);
-    public void EjectMedia() => (_host ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized))).DiskControl.Eject();
+    private void InsertMediaPath(string path) => (_host ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized))).DiskControl.Insert(path);
+    private void EjectMediaPath() => (_host ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized))).DiskControl.Eject();
     public void SelectDisk(int index) => (_host ?? throw new InvalidOperationException(Error(CoreExceptionsResourceConstants.CoreNotInitialized))).DiskControl.Select(index);
+
+    /// <inheritdoc/>
+    public void InsertMedia(MediaConfiguration media)
+    {
+        var index = media.SlotIndex ?? media.MountOrder;
+        if (index < 0) throw new ArgumentOutOfRangeException(nameof(media));
+        if (index < DiskCount) SelectDisk(index);
+        InsertMediaPath(media.Path);
+    }
+    /// <inheritdoc/>
+    public void EjectMedia(EmulationMediaSlot slot)
+    {
+        SelectDisk(slot.Index);
+        EjectMediaPath();
+    }
 
     public byte[] SaveState()
     {

@@ -127,13 +127,15 @@ public sealed class CoreHostCommandTests
     [InlineData(14)]
     [InlineData(5)]
     [InlineData(6)]
-    public void PathMediaCommandsPreserveTheirPayloadAndSuccessAcknowledgement(byte command)
+    [InlineData(15)]
+    public void AcknowledgedMediaCommandsPreserveTheirPayloadAndSuccessAcknowledgement(byte command)
     {
         using var payload = new MemoryStream();
         using (var encoder = new BinaryWriter(payload, Encoding.UTF8, leaveOpen: true))
         {
             if (command == 5) encoder.Write("disk.adf");
-            if (command is 12 or 14) EmulationSdk.HostProtocol.WriteMediaSlot(encoder, new(EmulationMediaSlot.MemoryCard0.Category, 1));
+            if (command is 6 or 12 or 14) EmulationSdk.HostProtocol.WriteMediaSlot(encoder, new(EmulationMediaSlot.MemoryCard0.Category, 1));
+            if (command == 15) { encoder.Write(2); encoder.Write((int)TestPeripheral.Pointer); }
             encoder.Write(42);
         }
         payload.Position = 0;
@@ -142,30 +144,29 @@ public sealed class CoreHostCommandTests
         using var writer = new BinaryWriter(response);
         var core = new Core();
         var acquired = 0;
-        Assert.True(HandlePathMedia(command, reader, writer, () => { acquired++; return core; }));
+        Assert.True(HandleAcknowledgedMedia(command, reader, writer, () => { acquired++; return core; }));
         Assert.Equal(1, acquired);
-        Assert.Equal(new[] { command switch { 5 => "InsertMedia", 6 => "EjectMedia", 12 => "SaveMediaChanges", _ => "HasUnsavedMediaChanges" } }, core.Calls);
+        Assert.Equal(new[] { command switch { 5 => "InsertMedia", 6 => "EjectMedia", 12 => "SaveMediaChanges", 15 => "SetControllerPortDevice", _ => "HasUnsavedMediaChanges" } }, core.Calls);
         if (command == 5) Assert.Equal("disk.adf", core.Media);
+        if (command == 15) Assert.Equal((2, TestPeripheral.Pointer), core.Controller);
         Assert.Equal(42, reader.ReadInt32());
         Assert.Equal(payload.Length, payload.Position);
         Assert.Equal(command == 14 ? new byte[] { 1, 1 } : new byte[] { 1 }, response.ToArray());
-        if (command is 12 or 14) Assert.Equal(new EmulationMediaSlot(EmulationMediaSlot.MemoryCard0.Category, 1), core.Slot);
+        if (command is 6 or 12 or 14) Assert.Equal(new EmulationMediaSlot(EmulationMediaSlot.MemoryCard0.Category, 1), core.Slot);
     }
 
     [Theory]
     [InlineData(1)]
     [InlineData(2)]
     [InlineData(11)]
-    [InlineData(13)]
-    [InlineData(15)]
     [InlineData(255)]
-    public void PathMediaCommandsLeaveHostAndNativeOnlyCommandsUntouched(byte command)
+    public void AcknowledgedMediaCommandsLeaveHostAndNativeOnlyCommandsUntouched(byte command)
     {
         using var payload = new MemoryStream(new byte[] { 42 });
         using var reader = new BinaryReader(payload);
         using var response = new MemoryStream();
         using var writer = new BinaryWriter(response);
-        Assert.False(HandlePathMedia(command, reader, writer,
+        Assert.False(HandleAcknowledgedMedia(command, reader, writer,
             () => throw new InvalidOperationException("must not acquire")));
         Assert.Equal(0, payload.Position);
         Assert.Equal(0, response.Length);
@@ -174,7 +175,7 @@ public sealed class CoreHostCommandTests
     [Theory]
     [InlineData(5)]
     [InlineData(6)]
-    public void PathMediaMissingCoreDoesNotReadPayloadOrAcknowledge(byte command)
+    public void AcknowledgedMediaMissingCoreDoesNotReadPayloadOrAcknowledge(byte command)
     {
         using var payload = new MemoryStream(new byte[] { 42 });
         using var reader = new BinaryReader(payload);
@@ -182,20 +183,20 @@ public sealed class CoreHostCommandTests
         using var writer = new BinaryWriter(response);
         var failure = new InvalidOperationException("not initialized");
         Assert.Same(failure, Assert.Throws<InvalidOperationException>(
-            () => HandlePathMedia(command, reader, writer, () => throw failure)));
+            () => HandleAcknowledgedMedia(command, reader, writer, () => throw failure)));
         Assert.Equal(0, payload.Position);
         Assert.Equal(0, response.Length);
     }
 
     [Fact]
-    public void PathMediaTruncatedPathNeverReachesCoreOrAcknowledges()
+    public void AcknowledgedMediaTruncatedPathNeverReachesCoreOrAcknowledges()
     {
         using var payload = new MemoryStream(new byte[] { 3, 65 });
         using var reader = new BinaryReader(payload);
         using var response = new MemoryStream();
         using var writer = new BinaryWriter(response);
         var core = new Core();
-        Assert.Throws<EndOfStreamException>(() => HandlePathMedia(5, reader, writer, () => core));
+        Assert.Throws<EndOfStreamException>(() => HandleAcknowledgedMedia(5, reader, writer, () => core));
         Assert.Empty(core.Calls);
         Assert.Equal(0, response.Length);
     }
@@ -203,29 +204,32 @@ public sealed class CoreHostCommandTests
     [Theory]
     [InlineData(5)]
     [InlineData(6)]
-    public void PathMediaFailureNeverSendsSuccess(byte command)
+    public void AcknowledgedMediaFailureNeverSendsSuccess(byte command)
     {
         using var payload = new MemoryStream();
         using (var encoder = new BinaryWriter(payload, Encoding.UTF8, leaveOpen: true))
-            encoder.Write("disk.adf");
+        {
+            if (command == 5) encoder.Write("disk.adf");
+            else EmulationSdk.HostProtocol.WriteMediaSlot(encoder, EmulationMediaSlot.Floppy0);
+        }
         payload.Position = 0;
         using var reader = new BinaryReader(payload);
         using var response = new MemoryStream();
         using var writer = new BinaryWriter(response);
         var core = new Core { FailMedia = true };
-        Assert.Throws<InvalidOperationException>(() => HandlePathMedia(command, reader, writer, () => core));
+        Assert.Throws<InvalidOperationException>(() => HandleAcknowledgedMedia(command, reader, writer, () => core));
         Assert.Equal(0, response.Length);
     }
 
     [Fact]
-    public void PathMediaDelegatesStateCommandToExistingOwner()
+    public void AcknowledgedMediaDelegatesStateCommandToExistingOwner()
     {
         using var payload = new MemoryStream();
         using var reader = new BinaryReader(payload);
         using var response = new MemoryStream();
         using var writer = new BinaryWriter(response);
         var core = new Core();
-        Assert.True(HandlePathMedia(7, reader, writer, () => core));
+        Assert.True(HandleAcknowledgedMedia(7, reader, writer, () => core));
         Assert.Equal(new[] { "SaveState" }, core.Calls);
         Assert.Equal(new byte[] { 1, 3, 0, 0, 0, 7, 8, 9 }, response.ToArray());
     }
@@ -236,7 +240,7 @@ public sealed class CoreHostCommandTests
         using var response = new MemoryStream();
         using var writer = new BinaryWriter(response);
         var core = new Core();
-        EmulationSdk.HostProtocol.WriteDiskSelection(writer, core);
+        EmulationSdk.HostProtocol.WriteDiskSelection(writer, core.DiskCount, core.CurrentDiskIndex);
         Assert.Equal(new[] { "DiskCount", "CurrentDiskIndex" }, core.Calls);
         response.Position = 0;
         using var reader = new BinaryReader(response);
@@ -245,11 +249,11 @@ public sealed class CoreHostCommandTests
         Assert.Equal(response.Length, response.Position);
     }
 
-    private static bool HandlePathMedia(byte command, BinaryReader reader, BinaryWriter writer,
+    private static bool HandleAcknowledgedMedia(byte command, BinaryReader reader, BinaryWriter writer,
         Func<Core> acquire) =>
-        EmulationSdk.HostProtocol.TryExecutePathMediaCommand(command, reader, writer, () => acquire(),
+        EmulationSdk.HostProtocol.TryExecuteCoreCommand<string, TestPeripheral>(command, reader, writer, () => acquire(), static input => input.ReadString(),
             static input => EmulationHostProtocolFunctions.ReadBytes(input, "test"),
-            static output => output.Write(true));
+            static (output, status) => output.Write("disk:" + status.ImageCount), static value => (TestPeripheral)value, static output => output.Write(true));
     private static bool Handle(byte command, BinaryReader reader, BinaryWriter writer, Func<Core> acquire) =>
         EmulationSdk.HostProtocol.TryExecuteCoreCommand<string, TestPeripheral>(
             command, reader, writer, () => acquire(), static input => input.ReadString(),
@@ -259,14 +263,14 @@ public sealed class CoreHostCommandTests
     private enum TestPeripheral { Pointer = 37 }
 
     [Fact]
-    public void PathSoftResetUsesTheSharedStateDispatcher()
+    public void AcknowledgedSoftResetUsesTheSharedStateDispatcher()
     {
         using var payload = new MemoryStream();
         using var reader = new BinaryReader(payload);
         using var response = new MemoryStream();
         using var writer = new BinaryWriter(response);
         var core = new Core();
-        Assert.True(HandlePathMedia(16, reader, writer, () => core));
+        Assert.True(HandleAcknowledgedMedia(16, reader, writer, () => core));
         Assert.Equal(new[] { "SoftReset" }, core.Calls);
         Assert.Equal(new byte[] { 1 }, response.ToArray());
         Assert.Equal(0, payload.Position);
@@ -279,9 +283,9 @@ public sealed class CoreHostCommandTests
         using var response = new MemoryStream();
         using var writer = new BinaryWriter(response);
         var core = new Core();
-        Assert.True(EmulationSdk.HostProtocol.TryExecutePathMediaCommand(13, reader, writer, () => core,
+        Assert.True(EmulationSdk.HostProtocol.TryExecuteCoreCommand<string, TestPeripheral>(13, reader, writer, () => core, static input => input.ReadString(),
             _ => throw new InvalidOperationException("Aucun argument binaire ne doit être lu."),
-            output => output.Write(true), (output, status) => output.Write(System.Text.Json.JsonSerializer.Serialize(status))));
+            (output, status) => output.Write(System.Text.Json.JsonSerializer.Serialize(status)), static value => (TestPeripheral)value, output => output.Write(true)));
         response.Position = 0;
         using var decoder = new BinaryReader(response, Encoding.UTF8, leaveOpen: true);
         Assert.True(decoder.ReadBoolean());
@@ -297,7 +301,7 @@ public sealed class CoreHostCommandTests
         Assert.Equal(0, payload.Position);
         Assert.Equal(response.Length, response.Position);
     }
-    private sealed class Core : IEmulationCoreCommands<string, TestPeripheral>, IEmulationCorePathMediaCommands
+    private sealed class Core : IEmulationCoreCommands<string, TestPeripheral>
     {
         internal List<string> Calls { get; } = [];
         internal string? Media { get; private set; }
@@ -311,16 +315,11 @@ public sealed class CoreHostCommandTests
         public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) { Calls.Add(nameof(HasUnsavedMediaChanges)); Slot = slot; return true; }
         public int DiskCount { get { Calls.Add(nameof(DiskCount)); return 3; } }
         public int CurrentDiskIndex { get { Calls.Add(nameof(CurrentDiskIndex)); return 2; } }
-        public void EjectMedia()
-        {
-            if (FailMedia) throw new InvalidOperationException("media");
-            Calls.Add(nameof(EjectMedia));
-        }
         public void SoftReset() => Calls.Add(nameof(SoftReset));
         public void HardReset() => Calls.Add(nameof(HardReset));
         public void Stop() => Calls.Add(nameof(Stop));
         public void InsertMedia(string media) { if (FailMedia) throw new InvalidOperationException("media"); Calls.Add(nameof(InsertMedia)); Media = media; }
-        public void EjectMedia(EmulationMediaSlot slot) { Calls.Add(nameof(EjectMedia)); Slot = slot; }
+        public void EjectMedia(EmulationMediaSlot slot) { if (FailMedia) throw new InvalidOperationException("media"); Calls.Add(nameof(EjectMedia)); Slot = slot; }
         public byte[] SaveState() { Calls.Add(nameof(SaveState)); return [7, 8, 9]; }
         public void LoadState(ReadOnlySpan<byte> state) { Calls.Add(nameof(LoadState)); State = state.ToArray(); }
         public void SetOption(string key, string value) { Calls.Add(nameof(SetOption)); Option = (key, value); }

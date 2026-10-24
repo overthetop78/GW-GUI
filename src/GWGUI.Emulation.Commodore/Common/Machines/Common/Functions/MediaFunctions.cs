@@ -5,6 +5,17 @@ namespace GWGUI.Emulation.Commodore.Common.Machines.Common.Functions;
 
 internal static class EmulationMediaConversionFunctions
 {
+    /// <summary>Adapte le média de la commande publique avec son lecteur et sa protection.</summary>
+    internal static MediaConfiguration ToModule(EmulationMedia media) => new(media.Path, media.Type switch
+        {
+            EmulationMediaType.Floppy => MediaCategory.Floppy,
+            EmulationMediaType.HardDisk => MediaCategory.HardDrive,
+            EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
+            EmulationMediaType.Cassette => MediaCategory.Cassette,
+            EmulationMediaType.Cartridge => MediaCategory.Cartridge,
+            _ => throw new ArgumentOutOfRangeException(nameof(media), media.Type, null)
+        }, IsReadOnly: media.IsReadOnly, SlotIndex: media.Slot.Index);
+
     internal static IReadOnlyList<EmulationMedia> ToCommon(IReadOnlyList<MediaConfiguration> media)
     {
         var indexes = new Dictionary<EmulationMediaCategory, int>();
@@ -21,16 +32,7 @@ internal static class EmulationMediaConversionFunctions
         return result;
     }
 
-    internal static IReadOnlyList<MediaConfiguration> FromCommon(IEnumerable<EmulationMedia> media) =>
-        media.Select(item => new MediaConfiguration(item.Path, item.Type switch
-        {
-            EmulationMediaType.Floppy => MediaCategory.Floppy,
-            EmulationMediaType.HardDisk => MediaCategory.HardDrive,
-            EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
-            EmulationMediaType.Cassette => MediaCategory.Cassette,
-            EmulationMediaType.Cartridge => MediaCategory.Cartridge,
-            _ => throw new ArgumentOutOfRangeException(nameof(media), item.Type, null)
-        }, IsReadOnly: item.IsReadOnly, SlotIndex: item.Slot.Index)).ToArray();
+    internal static IReadOnlyList<MediaConfiguration> FromCommon(IEnumerable<EmulationMedia> media) => media.Select(ToModule).ToArray();
 
     private static bool TryCategory(MediaCategory media, out EmulationMediaCategory category)
     {

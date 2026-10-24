@@ -194,9 +194,34 @@ internal sealed class ExternalCore : IEmulatorCore
     {
         if (_host is not null) _host.Input = snapshot;
     }
-    public void InsertMedia(string path) => (_host ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized())).DiskControl.Insert(path);
-    public void EjectMedia() => (_host ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized())).DiskControl.Eject();
+    private void InsertMediaPath(string path) => (_host ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized())).DiskControl.Insert(path);
+    private void EjectMediaPath() => (_host ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized())).DiskControl.Eject();
     public void SelectDisk(int index) => (_host ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized())).DiskControl.Select(index);
+
+    /// <inheritdoc/>
+    public void InsertMedia(MediaConfiguration media)
+    {
+        var index = media.MountOrder;
+        if (index < 0) throw new ArgumentOutOfRangeException(nameof(media));
+        if (index < DiskCount) SelectDisk(index);
+        InsertMediaPath(media.Path);
+    }
+    /// <inheritdoc/>
+    public void EjectMedia(EmulationMediaSlot slot)
+    {
+        SelectDisk(slot.Index);
+        EjectMediaPath();
+    }
+    /// <inheritdoc/>
+    public void SetControllerPortDevice(int port, PeripheralCategory peripheral)
+    {
+        var configuration = _configuration ?? throw new InvalidOperationException();
+        var host = _host ?? throw new InvalidOperationException();
+        if (port < 0 || port >= ModelCatalog.Get(configuration.Model).ControllerPortCount || !Enum.IsDefined(peripheral)) throw new ArgumentOutOfRangeException(nameof(port));
+        var device = peripheral == PeripheralCategory.None ? 0u : ExternalCoreConstants.JoypadDevice;
+        Export<ExternalCoreApi.SetControllerPortDevice>(ExternalCoreConstants.RetroSetControllerPortDevice)((uint)port, device);
+        host.Feedback.ResetPort(port);
+    }
 
     public byte[] SaveState()
     {

@@ -5,6 +5,16 @@ namespace GWGUI.Emulation.Amstrad.Common.Machines.Common.Functions;
 
 internal static class EmulationMediaConversionFunctions
 {
+    /// <summary>Adapte le média reçu de la machine sans perdre son indice de lecteur ni sa protection.</summary>
+    /// <remarks>Cette description rejoint la file de commandes. Les conversions natives et le montage restent possédés par le cœur.</remarks>
+    internal static MediaConfiguration ToModule(EmulationMedia media) => new(media.Path, media.Type switch
+    {
+        EmulationMediaType.Floppy => MediaCategory.Floppy,
+        EmulationMediaType.Cassette => MediaCategory.Cassette,
+        EmulationMediaType.Cartridge => MediaCategory.Cartridge,
+        _ => throw new ArgumentOutOfRangeException(nameof(media))
+    }, IsReadOnly: media.IsReadOnly, IsInserted: media.IsInserted, MountOrder: media.Slot.Index);
+
     internal static IReadOnlyList<EmulationMedia> ToCommon(IEnumerable<MediaConfiguration> media)
     {
         var indexes = new Dictionary<EmulationMediaCategory, int>();

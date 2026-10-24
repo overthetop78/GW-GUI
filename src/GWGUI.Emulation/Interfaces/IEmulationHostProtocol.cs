@@ -105,20 +105,9 @@ public interface IEmulationHostProtocol
 
     /// <summary>Écrit le disque sélectionné et le nombre de disques selon le protocole des médias par chemin.</summary>
     /// <param name="writer">Rédacteur binaire emprunté.</param>
-    /// <param name="core">Contrat de commandes de médias emprunté au cœur de la session.</param>
-    void WriteDiskSelection(BinaryWriter writer, IEmulationCorePathMediaCommands core);
-
-    /// <summary>Exécute une commande existante de média par chemin ou indique qu’elle appartient à un autre traitement.</summary>
-    /// <param name="command">Code de commande reçu dans l’en-tête du protocole.</param>
-    /// <param name="reader">Lecteur emprunté des paramètres.</param>
-    /// <param name="writer">Rédacteur emprunté de la réponse.</param>
-    /// <param name="ensureCore">Accès au cœur courant validé par le propriétaire.</param>
-    /// <param name="readBytes">Codec des données binaires nécessaires aux commandes d’état.</param>
-    /// <param name="writeSuccess">Écriture du succès selon l’enveloppe du module.</param>
-    /// <returns>True si la commande a été traitée ; false pour laisser le propriétaire choisir le traitement suivant.</returns>
-    /// <param name="writeDiskStatus">Codec emprunté du statut détaillé ; null laisse la requête de statut au traitement suivant.</param>
-    bool TryExecutePathMediaCommand(byte command, BinaryReader reader, BinaryWriter writer,
-        Func<IEmulationCorePathMediaCommands> ensureCore, Func<BinaryReader, byte[]> readBytes, Action<BinaryWriter> writeSuccess, Action<BinaryWriter, DiskStatus>? writeDiskStatus = null);
+    /// <param name="diskCount">Nombre des images annoncé par le cœur de la session.</param>
+    /// <param name="currentDiskIndex">Index sélectionné, ou moins un sans sélection.</param>
+    void WriteDiskSelection(BinaryWriter writer, int diskCount, int currentDiskIndex);
 
     /// <summary>Convertit le code de région du cœur natif en standard vidéo.</summary>
     /// <param name="nativeRegion">Code natif : zéro pour NTSC et un pour PAL.</param>
@@ -342,7 +331,8 @@ public interface IEmulationHostProtocol
     /// <param name="readBytes">Codec des blocs d’état binaire.</param>
     /// <param name="writeDiskStatus">Codec du statut de disque propre au module.</param>
     /// <param name="decodePeripheral">Conversion de l’identifiant binaire vers le périphérique du module.</param>
-    bool TryExecuteCoreCommand<TMedia, TPeripheral>( byte command, BinaryReader reader, BinaryWriter writer, Func<IEmulationCoreCommands<TMedia, TPeripheral>> ensureCore, Func<BinaryReader, TMedia> readMedia, Func<BinaryReader, byte[]> readBytes, Action<BinaryWriter, DiskStatus> writeDiskStatus, Func<int, TPeripheral> decodePeripheral);
+    /// <param name="writeSuccess">En-tête de succès du transport ; null lorsque le succès précède déjà la charge utile.</param>
+    bool TryExecuteCoreCommand<TMedia, TPeripheral>( byte command, BinaryReader reader, BinaryWriter writer, Func<IEmulationCoreCommands<TMedia, TPeripheral>> ensureCore, Func<BinaryReader, TMedia> readMedia, Func<BinaryReader, byte[]> readBytes, Action<BinaryWriter, DiskStatus> writeDiskStatus, Func<int, TPeripheral> decodePeripheral, Action<BinaryWriter>? writeSuccess = null);
 
     /// <summary>Possède la connexion cliente et ses codecs pendant l’exécution du traitement de session.</summary>
     /// <param name="pipeName">Nom du tube de commande propre à cette session.</param>

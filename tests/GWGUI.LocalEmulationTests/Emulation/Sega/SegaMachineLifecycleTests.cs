@@ -919,8 +919,9 @@ public sealed class SegaMachineLifecycleTests
         public void Dispose() { Disposed = true; FrameRelease.Set(); }
         public void HardReset() { }
         public void SoftReset() { }
-        public void InsertMedia(string path) { }
-        public void EjectMedia() { }
+        public void SetControllerPortDevice(int port, PeripheralCategory peripheral) { }
+        public void InsertMedia(MediaConfiguration media) { }
+        public void EjectMedia(EmulationMediaSlot slot) { }
         public void SelectDisk(int index) { }
         public byte[] SaveState() => [];
         public void LoadState(ReadOnlySpan<byte> state) { }

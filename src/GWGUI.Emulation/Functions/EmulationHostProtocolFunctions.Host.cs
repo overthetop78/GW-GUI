@@ -258,36 +258,12 @@ internal static partial class EmulationHostProtocolFunctions
     }
 
     /// <summary>Écrit le nombre d’images et la sélection courante du lecteur.</summary>
-    internal static void WriteDiskSelection(BinaryWriter writer, IEmulationCorePathMediaCommands core)
+    internal static void WriteDiskSelection(BinaryWriter writer, int diskCount, int currentDiskIndex)
     {
-        writer.Write(core.DiskCount);
-        writer.Write(core.CurrentDiskIndex);
+        writer.Write(diskCount);
+        writer.Write(currentDiskIndex);
     }
 
-    /// <summary>Exécute une commande de média par chemin ; une commande inconnue ne consomme pas de contenu.</summary>
-    internal static bool TryExecutePathMediaCommand(byte command, BinaryReader reader, BinaryWriter writer,
-        Func<IEmulationCorePathMediaCommands> ensureCore, Func<BinaryReader, byte[]> readBytes,
-        Action<BinaryWriter> writeSuccess, Action<BinaryWriter, DiskStatus>? writeDiskStatus = null)
-    {
-        switch (command)
-        {
-            case EmulationHostProtocolConstants.GetDiskStatusCommand when writeDiskStatus is not null:
-                var status = ensureCore().GetDiskStatus();
-                writeSuccess(writer);
-                writeDiskStatus(writer, status);
-                return true;
-            case EmulationHostProtocolConstants.InsertMediaCommand:
-                ensureCore().InsertMedia(reader.ReadString());
-                break;
-            case EmulationHostProtocolConstants.EjectMediaCommand:
-                ensureCore().EjectMedia();
-                break;
-            default:
-                return TryExecuteCoreStateCommand(command, reader, writer, ensureCore, readBytes, writeSuccess);
-        }
-        writeSuccess(writer);
-        return true;
-    }
     /// <summary>Exécute les commandes communes de reset, arrêt, état, option et sélection de disque.</summary>
     internal static bool TryExecuteCoreStateCommand(byte command, BinaryReader reader, BinaryWriter writer,
         Func<IEmulationCoreStateCommands> ensureCore, Func<BinaryReader, byte[]> readBytes,
@@ -394,7 +370,7 @@ internal static partial class EmulationHostProtocolFunctions
         byte command, BinaryReader reader, BinaryWriter writer,
         Func<IEmulationCoreCommands<TMedia, TPeripheral>> ensureCore,
         Func<BinaryReader, TMedia> readMedia, Func<BinaryReader, byte[]> readBytes,
-        Action<BinaryWriter, DiskStatus> writeDiskStatus, Func<int, TPeripheral> decodePeripheral)
+        Action<BinaryWriter, DiskStatus> writeDiskStatus, Func<int, TPeripheral> decodePeripheral, Action<BinaryWriter>? writeSuccess = null)
     {
         switch (command)
         {
@@ -405,14 +381,17 @@ internal static partial class EmulationHostProtocolFunctions
                 ensureCore().EjectMedia(ReadMediaSlot(reader));
                 break;
             case EmulationHostProtocolConstants.GetDiskStatusCommand:
-                writeDiskStatus(writer, ensureCore().GetDiskStatus());
-                break;
+                var status = ensureCore().GetDiskStatus();
+                writeSuccess?.Invoke(writer);
+                writeDiskStatus(writer, status);
+                return true;
             case EmulationHostProtocolConstants.SetControllerPortDeviceCommand:
                 ensureCore().SetControllerPortDevice(reader.ReadInt32(), decodePeripheral(reader.ReadInt32()));
                 break;
             default:
-                return TryExecuteCoreStateCommand(command, reader, writer, ensureCore, readBytes);
+                return TryExecuteCoreStateCommand(command, reader, writer, ensureCore, readBytes, writeSuccess);
         }
+        writeSuccess?.Invoke(writer);
         return true;
     }
 

@@ -204,8 +204,8 @@ public sealed class ControllerFeedbackTests
         public void SoftReset() { }
         public void SetInput(EmulationInputSnapshot snapshot) { }
         public void SetControllerPortDevice(int port, PeripheralCategory type) { }
-        public void InsertMedia(string path) => throw new NotSupportedException();
-        public void EjectMedia() => throw new NotSupportedException();
+        public void InsertMedia(MediaConfiguration media) => throw new NotSupportedException();
+        public void EjectMedia(EmulationMediaSlot slot) => throw new NotSupportedException();
         public void SelectDisk(int index) => throw new NotSupportedException();
         public byte[] SaveState() => throw new NotSupportedException();
         public void LoadState(ReadOnlySpan<byte> state) => throw new NotSupportedException();

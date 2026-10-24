@@ -140,33 +140,27 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     public void SetAudioMuted(bool muted) => _audio.SetMuted(muted);
 
-    public async ValueTask InsertMediaAsync(string path, CancellationToken cancellationToken = default)
+    public async ValueTask InsertMediaAsync(EmulationMedia media, CancellationToken cancellationToken = default)
     {
-        var fullPath = Path.GetFullPath(path);
+        var fullPath = Path.GetFullPath(media.Path);
         if (_currentDiskPath is not null)
         {
-            await EjectMediaAsync(cancellationToken).ConfigureAwait(false);
+            await EjectMediaAsync(media.Slot, cancellationToken).ConfigureAwait(false);
             await Task.Delay(MachineConstants.DiskChangeDelayMilliseconds, cancellationToken).ConfigureAwait(false);
         }
-
         await QueueCommand(() =>
         {
-            _core.InsertMedia(fullPath);
-            var index = Math.Max(BufferConstants.FirstCollectionIndex, _core.CurrentDiskIndex);
+            _core.InsertMedia(EmulationMediaConversionFunctions.ToModule(media with { Path = fullPath }));
+            var index = media.Slot.Index;
             if (index < _mediaPaths.Count) _mediaPaths[index] = fullPath;
             else _mediaPaths.Add(fullPath);
             _currentDiskPath = fullPath;
-        }, cancellationToken, EmulationMessageCategory.Media,
-            EmulationMessageCode.MediaOperationFailed).ConfigureAwait(false);
+        }, cancellationToken, EmulationMessageCategory.Media, EmulationMessageCode.MediaOperationFailed).ConfigureAwait(false);
     }
 
-    public ValueTask EjectMediaAsync(CancellationToken cancellationToken = default) =>
-        QueueCommand(() => { _core.EjectMedia(); _currentDiskPath = null; }, cancellationToken,
+    public ValueTask EjectMediaAsync(EmulationMediaSlot slot, CancellationToken cancellationToken = default) =>
+        QueueCommand(() => { _core.EjectMedia(slot); _currentDiskPath = null; }, cancellationToken,
             EmulationMessageCategory.Media, EmulationMessageCode.MediaOperationFailed);
-
-    public ValueTask InsertFloppyAsync(string path, CancellationToken cancellationToken = default) => InsertMediaAsync(path, cancellationToken);
-
-    public ValueTask EjectFloppyAsync(CancellationToken cancellationToken = default) => EjectMediaAsync(cancellationToken);
 
     public ValueTask SelectDiskAsync(int index, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>

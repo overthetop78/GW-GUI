@@ -109,17 +109,14 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     IReadOnlyList<EmulationMedia> IEmulationMedia.MountedMedia => _mountedCommonMedia.ToArray();
     async ValueTask IEmulationMedia.InsertAsync(EmulationMedia media, CancellationToken cancellationToken)
     {
-        if (media.Slot.Index < DiskCount)
-            await SelectDiskAsync(media.Slot.Index, cancellationToken).ConfigureAwait(false);
-        await InsertMediaAsync(media.Path, cancellationToken).ConfigureAwait(false);
+        await InsertMediaAsync(media, cancellationToken).ConfigureAwait(false);
         var inserted = media with { IsInserted = true };
         _mountedCommonMedia.RemoveAll(item => item.Slot == inserted.Slot);
         _mountedCommonMedia.Add(inserted);
     }
     async ValueTask IEmulationMedia.EjectAsync(EmulationMediaSlot slot, CancellationToken cancellationToken)
     {
-        await SelectDiskAsync(slot.Index, cancellationToken).ConfigureAwait(false);
-        await EjectMediaAsync(cancellationToken).ConfigureAwait(false);
+        await EjectMediaAsync(slot, cancellationToken).ConfigureAwait(false);
         var mountedIndex = _mountedCommonMedia.FindIndex(item => item.Slot == slot);
         if (mountedIndex >= BufferConstants.FirstCollectionIndex)
             _mountedCommonMedia[mountedIndex] = _mountedCommonMedia[mountedIndex] with { IsInserted = false };

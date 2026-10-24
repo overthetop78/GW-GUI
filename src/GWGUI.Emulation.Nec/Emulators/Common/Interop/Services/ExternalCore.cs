@@ -216,13 +216,13 @@ internal sealed class ExternalCore : IEmulatorCore
     {
         if (_host is not null) _host.Input = snapshot;
     }
-    public void InsertMedia(string path)
+    private void InsertMediaPath(string path)
     {
         if (_configuration?.EmulatorId == GeargrafxConstants.Id)
             throw new NotSupportedException(Error("MediaRefused"));
         (_host ?? throw new InvalidOperationException(Error("CoreNotInitialized"))).DiskControl.Insert(path);
     }
-    public void EjectMedia()
+    private void EjectMediaPath()
     {
         EnsureDiskControlSupported();
         (_host ?? throw new InvalidOperationException(Error("CoreNotInitialized"))).DiskControl.Eject();
@@ -239,6 +239,31 @@ internal sealed class ExternalCore : IEmulatorCore
         var current = ResolveConfiguredMedia(_configuration).FirstOrDefault();
         if (current is null || !Path.GetExtension(current.Path).Equals(GeargrafxConstants.MmiExtension, StringComparison.OrdinalIgnoreCase))
             throw new NotSupportedException(Error("DiskControlUnavailable"));
+    }
+
+    /// <inheritdoc/>
+    public void InsertMedia(MediaConfiguration media)
+    {
+        var index = media.SlotIndex ?? media.MountOrder;
+        if (index < 0) throw new ArgumentOutOfRangeException(nameof(media));
+        if (index < DiskCount) SelectDisk(index);
+        InsertMediaPath(media.Path);
+    }
+    /// <inheritdoc/>
+    public void EjectMedia(EmulationMediaSlot slot)
+    {
+        SelectDisk(slot.Index);
+        EjectMediaPath();
+    }
+    /// <inheritdoc/>
+    public void SetControllerPortDevice(int port, PeripheralCategory peripheral)
+    {
+        var configuration = _configuration ?? throw new InvalidOperationException();
+        var host = _host ?? throw new InvalidOperationException();
+        if (port < 0 || port >= ModelCatalog.Get(configuration.Model).ControllerPortCount || !Enum.IsDefined(peripheral)) throw new ArgumentOutOfRangeException(nameof(port));
+        var device = peripheral == PeripheralCategory.None ? 0u : ControllerCatalog.IsMouse(peripheral) ? ExternalHostCallbacksConstants.MouseDevice : ExternalCoreConstants.JoypadDevice;
+        Export<ExternalCoreApi.SetControllerPortDevice>(ExternalCoreConstants.RetroSetControllerPortDevice)((uint)port, device);
+        host.Feedback.ResetPort(port);
     }
 
     public byte[] SaveState()
