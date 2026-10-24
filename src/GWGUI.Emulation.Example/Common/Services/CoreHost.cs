@@ -88,35 +88,18 @@ internal static class CoreHost
     /// Un cœur dont Initialize échoue est immédiatement libéré et retiré de la session dans finally.</remarks>
     private static void Initialize(BinaryReader reader, BinaryWriter writer, Func<string, Emulator, IEmulatorCore> createCore, ref IEmulatorCore? core, ref int lastDiagnosticCount)
     {
-        EmulationSdk.HostProtocol.DisposePreviousCore(ref core);
-        var (corePath, emulator, session, saves, configuration) = EmulationSdk.HostProtocol.ReadInitializationRequest(reader,
+        CommonCoreHostFunctions.Protocol.InitializeCore<IEmulatorCore, Emulator, MachineConfiguration, CoreOption>(
+            reader, writer, createCore, ref core, ref lastDiagnosticCount,
             static requestReader => (Emulator)requestReader.ReadInt32(), CoreHostFunctions.ReadString,
-            static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration));
-        core = createCore(corePath, emulator);
-        var initialized = false;
-        try
-        {
-            core.Initialize(configuration, session, saves);
-            initialized = true;
-        }
-        finally
-        {
-            if (!initialized)
-            {
-                try { core.Dispose(); }
-                finally { core = null; }
-            }
-        }
-        var initializedCore = EnsureCore(core);
-        EmulationSdk.HostProtocol.WriteCoreInitialization<IEmulatorCore, MachineConfiguration, CoreOption>(
-            writer, initializedCore, CoreHostFunctions.JsonOptions, ref lastDiagnosticCount, CoreHostConstants.ExtensionListSeparator,
+            static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration),
+            static () => CoreHostFunctions.JsonOptions, CoreHostConstants.ExtensionListSeparator,
             static (statusWriter, currentCore) =>
             {
                 statusWriter.Write(currentCore.MinimumAudioLatencyMilliseconds);
                 statusWriter.Write(currentCore.SupportsSaveStates);
-                EmulationSdk.HostProtocol.WriteRuntimeStatus(statusWriter, currentCore.Region, currentCore.BufferedAudioFrames, currentCore.AudioOverrunCount, currentCore.AudioUnderrunCount);
-            });
-        CoreHostFunctions.WriteLedStates(writer, initializedCore.LedStates);
+                CommonCoreHostFunctions.Protocol.WriteRuntimeStatus(statusWriter, currentCore.Region, currentCore.BufferedAudioFrames, currentCore.AudioOverrunCount, currentCore.AudioUnderrunCount);
+            }, CoreHostFunctions.WriteLedStates);
+        var initializedCore = EnsureCore(core);
         writer.Write(initializedCore.ShutdownRequested);
         CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, initializedCore.ControllerFeedback);
     }

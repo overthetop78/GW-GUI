@@ -15424,3 +15424,23 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
     - [x] Supprimer tests/GWGUI.LocalEmulationTests/Emulation/ExampleMemoryCardRuntimeTemporaryTests.cs et ses éventuels artefacts de scénario ; recompiler le projet de tests pour retirer le contrôle temporaire de son assembly.
   - [x] Valider les sorties compilées.
     - [x] Modifier les sources concernées si le build révèle une erreur ; exécuter scripts/local-building.cmd --building=debug --modules=A et vérifier l'exécutable et les 24 modules déployés.
+
+- [x] Uniformiser l’initialisation et le nettoyage des cœurs hébergés.
+  - [x] Centraliser le traitement et raccorder les hôtes existants.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationHostProtocol.cs : exposer l’initialisation d’un cœur publié et documenter sa libération immédiate en cas d’échec.
+    - [x] Modifier src/GWGUI.Emulation/Functions/EmulationHostProtocolFunctions.Host.cs : centraliser Initialize et son nettoyage dans finally, puis réutiliser ce traitement dans le parcours de lecture existant.
+    - [x] Modifier src/GWGUI.Emulation/Services/EmulationHostProtocolService.cs : implémenter le relais de l’interface vers le traitement interne.
+    - [x] Modifier src/GWGUI.Emulation.Amstrad/Common/Services/CoreHost.cs : utiliser l’initialisation partagée sans modifier les codecs ni l’ordre de la réponse ; conserver les commentaires complets d’Example.
+    - [x] Modifier src/GWGUI.Emulation.Commodore/Common/Services/CoreHost.cs : utiliser l’initialisation partagée sans modifier les codecs ni l’ordre de la réponse ; conserver les commentaires complets d’Example.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/CoreHost.cs : utiliser l’initialisation partagée sans modifier les codecs ni l’ordre de la réponse ; conserver les commentaires complets d’Example.
+    - [x] Modifier src/GWGUI.Emulation.Nec/Common/Services/CoreHost.cs : utiliser l’initialisation partagée sans modifier les codecs ni l’ordre de la réponse ; conserver les commentaires complets d’Example.
+    - [x] Modifier src/GWGUI.Emulation.Nintendo/Common/Services/CoreHost.cs : utiliser l’initialisation partagée sans modifier les codecs ni l’ordre de la réponse ; conserver les commentaires complets d’Example.
+    - [x] Modifier src/GWGUI.Emulation.Sega/Common/Services/CoreHost.cs : utiliser l’initialisation partagée sans modifier les codecs ni l’ordre de la réponse ; conserver les commentaires complets d’Example.
+    - [x] Modifier src/GWGUI.Emulation.Snk/Common/Services/CoreHost.cs : utiliser l’initialisation partagée sans modifier les codecs ni l’ordre de la réponse ; conserver les commentaires complets d’Example.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Common/Services/CoreHost.cs : utiliser l’initialisation partagée sans modifier les codecs ni l’ordre de la réponse ; conserver les commentaires complets d’Example.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/CoreHostResponseTests.cs : contrôler en mémoire la réussite, l’échec et la libération unique du cœur à l’initialisation.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ArchitectureValidationTests.cs : vérifier que chaque hôte Common appelle l’initialisation du contrat partagé.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/CoreInitializationRequestTests.cs : adapter le contrôle existant pour exiger la libération immédiate après échec de Initialize, en conservant les vérifications de réponse et des autres erreurs.
+  - [x] Valider le bloc.
+    - [x] Modifier les fichiers concernés si les contrôles existants révèlent une régression ; exécuter la suite locale d’émulation.
+    - [x] Modifier les fichiers concernés si le build révèle une erreur ; exécuter scripts/local-building.cmd --building=debug --modules=A et vérifier l’exécutable et les 24 modules.

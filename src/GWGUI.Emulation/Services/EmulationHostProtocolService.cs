@@ -56,6 +56,10 @@ internal sealed class EmulationHostProtocolService : IEmulationHostProtocol
         => EmulationHostProtocolFunctions.ReadSharedFrame(reader, videoMap, hostName);
 
     /// <inheritdoc/>
+    public TCore InitializeCore<TCore, TConfiguration, TOption>(ref TCore? core, TConfiguration configuration, string sessionDirectory, string? saveDirectory) where TCore : class, IEmulationCoreRuntime<TConfiguration, TOption>
+        => EmulationHostProtocolFunctions.InitializeCore<TCore, TConfiguration, TOption>(ref core, configuration, sessionDirectory, saveDirectory);
+
+    /// <inheritdoc/>
     public void InitializeCore<TCore, TEmulator, TConfiguration, TOption>(BinaryReader reader, BinaryWriter writer, Func<string, TEmulator, TCore> createCore,
         ref TCore? core, ref int lastDiagnosticCount, Func<BinaryReader, TEmulator> readEmulator, Func<BinaryReader, string?> readSaves,
         Func<BinaryReader, TConfiguration> readConfiguration, Func<JsonSerializerOptions> jsonOptions, char extensionSeparator,

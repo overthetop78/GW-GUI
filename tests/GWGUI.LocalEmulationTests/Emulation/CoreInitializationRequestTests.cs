@@ -279,7 +279,7 @@ public sealed class CoreInitializationRequestTests
     [InlineData("json")]
     [InlineData("status")]
     [InlineData("led")]
-    public void HostInitializationFailureKeepsTheOriginalOrderErrorAndReachableOwner(string failure)
+    public void HostInitializationFailureKeepsTheOriginalOrderErrorAndOnlyInitializedOwner(string failure)
         => VerifyHostInitialization(failure, null);
 
     private static void VerifyHostInitialization(string? failure, string? saves)
@@ -355,8 +355,8 @@ public sealed class CoreInitializationRequestTests
             var lastStage = failure is null ? stages.Length : Array.IndexOf(stages, failure) + 1;
             Assert.Equal(stages.Take(lastStage), calls);
             Assert.Equal(1, previous.DisposeCount);
-            Assert.Equal(0, created.DisposeCount);
-            var transferred = failure is null || Array.IndexOf(stages, failure) >= Array.IndexOf(stages, "initialize");
+            Assert.Equal(failure == "initialize" ? 1 : 0, created.DisposeCount);
+            var transferred = failure is null || Array.IndexOf(stages, failure) > Array.IndexOf(stages, "initialize");
             if (transferred) Assert.Same(created, slot);
             else Assert.Null(slot);
             Assert.Equal(failure is null or "led" ? 1 : 9, diagnosticCount);

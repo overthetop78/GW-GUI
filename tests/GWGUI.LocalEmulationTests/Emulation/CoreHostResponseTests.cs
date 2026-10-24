@@ -235,6 +235,85 @@ public sealed class CoreHostResponseTests
         Assert.True(stream.CanWrite);
     }
 
+    [Theory]
+    [InlineData(false, false, false)]
+    [InlineData(false, true, false)]
+    [InlineData(false, true, true)]
+    [InlineData(true, false, false)]
+    [InlineData(true, true, false)]
+    [InlineData(true, true, true)]
+    public void InitializationUsesTheSameOwnershipAndFailureCleanupWithEitherProtocol(bool readProtocol, bool failInitialization, bool failDisposal)
+    {
+        var configuration = new Configuration();
+        var initializationError = new InvalidOperationException("initialization");
+        var disposalError = new InvalidOperationException("disposal");
+        var owned = new Core();
+        Core? slot = owned;
+        owned.OnInitialize = (current, session, saves) =>
+        {
+            Assert.Same(configuration, current);
+            Assert.Equal("session", session);
+            Assert.Equal("saves", saves);
+            Assert.Same(owned, slot);
+            if (failInitialization) throw initializationError;
+        };
+        owned.OnDispose = () =>
+        {
+            if (failInitialization) Assert.Null(slot);
+            if (failDisposal) throw disposalError;
+        };
+        using var request = new MemoryStream();
+        using var requestWriter = new BinaryWriter(request, Encoding.UTF8, leaveOpen: true);
+        requestWriter.Write("core");
+        requestWriter.Write("session");
+        requestWriter.Write("saves");
+        requestWriter.Flush();
+        request.Position = 0;
+        using var reader = new BinaryReader(request, Encoding.UTF8, leaveOpen: true);
+        using var response = new MemoryStream();
+        using var writer = new BinaryWriter(response, Encoding.UTF8, leaveOpen: true);
+        var diagnosticCount = 99;
+        try
+        {
+            void Initialize()
+            {
+                if (readProtocol)
+                {
+                    slot = null;
+                    EmulationSdk.HostProtocol.InitializeCore<Core, int, Configuration, Option>(
+                        reader, writer, (_, _) => owned, ref slot, ref diagnosticCount,
+                        _ => 0, input => input.ReadString(), _ => configuration,
+                        () => new JsonSerializerOptions(), '|', (_, _) => { }, (_, _) => { });
+                }
+                else
+                    Assert.Same(owned, EmulationSdk.HostProtocol.InitializeCore<Core, Configuration, Option>(ref slot, configuration, "session", "saves"));
+            }
+
+            if (failInitialization)
+            {
+                Assert.Same(failDisposal ? disposalError : initializationError, Assert.Throws<InvalidOperationException>(Initialize));
+                Assert.Null(slot);
+                Assert.Equal(1, owned.DisposeCount);
+                Assert.Equal(0, response.Length);
+                Assert.Equal(99, diagnosticCount);
+            }
+            else
+            {
+                Initialize();
+                Assert.Same(owned, slot);
+                Assert.Equal(0, owned.DisposeCount);
+            }
+            Assert.True(request.CanRead);
+            Assert.True(response.CanWrite);
+        }
+        finally
+        {
+            EmulationSdk.HostProtocol.DisposePreviousCore(ref slot);
+        }
+        Assert.Null(slot);
+        Assert.Equal(1, owned.DisposeCount);
+    }
+
     private sealed record Configuration;
     private sealed record Option(int Code, [property: JsonPropertyName("profileDetail")] string Detail);
 
@@ -256,6 +335,9 @@ public sealed class CoreHostResponseTests
         internal List<string> Trace { get; } = [];
         internal Queue<AudioChunk> Chunks { get; } = new();
         internal bool Disposed { get; private set; }
+        internal int DisposeCount { get; private set; }
+        internal Action<Configuration, string, string?>? OnInitialize { get; set; }
+        internal Action? OnDispose { get; set; }
         internal int ProfileStatus => 1234;
         public VideoFrame? LatestVideoFrame => Read<VideoFrame?>("video", null);
         public AudioChunk? LatestAudioChunk => null;
@@ -275,7 +357,7 @@ public sealed class CoreHostResponseTests
         public string CoreSha256 => Read("hash", "hash");
         public double FramesPerSecond => Read("fps", _fps);
         public int SampleRate => Read("rate", _sampleRate);
-        public void Initialize(Configuration configuration, string sessionDirectory, string? saveDirectory = null) => throw new NotSupportedException();
+        public void Initialize(Configuration configuration, string sessionDirectory, string? saveDirectory = null) => (OnInitialize ?? throw new NotSupportedException())(configuration, sessionDirectory, saveDirectory);
         public void RunFrame() => throw new NotSupportedException();
         public void SetInput(EmulationInputSnapshot snapshot) => throw new NotSupportedException();
         public bool TryDequeueAudio(out AudioChunk? chunk)
@@ -287,7 +369,7 @@ public sealed class CoreHostResponseTests
             _sampleRate = 22050;
             return false;
         }
-        public void Dispose() { Disposed = true; Chunks.Clear(); }
+        public void Dispose() { DisposeCount++; Disposed = true; Chunks.Clear(); OnDispose?.Invoke(); }
         private T Read<T>(string name, T value) { Trace.Add(name); return value; }
     }
 }

@@ -5957,6 +5957,7 @@ public sealed class ArchitectureValidationTests
             var host = module.GetTypes().SingleOrDefault(type => type.Name == "CoreHost");
             if (host is null) continue;
             Assert.Contains(Calls(host), call => call.Method.DeclaringType == typeof(IEmulationHostProtocol) && call.Method.Name == "TryExecuteCoreCommand");
+            Assert.Contains(Calls(host), call => call.Method.DeclaringType == typeof(IEmulationHostProtocol) && call.Method.Name == "InitializeCore");
             var commands = Assert.Single(module.GetTypes(), type => type.IsEnum && type.Name == "HostCommand");
             Assert.Equal(12, Convert.ToInt32(Enum.Parse(commands, "SaveMediaChanges")));
             Assert.Equal(14, Convert.ToInt32(Enum.Parse(commands, "HasUnsavedMediaChanges")));

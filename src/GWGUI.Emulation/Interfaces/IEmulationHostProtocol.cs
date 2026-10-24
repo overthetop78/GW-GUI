@@ -106,13 +106,25 @@ public interface IEmulationHostProtocol
     /// <param name="extensionSeparator">Séparateur des extensions prises en charge.</param>
     /// <param name="writeStatus">Écriture des statuts propres au module.</param>
     /// <param name="writeLedStates">Écriture des états des voyants.</param>
-    /// <remarks>Le propriétaire garde le cœur publié accessible à son finally, même si son initialisation échoue.
+    /// <remarks>Le service libère et détache immédiatement le cœur dont l'initialisation échoue ; après réussite, la session en reste propriétaire.
     /// Le service ne conserve aucun cœur ni flux après l’appel.</remarks>
     void InitializeCore<TCore, TEmulator, TConfiguration, TOption>(BinaryReader reader, BinaryWriter writer, Func<string, TEmulator, TCore> createCore,
         ref TCore? core, ref int lastDiagnosticCount, Func<BinaryReader, TEmulator> readEmulator, Func<BinaryReader, string?> readSaves,
         Func<BinaryReader, TConfiguration> readConfiguration, Func<JsonSerializerOptions> jsonOptions, char extensionSeparator,
         Action<BinaryWriter, TCore> writeStatus, Action<BinaryWriter, IReadOnlyDictionary<int, bool>> writeLedStates)
         where TCore : class, IEmulationCoreRuntime<TConfiguration, TOption>;
+
+    /// <summary>Initialise le cœur publié dans l'emplacement de session et le libère si Initialize échoue.</summary>
+    /// <typeparam name="TCore">Cœur possédé par la session, implémentant le contrat de runtime.</typeparam>
+    /// <typeparam name="TConfiguration">Configuration opaque transmise au cœur.</typeparam>
+    /// <typeparam name="TOption">Type des options annoncées par le cœur.</typeparam>
+    /// <param name="core">Emplacement contenant le cœur créé ; remis à null avant sa libération en cas d'échec.</param>
+    /// <param name="configuration">Configuration empruntée, transmise sans modification.</param>
+    /// <param name="sessionDirectory">Répertoire de session fourni par son propriétaire.</param>
+    /// <param name="saveDirectory">Répertoire facultatif des sauvegardes persistantes.</param>
+    /// <returns>Cœur initialisé, toujours possédé par la session qui doit le libérer dans son finally.</returns>
+    /// <remarks>Les répertoires restent empruntés. Un échec ne laisse aucun cœur partiellement initialisé dans la session.</remarks>
+    TCore InitializeCore<TCore, TConfiguration, TOption>(ref TCore? core, TConfiguration configuration, string sessionDirectory, string? saveDirectory) where TCore : class, IEmulationCoreRuntime<TConfiguration, TOption>;
 
     /// <summary>Applique les entrées, exécute une frame et publie vidéo, audio et statuts dans leur ordre existant.</summary>
     /// <typeparam name="TCore">Cœur emprunté implémentant le contrat de runtime.</typeparam>

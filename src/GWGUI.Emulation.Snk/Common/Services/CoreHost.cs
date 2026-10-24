@@ -60,46 +60,20 @@ internal static class CoreHost
 
     private static void Initialize(BinaryReader reader, BinaryWriter writer, Func<string, Emulator, IEmulatorCore> createCore, ref IEmulatorCore? core, ref int lastDiagnosticCount)
     {
-        CommonCoreHostFunctions.Protocol.DisposePreviousCore(ref core);
-
-        var (corePath, emulator, session, saves, configuration) =
-            CommonCoreHostFunctions.Protocol.ReadInitializationRequest(reader,
-                static requestReader => (Emulator)requestReader.ReadInt32(),
-                CoreHostFunctions.ReadString,
-                static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration));
-        core = createCore(corePath, emulator);
-        var initialized = false;
-        try
-        {
-            core.Initialize(configuration, session, saves);
-            initialized = true;
-        }
-        finally
-        {
-            if (!initialized)
-            {
-                try
-                {
-                    core.Dispose();
-                }
-                finally
-                {
-                    core = null;
-                }
-            }
-        }
-
-        CommonCoreHostFunctions.Protocol.WriteCoreInitialization<IEmulatorCore, MachineConfiguration, CoreOption>(
-            writer, core, CoreHostFunctions.JsonOptions, ref lastDiagnosticCount, CoreHostConstants.ExtensionListSeparator,
+        CommonCoreHostFunctions.Protocol.InitializeCore<IEmulatorCore, Emulator, MachineConfiguration, CoreOption>(
+            reader, writer, createCore, ref core, ref lastDiagnosticCount,
+            static requestReader => (Emulator)requestReader.ReadInt32(), CoreHostFunctions.ReadString,
+            static requestReader => JsonSerializer.Deserialize<MachineConfiguration>(requestReader.ReadString(), CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration),
+            static () => CoreHostFunctions.JsonOptions, CoreHostConstants.ExtensionListSeparator,
             static (statusWriter, currentCore) =>
             {
                 statusWriter.Write(currentCore.MinimumAudioLatencyMilliseconds);
                 statusWriter.Write(currentCore.SupportsSaveStates);
                 CommonCoreHostFunctions.Protocol.WriteRuntimeStatus(statusWriter, currentCore.Region, currentCore.BufferedAudioFrames, currentCore.AudioOverrunCount, currentCore.AudioUnderrunCount);
-            });
-        CoreHostFunctions.WriteLedStates(writer, core.LedStates);
-        writer.Write(core.ShutdownRequested);
-        CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, core.ControllerFeedback);
+            }, CoreHostFunctions.WriteLedStates);
+        var initializedCore = EnsureCore(core);
+        writer.Write(initializedCore.ShutdownRequested);
+        CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, initializedCore.ControllerFeedback);
     }
 
     [SupportedOSPlatform(CoreHostConstants.Windows)]

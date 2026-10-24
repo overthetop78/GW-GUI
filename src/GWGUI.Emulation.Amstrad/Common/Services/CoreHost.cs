@@ -40,20 +40,20 @@ internal static class CoreHost
                                 }
 
                                 core = createCore(configuration, corePath);
-                                core.Initialize(configuration, session, saves);
+                                var initializedCore = CommonCoreHostFunctions.Protocol.InitializeCore<IEmulatorCore, MachineConfiguration, CoreOption>(ref core, configuration, session, saves);
                                 CommonCoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Success);
                                 CommonCoreHostFunctions.Protocol.WriteCoreInitialization<IEmulatorCore, MachineConfiguration, CoreOption>(
-                                    writer, core, CommonCoreHostFunctions.JsonOptions, ref lastDiagnosticCount, MediaConstants.SupportedExtensionSeparator,
+                                    writer, initializedCore, CommonCoreHostFunctions.JsonOptions, ref lastDiagnosticCount, MediaConstants.SupportedExtensionSeparator,
                                     static (statusWriter, currentCore) =>
                                     {
                                         statusWriter.Write(currentCore.MinimumAudioLatencyMilliseconds);
                                         statusWriter.Write(currentCore.SupportsSaveStates);
                                         CommonCoreHostFunctions.Protocol.WriteRuntimeStatus(statusWriter, currentCore.Region, currentCore.BufferedAudioFrames, currentCore.AudioOverrunCount, currentCore.AudioUnderrunCount);
                                     });
-                                CommonCoreHostFunctions.Protocol.WriteDiskSelection(writer, core.DiskCount, core.CurrentDiskIndex);
-                                CommonCoreHostFunctions.WriteLedStates(writer, core.LedStates);
-                                writer.Write(core.ShutdownRequested);
-                                CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, core.ControllerFeedback);
+                                CommonCoreHostFunctions.Protocol.WriteDiskSelection(writer, initializedCore.DiskCount, initializedCore.CurrentDiskIndex);
+                                CommonCoreHostFunctions.WriteLedStates(writer, initializedCore.LedStates);
+                                writer.Write(initializedCore.ShutdownRequested);
+                                CommonCoreHostFunctions.Protocol.WriteControllerFeedback(writer, initializedCore.ControllerFeedback);
                                 break;
                             case HostCommand.RunFrame:
                                 var activeCore = EnsureCore(core);

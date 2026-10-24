@@ -144,8 +144,7 @@ internal static partial class EmulationHostProtocolFunctions
         return (corePath, emulator, session, saves, configuration);
     }
 
-    // The session owns the slot and releases it in its finally. Publishing the new
-    // core before Initialize keeps a failed instance reachable by that owner.
+    // La session possède l'emplacement ; le contrat partagé nettoie immédiatement un échec d'initialisation.
     /// <summary>Remplace le cœur, publie sa référence pour le nettoyage de l’hôte puis initialise ses services et écrit la réponse.</summary>
     internal static void InitializeCore<TCore, TEmulator, TConfiguration, TOption>(
         BinaryReader reader, BinaryWriter writer, Func<string, TEmulator, TCore> createCore,
@@ -160,10 +159,27 @@ internal static partial class EmulationHostProtocolFunctions
         var (corePath, emulator, session, saves, configuration) =
             ReadInitializationRequest(reader, readEmulator, readSaves, readConfiguration);
         core = createCore(corePath, emulator);
-        core.Initialize(configuration, session, saves);
+        var initializedCore = InitializeCore<TCore, TConfiguration, TOption>(ref core, configuration, session, saves);
         WriteCoreInitialization<TCore, TConfiguration, TOption>(
-            writer, core, jsonOptions(), ref lastDiagnosticCount, extensionSeparator, writeStatus);
-        writeLedStates(writer, core.LedStates);
+            writer, initializedCore, jsonOptions(), ref lastDiagnosticCount, extensionSeparator, writeStatus);
+        writeLedStates(writer, initializedCore.LedStates);
+    }
+
+    /// <summary>Initialise le cœur de session et le libère dans finally si son initialisation échoue.</summary>
+    internal static TCore InitializeCore<TCore, TConfiguration, TOption>(ref TCore? core, TConfiguration configuration, string sessionDirectory, string? saveDirectory) where TCore : class, IEmulationCoreRuntime<TConfiguration, TOption>
+    {
+        var createdCore = core ?? throw new InvalidOperationException();
+        var initialized = false;
+        try
+        {
+            createdCore.Initialize(configuration, sessionDirectory, saveDirectory);
+            initialized = true;
+            return createdCore;
+        }
+        finally
+        {
+            if (!initialized) DisposePreviousCore(ref core);
+        }
     }
 
     /// <summary>Écrit les paramètres d’initialisation avec les codecs et les règles de chemins fournis.</summary>
