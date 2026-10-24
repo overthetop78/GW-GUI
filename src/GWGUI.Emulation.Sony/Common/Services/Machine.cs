@@ -160,7 +160,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     bool IEmulationSavedStates.IsSupported => _supportsSavedStates;
     ValueTask IEmulationSavedStates.SaveAsync(string path, CancellationToken cancellationToken) => SaveStateAsync(path, cancellationToken);
     ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) => LoadStateAsync(path, cancellationToken);
-    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, CommonControllerFunctions.FromCommon(peripheral, Configuration));
+    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, CommonControllerFunctions.FromCommon(peripheral, Configuration, port));
     ValueTask<bool> IEmulationInput.SwitchControllerPointerAsync(CancellationToken cancellationToken) => SwitchControllerPointerAsync(cancellationToken);
     /// <inheritdoc/>
     public HostProcessState HostProcessState => _core.HostProcessState;

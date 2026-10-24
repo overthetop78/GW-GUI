@@ -146,4 +146,15 @@ internal static class ControllerFunctions
     /// <summary>Fournit la table clavier native par le contrat commun des entrées.</summary>
     internal static IReadOnlyDictionary<EmulationKey, uint> CreateNativeKeyMap() => EmulationSdk.InputProcessing.CreateKeyMap();
 
+    /// <summary>Valide la sélection publique du clavier intégré, seul périphérique fixe de ce modèle.</summary>
+    /// <param name="peripheral">Le clavier est la seule catégorie acceptée par le cœur existant.</param>
+    /// <param name="configuration">Configuration empruntée de la session ; la validation ne la modifie pas.</param>
+    /// <param name="port">Port zéro attendu par le protocole du clavier fixe.</param>
+    /// <returns>Catégorie transmise inchangée à la commande du cœur.</returns>
+    /// <remarks>Cette sélection ne crée pas de prise pour manette et ne remplace pas les associations clavier.</remarks>
+    internal static EmulationPeripheralCategory FromCommon(EmulationPeripheralCategory peripheral, MachineConfiguration configuration, int port)
+    {
+        if (port != 0 || peripheral != EmulationPeripheralCategory.Keyboard) throw new ArgumentException(nameof(peripheral));
+        return peripheral;
+    }
 }

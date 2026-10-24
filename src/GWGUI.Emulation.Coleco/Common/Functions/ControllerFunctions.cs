@@ -158,4 +158,27 @@ internal static class ControllerFunctions
     /// <summary>Fournit la table clavier native par le contrat commun des entrées.</summary>
     internal static IReadOnlyDictionary<EmulationKey, uint> CreateNativeKeyMap() => EmulationSdk.InputProcessing.CreateKeyMap();
 
+    /// <summary>Convertit une catégorie publique vers le type de périphérique attendu par les règles existantes du module.</summary>
+    /// <param name="peripheral">Catégorie générique fournie par le contrat public des entrées.</param>
+    /// <param name="configuration">Configuration de session empruntée, utilisée lorsque la correspondance dépend du modèle ou du choix courant.</param>
+    /// <param name="port">Indice du port ; la commande conserve le contrôle des ports et des choix réellement autorisés.</param>
+    /// <returns>Catégorie interne attendue par le cœur, sans créer ni modifier de périphérique.</returns>
+    /// <remarks>Cette opération conserve les correspondances antérieures. La sélection native et la publication
+    /// des associations restent dans la commande du propriétaire de la machine, après acceptation du cœur.</remarks>
+    internal static PeripheralCategory FromCommon(EmulationPeripheralCategory peripheral, MachineConfiguration configuration, int port)
+    {
+        var model = configuration.Model;
+        return peripheral switch
+        {
+            EmulationPeripheralCategory.None => PeripheralCategory.None,
+            EmulationPeripheralCategory.Automatic => PeripheralCategory.Standard,
+            EmulationPeripheralCategory.Joystick or EmulationPeripheralCategory.RetroPad =>
+                PeripheralCategory.Standard,
+            EmulationPeripheralCategory.Paddle => PeripheralCategory.Paddle,
+            EmulationPeripheralCategory.DrivingController => PeripheralCategory.Driving,
+            EmulationPeripheralCategory.EnhancedController => PeripheralCategory.SuperAction,
+            EmulationPeripheralCategory.Mouse => PeripheralCategory.Roller,
+            _ => throw new ArgumentOutOfRangeException(nameof(peripheral), peripheral, null)
+        };
+    }
 }

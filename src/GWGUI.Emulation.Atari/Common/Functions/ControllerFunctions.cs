@@ -193,4 +193,33 @@ internal static class ControllerFunctions
     /// <summary>Fournit la table clavier native par le contrat commun des entrées.</summary>
     internal static IReadOnlyDictionary<EmulationKey, uint> CreateNativeKeyMap() => EmulationSdk.InputProcessing.CreateKeyMap();
 
+    /// <summary>Convertit une catégorie publique vers le type de périphérique attendu par les règles existantes du module.</summary>
+    /// <param name="peripheral">Catégorie générique fournie par le contrat public des entrées.</param>
+    /// <param name="configuration">Configuration de session empruntée, utilisée lorsque la correspondance dépend du modèle ou du choix courant.</param>
+    /// <param name="port">Indice du port ; la commande conserve le contrôle des ports et des choix réellement autorisés.</param>
+    /// <returns>Catégorie interne attendue par le cœur, sans créer ni modifier de périphérique.</returns>
+    /// <remarks>Cette opération conserve les correspondances antérieures. La sélection native et la publication
+    /// des associations restent dans la commande du propriétaire de la machine, après acceptation du cœur.</remarks>
+    internal static PeripheralCategory FromCommon(EmulationPeripheralCategory peripheral, MachineConfiguration configuration, int port)
+    {
+        return peripheral switch
+    {
+        EmulationPeripheralCategory.None => PeripheralCategory.None,
+        EmulationPeripheralCategory.Automatic => PeripheralCategory.Automatic,
+        EmulationPeripheralCategory.Keyboard => PeripheralCategory.Keyboard,
+        EmulationPeripheralCategory.Mouse => PeripheralCategory.Mouse,
+        EmulationPeripheralCategory.Joystick or EmulationPeripheralCategory.RetroPad => PeripheralCategory.Joystick,
+        EmulationPeripheralCategory.AnalogJoystick => PeripheralCategory.AnalogJoystick,
+        EmulationPeripheralCategory.Paddle => PeripheralCategory.Paddle,
+        EmulationPeripheralCategory.LightGun => PeripheralCategory.LightGun,
+        EmulationPeripheralCategory.NumericKeypad => PeripheralCategory.NumericKeypad,
+        EmulationPeripheralCategory.DrivingController => PeripheralCategory.DrivingController,
+        EmulationPeripheralCategory.ProLineController => PeripheralCategory.ProLineController,
+        EmulationPeripheralCategory.EnhancedController => PeripheralCategory.EnhancedController,
+        EmulationPeripheralCategory.BoosterGrip => PeripheralCategory.BoosterGrip,
+        EmulationPeripheralCategory.GenesisController => PeripheralCategory.GenesisController,
+        EmulationPeripheralCategory.Joy2BPlus => PeripheralCategory.Joy2BPlus,
+        _ => throw new ArgumentOutOfRangeException(nameof(peripheral), peripheral, null)
+    };
+    }
 }

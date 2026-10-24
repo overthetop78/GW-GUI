@@ -95,8 +95,9 @@ internal static class ControllerFunctions
         };
     }
 
-    internal static PeripheralCategory FromCommon(EmulationPeripheralCategory peripheral, MachineConfiguration configuration)
+    internal static PeripheralCategory FromCommon(EmulationPeripheralCategory peripheral, MachineConfiguration configuration, int port)
     {
+        ValidatePort(configuration, port);
         var types = Supported(configuration);
         var type = peripheral switch
         {

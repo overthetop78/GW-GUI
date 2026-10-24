@@ -82,7 +82,7 @@ internal static class ControllerFunctions
     /// <param name="port">Indice du port émulé, à partir de zéro.</param>
     /// <param name="peripheral">Catégorie générique à connecter sur ce port.</param>
     /// <returns>Configuration validée dont seul le périphérique du port demandé est remplacé.</returns>
-    internal static MachineConfiguration WithPeripheral(MachineConfiguration configuration, int port, PeripheralCategory peripheral)
+    internal static MachineConfiguration WithControllerType(MachineConfiguration configuration, int port, PeripheralCategory peripheral)
     {
         var controllers = (configuration.Input.Controllers ?? []).Where(binding => binding.Port != port).ToList();
         var previous = configuration.Input.Controllers?.FirstOrDefault(binding => binding.Port == port);
@@ -287,4 +287,30 @@ internal static class ControllerFunctions
         Func<IEnumerable<uint>, IEnumerable<uint>> orderReleased, Func<IEnumerable<uint>, IEnumerable<uint>> orderPressed, Func<uint, uint> characterFor) where TSet : IReadOnlySet<uint>
         => EmulationSdk.InputProcessing.PublishCodeTransitions(current, ref previous, keyboardEvent, modifiers, orderReleased, orderPressed, characterFor);
 
+    /// <summary>Convertit une catégorie publique vers le type de périphérique attendu par les règles existantes du module.</summary>
+    /// <param name="peripheral">Catégorie générique fournie par le contrat public des entrées.</param>
+    /// <param name="configuration">Configuration de session empruntée, utilisée lorsque la correspondance dépend du modèle ou du choix courant.</param>
+    /// <param name="port">Indice du port ; la commande conserve le contrôle des ports et des choix réellement autorisés.</param>
+    /// <returns>Catégorie interne attendue par le cœur, sans créer ni modifier de périphérique.</returns>
+    /// <remarks>Cette opération conserve les correspondances antérieures. La sélection native et la publication
+    /// des associations restent dans la commande du propriétaire de la machine, après acceptation du cœur.</remarks>
+    internal static PeripheralCategory FromCommon(EmulationPeripheralCategory peripheral, MachineConfiguration configuration, int port)
+    {
+        if (port < 0 || port >= ConfigurationFunctions.ControllerPortCount(configuration.Model)) throw new ArgumentOutOfRangeException(nameof(port));
+        return peripheral switch
+        {
+            EmulationPeripheralCategory.None => PeripheralCategory.None,
+            EmulationPeripheralCategory.Automatic => PeripheralCategory.Automatic,
+            EmulationPeripheralCategory.Keyboard => PeripheralCategory.Keyboard,
+            EmulationPeripheralCategory.Mouse => PeripheralCategory.Mouse,
+            EmulationPeripheralCategory.Joystick => PeripheralCategory.Joystick,
+            EmulationPeripheralCategory.AnalogJoystick => PeripheralCategory.AnalogJoystick,
+            EmulationPeripheralCategory.Paddle => PeripheralCategory.Paddle,
+            EmulationPeripheralCategory.LightGun => PeripheralCategory.LightGun,
+            EmulationPeripheralCategory.NumericKeypad => PeripheralCategory.NumericKeypad,
+            EmulationPeripheralCategory.DrivingController => PeripheralCategory.DrivingController,
+            _ => PeripheralCategory.RetroPad
+        };
+
+    }
 }

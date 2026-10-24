@@ -236,6 +236,7 @@ public sealed class ArchitectureValidationTests
     [InlineData("Nec")]
     [InlineData("Nintendo")]
     [InlineData("Sega")]
+    [InlineData("Microsoft")]
     public void NativeCommonControllerChangesPreserveBindingsAndWaitForCoreAcceptance(string family)
     {
         var assembly = Assembly.Load("gwgui.emulation." + family.ToLowerInvariant());
@@ -325,6 +326,40 @@ public sealed class ArchitectureValidationTests
             Assert.Same(refused, Assert.Throws<TargetInvocationException>(() => callback.Invoke(closure, [])).InnerException);
             Assert.Same(session, configurationField.GetValue(owner));
             Assert.NotEqual("None", ((EmulationInputSettings)engineType.GetMethod("DescribeInputSettings")!.Invoke(engine, [applied])!).ControllerPorts.First(port => port.Number == first.Number).SelectedControllerId);
+        }
+        finally { ((IDisposable)core).Dispose(); }
+    }
+    [Fact]
+    public void FixedKeyboardUsesTheCommonConversionAndTheCoreCommand()
+    {
+        var assembly = Assembly.Load("gwgui.emulation.wenquxing");
+        const string root = "GWGUI.Emulation.Wenquxing";
+        var functions = assembly.GetType(root + ".Common.Functions.ControllerFunctions", true)!;
+        var convert = functions.GetMethod("FromCommon", BindingFlags.NonPublic | BindingFlags.Static)!;
+        var engineType = assembly.GetType(root + ".Common.Services.Engine", true)!;
+        var engine = Activator.CreateInstance(engineType)!;
+        var model = ((IReadOnlyList<EmulationMachineDefinition>)engineType.GetProperty("Machines")!.GetValue(engine)!).First();
+        var configuration = engineType.GetMethod("CreateConfiguration")!.Invoke(engine, [model.Id])!;
+        Assert.Equal(EmulationPeripheralCategory.Keyboard, convert.Invoke(null, [EmulationPeripheralCategory.Keyboard, configuration, 0]));
+        Assert.IsType<ArgumentException>(Assert.Throws<TargetInvocationException>(() => convert.Invoke(null, [EmulationPeripheralCategory.Keyboard, configuration, 1])).InnerException);
+        Assert.IsType<ArgumentException>(Assert.Throws<TargetInvocationException>(() => convert.Invoke(null, [EmulationPeripheralCategory.Joystick, configuration, 0])).InnerException);
+        var machine = assembly.GetType(root + ".Common.Services.Machine", true)!;
+        var method = machine.GetMethod("SetControllerPortDevice")!;
+        var callback = (MethodInfo)Assert.Single(GetCompiledCalls(method), call => call.Method.Name.Contains("<SetControllerPortDevice>", StringComparison.Ordinal)).Method;
+        Assert.Contains(GetCompiledCalls(callback), call => call.Method.Name == nameof(IEmulationInput.SetControllerPortDevice) && call.Method.DeclaringType!.IsInterface);
+        var core = DispatchProxy.Create(assembly.GetType(root + ".Common.Interfaces.IEmulatorCore", true)!, typeof(FeedbackCoreProxy));
+        try
+        {
+            var owner = RuntimeHelpers.GetUninitializedObject(machine);
+            machine.GetField("_core", BindingFlags.NonPublic | BindingFlags.Instance)!.SetValue(owner, core);
+            var closure = RuntimeHelpers.GetUninitializedObject(callback.DeclaringType!);
+            callback.DeclaringType!.GetField("<>4__this")!.SetValue(closure, owner);
+            callback.DeclaringType.GetField("port")!.SetValue(closure, 0);
+            callback.DeclaringType.GetField("peripheral")!.SetValue(closure, EmulationPeripheralCategory.Keyboard);
+            callback.Invoke(closure, []);
+            var refused = new InvalidOperationException("refused");
+            ((FeedbackCoreProxy)core).ControllerChangeError = refused;
+            Assert.Same(refused, Assert.Throws<TargetInvocationException>(() => callback.Invoke(closure, [])).InnerException);
         }
         finally { ((IDisposable)core).Dispose(); }
     }
@@ -1251,16 +1286,24 @@ public sealed class ArchitectureValidationTests
             }
             foreach (var method in methods.Where(method => method.ReturnType.Name == "MediaCategory" && method.GetParameters().FirstOrDefault()?.ParameterType == typeof(EmulationMediaType)))
                 Assert.Equal("ToCategory", method.Name);
-            var peripheralConversion = assembly.GetType(root + ".Common.Machines.Common.Functions.EmulationPeripheralConversionFunctions");
-            if (peripheralConversion is null) continue;
-            foreach (var method in peripheralConversion.GetMethods(BindingFlags.NonPublic | BindingFlags.Static).Where(method => method.ReturnType.Name == "PeripheralCategory" && method.GetParameters().FirstOrDefault()?.ParameterType == typeof(EmulationPeripheralCategory)))
-            {
-                Assert.Equal("ToModule", method.Name);
-                peripheralConverters++;
-            }
+            Assert.Null(assembly.GetType(root + ".Common.Machines.Common.Functions.EmulationPeripheralConversionFunctions"));
+            var peripheralConversion = assembly.GetType(root + ".Common.Functions.ControllerFunctions", throwOnError: true)!;
+            var convert = peripheralConversion.GetMethod("FromCommon", BindingFlags.NonPublic | BindingFlags.Static)!;
+            Assert.NotNull(convert);
+            Assert.Equal(3, convert.GetParameters().Length);
+            Assert.Equal(typeof(EmulationPeripheralCategory), convert.GetParameters()[0].ParameterType);
+            Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(convert.GetParameters()[1].ParameterType));
+            Assert.Equal(typeof(int), convert.GetParameters()[2].ParameterType);
+            Assert.True(convert.ReturnType.IsEnum);
+            var machine = assembly.GetType(root + ".Common.Services.Machine", throwOnError: true)!;
+            var map = machine.GetInterfaceMap(typeof(IEmulationInput));
+            var target = map.TargetMethods[Array.FindIndex(map.InterfaceMethods, method => method.Name == nameof(IEmulationInput.SetControllerPortDevice))];
+            Assert.Contains(GetCompiledCalls(target), call => call.Method == convert);
+            Assert.Contains(GetCompiledCalls(target), call => call.Method.Name == nameof(IEmulationInput.SetControllerPortDevice) && call.Method.DeclaringType == machine);
+            peripheralConverters++;
         }
         Assert.Equal(24, converters);
-        Assert.Equal(16, peripheralConverters);
+        Assert.Equal(24, peripheralConverters);
     }
 
     [Fact]

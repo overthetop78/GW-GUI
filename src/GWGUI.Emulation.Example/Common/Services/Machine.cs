@@ -288,7 +288,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) => LoadStateAsync(path, cancellationToken);
     /// <inheritdoc/>
     /// <remarks>Convertit le périphérique public vers sa catégorie interne puis transmet la commande au thread du cœur.</remarks>
-    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, EmulationPeripheralConversionFunctions.ToModule(peripheral, CurrentConfiguration(), port));
+    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, CommonControllerFunctions.FromCommon(peripheral, CurrentConfiguration(), port));
     /// <inheritdoc/>
     public HostProcessState HostProcessState => _core.HostProcessState;
     /// <inheritdoc/>

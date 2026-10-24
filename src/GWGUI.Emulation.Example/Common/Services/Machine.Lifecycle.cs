@@ -167,7 +167,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     /// pour média, la nouvelle sélection est enregistrée pour le cœur qui sera recréé à l’insertion suivante.</remarks>
     public void SetControllerPortDevice(int port, PeripheralCategory peripheral) => QueueCommand(() =>
     {
-        var updated = CommonControllerFunctions.WithPeripheral(CurrentConfiguration(), port, peripheral);
+        var updated = CommonControllerFunctions.WithControllerType(CurrentConfiguration(), port, peripheral);
         if (!_mediaSuspended) _core.SetControllerPortDevice(port, peripheral);
         _inputConfiguration = updated.Input;
         Configuration = updated;

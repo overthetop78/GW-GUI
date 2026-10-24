@@ -180,4 +180,9 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         await QueueCommand(() => hasChanges = _core.HasUnsavedMediaChanges(slot), cancellationToken).ConfigureAwait(false);
         return hasChanges;
     }
+    /// <summary>Confirme le clavier fixe sur le thread propriétaire du cœur.</summary>
+    /// <param name="port">Port du clavier validé par Common.</param>
+    /// <param name="peripheral">Catégorie clavier transmise au protocole habituel.</param>
+    /// <remarks>La commande emprunte le cœur et conserve toutes les associations existantes de la session.</remarks>
+    public void SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => QueueCommand(() => _core.SetControllerPortDevice(port, peripheral), CancellationToken.None).AsTask().GetAwaiter().GetResult();
 }

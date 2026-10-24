@@ -133,7 +133,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     bool IEmulationSavedStates.IsSupported => SupportsSaveStates;
     ValueTask IEmulationSavedStates.SaveAsync(string path, CancellationToken cancellationToken) => SaveStateAsync(path, cancellationToken);
     ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) => LoadStateAsync(path, cancellationToken);
-    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, EmulationPeripheralConversionFunctions.ToModule(peripheral, Configuration.Model));
+    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, CommonControllerFunctions.FromCommon(peripheral, CurrentConfiguration(), port));
     /// <inheritdoc/>
     public HostProcessState HostProcessState => _core.HostProcessState;
     /// <inheritdoc/>
