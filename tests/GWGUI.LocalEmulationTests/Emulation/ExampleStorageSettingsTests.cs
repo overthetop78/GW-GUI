@@ -279,6 +279,30 @@ public sealed class ExampleStorageSettingsTests
                 Assert.Equal(JsonSerializer.Serialize(expected), JsonSerializer.Serialize(Assert.Single(described.DeviceSettings!, item => item.Slot == expected.Slot)));
             Assert.Equal("unchanged", updated.Options["unrelated"]);
             Assert.Empty(manager.DescribeStorageSettings(original).DeviceSettings!);
+            if (core != Emulator.None)
+            {
+                var adapter = ExampleFirmwareSamplesTests.Adapter(core);
+                var resolve = adapter.GetType().GetMethod("ResolveConfiguredMedia")!;
+                var resolved = Assert.IsAssignableFrom<IReadOnlyList<EmulationMedia>>(resolve.Invoke(adapter, [updated]));
+                if (profile.Model == MachineModel.ExampleMachineB)
+                {
+                    var card = Assert.Single(resolved, item => item.Slot == EmulationMediaSlot.MemoryCard0);
+                    Assert.Equal(requested.Single(item => item.Slot == card.Slot).MemoryCardPath, card.Path);
+                    Assert.Equal(EmulationMediaType.MemoryCard, card.Type);
+                    Assert.False(card.IsReadOnly);
+                    Assert.True(card.IsInserted);
+                    Assert.Empty(updated.Media);
+                    var explicitCard = new MediaConfiguration("explicit.mem", MediaCategory.MemoryCard, card.Slot, IsInserted: false);
+                    var explicitConfiguration = updated with { Media = [explicitCard] };
+                    var explicitResolved = Assert.Single(Assert.IsAssignableFrom<IReadOnlyList<EmulationMedia>>(resolve.Invoke(adapter, [explicitConfiguration])));
+                    Assert.Equal(explicitCard.Path, explicitResolved.Path);
+                    Assert.False(explicitResolved.IsInserted);
+                    var disabled = updated with { ConfiguredSlots = [] };
+                    Assert.Empty(Assert.IsAssignableFrom<IReadOnlyList<EmulationMedia>>(resolve.Invoke(adapter, [disabled])));
+                }
+                else
+                    Assert.DoesNotContain(resolved, item => item.Type == EmulationMediaType.MemoryCard);
+            }
             extra["mode"] = "changed-after-application";
             var current = Assert.Single(manager.DescribeStorageSettings(updated).DeviceSettings!, item => item.Slot == requested[0].Slot);
             Assert.Equal("mock", (current.Floppy?.Options ?? current.Cartridge!.Options)!["mode"]);
@@ -332,5 +356,5 @@ public sealed class ExampleStorageSettingsTests
     private static EmulationStorageSettings Describe(object adapter, MachineConfiguration configuration) => (EmulationStorageSettings)Storage.GetMethod("DescribeStorage")!.Invoke(adapter, [configuration])!;
     private static MachineConfiguration Apply(object adapter, MachineConfiguration configuration, EmulationStorageSettings settings) => (MachineConfiguration)Storage.GetMethod("ApplyStorage")!.Invoke(adapter, [configuration, settings])!;
     private static object? InvokeStatic(string typeName, string operation, params object[] arguments) => Module.GetType("GWGUI.Emulation.Example.Common.Machines.Common.Functions." + typeName, throwOnError: true)!
-        .GetMethod(operation, BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, arguments);
+        .GetMethod(operation, BindingFlags.Static | BindingFlags.NonPublic, binder: null, types: arguments.Select(argument => argument.GetType()).ToArray(), modifiers: null)!.Invoke(null, arguments);
 }

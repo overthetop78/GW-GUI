@@ -1,9 +1,26 @@
 namespace GWGUI.Emulation.Example.Common.Machines.Common.Functions;
 
-/// <summary>Conversion des catégories de contenus entre le contrat public et les descriptions du module.</summary>
+/// <summary>Projection des contenus configurés et conversion de leurs catégories vers le contrat public.</summary>
 /// <remarks>Seules les descriptions sont converties. Les images et fichiers ne sont ni écrits ni déplacés.</remarks>
 internal static class EmulationMediaConversionFunctions
 {
+    /// <summary>Résout les montages explicites et les cartes mémoire indiquées dans les réglages de lecteurs.</summary>
+    /// <param name="configuration">Configuration empruntée du modèle, avec ses lecteurs actifs, montages et paramètres.</param>
+    /// <returns>Nouveau tableau de descriptions publiques, avec au plus un média par emplacement.</returns>
+    /// <remarks>Un montage explicite garde la priorité, y compris lorsqu'il est éjecté : son lecteur ne reçoit
+    /// pas une nouvelle insertion depuis les paramètres initiaux. Une carte définie seulement par son chemin
+    /// est projetée sur son lecteur actif, en lecture-écriture. Les données de configuration restent inchangées.
+    /// La résolution consulte les descriptions Common et n'ouvre, ne crée ni ne modifie aucun fichier.</remarks>
+    internal static IReadOnlyList<EmulationMedia> ToCommon(MachineConfiguration configuration)
+    {
+        var storage = StorageSettingsFunctions.Describe(configuration);
+        var cards = storage.AvailableDevices.Where(device => device.MediaType == EmulationMediaType.MemoryCard && storage.ConfiguredSlots.Contains(device.Slot))
+            .Select(device => (device, path: storage.DeviceSettings?.FirstOrDefault(setting => setting.Slot == device.Slot)?.MemoryCardPath))
+            .Where(item => !string.IsNullOrWhiteSpace(item.path))
+            .Select(item => new EmulationMedia(item.path!, item.device.Slot, EmulationMediaType.MemoryCard, false, true));
+        return storage.MountedMedia.Concat(cards).DistinctBy(media => media.Slot).ToArray();
+    }
+
     /// <summary>Projette un contenu du module vers le contrat de l’hôte.</summary>
     /// <param name="media">Description stable contenant chemin, lecteur et protection.</param>
     /// <returns>Description publique conservant le montage et son état d’insertion.</returns>

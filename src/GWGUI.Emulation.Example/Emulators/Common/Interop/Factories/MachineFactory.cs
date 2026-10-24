@@ -127,7 +127,8 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
             core = CreateCore();
             var machine = new Machine(sessionId, configuration, core, sessionDirectory, saveDirectory: saves,
                 audioOutputFactory: context.AudioOutputFactory, coreFactory: CreateCore,                 supportsNoContent: ((IEmulatorCapabilities)this).SupportsNoContent, supportsPointerCapture: SupportsPointer(configuration), inputMapper: this,
-                cassetteInput: configuration.Model == MachineModel.ExampleMachineA ? new CassetteInputController(configuration) : null, runtimePolicy: this);
+                cassetteInput: configuration.Model == MachineModel.ExampleMachineA ? new CassetteInputController(configuration) : null,
+                resolvedMedia: ResolveConfiguredMedia(configuration).Select(media => EmulationMediaConversionFunctions.ToModule(media, configuration.Media)).ToArray(), runtimePolicy: this);
             transferred = true;
             return machine;
         }
@@ -141,11 +142,11 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
         }
     }
 
-    /// <summary>Convertit les montages du module en descriptions de médias publiques.</summary>
+    /// <summary>Résout les montages et les cartes configurées par la projection Common des médias.</summary>
     /// <param name="configuration">Configuration complète empruntée : profil matériel, backend, options, entrées et montages courants.</param>
-    /// <returns>Nouveau tableau de descriptions publiques dans l&apos;ordre des montages configurés.</returns>
+    /// <returns>Nouveau tableau de descriptions publiques, complété des cartes configurées sans montage explicite.</returns>
     /// <remarks><para>Chaque description conserve l&apos;emplacement et le chemin du montage. La conversion ne lit ni ne modifie les fichiers associés.</para></remarks>
-    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
+    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(configuration);
     /// <summary>Les simulations consomment leurs contenus comme données opaques ; aucune conversion de format n’est nécessaire.</summary>
     /// <inheritdoc/>
     public virtual ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory) => ValueTask.FromResult(media);

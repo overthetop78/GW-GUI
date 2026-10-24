@@ -15410,3 +15410,17 @@ Validation firmware et médias : 3 268 tests Emulation réussis, aucun échec ni
   - [x] Valider le nettoyage sans ajouter de tests.
     - [x] Modifier les sources concernées si la compilation sémantique ou les contrôles existants révèlent une référence ; vérifier l'absence d'erreurs de compilation et exécuter les contrôles existants d'Example.
     - [x] Modifier les sources concernées si le build révèle une erreur ; exécuter scripts/local-building.cmd --building=debug --modules=A et vérifier les sorties de l'application et des 24 modules.
+
+- [x] Raccorder les cartes mémoire configurées aux trois émulateurs fictifs d'Example.
+  - [x] Reproduire et corriger le passage des réglages aux montages.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ExampleStorageSettingsTests.cs : étendre le contrôle existant des paramètres pour vérifier la résolution du chemin de carte, la sélection du lecteur et la priorité d'un montage explicite, sans créer de fichier.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Machines/Common/Functions/MediaFunctions.Conversion.cs : compléter ToCommon avec une projection de configuration réunissant les montages explicites et les cartes mémoire configurées sur des lecteurs actifs, sans mutation ni accès aux fichiers.
+    - [x] Modifier src/GWGUI.Emulation.Example/Emulators/Common/Interop/Factories/MachineFactory.cs : déléguer ResolveConfiguredMedia à la projection Common et transmettre ses résultats au paramètre resolvedMedia déjà présent dans le constructeur de Machine.
+    - [x] Modifier src/GWGUI.Emulation.Example/Common/Services/Engine.cs : exposer au runtime les médias résolus par l'adaptateur, y compris la carte configurée dans les paramètres.
+  - [x] Exercer le parcours complet et retirer le contrôle temporaire.
+    - [x] Créer tests/GWGUI.LocalEmulationTests/Emulation/ExampleMemoryCardRuntimeTemporaryTests.cs : vérifier les trois backends avec une carte de test, démarrer puis arrêter chaque machine, contrôler le montage au cœur et la sauvegarde/restauration d'état ; fermer les machines dans finally et supprimer les fichiers de scénario possédés.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ExampleStorageSettingsTests.cs : choisir la surcharge de l'utilitaire InvokeStatic à partir des types des arguments.
+    - [x] Modifier tests/GWGUI.LocalEmulationTests/Emulation/ExampleMemoryCardRuntimeTemporaryTests.cs si son exécution révèle un écart d'invocation ; exécuter ce contrôle et les contrôles existants d'Example.
+    - [x] Supprimer tests/GWGUI.LocalEmulationTests/Emulation/ExampleMemoryCardRuntimeTemporaryTests.cs et ses éventuels artefacts de scénario ; recompiler le projet de tests pour retirer le contrôle temporaire de son assembly.
+  - [x] Valider les sorties compilées.
+    - [x] Modifier les sources concernées si le build révèle une erreur ; exécuter scripts/local-building.cmd --building=debug --modules=A et vérifier l'exécutable et les 24 modules déployés.
