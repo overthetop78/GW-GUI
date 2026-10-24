@@ -1,3 +1,4 @@
+using System.Net.Http;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Enums;
 using System.IO;
@@ -3054,6 +3055,28 @@ public sealed class ArchitectureValidationTests
         Assert.Contains(assembly.GetTypes(), type => type.IsClass && !type.IsAbstract && contract.IsAssignableFrom(type));
     }
 
+    public class RuntimePreparationProbe : DispatchProxy
+    {
+        public object Configuration { get; set; } = null!;
+        public List<string> Calls { get; } = [];
+
+        protected override object? Invoke(MethodInfo? method, object?[]? arguments)
+        {
+            ArgumentNullException.ThrowIfNull(method);
+            Calls.Add(method.Name);
+            return method.Name switch
+            {
+                "get_EmulatorId" => "runtime-probe",
+                "FindInstalledCorePathAsync" => ValueTask.FromResult<string?>("core-path-not-opened"),
+                "PrepareRuntimeConfigurationAsync" => typeof(Task).GetMethod(nameof(Task.FromResult))!.MakeGenericMethod(Configuration.GetType()).Invoke(null, [Configuration]),
+                "GetAudioConfiguration" => Activator.CreateInstance(method.ReturnType, [null, 100, 100]),
+                "ResolveConfiguredMedia" => Array.Empty<EmulationMedia>(),
+                "SupportsPointerCapture" => false,
+                "PrepareMediaAsync" => ValueTask.FromResult((EmulationMedia)arguments![0]!),
+                _ => throw new InvalidOperationException(method.Name)
+            };
+        }
+    }
     public class DefaultAdapterProbe : DispatchProxy
     {
         public object Adapter { get; set; } = null!;
@@ -3103,11 +3126,27 @@ public sealed class ArchitectureValidationTests
             var inputSettingsOwner = assembly.GetType(root + ".Common.Machines.Common.Functions.InputSettingsFunctions", throwOnError: true)!;
             var applyInputSettings = inputSettingsOwner.GetMethod("Apply", BindingFlags.Static | BindingFlags.NonPublic)!;
             Assert.Contains(GetCompiledCalls(applyInputSettings), call => call.Method == controllerContract.GetMethod("ApplyInputConfiguration"));
+            var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var mediaContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorMediaCapabilities", throwOnError: true)!;
+            var prepareMedia = mediaContract.GetMethod("PrepareMediaAsync")!;
+            var prepareConfiguration = mediaContract.GetMethod("PrepareRuntimeConfigurationAsync")!;
+            Assert.Equal(typeof(ValueTask<EmulationMedia>), prepareMedia.ReturnType);
+            Assert.Equal(typeof(Task<>).MakeGenericType(configurationType), prepareConfiguration.ReturnType);
+            Assert.Equal(new[] { typeof(EmulationMedia), typeof(string) }, prepareMedia.GetParameters().Select(parameter => parameter.ParameterType));
+            Assert.Equal(new[] { configurationType, typeof(string) }, prepareConfiguration.GetParameters().Select(parameter => parameter.ParameterType));
+            var runtimeMethods = engineType.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance)
+                .Concat(engineType.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic)
+                    .SelectMany(type => type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance)));
+            var runtimeMedia = assembly.GetType(root + ".Common.Machines.Common.Functions.RuntimeMediaFunctions");
+            if (runtimeMedia is not null)
+                runtimeMethods = runtimeMethods.Concat(runtimeMedia.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static));
+            var runtimeCalls = runtimeMethods.SelectMany(GetCompiledCalls).ToArray();
+            Assert.Contains(runtimeCalls, call => call.Method == prepareMedia);
+            Assert.Contains(runtimeCalls, call => call.Method == prepareConfiguration);
             var summaryOperation = contract.GetMethod("Summarize")!;
             Assert.Equal(typeof(EmulationConfigurationSummary), summaryOperation.ReturnType);
             Assert.Equal(configurationType, Assert.Single(summaryOperation.GetParameters()).ParameterType);
             Assert.DoesNotContain(adapterContract.GetMethods(), method => method.Name == "Summarize");
-            var engineType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
             var engine = Activator.CreateInstance(engineType)!;
             var summarize = engineType.GetMethod("SummarizeConfiguration")!;
             Assert.Contains(GetCompiledCalls(summarize), call => call.Method == summaryOperation);
@@ -3116,6 +3155,37 @@ public sealed class ArchitectureValidationTests
             var byId = engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(engine)!;
             var adapters = ((System.Collections.IEnumerable)byId.GetType().GetProperty("Values")!.GetValue(byId)!).Cast<object>().ToArray();
             var machines = (IReadOnlyList<EmulationMachineDefinition>)engineType.GetProperty("Machines")!.GetValue(engine)!;
+            if (adapters.Length == 0)
+            {
+                Assert.Equal("GWGUI.Emulation.Microsoft", root);
+                using var client = new HttpClient();
+                var runtimeEngine = Activator.CreateInstance(engineType, ["configuration-path-not-created", ".", client, "core-directory-not-created"])!;
+                var runtimeConfiguration = (IEmulationConfiguration)engineType.GetMethod("CreateConfiguration")!.Invoke(runtimeEngine, [machines[0].Id])!;
+                configurationType.GetProperty("EmulatorId")!.SetValue(runtimeConfiguration, "runtime-probe");
+                var runtimeAdapter = DispatchProxy.Create(adapterContract, typeof(RuntimePreparationProbe));
+                var probe = (RuntimePreparationProbe)runtimeAdapter;
+                probe.Configuration = runtimeConfiguration;
+                var registrations = (System.Collections.IDictionary)engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(runtimeEngine)!;
+                registrations.Add("runtime-probe", runtimeAdapter);
+                try
+                {
+                    var services = new EmulationRuntimeServices("session-path-not-created", "state-path-not-created", "conversion-path-not-created", "host-path-not-opened", (_, _) => throw new InvalidOperationException("The runtime must defer audio creation."));
+                    var runtime = await (ValueTask<EmulationMachineRuntime>)engineType.GetMethod("CreateRuntimeAsync")!.Invoke(runtimeEngine, [runtimeConfiguration, services, CancellationToken.None])!;
+                    Assert.Same(runtimeConfiguration, runtime.Configuration);
+                    Assert.Contains("PrepareRuntimeConfigurationAsync", probe.Calls);
+                    var media = new EmulationMedia("unchanged.memory", new EmulationMediaSlot(EmulationMediaCategory.MemoryCard, 0), EmulationMediaType.MemoryCard, true, false);
+                    Assert.NotNull(runtime.PrepareMediaAsync);
+                    Assert.Same(media, await runtime.PrepareMediaAsync(media, CancellationToken.None));
+                    Assert.Equal(1, probe.Calls.Count(name => name == "PrepareMediaAsync"));
+                    await Assert.ThrowsAnyAsync<OperationCanceledException>(async () => await runtime.PrepareMediaAsync(media, new CancellationToken(true)));
+                    Assert.Equal(1, probe.Calls.Count(name => name == "PrepareMediaAsync"));
+                    Assert.DoesNotContain("Create", probe.Calls);
+                }
+                finally
+                {
+                    registrations.Remove("runtime-probe");
+                }
+            }
             foreach (var adapter in adapters)
             {
                 var map = adapter.GetType().GetInterfaceMap(contract);
@@ -3168,6 +3238,18 @@ public sealed class ArchitectureValidationTests
                 var inputMap = adapter.GetType().GetInterfaceMap(inputContract);
                 foreach (var operation in new[] { keyboardOperation, inputOperation })
                     Assert.True(inputMap.TargetMethods[Array.IndexOf(inputMap.InterfaceMethods, operation)].DeclaringType!.IsClass);
+                var media = new EmulationMedia("unchanged.memory", new EmulationMediaSlot(EmulationMediaCategory.MemoryCard, 0), EmulationMediaType.MemoryCard, true, false);
+                var preparedMedia = await (ValueTask<EmulationMedia>)prepareMedia.Invoke(adapter, [media, string.Empty])!;
+                Assert.Same(media, preparedMedia);
+                var preparedConfigurationTask = (Task)prepareConfiguration.Invoke(adapter, [configuration, string.Empty])!;
+                await preparedConfigurationTask;
+                var preparedConfiguration = Assert.IsAssignableFrom<IEmulationConfiguration>(preparedConfigurationTask.GetType().GetProperty("Result")!.GetValue(preparedConfigurationTask));
+                Assert.Equal(configuration.Id, preparedConfiguration.Id);
+                Assert.Equal(configuration.MachineId, preparedConfiguration.MachineId);
+                Assert.Equal(selectedCore.GetValue(configuration), selectedCore.GetValue(preparedConfiguration));
+                var mediaMap = adapter.GetType().GetInterfaceMap(mediaContract);
+                foreach (var operation in new[] { prepareMedia, prepareConfiguration })
+                    Assert.True(mediaMap.TargetMethods[Array.IndexOf(mediaMap.InterfaceMethods, operation)].DeclaringType!.IsClass);
                 Assert.False((bool)deferred.Invoke(adapter, [configuration, "unknown-setting"])!);
                 Assert.False((bool)clock.Invoke(adapter, ["unknown-setting"])!);
                 if (root == "GWGUI.Emulation.Example")
@@ -3552,7 +3634,7 @@ public sealed class ArchitectureValidationTests
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
             var methods = contract.GetMethods();
-            Assert.Equal(contractName == "IEmulatorSettings" ? 9 : contractName is "IEmulatorPointerCapabilities" or "IEmulatorVideoSettings" or "IEmulatorMediaCapabilities" ? 2 : 1, methods.Length);
+            Assert.Equal(contractName == "IEmulatorSettings" ? 9 : contractName == "IEmulatorMediaCapabilities" ? 4 : contractName is "IEmulatorPointerCapabilities" or "IEmulatorVideoSettings" ? 2 : 1, methods.Length);
             var method = Assert.Single(methods, candidate => candidate.Name == methodName);
             Assert.Equal(methodName, method.Name);
             Assert.True(method.IsAbstract);
@@ -3998,13 +4080,8 @@ public sealed class ArchitectureValidationTests
             var state = runtime.GetCustomAttribute<AsyncStateMachineAttribute>()?.StateMachineType;
             var methods = state is null ? new[] { runtime } : state.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
             var calls = methods.Where(method => method.GetMethodBody() is not null).SelectMany(GetCompiledCalls).ToArray();
-            if (root == "GWGUI.Emulation.Microsoft")
-                Assert.DoesNotContain(calls, call => call.Method == resolve);
-            else
-            {
-                Assert.Contains(calls, call => call.Method == resolve);
-                runtimeConsumers++;
-            }
+            Assert.Contains(calls, call => call.Method == resolve);
+            runtimeConsumers++;
             var engine = Activator.CreateInstance(engineType)!;
             var dictionary = engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(engine)!;
             var adapters = ((System.Collections.IEnumerable)dictionary.GetType().GetProperty("Values")!.GetValue(dictionary)!).Cast<object>();
@@ -4076,7 +4153,7 @@ public sealed class ArchitectureValidationTests
                 }
             }
         }
-        Assert.Equal(23, runtimeConsumers);
+        Assert.Equal(24, runtimeConsumers);
         Assert.True(constrained > 0);
     }
     [Fact]

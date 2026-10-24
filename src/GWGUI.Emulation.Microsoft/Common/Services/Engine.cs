@@ -57,6 +57,10 @@ internal sealed class Engine
     }
 
     private static readonly IEmulationModuleLocalization Localization = CommonCoreHostFunctions.CreateLocalization(typeof(MicrosoftEmulationModule).Assembly, "GWGUI.Emulation.Microsoft.Resources.Emulation");
+    /// <summary>Client HTTP emprunté au contexte de module pour la gestion du backend.</summary>
+    private readonly HttpClient _httpClient = null!;
+    /// <summary>Racine des bibliothèques installées, sans création implicite de cœur.</summary>
+    private readonly string _coreDirectory = null!;
     private readonly string _firmwareDirectory = null !;
     private readonly ConfigurationStore _store = null !;
 
@@ -65,6 +69,8 @@ internal sealed class Engine
     public Engine(string configurationDirectory, string pathBase, HttpClient httpClient, string coreDirectory) : this()
     {
         _store = new ConfigurationStore(configurationDirectory, pathBase);
+        _httpClient = httpClient;
+        _coreDirectory = coreDirectory;
         _firmwareDirectory = Path.Combine(pathBase, EmulationPathConstants.RootDirectoryName, EmulationPathConstants.MachinesDirectoryName, EmulationModuleConstants.ModuleId, EmulationPathConstants.FirmwareDirectoryName);
     }
 
@@ -212,8 +218,31 @@ internal sealed class Engine
         return SelectedAdapter(current)?.ApplyStorage(current, settings) ?? StorageSettingsFunctions.Apply(current, settings);
     }
 
-    public ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration, EmulationRuntimeServices services, CancellationToken cancellationToken = default) =>
-        ValueTask.FromException<EmulationMachineRuntime>(new NotSupportedException("The Microsoft machine adapter has not been added yet."));
+    /// <summary>Prépare le runtime par l'adaptateur Common sélectionné, comme les autres modules.</summary>
+    /// <param name="configuration">Configuration empruntée portant le modèle et l'identité du backend choisi.</param>
+    /// <param name="services">Services de session empruntés ; leurs ressources restent possédées par leur créateur.</param>
+    /// <param name="cancellationToken">Annulation contrôlée avant et après la préparation des contenus.</param>
+    /// <returns>Runtime préparé ; la création effective du cœur reste différée à la fabrique de machine.</returns>
+    public async ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration, EmulationRuntimeServices services, CancellationToken cancellationToken = default)
+    {
+        var current = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+        var adapter = Adapter(current);
+        var management = new EmulatorManagementContext(_httpClient, Path.Combine(_coreDirectory, adapter.EmulatorId));
+        var corePath = await adapter.FindInstalledCorePathAsync(management, cancellationToken).ConfigureAwait(false) ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(adapter.EmulatorId);
+        cancellationToken.ThrowIfCancellationRequested();
+        current = await adapter.PrepareRuntimeConfigurationAsync(current, services.ConvertedMediaDirectory).ConfigureAwait(false);
+        cancellationToken.ThrowIfCancellationRequested();
+        var audio = adapter.GetAudioConfiguration(current);
+        var context = new EmulatorCreationContext(services.SessionsDirectory, corePath, services.HostExecutablePath,
+            () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
+            value => Path.Combine(services.StatesDirectory, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat), CoreDirectoryConstants.SavesDirectoryName));
+        var storage = StorageSettingsFunctions.Describe(current);
+        return new EmulationMachineRuntime(current,
+            media => CreateMachine(current with { Media = media.Select(EmulationMediaConversionFunctions.ToModule).ToArray() }, context),
+            storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray(),
+            adapter.ResolveConfiguredMedia(current), MachineConfigurationConstants.ResourcePrefix + current.Model, adapter.SupportsPointerCapture(current),
+            (media, token) => { token.ThrowIfCancellationRequested(); return adapter.PrepareMediaAsync(media, services.ConvertedMediaDirectory); });
+    }
 
     public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(CancellationToken cancellationToken = default) => (await _store.LoadAllAsync(cancellationToken).ConfigureAwait(false)).Cast<IEmulationConfiguration>().ToArray();
 

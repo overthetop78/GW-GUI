@@ -149,4 +149,16 @@ internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmware
     /// <param name="configuration">Configuration empruntée à transmettre sans mutation.</param>
     /// <returns>Même instance de configuration ; les fabriques dérivées peuvent adapter leurs contraintes.</returns>
     public MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration) => configuration;
+
+    /// <summary>Conserve le média lorsque le backend consomme directement le format sélectionné.</summary>
+    /// <param name="media">Description du média source, empruntée sans ouverture ni modification du fichier.</param>
+    /// <param name="conversionDirectory">Répertoire de préparation fourni par la session, inutilisé sans conversion.</param>
+    /// <returns>Même description de média ; les fabriques dérivées peuvent fournir leur conversion réelle.</returns>
+    public ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory) => ValueTask.FromResult(media);
+
+    /// <summary>Conserve la configuration lorsque ses montages ne demandent aucune conversion préalable.</summary>
+    /// <param name="configuration">Configuration empruntée et conservée sans mutation.</param>
+    /// <param name="conversionDirectory">Répertoire de préparation fourni par la session, inutilisé sans conversion.</param>
+    /// <returns>Tâche terminée contenant la même configuration.</returns>
+    public Task<MachineConfiguration> PrepareRuntimeConfigurationAsync(MachineConfiguration configuration, string conversionDirectory) => Task.FromResult(configuration);
 }

@@ -313,6 +313,9 @@ internal sealed class Engine
             throw new ArgumentException(nameof(configuration));
         var adapter = this.Adapter(sony);
         var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(adapter.EmulatorId);
+        cancellationToken.ThrowIfCancellationRequested();
+        sony = await adapter.PrepareRuntimeConfigurationAsync(sony, services.ConvertedMediaDirectory).ConfigureAwait(false);
+        cancellationToken.ThrowIfCancellationRequested();
         var audio = adapter.GetAudioConfiguration(sony);
         sony = sony with { Audio = audio };
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
@@ -330,7 +333,8 @@ internal sealed class Engine
             media => this.CreateMachine(EmulationMediaConversionFunctions.WithMedia(sony, media), context),
             storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray(), mounted,
             MachineConfigurationConstants.ResourceKey(sony.Model),
-            SupportsPointerCapture: adapter.SupportsPointerCapture(sony));
+            SupportsPointerCapture: adapter.SupportsPointerCapture(sony),
+            PrepareMediaAsync: (media, token) => { token.ThrowIfCancellationRequested(); return adapter.PrepareMediaAsync(media, services.ConvertedMediaDirectory); });
     }
 
     public string GetFirmwareDirectory(string machineId)

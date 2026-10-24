@@ -347,9 +347,13 @@ internal sealed class Engine
     {
         if (configuration is not MachineConfiguration atari)
             throw new ArgumentException(nameof(configuration));
-        var corePath = await this.Adapter(atari).FindInstalledCorePathAsync(ManagementContext, cancellationToken).ConfigureAwait(false)
-            ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(this.Adapter(atari).EmulatorId);
-        var audio = this.Adapter(atari).GetAudioConfiguration(atari);
+        var adapter = this.Adapter(atari);
+        var corePath = await adapter.FindInstalledCorePathAsync(ManagementContext, cancellationToken).ConfigureAwait(false)
+            ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(adapter.EmulatorId);
+        cancellationToken.ThrowIfCancellationRequested();
+        atari = await adapter.PrepareRuntimeConfigurationAsync(atari, services.ConvertedMediaDirectory).ConfigureAwait(false);
+        cancellationToken.ThrowIfCancellationRequested();
+        var audio = adapter.GetAudioConfiguration(atari);
         var creationContext = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
@@ -360,7 +364,8 @@ internal sealed class Engine
         return new EmulationMachineRuntime(atari,
             CreateMachineFactory(this, atari, creationContext), devices, mounted,
             MachineCatalog.All.First(model => model.Id == atari.MachineId).DisplayResourceKey,
-            this.Adapter(atari).SupportsPointerCapture(atari));
+            adapter.SupportsPointerCapture(atari),
+            PrepareMediaAsync: (media, token) => { token.ThrowIfCancellationRequested(); return adapter.PrepareMediaAsync(media, services.ConvertedMediaDirectory); });
     }
 
     private static Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> CreateMachineFactory(Engine engine, MachineConfiguration configuration, EmulatorCreationContext context) => media => engine.CreateMachine(WithMedia(configuration, media), context);

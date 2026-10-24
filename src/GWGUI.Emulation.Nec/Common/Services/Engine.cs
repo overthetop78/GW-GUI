@@ -361,6 +361,9 @@ internal sealed class Engine
             throw new ArgumentException(nameof(configuration));
         var adapter = this.Adapter(necConfiguration);
         var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(adapter.EmulatorId);
+        cancellationToken.ThrowIfCancellationRequested();
+        necConfiguration = await adapter.PrepareRuntimeConfigurationAsync(necConfiguration, services.ConvertedMediaDirectory).ConfigureAwait(false);
+        cancellationToken.ThrowIfCancellationRequested();
         var audio = adapter.GetAudioConfiguration(necConfiguration);
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
@@ -373,7 +376,8 @@ internal sealed class Engine
             media => this.CreateMachine(WithMedia(necConfiguration, media), context),
             storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray(), mounted,
             MachineConfigurationConstants.ResourcePrefix + necConfiguration.Model,
-            SupportsPointerCapture: adapter.SupportsPointerCapture(necConfiguration));
+            SupportsPointerCapture: adapter.SupportsPointerCapture(necConfiguration),
+            PrepareMediaAsync: (media, token) => { token.ThrowIfCancellationRequested(); return adapter.PrepareMediaAsync(media, services.ConvertedMediaDirectory); });
     }
 
     private static MachineConfiguration WithMedia(MachineConfiguration configuration, IEnumerable<EmulationMedia> media) => configuration with

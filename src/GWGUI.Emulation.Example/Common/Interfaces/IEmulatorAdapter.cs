@@ -296,28 +296,10 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     /// <returns>False avec la capacité de base ; un adaptateur concret annonce les entrées de pointage qu&apos;il accepte.</returns>
     bool IEmulatorPointerCapabilities.SupportsPointer(MachineConfiguration configuration) => false;
 
-    /// <summary>Nom technique de la bibliothèque de cœur utilisée par l’adaptateur.</summary>
-    /// <remarks>Ce membre conserve la métadonnée LibraryName des catalogues internes, sans dupliquer
-    /// l’identité, le libellé et les modèles déjà portés par Definition. Un cœur intégré sans bibliothèque
-    /// autonome fournit une chaîne vide ; cette description ne charge ni ne crée un fichier DLL.</remarks>
-    string LibraryName { get; }
-
     /// <summary>Décrit les extensions de cartouche acceptées pour une configuration.</summary>
     /// <param name="configuration">Configuration empruntée précisant le modèle et ses options.</param>
     /// <returns>Ensemble des extensions spécifiques, ou null lorsque l’adaptateur n’en fournit pas de restriction spécifique.</returns>
     IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration);
-
-    /// <summary>Prépare un média pour les contraintes de contenu du cœur, avec conversion si nécessaire.</summary>
-    /// <param name="media">Description du média source ; le fichier utilisateur reste sous la responsabilité de son propriétaire.</param>
-    /// <param name="conversionDirectory">Répertoire fourni pour les contenus préparés.</param>
-    /// <returns>Description du média utilisable par le cœur, éventuellement avec un chemin de contenu préparé.</returns>
-    ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory);
-
-    /// <summary>Prépare la configuration destinée à l’exécution du cœur.</summary>
-    /// <param name="configuration">Configuration d’origine à adapter sans la modifier.</param>
-    /// <param name="conversionDirectory">Répertoire de préparation des contenus nécessaire au runtime.</param>
-    /// <returns>Configuration utilisable à l’exécution après les préparations propres au backend.</returns>
-    Task<MachineConfiguration> PrepareRuntimeConfigurationAsync(MachineConfiguration configuration, string conversionDirectory);
 
 
     /// <summary>Projette les réglages validés du module vers les valeurs textuelles attendues pendant l’exécution.</summary>

@@ -35,8 +35,6 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     public string EmulatorKey => Emulator.ToString();
     /// <summary>Description stable annonçant explicitement la compatibilité avec les deux profils fictifs.</summary>
     public EmulationEmulatorDefinition Definition { get; } = new(id, name, descriptionResourceKey, HardwareModelCatalog.All.Select(model => model.StableModelId).ToHashSet(StringComparer.Ordinal));
-    /// <summary>Aucune bibliothèque native séparée : les exports simulés appartiennent à l’assembly du module.</summary>
-    public string LibraryName => string.Empty;
     /// <summary>Autorise l&apos;initialisation du cœur simulé sans média inséré.</summary>
     /// <remarks><para>Common utilise cette capacité lors d&apos;un démarrage ou d&apos;une recréation après éjection ; un lecteur vide reste un état de session valide.</para></remarks>
     public bool SupportsNoContent => true;
@@ -150,13 +148,13 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
     /// <summary>Les simulations consomment leurs contenus comme données opaques ; aucune conversion de format n’est nécessaire.</summary>
     /// <inheritdoc/>
-    public ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory) => ValueTask.FromResult(media);
+    public virtual ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory) => ValueTask.FromResult(media);
     /// <summary>Valide la configuration avant sa remise au runtime simulé.</summary>
     /// <param name="configuration">Configuration complète empruntée : profil matériel, backend, options, entrées et montages courants.</param>
     /// <param name="conversionDirectory">Dossier temporaire prévu pour les conversions ; le mock valide seulement la configuration et n&apos;y crée aucun fichier.</param>
     /// <returns>Tâche déjà terminée contenant la même configuration après sa validation.</returns>
     /// <remarks><para>Le mock conserve ici la configuration telle quelle : il n&apos;effectue aucune conversion de fichier et n&apos;utilise pas le dossier temporaire reçu. Les erreurs de validation sont propagées.</para></remarks>
-    public Task<MachineConfiguration> PrepareRuntimeConfigurationAsync(MachineConfiguration configuration, string conversionDirectory)
+    public virtual Task<MachineConfiguration> PrepareRuntimeConfigurationAsync(MachineConfiguration configuration, string conversionDirectory)
     {
         ValidateConfiguration(configuration);
         return Task.FromResult(configuration);

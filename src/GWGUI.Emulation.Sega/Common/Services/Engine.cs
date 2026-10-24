@@ -326,6 +326,9 @@ internal sealed class Engine
             throw new ArgumentException(nameof(configuration));
         var adapter = this.Adapter(sega);
         var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(adapter.EmulatorId);
+        cancellationToken.ThrowIfCancellationRequested();
+        sega = await adapter.PrepareRuntimeConfigurationAsync(sega, services.ConvertedMediaDirectory).ConfigureAwait(false);
+        cancellationToken.ThrowIfCancellationRequested();
         var audio = adapter.GetAudioConfiguration(sega);
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
@@ -337,7 +340,8 @@ internal sealed class Engine
             media => this.CreateMachine(WithMedia(sega, media), context),
             storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray(), mounted,
             MachineConfigurationConstants.ResourcePrefix + sega.Model,
-            SupportsPointerCapture: adapter.SupportsPointerCapture(sega));
+            SupportsPointerCapture: adapter.SupportsPointerCapture(sega),
+            PrepareMediaAsync: (media, token) => { token.ThrowIfCancellationRequested(); return adapter.PrepareMediaAsync(media, services.ConvertedMediaDirectory); });
     }
 
     private static MachineConfiguration WithMedia(MachineConfiguration configuration, IEnumerable<EmulationMedia> media) => configuration with

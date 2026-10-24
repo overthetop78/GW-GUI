@@ -305,6 +305,9 @@ internal sealed class Engine
             throw new ArgumentException(nameof(configuration));
         var adapter = this.Adapter(nintendo);
         var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(adapter.EmulatorId);
+        cancellationToken.ThrowIfCancellationRequested();
+        nintendo = await adapter.PrepareRuntimeConfigurationAsync(nintendo, services.ConvertedMediaDirectory).ConfigureAwait(false);
+        cancellationToken.ThrowIfCancellationRequested();
         var audio = adapter.GetAudioConfiguration(nintendo);
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
@@ -316,7 +319,8 @@ internal sealed class Engine
             media => this.CreateMachine(WithMedia(nintendo, media), context),
             storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray(), mounted,
             MachineConfigurationConstants.ResourcePrefix + nintendo.Model,
-            SupportsPointerCapture: adapter.SupportsPointerCapture(nintendo));
+            SupportsPointerCapture: adapter.SupportsPointerCapture(nintendo),
+            PrepareMediaAsync: (media, token) => { token.ThrowIfCancellationRequested(); return adapter.PrepareMediaAsync(media, services.ConvertedMediaDirectory); });
     }
 
     private static MachineConfiguration WithMedia(MachineConfiguration configuration, IEnumerable<EmulationMedia> media) => configuration with

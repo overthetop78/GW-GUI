@@ -349,7 +349,9 @@ internal sealed class Engine
         foreach (var slot in this.Adapter(current).GetFirmwareSlots(current))
             if (slot.IsRequired && string.IsNullOrWhiteSpace(current.FirmwarePath(slot.FieldId)))
                 throw CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.Firmware, EmulationMessageCode.FirmwareMissing, null);
+        cancellationToken.ThrowIfCancellationRequested();
         var runtime = await RuntimeMediaFunctions.PrepareConfigurationAsync(current, services.ConvertedMediaDirectory).ConfigureAwait(false);
+        cancellationToken.ThrowIfCancellationRequested();
         var emulator = this.Adapter(runtime);
         var corePath = await emulator.FindInstalledCorePathAsync(EmulatorManagement(emulator), cancellationToken).ConfigureAwait(false)
             ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(emulator.EmulatorId);
@@ -364,7 +366,7 @@ internal sealed class Engine
         return new EmulationMachineRuntime(runtime,
             CreateMachineFactory(this, runtime, creationContext), devices, mounted,
             MachineCatalog.All.First(machine => machine.Id == runtime.Model).DisplayResourceKey, emulator.SupportsPointerCapture(runtime),
-            (media, _) => RuntimeMediaFunctions.PrepareMediaAsync(runtime, media, services.ConvertedMediaDirectory));
+            (media, token) => { token.ThrowIfCancellationRequested(); return RuntimeMediaFunctions.PrepareMediaAsync(runtime, media, services.ConvertedMediaDirectory); });
     }
 
     private static Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> CreateMachineFactory(Engine engine, MachineConfiguration configuration, EmulatorCreationContext context) =>

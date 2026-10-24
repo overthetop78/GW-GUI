@@ -237,6 +237,9 @@ internal sealed class Engine
         var current = Require(configuration);
         var adapter = this.Adapter(current);
         var corePath = await adapter.FindInstalledCorePathAsync(_managementContext, cancellationToken).ConfigureAwait(false) ?? throw CommonCoreHostFunctions.Messages.EmulatorNotInstalled(adapter.EmulatorId);
+        cancellationToken.ThrowIfCancellationRequested();
+        current = await adapter.PrepareRuntimeConfigurationAsync(current, services.ConvertedMediaDirectory).ConfigureAwait(false);
+        cancellationToken.ThrowIfCancellationRequested();
         var audio = adapter.GetAudioConfiguration(current);
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath, () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
@@ -250,7 +253,8 @@ internal sealed class Engine
             };
             return this.CreateMachine(selected, context);
         }, storage.AvailableDevices, storage.MountedMedia,
-            ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey, adapter.SupportsPointerCapture(current));
+            ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey, adapter.SupportsPointerCapture(current),
+            PrepareMediaAsync: (media, token) => { token.ThrowIfCancellationRequested(); return adapter.PrepareMediaAsync(media, services.ConvertedMediaDirectory); });
     }
 
     private IEmulatorAdapter PreferredAdapter(string machineId) =>
