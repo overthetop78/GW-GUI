@@ -186,12 +186,21 @@ internal sealed class Engine
     public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration)
     {
         var current = Require(configuration);
-        return SelectedAdapter(current)?.DescribeStorage(current) ?? StorageSettingsFunctions.Describe(current);
+        var adapter = SelectedAdapter(current);
+        var settings = adapter?.DescribeStorage(current) ?? StorageSettingsFunctions.Describe(current);
+        return CommonCoreHostFunctions.MediaRules.RestrictAcceptedExtensions(settings, EmulationMediaCategory.CartridgeSlot, adapter?.GetCartridgeExtensions(current));
     }
     public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings)
     {
         var current = Require(configuration);
-        return SelectedAdapter(current)?.ApplyStorage(current, settings) ?? StorageSettingsFunctions.Apply(current, settings);
+        var adapter = SelectedAdapter(current);
+        if (adapter?.GetCartridgeExtensions(current) is not null)
+        {
+            var devices = DescribeStorageSettings(current).AvailableDevices;
+            if (settings.MountedMedia.Any(media => media.Slot.Category == EmulationMediaCategory.CartridgeSlot && CommonCoreHostFunctions.MediaRules.IsInvalidMountedMedia(media, devices, settings.ConfiguredSlots)))
+                throw new ArgumentException(nameof(settings));
+        }
+        return adapter?.ApplyStorage(current, settings) ?? StorageSettingsFunctions.Apply(current, settings);
     }
 
     public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(CancellationToken cancellationToken = default) => (await _store.LoadAllAsync(cancellationToken).ConfigureAwait(false)).Cast<IEmulationConfiguration>().ToArray();
@@ -244,7 +253,7 @@ internal sealed class Engine
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath, () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
             value => value.Folders.Saves ?? Path.Combine(services.StatesDirectory, EmulationModuleConstants.SavesDirectoryName, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)));
-        var storage = StorageSettingsFunctions.Describe(current);
+        var storage = DescribeStorageSettings(current);
         return new EmulationMachineRuntime(current, media =>
         {
             var selected = current with

@@ -18,4 +18,12 @@ internal interface IEmulatorContentFormats
     /// <param name="path">Chemin du média principal.</param>
     /// <returns>Chemins des dépendances du média ; une liste vide indique qu’aucun fichier associé n’est nécessaire.</returns>
     IReadOnlyList<string> GetMediaDependencies(string path);
+
+    /// <summary>Déclare une restriction supplémentaire des formats de cartouche du backend.</summary>
+    /// <param name="configuration">Configuration empruntée donnant le modèle et les options du cœur.</param>
+    /// <returns>Extensions acceptées, ou null pour conserver les filtres matériels Common existants.</returns>
+    /// <remarks>Les extensions peuvent comporter un point initial et sont comparées sans tenir compte de la casse.
+    /// Un ensemble vide exclut tous les formats du lecteur ; il ne supprime pas son emplacement.
+    /// La restriction ne peut pas ajouter un format absent de la description matérielle du modèle.</remarks>
+    IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration);
 }

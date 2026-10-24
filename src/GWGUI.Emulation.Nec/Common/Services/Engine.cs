@@ -211,13 +211,22 @@ internal sealed class Engine
     public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration)
     {
         var current = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
-        return SelectedAdapter(current)?.DescribeStorage(current) ?? StorageSettingsFunctions.Describe(current);
+        var adapter = SelectedAdapter(current);
+        var settings = adapter?.DescribeStorage(current) ?? StorageSettingsFunctions.Describe(current);
+        return CommonCoreHostFunctions.MediaRules.RestrictAcceptedExtensions(settings, EmulationMediaCategory.CartridgeSlot, adapter?.GetCartridgeExtensions(current));
     }
 
     public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings)
     {
         var current = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
-        return SelectedAdapter(current)?.ApplyStorage(current, settings) ?? StorageSettingsFunctions.Apply(current, settings);
+        var adapter = SelectedAdapter(current);
+        if (adapter?.GetCartridgeExtensions(current) is not null)
+        {
+            var devices = DescribeStorageSettings(current).AvailableDevices;
+            if (settings.MountedMedia.Any(media => media.Slot.Category == EmulationMediaCategory.CartridgeSlot && CommonCoreHostFunctions.MediaRules.IsInvalidMountedMedia(media, devices, settings.ConfiguredSlots)))
+                throw new ArgumentException(nameof(settings));
+        }
+        return adapter?.ApplyStorage(current, settings) ?? StorageSettingsFunctions.Apply(current, settings);
     }
 
     public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) => InputSettingsFunctions.Describe(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
@@ -370,7 +379,7 @@ internal sealed class Engine
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
             value => value.Model == PcFxMachineConstants.Id ? _store.MemoryDirectory(value.Id) : Path.Combine(services.StatesDirectory, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat), CoreDirectoryConstants.SavesDirectoryName),
             GetFirmwareDirectory(necConfiguration.Model));
-        var storage = StorageSettingsFunctions.Describe(necConfiguration);
+        var storage = DescribeStorageSettings(necConfiguration);
         var mounted = adapter.ResolveConfiguredMedia(necConfiguration);
         return new EmulationMachineRuntime(necConfiguration,
             media => this.CreateMachine(WithMedia(necConfiguration, media), context),

@@ -212,6 +212,5 @@ internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmula
     EmulationInputSnapshot IEmulatorInputMapper.MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => InputSnapshotFunctions.Apply(snapshot, configuration.Input, configuration.Model, configuration.Core);
     /// <summary>Réutilise la description Common existante pour le contrat commun de réglages.</summary>
     IReadOnlyList<EmulationSettingsBlock> IEmulatorSettings.DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context) => SettingsDescriptionFunctions.Create(configuration);
-    IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration);
     IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration);
 }

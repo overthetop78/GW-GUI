@@ -209,6 +209,5 @@ internal interface IEmulatorAdapter : IEmulatorControllerFeedbackAdapter, IEmula
 
     /// <summary>Réutilise la projection Common existante sans changer les associations ni les règles matérielles.</summary>
     EmulationInputSnapshot IEmulatorInputMapper.MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => InputSnapshotFunctions.Apply(snapshot, configuration.Input, configuration.Model, configuration.Core);
-    IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration);
     IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration);
 }

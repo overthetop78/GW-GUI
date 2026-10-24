@@ -186,4 +186,9 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorSetting
     /// <param name="conversionDirectory">Répertoire de préparation fourni par la session, inutilisé sans conversion.</param>
     /// <returns>Tâche terminée contenant la même configuration.</returns>
     public Task<MachineConfiguration> PrepareRuntimeConfigurationAsync(MachineConfiguration configuration, string conversionDirectory) => Task.FromResult(configuration);
+
+    /// <summary>Conserve les formats de cartouche déjà décrits par le modèle Common.</summary>
+    /// <param name="configuration">Configuration empruntée du modèle et du backend.</param>
+    /// <returns>Null en l'absence de restriction supplémentaire ; les fabriques dérivées peuvent préciser leurs contraintes.</returns>
+    public IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration) => null;
 }

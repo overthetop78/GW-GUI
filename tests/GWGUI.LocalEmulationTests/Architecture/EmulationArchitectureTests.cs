@@ -42,14 +42,14 @@ public sealed class EmulationArchitectureTests
     {
         var atari = CommonAdapter(typeof(AtariEmulationModule).Assembly, "GWGUI.Emulation.Atari");
         var amiga = CommonAdapter(typeof(CommodoreEmulationModule).Assembly, "GWGUI.Emulation.Commodore");
-        Assert.All(MemberNames(atari.Adapter).Where(member => !member.Contains('.')).Except(new[] { "GetCartridgeExtensions", "GetRuntimeOptions" }), member => Assert.Contains(member, MemberNames(amiga.Adapter)));
+        Assert.All(MemberNames(atari.Adapter).Where(member => !member.Contains('.')).Except(new[] { "GetRuntimeOptions" }), member => Assert.Contains(member, MemberNames(amiga.Adapter)));
         Assert.Equal(new[]
         {
             "ApplyDeviceSettings", "ApplyInputConfiguration", "ApplySettings", "ApplyStorage", "ApplyStorageConfiguration", "ApplyVideoSettings", "Create", "Definition", "DescribeDeviceSettings", "DescribeInput", "DescribeMediaDevices", "DescribeStorage", "EmulatorId", "EmulatorKey", "EnsurePersistentStorage", "FindInstalledCorePathAsync",
-            "FindReleasesAsync", "GetAudioConfiguration", "GetAudioLatencyChoices", "GetControllerBindingDefinitions", "GetControllerOutputs", "GetControllerPortCount", "GetControllerPortDisplayName", "GetControllerPortDisplayNumber", "GetDefaultOptions", "GetFirmwareSlots", "GetHostCommandTimeout", "GetInstallationAsync", "GetKeyboardDefinitions", "GetMachineSettingsBlocks", "GetMediaDependencies", "GetMemoryCardCount", "GetMemoryCardDirectory", "GetMemoryCardDisplayLabel", "GetMemoryCardIndexes", "GetMemoryKib", "GetOutputResolution", "GetPeripherals", "GetSettingsOptions", "GetStorageDeviceConfigurationFields", "GetUsbPeripherals", "HasFixedMemoryCardDirectories", "IdentifyFirmware", "InitializeOptions", "InstallAsync", "IsCpuClock", "IsDefaultFor", "IsDeferredOption", "IsFirmwareCompatible", "MapInput", "MediaActivity", "MemoryCardInsertedOptionKey", "NormalizeOptions", "NormalizeRuntimeOptions", "PrepareFirmware", "PrepareMediaAsync", "PrepareRuntimeConfigurationAsync", "RequiresExternalFirmware", "RequiresMediaRestart", "RequiresOptionRestart",
+            "FindReleasesAsync", "GetAudioConfiguration", "GetAudioLatencyChoices", "GetCartridgeExtensions", "GetControllerBindingDefinitions", "GetControllerOutputs", "GetControllerPortCount", "GetControllerPortDisplayName", "GetControllerPortDisplayNumber", "GetDefaultOptions", "GetFirmwareSlots", "GetHostCommandTimeout", "GetInstallationAsync", "GetKeyboardDefinitions", "GetMachineSettingsBlocks", "GetMediaDependencies", "GetMemoryCardCount", "GetMemoryCardDirectory", "GetMemoryCardDisplayLabel", "GetMemoryCardIndexes", "GetMemoryKib", "GetOutputResolution", "GetPeripherals", "GetSettingsOptions", "GetStorageDeviceConfigurationFields", "GetUsbPeripherals", "HasFixedMemoryCardDirectories", "IdentifyFirmware", "InitializeOptions", "InstallAsync", "IsCpuClock", "IsDefaultFor", "IsDeferredOption", "IsFirmwareCompatible", "MapInput", "MediaActivity", "MemoryCardInsertedOptionKey", "NormalizeOptions", "NormalizeRuntimeOptions", "PrepareFirmware", "PrepareMediaAsync", "PrepareRuntimeConfigurationAsync", "RequiresExternalFirmware", "RequiresMediaRestart", "RequiresOptionRestart",
             "ResolveConfiguredMedia", "ResolveContentExtensions", "ResolveInitialContentPaths", "ResolveModel", "ScanFirmwareAsync", "ScanFirmwareFileAsync", "SelectConfiguration", "SoftResetKeys", "Summarize", "SupportedContentExtensions", "SupportsInitialContent", "SupportsNoContent", "SupportsPointer", "SupportsPointerCapture", "SupportsVideoSettings", "TryHandleHostCommand", "ValidateConfiguration", "ValidateOptions", "get_Definition", "get_EmulatorId",
             "get_EmulatorKey", "get_HasFixedMemoryCardDirectories", "get_MemoryCardInsertedOptionKey", "get_SoftResetKeys", "get_SupportedContentExtensions", "get_SupportsInitialContent", "get_SupportsNoContent", "get_SupportsVideoSettings"
-        }, MemberNames(atari.Adapter).Where(member => !member.Contains('.')).Except(new[] { "GetCartridgeExtensions", "GetRuntimeOptions", "DescribeSettings" }));
+        }, MemberNames(atari.Adapter).Where(member => !member.Contains('.')).Except(new[] { "GetRuntimeOptions", "DescribeSettings" }));
         Assert.Equal(MemberNames(atari.Context), MemberNames(amiga.Context));
         foreach (var row in FamilyModules())
         {
@@ -417,7 +417,7 @@ public sealed class EmulationArchitectureTests
     {
         var source = File.ReadAllText(path).Replace($"GWGUI.Emulation.{family}", "GWGUI.Emulation.Family", StringComparison.Ordinal).Replace("\r\n", "\n", StringComparison.Ordinal);
         if (Path.GetFileName(path) == "IEmulatorAdapter.cs")
-            source = string.Join('\n', source.Split('\n').Where(line => !line.Contains(" GetCartridgeExtensions(", StringComparison.Ordinal) && !line.Contains(" GetRuntimeOptions(", StringComparison.Ordinal)));
+            source = string.Join('\n', source.Split('\n').Where(line => !line.Contains(" GetRuntimeOptions(", StringComparison.Ordinal)));
         if (Path.GetFileName(path) == "EmulatorCatalog.cs")
             source = source.Replace("\n                && type.Namespace?.Contains(\".Emulators.\", StringComparison.Ordinal) == true", string.Empty, StringComparison.Ordinal);
         return source;

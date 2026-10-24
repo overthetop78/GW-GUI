@@ -90,4 +90,22 @@ internal sealed class EmulationMediaRules : IEmulationMediaRules
 
         return Validate(media.Select(item => item.Slot == slot ? item with { IsInserted = false } : item).ToArray());
     }
+
+    /// <inheritdoc/>
+    public EmulationStorageSettings RestrictAcceptedExtensions(EmulationStorageSettings settings, EmulationMediaCategory category, IReadOnlySet<string>? extensions)
+    {
+        ArgumentNullException.ThrowIfNull(settings);
+        if (extensions is null) return settings;
+        var accepted = extensions.Select(extension => extension.TrimStart('.')).ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var changed = false;
+        var devices = settings.AvailableDevices.Select(device =>
+        {
+            if (device.Slot.Category != category) return device;
+            var filtered = device.AcceptedExtensions.Where(extension => accepted.Contains(extension.TrimStart('.'))).ToArray();
+            if (filtered.Length == device.AcceptedExtensions.Count) return device;
+            changed = true;
+            return device with { AcceptedExtensions = Array.AsReadOnly(filtered) };
+        }).ToArray();
+        return changed ? settings with { AvailableDevices = Array.AsReadOnly(devices) } : settings;
+    }
 }

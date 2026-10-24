@@ -155,4 +155,9 @@ internal abstract class MachineFactory : IEmulatorAdapter, IEmulatorRuntimePolic
             }
         }
     }
+
+    /// <summary>Conserve les formats de cartouche déjà décrits par le modèle Common.</summary>
+    /// <param name="configuration">Configuration empruntée du modèle et du backend.</param>
+    /// <returns>Null en l'absence de restriction supplémentaire ; les fabriques dérivées peuvent préciser leurs contraintes.</returns>
+    public virtual IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration) => null;
 }

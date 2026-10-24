@@ -62,4 +62,30 @@ public sealed class StorageSettingsValidationTests
         Assert.False(EmulationSdk.MediaRules.IsInvalidMountedMedia(cartridge, [device], [device.Slot]));
         Assert.Throws<ArgumentException>(() => EmulationSdk.MediaRules.Validate([cartridge]));
     }
+
+    [Fact]
+    public void ExtensionRestrictionsPreserveHardwareConstraintsAndOtherStorageData()
+    {
+        var cartridge = new EmulationMediaDevice(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, [".ROM", ".bin", ".zip"], DisplayLabel: "cartridge");
+        var mounted = new EmulationMedia("game.ROM", cartridge.Slot, cartridge.MediaType, true, true);
+        var settings = new EmulationStorageSettings([Drive, cartridge], [Drive.Slot, cartridge.Slot], [mounted], [new(cartridge.Slot)]);
+        var rules = EmulationSdk.MediaRules;
+        Assert.Same(settings, rules.RestrictAcceptedExtensions(settings, EmulationMediaCategory.CartridgeSlot, null));
+        var allowed = new HashSet<string>(StringComparer.Ordinal) { "rom", ".ZIP", "not-in-the-hardware-catalog" };
+        var filtered = rules.RestrictAcceptedExtensions(settings, EmulationMediaCategory.CartridgeSlot, allowed);
+        Assert.Equal(new[] { ".ROM", ".zip" }, filtered.AvailableDevices[1].AcceptedExtensions);
+        Assert.Same(Drive, filtered.AvailableDevices[0]);
+        Assert.Equal(cartridge with { AcceptedExtensions = filtered.AvailableDevices[1].AcceptedExtensions }, filtered.AvailableDevices[1]);
+        Assert.Same(settings.ConfiguredSlots, filtered.ConfiguredSlots);
+        Assert.Same(settings.MountedMedia, filtered.MountedMedia);
+        Assert.Same(settings.DeviceSettings, filtered.DeviceSettings);
+        Assert.Equal(new[] { ".ROM", ".bin", ".zip" }, cartridge.AcceptedExtensions);
+        Assert.Equal(3, allowed.Count);
+        Assert.Same(filtered, rules.RestrictAcceptedExtensions(filtered, EmulationMediaCategory.CartridgeSlot, allowed));
+        var empty = rules.RestrictAcceptedExtensions(settings, EmulationMediaCategory.CartridgeSlot, new HashSet<string>());
+        Assert.Empty(empty.AvailableDevices[1].AcceptedExtensions);
+        Assert.Equal(2, empty.AvailableDevices.Count);
+        Assert.Same(Drive, empty.AvailableDevices[0]);
+        Assert.True(rules.IsInvalidMountedMedia(mounted, empty.AvailableDevices, empty.ConfiguredSlots));
+    }
 }

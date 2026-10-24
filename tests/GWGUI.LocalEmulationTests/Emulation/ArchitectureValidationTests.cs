@@ -1940,7 +1940,7 @@ public sealed class ArchitectureValidationTests
             var contract = assembly.GetType(root + ".Common.Interfaces.IEmulatorContentFormats", throwOnError: true)!;
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
-            Assert.Equal(new[] { "GetMediaDependencies", "ResolveContentExtensions", "get_SupportedContentExtensions" }, contract.GetMethods().Select(method => method.Name).Order(StringComparer.Ordinal));
+            Assert.Equal(new[] { "GetCartridgeExtensions", "GetMediaDependencies", "ResolveContentExtensions", "get_SupportedContentExtensions" }, contract.GetMethods().Select(method => method.Name).Order(StringComparer.Ordinal));
             var resolve = contract.GetMethod("ResolveContentExtensions")!;
             Assert.Equal(typeof(IReadOnlySet<string>), resolve.ReturnType);
             Assert.Equal(new[] { typeof(IReadOnlySet<string>), typeof(bool) }, resolve.GetParameters().Select(parameter => parameter.ParameterType));
@@ -3058,6 +3058,7 @@ public sealed class ArchitectureValidationTests
     public class RuntimePreparationProbe : DispatchProxy
     {
         public object Configuration { get; set; } = null!;
+        public EmulationStorageSettings Storage { get; set; } = null!;
         public List<string> Calls { get; } = [];
 
         protected override object? Invoke(MethodInfo? method, object?[]? arguments)
@@ -3067,10 +3068,12 @@ public sealed class ArchitectureValidationTests
             return method.Name switch
             {
                 "get_EmulatorId" => "runtime-probe",
+                "GetCartridgeExtensions" => null,
                 "FindInstalledCorePathAsync" => ValueTask.FromResult<string?>("core-path-not-opened"),
                 "PrepareRuntimeConfigurationAsync" => typeof(Task).GetMethod(nameof(Task.FromResult))!.MakeGenericMethod(Configuration.GetType()).Invoke(null, [Configuration]),
                 "GetAudioConfiguration" => Activator.CreateInstance(method.ReturnType, [null, 100, 100]),
                 "ResolveConfiguredMedia" => Array.Empty<EmulationMedia>(),
+                "DescribeStorage" => Storage,
                 "SupportsPointerCapture" => false,
                 "PrepareMediaAsync" => ValueTask.FromResult((EmulationMedia)arguments![0]!),
                 _ => throw new InvalidOperationException(method.Name)
@@ -3085,11 +3088,14 @@ public sealed class ArchitectureValidationTests
         public List<IEmulationConfiguration> Selections { get; } = [];
         public EmulationConfigurationSummary? Summary { get; set; }
         public object? SummarizedConfiguration { get; private set; }
+        public bool OverrideCartridgeExtensions { get; set; }
+        public IReadOnlySet<string>? CartridgeExtensions { get; set; }
 
         protected override object? Invoke(MethodInfo? method, object?[]? arguments)
         {
             ArgumentNullException.ThrowIfNull(method);
             if (method.Name == "Summarize" && Summary is not null) { SummarizedConfiguration = arguments![0]; return Summary; }
+            if (method.Name == "GetCartridgeExtensions" && OverrideCartridgeExtensions) return CartridgeExtensions;
             if (method.Name.EndsWith("IsDefaultFor", StringComparison.Ordinal)) return Preferred && arguments is [string machineId] && machineId == MachineId;
             if (method.Name.EndsWith("SelectConfiguration", StringComparison.Ordinal)) Selections.Add((IEmulationConfiguration)arguments![0]!);
             return method.Invoke(Adapter, arguments);
@@ -3143,6 +3149,17 @@ public sealed class ArchitectureValidationTests
             var runtimeCalls = runtimeMethods.SelectMany(GetCompiledCalls).ToArray();
             Assert.Contains(runtimeCalls, call => call.Method == prepareMedia);
             Assert.Contains(runtimeCalls, call => call.Method == prepareConfiguration);
+            var cartridgeContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorContentFormats", throwOnError: true)!;
+            var cartridgeOperation = cartridgeContract.GetMethod("GetCartridgeExtensions")!;
+            Assert.Equal(typeof(IReadOnlySet<string>), cartridgeOperation.ReturnType);
+            Assert.Equal(configurationType, Assert.Single(cartridgeOperation.GetParameters()).ParameterType);
+            Assert.DoesNotContain(adapterContract.GetMethods(), method => method.Name == cartridgeOperation.Name);
+            var storageDescription = engineType.GetMethod("DescribeStorageSettings")!;
+            var storageApplication = engineType.GetMethod("ApplyStorageSettings")!;
+            Assert.Contains(GetCompiledCalls(storageDescription), call => call.Method == cartridgeOperation);
+            Assert.Contains(GetCompiledCalls(storageDescription), call => call.Method.Name == nameof(IEmulationMediaRules.RestrictAcceptedExtensions));
+            Assert.Contains(GetCompiledCalls(storageApplication), call => call.Method == cartridgeOperation);
+            Assert.Contains(runtimeCalls, call => call.Method == storageDescription);
             var summaryOperation = contract.GetMethod("Summarize")!;
             Assert.Equal(typeof(EmulationConfigurationSummary), summaryOperation.ReturnType);
             Assert.Equal(configurationType, Assert.Single(summaryOperation.GetParameters()).ParameterType);
@@ -3165,6 +3182,7 @@ public sealed class ArchitectureValidationTests
                 var runtimeAdapter = DispatchProxy.Create(adapterContract, typeof(RuntimePreparationProbe));
                 var probe = (RuntimePreparationProbe)runtimeAdapter;
                 probe.Configuration = runtimeConfiguration;
+                probe.Storage = Assert.IsType<EmulationStorageSettings>(storageDescription.Invoke(runtimeEngine, [runtimeConfiguration]));
                 var registrations = (System.Collections.IDictionary)engineType.GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(runtimeEngine)!;
                 registrations.Add("runtime-probe", runtimeAdapter);
                 try
@@ -3216,6 +3234,36 @@ public sealed class ArchitectureValidationTests
                     registrations[definition.Id] = summaryProxy;
                     Assert.Same(summaryProbe.Summary, summarize.Invoke(engine, [configuration]));
                     Assert.Same(configuration, summaryProbe.SummarizedConfiguration);
+                    var originalStorage = Assert.IsType<EmulationStorageSettings>(storageDescription.Invoke(engine, [configuration]));
+                    summaryProbe.OverrideCartridgeExtensions = true;
+                    summaryProbe.CartridgeExtensions = new HashSet<string>();
+                    var restrictedStorage = Assert.IsType<EmulationStorageSettings>(storageDescription.Invoke(engine, [configuration]));
+                    Assert.Equal(originalStorage.AvailableDevices.Count, restrictedStorage.AvailableDevices.Count);
+                    for (var index = 0; index < originalStorage.AvailableDevices.Count; index++)
+                    {
+                        var before = originalStorage.AvailableDevices[index];
+                        var after = restrictedStorage.AvailableDevices[index];
+                        Assert.Equal(before.Slot, after.Slot);
+                        Assert.Equal(before.MediaType, after.MediaType);
+                        Assert.Equal(before.ConfigurationKind, after.ConfigurationKind);
+                        Assert.Equal(before.DisplayLabel, after.DisplayLabel);
+                        Assert.Equal(before.IsPermanent, after.IsPermanent);
+                        Assert.Equal(before.IsRemovable, after.IsRemovable);
+                        Assert.Equal(before.RequiresMachineRecreation, after.RequiresMachineRecreation);
+                        if (before.Slot.Category == EmulationMediaCategory.CartridgeSlot)
+                        {
+                            Assert.Empty(after.AcceptedExtensions);
+
+                            var invalidStorage = originalStorage with
+                            {
+                                ConfiguredSlots = originalStorage.ConfiguredSlots.Append(before.Slot).Distinct().ToArray(),
+                                MountedMedia = [new EmulationMedia("disallowed.rom", before.Slot, EmulationMediaType.Cartridge, true, true)]
+                            };
+                            Assert.IsType<ArgumentException>(Assert.Throws<TargetInvocationException>(() => storageApplication.Invoke(engine, [configuration, invalidStorage])).InnerException);
+                        }
+                        else
+                            Assert.Equal<string>(before.AcceptedExtensions, after.AcceptedExtensions);
+                    }
                 }
                 finally
                 {
@@ -3235,6 +3283,16 @@ public sealed class ArchitectureValidationTests
                 Assert.Equal(configuration.MachineId, preparedInput.MachineId);
                 var selectedCore = configurationType.GetProperty("EmulatorId") ?? configurationType.GetProperty("Core")!;
                 Assert.Equal(selectedCore.GetValue(configuration), selectedCore.GetValue(preparedInput));
+                var cartridgeMap = adapter.GetType().GetInterfaceMap(cartridgeContract);
+                Assert.True(cartridgeMap.TargetMethods[Array.IndexOf(cartridgeMap.InterfaceMethods, cartridgeOperation)].DeclaringType!.IsClass);
+                var actualCartridgeExtensions = (IReadOnlySet<string>?)cartridgeOperation.Invoke(adapter, [configuration]);
+                if (actualCartridgeExtensions is not null)
+                {
+                    var acceptedCartridgeExtensions = actualCartridgeExtensions.Select(extension => extension.TrimStart('.')).ToHashSet(StringComparer.OrdinalIgnoreCase);
+                    var storage = Assert.IsType<EmulationStorageSettings>(storageDescription.Invoke(engine, [configuration]));
+                    Assert.All(storage.AvailableDevices.Where(device => device.Slot.Category == EmulationMediaCategory.CartridgeSlot).SelectMany(device => device.AcceptedExtensions),
+                        extension => Assert.Contains(extension.TrimStart('.'), acceptedCartridgeExtensions));
+                }
                 var inputMap = adapter.GetType().GetInterfaceMap(inputContract);
                 foreach (var operation in new[] { keyboardOperation, inputOperation })
                     Assert.True(inputMap.TargetMethods[Array.IndexOf(inputMap.InterfaceMethods, operation)].DeclaringType!.IsClass);

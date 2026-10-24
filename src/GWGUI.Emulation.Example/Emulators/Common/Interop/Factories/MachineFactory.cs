@@ -351,7 +351,7 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <param name="configuration">Configuration complète empruntée : profil matériel, backend, options, entrées et montages courants.</param>
     /// <returns>Ensemble des extensions acceptées, ou null pour un profil sans cartouche.</returns>
     /// <remarks><para>Les extensions sont copiées dans un ensemble insensible à la casse. Le résultat ne signifie pas qu&apos;un fichier est déjà monté.</para></remarks>
-    public IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration) => HardwareModelCatalog.Get(configuration.Model).Media.Contains(MediaCategory.Cartridge) ? MediaConstants.CartridgeExtensions.ToHashSet(StringComparer.OrdinalIgnoreCase) : null;
+    public virtual IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration) => HardwareModelCatalog.Get(configuration.Model).Media.Contains(MediaCategory.Cartridge) ? MediaConstants.CartridgeExtensions.ToHashSet(StringComparer.OrdinalIgnoreCase) : null;
     /// <summary>Décrit les rôles du profil comme emplacements de firmware facultatifs.</summary>
     /// <param name="configuration">Configuration complète dont le profil matériel fournit les rôles proposés.</param>
     /// <returns>Champs stables, noms de fichiers et libellés utilisés par la sélection et la préparation.</returns>

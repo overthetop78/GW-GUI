@@ -24,4 +24,14 @@ public interface IEmulationMediaRules
     byte[] Serialize(IReadOnlyList<EmulationMedia> media);
     /// <summary>Relit et valide le document existant sans ouvrir les fichiers des montages.</summary>
     IReadOnlyList<EmulationMedia> Deserialize(ReadOnlySpan<byte> payload);
+
+    /// <summary>Restreint les extensions des lecteurs d'une catégorie sans modifier les descriptions empruntées.</summary>
+    /// <param name="settings">Description du stockage conservant les lecteurs, montages et paramètres du modèle.</param>
+    /// <param name="category">Catégorie des lecteurs auxquels appliquer la restriction du backend.</param>
+    /// <param name="extensions">Extensions autorisées, avec ou sans point initial ; null conserve la description reçue.</param>
+    /// <returns>Description filtrée sans ajout de format ; même instance lorsqu'aucune extension n'est retirée.</returns>
+    /// <remarks>La comparaison ignore la casse. Un ensemble vide retire toutes les extensions de la catégorie,
+    /// sans retirer ses lecteurs ni changer leurs autres propriétés. Les montages et emplacements configurés
+    /// restent empruntés et inchangés ; aucun fichier n'est ouvert, converti ou supprimé.</remarks>
+    EmulationStorageSettings RestrictAcceptedExtensions(EmulationStorageSettings settings, EmulationMediaCategory category, IReadOnlySet<string>? extensions);
 }

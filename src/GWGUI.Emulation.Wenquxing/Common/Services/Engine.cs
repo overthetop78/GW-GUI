@@ -228,14 +228,10 @@ internal sealed class Engine
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
             value => Path.Combine(services.StatesDirectory, EmulationModuleConstants.SavesDirectoryName, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat))
         );
-        return new EmulationMachineRuntime(
-            current,
-            media => media.Count == 0 ? this.CreateMachine(current, context) : throw CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null),
-            [],
-            [],
-            ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey,
-            adapter.SupportsPointerCapture(current)
-        ,
+        var storage = DescribeStorageSettings(current);
+        return new EmulationMachineRuntime(current,
+            media => media.Count == 0 ? this.CreateMachine(current, context) : throw CommonCoreHostFunctions.Messages.CreateError(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, null), storage.AvailableDevices, storage.MountedMedia,
+            ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey, adapter.SupportsPointerCapture(current),
             PrepareMediaAsync: (media, token) => { token.ThrowIfCancellationRequested(); return adapter.PrepareMediaAsync(media, services.ConvertedMediaDirectory); });
     }
 
@@ -262,13 +258,22 @@ internal sealed class Engine
     public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration)
     {
         var current = Require(configuration);
-        return SelectedAdapter(current)?.DescribeStorage(current) ?? StorageSettingsFunctions.Describe(current);
+        var adapter = SelectedAdapter(current);
+        var settings = adapter?.DescribeStorage(current) ?? StorageSettingsFunctions.Describe(current);
+        return CommonCoreHostFunctions.MediaRules.RestrictAcceptedExtensions(settings, EmulationMediaCategory.CartridgeSlot, adapter?.GetCartridgeExtensions(current));
     }
 
     /// <summary>Applique le contrat de stockage sans ajouter de lecteur à la machine.</summary>
     public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings)
     {
         var current = Require(configuration);
-        return SelectedAdapter(current)?.ApplyStorage(current, settings) ?? StorageSettingsFunctions.Apply(current, settings);
+        var adapter = SelectedAdapter(current);
+        if (adapter?.GetCartridgeExtensions(current) is not null)
+        {
+            var devices = DescribeStorageSettings(current).AvailableDevices;
+            if (settings.MountedMedia.Any(media => media.Slot.Category == EmulationMediaCategory.CartridgeSlot && CommonCoreHostFunctions.MediaRules.IsInvalidMountedMedia(media, devices, settings.ConfiguredSlots)))
+                throw new ArgumentException(nameof(settings));
+        }
+        return adapter?.ApplyStorage(current, settings) ?? StorageSettingsFunctions.Apply(current, settings);
     }
 }

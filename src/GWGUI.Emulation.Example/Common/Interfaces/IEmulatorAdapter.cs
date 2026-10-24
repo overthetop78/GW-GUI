@@ -296,11 +296,6 @@ internal interface IEmulatorAdapter : GWGUI.Emulation.Interfaces.IEmulationEmula
     /// <returns>False avec la capacité de base ; un adaptateur concret annonce les entrées de pointage qu&apos;il accepte.</returns>
     bool IEmulatorPointerCapabilities.SupportsPointer(MachineConfiguration configuration) => false;
 
-    /// <summary>Décrit les extensions de cartouche acceptées pour une configuration.</summary>
-    /// <param name="configuration">Configuration empruntée précisant le modèle et ses options.</param>
-    /// <returns>Ensemble des extensions spécifiques, ou null lorsque l’adaptateur n’en fournit pas de restriction spécifique.</returns>
-    IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration);
-
 
     /// <summary>Projette les réglages validés du module vers les valeurs textuelles attendues pendant l’exécution.</summary>
     /// <param name="configuration">Configuration de machine, conservée immuable par le module.</param>

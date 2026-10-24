@@ -187,7 +187,9 @@ internal sealed class Engine
     public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration)
     {
         var current = Require(configuration);
-        return SelectedAdapter(current)?.DescribeStorage(current) ?? StorageSettingsFunctions.Describe(current);
+        var adapter = SelectedAdapter(current);
+        var settings = adapter?.DescribeStorage(current) ?? StorageSettingsFunctions.Describe(current);
+        return CommonCoreHostFunctions.MediaRules.RestrictAcceptedExtensions(settings, EmulationMediaCategory.CartridgeSlot, adapter?.GetCartridgeExtensions(current));
     }
     /// <summary>Applique les montages sans ouvrir ni déplacer les fichiers de contenu.</summary>
     /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
@@ -196,7 +198,14 @@ internal sealed class Engine
     public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings)
     {
         var current = Require(configuration);
-        return SelectedAdapter(current)?.ApplyStorage(current, settings) ?? StorageSettingsFunctions.Apply(current, settings);
+        var adapter = SelectedAdapter(current);
+        if (adapter?.GetCartridgeExtensions(current) is not null)
+        {
+            var devices = DescribeStorageSettings(current).AvailableDevices;
+            if (settings.MountedMedia.Any(media => media.Slot.Category == EmulationMediaCategory.CartridgeSlot && CommonCoreHostFunctions.MediaRules.IsInvalidMountedMedia(media, devices, settings.ConfiguredSlots)))
+                throw new ArgumentException(nameof(settings));
+        }
+        return adapter?.ApplyStorage(current, settings) ?? StorageSettingsFunctions.Apply(current, settings);
     }
     /// <summary>Décrit les catégories génériques d’entrées et leurs associations.</summary>
     /// <param name="configuration">Configuration complète empruntée, contenant le modèle, l&apos;adaptateur, les options, les entrées et les montages.</param>
@@ -318,7 +327,7 @@ internal sealed class Engine
         cancellationToken.ThrowIfCancellationRequested();
         var audio = adapter.GetAudioConfiguration(current);
         var context = new EmulatorCreationContext(services.SessionsDirectory, path, services.HostExecutablePath, () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds), value => Store.MemoryDirectory(value.Id));
-        var storage = StorageSettingsFunctions.Describe(current);
+        var storage = DescribeStorageSettings(current);
         return new(current, media => CreateMachine(current with { Media = media.Select(item => EmulationMediaConversionFunctions.ToModule(item, current.Media)).ToArray() }, context), storage.AvailableDevices, storage.MountedMedia, HardwareModelCatalog.Get(current.Model).DisplayNameResourceKey, adapter.SupportsPointerCapture(current), (media, token) => { token.ThrowIfCancellationRequested(); return adapter.PrepareMediaAsync(media, services.ConvertedMediaDirectory); });
     }
     /// <summary>Résout la racine des firmwares après validation du modèle ; ne la crée pas implicitement.</summary>
