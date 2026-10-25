@@ -132,9 +132,11 @@ internal sealed partial class UpdateOptionsController : IDisposable
     {
         if (_preparationCancellation is not null) return;
         var isApplication = scope == UpdateSearchScope.Application;
+        var moduleId = _section.SelectedModuleId;
+        if (!isApplication && string.IsNullOrWhiteSpace(moduleId)) return;
         try
         {
-            var result = isApplication ? await _applicationService.SearchAsync(_applicationSelections) : await _moduleService.SearchAsync(_moduleSelections);
+            var result = isApplication ? await _applicationService.SearchAsync(_applicationSelections) : await _moduleService.SearchAsync(moduleId!, _moduleSelections);
             if (isApplication)
             {
                 _applicationResult = result;
@@ -142,8 +144,8 @@ internal sealed partial class UpdateOptionsController : IDisposable
             }
             else
             {
-                _moduleResult = result;
-                RenderModules(result);
+                AcceptModuleResult(moduleId!, result);
+                if (!string.Equals(_section.SelectedModuleId, moduleId, StringComparison.OrdinalIgnoreCase)) return;
             }
             if (!CanInstall(result)) return;
             if (MessageBox.Show(_owner, _localize("Updates.InstallConfirm", [result.Plan.Items.Count]), _localize("Updates.Title", []), MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes) return;

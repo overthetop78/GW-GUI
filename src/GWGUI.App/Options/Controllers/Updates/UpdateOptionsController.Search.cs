@@ -26,6 +26,8 @@ internal sealed partial class UpdateOptionsController : IDisposable
     private async Task SearchAsync(UpdateSearchScope scope)
     {
         var isApplication = scope == UpdateSearchScope.Application;
+        var moduleId = _section.SelectedModuleId;
+        if (!isApplication && string.IsNullOrWhiteSpace(moduleId)) return;
         var button = isApplication ? _section.SearchButton : _section.SearchModulesButton;
         var status = isApplication ? _section.Status : _section.ModuleStatus;
         button.IsEnabled = false;
@@ -42,14 +44,13 @@ internal sealed partial class UpdateOptionsController : IDisposable
             }
             else
             {
-                _moduleResult = await _moduleService.SearchAsync(_moduleSelections);
-                RenderModules(_moduleResult);
-                _modulesState = StateFor(_moduleResult);
+                var result = await _moduleService.SearchAsync(moduleId!, _moduleSelections);
+                AcceptModuleResult(moduleId!, result);
             }
         }
         catch (Exception exception)
         {
-            status.Text = _localize("Updates.SearchFailed", []);
+            if (isApplication || string.Equals(_section.SelectedModuleId, moduleId, StringComparison.OrdinalIgnoreCase)) status.Text = _localize("Updates.SearchFailed", []);
             SetVisualState(UpdateVisualState.Error);
             _reportError(exception);
         }
@@ -62,7 +63,7 @@ internal sealed partial class UpdateOptionsController : IDisposable
         void SetVisualState(UpdateVisualState state)
         {
             if (isApplication) _applicationState = state;
-            else _modulesState = state;
+            else _moduleStatesById[moduleId!] = state;
         }
     }
 

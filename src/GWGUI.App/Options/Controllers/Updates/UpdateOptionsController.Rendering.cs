@@ -28,8 +28,30 @@ internal sealed partial class UpdateOptionsController : IDisposable
     {
         Render(result, ModuleResults);
         _section.ModuleStatus.Text = ResultStatus(result);
-        _section.InstallModulesButton.IsEnabled = CanInstall(result) && _preparationCancellation is null;
+        _section.InstallModulesButton.IsEnabled = CanInstall(result) && _preparationCancellation is null && _modulesState != UpdateVisualState.Busy;
         _section.FilterModuleResults(_section.SelectedModuleId);
+    }
+
+    private void AcceptModuleResult(string moduleId, UpdateSearchResult result)
+    {
+        _moduleResultsById[moduleId] = result;
+        _moduleStatesById[moduleId] = StateFor(result);
+        if (string.Equals(_section.SelectedModuleId, moduleId, StringComparison.OrdinalIgnoreCase)) ShowModuleResult(moduleId);
+    }
+
+    private void ShowModuleResult(string? moduleId)
+    {
+        if (moduleId is null) return;
+        _moduleResult = _moduleResultsById.GetValueOrDefault(moduleId);
+        if (_moduleResult is not null) RenderModules(_moduleResult);
+        else
+        {
+            ModuleResults.Clear();
+            _section.InstallModulesButton.IsEnabled = false;
+            _section.ModuleStatus.Text = _localize("Updates.Ready", []);
+        }
+        if (_modulesState == UpdateVisualState.Busy) _section.ModuleStatus.Text = _localize("Updates.Searching", []);
+        else if (_modulesState == UpdateVisualState.Error && (_moduleResult is null || StateFor(_moduleResult) != UpdateVisualState.Error)) _section.ModuleStatus.Text = _localize("Updates.SearchFailed", []);
     }
 
     private void Render(UpdateSearchResult result, ObservableCollection<UpdateComponentRow> target)

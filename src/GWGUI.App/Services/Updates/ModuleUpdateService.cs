@@ -32,36 +32,25 @@ internal sealed class ModuleUpdateService
         _modulesDirectory = Path.GetFullPath(modulesDirectory ?? Path.Combine(AppContext.BaseDirectory, "Modules"));
     }
 
-    internal async Task<UpdateSearchResult> SearchAsync(IReadOnlyDictionary<string, string>? selections = null, CancellationToken cancellationToken = default)
+    internal async Task<UpdateSearchResult> SearchAsync(string moduleId, IReadOnlyDictionary<string, string>? selections = null, CancellationToken cancellationToken = default)
     {
-        var legacyModules = FindModulesWithoutUpdateSource();
+        ArgumentException.ThrowIfNullOrWhiteSpace(moduleId);
+        var legacyModules = FindModulesWithoutUpdateSource(moduleId);
         if (legacyModules.Count > 0)
             throw new InvalidDataException($"Installed module(s) {string.Join(", ", legacyModules)} have no update source. " + "Reinstall each module from a ZIP archive or a direct module catalog URL.");
         var packages = _installedModules();
+        var package = packages.SingleOrDefault(value => string.Equals(value.Manifest.Id, moduleId, StringComparison.OrdinalIgnoreCase)) ?? throw new ArgumentException($"Module '{moduleId}' is not installed.", nameof(moduleId));
         var installedState = new InstalledUpdateState(ReadApplicationVersion(), EmulationHostApi.CurrentVersion.ToString(2), packages.Select(ToInstalledVersion).ToArray());
-        var rows = new List<AvailableComponentUpdate>();
-        var items = new List<UpdatePlanItem>();
-        var issues = new List<string>();
-
-        foreach (var package in packages.OrderBy(package => package.Manifest.Id, StringComparer.OrdinalIgnoreCase))
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-            using var response = await _httpClient.GetAsync(package.Manifest.UpdateCatalogUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
-            await using var content = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
-            var catalog = await JsonSerializer.DeserializeAsync<UpdateCatalog>(content, JsonOptions, cancellationToken).ConfigureAwait(false) ?? throw new InvalidDataException( $"The update catalog for module '{package.Manifest.Id}' is empty.");
-            _catalogValidator.Validate(catalog, package.Manifest.Id);
-            var result = _planBuilder.Search(catalog, installedState, UpdateSearchScope.Modules, selections);
-            rows.AddRange(result.Components);
-            items.AddRange(result.Plan.Items);
-            issues.AddRange(result.Plan.Issues);
-        }
-
-        var plan = new UpdatePlan(UpdateSearchScope.Modules, items, issues.Count == 0, issues);
-        return new UpdateSearchResult(UpdateSearchScope.Modules, rows, plan);
+        cancellationToken.ThrowIfCancellationRequested();
+        using var response = await _httpClient.GetAsync(package.Manifest.UpdateCatalogUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+        response.EnsureSuccessStatusCode();
+        await using var content = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+        var catalog = await JsonSerializer.DeserializeAsync<UpdateCatalog>(content, JsonOptions, cancellationToken).ConfigureAwait(false) ?? throw new InvalidDataException($"The update catalog for module '{package.Manifest.Id}' is empty.");
+        _catalogValidator.Validate(catalog, package.Manifest.Id);
+        return _planBuilder.Search(catalog, installedState, UpdateSearchScope.Modules, selections);
     }
 
-    private IReadOnlyList<string> FindModulesWithoutUpdateSource()
+    private IReadOnlyList<string> FindModulesWithoutUpdateSource(string moduleId)
     {
         if (!Directory.Exists(_modulesDirectory)) return [];
         var legacy = new List<string>();
@@ -73,9 +62,10 @@ internal sealed class ModuleUpdateService
             {
                 using var document = JsonDocument.Parse(File.ReadAllText(manifestPath));
                 var root = document.RootElement;
+                var id = root.TryGetProperty("id", out var idProperty) && !string.IsNullOrWhiteSpace(idProperty.GetString()) ? idProperty.GetString()! : Path.GetFileName(directory);
+                if (!string.Equals(id, moduleId, StringComparison.OrdinalIgnoreCase)) continue;
                 if (root.TryGetProperty("updateCatalogUrl", out var source)
                     && !string.IsNullOrWhiteSpace(source.GetString())) continue;
-                var id = root.TryGetProperty("id", out var idProperty) && !string.IsNullOrWhiteSpace(idProperty.GetString()) ? idProperty.GetString()! : Path.GetFileName(directory);
                 legacy.Add(id);
             }
             catch (JsonException)

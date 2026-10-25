@@ -30,12 +30,18 @@ internal sealed partial class UpdateOptionsController : IDisposable
     private readonly Action<Exception> _reportError;
     private readonly Dictionary<string, string> _applicationSelections = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, string> _moduleSelections = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, UpdateSearchResult> _moduleResultsById = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, UpdateVisualState> _moduleStatesById = new(StringComparer.OrdinalIgnoreCase);
     private UpdateSearchResult? _applicationResult;
     private UpdateSearchResult? _moduleResult;
     private CancellationTokenSource? _preparationCancellation;
     private UpdateVisualState _applicationState = UpdateVisualState.Neutral;
     private UpdateVisualState _directoryState = UpdateVisualState.Neutral;
-    private UpdateVisualState _modulesState = UpdateVisualState.Current;
+    private UpdateVisualState _modulesState
+    {
+        get => _section.SelectedModuleId is { } id ? _moduleStatesById.GetValueOrDefault(id, UpdateVisualState.Current) : UpdateVisualState.Current;
+        set { if (_section.SelectedModuleId is { } id) _moduleStatesById[id] = value; }
+    }
     private UpdateVisualState _advancedState = UpdateVisualState.Neutral;
     private ModuleOperationPage _moduleOperationPage = ModuleOperationPage.Module;
 
@@ -70,6 +76,7 @@ internal sealed partial class UpdateOptionsController : IDisposable
         _section.AvailableModuleResults.ItemsSource = AvailableModuleResults;
         _section.SearchRequested += SearchApplication;
         _section.SearchModulesRequested += SearchModules;
+        _section.SelectedModuleChanged += ShowModuleResult;
         _section.SearchAvailableModulesRequested += SearchAvailableModules;
         _section.InstallAvailableModuleRequested += InstallAvailableModule;
         _section.VersionSelectionChanged += VersionChanged;
@@ -84,7 +91,11 @@ internal sealed partial class UpdateOptionsController : IDisposable
         PendingInstallationsChanged(this, EventArgs.Empty);
     }
 
-    public void Dispose() => _pendingInstallations.Changed -= PendingInstallationsChanged;
+    public void Dispose()
+    {
+        _pendingInstallations.Changed -= PendingInstallationsChanged;
+        _section.SelectedModuleChanged -= ShowModuleResult;
+    }
 
     internal void RefreshLocalizedContent()
     {
@@ -106,14 +117,7 @@ internal sealed partial class UpdateOptionsController : IDisposable
         };
         foreach (var package in EmulationModuleRegistry.Packages.OrderBy(package => LocExtension.GetForModule(package.Module, package.Module.DisplayResourceKey), StringComparer.CurrentCultureIgnoreCase))
         {
-            var component = _moduleResult?.Components.FirstOrDefault(value => string.Equals(value.ComponentId, package.Module.Id, StringComparison.OrdinalIgnoreCase));
-            var state = component?.Availability switch
-            {
-                UpdateAvailability.Available => UpdateVisualState.Available,
-                UpdateAvailability.UpToDate => UpdateVisualState.Current,
-                UpdateAvailability.ApplicationUpdateRequired or UpdateAvailability.Incompatible => UpdateVisualState.Error,
-                _ => _modulesState
-            };
+            var state = _moduleStatesById.GetValueOrDefault(package.Module.Id, UpdateVisualState.Current);
             items.Add(new($"{UpdateOptionsConstants.ModuleNavigationIdPrefix}{package.Module.Id}",
                 UpdateNavigationPage.Module,
                 LocExtension.GetForModule(package.Module, package.Module.DisplayResourceKey),
