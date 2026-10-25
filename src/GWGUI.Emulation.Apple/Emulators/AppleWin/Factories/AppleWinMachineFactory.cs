@@ -1,3 +1,5 @@
+using GWGUI.Emulation.HardDisks;
+using CommonHardDiskFormats = GWGUI.Emulation.Apple.Common.Machines.Common.Functions.HardDiskFormats;
 using GWGUI.Emulation.Apple.Emulators.Common.Interop.Factories;
 using GWGUI.Emulation.Apple.Emulators.AppleWin.Constants;
 
@@ -16,4 +18,8 @@ internal sealed class AppleWinMachineFactory() : MachineFactory(EmulatorConstant
     public override void ValidateConfiguration(MachineConfiguration configuration) => GWGUI.Emulation.Apple.Emulators.AppleWin.Functions.ConfigurationFunctions.ValidateConfiguration(configuration);
     public bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => GWGUI.Emulation.Apple.Emulators.AppleWin.Functions.RuntimeFunctions.RequiresMediaRestart(slot, path);
     public bool RequiresOptionRestart(MachineConfiguration configuration, string key) => GWGUI.Emulation.Apple.Emulators.AppleWin.Functions.RuntimeFunctions.RequiresOptionRestart(key);
+
+    /// <inheritdoc/>
+    public IReadOnlyList<HardDiskImageFormat> GetHardDiskFormats(MachineConfiguration configuration, EmulationMediaSlot slot) => slot == EmulationMediaSlot.HardDisk0
+        ? [CommonHardDiskFormats.Describe(new(EmulatorConstants.HardDiskFormatId, EmulatorConstants.HardDiskExtension, EmulatorConstants.HardDiskInterface, EmulatorConstants.HardDiskMaximumBytes, EmulatorConstants.HardDiskDefaultBytes, [HardDiskPreparation.Blank]))] : [];
 }

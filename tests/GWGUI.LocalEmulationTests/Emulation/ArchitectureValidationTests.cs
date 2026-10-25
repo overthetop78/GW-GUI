@@ -2229,7 +2229,7 @@ public sealed class ArchitectureValidationTests
     }
 
     [Fact]
-    public void EveryCommonUsesTheCompleteStorageContractAndItsActualBackendImplementations()
+    public async Task EveryCommonUsesTheCompleteStorageContractAndItsActualBackendImplementations()
     {
         var modules = typeof(ArchitectureValidationTests).Assembly.GetReferencedAssemblies()
             .Where(name => name.Name!.StartsWith("gwgui.emulation.", StringComparison.Ordinal))
@@ -2239,7 +2239,7 @@ public sealed class ArchitectureValidationTests
         static string TypeName(Type type) => typeof(IEmulationConfiguration).IsAssignableFrom(type) ? "configuration" : type.FullName!;
         static string Signature(MethodInfo method) => method.Name + ":" + TypeName(method.ReturnType) + "(" + string.Join(",", method.GetParameters().Select(parameter => TypeName(parameter.ParameterType) + " " + parameter.Name)) + "):" + method.IsAbstract;
         var expected = reference.GetMethods().Select(Signature).Order(StringComparer.Ordinal).ToArray();
-        Assert.Equal(12, expected.Length);
+        Assert.Equal(13, expected.Length);
         foreach (var assembly in modules)
         {
             var factory = Assert.Single(assembly.GetTypes(), type => !type.IsAbstract && typeof(IEmulationModuleFactory).IsAssignableFrom(type));
@@ -2264,6 +2264,29 @@ public sealed class ArchitectureValidationTests
                     var fallback = adapter.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic).SingleOrDefault(candidate => candidate.Name.EndsWith("." + method.Name, StringComparison.Ordinal));
                     Assert.Equal(concrete ?? fallback ?? method, mapping.TargetMethods[index]);
                     Assert.False(mapping.TargetMethods[index].IsAbstract);
+                }
+            }
+            var engineInstanceType = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;
+            var engineInstance = Activator.CreateInstance(engineInstanceType)!;
+            foreach (var implementation in implementations)
+            {
+                var backend = Activator.CreateInstance(implementation, nonPublic: true)!;
+                var definition = (EmulationEmulatorDefinition)implementation.GetInterfaces().SelectMany(type => type.GetProperties()).First(property => property.Name == "Definition").GetValue(backend)!;
+                foreach (var machineId in definition.MachineIds)
+                {
+                    var original = (IEmulationConfiguration)engineInstanceType.GetMethod("CreateConfiguration")!.Invoke(engineInstance, [machineId])!;
+                    var configuration = await (ValueTask<IEmulationConfiguration>)engineInstanceType.GetMethod("UseEmulatorAsync")!.Invoke(engineInstance, [original, definition.Id, CancellationToken.None])!;
+                    var storage = (EmulationStorageSettings)contract.GetMethod("DescribeStorage")!.Invoke(backend, [configuration])!;
+                    foreach (var device in storage.AvailableDevices)
+                    {
+                        var actual = Assert.IsAssignableFrom<IReadOnlyList<GWGUI.Emulation.HardDisks.HardDiskImageFormat>>(contract.GetMethod("GetHardDiskFormats")!.Invoke(backend, [configuration, device.Slot]));
+                        static object Shape(GWGUI.Emulation.HardDisks.HardDiskImageFormat format) => new
+                        {
+                            format.Id, format.Extension, format.InterfaceName, format.MinimumBytes, format.MaximumBytes, format.DefaultBytes, format.Container, format.Geometry, format.Operations, format.SupportsFixedAllocation,
+                            HasInitializer = format.InitializeBlankImage is not null, Preparations = string.Join(",", format.SupportedPreparations), Sectors = string.Join(",", format.LogicalSectorSizes.Order()), Capacities = format.AllowedCapacitiesBytes is null ? null : string.Join(",", format.AllowedCapacitiesBytes)
+                        };
+                        Assert.Equal((device.HardDiskFormats ?? []).Select(Shape), actual.Select(Shape));
+                    }
                 }
             }
             var engine = assembly.GetType(root + ".Common.Services.Engine", throwOnError: true)!;

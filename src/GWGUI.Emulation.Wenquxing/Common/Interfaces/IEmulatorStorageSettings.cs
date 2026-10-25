@@ -1,3 +1,5 @@
+using GWGUI.Emulation.HardDisks;
+
 namespace GWGUI.Emulation.Wenquxing.Common.Interfaces;
 
 /// <summary>Adaptation des lecteurs et réglages de stockage propres à un backend.</summary>
@@ -69,4 +71,14 @@ internal interface IEmulatorStorageSettings : IEmulatorMediaCapabilities
     /// <param name="index">Indice technique de l’emplacement.</param>
     /// <returns>Nom de dossier imposé par le cœur, ou null si aucun dossier particulier n’est requis.</returns>
     string? GetMemoryCardDirectory(int index) => null;
+
+    /// <summary>Décrit les formats d'image disque disponibles pour un emplacement de stockage.</summary>
+    /// <param name="configuration">Configuration empruntée donnant le modèle et les paramètres du lecteur.</param>
+    /// <param name="slot">Emplacement technique du lecteur ou de la carte mémoire à consulter.</param>
+    /// <returns>Formats déjà décrits pour cet emplacement ; liste vide s'il ne publie aucun format d'image disque.</returns>
+    /// <remarks>Le comportement de base reprend les métadonnées de DescribeStorage, sans ouvrir ni créer de média.
+    /// Les collections et les fonctions de création restent empruntées ; le flux fourni à ces fonctions appartient
+    /// à leur appelant. Si DescribeStorage utilise cette opération pour construire ses lecteurs, l'adaptateur
+    /// fournit directement ses formats afin d'éviter toute récursion et conserve leur préparation dans Common.</remarks>
+    IReadOnlyList<HardDiskImageFormat> GetHardDiskFormats(MachineConfiguration configuration, EmulationMediaSlot slot) => DescribeStorage(configuration).AvailableDevices.FirstOrDefault(device => device.Slot == slot)?.HardDiskFormats ?? [];
 }

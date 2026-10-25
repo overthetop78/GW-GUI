@@ -16,6 +16,31 @@ namespace GWGUI.Tests.Emulation.Apple;
 public sealed class AppleModuleTests
 {
     [Theory]
+    [InlineData(MachineModel.AppleIIe, Emulator.AppleWin, "applewin-hdv", ".hdv", "SmartPort")]
+    [InlineData(MachineModel.MacintoshII, Emulator.MiniVmac, "minivmac-raw", ".img", "Macintosh")]
+    public void DiskFormatsKeepTheirNativeMetadataWithOrWithoutAnEmulatorSelection(MachineModel model, Emulator emulator, string id, string extension, string interfaceName)
+    {
+        var selected = new MachineConfiguration(model, core: emulator);
+        var adapter = new GWGUI.Emulation.Apple.Common.Services.Engine().Adapter(selected);
+        Assert.Empty(adapter.GetHardDiskFormats(selected, EmulationMediaSlot.Floppy0));
+        Assert.Empty(adapter.GetHardDiskFormats(selected, new EmulationMediaSlot(EmulationMediaSlot.HardDisk0.Category, 1)));
+        foreach (var configuration in new[] { selected, selected with { Core = Emulator.None } })
+        {
+            var disk = Assert.Single(StorageSettingsFunctions.Describe(configuration).AvailableDevices, device => device.Slot == EmulationMediaSlot.HardDisk0);
+            var format = Assert.Single(disk.HardDiskFormats!);
+            Assert.Equal(id, format.Id);
+            Assert.Equal(extension, format.Extension);
+            Assert.Equal(interfaceName, format.InterfaceName);
+            Assert.Equal(0x007FFFFFL * 512, format.MaximumBytes);
+            Assert.Equal(32L * 1024 * 1024, format.DefaultBytes);
+            Assert.Equal(new[] { GWGUI.Emulation.HardDisks.HardDiskPreparation.Blank }, format.SupportedPreparations);
+            Assert.True(format.Operations.HasFlag(GWGUI.Emulation.HardDisks.DiskFormatOperations.Create));
+            Assert.Null(format.InitializeBlankImage);
+            Assert.Equal(configuration.Core, configuration == selected ? emulator : Emulator.None);
+        }
+    }
+
+    [Theory]
     [InlineData(MachineModel.AppleII)]
     [InlineData(MachineModel.AppleIIPlus)]
     [InlineData(MachineModel.AppleIIJPlus)]

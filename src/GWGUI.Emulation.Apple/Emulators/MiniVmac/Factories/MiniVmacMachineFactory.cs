@@ -1,9 +1,11 @@
+using GWGUI.Emulation.HardDisks;
+using CommonHardDiskFormats = GWGUI.Emulation.Apple.Common.Machines.Common.Functions.HardDiskFormats;
 using GWGUI.Emulation.Apple.Emulators.Common.Interop.Factories;
 using GWGUI.Emulation.Apple.Emulators.MiniVmac.Constants;
 
 namespace GWGUI.Emulation.Apple.Emulators.MiniVmac.Factories;
 
-internal sealed class MiniVmacMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettings, IEmulatorPointerCapabilities, IEmulatorConfigurationOptions, IEmulatorRuntimePolicy, IEmulatorFirmwareAdapter
+internal sealed class MiniVmacMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettings, IEmulatorPointerCapabilities, IEmulatorConfigurationOptions, IEmulatorRuntimePolicy, IEmulatorFirmwareAdapter, IEmulatorStorageSettings
 {
     /// <inheritdoc/>
     public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => GWGUI.Emulation.Apple.Emulators.MiniVmac.Dictionaries.MiniVmacOptionCatalog.All;
@@ -15,4 +17,8 @@ internal sealed class MiniVmacMachineFactory() : MachineFactory(EmulatorConstant
     public bool RequiresOptionRestart(MachineConfiguration configuration, string key) => GWGUI.Emulation.Apple.Emulators.MiniVmac.Functions.RuntimeFunctions.RequiresOptionRestart(key);
     public void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => GWGUI.Emulation.Apple.Emulators.MiniVmac.Functions.FirmwareFunctions.Prepare(configuration, systemDirectory);
     public override async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken) => [await (GWGUI.Emulation.Apple.Emulators.MiniVmac.Functions.FirmwareFunctions.ScanFileAsync(path, cancellationToken)).ConfigureAwait(false)];
+
+    /// <inheritdoc/>
+    public IReadOnlyList<HardDiskImageFormat> GetHardDiskFormats(MachineConfiguration configuration, EmulationMediaSlot slot) => slot == EmulationMediaSlot.HardDisk0
+        ? [CommonHardDiskFormats.Describe(new(EmulatorConstants.HardDiskFormatId, EmulatorConstants.HardDiskExtension, EmulatorConstants.HardDiskInterface, EmulatorConstants.HardDiskMaximumBytes, EmulatorConstants.HardDiskDefaultBytes, [HardDiskPreparation.Blank]))] : [];
 }
