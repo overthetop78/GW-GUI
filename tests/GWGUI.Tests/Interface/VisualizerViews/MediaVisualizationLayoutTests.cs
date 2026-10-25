@@ -427,13 +427,15 @@ public sealed class MediaVisualizationLayoutTests(StaExecutionScenarios sta)
         Assert.Equal(fluxHeader.ActualHeight, sectorHeader.ActualHeight);
         var setZoom = typeof(SectorMediaView).GetMethod("SetZoom", BindingFlags.Instance | BindingFlags.NonPublic)!;
         setZoom.Invoke(sectors, [0, 1.5f]);
-        Assert.Equal("150 %", Assert.IsType<Button>(sectors.FindName("ResetZoom0Button")).Content);
-        Assert.Equal("150 %", Assert.IsType<Button>(sectors.FindName("ResetZoom1Button")).Content);
+        var zoom150 = 1.5.ToString("P0", System.Globalization.CultureInfo.CurrentCulture);
+        var zoom200 = 2d.ToString("P0", System.Globalization.CultureInfo.CurrentCulture);
+        Assert.Equal(zoom150, Assert.IsType<Button>(sectors.FindName("ResetZoom0Button")).Content);
+        Assert.Equal(zoom150, Assert.IsType<Button>(sectors.FindName("ResetZoom1Button")).Content);
 
         sectors.LinkZoom = false;
         setZoom.Invoke(sectors, [0, 2f]);
-        Assert.Equal("200 %", Assert.IsType<Button>(sectors.FindName("ResetZoom0Button")).Content);
-        Assert.Equal("150 %", Assert.IsType<Button>(sectors.FindName("ResetZoom1Button")).Content);
+        Assert.Equal(zoom200, Assert.IsType<Button>(sectors.FindName("ResetZoom0Button")).Content);
+        Assert.Equal(zoom150, Assert.IsType<Button>(sectors.FindName("ResetZoom1Button")).Content);
     });
 
     [Fact]

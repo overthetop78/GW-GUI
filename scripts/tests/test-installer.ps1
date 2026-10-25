@@ -36,7 +36,8 @@ try {
     $install.WaitForExit()
     if ($install.ExitCode -ne 0) { throw "Installer exited with code $($install.ExitCode)." }
 
-    $required = @('gwgui.exe', 'unins000.exe')
+    $required = @('gwgui.exe', 'unins000.exe', 'Modules\example\module.json',
+        'Modules\example\gwgui.emulation.example.dll', 'Modules\example\gwgui.emulation.example.deps.json')
     foreach ($relative in $required) {
         $path = Join-Path $destination $relative
         if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { throw "Installed file missing: $relative" }
@@ -45,13 +46,20 @@ try {
     if (Get-ChildItem -LiteralPath $destination -Recurse -File -Filter '*.pdb') { throw 'Debug symbols were installed.' }
     $modulesDirectory = Join-Path $destination 'Modules'
     if (-not (Test-Path -LiteralPath $modulesDirectory -PathType Container)) {
-        throw 'A clean GW GUI installation is missing its empty Modules directory.'
+        throw 'A clean GW GUI installation is missing its Modules directory.'
     }
-    if (Get-ChildItem -LiteralPath $modulesDirectory -Force) {
-        throw 'A clean GW GUI installation unexpectedly contains emulation modules.'
+    $bundledModules = @(Get-ChildItem -LiteralPath $modulesDirectory -Force)
+    if ($bundledModules.Count -ne 1 -or $bundledModules[0].Name -ine 'example' -or -not $bundledModules[0].PSIsContainer) {
+        throw 'A clean GW GUI installation must contain only the Example module.'
     }
-    if (Get-ChildItem -LiteralPath $destination -Recurse -File -Filter 'module.json') {
-        throw 'A clean GW GUI installation unexpectedly contains a module manifest.'
+    $exampleManifestPath = Join-Path $modulesDirectory 'example\module.json'
+    $manifests = @(Get-ChildItem -LiteralPath $destination -Recurse -File -Filter 'module.json')
+    if ($manifests.Count -ne 1 -or $manifests[0].FullName -ine $exampleManifestPath) {
+        throw 'A clean GW GUI installation must contain only the Example module manifest.'
+    }
+    $exampleManifest = Get-Content -LiteralPath $exampleManifestPath -Raw | ConvertFrom-Json
+    if ($exampleManifest.id -ine 'example' -or $exampleManifest.entryAssembly -ine 'gwgui.emulation.example.dll') {
+        throw 'The bundled Example module manifest does not match its entry assembly.'
     }
 
     $version = (Get-Item -LiteralPath (Join-Path $destination 'gwgui.exe')).VersionInfo.ProductVersion

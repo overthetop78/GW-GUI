@@ -27,7 +27,7 @@ public sealed class MediaEngineProjectBoundaryTests
         Assert.Contains("gwgui.infrastructure", appReferences);
         Assert.Contains("gwgui.mediaengine", appReferences);
         Assert.Contains("gwgui.emulation", appReferences);
-        Assert.Contains("gwgui.mediafilesystems", appReferences);
+        Assert.DoesNotContain("gwgui.mediafilesystems", appReferences);
         Assert.DoesNotContain("gwgui.mediaanalysis", appReferences);
 
         var readers = GWGUI.MediaFileSystems.Exploration.FileSystemReaderCatalog.CreateDefault();
