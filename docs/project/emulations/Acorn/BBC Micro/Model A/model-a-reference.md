@@ -1,5 +1,42 @@
 # BBC Micro Model A — dossier technique pour AcornEmu
 
+## Son mono AcornEmu — 25 octobre 2026
+
+Le Model A possède un PSG TI SN76489AN, trois tons carrés et une voie de bruit, mélangés en mono. Les quatre voies sont internes au générateur ; elles ne constituent pas quatre sorties physiques. Le cœur produit un seul échantillon PCM signé de seize bits par frame audio, à 44 100 frames par seconde. Le contrat `AudioChunk` porte explicitement `EmulationAudioChannelLayout.Mono` ; les relais Common et la sortie existante conservent la responsabilité du volume, de la coupure, de la latence et de l'adaptation au périphérique hôte. App et Emulation ne sont pas modifiés pour cette implémentation.
+
+### Fréquences et programmation
+
+L'ULA fournit 4 000 000 Hz au circuit. Ses compteurs de tons avancent après division par seize et changent de niveau à chaque expiration ; une oscillation complète prend deux expirations. La fréquence vaut donc `4 000 000 / (32 × N)` Hz, avec un diviseur entier de dix bits. Sur cette variante TI, zéro désigne une période de 1024. Exemples : N=250 produit 500 Hz ; N=284 produit environ 440,140845 Hz. Il n'est pas possible d'obtenir exactement toute fréquence souhaitée avec ces diviseurs. Le passage en PCM à 44 100 Hz conserve la fréquence réalisable, sans transposer la note.
+
+Les volumes disposent de quinze niveaux espacés nominalement de 2 dB et d'une position muette (15). Le bruit propose trois cadences fixes et une cadence liée au troisième ton ; il peut être périodique ou pseudo-aléatoire. Les paramètres du registre à décalage suivent la variante SN76489A utilisée pour BBC dans MAME : rétroaction depuis les bits 2 et 3, initialisation 0x10000 ; les étages de sortie donnent une séquence périodique utile de quinze pas. Cette distinction évite d'employer les paramètres du PSG Sega.
+
+Le port A du VIA transporte les données et le port B programme le verrou IC32. Sa sortie 0 active le PSG à l'état bas. La carte transmet les données lors de cette activation et lorsqu'elles changent pendant la validation. Les écritures avec validation haute ne modifient pas le PSG. Le MOS pilote ces registres pour réaliser `SOUND` et `ENVELOPE` : aucune interprétation parallèle de commandes BASIC n'est ajoutée.
+
+### Fichiers et échanges
+
+Chemins relatifs à `src/GWGUI.Emulation.Acorn/Emulators/AcornEmu/` :
+
+| Fichier | Rôle, propriété et liaison |
+| --- | --- |
+| `Constants/SoundConstants.cs` | Division interne, période zéro, état du bruit et amplitudes logarithmiques. Ne contient aucune fréquence de note imposée ni préférence de l'hôte. |
+| `Services/Sn76489.cs` | Registres sélectionnés par les octets du bus, compteurs des trois tons, compteur et rétroaction du bruit, somme instantanée unipolaire. Ignore le BBC, le VIA, les fenêtres et les sorties physiques. |
+| `Machines/BbcMicro/Common/Constants/AudioConstants.cs` | Horloge sonore 4 MHz, horloge CPU réutilisée depuis les constantes BBC, débit PCM 44 100 Hz et constante RC du couplage continu. |
+| `Machines/BbcMicro/Common/Services/Audio.cs` | Possède le PSG et les échantillons en cours ; reçoit un cycle CPU, avance deux périodes PSG, intègre le signal sur chaque intervalle PCM et conserve la phase entière entre les prélèvements. Le filtre de couplage 10 kΩ × 4,7 µF retire le piédestal continu du mélange. `DrainSamples` transfère une copie indépendante et conserve l'intégrale partielle. Aucun thread ni périphérique audio n'est créé. |
+| `Machines/BbcMicro/ModelA/Services/ModelAMachine.cs` | Possède le composant audio BBC, relie le VIA et IC32 au PSG, avance le son depuis le même Tick que le CPU et la vidéo, réinitialise le composant au reset matériel. |
+| `Interfaces/IAcornMachine.cs` | `DrainAudio` remet les échantillons mono de la carte au cœur, sans exposer ses composants au runtime. |
+| `Services/EmulatorCore.cs` | Crée des blocs mono avec séquence et horodatage fondé sur le total réel d'échantillons. La file est consommée par Common ; les resets, Stop et Dispose détachent les blocs en attente. Dispose détache aussi la carte dans son finally. |
+
+### Vérifications et limites
+
+Correction du raccordement physique : la fabrique AcornEmu transmettait encore null au paramètre audioOutputFactory de la session Common. Les échantillons étaient produits mais aucune sortie hôte ne pouvait être créée. Elle transmet désormais context.AudioOutputFactory comme les autres adaptateurs. Le nouveau contrôle passe par cette fabrique, vérifie la réception des échantillons mono par une sortie mémoire et sa libération par la session. Les huit contrôles audio passent après correction.
+
+
+Les 85 contrôles Acorn passent, dont les nouveaux contrôles audio autonomes : mesure des passages par zéro pour 500 Hz, 440,140845 Hz et 122,0703125 Hz à ±0,06 Hz, exactement 44 100 échantillons en une seconde malgré des prélèvements non alignés, silence des voies coupées, indépendance des trois tons, atténuation de 2 dB, reproductibilité et distinction des deux bruits, période du bruit périodique, raccordement par le VIA, disposition mono, horodatages et purge des blocs. Les ROM, données et sorties des tests sont synthétiques ; aucun firmware utilisateur ni périphérique externe n'est requis.
+
+L'intégration PCM est une moyenne temporelle à la cadence CPU, pas une reproduction complète de l'amplificateur et du haut-parleur analogiques. Le délai exact de capture du bus, la ligne READY du PSG et les limites électriques des écritures trop rapides ne sont pas encore simulés. La synthèse vocale optionnelle, les entrées audio externes et la cassette ne sont pas ajoutées par ce travail. Aucun sélecteur « original/transcodé » n'est nécessaire pour ce générateur analogique.
+
+Sources consultées : [Acorn Hardware Guide, §3.17](https://acorn.huininga.nl/pub/mirrors/ftp.nvg.org/pub/bbc/doc/A%20Hardware%20Guide%20for%20the%20BBC%20Microcomputer/bbc_hw_03.htm), [fiche TI SN76489AN](https://map.grauw.nl/resources/sound/texas_instruments_sn76489an.pdf), [MAME, SN76496 et variantes](https://github.com/mamedev/mame/blob/master/src/devices/sound/sn76496.cpp), [MAME, configuration BBC](https://github.com/mamedev/mame/blob/master/src/mame/acorn/bbcb.cpp), [jsbeeb, soundchip.js](https://github.com/mattgodbolt/jsbeeb/blob/master/src/soundchip.js) et [via.js](https://github.com/mattgodbolt/jsbeeb/blob/master/src/via.js), notamment couplage continu et bus lent. jsbeeb emploie une représentation du bruit sur quinze bits ; les paramètres ci-dessus suivent la représentation avec étages de sortie de MAME.
+
 Recherche du 25 octobre 2026. Les caractéristiques communes aux BBC Micro sont regroupées dans [l'architecture de gamme](../bbc-micro-architecture.md). Les références transversales à AcornEmu se trouvent [au niveau Acorn](../../acornemu-references.md).
 
 ## Identification et périmètre
@@ -339,7 +376,7 @@ Le fichier existant `Common/Machines/Common/Enums/CoreEnums.cs` ajoute `AcornEmu
 | Télétexte | Premier rendu lisible à partir des glyphes bitmap contenus dans la ROM MOS externe. Les arrondis, la double hauteur, les effets de maintien et tous les timings SAA5050 restent à implémenter. |
 | Horloges | Cadence nominale de 39 936 cycles CPU par frame. Les accès lents 1 MHz et les lectures transitoires exactes ne sont pas encore reproduits. |
 | VIA | Ports, principaux timers et interruptions utiles au démarrage ; registre à décalage, modes avancés et détails des fronts à compléter. |
-| Son et cassette | Pas encore émulés. Aucun lecteur ni sortie audio n'est annoncé comme fonctionnel par ce cœur. |
+| Son et cassette | PSG mono désormais émulé et transmis par Common (voir section audio). Cassette non émulée. |
 | États sauvegardés | Désactivés tant que la sérialisation de tous les composants n'est pas implémentée. |
 
 ### Vérifications effectuées

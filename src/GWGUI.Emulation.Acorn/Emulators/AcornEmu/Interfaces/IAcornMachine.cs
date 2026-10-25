@@ -6,6 +6,8 @@ namespace GWGUI.Emulation.Acorn.Emulators.AcornEmu.Interfaces;
 internal interface IAcornMachine
 {
     byte[] RunFrame();
+    /// <summary>Transfère les échantillons mono produits depuis le dernier prélèvement.</summary>
+    short[] DrainAudio();
     void SetInput(EmulationInputSnapshot snapshot);
     void Reset(bool cold);
     void SetOption(string key, string value);

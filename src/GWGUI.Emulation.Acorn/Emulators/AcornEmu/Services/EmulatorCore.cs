@@ -4,6 +4,7 @@ using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants;
 using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Contracts;
 using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Interfaces;
 using NativeModelCatalog = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Dictionaries.ModelCatalog;
+using BbcAudioConstants = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Machines.BbcMicro.Common.Constants.AudioConstants;
 
 namespace GWGUI.Emulation.Acorn.Emulators.AcornEmu.Services;
 
@@ -19,20 +20,22 @@ internal sealed class EmulatorCore : IEmulatorCore
     internal EmulatorCore(MachineModel model) => _definition = NativeModelCatalog.Get(model);
     private bool _disposed;
     private long _sequence;
+    private long _audioSequence, _audioFrames;
+    private readonly Queue<AudioChunk> _audio = new();
     private string _videoOutput = EmulatorConstants.UhfOutput;
     public Emulator Emulator => Emulator.AcornEmu;
     public string CoreName => EmulatorConstants.Name;
     public string CoreVersion => EmulatorConstants.Version;
     public string CoreSha256 { get; } = CommonCoreHostFunctions.StateFiles.HashBytes(File.ReadAllBytes(typeof(EmulatorCore).Assembly.Location)).ToLowerInvariant();
     public double FramesPerSecond => _definition.FramesPerSecond;
-    public int SampleRate => 44100;
+    public int SampleRate => BbcAudioConstants.SampleRate;
     public bool SupportsSaveStates => false;
     public bool SupportsPointerCapture => false;
     public bool ShutdownRequested { get; private set; }
     public EmulationVideoStandard? Region => _definition.Region;
     public HostProcessState HostProcessState => HostProcessState.InProcess;
     public int? HostProcessId => null;
-    public int BufferedAudioFrames => 0;
+    public int BufferedAudioFrames => _audio.Sum(chunk => chunk.FrameCount);
     public int MinimumAudioLatencyMilliseconds => 0;
     public void SetAudioBufferStatus(AudioOutputBufferStatus? status) { }
     public long AudioOverrunCount => 0;
@@ -40,7 +43,7 @@ internal sealed class EmulatorCore : IEmulatorCore
     public int DiskCount => 0;
     public int CurrentDiskIndex => -1;
     public VideoFrame? LatestVideoFrame { get; private set; }
-    public AudioChunk? LatestAudioChunk => null;
+    public AudioChunk? LatestAudioChunk { get; private set; }
     public IReadOnlyList<CoreOption> Options =>
     [
         new(EmulatorConstants.VideoOutput, "Emulation.Acorn.Video.Output", null, null, EmulatorConstants.UhfOutput, _videoOutput,
@@ -58,6 +61,8 @@ internal sealed class EmulatorCore : IEmulatorCore
         _videoOutput = configuration.Options.GetValueOrDefault(EmulatorConstants.VideoOutput, EmulatorConstants.UhfOutput);
         ShutdownRequested = false;
         _sequence = 0;
+        _audioSequence = _audioFrames = 0;
+        ClearAudio();
     }
     public void RunFrame()
     {
@@ -65,12 +70,22 @@ internal sealed class EmulatorCore : IEmulatorCore
         var machine = _machine ?? throw new InvalidOperationException();
         var image = machine.RunFrame();
         LatestVideoFrame = new VideoFrame(image, _definition.Width, _definition.Height, _definition.Width * _definition.BytesPerPixel, _definition.PixelFormat, _definition.AspectRatio, ++_sequence, TimeSpan.FromSeconds(_sequence / FramesPerSecond));
+        var samples = machine.DrainAudio();
+        if (samples.Length != 0)
+        {
+            LatestAudioChunk = new AudioChunk(samples, SampleRate, samples.Length, ++_audioSequence, TimeSpan.FromSeconds((double)_audioFrames / SampleRate), EmulationAudioChannelLayout.Mono);
+            _audioFrames += samples.Length;
+            _audio.Enqueue(LatestAudioChunk);
+        }
     }
     public void SetInput(EmulationInputSnapshot snapshot) => _machine?.SetInput(snapshot);
-    public void SoftReset() => _machine?.Reset(false);
-    public void HardReset() => _machine?.Reset(true);
-    public void Stop() => ShutdownRequested = true;
-    public bool TryDequeueAudio(out AudioChunk? chunk) { chunk = null; return false; }
+    public void SoftReset() { _machine?.Reset(false); ClearAudio(); }
+    public void HardReset() { _machine?.Reset(true); ClearAudio(); }
+    public void Stop() { ShutdownRequested = true; ClearAudio(); }
+    /// <summary>Transfère un bloc mono possédé au parcours audio Common déjà utilisé par les autres cœurs.</summary>
+    public bool TryDequeueAudio(out AudioChunk? chunk) => _audio.TryDequeue(out chunk);
+    /// <summary>Détache les blocs non lus pour ne pas rejouer d'ancien son après arrêt ou reset.</summary>
+    private void ClearAudio() { _audio.Clear(); LatestAudioChunk = null; }
     public DiskStatus GetDiskStatus() => new(0, -1, true, []);
     public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) => false;
     public void SaveMediaChanges(EmulationMediaSlot slot) { }
@@ -92,6 +107,6 @@ internal sealed class EmulatorCore : IEmulatorCore
     public void Dispose()
     {
         try { ShutdownRequested = true; }
-        finally { _machine = null; LatestVideoFrame = null; _disposed = true; }
+        finally { _machine = null; LatestVideoFrame = null; ClearAudio(); _disposed = true; }
     }
 }

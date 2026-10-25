@@ -16,6 +16,7 @@ internal sealed class ModelAMachine : ICpuBus, IAcornMachine
     private readonly byte[] _mos, _basic;
     private readonly Via6522 _via = new();
     private readonly Keyboard _keyboard = new();
+    private readonly Audio _audio = new();
     private byte _latch = 255;
     private int _keyboardColumn;
     private long _ticks, _nextFrame = BbcMicroModelAConstants.CyclesPerFrame;
@@ -35,12 +36,13 @@ internal sealed class ModelAMachine : ICpuBus, IAcornMachine
         _via.ReadPortA = () => (_latch & 8) == 0 ? _keyboard.Read(_via.OutputA) : (byte)255;
         _via.ReadPortB = () => 255;
         _via.WritePortB = WriteLatch;
+        _via.WritePortA = value => { if ((_latch & 1) == 0) _audio.Write(value); };
         Cpu = new Cpu6502(this);
         Reset(true);
     }
     public void Reset(bool cold)
     {
-        if (cold) { Array.Clear(_ram); _via.Reset(); Video.Reset(); _latch = 255; }
+        if (cold) { Array.Clear(_ram); _via.Reset(); Video.Reset(); _audio.Reset(); _latch = 255; }
         Cpu.Reset();
     }
     public void SetInput(EmulationInputSnapshot snapshot)
@@ -61,9 +63,12 @@ internal sealed class ModelAMachine : ICpuBus, IAcornMachine
         _nextFrame += BbcMicroModelAConstants.CyclesPerFrame;
         return Video.Render();
     }
+    /// <summary>La carte remet ses échantillons au cœur ; le Common possède la sortie audio physique.</summary>
+    public short[] DrainAudio() => _audio.DrainSamples();
     public void Tick()
     {
         _ticks++;
+        _audio.Tick();
         var sync = Video.VSync;
         Video.Tick();
         if (!sync && Video.VSync) _via.VSync();
@@ -99,8 +104,11 @@ internal sealed class ModelAMachine : ICpuBus, IAcornMachine
     /// <summary>PB0–PB2 désignent la sortie du verrou ; PB3 fournit le niveau à mémoriser.</summary>
     private void WriteLatch(byte value)
     {
+        var previous = _latch;
         var mask = 1 << (value & 7);
         _latch = (value & 8) != 0 ? (byte)(_latch | mask) : (byte)(_latch & ~mask);
+        // IC32 sortie 0 : validation active basse du PSG sur le bus lent PA0–PA7.
+        if ((previous & 1) != 0 && (_latch & 1) == 0) _audio.Write(_via.OutputA);
         Video.ScreenWrap = ((_latch >> 4) & 3) switch { 0 => 0x4000, 1 => 0x6000, 2 => 0x3000, _ => 0x5800 };
     }
 }

@@ -104,3 +104,15 @@ Le premier jalon vise le démarrage réel sur MOS/BASIC et l'interaction clavier
 - [x] Fournir le build Debug Acorn demandé pour essai.
   - [x] Modifier `src/GWGUI.Emulation.Acorn/Emulators/AcornEmu/Dictionaries/ModelCatalog.cs` et `Machines/BbcMicro/Common/Services/Video.cs` du même émulateur : identifier explicitement les constantes vidéo BBC pour résoudre le conflit de noms à la compilation.
   - [x] Produire `build/Debug/GW GUI/gwgui.exe` et son module Acorn avec `scripts/local-building.cmd --building=debug --modules=acorn`, puis vérifier leur présence : script réussi, exécutable et DLL Acorn présents ; Example fourni automatiquement par le script.
+
+- [x] Émuler le son mono du Model A.
+  - [x] Créer `Emulators/AcornEmu/Constants/SoundConstants.cs` et `Services/Sn76489.cs` dans Acorn : registres, trois tons, bruit, atténuation et compteurs du PSG, séparés du câblage BBC.
+  - [x] Créer `Emulators/AcornEmu/Machines/BbcMicro/Common/Constants/AudioConstants.cs` et `Services/Audio.cs` : horloge BBC 4 MHz et production PCM mono 44 100 Hz avec phase persistante entre images.
+  - [x] Modifier `Emulators/AcornEmu/Machines/BbcMicro/ModelA/Services/ModelAMachine.cs`, `Interfaces/IAcornMachine.cs` et `Services/EmulatorCore.cs` : raccorder VIA, horloges, blocs mono, réinitialisation et libération aux contrats existants.
+  - [x] Créer `tests/GWGUI.LocalEmulationTests/Emulation/AcornEmuAudioTests.cs` : vérifier fréquence mesurée, débit sans dérive, atténuation, bruit, câblage VIA et format mono avec données synthétiques.
+  - [x] Modifier `docs/project/emulations/Acorn/BBC Micro/Model A/model-a-reference.md` : composants, fréquences, raccordements et limites documentés ; 85 tests Acorn réussis ; build Debug Acorn réussi, exécutable et DLL vérifiés, Example automatiquement fourni.
+- [x] Corriger la sortie physique du son AcornEmu.
+  - [x] Modifier `src/GWGUI.Emulation.Acorn/Emulators/AcornEmu/Factories/AcornEmuMachineFactory.cs` : transmettre la fabrique audio fournie par le contexte au Common au lieu de null.
+  - [x] Modifier `tests/GWGUI.LocalEmulationTests/Emulation/AcornEmuAudioTests.cs` : vérifier que la sortie fournie au contexte reçoit le PCM mono et est libérée par la session.
+  - [x] Modifier `docs/project/emulations/Acorn/BBC Micro/Model A/model-a-reference.md` et ce fichier : cause consignée, huit contrôles audio réussis dont le raccordement de sortie et sa libération.
+  - [x] Produire "build/Debug/GW GUI/gwgui.exe" et "Modules/acorn/gwgui.emulation.acorn.dll" avec le build Debug Acorn : script réussi et sorties vérifiées ; Example fourni automatiquement.
