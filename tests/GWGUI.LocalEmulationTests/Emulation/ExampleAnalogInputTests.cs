@@ -123,7 +123,7 @@ public sealed class ExampleAnalogInputTests
             if (emulator != Emulator.None)
             {
                 var adapter = ExampleFirmwareSamplesTests.Adapter(emulator);
-                var advertised = (IReadOnlyList<PeripheralCategory>)adapter.GetType().GetMethod("GetPeripherals")!.Invoke(adapter, [configuration])!;
+                var advertised = (IReadOnlyList<PeripheralCategory>)adapter.GetType().GetMethod("GetPeripherals", [typeof(MachineConfiguration)])!.Invoke(adapter, [configuration])!;
                 var settingsFunctions = typeof(ExampleModuleFactory).Assembly.GetType("GWGUI.Emulation.Example.Common.Machines.Common.Functions.InputSettingsFunctions", true)!;
                 var settings = (EmulationInputSettings)settingsFunctions.GetMethod("Describe", BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, [configuration])!;
                 var offered = settings.ControllerPorts.SelectMany(port => port.ControllerChoices).Select(choice => Enum.Parse<PeripheralCategory>(choice.Id)).Distinct().ToArray();
@@ -131,6 +131,10 @@ public sealed class ExampleAnalogInputTests
                 Assert.Equal(expected.Keys.Where(category => category is not (PeripheralCategory.Automatic or PeripheralCategory.Joystick)).Order(), advertised.Order());
                 Assert.DoesNotContain(PeripheralCategory.Automatic, advertised);
                 Assert.DoesNotContain(PeripheralCategory.Joystick, advertised);
+                var usbPorts = (IReadOnlyList<int>)adapter.GetType().GetMethod("GetUsbControllerPorts")!.Invoke(adapter, [configuration])!;
+                Assert.Equal(0, Assert.Single(usbPorts));
+                Assert.True(Assert.Single(settings.ControllerPorts, port => port.Number == 1).IsUsb);
+                Assert.Contains(settings.ControllerPorts, port => !port.IsUsb);
                 foreach (var port in settings.ControllerPorts)
                 {
                     var joystick = Assert.Single(port.ControllerChoices, choice => choice.Category == EmulationControllerCategory.Joystick && choice.Id != nameof(PeripheralCategory.Paddle));

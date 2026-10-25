@@ -68,4 +68,21 @@ internal interface IEmulatorControllerAdapter : IEmulatorInputMapper
     /// <remarks>Les adaptations conservent les autres données de la configuration et ne modifient pas
     /// les collections de l'appelant. L'opération ne possède ni cœur, ni fichier, ni périphérique.</remarks>
     MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration);
+
+    /// <summary>Énumère les indices techniques des ports USB présentés par cet adaptateur.</summary>
+    /// <param name="configuration">Configuration empruntée donnant le modèle et les extensions du cœur.</param>
+    /// <returns>Indices dans la description publique des contrôleurs ; liste vide sans port USB déclaré.</returns>
+    /// <remarks>La position dans cette liste donne l'indice relatif au bus USB. Les indices peuvent appartenir
+    /// aux ports ordinaires ou désigner des ports supplémentaires. La collection reste empruntée et ne possède
+    /// aucun périphérique physique ; Common conserve ces indices pour présenter et enregistrer les associations.</remarks>
+    IReadOnlyList<int> GetUsbControllerPorts(MachineConfiguration configuration) => [];
+
+    /// <summary>Résout le périphérique à présenter sur un port à partir du choix enregistré.</summary>
+    /// <param name="configuration">Configuration empruntée contenant les associations et les options du cœur.</param>
+    /// <param name="port">Indice technique du port dans la description publique des contrôleurs.</param>
+    /// <param name="peripheral">Catégorie enregistrée, avant adaptation aux contraintes du cœur.</param>
+    /// <returns>Catégorie présentée ; le comportement de base conserve le choix reçu.</returns>
+    /// <remarks>Cette consultation laisse la configuration et ses collections intactes. Elle permet de traiter
+    /// une particularité du protocole dans l'adaptateur, sans faire reconnaître son nom par Common.</remarks>
+    PeripheralCategory ResolveControllerPeripheral(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => peripheral;
 }

@@ -2,6 +2,7 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 
 internal static class ControllerPortConstants
 {
+    internal static IReadOnlyList<int> UsbControllerPorts { get; } = Array.AsReadOnly<int>([8, 9]);
     internal const uint NoneDevice = 0;
     internal const uint JoypadDevice = 1;
     internal const uint DeviceBaseMask = 0xff;

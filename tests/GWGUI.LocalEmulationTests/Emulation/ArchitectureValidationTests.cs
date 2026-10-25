@@ -1096,7 +1096,7 @@ public sealed class ArchitectureValidationTests
             var controllerContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorControllerAdapter", throwOnError: true)!;
             var adapterContract = assembly.GetType(root + ".Common.Interfaces.IEmulatorAdapter", throwOnError: true)!;
             Assert.True(controllerContract.IsAssignableFrom(adapterContract), root);
-            Assert.Equal(new[] { "ApplyInputConfiguration", "DescribeInput", "GetControllerBindingDefinitions", "GetControllerPortCount", "GetControllerPortDisplayName", "GetControllerPortDisplayNumber", "GetKeyboardDefinitions", "GetPeripherals", "GetPeripherals", "GetUsbPeripherals" }, controllerContract.GetMethods().Select(method => method.Name).Order(StringComparer.Ordinal));
+            Assert.Equal(new[] { "ApplyInputConfiguration", "DescribeInput", "GetControllerBindingDefinitions", "GetControllerPortCount", "GetControllerPortDisplayName", "GetControllerPortDisplayNumber", "GetKeyboardDefinitions", "GetPeripherals", "GetPeripherals", "GetUsbControllerPorts", "GetUsbPeripherals", "ResolveControllerPeripheral" }, controllerContract.GetMethods().Select(method => method.Name).Order(StringComparer.Ordinal));
             Assert.Contains(controllerContract.GetInterfaces(), type => type.Name == "IEmulatorInputMapper");
             Assert.All(controllerContract.GetMethods(), method => Assert.True(typeof(IEmulationConfiguration).IsAssignableFrom(method.GetParameters()[0].ParameterType)));
             var countMethod = controllerContract.GetMethod("GetControllerPortCount")!;
@@ -1129,8 +1129,10 @@ public sealed class ArchitectureValidationTests
                     Assert.InRange(expected, 0, EmulationHostProtocolConstants.MaximumInputControllerCount);
                     Assert.Equal(expected, count.Invoke(null, [configuration]));
                     var settings = (EmulationInputSettings)engineType.GetMethod("DescribeInputSettings")!.Invoke(engine, [configuration])!;
-                    // Les deux ports USB existants de PS2 sont décrits en plus du bus de manettes.
-                    var extraUsbPorts = root.EndsWith(".Sony", StringComparison.Ordinal) && machine.Id == "PlayStation2" && candidate.Definition.Id != "pcee2" ? 2 : 0;
+                    var usbPorts = Assert.IsAssignableFrom<IReadOnlyList<int>>(controllerContract.GetMethod("GetUsbControllerPorts")!.Invoke(candidate.Adapter, [configuration]));
+                    Assert.Equal(usbPorts.Count, usbPorts.Distinct().Count());
+                    Assert.Equal(usbPorts.Order(), settings.ControllerPorts.Where(port => port.IsUsb).Select(port => port.Number - 1).Order());
+                    var extraUsbPorts = usbPorts.Count(port => port >= expected);
                     if (describedAdapters.Add(root + "/" + candidate.Definition.Id))
                     {
                         var map = candidate.Adapter.GetType().GetInterfaceMap(controllerContract);

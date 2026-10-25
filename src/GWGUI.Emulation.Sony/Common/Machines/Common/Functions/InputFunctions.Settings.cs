@@ -22,7 +22,7 @@ internal static partial class InputSettingsFunctions
             VisualCommandIds = UsbMouseVisualCommands()
         };
         var indexes = Enumerable.Range(ControllerPortConstants.MinimumControllerPort, CommonControllerFunctions.PortCount(configuration));
-        if (model.Id == ModelConstants.PlayStation2 && configuration.EmulatorId != "pcee2") indexes = new[] { 8, 9 }.Concat(indexes);
+        indexes = ControllerCatalog.UsbPorts(configuration).Concat(indexes).Distinct();
         var ports = indexes.Select(index => DescribePort(configuration, model, index)).ToArray();
         return new EmulationInputSettings(keyboard, mouse, ports);
     }
@@ -58,13 +58,13 @@ internal static partial class InputSettingsFunctions
                 KeyboardMappings = EmulationSdk.InputProcessing.ToKeys(keyboard),
                 MouseButtonMappings = mouse,
                 Controllers = controllers,
-                UsbBindings = configuration.Model == ModelConstants.PlayStation2 && configuration.EmulatorId != "pcee2"
-                    ? settings.ControllerPorts.Where(port => port.IsUsb).Select(port =>
+                UsbBindings = ControllerCatalog.UsbPorts(configuration).Any(port => ControllerCatalog.IsSyntheticUsbPort(configuration, port))
+                    ? settings.ControllerPorts.Where(port => ControllerCatalog.IsSyntheticUsbPort(configuration, port.Number - 1)).Select(port =>
                     {
                         if (!Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, out var type)
                             || !ControllerCatalog.Available(configuration, port.Number - 1, true).Contains(type))
                             throw new ArgumentOutOfRangeException(nameof(port.SelectedControllerId));
-                        return new ControllerBinding(port.Number - 9, type, port.PhysicalDeviceId,
+                        return new ControllerBinding(ControllerCatalog.UsbPortIndex(configuration, port.Number - 1), type, port.PhysicalDeviceId,
                             EmulationSdk.InputProcessing.CopyNonEmptyBindings(port.Bindings.Values),
                             port.VisualId, ValidOutputBindings(configuration, type, port.VisualId, port.OutputBindings), DeadZonePercent: port.DeadZonePercent);
                     }).ToArray() : current.UsbBindings

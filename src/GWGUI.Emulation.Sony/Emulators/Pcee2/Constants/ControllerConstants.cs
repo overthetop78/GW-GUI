@@ -5,6 +5,7 @@ internal static class ControllerConstants
     internal const int UsbPortCount = 2;
     internal const int FirstUsbPort = 0;
     internal const int SecondUsbPort = 1;
+    internal static IReadOnlyList<int> UsbControllerPorts { get; } = Array.AsReadOnly<int>([FirstUsbPort, SecondUsbPort]);
     internal const string ButtonA = "A";
     internal const string ButtonB = "B";
     internal const string ButtonC = "C";

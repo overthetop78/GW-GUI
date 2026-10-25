@@ -14,9 +14,16 @@ public static class ControllerCatalog
         return native.ToArray();
     }
 
-    internal static bool IsUsbPort(MachineConfiguration configuration, int port) =>
-        configuration.Model == ModelConstants.PlayStation2
-        && (configuration.EmulatorId == "pcee2" ? port < 2 : port is 8 or 9);
+    /// <summary>Consulte la disposition USB annoncée par le contrat de l'adaptateur.</summary>
+    internal static IReadOnlyList<int> UsbPorts(MachineConfiguration configuration) => new Engine().SelectedAdapter(configuration)?.GetUsbControllerPorts(configuration) ?? [];
+
+    /// <summary>Résout l'indice relatif au bus ; -1 indique un port extérieur à ce bus.</summary>
+    internal static int UsbPortIndex(MachineConfiguration configuration, int port) => UsbPorts(configuration).ToList().IndexOf(port);
+
+    internal static bool IsUsbPort(MachineConfiguration configuration, int port) => UsbPortIndex(configuration, port) >= 0;
+
+    /// <summary>Distingue les ports USB ajoutés après les ports ordinaires de ceux déjà inclus dans leur numérotation.</summary>
+    internal static bool IsSyntheticUsbPort(MachineConfiguration configuration, int port) => port >= CommonControllerFunctions.PortCount(configuration) && IsUsbPort(configuration, port);
 
     internal static bool IsSupported(MachineConfiguration configuration, PeripheralCategory type, int port, bool usb)
     {
@@ -26,7 +33,7 @@ public static class ControllerCatalog
 
     private static IReadOnlyList<PeripheralCategory> UsbTypes(MachineConfiguration configuration, int port) =>
         (new Engine().Adapter(configuration) as IEmulatorControllerAdapter)?.GetUsbPeripherals(configuration,
-            configuration.EmulatorId == "pcee2" ? port : port is 8 or 9 ? port - 8 : port)
+            UsbPortIndex(configuration, port) is var index && index >= 0 ? index : port)
             ?? [PeripheralCategory.None];
 
     internal static IReadOnlyList<string>? Visuals(PeripheralCategory type, bool ps2) => type switch

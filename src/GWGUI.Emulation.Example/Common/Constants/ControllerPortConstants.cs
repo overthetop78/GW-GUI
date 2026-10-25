@@ -13,6 +13,11 @@ public static class ControllerPortConstants
     public const int MaximumGamepadPortCount = 8;
     /// <summary>Premier indice de port valide dans les associations de périphériques.</summary>
     public const int MinimumControllerPort = 0;
+    /// <summary>Port USB générique de démonstration, intégré aux ports de jeu ordinaires.</summary>
+    /// <remarks>Le premier port illustre ce bus ; les suivants montrent la même API sans USB.
+    /// Sa position dans la collection donne l'indice relatif zéro du bus, distinct du numéro affiché.
+    /// La collection est protégée contre les modifications et ne représente aucun périphérique physique possédé.</remarks>
+    internal static IReadOnlyList<int> UsbControllerPorts { get; } = Array.AsReadOnly<int>([MinimumControllerPort]);
     /// <summary>Nombre de ports de contrôleur d’un modèle qui n’en expose aucun.</summary>
     public const int NoControllerPorts = 0;
     /// <summary>Quantité à employer pour un modèle disposant d’un seul port.</summary>

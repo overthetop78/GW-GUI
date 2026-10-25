@@ -54,6 +54,8 @@ internal static class InputSettingsFunctions
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
         var input = configuration.Input;
+        var adapter = new Engine().SelectedAdapter(configuration);
+        var usbPorts = adapter?.GetUsbControllerPorts(configuration) ?? [];
         var sources = EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller;
         var keyboard = new EmulationInputBindingSet((new Engine().SelectedAdapter(configuration)?.GetKeyboardDefinitions(configuration) ?? KeyboardDefinitions(configuration)), input.KeyboardBindings
             ?? input.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal) ?? new Dictionary<string, string>(), sources);
@@ -66,10 +68,11 @@ internal static class InputSettingsFunctions
             var binding = input.Controllers?.FirstOrDefault(item => item.Port == index);
             var peripheral = binding?.Peripheral ?? PeripheralCategory.RetroPad;
             if (peripheral == PeripheralCategory.Automatic) peripheral = PeripheralCategory.RetroPad;
+            peripheral = adapter?.ResolveControllerPeripheral(configuration, index, peripheral) ?? peripheral;
             return new EmulationControllerPort(index + 1, choices, peripheral.ToString(), binding?.DeviceId,
                 new EmulationInputBindingSet(ControllerDefinitions(peripheral), binding?.Mappings ?? new Dictionary<string, string>(), sources, true),
                 binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId)
-            { OutputBindings = binding?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
+            { IsUsb = usbPorts.Contains(index), OutputBindings = binding?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
         }).ToArray();
         return new(keyboard, mouse, ports);
     }

@@ -95,6 +95,10 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorConfigur
     public virtual IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration) => CoreDefinition.ControllerTypes;
     public virtual IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration, int port) => GetPeripherals(configuration);
     public virtual IReadOnlyList<PeripheralCategory> GetUsbPeripherals(MachineConfiguration configuration, int port) => [PeripheralCategory.None];
+    /// <inheritdoc/>
+    public virtual IReadOnlyList<int> GetUsbControllerPorts(MachineConfiguration configuration) => configuration.Model == ModelConstants.PlayStation2 ? GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants.ControllerPortConstants.UsbControllerPorts : [];
+    /// <inheritdoc/>
+    public virtual PeripheralCategory ResolveControllerPeripheral(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => peripheral;
     public virtual int GetControllerPortCount(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).ControllerPortCount;
     public virtual string? GetControllerPortDisplayName(MachineConfiguration configuration, int port) => null;
     public virtual int? GetControllerPortDisplayNumber(MachineConfiguration configuration, int port) => null;

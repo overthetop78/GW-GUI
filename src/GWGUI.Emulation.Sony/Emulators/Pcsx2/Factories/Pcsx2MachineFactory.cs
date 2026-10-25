@@ -19,6 +19,8 @@ internal sealed class Pcsx2MachineFactory : CoreMachineFactory
     public override IReadOnlyList<PeripheralCategory> GetUsbPeripherals(MachineConfiguration configuration, int port) =>
         port is 0 or 1 ? [PeripheralCategory.None, PeripheralCategory.Keyboard, PeripheralCategory.Mouse] : [PeripheralCategory.None];
     public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => Functions.StorageFunctions.Describe(configuration);
+    /// <inheritdoc/>
+    public override PeripheralCategory ResolveControllerPeripheral(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => configuration.Model == ModelConstants.PlayStation2 && !GetUsbControllerPorts(configuration).Contains(port) && peripheral is PeripheralCategory.Keyboard or PeripheralCategory.Mouse or PeripheralCategory.KeyboardAndMouse ? PeripheralCategory.Joystick : peripheral;
     public override bool IsCpuClock(string fieldId) => false;
     public override IReadOnlyList<EmulationSettingsBlock> GetMachineSettingsBlocks(MachineConfiguration configuration, EmulatorManagementContext? context = null) =>
         SettingsDescriptionFunctions.MachineBlocks(this, configuration, context);

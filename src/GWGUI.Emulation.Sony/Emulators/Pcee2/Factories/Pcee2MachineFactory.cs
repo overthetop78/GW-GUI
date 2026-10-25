@@ -18,6 +18,8 @@ internal sealed class Pcee2MachineFactory : CoreMachineFactory
     public override AudioConfiguration GetAudioConfiguration(MachineConfiguration configuration) => AudioConfigurationFunctions.Resolve(configuration);
     protected override MachineConfiguration Configure(MachineConfiguration configuration) => base.Configure(AudioConfigurationFunctions.Configure(ControllerConfigurationFunctions.Configure(configuration)));
     public override int GetControllerPortCount(MachineConfiguration configuration) => Controllers.UsbPortCount + ControllerConfigurationFunctions.GamepadCount(configuration);
+    /// <inheritdoc/>
+    public override IReadOnlyList<int> GetUsbControllerPorts(MachineConfiguration configuration) => Controllers.UsbControllerPorts;
     public override string? GetControllerPortDisplayName(MachineConfiguration configuration, int port) => ControllerConfigurationFunctions.DisplayName(port);
     public override int? GetControllerPortDisplayNumber(MachineConfiguration configuration, int port) => port >= Controllers.UsbPortCount ? port - Controllers.UsbPortCount + 1 : null;
     public override IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration, int port) => port >= Controllers.UsbPortCount ? Controllers.GamepadTypes

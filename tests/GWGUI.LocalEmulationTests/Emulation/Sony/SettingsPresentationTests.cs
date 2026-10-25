@@ -14,6 +14,28 @@ namespace GWGUI.Tests.Emulation.Sony;
 public sealed class SettingsPresentationTests
 {
     [Theory]
+    [InlineData("pcsx2", 8)]
+    [InlineData("pcee2", 0)]
+    [InlineData("play", 8)]
+    public void UsbPortLayoutAndBindingsSurviveSettingsAndPersistence(string emulator, int firstUsbPort)
+    {
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, emulator);
+        var adapter = new GWGUI.Emulation.Sony.Common.Services.Engine().SelectedAdapter(configuration)!;
+        Assert.Equal(new[] { firstUsbPort, firstUsbPort + 1 }, adapter.GetUsbControllerPorts(configuration));
+        var settings = InputSettingsFunctions.Describe(configuration);
+        var port = Assert.Single(settings.ControllerPorts, port => port.IsUsb && port.Number == firstUsbPort + 1);
+        var edited = port with { PhysicalDeviceId = "usb-device", SelectedControllerId = port.ControllerChoices.Last().Id };
+        var applied = InputSettingsFunctions.Apply(configuration, settings with { ControllerPorts = settings.ControllerPorts.Select(value => value.Number == port.Number ? edited : value).ToArray() });
+        var restored = System.Text.Json.JsonSerializer.Deserialize<MachineConfiguration>(System.Text.Json.JsonSerializer.Serialize(applied))!;
+        var actual = Assert.Single(InputSettingsFunctions.Describe(restored).ControllerPorts, value => value.Number == port.Number);
+        Assert.True(actual.IsUsb);
+        Assert.Equal(edited.SelectedControllerId, actual.SelectedControllerId);
+        Assert.Equal("usb-device", actual.PhysicalDeviceId);
+        var bindings = firstUsbPort == 0 ? restored.Input!.Controllers : restored.Input!.UsbBindings;
+        Assert.Equal("usb-device", Assert.Single(bindings!, binding => binding.Port == 0).DeviceId);
+    }
+
+    [Theory]
     [InlineData("fr-FR", "French", "french")]
     [InlineData("fr-CA", "French", "french")]
     [InlineData("en-US", "English", "english")]
@@ -253,8 +275,8 @@ public sealed class SettingsPresentationTests
     {
         var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcsx2",
             Input: new InputConfiguration(UsbBindings: [new ControllerBinding(0, type)]));
-        var native = InputSettingsFunctions.NativeUsbType(configuration, 0,
-            GWGUI.Emulation.Sony.Common.Machines.Common.Enums.PeripheralCategory.Joystick);
+        var selected = Assert.Single(InputSettingsFunctions.Describe(configuration).ControllerPorts, port => port.IsUsb && port.Number == 9);
+        var native = Enum.Parse<GWGUI.Emulation.Sony.Common.Machines.Common.Enums.PeripheralCategory>(selected.SelectedControllerId);
         Assert.Equal(type, native);
         IReadOnlyList<IReadOnlyList<GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts.ControllerDevice>> devices =
             [[new GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts.ControllerDevice(name, id)]];

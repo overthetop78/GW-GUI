@@ -16,9 +16,10 @@ internal static partial class InputSettingsFunctions
 
     private static ControllerBinding UsbBinding(MachineConfiguration configuration, int index)
     {
-        if (configuration.EmulatorId == "pcee2")
-            return configuration.Input?.Controllers?.FirstOrDefault(binding => binding.Port == index)
-                ?? new ControllerBinding(index, CommonControllerFunctions.Selected(configuration, index));
+        var ports = ControllerCatalog.UsbPorts(configuration);
+        if (index >= 0 && index < ports.Count && !ControllerCatalog.IsSyntheticUsbPort(configuration, ports[index]))
+            return configuration.Input?.Controllers?.FirstOrDefault(binding => binding.Port == ports[index])
+                ?? new ControllerBinding(index, CommonControllerFunctions.Selected(configuration, ports[index]));
         var bindings = configuration.Input?.UsbBindings;
         if (bindings is not null) return bindings.FirstOrDefault(binding => binding.Port == index) ?? new ControllerBinding(index, PeripheralCategory.None);
         // Older LRPS2 configurations stored USB modes in controller slots.
@@ -30,37 +31,25 @@ internal static partial class InputSettingsFunctions
         return new ControllerBinding(index, type is PeripheralCategory.Keyboard or PeripheralCategory.Mouse ? type : PeripheralCategory.None);
     }
 
-    internal static PeripheralCategory NativeUsbType(MachineConfiguration configuration, int port, PeripheralCategory controller)
-    {
-        if (configuration.EmulatorId != "pcsx2" || configuration.Input?.UsbBindings is null || port >= 2) return controller;
-        var usb = UsbBinding(configuration, port).Peripheral;
-        return usb switch
-        {
-            PeripheralCategory.None => controller,
-            PeripheralCategory.Keyboard or PeripheralCategory.Mouse => usb,
-            _ => throw new NotSupportedException(configuration.EmulatorId + ": " + usb)
-        };
-    }
-
     private static EmulationControllerPort DescribePort(MachineConfiguration configuration, Model model, int index)
     {
         var usb = ControllerCatalog.IsUsbPort(configuration, index);
-        var synthetic = usb && configuration.EmulatorId != "pcee2";
-        var current = synthetic ? UsbBinding(configuration, index - 8)
+        var synthetic = ControllerCatalog.IsSyntheticUsbPort(configuration, index);
+        var relativeUsbPort = usb ? ControllerCatalog.UsbPortIndex(configuration, index) : -1;
+        var adapter = new Engine().Adapter(configuration) as IEmulatorControllerAdapter;
+        var current = synthetic ? UsbBinding(configuration, relativeUsbPort)
             : configuration.Input?.Controllers?.FirstOrDefault(binding => binding.Port == index);
         var type = synthetic ? current!.Peripheral
             : configuration.Model is ModelConstants.PlayStation or ModelConstants.PlayStation2
                 ? CommonControllerFunctions.Selected(configuration, index) : CommonControllerFunctions.Resolve(configuration, index);
-        if (!usb && configuration.Model == ModelConstants.PlayStation2 && configuration.EmulatorId == "pcsx2"
-            && type is PeripheralCategory.Keyboard or PeripheralCategory.Mouse or PeripheralCategory.KeyboardAndMouse)
-            type = PeripheralCategory.Joystick;
+        type = adapter?.ResolveControllerPeripheral(configuration, index, type) ?? type;
         var available = ControllerCatalog.Available(configuration, index, usb);
         if (!available.Contains(type))
         {
             type = available.Contains(PeripheralCategory.None) ? PeripheralCategory.None : available.FirstOrDefault();
             current = null;
         }
-        var adapter = new Engine().Adapter(configuration) as IEmulatorControllerAdapter;
+
         var definitions = current?.VisualId is { } visualId
             && PeripheralVisualDefinitions(type)?.TryGetValue(visualId, out var visualDefinitions) == true
                 ? visualDefinitions : PortDefinitions(type, model, configuration, index);
@@ -73,7 +62,7 @@ internal static partial class InputSettingsFunctions
             DeadZonePercent: current?.DeadZonePercent ?? 0, VisualId: current?.VisualId)
         {
             IsUsb = usb,
-            DisplayName = usb ? "USB " + (synthetic ? index - 7 : index + 1) : adapter?.GetControllerPortDisplayName(configuration, index),
+            DisplayName = usb ? "USB " + (relativeUsbPort + 1) : adapter?.GetControllerPortDisplayName(configuration, index),
             DisplayNumber = usb ? null : adapter?.GetControllerPortDisplayNumber(configuration, index),
             OutputBindings = ValidOutputBindings(configuration, type, current?.VisualId, current?.OutputBindings)
         };

@@ -244,12 +244,36 @@ internal abstract class MachineFactory(Emulator emulator, string id, string name
     /// <returns>Catégories effectivement proposées par les ports décrits dans Common.</returns>
     /// <remarks><para>La description des réglages reste la source unique des choix. Le joystick complet réunit
     /// les axes et boutons ; Automatic est un mode de résolution et ne constitue pas un périphérique supplémentaire.</para></remarks>
-    public IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration) => CommonControllerFunctions.InputProcessing.GetPeripherals<PeripheralCategory>(InputSettingsFunctions.Describe(configuration));
+    public IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration)
+    {
+        var settings = InputSettingsFunctions.Describe(configuration);
+        return CommonControllerFunctions.InputProcessing.GetPeripherals<PeripheralCategory>(settings).Concat(CommonControllerFunctions.InputProcessing.GetPeripherals<PeripheralCategory>(settings, usb: true)).Distinct().ToArray();
+    }
+
+    /// <summary>Décrit les catégories du port demandé en tenant compte du bus annoncé par la même fabrique.</summary>
+    /// <param name="configuration">Configuration empruntée du profil et de ses ports actifs.</param>
+    /// <param name="port">Indice technique du port demandé, commençant à zéro.</param>
+    /// <returns>Catégories génériques du port USB ou ordinaire, sans catalogue supplémentaire de périphériques.</returns>
+    /// <remarks>La description et les associations utilisent les mêmes indices. Le traitement est emprunté au
+    /// contrat Common du SDK ; cette consultation ne possède ni cœur, ni périphérique physique.</remarks>
+    public IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration, int port)
+    {
+        var usbPort = GetUsbControllerPorts(configuration).ToList().IndexOf(port);
+        return CommonControllerFunctions.InputProcessing.GetPeripherals<PeripheralCategory>(InputSettingsFunctions.Describe(configuration), usbPort >= 0 ? usbPort : port, usb: usbPort >= 0);
+    }
     /// <summary>Résout le nombre de ports effectif depuis la configuration Common.</summary>
     /// <param name="configuration">Configuration complète empruntée : profil matériel, backend, options, entrées et montages courants.</param>
     /// <returns>Nombre de ports utilisables dans cette configuration.</returns>
     /// <remarks><para>Le résultat comprend l&apos;extension de ports lorsqu&apos;elle est activée ; il ne dépend pas du nombre de périphériques physiques connectés.</para></remarks>
     public int GetControllerPortCount(MachineConfiguration configuration) => ConfigurationFunctions.ControllerPortCount(configuration);
+
+    /// <summary>Annonce un port USB générique parmi les ports présents pour les deux profils et les trois modes.</summary>
+    /// <param name="configuration">Configuration empruntée donnant le nombre de ports actifs.</param>
+    /// <returns>Indice du premier port ; liste vide si la configuration ne possède aucun port.</returns>
+    /// <remarks>Le port garde les mêmes catégories génériques et les mêmes associations que les ports ordinaires.
+    /// Common interprète cette disposition pour la présentation. La simulation ne crée aucun bus physique,
+    /// fichier ou bibliothèque native ; les autres ports montrent le fonctionnement sans USB.</remarks>
+    public IReadOnlyList<int> GetUsbControllerPorts(MachineConfiguration configuration) => GetControllerPortCount(configuration) > ControllerPortConstants.NoControllerPorts ? ControllerPortConstants.UsbControllerPorts : [];
     /// <summary>Décrit les commandes d&apos;une catégorie de périphérique pour un port.</summary>
     /// <param name="configuration">Configuration complète empruntée : profil matériel, backend, options, entrées et montages courants.</param>
     /// <param name="port">Index du port d&apos;entrée à configurer, validé par les règles Common de la session.</param>
