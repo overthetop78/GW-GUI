@@ -30,4 +30,5 @@
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>一般</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>高</value></data>
   <data name="Emulation.Audio" xml:space="preserve"><value>音频</value></data>
+  <data name="Emulation.Audio.Tone"><value>測試音</value></data>
 </root>

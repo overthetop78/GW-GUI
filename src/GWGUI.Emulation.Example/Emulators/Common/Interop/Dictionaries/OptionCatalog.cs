@@ -15,7 +15,7 @@ internal static class OptionCatalog
         new(OptionConstants.PixelFormat, "PixelFormat", null, "Video", "xrgb8888", "xrgb8888",
             [new("xrgb8888", "XRGB8888"), new("rgb565", "RGB565"), new("rgb1555", "RGB1555")], RequiresRestart: true, Tab: EmulationMachineTab.Video),
         new(OptionConstants.AudioTone, "AudioTone", null, "Audio", OptionConstants.Disabled, OptionConstants.Disabled,
-            [new(OptionConstants.Disabled, OptionConstants.Disabled, ResourceKey: "Emulation.Value.Disabled"), new(OptionConstants.Enabled, OptionConstants.Enabled, ResourceKey: "Emulation.Value.Enabled")], Tab: EmulationMachineTab.Audio)
+            [new(OptionConstants.Disabled, OptionConstants.Disabled, ResourceKey: "Emulation.Value.Disabled"), new(OptionConstants.Enabled, OptionConstants.Enabled, ResourceKey: "Emulation.Value.Enabled")], Tab: EmulationMachineTab.Audio, ResourceKey: "Emulation.Audio.Tone")
     ]);
 
     /// <summary>Projette les valeurs courantes d’une configuration sans modifier les déclarations partagées.</summary>

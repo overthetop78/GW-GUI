@@ -30,4 +30,5 @@
   <data name="Emulation.Audio.Quality.Normal"><value>Normal</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Hög</value></data>
   <data name="Emulation.Audio"><value>Audio</value></data>
+  <data name="Emulation.Audio.Tone"><value>Testton</value></data>
 </root>

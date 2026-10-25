@@ -10,7 +10,11 @@ namespace GWGUI.App.Services.Input.GameInput;
 
 internal static partial class GameInputDeviceMonitor
 {
-    internal static void StartMonitoring() => Worker.Post(EnsureInitialized);
+    internal static void StartMonitoring()
+    {
+        RawGameControllerFallback.StartMonitoring();
+        Worker.Post(EnsureInitialized);
+    }
 
     internal static void StopMonitoring()
     {
@@ -32,7 +36,7 @@ internal static partial class GameInputDeviceMonitor
         GameInputDeviceDescriptor[] gameInput;
         lock (Sync)
             gameInput = Devices.Values.Where(entry => entry.IsController).Select(entry => entry.Descriptor).ToArray();
-        return InitializationFailed ? RawGameControllerFallback.MergeDescriptors(gameInput) : gameInput;
+        return RawGameControllerFallback.MergeDescriptors(gameInput);
     }
 
     internal static IReadOnlyList<EmulationControllerState> ReadAll() => Worker.Invoke(() =>
@@ -46,7 +50,7 @@ internal static partial class GameInputDeviceMonitor
             descriptors = entries.Select(entry => entry.Descriptor).ToArray();
             gameInput = entries.Select(Read).ToArray();
         }
-        return gameInput.Concat(InitializationFailed ? RawGameControllerFallback.ReadAll(descriptors) : []).Select(ControllerAnalogDeadZoneFunctions.ApplyConfigured).ToArray();
+        return gameInput.Concat(RawGameControllerFallback.ReadAll(descriptors)).Select(ControllerAnalogDeadZoneFunctions.ApplyConfigured).ToArray();
     });
 
     internal static IReadOnlyList<GameControllerDevice> GetConnectedDevices() => Worker.Invoke(() =>
@@ -68,9 +72,8 @@ internal static partial class GameInputDeviceMonitor
         lock (Sync)
             if (Devices.TryGetValue(deviceId, out var entry) && entry.IsController)
                 state = ReadDetailed(entry);
-            else if (InitializationFailed)
+            else
                 state = RawGameControllerFallback.TryReadDetailed(deviceId, out var fallback) ? fallback : GameInputLiveState.Empty(deviceId);
-            else state = GameInputLiveState.Empty(deviceId);
         return ControllerAnalogDeadZoneFunctions.ApplyConfigured(state);
     });
 
@@ -85,7 +88,7 @@ internal static partial class GameInputDeviceMonitor
             gameInputDescriptors = entries.Select(entry => entry.Descriptor).ToArray();
             result.AddRange(entries.Select(ReadDetailed));
         }
-        foreach (var descriptor in InitializationFailed ? RawGameControllerFallback.MergeDescriptors(gameInputDescriptors) : gameInputDescriptors)
+        foreach (var descriptor in RawGameControllerFallback.MergeDescriptors(gameInputDescriptors))
         {
             if (result.Any(state => string.Equals(state.DeviceId, descriptor.Id, StringComparison.OrdinalIgnoreCase))) continue;
             if (RawGameControllerFallback.TryReadDetailed(descriptor.Id, out var state))
@@ -99,46 +102,49 @@ internal static partial class GameInputDeviceMonitor
         lock (Sync)
             if (Devices.TryGetValue(deviceId, out var entry) && entry.IsController)
                 return entry.Name;
-        return InitializationFailed ? RawGameControllerFallback.GetName(deviceId) : null;
+        return RawGameControllerFallback.GetName(deviceId);
     }
 
-    internal static void RefreshConnectedDevices() => Worker.Invoke(() =>
+    internal static void RefreshConnectedDevices()
     {
-        if (InitializationFailed)
+        RawGameControllerFallback.RefreshOnUiThread();
+        Worker.Invoke(() =>
         {
-            if (!Shutdown()) return;
-            lock (Sync)
+            if (InitializationFailed)
             {
-                _initialized = false;
-                InitializationFailed = false;
+                if (!Shutdown()) return;
+                lock (Sync)
+                {
+                    _initialized = false;
+                    InitializationFailed = false;
+                }
             }
-        }
 
-        EnsureInitialized();
-        if (_gameInput is null)
-        {
-            RawGameControllerFallback.RefreshOnUiThread();
-            return;
-        }
-
-        var refreshTokens = new List<ulong>(ControllerRefreshFilters.Length);
-        foreach (var filter in ControllerRefreshFilters)
-        {
-            var result = _gameInput.RegisterDeviceCallback(null, filter, GameInputDeviceStatus.Any, GameInputEnumerationKind.Blocking, new IntPtr(unchecked((long)(uint)filter)), Marshal.GetFunctionPointerForDelegate(DeviceCallback), out var refreshToken);
-            if (result < 0)
+            EnsureInitialized();
+            if (_gameInput is null)
             {
-                foreach (var token in refreshTokens) SafeUnregister(token);
-                GameInputDiagnostics.RecordRefreshRegistrationFailure(filter, result);
                 return;
             }
-            refreshTokens.Add(refreshToken);
-        }
 
-        DrainDeviceChanges();
-        foreach (var token in refreshTokens)
-            if (!SafeUnregister(token))
-                GameInputDiagnostics.RecordRefreshUnregisterFailure(token);
-    });
+            var refreshTokens = new List<ulong>(ControllerRefreshFilters.Length);
+            foreach (var filter in ControllerRefreshFilters)
+            {
+                var result = _gameInput.RegisterDeviceCallback(null, filter, GameInputDeviceStatus.Any, GameInputEnumerationKind.Blocking, new IntPtr(unchecked((long)(uint)filter)), Marshal.GetFunctionPointerForDelegate(DeviceCallback), out var refreshToken);
+                if (result < 0)
+                {
+                    foreach (var token in refreshTokens) SafeUnregister(token);
+                    GameInputDiagnostics.RecordRefreshRegistrationFailure(filter, result);
+                    return;
+                }
+                refreshTokens.Add(refreshToken);
+            }
+
+            DrainDeviceChanges();
+            foreach (var token in refreshTokens)
+                if (!SafeUnregister(token))
+                    GameInputDiagnostics.RecordRefreshUnregisterFailure(token);
+        });
+    }
 
     internal static void SetFocusPolicyForDiagnostics(GameInputFocusPolicy policy) => Worker.Invoke(() =>
     {
@@ -177,6 +183,6 @@ internal static partial class GameInputDeviceMonitor
     {
         EnsureInitialized();
         lock (Sync)
-            return GameInputPhysicalInputReader.Read(_gameInput, Devices.Values.ToArray(), PreviousMouse, InitializationFailed, Read, IsInteropFailure, Release);
+            return GameInputPhysicalInputReader.Read(_gameInput, Devices.Values.ToArray(), PreviousMouse, Read, IsInteropFailure, Release);
     });
 }

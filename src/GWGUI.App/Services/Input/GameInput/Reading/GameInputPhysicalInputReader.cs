@@ -13,7 +13,6 @@ internal static class GameInputPhysicalInputReader
         IGameInput? gameInput,
         IReadOnlyCollection<GameInputDeviceEntry> devices,
         IDictionary<string, GameInputMouseState> previousMouse,
-        bool initializationFailed,
         Func<GameInputDeviceEntry, EmulationControllerState> readController,
         Func<Exception, bool> isInteropFailure,
         Action<object?> release)
@@ -40,7 +39,7 @@ internal static class GameInputPhysicalInputReader
             mouseButtons.HasFlag(GameInputMouseButtons.Button5), Clamp(wheelX));
         var controllers = devices.Where(entry => entry.IsController).OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();
         var descriptors = controllers.Select(entry => entry.Descriptor).ToArray();
-        var controllerStates = controllers.Select(readController).Concat(initializationFailed ? RawGameControllerFallback.ReadAll(descriptors) : []).Select(ControllerAnalogDeadZoneFunctions.ApplyConfigured).ToArray();
+        var controllerStates = controllers.Select(readController).Concat(RawGameControllerFallback.ReadAll(descriptors)).Select(ControllerAnalogDeadZoneFunctions.ApplyConfigured).ToArray();
         return new GameInputPhysicalState(keys, pointer, controllerStates);
     }
 

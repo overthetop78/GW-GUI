@@ -30,4 +30,5 @@
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normál</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Magas</value></data>
   <data name="Emulation.Audio" xml:space="preserve"><value>Hang</value></data>
+  <data name="Emulation.Audio.Tone"><value>Teszthang</value></data>
 </root>

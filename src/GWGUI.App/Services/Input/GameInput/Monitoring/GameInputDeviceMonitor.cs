@@ -77,8 +77,6 @@ internal static partial class GameInputDeviceMonitor
             }
         }
         if (shutdownRequired) Shutdown();
-        if (InitializationFailed) RawGameControllerFallback.StartMonitoring();
-        else RawGameControllerFallback.StopMonitoring();
     }
 
     private static void DeviceChanged(ulong token, IntPtr context, IGameInputDevice device, ulong timestamp, GameInputDeviceStatus currentStatus, GameInputDeviceStatus previousStatus)
