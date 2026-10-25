@@ -94,8 +94,15 @@ finally {
 if (Test-Path -LiteralPath $uninstallRegistryPath) { throw 'The uninstall registration remained after cleanup.' }
 
 if (Test-Path -LiteralPath $destination) {
-    $remaining = @(Get-ChildItem -LiteralPath $destination -Force)
-    if ($remaining.Count -ne 0) { throw "Uninstaller left $($remaining.Count) item(s) in $destination." }
+    $remainingFiles = @(Get-ChildItem -LiteralPath $destination -Recurse -File -Force)
+    if ($remainingFiles.Count -ne 0) {
+        throw "Uninstaller left files in ${destination}: $($remainingFiles.FullName -join ', ')."
+    }
+    # Les fichiers doivent avoir disparu ; les répertoires vides du test sont
+    # supprimés sans suppression récursive, afin de conserver ce contrôle strict.
+    Get-ChildItem -LiteralPath $destination -Recurse -Directory -Force |
+        Sort-Object { $_.FullName.Length } -Descending |
+        ForEach-Object { Remove-Item -LiteralPath $_.FullName -Force }
     Remove-Item -LiteralPath $destination -Force
 }
 Write-Output 'Installer smoke test passed and the isolated installation was removed.'
