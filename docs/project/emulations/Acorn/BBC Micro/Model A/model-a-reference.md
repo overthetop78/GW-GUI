@@ -4,6 +4,74 @@ Recherche du 25 octobre 2026. Les caractéristiques communes aux BBC Micro sont 
 
 ## Identification et périmètre
 
+### Vidéo AcornEmu : ROM externe et balayage — implémentation du 25 octobre 2026
+
+Le cœur est une implémentation C# interne au module Acorn : il exécute le CPU et les composants dans le processus de GW GUI, sans Libretro, B2, programme auxiliaire ou DLL d'émulateur externe. Les images ROM restent des données utilisateur externes.
+
+**ROM de caractères.** Le réglage ROM possède désormais un troisième emplacement obligatoire, `acornemu.characters`, distinct des champs MOS et langage. Choisir le fichier externe `saa5050`. Le profil matériel Model A déclare le rôle `CharacterGenerator` dans Common. La reconnaissance et le contrôle des 960 octets sont communs ; l'adaptateur ne fait que relier ce rôle au champ et demander son chargement. La ROM n'est pas remplacée par les caractères du MOS et ses octets ne sont pas intégrés au code.
+
+Les six fichiers ajoutés ont été identifiés par SHA-1. SAA5050 est classé officiel pour le Model A. Les autres relevés sont présentés comme partiels : jeux nationaux différents et qualité de relevé signalée BAD_DUMP dans MAME. Le fichier SAA5051 utilisateur est l'ancien relevé, et non le relevé corrigé actuel.
+
+| Fichier local | Jeu de caractères | SHA-1 |
+| --- | --- | --- |
+| `saa5050` | Anglais, référence BBC | `6c8daba70374e5aa3a6402f24cdc5f8677d58a0f` |
+| `saa5051` | Allemand, ancien relevé MAME 0.203 | `9ab9d24b845fe2964fba2f4770d54025d2c8026a` |
+| `saa5052` | Suédois | `ec4bc515e28e851a6433f7ca0a11ede0f1d21a68` |
+| `saa5055` | ASCII américain | `c5ce7fe84df6de6a317fa0e87bda413c82c04618` |
+| `saa5056` | Hébreu | `2d1ff08b4dda15cf70832881750a962189455f41` |
+| `saa5057` | Cyrillique | `5a93445dde03066073e2909a935900e5f8439d81` |
+
+Le catalogue reconnaît également les variantes 5053/5054 et le relevé SAA5051 corrigé `07cd9b7edbed6ef7b527622533d6957f5d56aa91`. Une image de 960 octets non identifiée reste inconnue et sélectionnable pour ce rôle. Références : [MAME actuel, saa5050.cpp](https://github.com/mamedev/mame/blob/master/src/devices/video/saa5050.cpp), [MAME 0.203, saa5050.cpp](https://github.com/mamedev/mame/blob/mame0203/src/devices/video/saa5050.cpp), [fiche Philips/Mullard SAA5050](https://www.ecbazis.hu/pdf/saa5050.pdf).
+
+**Découpe et fonctionnement.** Les chemins suivants sont relatifs à `Emulators/AcornEmu/` :
+
+| Fichier | Responsabilité et liaison |
+| --- | --- |
+| `Services/Crtc6845.cs` | Registres masqués, compteurs de caractères/lignes/raster, adresse écran verrouillée au début de l'image, ajustement vertical, signaux HSync/VSync, interlace vidéo et forme/clignotement du curseur. Ne possède ni RAM ni palette. |
+| `Services/TeletextSaa5050.cs` | Copie possédée de la ROM externe, glyphes, arrondis, couleurs, clignotement, dissimulation, double hauteur, mosaïques jointives/séparées et maintien. Les attributs sont reconstruits pour chaque ligne et leurs effets immédiats/différés sont distingués. |
+| `Machines/BbcMicro/Common/Services/Video.cs` | Assemble CRTC, ULA et télétexte autour de la RAM empruntée. Avance à chaque cycle CPU, à raison d'un caractère tous les un/deux cycles selon le contrôle ULA. Dessine les caractères pendant leur lecture et détache les images terminées. |
+| `Machines/BbcMicro/Common/Constants/VideoConstants.cs` | Géométrie de présentation 640×256 et largeurs du curseur ULA. |
+| `Machines/BbcMicro/ModelA/Services/ModelAMachine.cs` | Appelle l'horloge vidéo depuis le bus CPU et raccorde le front VSync au VIA. Conserve le quota nominal de cycles des appels de présentation, tandis que le CRTC programme son balayage. |
+| `Factories/AcornEmuMachineFactory.cs`, `Functions/FirmwareFunctions.cs`, `Dictionaries/ModelCatalog.cs` | Décrivent les champs ROM/vidéo et transmettent les valeurs et images choisies à la machine ; aucun circuit ne dépend d'App. |
+
+Les écritures de RAM, palette et contrôle ULA affectent les pixels à venir, sans redessiner les pixels déjà balayés. Le curseur fonctionne aussi en bitmap, avec sa hauteur, son masquage, son clignotement et les largeurs ULA. Les deux phases des couleurs clignotantes ULA dépendent du bit 0 de contrôle écrit par le logiciel ; elles ne sont plus inventées à partir du compteur d'images. Références : [MAME, mc6845.cpp](https://github.com/mamedev/mame/blob/master/src/devices/video/mc6845.cpp) et [bbc_v.cpp](https://github.com/mamedev/mame/blob/master/src/mame/acorn/bbc_v.cpp).
+
+**Sortie matérielle et présentation.** Le sélecteur `acornemu.video-output`, dans Vidéo, propose UHF PAL par défaut, composite monochrome, composite couleur (S39) et RGB. Le mode monochrome produit une image de luminance. Les trois sorties couleur fournissent pour l'instant la même image RGB propre : les différences analogiques ne sont pas recréées dans le cœur. Le RGB représente l'installation du connecteur SK3 sur la carte existante du Model A, pas une autre machine ni un boîtier d'émulation extérieur. Le composite couleur représente le montage S39/condensateur suivant la révision. Le choix est enregistré et appliqué à chaud par les interfaces runtime existantes, sans réinitialiser le CPU ni la RAM. Les commandes de présentation vidéo existantes restent utilisées.
+
+Le traitement de signal existant reste après l'image du cœur : `SoftwareEmulationVideoProcessingPipeline` applique déjà les connexions composite/RF et les standards PAL/NTSC/SECAM avant les autres traitements de présentation. Les profils existants peuvent donc donner ces rendus sans ajouter un encodeur analogique dans AcornEmu. Le sélecteur matériel du module ne sélectionne pas automatiquement un profil VideoPresentation ; ses filtres et intensités restent ceux choisis dans l'application. Les noms invariants UHF PAL/RGB restent dans 00-Base ; les nouveaux libellés sont traduits par le script Argos existant.
+
+**Validation et limites.** Les 77 contrôles Acorn passent. Avant leur suppression, les deux essais temporaires ont vérifié le démarrage, l'affichage et `PRINT 12345` en 16 et 32 Kio ; les six ROM SAA505x locales produisent une image. L'aperçu SAA5050 a été inspecté et le curseur réaligné ; le test et l'image PNG ont ensuite été supprimés. Les contrôles autonomes couvrent notamment palette et bit flash modifiés pendant l'image, curseur bitmap, compteurs/masques CRTC, glyphes externes, double hauteur, maintien, séparation, clignotement et dissimulation télétexte.
+
+Il s'agit d'un balayage par caractère dans une surface utile fixe de 640×256, pas d'une simulation de chaque transition électrique : les délais exacts des pipelines, les demi-lignes d'entrelacement, le cadrage analogique complet et les formes d'onde PAL/RF restent des limites. Les signaux HSync/VSync sont calculés ; les bordures et toutes les géométries hors de la surface utile ne sont pas exposées comme une nouvelle surface dynamique.
+
+### Vérification des composants et options vidéo — 25 octobre 2026
+
+Dans `Emulators/AcornEmu/Machines/BbcMicro/Common/Services/Video.cs`, la première implémentation CRTC conserve les registres, exploite l'adresse de départ, le nombre de colonnes, la hauteur des caractères et le nombre de lignes affichées ; le curseur utilise ses registres dans le rendu télétexte. Les synchronisations et le balayage programmables complets, le curseur bitmap et les changements pendant le balayage restent à compléter. La synchronisation de la carte demeure nominale, fixée par les cycles par image.
+
+L'ULA possède déjà son registre de contrôle, ses 16 entrées de palette, le décodage des pixels selon le mode et les couleurs clignotantes. Il n'y a pas à recréer ces fonctions. Le rendu actuel lit toutefois RAM et registres au moment de construire toute l'image : des changements effectués en cours de balayage ne sont pas restitués au moment où ils ont eu lieu. Ces compléments précèdent les filtres existants de VideoPresentation.
+
+Recherche locale : les 24 fichiers du dossier utilisateur `Emulation/Machines/acorn/Firmware` ont été vérifiés par taille et SHA-1 ; aucun n'est la ROM SAA5050 de référence. Aucun fichier nommé SAA5050/chargen/télétexte n'a été trouvé parmi les sources du dépôt inspectées, hors sorties de compilation. Cette recherche n'est pas un inventaire de tous les disques du PC.
+
+La [définition du composant dans MAME](https://github.com/mamedev/mame/blob/master/src/devices/video/saa5050.cpp) identifie le fichier `saa5050` de 960 octets : CRC32 `201490f3`, SHA-1 `6c8daba70374e5aa3a6402f24cdc5f8677d58a0f`. La [page Planet Emulation SAA5050](https://www.planetemu.net/en/rom/mame-roms-merged/saa5050) propose `saa5050.zip` contenant un fichier du même nom et du même CRC. Le téléchargement n'a pas été effectué. Le choix pour AcornEmu est un fichier externe sélectionné dans ROM, avec un rôle propre au générateur de caractères, distinct du MOS et du langage. Son chargement n'est pas encore implémenté. Cette ROM interne au circuit réel fournit les glyphes, tandis que les attributs et le fonctionnement temporel restent à émuler.
+
+Options matérielles documentées : la sortie UHF PAL couleur est présente sur le Model A ; la prise BNC fournit la vidéo composite normalement monochrome. Le manuel décrit l'ajout de couleur par le lien S39 sur les cartes Issue 4 et suivantes, ou par un condensateur sur les précédentes. La prise RGB est une extension du Model A, avec ajout du connecteur SK3. Il s'agit de sorties et de montages matériels, pas d'une autre carte graphique ni d'une RAM vidéo séparée. Sources : [Service Manual, section 7.1](https://www.retroisle.com/others/acornbbc/OriginalDocs/BBC%20Model%20A%20and%20B%20Service%20manual.pdf), [Hardware Guide, section 5.17](https://ftp.nvg.ntnu.no/pub/bbc/doc/A%20Hardware%20Guide%20for%20the%20BBC%20Microcomputer/bbc_hw_05.htm). Aucun nouveau filtre ni réglage vidéo n'a été créé pendant cette vérification.
+
+### Réglages RAM et ROM disponibles dans AcornEmu
+
+Le Model A propose désormais **16 ou 32 Kio**, avec **16 Kio par défaut**. L'extension ne change ni le processeur ni les autres équipements du modèle. Le guide matériel Acorn décrit la carte prévue pour 32 Kio, dont seulement 16 Kio sont montés sur le Model A : [guide matériel, introduction](https://www.manualslib.com/manual/1422370/Acorn-Computers-Limited-Bbc-A.html?page=7).
+
+`Common/Machines/BbcMicro/Constants/ModelAConstants.cs` définit les valeurs enregistrées `16` et `32`. `Functions/MemoryFunctions.cs` résout l'option commune `acorn_main_memory` et rejette toute autre valeur. La fabrique AcornEmu expose ce choix dans RAM avec redémarrage requis. Les fonctions Common de réglages remplacent l'information fixe par ce sélecteur ; le résumé utilise la capacité sélectionnée. L'option suit le stockage de configuration existant.
+
+`Emulators/AcornEmu/Dictionaries/ModelCatalog.cs` transmet la capacité à `Machines/BbcMicro/ModelA/Services/ModelAMachine.cs`. La carte alloue cette RAM et l'emprunte au rendu `Machines/BbcMicro/Common/Services/Video.cs`. À 16 Kio, les adresses 4000–7FFF reflètent 0000–3FFF ; à 32 Kio, elles désignent une mémoire indépendante. Le changement ne crée pas une seconde copie de la mémoire vidéo.
+
+Les ROM choisies remplissent deux rôles : **MOS système** et **langage**, BASIC par défaut. Le MOS est nécessaire au démarrage ; BASIC lui-même peut être remplacé par un autre langage ou logiciel ROM adapté, tel que VIEW. Le jalon actuel exige une image dans chacun des deux emplacements. La machine réelle possède aussi des emplacements de ROM supplémentaires ; leur sélection et leur matériel associé ne sont pas encore proposés par ce cœur. Les deux champs ne limitent donc pas les fichiers possibles à deux versions. Voir le [guide matériel Acorn](https://www.manualslib.com/manual/1422370/Acorn-Computers-Limited-Bbc-A.html?page=7) et les [instructions de montage des ROM de Computer Concepts](https://chrisacorns.computinghistory.org.uk/docs/CC/CC_ROMFittingInst.pdf).
+
+Le profil commun `Common/Machines/BbcMicro/Dictionaries/FirmwareCompatibilityCatalog.cs` classe comme **officiels pour le Model A** les MOS 0.10, 0.92, 1.00 et 1.20 ainsi que BASIC I et II, selon les identités et associations MAME détaillées ci-dessous. Les variantes visant d'autres machines restent évaluées séparément ; l'origine Acorn ne suffit pas à les déclarer officielles pour ce modèle. Les fichiers inconnus restent inconnus.
+
+L'application affiche une icône de statut avec le texte déjà traduit en infobulle et comme nom accessible. La colonne de statut ne partage plus la largeur de celle du rôle ROM. Aucune ressource de traduction ni contrat du SDK n'a été ajouté pour cet affichage.
+
+Validation : 41 contrôles AcornEmu réussis avec les essais temporaires des ROM locales, dont le démarrage et `PRINT 12345` en 16 et 32 Kio ; fichier temporaire supprimé après utilisation. Après couverture des six identités officielles, les 42 contrôles permanents AcornEmu passent. Les vérifications RAM couvrent les alias, la mémoire haute indépendante, la lecture vidéo, le reset, le sélecteur, l'application du choix, le résumé et le rejet des capacités invalides.
+
 Le modèle étudié est le **BBC Microcomputer Model A britannique**, construit par Acorn et lancé avec la gamme BBC Micro en 1981. La référence `ANA01` désigne le Model A ; `ANA02` désigne une version avec Econet dans l'inventaire matériel du pilote MAME. Le numéro de modèle, la révision de carte, les ROM et les extensions sont des informations distinctes. [MAME, identification des machines](https://github.com/mamedev/mame/blob/84981cc15cfc1429e48f098d80c6dd97bc82a0bc/src/mame/acorn/bbcb.cpp#L5).
 
 La fiche de collection du [Centre for Computing History](https://www.computinghistory.org.uk/det/3041/Acorn-BBC-Micro-Model-A/) situe le lancement en décembre 1981 et décrit la filiation avec le prototype Proton. Son inventaire des connecteurs mélange cependant les possibilités de gamme et l'équipement du Model A : pour les interfaces effectivement montées, les documents constructeur et les cartes photographiées sont plus précis.
@@ -400,3 +468,64 @@ La matrice BBC possède un seul contact SHIFT : deux symboles maintenus nécessi
 Les tests autonomes couvrent les symboles, SHIFT synthétique, relâchement, pavé numérique, copie des caractères, passage Common et protocole entre processus. Les contrôles des raccourcis vérifient une source réintroduite par la lecture physique et une affectation explicite. 61 cas ciblés passent, puis le contrôle supplémentaire SHIFT+espace passe séparément. Quatre contrôles temporaires des dispositions Windows française, américaine et allemande passent ; leurs dispositions sont libérées dans `finally` et le fichier de tests temporaire est supprimé.
 
 Références : [ToUnicodeEx, Microsoft](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-tounicodeex) ; [matrice BBC, MAME `bbc_kbd.cpp`](https://github.com/mamedev/mame/blob/84981cc15cfc1429e48f098d80c6dd97bc82a0bc/src/mame/acorn/bbc_kbd.cpp). Ces sources décrivent respectivement la traduction Windows et les contacts matériels, deux responsabilités distinctes.
+
+## Firmwares du dossier utilisateur — 25 octobre 2026
+
+Les 24 fichiers de `C:\Users\overt\AppData\Roaming\GW GUI\Emulation\Machines\acorn\Firmware` correspondent par SHA-1 aux déclarations de [MAME `bbcb.cpp`, révision 84981cc15cfc1429e48f098d80c6dd97bc82a0bc](https://github.com/mamedev/mame/blob/84981cc15cfc1429e48f098d80c6dd97bc82a0bc/src/mame/acorn/bbcb.cpp). Il faut distinguer identification, compatibilité matérielle et fonctionnement effectivement obtenu avec AcornEmu.
+
+| Fichier | Identification par empreinte | Intérêt pour le Model A |
+| --- | --- | --- |
+| `basic1.rom` | BASIC I — `890f6e3e7fab3340f75b85e93ff29332bc9ecb2e` | ROM de langage de Model A ; MAME l'associe aux MOS 0.92 et 0.10. |
+| `basic2.rom` | BASIC II — `4a7393f3a45ea309f744441c16723e2ef447a281` | ROM de langage de Model A ; couple documenté avec MOS 1.00/1.20. |
+| `cm62024.bin` | Parole VSM — `b369809275cb67dfd8a749265e91adb2d2558ae6` | Données du synthétiseur de parole, pas un MOS ni un langage 6502. |
+| `dfs0.9h.rom` | DFS 0.9H — `dbbec4d2540a854c120be3194c7566a2b79d153b` | Extension disque de 8 Kio ; contrôleur disque et banque ROM supplémentaires nécessaires. |
+| `dfs10.rom` | DFS/NET — `161f585dc45665ea77433c84afd2f95049f7f5a0` | Extension disque/réseau ; même contenu que `usdnfs10.rom` dans MAME. |
+| `dnfs120-201666.rom` | DNFS — `7e3c536baeae84d6498a14e8405319e01ee78232` | Extension disque/réseau, pas une ROM système de remplacement. |
+| `eco_3.35k.rom` | NET Torch — `7462ced7b83d74b822815bc00ed40a89f84e0276` | Extension réseau des Torch 301/725 ; matériel non présent sur le Model A de base. |
+| `hope_dfs.rom` | DFS 1.00 Hope — `4c9f7cf141ad028fe5e517c45e6e3a43b1a76d24` | Extension disque du clone Dolphin, matériel et banque ROM nécessaires. |
+| `hope_os_basic.rom` | BASIC/MOS Hope — `0a07161fa2fbc102fb306233bd81790c7b04f793` | Image combinée de 32 Kio du Dolphin : BASIC dans la première moitié, MOS dans la seconde, selon ROM_COPY de MAME. À essayer comme variante, pas comme Model A officiel. |
+| `mcp_1.01_ci.rom` | MCP Torch — `be10872aeb88714bd56462a2e86929953dee1c01` | Commande d'un système Torch et de ses extensions ; le nom du fichier indique 1.01, son en-tête annonce 1.00. |
+| `mcp_1.22_ci.rom` | MCP 1.22 Torch — `409762deafb76b1f86be39bfbf2f812d5de3ff92` | Même famille Torch ; pas un MOS BBC Model A. |
+| `nos12.rom` | MOS norvégien — `2b6aecd33a43f296c20832524e47cc7e3a9c3b17` | Variante Model B norvégien, proche du MOS BBC ; dispositions et glyphes nationaux distincts. |
+| `os_de.rom` | MOS allemand — `aadf90338ee9d1c85dfa73beba50e930c2a38f10` | Variante Model B allemand, à distinguer d'une validation Model A. |
+| `os01.rom` | MOS 0.10 — `4b0ece6dc139d5d3f4fabd023716fb6f25149b80` | MOS Model A officiel ; balayage clavier CA2 et pagination antérieurs à 1.20. |
+| `os092.rom` | MOS 0.92 — `dca33995c0d008a527efe923d03333394b01022c` | MOS Model A officiel, avec BASIC I dans MAME. |
+| `os10.rom` | MOS 1.00 — `d35f6723132aabe3c4d00fc16fd9ecc6768df753` | MOS Model A officiel, avec BASIC II dans MAME. |
+| `os12.rom` | MOS 1.20 — `0d9bcaf6a393c9ce2359ed700ddb53c232c2c45d` | Couple déjà démarré avec BASIC II dans AcornEmu. |
+| `sist1_progs.bin` | Programmes Cisco SIST1 — `4398ba29c871fa397654aa182c63ccdcad597625` | ROM de service du terminal industriel SIST1, pas un système Model A. |
+| `sist1_startup.bin` | Démarrage Cisco SIST1 — `5ea266f47ff83821ccdbec006b8506b2e892b115` | Langage/démarrage du terminal SIST1 et de ses extensions, pas un BASIC standard. |
+| `unix_1.00.rom` | UNIX Host 1.00 Torch — `e37d043c8df30c49ba8717e1aa0b92105cb0c937` | Communication avec le système UNIX Torch 725 ; coprocesseur et matériel associé nécessaires. |
+| `usbasic3.rom` | BASIC III américain — `b39014610a968789afd7695aa04d1277d874405c` | Variante américaine du Model B ; à essayer sans la déclarer identique à BASIC II. |
+| `usmos10.rom` | MOS américain — `83d91d089dca092d2c8b7c3650ff8143c9069b89` | Variante Model B américain, normalement NTSC, alors que le jalon Model A est PAL. |
+| `viewa210.rom` | VIEW A2.1 — `88c93df1854f5fbe6cd6e5f0e29a8bf4ea3b5614` | Traitement de texte en ROM latérale ; ce n'est pas BASIC. RAM et implantation des banques à vérifier. |
+| `vm61002.bin` | Parole VSM — `66876702d1d95eecc034d20f25047f893a27cde5` | Données de parole, inutilisables à la place de MOS/BASIC. |
+
+L'affichage doit présenter aussi les fichiers non reconnus. Une empreinte absente du catalogue ne suffit pas à interdire un essai : les contraintes de taille et de disposition des octets restent celles du matériel. L'identification des extensions ne signifie pas que leur contrôleur ou leur banque ROM sont déjà émulés.
+
+### Essais et présentation effective
+
+Onze couples ont été essayés avec les fichiers locaux, sans modification des sources ni fenêtre d'émulation. Le test a suivi le CPU et les sorties OSWRCH, puis vérifié la commande et le résultat `12345` en mémoire écran lorsque le mode texte BBC le permet.
+
+| MOS | ROM de langage | Résultat effectif |
+| --- | --- | --- |
+| 1.20 | BASIC II | Démarrage 16 Kio et `PRINT 12345` réussis. |
+| 1.00 | BASIC II | Même contrôle réussi. |
+| 0.92 | BASIC I | Même contrôle réussi. |
+| 0.10 | BASIC I | Même contrôle réussi ; cela ne valide pas tous les timings CA2 de cette révision. |
+| Norvégien | BASIC II | Même contrôle réussi ; variante nationale classée partielle. |
+| Allemand | BASIC II | Même contrôle réussi, bannière `Acorn OS 16K` ; variante nationale classée partielle. |
+| Américain | BASIC III américain | Pas de prompt obtenu dans cet essai ; PC D9D2, aucune sortie OSWRCH. La variante reste proposée comme partielle, sans annoncer un démarrage réussi ; le profil matériel américain n'est pas reproduit. |
+| 1.20 | BASIC I | Démarrage et calcul réussis. |
+| 1.20 | BASIC III américain | Démarrage et calcul réussis ; BASIC III reste classé partiel car il vise une variante différente. |
+| Hope, moitié haute du fichier combiné | Hope BASIC, moitié basse | Démarrage et calcul réussis ; la bannière Dolphin comporte des caractères résiduels. Classé partiel. |
+| 1.20 | VIEW A2.1 | Arrive à l'accueil VIEW, `No text`, `Editing No File`, `Screen Mode 7`. Il s'agit d'un traitement de texte, pas d'un interpréteur pour `PRINT`. Classé partiel. |
+
+Ces essais caractérisent ce premier jalon, pas l'intégralité des appels MOS, de chaque langage ou des périphériques absents.
+
+`Emulators/AcornEmu/Dictionaries/FirmwareDictionary.cs` réunit les 24 identités SHA-1 avec noms, versions, rôles et compatibilités. `Functions/FirmwareFunctions.cs` produit maintenant au moins une ligne pour chaque fichier : l'image Hope fournit deux choix, système et langage, soit 25 candidats pour les 24 fichiers du dossier. Les ROM de parole et les extensions disque/réseau/Torch/Cisco sont visibles comme incompatibles avec les deux emplacements actuellement proposés ; elles ne sont ni supprimées ni assimilées à un MOS ou à BASIC.
+
+Les fichiers inconnus gardent le statut inconnu et peuvent être essayés si leur taille permet un chargement : 16 Kio directement, 8 Kio dans la moitié basse d'une banque de langage complétée à FF, 32 Kio comme concaténation langage puis MOS. Cette dernière disposition est identifiée pour Hope ; elle reste une hypothèse explicite lors du choix d'une image inconnue. Les en-têtes `(C)` des ROM latérales et les vecteurs de reset MOS peuvent suggérer un rôle sans garantir la compatibilité. Sans rôle identifié, les destinations possibles apparaissent séparément pour laisser le choix à l'utilisateur.
+
+Le chargement n'exige plus une empreinte répertoriée. Il extrait uniquement en mémoire la partie choisie du fichier ; aucun firmware ni fichier extrait n'est écrit. L'emplacement de langage conserve son identifiant de configuration `acornemu.basic` et son libellé actuel BASIC ROM ; choisir VIEW y remplace donc BASIC. Les contrôles de capacité matérielle restent actifs pour les tailles qui ne peuvent pas être adressées.
+
+Les 31 cas ciblés passent, dont le contrôle temporaire de visibilité et d'identification de tous les fichiers locaux. Les tests utilisant les ROM externes ont été supprimés après utilisation. Les vérifications permanentes sont autonomes et portent sur les en-têtes synthétiques, les choix inconnus et le découpage des formats matériels.

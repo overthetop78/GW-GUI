@@ -10,4 +10,8 @@
   <data name="Emulation.Acorn.Video.Controller"><value>Video timing kontroller</value></data>
   <data name="Emulation.Acorn.Video.Pixels"><value>Pixel og fargegenerator</value></data>
   <data name="Emulation.Acorn.Video.Teletext"><value>Teletekst tegngenerator</value></data>
+  <data name="Emulation.Acorn.Firmware.CharacterGenerator"><value>Tegngenerator ROM</value></data>
+  <data name="Emulation.Acorn.Video.Output"><value>Videoutgang</value></data>
+  <data name="Emulation.Acorn.Video.Output.Monochrome"><value>Kompositt (monokrom)</value></data>
+  <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>Sammensatt (farge, S39)</value></data>
 </root>

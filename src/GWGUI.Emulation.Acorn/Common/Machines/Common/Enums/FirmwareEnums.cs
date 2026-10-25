@@ -1,6 +1,6 @@
 namespace GWGUI.Emulation.Acorn.Common.Machines.Common.Enums;
 
-public enum FirmwareCategory { OperatingSystem, Basic, DiscFilingSystem, MasterMos }
+public enum FirmwareCategory { OperatingSystem, Basic, DiscFilingSystem, MasterMos, Language, Speech, Network, Application, CharacterGenerator }
 
 public enum FirmwareCompatibility { Compatible, PartiallyCompatible, Incompatible }
 

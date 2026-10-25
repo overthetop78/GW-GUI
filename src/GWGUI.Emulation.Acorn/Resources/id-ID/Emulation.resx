@@ -10,4 +10,8 @@
   <data name="Emulation.Acorn.Video.Controller"><value>Pengontrol waktu video</value></data>
   <data name="Emulation.Acorn.Video.Pixels"><value>Generator piksel dan warna</value></data>
   <data name="Emulation.Acorn.Video.Teletext"><value>Generator karakter teleteks</value></data>
+  <data name="Emulation.Acorn.Firmware.CharacterGenerator"><value>Generator karakter ROM</value></data>
+  <data name="Emulation.Acorn.Video.Output"><value>Keluaran video</value></data>
+  <data name="Emulation.Acorn.Video.Output.Monochrome"><value>Komposit (monokrom)</value></data>
+  <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>Komposit (warna, S39)</value></data>
 </root>

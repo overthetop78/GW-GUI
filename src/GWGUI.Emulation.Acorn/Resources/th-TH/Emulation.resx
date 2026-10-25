@@ -10,4 +10,8 @@
   <data name="Emulation.Acorn.Video.Controller"><value>ตัวควบคุมจับเวลาวิดีโอ</value></data>
   <data name="Emulation.Acorn.Video.Pixels"><value>เครื่องมือสร้างพิกเซลและสี</value></data>
   <data name="Emulation.Acorn.Video.Teletext"><value>ตัวสร้างอักขระแบบข้อความ</value></data>
+  <data name="Emulation.Acorn.Firmware.CharacterGenerator"><value>ตัวสร้างอักขระ ROM</value></data>
+  <data name="Emulation.Acorn.Video.Output"><value>การแสดงผลวิดีโอ</value></data>
+  <data name="Emulation.Acorn.Video.Output.Monochrome"><value>โทนสี (โมโนโครเมี่ยม)</value></data>
+  <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>โทนสี S39)</value></data>
 </root>

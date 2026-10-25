@@ -10,4 +10,8 @@
   <data name="Emulation.Acorn.Video.Controller"><value>Video 타이밍 컨트롤러</value></data>
   <data name="Emulation.Acorn.Video.Pixels"><value>화소와 색깔 발전기</value></data>
   <data name="Emulation.Acorn.Video.Teletext"><value>Teletext 문자 생성기</value></data>
+  <data name="Emulation.Acorn.Firmware.CharacterGenerator"><value>문자 발생기 ROM</value></data>
+  <data name="Emulation.Acorn.Video.Output"><value>영상 출력</value></data>
+  <data name="Emulation.Acorn.Video.Output.Monochrome"><value>합성 (monochrome)</value></data>
+  <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>합성 (냉각, S39) )</value></data>
 </root>

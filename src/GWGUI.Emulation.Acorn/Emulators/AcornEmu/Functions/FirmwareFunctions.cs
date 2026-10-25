@@ -1,38 +1,34 @@
 using System.IO;
-using System.Security.Cryptography;
 using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants;
+using GWGUI.Emulation.Acorn.Common.Machines.BbcMicro.Functions;
 
 namespace GWGUI.Emulation.Acorn.Emulators.AcornEmu.Functions;
 
-/// <summary>Charge et reconnaît les ROM externes ; les chemins sont des options persistées par le Common existant.</summary>
+/// <summary>Adaptation des champs AcornEmu aux rôles matériels et chargement des fichiers utilisateur.</summary>
+/// <remarks>L'identité, la compatibilité par machine et le format des banques sont définis dans Common/Machines.
+/// Les identifiants des champs déjà enregistrés restent ceux de la configuration AcornEmu.</remarks>
 internal static class FirmwareFunctions
 {
-    /// <summary>Lit une copie possédée des octets. Le fichier source est emprunté et reste inchangé.</summary>
+    internal static string? Field(FirmwareCategory category) => category switch
+    {
+        FirmwareCategory.OperatingSystem => EmulatorConstants.SystemFirmware,
+        FirmwareCategory.Basic or FirmwareCategory.Language => EmulatorConstants.BasicFirmware,
+        FirmwareCategory.CharacterGenerator => EmulatorConstants.CharacterFirmware,
+        _ => null
+    };
+
+    internal static FirmwareCategory Role(string field) => field switch
+    {
+        EmulatorConstants.SystemFirmware => FirmwareCategory.OperatingSystem,
+        EmulatorConstants.BasicFirmware => FirmwareCategory.Basic,
+        EmulatorConstants.CharacterFirmware => FirmwareCategory.CharacterGenerator,
+        _ => throw new ArgumentOutOfRangeException(nameof(field))
+    };
+
+    /// <summary>Lit le fichier sélectionné puis demande à Common la banque correspondant au rôle matériel.</summary>
     internal static byte[] Read(MachineConfiguration configuration, string field)
     {
         if (!configuration.Options.TryGetValue(field, out var path) || string.IsNullOrWhiteSpace(path)) throw new FileNotFoundException(field);
-        var bytes = File.ReadAllBytes(path);
-        if (bytes.Length != HardwareConstants.RomSize) throw new InvalidDataException(path);
-        var role = Identify(bytes);
-        if (role != field) throw new InvalidDataException(path);
-        return bytes;
-    }
-    /// <summary>Reconnaît par contenu le couple MOS 1.20/BASIC II utilisé pour le premier jalon, indépendamment du nom.</summary>
-    internal static string? Identify(ReadOnlySpan<byte> bytes)
-    {
-        if (bytes.Length != HardwareConstants.RomSize) return null;
-        return Convert.ToHexString(SHA1.HashData(bytes)).ToLowerInvariant() switch
-        {
-            "0d9bcaf6a393c9ce2359ed700ddb53c232c2c45d" => EmulatorConstants.SystemFirmware,
-            "4a7393f3a45ea309f744441c16723e2ef447a281" => EmulatorConstants.BasicFirmware,
-            _ => null
-        };
-    }
-    internal static async ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanAsync(string path, CancellationToken cancellationToken)
-    {
-        if (new FileInfo(path).Length != HardwareConstants.RomSize) return [];
-        var bytes = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
-        var field = Identify(bytes);
-        return field is null ? [] : [new EmulationFirmwareCandidate(field, path, field == EmulatorConstants.SystemFirmware ? "MOS 1.20" : "BASIC II", field == EmulatorConstants.SystemFirmware ? "1.20" : "II", EmulationFirmwareCompatibility.Compatible, field)];
+        return BbcMicroFirmwareFunctions.GetRomBytes(File.ReadAllBytes(path), Role(field));
     }
 }

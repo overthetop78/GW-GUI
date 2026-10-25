@@ -2,6 +2,12 @@ using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Interfaces;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Contracts;
 using System.IO;
+using BbcFirmware = GWGUI.Emulation.Acorn.Common.Machines.BbcMicro.Functions.BbcMicroFirmwareFunctions;
+using NativeFirmware = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Functions.FirmwareFunctions;
+using NativeModelCatalog = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Dictionaries.ModelCatalog;
+using GWGUI.Emulation.Acorn.Common.Machines.BbcMicro.Dictionaries;
+using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Machines.BbcMicro.ModelA.Services;
+using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Machines.BbcMicro.Common.Services;
 using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Services;
 using GWGUI.Emulation.Acorn.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Acorn.Common.Machines.Common.Enums;
@@ -12,6 +18,83 @@ namespace GWGUI.Tests.Emulation;
 /// <summary>Vérifications autonomes : aucun firmware, fichier, processus ou périphérique externe.</summary>
 public sealed class AcornEmuTests
 {
+    [Theory]
+    [InlineData("0d9bcaf6a393c9ce2359ed700ddb53c232c2c45d", EmulationFirmwareCompatibility.Official)]
+    [InlineData("890f6e3e7fab3340f75b85e93ff29332bc9ecb2e", EmulationFirmwareCompatibility.Official)]
+    [InlineData("4a7393f3a45ea309f744441c16723e2ef447a281", EmulationFirmwareCompatibility.Official)]
+    [InlineData("4b0ece6dc139d5d3f4fabd023716fb6f25149b80", EmulationFirmwareCompatibility.Official)]
+    [InlineData("dca33995c0d008a527efe923d03333394b01022c", EmulationFirmwareCompatibility.Official)]
+    [InlineData("d35f6723132aabe3c4d00fc16fd9ecc6768df753", EmulationFirmwareCompatibility.Official)]
+    [InlineData("2b6aecd33a43f296c20832524e47cc7e3a9c3b17", EmulationFirmwareCompatibility.PartiallyCompatible)]
+    [InlineData("b369809275cb67dfd8a749265e91adb2d2558ae6", EmulationFirmwareCompatibility.Incompatible)]
+    public void FirmwareCompatibilityBelongsToModelAInsteadOfTheWholeEmulator(string sha1, EmulationFirmwareCompatibility compatibility)
+    {
+        Assert.Equal(compatibility, BbcMicroFirmwareCompatibilityCatalog.Get(MachineModel.BbcMicroModelA, sha1));
+        Assert.Equal(EmulationFirmwareCompatibility.Unknown, BbcMicroFirmwareCompatibilityCatalog.Get(MachineModel.BbcMicroModelB, sha1));
+        Assert.Equal(EmulationFirmwareCompatibility.Unknown, BbcMicroFirmwareCompatibilityCatalog.Get(MachineModel.BbcMicroModelA, new string('0', 40)));
+    }
+
+    [Fact]
+    public void AcornEmuSelectsRegisteredModelsWithoutSubstitutingModelA()
+    {
+        var factory = new GWGUI.Emulation.Acorn.Emulators.AcornEmu.Factories.AcornEmuMachineFactory();
+        Assert.True(factory.Definition.MachineIds.SetEquals(NativeModelCatalog.All.Select(model => model.Model.ToString())));
+        var model = NativeModelCatalog.Get(MachineModel.BbcMicroModelA);
+        Assert.Equal(640, model.Width); Assert.Equal(256, model.Height);
+        Assert.InRange(model.FramesPerSecond, 50.08, 50.09);
+        Assert.Throws<NotSupportedException>(() => NativeModelCatalog.Get((MachineModel)int.MaxValue));
+        Assert.All(factory.GetFirmwareSlots(new MachineConfiguration(MachineModel.BbcMicroModelA)), slot => Assert.Contains(nameof(MachineModel.BbcMicroModelA), slot.MachineIds!));
+    }
+
+    [Theory]
+    [InlineData(8192, 1)]
+    [InlineData(16384, 2)]
+    [InlineData(32768, 2)]
+    public void UnknownRomRemainsVisibleAndSelectable(int size, int candidates)
+    {
+        var image = new byte[size];
+        var entries = BbcFirmware.Inspect(image, "unknown.rom", MachineModel.BbcMicroModelA, NativeFirmware.Field);
+        Assert.Equal(candidates, entries.Count);
+        Assert.All(entries, entry =>
+        {
+            Assert.Equal(EmulationFirmwareCompatibility.Unknown, entry.Compatibility);
+            Assert.NotNull(entry.DestinationFieldId);
+            Assert.Equal(16384, BbcFirmware.GetRomBytes(image, NativeFirmware.Role(entry.DestinationFieldId!)).Length);
+        });
+    }
+
+    [Fact]
+    public void UnknownSidewaysRomIsRecognizedFromHeaderInsteadOfFilename()
+    {
+        var image = new byte[16384];
+        image[7] = 14; image[14] = (byte)'('; image[15] = (byte)'C'; image[16] = (byte)')';
+        var entry = Assert.Single(BbcFirmware.Inspect(image, "renamed.bin", MachineModel.BbcMicroModelA, NativeFirmware.Field));
+        Assert.Equal("acornemu.basic", entry.DestinationFieldId);
+        Assert.Equal(EmulationFirmwareCompatibility.Unknown, entry.Compatibility);
+    }
+
+    [Fact]
+    public void UnknownMosIsRecognizedFromResetVectorInsteadOfFilename()
+    {
+        var image = new byte[16384]; image[^4] = 0xcd; image[^3] = 0xd9;
+        var entry = Assert.Single(BbcFirmware.Inspect(image, "renamed.bin", MachineModel.BbcMicroModelA, NativeFirmware.Field));
+        Assert.Equal("acornemu.mos", entry.DestinationFieldId);
+    }
+
+    [Fact]
+    public void CombinedAndEightKibRomsPreserveTheirDocumentedLayout()
+    {
+        var combined = new byte[32768]; combined[0] = 0x12; combined[16384] = 0x34;
+        Assert.Equal(0x12, BbcFirmware.GetRomBytes(combined, FirmwareCategory.Basic)[0]);
+        Assert.Equal(0x34, BbcFirmware.GetRomBytes(combined, FirmwareCategory.OperatingSystem)[0]);
+        var small = new byte[8192]; small[8191] = 0x56;
+        var padded = BbcFirmware.GetRomBytes(small, FirmwareCategory.Basic);
+        Assert.Equal(0x56, padded[8191]); Assert.All(padded[8192..], value => Assert.Equal(255, value));
+        Assert.Throws<InvalidDataException>(() => BbcFirmware.GetRomBytes(small, FirmwareCategory.OperatingSystem));
+        Assert.Throws<InvalidDataException>(() => BbcFirmware.GetRomBytes(new byte[42], FirmwareCategory.Basic));
+        Assert.Equal(EmulationFirmwareCompatibility.Unknown, Assert.Single(BbcFirmware.Inspect(new byte[42], "bad.rom", MachineModel.BbcMicroModelA, NativeFirmware.Field)).Compatibility);
+    }
+
     [Fact]
     public void HostSpacePreservesHeldShift()
     {
@@ -180,13 +263,55 @@ public sealed class AcornEmuTests
         bus.Bytes[0xfffc] = 0; bus.Bytes[0xfffd] = 2;
         var cpu = new Cpu6502(bus); cpu.Reset(); return cpu;
     }
+
+    [Theory]
+    [InlineData(16384, true)]
+    [InlineData(32768, false)]
+    public void ModelARamExpansionChangesCpuAndVideoAddressing(int bytes, bool mirrored)
+    {
+        var machine = new ModelAMachine(new byte[16384], new byte[16384], bytes);
+        machine.Write(0x0001, 0x12);
+        machine.Write(0x4001, 0x34);
+        Assert.Equal(mirrored ? 0x34 : 0x12, machine.Read(0x0001));
+        Assert.Equal(0x34, machine.Read(0x4001));
+        void Register(byte index, byte value) { machine.Write(0xfe00, index); machine.Write(0xfe01, value); }
+        Register(0, 63); Register(1, 40); Register(4, 38); Register(6, 32); Register(9, 7); Register(10, 32); Register(12, 0x0b); Register(13, 0);
+        machine.Write(0xfe20, 0x88); machine.Write(0xfe21, 0xf0);
+        machine.Write(0x1800, 0); machine.Write(0x5800, 0x80);
+        for (var tick = 0; tick < 39936 * 2; tick++) machine.Video.Tick();
+        var image = machine.Video.Render();
+        Assert.Equal(255, image[2]);
+        Assert.Equal(mirrored ? 0x80 : 0, machine.Read(0x1800));
+        machine.Reset(true);
+        Assert.Equal(0, machine.Read(0x4001));
+    }
+
+    [Fact]
+    public void ModelAMemorySettingIsAppliedValidatedAndSummarized()
+    {
+        const string fieldId = "acorn_main_memory";
+        var configuration = new MachineConfiguration(MachineModel.BbcMicroModelA, core: Emulator.AcornEmu);
+        var engine = new Engine();
+        var fields = GWGUI.Emulation.Acorn.Common.Machines.Common.Functions.SettingsDescriptionFunctions.Create(configuration).SelectMany(block => block.Fields);
+        var field = Assert.Single(fields, field => field.Id == fieldId);
+        Assert.Equal("16", field.Value);
+        Assert.Equal(new[] { "16", "32" }, field.Choices!.Select(choice => choice.Id));
+        Assert.True(field.RequiresRestart);
+        var expanded = Assert.IsType<MachineConfiguration>(engine.ApplySettings(configuration, new Dictionary<string, string?> { [fieldId] = "32" }));
+        var adapter = (GWGUI.Emulation.Acorn.Common.Interfaces.IEmulatorSettings)new GWGUI.Emulation.Acorn.Emulators.AcornEmu.Factories.AcornEmuMachineFactory();
+        Assert.Equal(32m, adapter.GetMemoryKib(expanded));
+        Assert.Contains("RAM 32 KiB", adapter.Summarize(expanded).Details);
+        Assert.Throws<ArgumentException>(() => engine.ApplySettings(configuration, new Dictionary<string, string?> { [fieldId] = "64" }));
+        Assert.Throws<ArgumentOutOfRangeException>(() => new ModelAMachine(new byte[16384], new byte[16384], 65536));
+    }
     [Fact]
     public void ModeFourExpandsEachMemoryBitToTwoDisplayPixels()
     {
         var machine = new ModelAMachine(new byte[16384], new byte[16384]);
         void Register(byte index, byte value) { machine.Write(0xfe00, index); machine.Write(0xfe01, value); }
-        Register(1, 40); Register(6, 32); Register(9, 7); Register(12, 0x0b); Register(13, 0);
+        Register(0, 63); Register(1, 40); Register(4, 38); Register(6, 32); Register(9, 7); Register(10, 32); Register(12, 0x0b); Register(13, 0);
         machine.Write(0xfe20, 0x88); machine.Write(0xfe21, 0xf0); machine.Write(0x5800, 0x80);
+        for (var tick = 0; tick < 39936 * 2; tick++) machine.Video.Tick();
         var image = machine.Video.Render();
         Assert.Equal(255, image[2]);
         Assert.Equal(255, image[6]);

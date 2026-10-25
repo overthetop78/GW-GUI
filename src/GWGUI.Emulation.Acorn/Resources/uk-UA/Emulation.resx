@@ -10,4 +10,8 @@
   <data name="Emulation.Acorn.Video.Controller"><value>Відео контролера часу</value></data>
   <data name="Emulation.Acorn.Video.Pixels"><value>Письма та кольоровий генератор</value></data>
   <data name="Emulation.Acorn.Video.Teletext"><value>Генератор персонажа Teletext</value></data>
+  <data name="Emulation.Acorn.Firmware.CharacterGenerator"><value>Генератор символів ROM</value></data>
+  <data name="Emulation.Acorn.Video.Output"><value>Відеовиставка</value></data>
+  <data name="Emulation.Acorn.Video.Output.Monochrome"><value>Композитний (монохромний)</value></data>
+  <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>Композитний (холодний, S39) , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,</value></data>
 </root>

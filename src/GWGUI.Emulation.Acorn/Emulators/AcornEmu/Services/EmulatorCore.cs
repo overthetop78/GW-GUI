@@ -1,7 +1,9 @@
 using System.IO;
 using CommonCoreHostFunctions = GWGUI.Emulation.Acorn.Common.Functions.CoreHostFunctions;
 using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants;
-using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Functions;
+using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Contracts;
+using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Interfaces;
+using NativeModelCatalog = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Dictionaries.ModelCatalog;
 
 namespace GWGUI.Emulation.Acorn.Emulators.AcornEmu.Services;
 
@@ -10,19 +12,24 @@ namespace GWGUI.Emulation.Acorn.Emulators.AcornEmu.Services;
 /// Les ROM sont lues depuis les chemins choisis par l'utilisateur ; aucune image n'est intégrée à l'assembly.</remarks>
 internal sealed class EmulatorCore : IEmulatorCore
 {
-    private ModelAMachine? _machine;
+    private readonly AcornEmuModelDefinition _definition;
+    private IAcornMachine? _machine;
+
+    /// <summary>Sélectionne le constructeur et les sorties du modèle sans charger de ROM ni créer de session.</summary>
+    internal EmulatorCore(MachineModel model) => _definition = NativeModelCatalog.Get(model);
     private bool _disposed;
     private long _sequence;
+    private string _videoOutput = EmulatorConstants.UhfOutput;
     public Emulator Emulator => Emulator.AcornEmu;
     public string CoreName => EmulatorConstants.Name;
     public string CoreVersion => EmulatorConstants.Version;
     public string CoreSha256 { get; } = CommonCoreHostFunctions.StateFiles.HashBytes(File.ReadAllBytes(typeof(EmulatorCore).Assembly.Location)).ToLowerInvariant();
-    public double FramesPerSecond => (double)HardwareConstants.CpuFrequency / HardwareConstants.CyclesPerFrame;
+    public double FramesPerSecond => _definition.FramesPerSecond;
     public int SampleRate => 44100;
     public bool SupportsSaveStates => false;
     public bool SupportsPointerCapture => false;
     public bool ShutdownRequested { get; private set; }
-    public EmulationVideoStandard? Region => EmulationVideoStandard.Pal;
+    public EmulationVideoStandard? Region => _definition.Region;
     public HostProcessState HostProcessState => HostProcessState.InProcess;
     public int? HostProcessId => null;
     public int BufferedAudioFrames => 0;
@@ -34,7 +41,11 @@ internal sealed class EmulatorCore : IEmulatorCore
     public int CurrentDiskIndex => -1;
     public VideoFrame? LatestVideoFrame { get; private set; }
     public AudioChunk? LatestAudioChunk => null;
-    public IReadOnlyList<CoreOption> Options => [];
+    public IReadOnlyList<CoreOption> Options =>
+    [
+        new(EmulatorConstants.VideoOutput, "Emulation.Acorn.Video.Output", null, null, EmulatorConstants.UhfOutput, _videoOutput,
+            [new(EmulatorConstants.UhfOutput, "UHF PAL", "Emulation.Acorn.Video.Output.Uhf"), new(EmulatorConstants.MonochromeOutput, "Composite", "Emulation.Acorn.Video.Output.Monochrome"), new(EmulatorConstants.ColourCompositeOutput, "Composite", "Emulation.Acorn.Video.Output.ColourComposite"), new(EmulatorConstants.RgbOutput, "RGB", "Emulation.Acorn.Video.Output.Rgb")], ResourceKey: "Emulation.Acorn.Video.Output", Tab: EmulationMachineTab.Video)
+    ];
     public IReadOnlyList<string> Diagnostics => [];
     public IReadOnlyDictionary<int, bool> LedStates { get; } = new Dictionary<int, bool>();
     public IReadOnlySet<string> SupportedContentExtensions { get; } = new HashSet<string>();
@@ -42,10 +53,9 @@ internal sealed class EmulatorCore : IEmulatorCore
     public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
-        if (configuration.Model != MachineModel.BbcMicroModelA) throw new ArgumentOutOfRangeException(nameof(configuration));
-        var mos = FirmwareFunctions.Read(configuration, EmulatorConstants.SystemFirmware);
-        var basic = FirmwareFunctions.Read(configuration, EmulatorConstants.BasicFirmware);
-        _machine = new ModelAMachine(mos, basic);
+        if (configuration.Model != _definition.Model) throw new ArgumentOutOfRangeException(nameof(configuration));
+        _machine = _definition.Create(configuration);
+        _videoOutput = configuration.Options.GetValueOrDefault(EmulatorConstants.VideoOutput, EmulatorConstants.UhfOutput);
         ShutdownRequested = false;
         _sequence = 0;
     }
@@ -54,7 +64,7 @@ internal sealed class EmulatorCore : IEmulatorCore
         ObjectDisposedException.ThrowIf(_disposed, this);
         var machine = _machine ?? throw new InvalidOperationException();
         var image = machine.RunFrame();
-        LatestVideoFrame = new VideoFrame(image, HardwareConstants.Width, HardwareConstants.Height, HardwareConstants.Width * 4, EmulationPixelFormat.Xrgb8888, 4f / 3, ++_sequence, TimeSpan.FromSeconds(_sequence / FramesPerSecond));
+        LatestVideoFrame = new VideoFrame(image, _definition.Width, _definition.Height, _definition.Width * _definition.BytesPerPixel, _definition.PixelFormat, _definition.AspectRatio, ++_sequence, TimeSpan.FromSeconds(_sequence / FramesPerSecond));
     }
     public void SetInput(EmulationInputSnapshot snapshot) => _machine?.SetInput(snapshot);
     public void SoftReset() => _machine?.Reset(false);
@@ -70,7 +80,13 @@ internal sealed class EmulatorCore : IEmulatorCore
     public void SelectDisk(int index) => throw new NotSupportedException();
     public byte[] SaveState() => throw new NotSupportedException();
     public void LoadState(ReadOnlySpan<byte> state) => throw new NotSupportedException();
-    public void SetOption(string key, string value) => throw new NotSupportedException();
+    public void SetOption(string key, string value)
+    {
+        ObjectDisposedException.ThrowIf(_disposed, this);
+        var machine = _machine ?? throw new InvalidOperationException();
+        machine.SetOption(key, value);
+        _videoOutput = value;
+    }
 
     /// <summary>Détache les données possédées ; aucune ressource empruntée à l'hôte n'est fermée.</summary>
     public void Dispose()

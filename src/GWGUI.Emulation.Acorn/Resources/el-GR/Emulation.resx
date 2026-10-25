@@ -10,4 +10,8 @@
   <data name="Emulation.Acorn.Video.Controller"><value>Ελεγκτής συγχρονισμού βίντεο</value></data>
   <data name="Emulation.Acorn.Video.Pixels"><value>Πυρήνας εικονοστοιχείων και γεννήτρια χρωμάτων</value></data>
   <data name="Emulation.Acorn.Video.Teletext"><value>Γεννήτρια χαρακτήρων Teletext</value></data>
+  <data name="Emulation.Acorn.Firmware.CharacterGenerator"><value>Γεννήτρια χαρακτήρων ROM</value></data>
+  <data name="Emulation.Acorn.Video.Output"><value>Έξοδος βίντεο</value></data>
+  <data name="Emulation.Acorn.Video.Output.Monochrome"><value>Σύνθετο (μονοχρωμικό)</value></data>
+  <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>Σύνθετο (χρώμα, S39)</value></data>
 </root>

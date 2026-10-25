@@ -69,7 +69,8 @@ public sealed class AcornModuleTests
     {
         Assert.Equal(5, ModelCatalog.All.Count);
         var modelA = new MachineConfiguration(MachineModel.BbcMicroModelA);
-        Assert.False(ConfigurationFunctions.SupportsRuntime(modelA.Model));
+        Assert.True(ConfigurationFunctions.SupportsRuntime(modelA.Model));
+        Assert.Equal(Emulator.AcornEmu, modelA.Core);
         Assert.Empty(CoreCatalog.GetAll(modelA.Model));
         Assert.Empty(B2ModelFunctions.GetModels(modelA.Model));
         Assert.DoesNotContain(SettingsDescriptionFunctions.Create(modelA).SelectMany(block => block.Fields), field => field.Tab == EmulationMachineTab.General);

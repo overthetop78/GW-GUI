@@ -1,6 +1,6 @@
-using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Dictionaries;
+using GWGUI.Emulation.Acorn.Common.Machines.BbcMicro.Dictionaries;
 
-namespace GWGUI.Emulation.Acorn.Emulators.AcornEmu.Services;
+namespace GWGUI.Emulation.Acorn.Emulators.AcornEmu.Machines.BbcMicro.Common.Services;
 
 /// <summary>Matrice des touches maintenues ; la carte l'interroge depuis le bus lent du VIA.</summary>
 internal sealed class Keyboard
@@ -18,16 +18,16 @@ internal sealed class Keyboard
         foreach (var key in keys)
         {
             var hasCharacter = hostCharacters?.TryGetValue(key, out _) == true;
-            var character = hasCharacter ? hostCharacters![key] : KeyboardDictionary.Keypad.GetValueOrDefault(key);
+            var character = hasCharacter ? hostCharacters![key] : BbcMicroKeyboardDictionary.Keypad.GetValueOrDefault(key);
             // Les lettres du contrat suivent déjà les identités hôtes ; CAPS LOCK et SHIFT LOCK restent gérés par MOS.
             if (hasCharacter && key is >= EmulationKey.A and <= EmulationKey.Z && char.ToUpperInvariant(character) == key.ToString()[0])
             {
-                _matrix[KeyboardDictionary.Matrix[key]] = true;
+                _matrix[BbcMicroKeyboardDictionary.Matrix[key]] = true;
                 continue;
             }
             if (hasCharacter || character != '\0')
             {
-                if (KeyboardDictionary.Characters.TryGetValue(character, out var contact))
+                if (BbcMicroKeyboardDictionary.Characters.TryGetValue(character, out var contact))
                 {
                     // L'espace est identique avec ou sans SHIFT ; il ne doit pas changer une autre touche maintenue.
                     if (character == ' ') { _matrix[contact.Position] = true; continue; }
@@ -38,7 +38,7 @@ internal sealed class Keyboard
                 continue;
             }
             if (key == EmulationKey.NumpadEnter) _matrix[0x49] = true;
-            else if (KeyboardDictionary.Matrix.TryGetValue(key, out var position)) _matrix[position] = true;
+            else if (BbcMicroKeyboardDictionary.Matrix.TryGetValue(key, out var position)) _matrix[position] = true;
         }
         if (characterShift.HasValue) _matrix[0] = characterShift.Value;
         BreakPressed = keys.Contains(EmulationKey.Break);

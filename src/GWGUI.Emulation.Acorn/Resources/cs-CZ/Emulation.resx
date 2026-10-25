@@ -10,4 +10,8 @@
   <data name="Emulation.Acorn.Video.Controller"><value>Načasování videa</value></data>
   <data name="Emulation.Acorn.Video.Pixels"><value>Pixel a barevný generátor</value></data>
   <data name="Emulation.Acorn.Video.Teletext"><value>Generátor znaků teletextu</value></data>
+  <data name="Emulation.Acorn.Firmware.CharacterGenerator"><value>Generátor znaků ROM</value></data>
+  <data name="Emulation.Acorn.Video.Output"><value>Video výstup</value></data>
+  <data name="Emulation.Acorn.Video.Output.Monochrome"><value>Kompozitní (monochromní)</value></data>
+  <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>složený (barevný, S39)</value></data>
 </root>

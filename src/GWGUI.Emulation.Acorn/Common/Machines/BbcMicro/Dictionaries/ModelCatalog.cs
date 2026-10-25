@@ -14,7 +14,7 @@ public static class BbcMicroModelCatalog
             BbcMicroModelConstants.ModelADisplayNameResource, BbcMicroModelConstants.SixteenKibibytes,
             HardwareCpu.Mos6502A, KeyboardPorts,
             HardwareModelFunctions.Values(HardwareStorageCapability.Cassette),
-            HardwareModelFunctions.Values(FirmwareCategory.OperatingSystem, FirmwareCategory.Basic),
+            HardwareModelFunctions.Values(FirmwareCategory.OperatingSystem, FirmwareCategory.Basic, FirmwareCategory.CharacterGenerator),
             HardwareModelFunctions.Values(MediaCategory.Cassette)),
         Create(MachineModel.BbcMicroModelB, BbcMicroModelConstants.ModelBId,
             BbcMicroModelConstants.ModelBDisplayNameResource, BbcMicroModelConstants.ThirtyTwoKibibytes,

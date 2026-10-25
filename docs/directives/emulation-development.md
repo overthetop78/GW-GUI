@@ -1,9 +1,13 @@
 - Respecter l'architecture, les interfaces et les services déjà en place pour créer ou compléter un émulateur.
+  - Appliquer le cycle Power commun : éteindre arrête et libère le cœur ; rallumer crée une nouvelle instance, en conservant l'application et le module ouverts.
   - Réserver les modifications d'App et d'Emulation aux cas d'extrême nécessité.
     - Concevoir ces modifications pour toute catégorie d'émulateur : ordinateur, console, arcade, flipper ou autre électronique.
     - Adapter tous les consommateurs concernés pour disposer d'un parcours cohérent et unique.
   - Donner la priorité aux touches système et aux affectations existantes lors du traitement des entrées.
 - Séparer les modèles dans l'émulateur et réunir les traitements réellement communs.
+  - Répertorier les identités des BIOS/ROM dans un catalogue partagé de Common/Machines et définir leurs compatibilités dans les profils des machines, indépendamment des émulateurs qui les utilisent.
+    - Afficher les ROM connues avec leur compatibilité définie pour la machine, et conserver le statut inconnu pour les fichiers non reconnus ; distinguer cette identification des contraintes de chargement.
+  - Réserver aux adaptateurs d'émulateurs les champs de configuration, les modalités de chargement et les limites de leur implémentation.
   - Découper les composants et leurs responsabilités dans des fichiers ciblés, même si cela nécessite beaucoup de fichiers.
   - Organiser cette découpe pour pouvoir déplacer et réutiliser les fichiers dans les autres modèles, gammes ou marques concernés.
 - Rechercher sur Internet les informations techniques du modèle et étudier les sources des émulateurs existants pour comprendre et améliorer son émulation.

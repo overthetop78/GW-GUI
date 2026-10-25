@@ -10,4 +10,8 @@
   <data name="Emulation.Acorn.Video.Controller"><value>Videoidőzítő</value></data>
   <data name="Emulation.Acorn.Video.Pixels"><value>Pixel és színgenerátor</value></data>
   <data name="Emulation.Acorn.Video.Teletext"><value>Teletext karaktergenerátor</value></data>
+  <data name="Emulation.Acorn.Firmware.CharacterGenerator"><value>Karakter generátor ROM</value></data>
+  <data name="Emulation.Acorn.Video.Output"><value>Videokimenet</value></data>
+  <data name="Emulation.Acorn.Video.Output.Monochrome"><value>Összetett (monokróm)</value></data>
+  <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>Összetett (szín, S39)</value></data>
 </root>

@@ -4,6 +4,7 @@ using GWGUI.App.Contracts.Emulation.Firmware;
 using GWGUI.App.Factories.Views.Common;
 using GWGUI.App.Localization.Extensions;
 using System.Globalization;
+using System.Windows.Automation;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -54,11 +55,7 @@ internal static partial class EmulationSettingsLayout
             Margin = new Thickness(8, 2, 8, 2) };
         grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(EmulationFirmwareSettingsConstants.FirmwareIconColumnWidth) });
         grid.ColumnDefinitions.Add(new ColumnDefinition());
-        grid.ColumnDefinitions.Add(new ColumnDefinition
-        {
-            Width = GridLength.Auto,
-            SharedSizeGroup = EmulationFirmwareSettingsConstants.FirmwareBadgeSharedSizeGroup
-        });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         grid.ColumnDefinitions.Add(new ColumnDefinition
         {
             Width = GridLength.Auto,
@@ -81,7 +78,25 @@ internal static partial class EmulationSettingsLayout
         Grid.SetColumn(identity, 1); grid.Children.Add(identity);
 
         var colors = FirmwareBadgeColors(compatibility);
-        var badge = FirmwareBadge(colors.Text, colors);
+        var badge = FirmwareBadge(string.Empty, colors);
+        badge.Child = new TextBlock
+        {
+            Text = compatibility switch
+            {
+                EmulationFirmwareCompatibility.Official or EmulationFirmwareCompatibility.Compatible => IconGlyphs.Current,
+                EmulationFirmwareCompatibility.PartiallyCompatible => IconGlyphs.Warning,
+                EmulationFirmwareCompatibility.Incompatible => IconGlyphs.Error,
+                _ => IconGlyphs.Information
+            },
+            FontFamily = ControlVisualConstants.IconFont,
+            FontSize = 18,
+            Foreground = colors.Foreground,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+        badge.Padding = new Thickness(6);
+        badge.ToolTip = colors.Text;
+        AutomationProperties.SetName(badge, colors.Text);
         Grid.SetColumn(badge, 2); grid.Children.Add(badge);
 
         if (!string.IsNullOrWhiteSpace(destination))

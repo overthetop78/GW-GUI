@@ -10,4 +10,8 @@
   <data name="Emulation.Acorn.Video.Controller"><value>וידאו תזמון בקר</value></data>
   <data name="Emulation.Acorn.Video.Pixels"><value>Pixel and Color גנרטור</value></data>
   <data name="Emulation.Acorn.Video.Teletext"><value>תגית:</value></data>
+  <data name="Emulation.Acorn.Firmware.CharacterGenerator"><value>גנרטור ROM</value></data>
+  <data name="Emulation.Acorn.Video.Output"><value>וידאו הפקה</value></data>
+  <data name="Emulation.Acorn.Video.Output.Monochrome"><value>אתר (monochrome)</value></data>
+  <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>אתר (Colour, S39) )</value></data>
 </root>

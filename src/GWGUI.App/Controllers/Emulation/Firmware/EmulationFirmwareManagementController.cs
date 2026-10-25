@@ -73,12 +73,12 @@ internal sealed class EmulationFirmwareManagementController
 
     private void Use(EmulationFirmwareCandidate firmware)
     {
-        if (firmware.Compatibility == EmulationFirmwareCompatibility.Incompatible) return;
+        if (firmware.DestinationFieldId is null || firmware.Compatibility == EmulationFirmwareCompatibility.Incompatible) return;
         _setConfiguration(_manager.UseFirmware(_getConfiguration(), firmware));
         ConfigurationChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    private void UpdateUseButton() => EmulationSettingsLayout.UpdateFirmwareUseButton(_use, (_firmwares.SelectedItem as ListBoxItem)?.Tag is EmulationFirmwareCandidate firmware ? firmware.Compatibility : null);
+    private void UpdateUseButton() => EmulationSettingsLayout.UpdateFirmwareUseButton(_use, (_firmwares.SelectedItem as ListBoxItem)?.Tag is EmulationFirmwareCandidate { DestinationFieldId: not null } firmware ? firmware.Compatibility : null);
 
     private Task OpenFolderAsync()
     {

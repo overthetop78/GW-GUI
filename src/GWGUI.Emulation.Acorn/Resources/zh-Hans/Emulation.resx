@@ -10,4 +10,8 @@
   <data name="Emulation.Acorn.Video.Controller"><value>视频计时控制器</value></data>
   <data name="Emulation.Acorn.Video.Pixels"><value>像素和彩色生成器</value></data>
   <data name="Emulation.Acorn.Video.Teletext"><value>Telet文本字符生成器</value></data>
+  <data name="Emulation.Acorn.Firmware.CharacterGenerator"><value>字符生成器 ROM</value></data>
+  <data name="Emulation.Acorn.Video.Output"><value>视频输出</value></data>
+  <data name="Emulation.Acorn.Video.Output.Monochrome"><value>复合(单色)</value></data>
+  <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>复合材料(颜色, S39) , (中文(简体) ).</value></data>
 </root>

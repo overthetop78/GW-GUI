@@ -24,7 +24,13 @@ internal static class SettingsDescriptionFunctions
             Audio(configuration)
         };
         if (configuration.Core != Emulator.None && new Engine().Adapter(configuration) is { } settings)
-            blocks.InsertRange(BufferConstants.FirstCollectionIndex, settings.GetMachineSettingsBlocks(configuration));
+        {
+            var nativeBlocks = settings.GetMachineSettingsBlocks(configuration);
+            // Un éditeur de capacité remplace l'information fixe, sans supprimer les autres réglages RAM du cœur.
+            if (nativeBlocks.SelectMany(block => block.Fields).Any(field => field.Id == SettingsConstants.MainMemory && field.Editor != EmulationSettingsEditor.Information))
+                blocks.RemoveAll(block => block.Tab == EmulationMachineTab.Ram && block.Fields.All(field => field.Id == SettingsConstants.MainMemory));
+            blocks.InsertRange(BufferConstants.FirstCollectionIndex, nativeBlocks);
+        }
         return blocks;
     }
 

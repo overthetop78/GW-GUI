@@ -10,4 +10,8 @@
   <data name="Emulation.Acorn.Video.Controller"><value>Điều khiển thời gian ảnh động</value></data>
   <data name="Emulation.Acorn.Video.Pixels"><value>Trình tạo điểm ảnh và màu</value></data>
   <data name="Emulation.Acorn.Video.Teletext"><value>Trình tạo ký tự điện tử điện thoại</value></data>
+  <data name="Emulation.Acorn.Firmware.CharacterGenerator"><value>Trình tạo ký tự ROM</value></data>
+  <data name="Emulation.Acorn.Video.Output"><value>Kết xuất ảnh động</value></data>
+  <data name="Emulation.Acorn.Video.Output.Monochrome"><value>Tổng hợp (monoorome)</value></data>
+  <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>Chất kết hợp (có màu, S39)</value></data>
 </root>
