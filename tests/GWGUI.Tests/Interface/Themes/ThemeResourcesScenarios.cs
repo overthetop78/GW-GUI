@@ -17,8 +17,7 @@ internal static class ThemeResourcesScenarios
             ThemeManager.Apply(theme,systemDark,Accent);
             Assert.Equal(expected,ThemeManager.IsDark);
             var appliedAccent = ((SolidColorBrush)System.Windows.Application.Current.Resources["AccentBrush"]).Color;
-            Assert.Equal((Color)ColorConverter.ConvertFromString(expected?"#17191F":"#F1F2F4"),
-                ((SolidColorBrush)System.Windows.Application.Current.Resources["WindowBrush"]).Color);
+            Assert.Equal((Color)ColorConverter.ConvertFromString(expected?"#17191F":"#F1F2F4"), ((SolidColorBrush)System.Windows.Application.Current.Resources["WindowBrush"]).Color);
             var window = ((SolidColorBrush)System.Windows.Application.Current.Resources["WindowBrush"]).Color;
             Assert.True(ThemeManager.Contrast(appliedAccent, window) >= ThemeConstants.MinimumTextContrast);
             foreach(var key in new[]{"TextBrush","CardBrush","ControlBrush","BorderBrush","HoverBrush","SelectedBrush","StatusBrush"})

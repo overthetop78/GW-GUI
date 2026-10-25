@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.beetle_pcfx_fast.Description"><value>Emulater NEC PC-FX systemer.</value></data>
+  <data name="Emulation.Nec.Language"><value>NEC-systemsprog</value></data>
+  <data name="Emulation.Nec.Language.English"><value>Engelsk</value></data>
+  <data name="Emulation.Nec.Language.French"><value>Fransk</value></data>
+  <data name="Emulation.Nec.Language.Spanish"><value>Spansk</value></data>
+  <data name="Emulation.Nec.Firmware.Integrated"><value>ROM indbygget i emulatoren</value></data>
+  <data name="Emulation.Emulator.beetle_pce_fast.Description"><value>Emulater PC Engine, CoreGrafx TurboGrafx-16, PC Engine Duo og TurboExpress systemer.</value></data>
+  <data name="Emulation.Nec.Firmware.NotRequired"><value>Ingen ekstern BIOS kræves</value></data>
+  <data name="Emulation.Nec.Audio.CdVolume"><value>CD lydvolumen</value></data>
+  <data name="Emulation.Nec.Audio.SoundQuality"><value>Lydkvalitet</value></data>
+  <data name="Emulation.Nec.Mouse.Sensitivity"><value>Mus følsomhed</value></data>
+  <data name="Emulation.Nec.Memory.CdRam"><value>CD arbejde RAM</value></data>
+  <data name="Emulation.Nec.Audio.AdpcmVolume"><value>CD ADPCM volumen</value></data>
+  <data name="Emulation.Nec.Audio.CdPsgVolume"><value>CD PSG volumen</value></data>
+  <data name="Emulation.Nec.Audio.AdpcmLowPass"><value>CD- ADPCM lavpasfilter</value></data>
+  <data name="Emulation.Nec.Audio.SuppressClicks"><value>Undertryk kanalnulklik</value></data>
+  <data name="Emulation.Nec.Audio.BuggyCodec"><value>Emulat buggy ADPCM codec</value></data>
+  <data name="Emulation.Nec.Storage.CdImageCache"><value>Indlæs CD billede i hukommelsen</value></data>
+  <data name="Emulation.Nec.Storage.CdIgnoreErrors"><value>Ignorér CD korrektionsfejl</value></data>
+  <data name="Emulation.Emulator.beetle_sgx.Description"><value>Emulates PC Engine SuperGrafx spil, HuCards og CD-ROM ² medier.</value></data>
+  <data name="Emulation.Emulator.geargrafx.Description"><value>Emulerer PC Engine, SuperGrafx og NEC LaserActive systemer.</value></data>
+  <data name="Emulation.Nec.Cpu.Region"><value>Konsol-region</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Auto"><value>Automatisk</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Japan"><value>Japan</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Usa"><value>USA</value></data>
+</root>

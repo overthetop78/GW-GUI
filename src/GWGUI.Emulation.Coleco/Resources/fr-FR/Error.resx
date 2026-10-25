@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Error.StateIncompatible" xml:space="preserve"><value>L'état de sauvegarde Coleco est incompatible avec la machine actuelle.</value></data>
+  <data name="Emulation.Coleco.Error.Unexpected" xml:space="preserve"><value>Une erreur inattendue d'émulation de Coleco s'est produite.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareMissing" xml:space="preserve"><value>Un firmware Coleco nécessaire est manquant.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid" xml:space="preserve"><value>Le système ROM est invalide ou incompatible.</value></data>
+  <data name="Emulation.Coleco.Error.ContentNotFound" xml:space="preserve"><value>Le support Coleco configuré n'a pas été trouvé.</value></data>
+  <data name="Emulation.Coleco.Error.ContentUnsupported" xml:space="preserve"><value>Cette machine ne supporte pas les médias sélectionnés.</value></data>
+  <data name="Emulation.Coleco.Error.OptionInvalid" xml:space="preserve"><value>Une option Coleco a une valeur invalide.</value></data>
+  <data name="Emulation.Coleco.Error.CoreNotFound" xml:space="preserve"><value>Le noyau de Coleco requis n'a pas été trouvé.</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected" xml:space="preserve"><value>Le cœur Coleco sélectionné n'a pas pu être chargé.</value></data>
+  <data name="Emulation.Coleco.Error.StateInvalid" xml:space="preserve"><value>L'état de Coleco est invalide.</value></data>
+  <data name="Emulation.Coleco.Error.Details" xml:space="preserve"><value>Détails: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostProtocolFailure" xml:space="preserve"><value>La communication avec l'hôte Coleco a échoué.</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Commande d'environnement inconnu : {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing" xml:space="preserve"><value>Le chemin du programme d’émulation est indisponible.</value></data>
+</root>

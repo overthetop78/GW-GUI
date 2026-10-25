@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Content.Initial" xml:space="preserve"><value>Media permainan</value></data>
+  <data name="Emulation.Snk.Memory.Display" xml:space="preserve"><value>Memori video</value></data>
+  <data name="Emulation.Snk.Audio.Native" xml:space="preserve"><value>Perangkat keras audio</value></data>
+  <data name="Emulation.Snk.Video.Native" xml:space="preserve"><value>Perangkat keras video</value></data>
+  <data name="Emulation.Snk.Controls.Native" xml:space="preserve"><value>Pengaturan pengontrol</value></data>
+  <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>Pengaturan sistem</value></data>
+  <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>Sistem BIOS</value></data>
+  <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>Tambahan BIOS</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>Mengemulasikan Neo Geo CD dan Neo Geo CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>Mengemulasikan sistem Neo Geo yang menggunakan kartrid gim dan CD.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Mengemulasikan sistem SNK yang kompatibel.</value></data>
+  <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>Bahasa</value></data>
+  <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>Bahasa Jepang</value></data>
+  <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>Bahasa Inggris</value></data>
+  <data name="Emulation.Snk.Help.DarkFilterLevel" xml:space="preserve"><value>Aktifkan pengurangan kecerahan berbasis luminosit. Mungkin digunakan untuk menghindari deretan silau / mata ketika memainkan permainan dengan latar belakang putih.</value></data>
+  <data name="Emulation.Snk.Value.Manual"><value>Manual</value></data>
+  <data name="Emulation.Snk.Setting.RealTimeClock" xml:space="preserve"><value>Jam Waktu Real-</value></data>
+  <data name="Emulation.Snk.Help.RealTimeClock" xml:space="preserve"><value>Memilih bagaimana emulasi waktu yang maju. 'Jumlah Deterministik' terukur frame dari basis tetap, jadi RTC baca dapat direproduksi dan aman untuk jejaring, putar ulang dan jalankan ke depan. 'Real Time' membaca host clock secara langsung (sebuah jam langsung, tapi bukan-deterministik).</value></data>
+  <data name="Emulation.Snk.Value.Deterministic" xml:space="preserve"><value>Deterministik</value></data>
+  <data name="Emulation.Snk.Value.RealTime"><value>Real Time</value></data>
+  <data name="Emulation.Snk.Setting.AudioQuality" xml:space="preserve"><value>Kualitas Audio</value></data>
+  <data name="Emulation.Snk.Setting.AudioSampleRate" xml:space="preserve"><value>Laju Cuplikan Audio</value></data>
+  <data name="Emulation.Snk.Value.Game" xml:space="preserve"><value>permainan</value></data>
+  <data name="Emulation.Snk.Value.System" xml:space="preserve"><value>sistem</value></data>
+  <data name="Emulation.Snk.Setting.MainProcessorSpeed" xml:space="preserve"><value>Kecepatan prosesor utama (%)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderMethod" xml:space="preserve"><value>Metode pengurutan alternatif</value></data>
+  <data name="Emulation.Snk.Setting.VideoApproach1Enabled" xml:space="preserve"><value>Video pendekatan 1 Diaktifkan</value></data>
+  <data name="Emulation.Snk.Setting.HideGameInfoScreen" xml:space="preserve"><value>Sembunyikan layar info game</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningScreen" xml:space="preserve"><value>Sembunyikan layar peringatan</value></data>
+  <data name="Emulation.Snk.Setting.EnableMultithreading" xml:space="preserve"><value>Aktifkan multithreading</value></data>
+  <data name="Emulation.Snk.Setting.SetBrightness" xml:space="preserve"><value>Atur kecerahan</value></data>
+  <data name="Emulation.Snk.Setting.SetContrast" xml:space="preserve"><value>Set kontras</value></data>
+  <data name="Emulation.Snk.Setting.SetGamma" xml:space="preserve"><value>Atur gamma</value></data>
+  <data name="Emulation.Snk.Setting.SkipDisclaimer" xml:space="preserve"><value>Lewati Discoverer</value></data>
+  <data name="Emulation.Snk.Setting.SkipWarnings" xml:space="preserve"><value>Lewati Peringatan</value></data>
+  <data name="Emulation.Snk.Help.DisplayMAMEMenu" xml:space="preserve"><value>Menjungkit visibilitas internal MAME menu.</value></data>
+  <data name="Emulation.Snk.Setting.Brightness" xml:space="preserve"><value>Kecerahan</value></data>
+  <data name="Emulation.Snk.Help.Brightness" xml:space="preserve"><value>Ubah tingkat kecerahan yang dipakai.</value></data>
+  <data name="Emulation.Snk.Setting.GammaCorrection" xml:space="preserve"><value>Koreksi Gamma</value></data>
+  <data name="Emulation.Snk.Help.GammaCorrection" xml:space="preserve"><value>Mengubah tingkat gamma yang sedang digunakan.</value></data>
+  <data name="Emulation.Snk.Help.DisplayArtwork" xml:space="preserve"><value>Digunakan untuk menampilkan karya seni gubahan ketika tersedia.</value></data>
+  <data name="Emulation.Snk.Help.ArtworkResolutionMultiplier" xml:space="preserve"><value>Meningkatkan resolusi karya seni dengan nilai pengganda terpilih.</value></data>
+  <data name="Emulation.Snk.Setting.SpecifyNeoGeoBIOS" xml:space="preserve"><value>Nyatakan Neo Geo BIOS</value></data>
+  <data name="Emulation.Snk.Help.SpecifyNeoGeoBIOS" xml:space="preserve"><value>Pilih berkas bios alternatif.</value></data>
+  <data name="Emulation.Snk.Value.Asia"><value>asia</value></data>
+  <data name="Emulation.Snk.Value.Japan" xml:space="preserve"><value>Japan</value></data>
+  <data name="Emulation.Snk.Setting.UseSamples" xml:space="preserve"><value>Gunakan Contoh</value></data>
+  <data name="Emulation.Snk.Help.UseSamples" xml:space="preserve"><value>Ijinkan berkas cuplikan audio dimuat ketika diberikan dalam direktori contoh.</value></data>
+  <data name="Emulation.Snk.Help.AutosaveHiscore" xml:space="preserve"><value>Disarankan untuk menggunakan baku yang akan menyimpan hiscore ketika penutupan konten. Rekursif akan menyimpan berulang kali selama gameplay. Dinonaktifkan akan memotong penggunaan dari hiscore.dat Semua berkas.</value></data>
+  <data name="Emulation.Snk.Help.CPUClockScale" xml:space="preserve"><value>Digunakan untuk di bawah atau di atas jam yang diemulasi CPU dengan persentase tertentu.</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningsScreen" xml:space="preserve"><value>Sembunyikan layar peringatan</value></data>
+  <data name="Emulation.Snk.Setting.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>Gunakan kedalaman warna 32-bits ketika tersedia</value></data>
+  <data name="Emulation.Snk.Help.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>Ubah format piksel, beberapa permainan memerlukan ini untuk membuat performa yang benar, ini dapat berdampak pada beberapa platform</value></data>
+  <data name="Emulation.Snk.Setting.VerticalMode" xml:space="preserve"><value>Mode vertikal</value></data>
+  <data name="Emulation.Snk.Help.VerticalMode" xml:space="preserve"><value>Putar tampilan untuk layar vertikal</value></data>
+  <data name="Emulation.Snk.Value.Alternate" xml:space="preserve"><value>alternatif</value></data>
+  <data name="Emulation.Snk.Value.TATEAlternate" xml:space="preserve"><value>TATE alternatif</value></data>
+  <data name="Emulation.Snk.Setting.UseA60HzRefreshRate" xml:space="preserve"><value>Gunakan sebuah rate refresh 60 Hz</value></data>
+  <data name="Emulation.Snk.Help.UseA60HzRefreshRate" xml:space="preserve"><value>Gunakan 60 Hz daripada tingkat penyegaran asli. Ini dapat mengubah kecepatan permainan dan menyebabkan animasi uneven.</value></data>
+  <data name="Emulation.Snk.Setting.Resolution" xml:space="preserve"><value>Resolusi</value></data>
+  <data name="Emulation.Snk.Help.Resolution" xml:space="preserve"><value>Set resolusi dalam game tertentu (vektor)</value></data>
+  <data name="Emulation.Snk.Help.FixedFrameskip" xml:space="preserve"><value>Ketika 'Frameskip' diset ke 'Fixed', atau jika frontend tidak mendukung alternatif mode 'Frameskip', lewati render pada laju tetap dari frame X dari X+1</value></data>
+  <data name="Emulation.Snk.Value.NoSkipping" xml:space="preserve"><value>Tidak ada melewati</value></data>
+  <data name="Emulation.Snk.Setting.CPUClock" xml:space="preserve"><value>CPU jam</value></data>
+  <data name="Emulation.Snk.Help.CPUClock" xml:space="preserve"><value>Ubah frekuensi cpu yang diemumulasi untuk berbagai sistem, dengan meningkatnya Anda dapat memperbaiki slowdowns asli dalam beberapa game, dengan menurunkan Anda dapat membantu kinerja pada perangkat low-end</value></data>
+  <data name="Emulation.Snk.Setting.DiagnosticInput" xml:space="preserve"><value>Masukan Diagnostik</value></data>
+  <data name="Emulation.Snk.Help.DiagnosticInput" xml:space="preserve"><value>Konfigurasikan kombinasi tombol untuk memasukkan menu layanan kabinet</value></data>
+  <data name="Emulation.Snk.Help.Hiscores" xml:space="preserve"><value>Aktifkan dukungan skor tinggi, Anda juga perlu berkas hiscore.dat dalam sistem / fbneo / folder Anda</value></data>
+  <data name="Emulation.Snk.Help.AllowPatchedRomsets" xml:space="preserve"><value>Ijinkan romset dari sistem / fbneo / folder ditambal / ditambal untuk menimpa romset Anda, crcs akan diabaikan tapi ukuran dan nama harus tetap sama, sebagai tambahan ini juga tombol utama untuk apakah IPS Patch dan RomData dieksekusi atau tidak, Anda perlu menutup isi untuk pengaturan ini untuk mengambil efek</value></data>
+  <data name="Emulation.Snk.Setting.SampleInterpolation" xml:space="preserve"><value>Interpolasi Contoh</value></data>
+  <data name="Emulation.Snk.Help.SampleInterpolation" xml:space="preserve"><value>Mengkonfigurasi interpolasi sampel, itu bisa berdampak pertunjukan</value></data>
+  <data name="Emulation.Snk.Setting.FMInterpolation" xml:space="preserve"><value>FM Interpolasi</value></data>
+  <data name="Emulation.Snk.Help.FMInterpolation" xml:space="preserve"><value>Atur FM interpolasi, itu bisa berdampak pertunjukan</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilter" xml:space="preserve"><value>Filter LowPass</value></data>
+  <data name="Emulation.Snk.Help.LowPassFilter" xml:space="preserve"><value>Aktifkan Penyaring LowPass</value></data>
+  <data name="Emulation.Snk.Setting.AnalogSpeed" xml:space="preserve"><value>Kecepatan Analog</value></data>
+  <data name="Emulation.Snk.Help.AnalogSpeed" xml:space="preserve"><value>Minigate analog kontrol kecepatan, beberapa game mungkin memerlukan nilai rendah untuk dapat dimainkan</value></data>
+  <data name="Emulation.Snk.Setting.SOCDMode"><value>SOCD Mode</value></data>
+  <data name="Emulation.Snk.Help.SOCDMode" xml:space="preserve"><value>Ubah ULDR penanganan prioritas</value></data>
+  <data name="Emulation.Snk.Value.Disabled" xml:space="preserve"><value>dinonaktifkan</value></data>
+  <data name="Emulation.Snk.Value.SimultaneousNeutral" xml:space="preserve"><value>Neutral simultan</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority4Way" xml:space="preserve"><value>Prioritas Masukan Terakhir (4 Way)</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority8Way" xml:space="preserve"><value>Prioritas Masukan Terakhir (8 Way)</value></data>
+  <data name="Emulation.Snk.Value.FirstInputPriority" xml:space="preserve"><value>Prioritas Masukan Pertama</value></data>
+  <data name="Emulation.Snk.Setting.CrosshairEmulation" xml:space="preserve"><value>Emulasi Crosshair</value></data>
+  <data name="Emulation.Snk.Value.HideWithLightgunDevice" xml:space="preserve"><value>sembunyikan dengan perangkat pistol cahaya</value></data>
+  <data name="Emulation.Snk.Value.AlwaysHide" xml:space="preserve"><value>selalu bersembunyi</value></data>
+  <data name="Emulation.Snk.Value.AlwaysShow" xml:space="preserve"><value>Selalu tampilkan</value></data>
+  <data name="Emulation.Snk.Setting.NeoGeoMode" xml:space="preserve"><value>Mode Neo- Geo</value></data>
+  <data name="Emulation.Snk.Help.NeoGeoMode" xml:space="preserve"><value>Muat bios yang sesuai tergantung pilihan Anda, dengan kondisi bio tersebut kompatibel dengan permainan yang berjalan</value></data>
+  <data name="Emulation.Snk.Value.MVSEuropeAsiaEnglish" xml:space="preserve"><value>MVS Eropa / Asia (Inggris)</value></data>
+  <data name="Emulation.Snk.Value.MVSUSAEnglishCensored" xml:space="preserve"><value>MVS USA (Inggris - Tersensored)</value></data>
+  <data name="Emulation.Snk.Value.MVSJapanJapanese" xml:space="preserve"><value>MVS Jepang (Jepang)</value></data>
+  <data name="Emulation.Snk.Value.AESEuropeAsiaEnglish" xml:space="preserve"><value>AES Eropa / Asia (Inggris)</value></data>
+  <data name="Emulation.Snk.Value.AESJapanJapanese" xml:space="preserve"><value>AES Jepang (Jepang)</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardMode" xml:space="preserve"><value>Mode kartu memori</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardMode" xml:space="preserve"><value>Ubah perilaku untuk kartu memori</value></data>
+  <data name="Emulation.Snk.Value.Shared" xml:space="preserve"><value>bersama</value></data>
+  <data name="Emulation.Snk.Value.PerGame" xml:space="preserve"><value>per- game</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip11" xml:space="preserve"><value>Debug Dip 1 _ 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip11" xml:space="preserve"><value>Aktifkan Debug Dip 1 _ 1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip12" xml:space="preserve"><value>Debug Dip 1 _ 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip12" xml:space="preserve"><value>Aktifkan Debug Dip 1 _ 2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip13" xml:space="preserve"><value>Debug Dip 1 _ 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip13" xml:space="preserve"><value>Aktifkan Debug Dip 1 _ 3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip14" xml:space="preserve"><value>Debug Dip 1 _ 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip14" xml:space="preserve"><value>Aktifkan Debug Dip 1 _ 4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip15" xml:space="preserve"><value>Debug Dip 1 _ 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip15" xml:space="preserve"><value>Aktifkan Debug Dip 1 _ 5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip16" xml:space="preserve"><value>Debug Dip 1 _ 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip16" xml:space="preserve"><value>Aktifkan Debug Dip 1 _ 6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip17" xml:space="preserve"><value>Debug Dip 1 _ 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip17" xml:space="preserve"><value>Aktifkan Debug Dip 1 _ 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip18" xml:space="preserve"><value>Debug Dip 1 _ 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip18" xml:space="preserve"><value>Aktifkan Debug Dip 1 _ 8</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip21" xml:space="preserve"><value>Debug Dip 2 _ 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip21" xml:space="preserve"><value>Aktifkan Debug Dip 2 _ 1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip22" xml:space="preserve"><value>Debug Dip 2 _ 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip22" xml:space="preserve"><value>Aktifkan Debug Dip 2 _ 2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip23" xml:space="preserve"><value>Debug Dip 2 _ 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip23" xml:space="preserve"><value>Aktifkan Debug Dip 2 _ 3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip24" xml:space="preserve"><value>Debug Dip 2 _ 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip24" xml:space="preserve"><value>Aktifkan Debug Dip 2 _ 4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip25" xml:space="preserve"><value>Debug Dip 2 _ 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip25" xml:space="preserve"><value>Aktifkan Debug Dip 2 _ 5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip26" xml:space="preserve"><value>Debug Dip 2 _ 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip26" xml:space="preserve"><value>Aktifkan Debug Dip 2 _ 6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip27" xml:space="preserve"><value>Debug Dip 2 _ 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip27" xml:space="preserve"><value>Aktifkan Debug Dip 2 _ 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip28" xml:space="preserve"><value>Debug Dip 2 _ 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip28" xml:space="preserve"><value>Aktifkan Debug Dip 2 _ 8</value></data>
+  <data name="Emulation.Snk.Setting.Layer1" xml:space="preserve"><value>Lapis 1</value></data>
+  <data name="Emulation.Snk.Help.Layer1" xml:space="preserve"><value>Untuk debug</value></data>
+  <data name="Emulation.Snk.Setting.Layer2" xml:space="preserve"><value>Lapis 2</value></data>
+  <data name="Emulation.Snk.Setting.Layer3" xml:space="preserve"><value>Lapis 3</value></data>
+  <data name="Emulation.Snk.Setting.Layer4" xml:space="preserve"><value>Lapis 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite1"><value>Sprite 1</value></data>
+  <data name="Emulation.Snk.Setting.Sprite2"><value>Sprite 2</value></data>
+  <data name="Emulation.Snk.Setting.Sprite3"><value>Sprite 3</value></data>
+  <data name="Emulation.Snk.Setting.Sprite4"><value>Sprite 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite5"><value>Sprite 5</value></data>
+  <data name="Emulation.Snk.Setting.Sprite6"><value>Sprite 6</value></data>
+  <data name="Emulation.Snk.Setting.Sprite7"><value>Sprite 7</value></data>
+  <data name="Emulation.Snk.Setting.Sprite8"><value>Sprite 8</value></data>
+  <data name="Emulation.Snk.Setting.ThreadMode" xml:space="preserve"><value>Mode Thread</value></data>
+  <data name="Emulation.Snk.Setting.Cheats" xml:space="preserve"><value>Curang</value></data>
+  <data name="Emulation.Snk.Setting.Throttle"><value>Throttle</value></data>
+  <data name="Emulation.Snk.Setting.BootToBIOS" xml:space="preserve"><value>Boot ke BIOS</value></data>
+  <data name="Emulation.Snk.Setting.BootToOSD" xml:space="preserve"><value>Boot ke OSD</value></data>
+  <data name="Emulation.Snk.Setting.ReadConfiguration" xml:space="preserve"><value>Konfigurasi Baca</value></data>
+  <data name="Emulation.Snk.Setting.WriteConfiguration" xml:space="preserve"><value>Konfigurasi Tulis</value></data>
+  <data name="Emulation.Snk.Setting.MAMEINIPaths" xml:space="preserve"><value>MAME INI Path</value></data>
+  <data name="Emulation.Snk.Setting.Softlists" xml:space="preserve"><value>Softlist</value></data>
+  <data name="Emulation.Snk.Setting.MediaType" xml:space="preserve"><value>Jenis Media</value></data>
+  <data name="Emulation.Snk.Value.Cart" xml:space="preserve"><value>gerobak</value></data>
+  <data name="Emulation.Snk.Value.Cass"><value>cass</value></data>
+  <data name="Emulation.Snk.Value.Cdrm"><value>cdrm</value></data>
+  <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>gagal</value></data>
+  <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>keras</value></data>
+  <data name="Emulation.Snk.Value.Prin"><value>prin</value></data>
+  <data name="Emulation.Snk.Value.Serl"><value>serl</value></data>
+  <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS Diaktifkan</value></data>
+  <data name="Emulation.Snk.Setting.JoystickDeadzone" xml:space="preserve"><value>Zona Kematian Joystick</value></data>
+  <data name="Emulation.Snk.Setting.JoystickSaturation" xml:space="preserve"><value>Saturasi Joystick</value></data>
+  <data name="Emulation.Snk.Setting.JoystickThreshold" xml:space="preserve"><value>Ambang Joystick</value></data>
+  <data name="Emulation.Snk.Setting.Joystick4WaySimulation" xml:space="preserve"><value>Simulasi Joystick 4-way</value></data>
+  <data name="Emulation.Snk.Value.4way"><value>4way</value></data>
+  <data name="Emulation.Snk.Value.Strict" xml:space="preserve"><value>ketat</value></data>
+  <data name="Emulation.Snk.Value.Qbert"><value>qbert</value></data>
+  <data name="Emulation.Snk.Setting.ProfileButtonsPerGame" xml:space="preserve"><value>Tombol Profil Per Permainan</value></data>
+  <data name="Emulation.Snk.Setting.Mouse" xml:space="preserve"><value>Tetikus</value></data>
+  <data name="Emulation.Snk.Setting.LightgunMode" xml:space="preserve"><value>Mode Lightgun</value></data>
+  <data name="Emulation.Snk.Value.Lightgun"><value>Lightgun</value></data>
+  <data name="Emulation.Snk.Value.Touchscreen" xml:space="preserve"><value>Layar Sentuh</value></data>
+  <data name="Emulation.Snk.Setting.LightgunOffscreenPosition" xml:space="preserve"><value>Posisi Luar Layar Lightgun</value></data>
+  <data name="Emulation.Snk.Value.Free" xml:space="preserve"><value>Bebas</value></data>
+  <data name="Emulation.Snk.Value.FixedTopLeft" xml:space="preserve"><value>Tetap (Kiri Atas)</value></data>
+  <data name="Emulation.Snk.Value.FixedBottomRight" xml:space="preserve"><value>Tetap (Bawah Kanan)</value></data>
+  <data name="Emulation.Snk.Setting.ScreenRotationMode" xml:space="preserve"><value>Mode Rotasi Layar</value></data>
+  <data name="Emulation.Snk.Value.Internal"><value>Internal</value></data>
+  <data name="Emulation.Snk.Setting.AudioProcessorSpeed" xml:space="preserve"><value>Kecepatan prosesor audio (%)</value></data>
+  <data name="Emulation.Snk.Help.AutomaticLoadFastForward" xml:space="preserve"><value>Fitur eksperimental untuk secara otomatis maju selama CD Akses.&#xA;Bekerja dengan:&#xA;- Generik SCSI&#xA;- Sega CD dan Neo Geo CD</value></data>
+  <data name="Emulation.Snk.Setting.CoinLimit" xml:space="preserve"><value>Batas Koin</value></data>
+  <data name="Emulation.Snk.Setting.SampleRate" xml:space="preserve"><value>Laju Contoh</value></data>
+  <data name="Emulation.Snk.Help.SampleRate" xml:space="preserve"><value>Jumlah sampel audio yang diambil per detik. Tingkat lebih tinggi memberikan audio kualitas yang lebih baik.</value></data>
+  <data name="Emulation.Snk.Value.Threshold"><value>threshold</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipInterval" xml:space="preserve"><value>Persatuan Frameskip</value></data>
+  <data name="Emulation.Snk.Help.FrameskipInterval" xml:space="preserve"><value>Jumlah maksimum frame yang mungkin dilewati secara berurutan. Nilai bawah menjaga pemutakhiran visual secara halus dengan biaya penurunan audio lebih banyak ketika host kelebihan beban.</value></data>
+  <data name="Emulation.Snk.Setting.ShowGameInformation" xml:space="preserve"><value>Tampilkan Informasi Permainan</value></data>
+  <data name="Emulation.Snk.Help.ShowGameInformation" xml:space="preserve"><value>Tampilkan MAMEPengawalan status dan game- informasi layar di startup sebelum permainan dimulai berjalan.</value></data>
+  <data name="Emulation.Snk.Setting.Stereo"><value>Stereo</value></data>
+  <data name="Emulation.Snk.Help.Stereo" xml:space="preserve"><value>Audio stereo keluaran. Matikan untuk sedikit lebih rendah CPU pada permainan yang tidak menggunakan pencampuran stereo.</value></data>
+  <data name="Emulation.Snk.Setting.SystemType" xml:space="preserve"><value>Tipe Sistem</value></data>
+  <data name="Emulation.Snk.Help.SystemType" xml:space="preserve"><value>Nyatakan Tipe Sistem: AES, MVS, atau Universe BIOS Sistem</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoAESHomeConsole" xml:space="preserve"><value>Neo Geo AES (Konsol Rumah)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoMVSArcade"><value>Neo Geo MVS (Arcade)</value></data>
+  <data name="Emulation.Snk.Value.UniverseBIOSCommunityEnhancedBIOS" xml:space="preserve"><value>Universe BIOS (Community- ditingkatkan BIOS)</value></data>
+  <data name="Emulation.Snk.Setting.CDSystemType" xml:space="preserve"><value>CD Tipe Sistem</value></data>
+  <data name="Emulation.Snk.Help.CDSystemType" xml:space="preserve"><value>Nyatakan CD Tipe Sistem ketika memuat Neo Geo CD image diska</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDFrontLoader" xml:space="preserve"><value>Neo Geo CD (Pemuat Depan)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDTopLoader" xml:space="preserve"><value>Neo Geo CD (Pemuat Atas)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDZUniverseBIOS" xml:space="preserve"><value>Neo Geo CDZ (Alam Semesta BIOS)</value></data>
+  <data name="Emulation.Snk.Setting.Region" xml:space="preserve"><value>Daerah</value></data>
+  <data name="Emulation.Snk.Help.Region" xml:space="preserve"><value>Nyatakan Daerah: USA, Jepang, Asia, Eropa</value></data>
+  <data name="Emulation.Snk.Value.Europe" xml:space="preserve"><value>Eropa</value></data>
+  <data name="Emulation.Snk.Help.MemoryCard" xml:space="preserve"><value>Aktifkan atau Matikan Kartu Memori</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardWriteProtect" xml:space="preserve"><value>Mencegah perubahan ke kartu memori.</value></data>
+  <data name="Emulation.Snk.Setting.SettingMode" xml:space="preserve"><value>Mode Pengaturan</value></data>
+  <data name="Emulation.Snk.Help.SettingMode" xml:space="preserve"><value>Tampilkan Sistem ROM menu pada boot pada sistem arkade</value></data>
+  <data name="Emulation.Snk.Help.FourPlayerMode" xml:space="preserve"><value>Set Empat Pemutar (ganda MVS modus kabinet) untuk Asia / Jepang MVS sistem</value></data>
+  <data name="Emulation.Snk.Help.Freeplay" xml:space="preserve"><value>Putar MVS game tanpa perlu untuk memasukkan koin</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanTop" xml:space="preserve"><value>Mask off piksel yang tersembunyi oleh bezel atau batas pada CRT asli (atas)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanBottom" xml:space="preserve"><value>Mask off piksel yang tersembunyi oleh bezel atau batas pada CRT asli (bawah)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanLeft" xml:space="preserve"><value>Mask off piksel tersembunyi oleh bezel atau batas pada CRT asli (kiri)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanRight" xml:space="preserve"><value>Mask off piksel yang tersembunyi oleh bezel atau batas pada CRT asli (kanan)</value></data>
+  <data name="Emulation.Snk.Setting.Palette" xml:space="preserve"><value>Palet</value></data>
+  <data name="Emulation.Snk.Help.Palette" xml:space="preserve"><value>Atur Palet</value></data>
+  <data name="Emulation.Snk.Setting.AspectRatio" xml:space="preserve"><value>Rasio Aspek</value></data>
+  <data name="Emulation.Snk.Help.AspectRatio" xml:space="preserve"><value>Atur Rasio Aspek</value></data>
+  <data name="Emulation.Snk.Value.PerfectlySquarePixels11PAR" xml:space="preserve"><value>Pixel Perfect Square (1: 1 PAR)</value></data>
+  <data name="Emulation.Snk.Value.OstensiblyAccurateNTSCAspectRatio4544PAR" xml:space="preserve"><value>Secara terang-terangan akurat NTSC Rasio Aspek (45: 44 PAR)</value></data>
+  <data name="Emulation.Snk.Value.VeryTraditionalNTSCAspectRatio43DAR" xml:space="preserve"><value>Sangat Tradisional NTSC Rasio Aspek (4: 3 DAR)</value></data>
+  <data name="Emulation.Snk.Setting.SpritesPerLineLimit" xml:space="preserve"><value>Limit per- baris</value></data>
+  <data name="Emulation.Snk.Help.SpritesPerLineLimit" xml:space="preserve"><value>Set sprites- per- line limit - meningkatkan menyebabkan gangguan dalam beberapa game</value></data>
+  <data name="Emulation.Snk.Setting.ProcessorSpeed" xml:space="preserve"><value>Kecepatan prosesor</value></data>
+  <data name="Emulation.Snk.Help.ProcessorSpeed" xml:space="preserve"><value>Jalankan prosesor di 24 MHz. Kecepatan ini dapat menyebabkan kesalahan dalam game.</value></data>
+  <data name="Emulation.Snk.Setting.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>Matikan ADPCM Pengaklamator Pengikat</value></data>
+  <data name="Emulation.Snk.Help.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>Ubah ADPCM perilaku akumulator untuk memperbaiki suara error dalam beberapa permainan. Biarkan pengaturan ini dinonaktifkan untuk permainan lain.</value></data>
+  <data name="Emulation.Snk.Help.CDSpeedHack" xml:space="preserve"><value>Patch BIOS busy- tunggu loop untuk mengurangi waktu pemuatan (Tidak bekerja untuk Semesta BIOS)</value></data>
+  <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>Benar BIOS upload pointer ketika CD buffer DMA Ini adalah peretasan, dan perilaku perangkat keras yang nyata belum dikonfirmasi.</value></data>
+  <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>Maju terus CD memuat layar</value></data>
+  <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>Kehausan urutan interpolasi (4 poin)</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>Mengemulasikan Neo Geo Pocket dan Neo Geo Pocket Color.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Mengemulasikan Neo Geo Pocket dan Neo Geo Pocket Color.</value></data>
+  <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>Pilih bahasa yang digunakan oleh permainan yang kompatibel.</value></data>
+  <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Gambar video dilewati</value></data>
+  <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>Lewati beberapa frame video ketika kinerja tidak cukup, untuk mengurangi interupsi dalam output audio.</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipThreshold" xml:space="preserve"><value>Ambang penyangga audio (%)</value></data>
+  <data name="Emulation.Snk.Help.FrameskipThreshold" xml:space="preserve"><value>Lewati bingkai video ketika penyangga audio memuat lebih sedikit data daripada persentase kapasitas ini.</value></data>
+  <data name="Emulation.Snk.Help.AudioQuality" xml:space="preserve"><value>Pilih antara synthesis suara lebih cepat dan lebih akurat synthesis suara.</value></data>
+  <data name="Emulation.Snk.Help.AudioSampleRate" xml:space="preserve"><value>Pilih frekuensi audio keluaran. Frekuensi yang lebih tinggi dapat meningkatkan kualitas suara dan membutuhkan lebih banyak tenaga pemrosesan.</value></data>
+  <data name="Emulation.Snk.Setting.AutoSaveLoadStates" xml:space="preserve"><value>Simpan dan kembalikan keadaan secara otomatis</value></data>
+  <data name="Emulation.Snk.Help.SkipDisclaimer" xml:space="preserve"><value>Sembunyikan pemberitahuan hukum ketika permainan dimulai.</value></data>
+  <data name="Emulation.Snk.Help.SkipWarnings" xml:space="preserve"><value>Sembunyikan peringatan tentang masalah yang diketahui ketika sebuah game dimulai.</value></data>
+  <data name="Emulation.Snk.Help.SampleRateHint" xml:space="preserve"><value>Pilih frekuensi audio keluaran. Mode otomatis menggunakan frekuensi keluaran yang disukai.</value></data>
+  <data name="Emulation.Snk.Value.UpPriorityUpOverrideDown" xml:space="preserve"><value>Berikan prioritas ke arah atas</value></data>
+  <data name="Emulation.Snk.Value.DownPriorityLeftRightLastInputPriority" xml:space="preserve"><value>Berikan prioritas ke arah bawah; gunakan masukan horisontal terbaru</value></data>
+  <data name="Emulation.Snk.Help.CrosshairEmulation" xml:space="preserve"><value>Pilih apakah menampilkan penanda tujuan. Mode otomatis menyembunyikannya ketika pistol ringan atau layar sentuh digunakan.</value></data>
+  <data name="Emulation.Snk.Value.UseBiosSetInBIOSDipswitch" xml:space="preserve"><value>Gunakan BIOS dipilih oleh switch perangkat keras</value></data>
+  <data name="Emulation.Snk.Setting.SoftlistAutomaticMediaType" xml:space="preserve"><value>Mendeteksi tipe media secara otomatis</value></data>
+  <data name="Emulation.Snk.Help.VFSEnabled" xml:space="preserve"><value>Gunakan sistem berkas virtual yang disediakan oleh aplikasi. Versi 4 atau yang kemudian diperlukan.</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkHardcodedOverlayOpacity" xml:space="preserve"><value>Bangun - dalam opasitas overlay</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardWriteProtect" xml:space="preserve"><value>Lindungi kartu memori terhadap perubahan</value></data>
+  <data name="Emulation.Snk.Setting.DarkFilterLevel" xml:space="preserve"><value>Layar gelap (%)</value></data>
+  <data name="Emulation.Snk.Value.Fast" xml:space="preserve"><value>Sintesis suara cepat</value></data>
+  <data name="Emulation.Snk.Value.AccurateBandLimited" xml:space="preserve"><value>Sintesis suara akurasi</value></data>
+  <data name="Emulation.Snk.Setting.SaveStateNaming" xml:space="preserve"><value>Nama berkas negara yang disimpan</value></data>
+  <data name="Emulation.Snk.Setting.EnableCheats" xml:space="preserve"><value>Aktifkan kode cheat</value></data>
+  <data name="Emulation.Snk.Setting.HideNagScreen" xml:space="preserve"><value>Sembunyikan layar pemberitahuan legal</value></data>
+  <data name="Emulation.Snk.Setting.CoreProvidedAspectRatio" xml:space="preserve"><value>Tampilkan rasio aspek yang disediakan oleh emulator</value></data>
+  <data name="Emulation.Snk.Setting.SetFrameskip" xml:space="preserve"><value>Bingkai video untuk dilewati</value></data>
+  <data name="Emulation.Snk.Setting.SampleRateHint" xml:space="preserve"><value>Frekuensi sampling audio yang disukai</value></data>
+  <data name="Emulation.Snk.Setting.UseExternalHiscoreDat" xml:space="preserve"><value>Gunakan berkas high-score eksternal hiscore.dat</value></data>
+  <data name="Emulation.Snk.Setting.DisplayMAMEMenu" xml:space="preserve"><value>Tampilkan MAME menu</value></data>
+  <data name="Emulation.Snk.Setting.DisplayArtwork" xml:space="preserve"><value>Tampilkan karya seni dekoratif</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkResolutionMultiplier" xml:space="preserve"><value>Pengganda resolusi karya seni dekoratif</value></data>
+  <data name="Emulation.Snk.Value.AutoAggressive" xml:space="preserve"><value>Mode otomatis aggresif</value></data>
+  <data name="Emulation.Snk.Value.AutoMax" xml:space="preserve"><value>Mode otomatis maksimum</value></data>
+  <data name="Emulation.Snk.Setting.AutosaveHiscore" xml:space="preserve"><value>Simpan nilai tinggi secara otomatis</value></data>
+  <data name="Emulation.Snk.Value.Recursively" xml:space="preserve"><value>Cari subfolder</value></data>
+  <data name="Emulation.Snk.Setting.BypassTimingSkew" xml:space="preserve"><value>Melewati ofset waktu</value></data>
+  <data name="Emulation.Snk.Setting.CPUClockScale" xml:space="preserve"><value>Pengganda kecepatan prosesor</value></data>
+  <data name="Emulation.Snk.Setting.FixedFrameskip" xml:space="preserve"><value>Jumlah frame video yang tetap untuk dilewatkan</value></data>
+  <data name="Emulation.Snk.Value.Fixed" xml:space="preserve"><value>Nomor tetap</value></data>
+  <data name="Emulation.Snk.Setting.Hiscores" xml:space="preserve"><value>Nilai tinggi</value></data>
+  <data name="Emulation.Snk.Setting.AllowPatchedRomsets" xml:space="preserve"><value>Ijinkan pengubahan arsip game yang telah diubah</value></data>
+  <data name="Emulation.Snk.Value.2Point1stOrder" xml:space="preserve"><value>Interpolasi urutan-pertama (2 poin)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderer" xml:space="preserve"><value>Metode render alternatif</value></data>
+  <data name="Emulation.Snk.Value.Cropped" xml:space="preserve"><value>Gambar yang dipotong</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRendererResolution" xml:space="preserve"><value>Resolusi render alternatif</value></data>
+  <data name="Emulation.Snk.Setting.AutomaticLoadFastForward" xml:space="preserve"><value>Mempercepat memuat diska secara otomatis</value></data>
+  <data name="Emulation.Snk.Setting.FourPlayerMode" xml:space="preserve"><value>Mode 4 pemutar</value></data>
+  <data name="Emulation.Snk.Setting.Freeplay" xml:space="preserve"><value>Mainkan tanpa memasukan koin</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanTop" xml:space="preserve"><value>Sembunyikan piksel di sepanjang tepi layar atas</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanBottom" xml:space="preserve"><value>Sembunyikan piksel di sepanjang tepi layar bawah</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanLeft" xml:space="preserve"><value>Sembunyikan piksel di sepanjang sisi kiri layar</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanRight" xml:space="preserve"><value>Sembunyikan piksel di sepanjang tepi kanan layar</value></data>
+  <data name="Emulation.Snk.Value.ResistorNetwork" xml:space="preserve"><value>Simulasi jaringan jaringan warna resistor</value></data>
+  <data name="Emulation.Snk.Value.Raw" xml:space="preserve"><value>Warna tidak termodifikasi</value></data>
+  <data name="Emulation.Snk.Value.HardwareAccurate96" xml:space="preserve"><value>Batas perangkat keras asli (96)</value></data>
+  <data name="Emulation.Snk.Value.Double192" xml:space="preserve"><value>Gandakan batas awal (192)</value></data>
+  <data name="Emulation.Snk.Value.Triple288" xml:space="preserve"><value>Triple batas asli (288)</value></data>
+  <data name="Emulation.Snk.Setting.CDSpeedHack" xml:space="preserve"><value>Kurangi penundaan pemuatan diska</value></data>
+  <data name="Emulation.Snk.Setting.CDDMALengthLimit" xml:space="preserve"><value>Batasi ukuran transfer data diska</value></data>
+  <data name="Emulation.Snk.Setting.SkipCDLoading" xml:space="preserve"><value>Lewati animasi pemuatan diska</value></data>
+  <data name="Emulation.Snk.Setting.HorizontalOverscan"><value>Sembunyikan piksel di sepanjang sisi kiri dan kanan layar</value></data>
+  <data name="Emulation.Snk.Setting.PerGameSaves"><value>Pisahkan menyimpan untuk setiap permainan</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilterLevel"><value>Tingkat penyaring audio (%)</value></data>
+</root>

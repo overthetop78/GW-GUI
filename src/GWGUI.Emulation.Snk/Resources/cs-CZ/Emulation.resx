@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Content.Initial" xml:space="preserve"><value>Media hry</value></data>
+  <data name="Emulation.Snk.Memory.Display" xml:space="preserve"><value>Video paměť</value></data>
+  <data name="Emulation.Snk.Audio.Native"><value>Audio hardware</value></data>
+  <data name="Emulation.Snk.Video.Native"><value>Video hardware</value></data>
+  <data name="Emulation.Snk.Controls.Native" xml:space="preserve"><value>Nastavení ovládače</value></data>
+  <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>Nastavení systému</value></data>
+  <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>Systém BIOS</value></data>
+  <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>Pomocné látky BIOS</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>Emuluje Neo Geo CD a Neo Geo CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>Emuluje systémy Neo Geo s herními moduly a disky CD.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Emuluje kompatibilní systémy SNK.</value></data>
+  <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>Jazyk</value></data>
+  <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>japonský jazyk</value></data>
+  <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>Anglický jazyk</value></data>
+  <data name="Emulation.Snk.Help.DarkFilterLevel" xml:space="preserve"><value>Povolit snížení jasu založené na luminosity. může být použit k zamezení oslnění / oční napětí při hraní her s bílým pozadím.</value></data>
+  <data name="Emulation.Snk.Value.Manual" xml:space="preserve"><value>Ručně</value></data>
+  <data name="Emulation.Snk.Setting.RealTimeClock" xml:space="preserve"><value>Real- Time Clock</value></data>
+  <data name="Emulation.Snk.Help.RealTimeClock" xml:space="preserve"><value>Vybere si, jak se emulované real-time hodiny posunou. 'Deterministické' počítá emulované rámy z pevné základny, takže RTC čtení jsou reprodukovatelné a bezpečné pro netplay, přetočit a run- dopředu. 'Real Time' čte hostující hodiny přímo (živé hodiny, ale nedeterministické).</value></data>
+  <data name="Emulation.Snk.Value.Deterministic" xml:space="preserve"><value>Deterministické</value></data>
+  <data name="Emulation.Snk.Value.RealTime"><value>Real Time</value></data>
+  <data name="Emulation.Snk.Setting.AudioQuality" xml:space="preserve"><value>Kvalita zvuku</value></data>
+  <data name="Emulation.Snk.Setting.AudioSampleRate" xml:space="preserve"><value>Rychlost zvukového vzorku</value></data>
+  <data name="Emulation.Snk.Value.Game" xml:space="preserve"><value>hra</value></data>
+  <data name="Emulation.Snk.Value.System" xml:space="preserve"><value>systém</value></data>
+  <data name="Emulation.Snk.Setting.MainProcessorSpeed" xml:space="preserve"><value>Hlavní rychlost procesoru (%)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderMethod" xml:space="preserve"><value>Alternativní metoda vykreslování</value></data>
+  <data name="Emulation.Snk.Setting.VideoApproach1Enabled" xml:space="preserve"><value>Video approach 1 Povolený</value></data>
+  <data name="Emulation.Snk.Setting.HideGameInfoScreen" xml:space="preserve"><value>Skrýt informační obrazovku hry</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningScreen" xml:space="preserve"><value>Skrýt varovný displej</value></data>
+  <data name="Emulation.Snk.Setting.EnableMultithreading" xml:space="preserve"><value>Povolit multitodead</value></data>
+  <data name="Emulation.Snk.Setting.SetBrightness" xml:space="preserve"><value>Nastavit jas</value></data>
+  <data name="Emulation.Snk.Setting.SetContrast" xml:space="preserve"><value>Nastavit kontrast</value></data>
+  <data name="Emulation.Snk.Setting.SetGamma" xml:space="preserve"><value>Nastavit gamma</value></data>
+  <data name="Emulation.Snk.Setting.SkipDisclaimer" xml:space="preserve"><value>Přeskočit discriptions</value></data>
+  <data name="Emulation.Snk.Setting.SkipWarnings" xml:space="preserve"><value>Varování před přeskokem @ info: whatsthis</value></data>
+  <data name="Emulation.Snk.Help.DisplayMAMEMenu" xml:space="preserve"><value>Zapne viditelnost vnitřního MAME Menu.</value></data>
+  <data name="Emulation.Snk.Setting.Brightness" xml:space="preserve"><value>jasnost</value></data>
+  <data name="Emulation.Snk.Help.Brightness" xml:space="preserve"><value>Upravuje úroveň jasu, která se používá.</value></data>
+  <data name="Emulation.Snk.Setting.GammaCorrection" xml:space="preserve"><value>Oprava gama</value></data>
+  <data name="Emulation.Snk.Help.GammaCorrection" xml:space="preserve"><value>Upravuje použitou úroveň gama.</value></data>
+  <data name="Emulation.Snk.Help.DisplayArtwork" xml:space="preserve"><value>Používá se k zobrazení vlastní umělecká díla, když je k dispozici.</value></data>
+  <data name="Emulation.Snk.Help.ArtworkResolutionMultiplier" xml:space="preserve"><value>Zvyšuje rozlišení uměleckých děl o zvolenou hodnotu násobitele.</value></data>
+  <data name="Emulation.Snk.Setting.SpecifyNeoGeoBIOS" xml:space="preserve"><value>Upřesněte Neo Geo BIOS</value></data>
+  <data name="Emulation.Snk.Help.SpecifyNeoGeoBIOS" xml:space="preserve"><value>Vyberte alternativní soubory bios.</value></data>
+  <data name="Emulation.Snk.Value.Asia" xml:space="preserve"><value>Asie</value></data>
+  <data name="Emulation.Snk.Value.Japan" xml:space="preserve"><value>japonsko</value></data>
+  <data name="Emulation.Snk.Setting.UseSamples" xml:space="preserve"><value>Použít vzorky</value></data>
+  <data name="Emulation.Snk.Help.UseSamples" xml:space="preserve"><value>Povolit načtení souborů zvukových vzorků, pokud jsou uvedeny v adresáři vzorků.</value></data>
+  <data name="Emulation.Snk.Help.AutosaveHiscore" xml:space="preserve"><value>Doporučeno použít výchozí, které ušetří hiscore při zavírání obsahu. Rekurzivně ušetří opakovaně celou dobu během hraní. Nedisponibilní bude obejít použití hiscore.dat Složte kompletní soubor.</value></data>
+  <data name="Emulation.Snk.Help.CPUClockScale" xml:space="preserve"><value>Používané pro emulaci pod nebo nad hodinami CPU o stanovené procento.</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningsScreen" xml:space="preserve"><value>Skrýt obrazovku varování</value></data>
+  <data name="Emulation.Snk.Setting.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>Používejte 32bitovou hloubku barev, pokud je k dispozici</value></data>
+  <data name="Emulation.Snk.Help.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>Změna formátu pixel, některé hry vyžadují, aby se to správně, to by mohlo ovlivnit výkony na některých platformách</value></data>
+  <data name="Emulation.Snk.Setting.VerticalMode" xml:space="preserve"><value>Vertikální režim</value></data>
+  <data name="Emulation.Snk.Help.VerticalMode" xml:space="preserve"><value>Otočit displej pro vertikální obrazovky</value></data>
+  <data name="Emulation.Snk.Value.Alternate" xml:space="preserve"><value>náhradník</value></data>
+  <data name="Emulation.Snk.Value.TATEAlternate" xml:space="preserve"><value>TATE náhradník</value></data>
+  <data name="Emulation.Snk.Setting.UseA60HzRefreshRate" xml:space="preserve"><value>Použít obnovovací frekvenci 60 Hz</value></data>
+  <data name="Emulation.Snk.Help.UseA60HzRefreshRate" xml:space="preserve"><value>Používejte 60 Hz místo původní obnovovací rychlosti. To může změnit rychlost hry a způsobit nerovnoměrnou animaci.</value></data>
+  <data name="Emulation.Snk.Setting.Resolution" xml:space="preserve"><value>Usnesení</value></data>
+  <data name="Emulation.Snk.Help.Resolution" xml:space="preserve"><value>Nastavit rozlišení v určitých hrách (vektor)</value></data>
+  <data name="Emulation.Snk.Help.FixedFrameskip" xml:space="preserve"><value>Pokud je 'Frameskip' nastaven na 'Opraveno', nebo pokud frontend nepodporuje alternativní 'Frameskip' režim, přeskočte vykreslování v pevné rychlosti X snímků z X+1</value></data>
+  <data name="Emulation.Snk.Value.NoSkipping" xml:space="preserve"><value>Žádné přeskakování.</value></data>
+  <data name="Emulation.Snk.Setting.CPUClock" xml:space="preserve"><value>CPU hodiny</value></data>
+  <data name="Emulation.Snk.Help.CPUClock" xml:space="preserve"><value>Změna emulované cpu frekvence pro různé systémy, tím, že zvýší můžete opravit domácí zpomalení v některých hrách, snížením můžete pomoci výkon na low-end zařízení</value></data>
+  <data name="Emulation.Snk.Setting.DiagnosticInput" xml:space="preserve"><value>Diagnostický vstup</value></data>
+  <data name="Emulation.Snk.Help.DiagnosticInput" xml:space="preserve"><value>Nastavení kombinace tlačítka pro zadání nabídky služby skříň</value></data>
+  <data name="Emulation.Snk.Help.Hiscores" xml:space="preserve"><value>Povolit podporu vysokých skóre, také potřebujete soubor hiscore.dat ve vašem systému / fbneo / adresář</value></data>
+  <data name="Emulation.Snk.Help.AllowPatchedRomsets" xml:space="preserve"><value>Povolit romsety ze systému / fbneo / patch / složka k přejetí vašich romsetů, crcs budou ignorovány, ale velikosti a názvy musí stále odpovídat, navíc je to také hlavní spínač pro to, zda IPS Patch a RomData jsou prováděny nebo ne, musíte uzavřít obsah pro toto nastavení, aby se nabyl účinku</value></data>
+  <data name="Emulation.Snk.Setting.SampleInterpolation" xml:space="preserve"><value>Interpolace vzorků</value></data>
+  <data name="Emulation.Snk.Help.SampleInterpolation" xml:space="preserve"><value>Nastavit interpolaci vzorku, může ovlivnit výkon</value></data>
+  <data name="Emulation.Snk.Setting.FMInterpolation" xml:space="preserve"><value>FM Interpolace</value></data>
+  <data name="Emulation.Snk.Help.FMInterpolation" xml:space="preserve"><value>Nastavit FM interpolace, může to ovlivnit výkon</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilter" xml:space="preserve"><value>Filtr LowPass</value></data>
+  <data name="Emulation.Snk.Help.LowPassFilter" xml:space="preserve"><value>Povolit filtr LowPass</value></data>
+  <data name="Emulation.Snk.Setting.AnalogSpeed" xml:space="preserve"><value>Analogová rychlost</value></data>
+  <data name="Emulation.Snk.Help.AnalogSpeed" xml:space="preserve"><value>Mitigate analogové ovládání rychlosti, některé hry mohou vyžadovat nízké hodnoty, aby se hratelné</value></data>
+  <data name="Emulation.Snk.Setting.SOCDMode" xml:space="preserve"><value>SOCD Režim</value></data>
+  <data name="Emulation.Snk.Help.SOCDMode" xml:space="preserve"><value>Změna ULDR Prioritní zacházení</value></data>
+  <data name="Emulation.Snk.Value.Disabled" xml:space="preserve"><value>deaktivováno</value></data>
+  <data name="Emulation.Snk.Value.SimultaneousNeutral" xml:space="preserve"><value>Souběžné neutrální</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority4Way" xml:space="preserve"><value>Poslední vstupní priorita (4 Way)</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority8Way" xml:space="preserve"><value>Poslední vstupní priorita (8 Way)</value></data>
+  <data name="Emulation.Snk.Value.FirstInputPriority" xml:space="preserve"><value>První vstupní priorita</value></data>
+  <data name="Emulation.Snk.Setting.CrosshairEmulation" xml:space="preserve"><value>Křížová emulace</value></data>
+  <data name="Emulation.Snk.Value.HideWithLightgunDevice" xml:space="preserve"><value>skrýt se světelným kulometem</value></data>
+  <data name="Emulation.Snk.Value.AlwaysHide" xml:space="preserve"><value>Vždy se schovej.</value></data>
+  <data name="Emulation.Snk.Value.AlwaysShow" xml:space="preserve"><value>vždy ukázat</value></data>
+  <data name="Emulation.Snk.Setting.NeoGeoMode" xml:space="preserve"><value>Neo- Geo režim</value></data>
+  <data name="Emulation.Snk.Help.NeoGeoMode" xml:space="preserve"><value>Načíst odpovídající bios v závislosti na vaší volbě, pod podmínkou, že bios je kompatibilní s běžící hry</value></data>
+  <data name="Emulation.Snk.Value.MVSEuropeAsiaEnglish" xml:space="preserve"><value>MVS Evropa / Asie (anglicky)</value></data>
+  <data name="Emulation.Snk.Value.MVSUSAEnglishCensored" xml:space="preserve"><value>MVS USA (Angličtina - Cenzura)</value></data>
+  <data name="Emulation.Snk.Value.MVSJapanJapanese" xml:space="preserve"><value>MVS Japonsko (Japonsko)</value></data>
+  <data name="Emulation.Snk.Value.AESEuropeAsiaEnglish" xml:space="preserve"><value>AES Evropa / Asie (anglicky)</value></data>
+  <data name="Emulation.Snk.Value.AESJapanJapanese" xml:space="preserve"><value>AES Japonsko (Japonsko)</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardMode" xml:space="preserve"><value>Režim paměťové karty</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardMode" xml:space="preserve"><value>Změnit chování pro paměťovou kartu</value></data>
+  <data name="Emulation.Snk.Value.Shared" xml:space="preserve"><value>sdílené</value></data>
+  <data name="Emulation.Snk.Value.PerGame" xml:space="preserve"><value>per- game</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip11" xml:space="preserve"><value>Debug Dip 1 _ 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip11" xml:space="preserve"><value>Povolit Debug Dip 1 _ 1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip12" xml:space="preserve"><value>Debug Dip 1 _ 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip12" xml:space="preserve"><value>Povolit Debug Dip 1 _ 2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip13" xml:space="preserve"><value>Debug Dip 1 _ 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip13" xml:space="preserve"><value>Povolit Debug Dip 1 _ 3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip14" xml:space="preserve"><value>Debug Dip 1 _ 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip14" xml:space="preserve"><value>Povolit Debug Dip 1 _ 4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip15" xml:space="preserve"><value>Debug Dip 1 _ 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip15" xml:space="preserve"><value>Povolit Debug Dip 1 _ 5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip16" xml:space="preserve"><value>Debug Dip 1 _ 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip16" xml:space="preserve"><value>Povolit Debug Dip 1 _ 6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip17" xml:space="preserve"><value>Debug Dip 1 _ 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip17" xml:space="preserve"><value>Povolit ladění Dip 1 _ 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip18" xml:space="preserve"><value>Debug Dip 1 _ 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip18" xml:space="preserve"><value>Povolit Debug Dip 1 _ 8</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip21" xml:space="preserve"><value>Debug Dip 2 _ 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip21" xml:space="preserve"><value>Povolit ladění Dip 2 _ 1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip22" xml:space="preserve"><value>Debug Dip 2 _ 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip22" xml:space="preserve"><value>Povolit ladění Dip 2 _ 2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip23" xml:space="preserve"><value>Debug Dip 2 _ 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip23" xml:space="preserve"><value>Povolit ladění Dip 2 _ 3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip24" xml:space="preserve"><value>Debug Dip 2 _ 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip24" xml:space="preserve"><value>Povolit ladění Dip 2 _ 4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip25" xml:space="preserve"><value>Debug Dip 2 _ 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip25" xml:space="preserve"><value>Povolit ladění Dip 2 _ 5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip26" xml:space="preserve"><value>Debug Dip 2 _ 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip26" xml:space="preserve"><value>Povolit ladění Dip 2 _ 6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip27" xml:space="preserve"><value>Debug Dip 2 _ 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip27" xml:space="preserve"><value>Povolit ladění Dip 2 _ 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip28" xml:space="preserve"><value>Debug Dip 2 _ 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip28" xml:space="preserve"><value>Povolit ladění Dip 2 _ 8</value></data>
+  <data name="Emulation.Snk.Setting.Layer1" xml:space="preserve"><value>Vrstva 1</value></data>
+  <data name="Emulation.Snk.Help.Layer1" xml:space="preserve"><value>Pro ladění</value></data>
+  <data name="Emulation.Snk.Setting.Layer2" xml:space="preserve"><value>Vrstva 2</value></data>
+  <data name="Emulation.Snk.Setting.Layer3" xml:space="preserve"><value>Vrstva 3</value></data>
+  <data name="Emulation.Snk.Setting.Layer4" xml:space="preserve"><value>Vrstva 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite1"><value>Sprite 1</value></data>
+  <data name="Emulation.Snk.Setting.Sprite2"><value>Sprite 2</value></data>
+  <data name="Emulation.Snk.Setting.Sprite3"><value>Sprite 3</value></data>
+  <data name="Emulation.Snk.Setting.Sprite4"><value>Sprite 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite5"><value>Sprite 5</value></data>
+  <data name="Emulation.Snk.Setting.Sprite6"><value>Sprite 6</value></data>
+  <data name="Emulation.Snk.Setting.Sprite7"><value>Sprite 7</value></data>
+  <data name="Emulation.Snk.Setting.Sprite8"><value>Sprite 8</value></data>
+  <data name="Emulation.Snk.Setting.ThreadMode" xml:space="preserve"><value>Režim závitu</value></data>
+  <data name="Emulation.Snk.Setting.Cheats" xml:space="preserve"><value>Podvody</value></data>
+  <data name="Emulation.Snk.Setting.Throttle" xml:space="preserve"><value>Zahřátí</value></data>
+  <data name="Emulation.Snk.Setting.BootToBIOS" xml:space="preserve"><value>Zapnout BIOS</value></data>
+  <data name="Emulation.Snk.Setting.BootToOSD" xml:space="preserve"><value>Zapnout OSD</value></data>
+  <data name="Emulation.Snk.Setting.ReadConfiguration" xml:space="preserve"><value>Nastavení čtení</value></data>
+  <data name="Emulation.Snk.Setting.WriteConfiguration" xml:space="preserve"><value>Nastavení zápisu</value></data>
+  <data name="Emulation.Snk.Setting.MAMEINIPaths" xml:space="preserve"><value>MAME INI Cesty</value></data>
+  <data name="Emulation.Snk.Setting.Softlists" xml:space="preserve"><value>Softy</value></data>
+  <data name="Emulation.Snk.Setting.MediaType" xml:space="preserve"><value>Typ médií</value></data>
+  <data name="Emulation.Snk.Value.Cart" xml:space="preserve"><value>košík</value></data>
+  <data name="Emulation.Snk.Value.Cass" xml:space="preserve"><value>kas</value></data>
+  <data name="Emulation.Snk.Value.Cdrm"><value>cdrm</value></data>
+  <data name="Emulation.Snk.Value.Flop"><value>flop</value></data>
+  <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>tvrdé</value></data>
+  <data name="Emulation.Snk.Value.Prin" xml:space="preserve"><value>prolin</value></data>
+  <data name="Emulation.Snk.Value.Serl"><value>serl</value></data>
+  <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS Povoleno</value></data>
+  <data name="Emulation.Snk.Setting.JoystickDeadzone"><value>Joystick Deadzone</value></data>
+  <data name="Emulation.Snk.Setting.JoystickSaturation" xml:space="preserve"><value>Joystick nasycení</value></data>
+  <data name="Emulation.Snk.Setting.JoystickThreshold"><value>Joystick Threshold</value></data>
+  <data name="Emulation.Snk.Setting.Joystick4WaySimulation" xml:space="preserve"><value>Joystick 4- way Simulace</value></data>
+  <data name="Emulation.Snk.Value.4way" xml:space="preserve"><value>4 cesta</value></data>
+  <data name="Emulation.Snk.Value.Strict" xml:space="preserve"><value>striktní</value></data>
+  <data name="Emulation.Snk.Value.Qbert" xml:space="preserve"><value>qbertCity in New York USA</value></data>
+  <data name="Emulation.Snk.Setting.ProfileButtonsPerGame" xml:space="preserve"><value>Profil tlačítka pro hru</value></data>
+  <data name="Emulation.Snk.Setting.Mouse" xml:space="preserve"><value>Myš</value></data>
+  <data name="Emulation.Snk.Setting.LightgunMode" xml:space="preserve"><value>Režim Lightgun</value></data>
+  <data name="Emulation.Snk.Value.Lightgun"><value>Lightgun</value></data>
+  <data name="Emulation.Snk.Value.Touchscreen" xml:space="preserve"><value>Dotyková obrazovka</value></data>
+  <data name="Emulation.Snk.Setting.LightgunOffscreenPosition" xml:space="preserve"><value>Lightgun Offscreen Pozice</value></data>
+  <data name="Emulation.Snk.Value.Free" xml:space="preserve"><value>Volný</value></data>
+  <data name="Emulation.Snk.Value.FixedTopLeft" xml:space="preserve"><value>Pevné (vlevo nahoře)</value></data>
+  <data name="Emulation.Snk.Value.FixedBottomRight" xml:space="preserve"><value>Pevné (vpravo dole)</value></data>
+  <data name="Emulation.Snk.Setting.ScreenRotationMode" xml:space="preserve"><value>Režim rotace obrazovky</value></data>
+  <data name="Emulation.Snk.Value.Internal" xml:space="preserve"><value>Vnitřní</value></data>
+  <data name="Emulation.Snk.Setting.AudioProcessorSpeed" xml:space="preserve"><value>Rychlost zvukového procesoru (%)</value></data>
+  <data name="Emulation.Snk.Help.AutomaticLoadFastForward" xml:space="preserve"><value>Experimentální funkce pro automatické zapínání dopředu během CD přístup.&#xA;Pracuje s:&#xA;- Genericky. SCSI&#xA;- Sega CD a Neo Geo CD</value></data>
+  <data name="Emulation.Snk.Setting.CoinLimit" xml:space="preserve"><value>Meze mincí</value></data>
+  <data name="Emulation.Snk.Setting.SampleRate" xml:space="preserve"><value>Vzorkovací rychlost</value></data>
+  <data name="Emulation.Snk.Help.SampleRate" xml:space="preserve"><value>Počet vzorků zvuku odebraných za sekundu. Vyšší ceny poskytují lepší kvalitu zvuku.</value></data>
+  <data name="Emulation.Snk.Value.Threshold" xml:space="preserve"><value>práh</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipInterval"><value>Frameskip Interval</value></data>
+  <data name="Emulation.Snk.Help.FrameskipInterval" xml:space="preserve"><value>Maximální počet po sobě jdoucích snímků, které mohou být přeskočeny. Nižší hodnoty udržují vizuální aktualizace hladší za cenu více audio kapek, když je hostitel přetížen.</value></data>
+  <data name="Emulation.Snk.Setting.ShowGameInformation" xml:space="preserve"><value>Zobrazit informace o hře</value></data>
+  <data name="Emulation.Snk.Help.ShowGameInformation" xml:space="preserve"><value>Zobrazit MAMEPohon a herní informační obrazovky při startu před zahájením hry.</value></data>
+  <data name="Emulation.Snk.Setting.Stereo"><value>Stereo</value></data>
+  <data name="Emulation.Snk.Help.Stereo" xml:space="preserve"><value>Výstupní stereo audio. Zakázat pro mírně nižší CPU na hry, které nepoužívají stereo mixování.</value></data>
+  <data name="Emulation.Snk.Setting.SystemType" xml:space="preserve"><value>Typ systému</value></data>
+  <data name="Emulation.Snk.Help.SystemType" xml:space="preserve"><value>Upřesněte typ systému: AES, MVS, nebo vesmír BIOS Systém</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoAESHomeConsole" xml:space="preserve"><value>Neo Geo AES (Hlavní konzola)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoMVSArcade" xml:space="preserve"><value>Neo Geo MVS (Arkády)</value></data>
+  <data name="Emulation.Snk.Value.UniverseBIOSCommunityEnhancedBIOS" xml:space="preserve"><value>Vesmír BIOS (Společenství - posíleno BIOS)</value></data>
+  <data name="Emulation.Snk.Setting.CDSystemType" xml:space="preserve"><value>CD Typ systému</value></data>
+  <data name="Emulation.Snk.Help.CDSystemType" xml:space="preserve"><value>Upřesněte CD Typ systému při zatížení Neo Geo CD Obrázky disků</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDFrontLoader" xml:space="preserve"><value>Neo Geo CD (Přední loader)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDTopLoader"><value>Neo Geo CD (Top Loader)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDZUniverseBIOS" xml:space="preserve"><value>Neo Geo CDZ (Vesmír BIOS)</value></data>
+  <data name="Emulation.Snk.Setting.Region"><value>Region</value></data>
+  <data name="Emulation.Snk.Help.Region" xml:space="preserve"><value>Uveďte region: USA, Japonsko, Asie, Evropa</value></data>
+  <data name="Emulation.Snk.Value.Europe" xml:space="preserve"><value>Evropa</value></data>
+  <data name="Emulation.Snk.Help.MemoryCard" xml:space="preserve"><value>Povolit nebo zakázat paměťovou kartu</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardWriteProtect" xml:space="preserve"><value>Zabraňte změnám paměťové karty.</value></data>
+  <data name="Emulation.Snk.Setting.SettingMode" xml:space="preserve"><value>Nastavení režimu</value></data>
+  <data name="Emulation.Snk.Help.SettingMode" xml:space="preserve"><value>Vytáhnout systém ROM menu při startu na arkádových systémech</value></data>
+  <data name="Emulation.Snk.Help.FourPlayerMode" xml:space="preserve"><value>Nastavit čtyři přehrávače (dual MVS Box) režim pro Asii / Japonsko MVS systémy</value></data>
+  <data name="Emulation.Snk.Help.Freeplay" xml:space="preserve"><value>Přehrát MVS hry bez nutnosti vkládání mincí</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanTop" xml:space="preserve"><value>Maskovat pixely skryté bezel nebo hranice na původní CRT (top)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanBottom" xml:space="preserve"><value>Maskovat pixely skryté bezel nebo hranice na původní CRT (dole)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanLeft" xml:space="preserve"><value>Maskovat pixely skryté bezel nebo hranice na původní CRT (vlevo)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanRight" xml:space="preserve"><value>Maskovat pixely skryté bezel nebo hranice na původní CRT (vpravo)</value></data>
+  <data name="Emulation.Snk.Setting.Palette" xml:space="preserve"><value>Paleta</value></data>
+  <data name="Emulation.Snk.Help.Palette" xml:space="preserve"><value>Nastavit paletu</value></data>
+  <data name="Emulation.Snk.Setting.AspectRatio" xml:space="preserve"><value>Poměr stran</value></data>
+  <data name="Emulation.Snk.Help.AspectRatio" xml:space="preserve"><value>Nastavit poměr stran</value></data>
+  <data name="Emulation.Snk.Value.PerfectlySquarePixels11PAR" xml:space="preserve"><value>Perfektně náměstí Pixels (1: 1 PAR)</value></data>
+  <data name="Emulation.Snk.Value.OstensiblyAccurateNTSCAspectRatio4544PAR" xml:space="preserve"><value>Ostenitelně přesný NTSC Poměr stran (45: 44 PAR)</value></data>
+  <data name="Emulation.Snk.Value.VeryTraditionalNTSCAspectRatio43DAR" xml:space="preserve"><value>Velmi tradiční NTSC Poměr stran (4: 3) DAR)</value></data>
+  <data name="Emulation.Snk.Setting.SpritesPerLineLimit" xml:space="preserve"><value>Sprites- per- line Limit</value></data>
+  <data name="Emulation.Snk.Help.SpritesPerLineLimit" xml:space="preserve"><value>Nastavit limit sprites- per- line - zvýšení způsobuje chyby v některých hrách</value></data>
+  <data name="Emulation.Snk.Setting.ProcessorSpeed" xml:space="preserve"><value>Rychlost procesoru</value></data>
+  <data name="Emulation.Snk.Help.ProcessorSpeed" xml:space="preserve"><value>Spusťte procesor na 24 MHz. Tato rychlost může způsobit chyby ve hrách.</value></data>
+  <data name="Emulation.Snk.Setting.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>Zakázat ADPCM Zavazadlový prostor</value></data>
+  <data name="Emulation.Snk.Help.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>Změnit ADPCM Akumulační chování pro opravu zvukových chyb v některých hrách. Zanechte toto nastavení vypnuté pro jiné hry.</value></data>
+  <data name="Emulation.Snk.Help.CDSpeedHack" xml:space="preserve"><value>Záplata BIOS busy- čekací smyčky pro snížení doby načítání (Nefunguje pro vesmír BIOS)</value></data>
+  <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>Opravit BIOS upload indikátory, když a CD buffer DMA je větší než jeden sektor, fixace poškozeného zvuku v bonusové fázi Art of Fighting. Jedná se o hack, a skutečné hardware chování je nepotvrzené.</value></data>
+  <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>Přetočte to dopředu. CD ložné plochy</value></data>
+  <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>Interpolace mezi třídami (4 body)</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>Emuluje Neo Geo Pocket a Neo Geo Pocket Color.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Emuluje Neo Geo Pocket a Neo Geo Pocket Color.</value></data>
+  <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>Vyberte jazyk používaný kompatibilními hrami.</value></data>
+  <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Přeskočení rámečku videa</value></data>
+  <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>Přeskočit některé video rámce, pokud výkon je nedostatečný, ke snížení přerušení v audio výstupu.</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipThreshold" xml:space="preserve"><value>Prahová hodnota zvukového bufferu (%)</value></data>
+  <data name="Emulation.Snk.Help.FrameskipThreshold" xml:space="preserve"><value>Přeskočit video rámce, pokud audio buffer obsahuje méně dat než tento procento jeho kapacity.</value></data>
+  <data name="Emulation.Snk.Help.AudioQuality" xml:space="preserve"><value>Vyberte si mezi rychlejší syntézou zvuku a přesnější syntézou zvuku.</value></data>
+  <data name="Emulation.Snk.Help.AudioSampleRate" xml:space="preserve"><value>Vyberte výstupní frekvenci odběru zvukových vzorků. Vyšší frekvence může zlepšit kvalitu zvuku a vyžadovat větší výkon zpracování.</value></data>
+  <data name="Emulation.Snk.Setting.AutoSaveLoadStates" xml:space="preserve"><value>Uložit a obnovit stavy automaticky</value></data>
+  <data name="Emulation.Snk.Help.SkipDisclaimer" xml:space="preserve"><value>Schovej právní oznámení, když hra začíná.</value></data>
+  <data name="Emulation.Snk.Help.SkipWarnings" xml:space="preserve"><value>Skrýt varování o známých problémech, když hra začíná.</value></data>
+  <data name="Emulation.Snk.Help.SampleRateHint" xml:space="preserve"><value>Vyberte výstupní frekvenci odběru zvuků. Automatický režim používá preferovanou výstupní frekvenci.</value></data>
+  <data name="Emulation.Snk.Value.UpPriorityUpOverrideDown" xml:space="preserve"><value>Upřednostněte směr nahoru</value></data>
+  <data name="Emulation.Snk.Value.DownPriorityLeftRightLastInputPriority" xml:space="preserve"><value>Upřesněte směr dolů; použijte nejnovější horizontální vstup</value></data>
+  <data name="Emulation.Snk.Help.CrosshairEmulation" xml:space="preserve"><value>Vyberte, zda chcete zobrazit značku zaměřování. Automatický režim jej při použití lehké pistole nebo dotykového displeje skryje.</value></data>
+  <data name="Emulation.Snk.Value.UseBiosSetInBIOSDipswitch" xml:space="preserve"><value>Použijte BIOS zvoleno hardwarovými spínači</value></data>
+  <data name="Emulation.Snk.Setting.SoftlistAutomaticMediaType" xml:space="preserve"><value>Automaticky detekovat typ média</value></data>
+  <data name="Emulation.Snk.Help.VFSEnabled" xml:space="preserve"><value>Použijte virtuální souborový systém dodaný aplikací. Verze 4 nebo novější je vyžadována.</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkHardcodedOverlayOpacity" xml:space="preserve"><value>Staveb- in overlay opacity</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardWriteProtect" xml:space="preserve"><value>Chraňte paměťovou kartu před změnami</value></data>
+  <data name="Emulation.Snk.Setting.DarkFilterLevel" xml:space="preserve"><value>Zatemnění obrazovky (%)</value></data>
+  <data name="Emulation.Snk.Value.Fast" xml:space="preserve"><value>Syntéza rychlého zvuku</value></data>
+  <data name="Emulation.Snk.Value.AccurateBandLimited" xml:space="preserve"><value>Přesná syntéza zvuku</value></data>
+  <data name="Emulation.Snk.Setting.SaveStateNaming" xml:space="preserve"><value>Uložené názvy státních souborů</value></data>
+  <data name="Emulation.Snk.Setting.EnableCheats" xml:space="preserve"><value>Povolit kódy podvádění</value></data>
+  <data name="Emulation.Snk.Setting.HideNagScreen" xml:space="preserve"><value>Skrýt obrazovku s upozorněním na právní předpisy</value></data>
+  <data name="Emulation.Snk.Setting.CoreProvidedAspectRatio" xml:space="preserve"><value>Poměr stran displeje dodávaný emulátorem</value></data>
+  <data name="Emulation.Snk.Setting.SetFrameskip" xml:space="preserve"><value>Videorámy k přeskočení</value></data>
+  <data name="Emulation.Snk.Setting.SampleRateHint" xml:space="preserve"><value>Preferovaná frekvence odběru vzorků zvuku</value></data>
+  <data name="Emulation.Snk.Setting.UseExternalHiscoreDat" xml:space="preserve"><value>Použít externí soubor s high- score hiscore.dat</value></data>
+  <data name="Emulation.Snk.Setting.DisplayMAMEMenu" xml:space="preserve"><value>Zobrazit MAME menu</value></data>
+  <data name="Emulation.Snk.Setting.DisplayArtwork" xml:space="preserve"><value>Zobrazit dekorativní kresby</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkResolutionMultiplier" xml:space="preserve"><value>Násobitel rozlišení dekorativní umělecké práce</value></data>
+  <data name="Emulation.Snk.Value.AutoAggressive" xml:space="preserve"><value>Agresivní automatický režim</value></data>
+  <data name="Emulation.Snk.Value.AutoMax" xml:space="preserve"><value>Maximální automatický režim</value></data>
+  <data name="Emulation.Snk.Setting.AutosaveHiscore" xml:space="preserve"><value>Automaticky ukládat vysoké skóre</value></data>
+  <data name="Emulation.Snk.Value.Recursively" xml:space="preserve"><value>Vyhledávání podsložek</value></data>
+  <data name="Emulation.Snk.Setting.BypassTimingSkew" xml:space="preserve"><value>Přejít časový posun</value></data>
+  <data name="Emulation.Snk.Setting.CPUClockScale" xml:space="preserve"><value>Procesor Speed multiplier</value></data>
+  <data name="Emulation.Snk.Setting.FixedFrameskip" xml:space="preserve"><value>Pevný počet video snímků k přeskočení</value></data>
+  <data name="Emulation.Snk.Value.Fixed" xml:space="preserve"><value>Pevné číslo</value></data>
+  <data name="Emulation.Snk.Setting.Hiscores" xml:space="preserve"><value>Nejvyšší skóre</value></data>
+  <data name="Emulation.Snk.Setting.AllowPatchedRomsets" xml:space="preserve"><value>Povolit upravené herní archivy</value></data>
+  <data name="Emulation.Snk.Value.2Point1stOrder" xml:space="preserve"><value>Interpolace prvního řádu (2 body)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderer" xml:space="preserve"><value>Alternativní metoda ztvárnění</value></data>
+  <data name="Emulation.Snk.Value.Cropped" xml:space="preserve"><value>Oříznutý obrázek</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRendererResolution" xml:space="preserve"><value>Alternativní řešení pro přidělování</value></data>
+  <data name="Emulation.Snk.Setting.AutomaticLoadFastForward" xml:space="preserve"><value>Automaticky zrychlit načítání disku</value></data>
+  <data name="Emulation.Snk.Setting.FourPlayerMode" xml:space="preserve"><value>Režim pro čtyřhraný</value></data>
+  <data name="Emulation.Snk.Setting.Freeplay" xml:space="preserve"><value>Hrát bez vložení mince</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanTop" xml:space="preserve"><value>Skrýt pixely podél horní hrany obrazovky</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanBottom" xml:space="preserve"><value>Skrýt pixely podél spodní hrany obrazovky</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanLeft" xml:space="preserve"><value>Skrýt pixely podél levého okraje obrazovky</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanRight" xml:space="preserve"><value>Skrýt pixely podél pravého okraje obrazovky</value></data>
+  <data name="Emulation.Snk.Value.ResistorNetwork" xml:space="preserve"><value>Resistence nebo simulace barev sítě</value></data>
+  <data name="Emulation.Snk.Value.Raw" xml:space="preserve"><value>Nemodifikované barvy</value></data>
+  <data name="Emulation.Snk.Value.HardwareAccurate96" xml:space="preserve"><value>Původní limit hardwaru (96)</value></data>
+  <data name="Emulation.Snk.Value.Double192" xml:space="preserve"><value>Zdvojnásobte původní limit (192)</value></data>
+  <data name="Emulation.Snk.Value.Triple288" xml:space="preserve"><value>Trojitý původní limit (288)</value></data>
+  <data name="Emulation.Snk.Setting.CDSpeedHack" xml:space="preserve"><value>Snížit zpoždění při zatížení disku</value></data>
+  <data name="Emulation.Snk.Setting.CDDMALengthLimit" xml:space="preserve"><value>Omezení velikosti diskových přenosů dat</value></data>
+  <data name="Emulation.Snk.Setting.SkipCDLoading" xml:space="preserve"><value>Přeskočit animaci načítání disku</value></data>
+  <data name="Emulation.Snk.Setting.HorizontalOverscan"><value>Skrýt pixely podél levých a pravých hran obrazovky</value></data>
+  <data name="Emulation.Snk.Setting.PerGameSaves"><value>Oddělená uložení pro každou hru</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilterLevel"><value>Hladina zvukového filtru (%)</value></data>
+</root>

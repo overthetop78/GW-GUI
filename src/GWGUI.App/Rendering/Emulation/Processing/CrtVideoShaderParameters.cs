@@ -4,37 +4,20 @@ using GWGUI.Emulation.Enums;
 
 namespace GWGUI.App.Rendering.Emulation.Processing;
 
-internal readonly record struct CrtVideoShaderParameters(
-    Vector4 Display,
-    Vector4 Beam,
-    Vector4 Optical,
-    Vector4 Geometry,
-    Vector4 Scanlines,
-    Vector4 Pattern,
-    Vector4 PatternIntensity)
+internal readonly record struct CrtVideoShaderParameters(Vector4 Display, Vector4 Beam, Vector4 Optical, Vector4 Geometry, Vector4 Scanlines, Vector4 Pattern, Vector4 PatternIntensity)
 {
-    internal static CrtVideoShaderParameters From(
-        EmulationVideoProcessingConfiguration configuration)
+    internal static CrtVideoShaderParameters From(EmulationVideoProcessingConfiguration configuration)
     {
         var crt = configuration.Crt;
         var tint = LinearTint(crt);
         return new CrtVideoShaderParameters(
-            new Vector4(configuration.DisplayTechnology == EmulationVideoDisplayTechnology.Crt
-                ? 1f : 0f, (float)crt.ColorMode, tint.X, tint.Y),
-            new Vector4(tint.Z, Ratio(crt.BeamWidth), Ratio(crt.BeamIntensity),
-                Ratio(crt.BeamDiffusion)),
-            new Vector4(Ratio(crt.HaloIntensity), (float)crt.Mask,
-                (float)(crt.ColorMode == EmulationCrtColorMode.Color
-                    ? crt.MaskSubpixels : EmulationSubpixelLayout.Monochrome),
-                Ratio(crt.MaskIntensity)),
-            new Vector4(SignedRatio(crt.HorizontalCurvature), SignedRatio(crt.VerticalCurvature),
-                SignedRatio(crt.Trapezoid), Ratio(crt.Vignette)),
-            new Vector4(Ratio(crt.ScanlineIntensity), Ratio(crt.ScanlineThickness),
-                (float)crt.ScanlinePhase, Ratio(crt.ScanlineCompensation)),
-            new Vector4(crt.PatternEnabled ? 1f : 0f, (float)crt.PatternOrientation,
-                Ratio(crt.PatternFrequency), Ratio(crt.PatternPhase)),
-            new Vector4(Ratio(crt.PatternIntensity), crt.ScanlinesEnabled ? 1f : 0f,
-                (float)crt.ScanlineOrientation, 0f));
+            new Vector4(configuration.DisplayTechnology == EmulationVideoDisplayTechnology.Crt ? 1f : 0f, (float)crt.ColorMode, tint.X, tint.Y),
+            new Vector4(tint.Z, Ratio(crt.BeamWidth), Ratio(crt.BeamIntensity), Ratio(crt.BeamDiffusion)),
+            new Vector4(Ratio(crt.HaloIntensity), (float)crt.Mask, (float)(crt.ColorMode == EmulationCrtColorMode.Color ? crt.MaskSubpixels : EmulationSubpixelLayout.Monochrome), Ratio(crt.MaskIntensity)),
+            new Vector4(SignedRatio(crt.HorizontalCurvature), SignedRatio(crt.VerticalCurvature), SignedRatio(crt.Trapezoid), Ratio(crt.Vignette)),
+            new Vector4(Ratio(crt.ScanlineIntensity), Ratio(crt.ScanlineThickness), (float)crt.ScanlinePhase, Ratio(crt.ScanlineCompensation)),
+            new Vector4(crt.PatternEnabled ? 1f : 0f, (float)crt.PatternOrientation, Ratio(crt.PatternFrequency), Ratio(crt.PatternPhase)),
+            new Vector4(Ratio(crt.PatternIntensity), crt.ScanlinesEnabled ? 1f : 0f, (float)crt.ScanlineOrientation, 0f));
     }
 
     private static Vector3 LinearTint(EmulationCrtVideoConfiguration configuration)

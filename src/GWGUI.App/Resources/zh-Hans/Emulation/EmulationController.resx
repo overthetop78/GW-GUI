@@ -36,4 +36,27 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix 速度( 右手)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>外观</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>主计长 {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>指向设备</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>飞行模拟</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>赛跑模拟</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>舞蹈模拟</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>唱歌模拟</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>其他模拟外围</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>强振动</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>弱振动</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>重新装弹</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>准星颜色</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>跳舞毯</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>配置键盘标签中的键盘 。</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>配置鼠标标签中的鼠标 。</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>设备类型</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>用于振动的控制器</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>棍棒和轴线任务</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>粘着 {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>键盘或自定义任务</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>左手执</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>右手执</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>轴 {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>轴 {0} / 数据 {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>已保存的任务</value></data>
 </root>

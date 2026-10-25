@@ -1,8 +1,7 @@
-using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
+using MediaImageFormatIds = GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
 using GWGUI.MediaFileSystems.FileSystems.Amiga;
 
 namespace GWGUI.MediaFileSystems.Definitions;
-
 /// <summary>Définit les noms affichés des systèmes de fichiers reconnus.</summary>
 internal static class FileSystemDisplayNames
 {
@@ -40,25 +39,41 @@ internal static class FileSystemDisplayNames
     public const string Rt11 = "DEC RT-11";
     /// <summary>Nom affiché d'UCSD p-System.</summary>
     public const string Ucsd = "UCSD p-System";
-
     /// <summary>Retourne le nom de la variante AmigaDOS correspondant à son octet DOS.</summary>
-    /// <param name="dosType">Octet identifiant la variante AmigaDOS.</param>
+    /// <param name = "dosType">Octet identifiant la variante AmigaDOS.</param>
     /// <returns>Nom affiché de la variante AmigaDOS.</returns>
-    public static string AmigaDos(AmigaDosVariant variant) => variant switch { AmigaDosVariant.Ofs => "AmigaDOS OFS", AmigaDosVariant.Ffs => "AmigaDOS FFS", AmigaDosVariant.OfsInternational => "AmigaDOS OFS International", AmigaDosVariant.FfsInternational => "AmigaDOS FFS International", AmigaDosVariant.OfsDirectoryCache => "AmigaDOS OFS Directory Cache", AmigaDosVariant.FfsDirectoryCache => "AmigaDOS FFS Directory Cache", AmigaDosVariant.OfsLongNames => "AmigaDOS OFS Long Names", AmigaDosVariant.FfsLongNames => "AmigaDOS FFS Long Names", _ => "AmigaDOS" };
+    public static string AmigaDos(AmigaDosVariant variant) => variant switch
+    {
+        AmigaDosVariant.Ofs => "AmigaDOS OFS",
+        AmigaDosVariant.Ffs => "AmigaDOS FFS",
+        AmigaDosVariant.OfsInternational => "AmigaDOS OFS International",
+        AmigaDosVariant.FfsInternational => "AmigaDOS FFS International",
+        AmigaDosVariant.OfsDirectoryCache => "AmigaDOS OFS Directory Cache",
+        AmigaDosVariant.FfsDirectoryCache => "AmigaDOS FFS Directory Cache",
+        AmigaDosVariant.OfsLongNames => "AmigaDOS OFS Long Names",
+        AmigaDosVariant.FfsLongNames => "AmigaDOS FFS Long Names",
+        _ => "AmigaDOS"
+    };
     /// <summary>Retourne le nom de la variante CP/M Amstrad correspondant au format.</summary>
-    /// <param name="formatId">Identifiant du format d'image disque.</param>
+    /// <param name = "formatId">Identifiant du format d'image disque.</param>
     /// <returns>Nom affiché de la variante CP/M Amstrad.</returns>
     public static string AmstradCpm(string formatId) => formatId.Equals(MediaImageFormatIds.AmstradPcw, StringComparison.OrdinalIgnoreCase) ? "Amstrad PCW CP/M Plus" : "Amstrad CPC CP/M";
     /// <summary>Retourne le nom de la variante FAT12 correspondant au format.</summary>
-    /// <param name="formatId">Identifiant du format d'image disque.</param>
+    /// <param name = "formatId">Identifiant du format d'image disque.</param>
     /// <returns>Nom affiché de la variante FAT12.</returns>
     public static string Fat12(string formatId) => formatId.StartsWith(MediaImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) ? "IBM PC FAT12" : formatId.StartsWith(MediaImageFormatIds.MsxPrefix, StringComparison.OrdinalIgnoreCase) ? "MSX-DOS FAT12" : "Atari TOS FAT12";
     /// <summary>Retourne le nom de la variante Lisa correspondant à sa version de catalogue.</summary>
-    /// <param name="version">Version du catalogue Lisa.</param>
+    /// <param name = "version">Version du catalogue Lisa.</param>
     /// <returns>Nom affiché de la variante Lisa.</returns>
-    public static string Lisa(ushort version) => version switch { 0x000e => "Lisa Office System (table catalog)", 0x000f => "Lisa Office System (hash catalog)", 0x0011 => "Lisa Office System (B-tree catalog)", _ => $"Lisa Office System (${version:X4})" };
+    public static string Lisa(ushort version) => version switch
+    {
+        0x000e => "Lisa Office System (table catalog)",
+        0x000f => "Lisa Office System (hash catalog)",
+        0x0011 => "Lisa Office System (B-tree catalog)",
+        _ => $"Lisa Office System (${version:X4})"
+    };
     /// <summary>Retourne le nom ProDOS ou SOS correspondant au format.</summary>
-    /// <param name="formatId">Identifiant du format d'image disque.</param>
+    /// <param name = "formatId">Identifiant du format d'image disque.</param>
     /// <returns>Nom affiché de ProDOS ou SOS.</returns>
     public static string ProDos(string formatId) => formatId.Equals(MediaImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase) ? AppleSosProDos : AppleProDos;
     /// <summary>Nom affiché d'un volume Apple III SOS lu par le moteur ProDOS.</summary>

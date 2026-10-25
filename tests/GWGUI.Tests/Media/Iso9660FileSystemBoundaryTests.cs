@@ -36,14 +36,10 @@ public sealed class Iso9660FileSystemBoundaryTests
         WriteRecord(directory[34..], 21, 5, 0, fileName);
         "HELLO"u8.CopyTo(bytes.AsSpan(21 * sectorSize));
 
-        var track = new OpticalTrackDescriptor(
-            1, 1, OpticalTrackMode.Mode1Data2048, 0, 32,
-            sectorSize, 0, sectorSize, new MemoryRandomAccessData(bytes), 0);
+        var track = new OpticalTrackDescriptor(1, 1, OpticalTrackMode.Mode1Data2048, 0, 32, sectorSize, 0, sectorSize, new MemoryRandomAccessData(bytes), 0);
         var representation = new OpticalMediaImageRepresentation(bytes.Length, [track]);
         var volume = new MediaVolumeDescriptor(0, bytes.Length, "optical-track", sessionNumber: 1, trackNumber: 1);
-        var document = new MediaImageDocument(
-            new MediaSourceDescriptor("memory.iso", []), "optical.iso", MediaKind.Optical,
-            representation, [volume], [], new Dictionary<string, string>());
+        var document = new MediaImageDocument(new MediaSourceDescriptor("memory.iso", []), "optical.iso", MediaKind.Optical, representation, [volume], [], new Dictionary<string, string>());
         var reader = new Iso9660FileSystemReader();
 
         Assert.True(reader.CanRead(document, volume));
@@ -54,8 +50,7 @@ public sealed class Iso9660FileSystemBoundaryTests
         Assert.Equal(GWGUI.MediaFileSystems.FileSystemEntryKind.File, entry.Kind);
         Assert.Equal("HELLO", Encoding.ASCII.GetString(entry.Content!.ToArray()));
 
-        var fileSystemsExplorer = new GWGUI.MediaFileSystems.Exploration.MediaExplorer(
-            [reader], new GWGUI.MediaFileSystems.Exploration.MediaVolumeDetectorRegistry([]));
+        var fileSystemsExplorer = new GWGUI.MediaFileSystems.Exploration.MediaExplorer([reader], new GWGUI.MediaFileSystems.Exploration.MediaVolumeDetectorRegistry([]));
         var analyzed = await fileSystemsExplorer.ExploreAsync(document);
         var analyzedEntry = Assert.Single(Assert.Single(analyzed.ExploredVolumes).AnalyzedEntries);
         Assert.Equal("HELLO.TXT", analyzedEntry.Name);

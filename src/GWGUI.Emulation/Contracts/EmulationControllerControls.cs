@@ -11,8 +11,7 @@ public sealed class EmulationControllerControls : IReadOnlyDictionary<string, fl
     public EmulationControllerControls() :
         this(new Dictionary<string, float>(StringComparer.OrdinalIgnoreCase)) { }
 
-    public EmulationControllerControls(IEnumerable<KeyValuePair<string, float>> values) =>
-        _values = new Dictionary<string, float>(values, StringComparer.OrdinalIgnoreCase);
+    public EmulationControllerControls(IEnumerable<KeyValuePair<string, float>> values) => _values = new Dictionary<string, float>(values, StringComparer.OrdinalIgnoreCase);
 
     public int Count => _values.Count;
     public IEnumerable<string> Keys => _values.Keys;
@@ -23,9 +22,7 @@ public sealed class EmulationControllerControls : IReadOnlyDictionary<string, fl
     public IEnumerator<KeyValuePair<string, float>> GetEnumerator() => _values.GetEnumerator();
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-    public bool Equals(EmulationControllerControls? other) =>
-        other is not null && Count == other.Count &&
-        _values.All(item => other.TryGetValue(item.Key, out var value) && item.Value.Equals(value));
+    public bool Equals(EmulationControllerControls? other) => other is not null && Count == other.Count && _values.All(item => other.TryGetValue(item.Key, out var value) && item.Value.Equals(value));
     public override bool Equals(object? value) => value is EmulationControllerControls other && Equals(other);
     public override int GetHashCode()
     {

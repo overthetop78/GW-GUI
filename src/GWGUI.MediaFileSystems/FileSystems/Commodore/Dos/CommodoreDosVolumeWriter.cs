@@ -1,4 +1,4 @@
-using MediaSectorWritePlan = global::GWGUI.MediaFileSystems.Contracts.MediaSectorWritePlan;
+using MediaSectorWritePlan = GWGUI.MediaFileSystems.Contracts.MediaSectorWritePlan;
 using GWGUI.MediaFileSystems.Migration;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Commodore.Dos;

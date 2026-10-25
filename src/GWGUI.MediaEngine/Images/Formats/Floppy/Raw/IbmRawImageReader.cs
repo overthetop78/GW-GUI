@@ -63,6 +63,5 @@ public sealed class IbmRawImageReader : IMediaImageReader
         return MediaImageDocumentFactory.CreateFloppySector(context.Source, Read(data.ToArray(), cancellationToken));
     }
 
-    private static SectorImage Read(byte[] data, CancellationToken cancellationToken)
-        => IbmRawSectorImageBuilder.Create(data, IbmRawImageGeometryDetector.Detect(data), cancellationToken);
+    private static SectorImage Read(byte[] data, CancellationToken cancellationToken) => IbmRawSectorImageBuilder.Create(data, IbmRawImageGeometryDetector.Detect(data), cancellationToken);
 }

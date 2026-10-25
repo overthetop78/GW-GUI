@@ -16,12 +16,11 @@ internal sealed partial class EmulationModuleSettingsSection
 {
     private EmulationSettingsControlField CreateControlField(EmulationSettingsField field) =>
         new(
-            field.RequiresRestart
-                ? $"{LocExtension.GetForModule(_module, field.LabelResourceKey)} · {LocExtension.Get("Emulation.Option.RestartRequired")}"
-                : LocExtension.GetForModule(_module, field.LabelResourceKey),
+            LocExtension.GetForModule(_module, field.LabelResourceKey),
             CreateField(field),
             field.ExplanationResourceKey is null ? null : LocExtension.GetForModule(_module, field.ExplanationResourceKey),
-            field.DetailedExplanationResourceKey is null ? null : LocExtension.GetForModule(_module, field.DetailedExplanationResourceKey));
+            field.DetailedExplanationResourceKey is null ? null : LocExtension.GetForModule(_module, field.DetailedExplanationResourceKey),
+            field);
 
     private FrameworkElement CreateField(EmulationSettingsField field)
     {
@@ -31,9 +30,11 @@ internal sealed partial class EmulationModuleSettingsSection
             EmulationSettingsEditor.Toggle => CreateToggle(field),
             EmulationSettingsEditor.Path => CreatePath(field),
             EmulationSettingsEditor.DirectoryPath => CreateDirectoryPath(field),
+            EmulationSettingsEditor.OpenDirectory => CreateOpenDirectory(field),
+            EmulationSettingsEditor.Slider => CreateSlider(field),
             EmulationSettingsEditor.Information => new TextBlock
             {
-                Text = field.Value,
+                Text = EmulationSettingsValuePresentationFunctions.DisplayValue(field, _module),
                 VerticalAlignment = VerticalAlignment.Center,
                 TextWrapping = TextWrapping.Wrap
             },
@@ -47,14 +48,21 @@ internal sealed partial class EmulationModuleSettingsSection
         return control;
     }
 
-    private ComboBox CreateSelection(EmulationSettingsField field)
+    private FrameworkElement CreateSelection(EmulationSettingsField field)
     {
-        var choices = SelectionChoices(field);
-        var selection = new ComboBox
+        var control = EmulationSettingsFieldControlFunctions.CreateSelection(field, SelectionChoices(field));
+        if (control is WrapPanel radios)
         {
-            ItemsSource = choices,
-            SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == field.Value) ?? choices.FirstOrDefault()
-        };
+            foreach (var radio in radios.Children.OfType<RadioButton>())
+                radio.Checked += async (_, _) =>
+                {
+                    if (_applyingSettingsRule) return;
+                    if (field.RefreshSettingsOnChange) RefreshSettingsDescription();
+                    await ExecuteUserChangeAsync();
+                };
+            return radios;
+        }
+        var selection = (ComboBox)control;
         _userChangeHandlers[selection] = async () =>
         {
             if (field.RefreshSettingsOnChange)
@@ -69,20 +77,19 @@ internal sealed partial class EmulationModuleSettingsSection
 
     private IReadOnlyList<EmulationSettingsChoiceView> SelectionChoices(EmulationSettingsField field)
     {
-        var declared = field.Choices?.Select(ChoiceView) ?? Enumerable.Empty<EmulationSettingsChoiceView>();
+        var declared = field.Choices?.Select(choice => ChoiceView(choice, field.ValueUnitResourceKey)) ?? Enumerable.Empty<EmulationSettingsChoiceView>();
         if (field.ChoiceSource != EmulationSettingsChoiceSource.AudioOutputDevices)
             return declared.ToArray();
-        var devices = WasapiAudioOutput.GetOutputDevices().Select(device => new EmulationSettingsChoiceView(
-            new EmulationSettingsChoice(device.Id, string.Empty, device.Name), device.Name));
+        var devices = WasapiAudioOutput.GetOutputDevices().Select(device => new EmulationSettingsChoiceView(new EmulationSettingsChoice(device.Id, string.Empty, device.Name), device.Name));
         return declared.Concat(devices).DistinctBy(choice => choice.Choice.Id).ToArray();
     }
 
-    private EmulationSettingsChoiceView ChoiceView(EmulationSettingsChoice choice) =>
-        new(choice, choice.InvariantDisplayValue ?? LocExtension.GetForModule(_module, choice.DisplayResourceKey));
+    private EmulationSettingsChoiceView ChoiceView(EmulationSettingsChoice choice, string? unitResourceKey = null) => new(choice,
+        EmulationSettingsValuePresentationFunctions.WithUnit(choice.InvariantDisplayValue ?? LocExtension.GetForModule(_module, choice.DisplayResourceKey), unitResourceKey));
 
     private CheckBox CreateToggle(EmulationSettingsField field)
     {
-        var toggle = new CheckBox { IsChecked = field.Value == field.EnabledValue, Tag = field };
+        var toggle = EmulationSettingsFieldControlFunctions.CreateToggle(field);
         _userChangeHandlers[toggle] = async () =>
         {
             if (field.RefreshSettingsOnChange) RefreshSettingsDescription();
@@ -104,8 +111,7 @@ internal sealed partial class EmulationModuleSettingsSection
         var browse = new Button { Content = LocExtension.Get(ControlVisualConstants.BrowseResource), MinWidth = 90 };
         browse.Click += async (_, _) =>
         {
-            var currentDirectory = File.Exists(path.Text) ? Path.GetDirectoryName(path.Text)
-                : Directory.Exists(path.Text) ? path.Text : null;
+            var currentDirectory = File.Exists(path.Text) ? Path.GetDirectoryName(path.Text) : Directory.Exists(path.Text) ? path.Text : null;
             var dialog = new OpenFileDialog
             {
                 InitialDirectory = currentDirectory ?? DefaultFolder(field.DefaultFolderCategory),
@@ -140,6 +146,33 @@ internal sealed partial class EmulationModuleSettingsSection
         return PathRow(path, browse);
     }
 
+    private FrameworkElement CreateOpenDirectory(EmulationSettingsField field)
+    {
+        var directory = DefaultFolder(field.DefaultFolderCategory);
+        Directory.CreateDirectory(directory);
+        var open = new Button
+        {
+            Content = LocExtension.Get("Common.OpenFolder"), Tag = directory,
+            HorizontalAlignment = HorizontalAlignment.Left, MinWidth = 140
+        };
+        open.Click += async (_, _) => await ExecuteAsync(() =>
+        {
+            System.Diagnostics.Process? shellRequest = null;
+            try
+            {
+                Directory.CreateDirectory(directory);
+                shellRequest = System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(directory) { UseShellExecute = true });
+            }
+            finally
+            {
+                // Explorer belongs to the desktop shell; release only our request handle.
+                shellRequest?.Dispose();
+            }
+            return Task.CompletedTask;
+        });
+        return open;
+    }
+
     private static Grid PathRow(TextBox path, Button browse)
     {
         var row = new Grid { Tag = path };
@@ -153,22 +186,17 @@ internal sealed partial class EmulationModuleSettingsSection
 
     private string DefaultFolder(EmulationDefaultFolderCategory? category)
     {
-        var moduleFolder = _module.Id.Length == 0 ? _module.Id
-            : char.ToUpperInvariant(_module.Id[0]) + _module.Id[1..];
+        var moduleFolder = _module.Id.Length == 0 ? _module.Id : char.ToUpperInvariant(_module.Id[0]) + _module.Id[1..];
         return category switch
         {
-            EmulationDefaultFolderCategory.Floppy => Path.Combine(StoragePaths.EmulationStorageDirectory,
-                StoragePathConstants.FloppiesDirectory, moduleFolder),
-            EmulationDefaultFolderCategory.CompactDisc => Path.Combine(StoragePaths.EmulationStorageDirectory,
-                StoragePathConstants.CompactDiscsDirectory, moduleFolder),
-            EmulationDefaultFolderCategory.HardDisk => Path.Combine(StoragePaths.EmulationStorageDirectory,
-                StoragePathConstants.HardDisksDirectory, moduleFolder),
-            EmulationDefaultFolderCategory.Cartridge => Path.Combine(StoragePaths.EmulationStorageDirectory,
-                StoragePathConstants.CartridgesDirectory, moduleFolder),
-            EmulationDefaultFolderCategory.Cassette => Path.Combine(StoragePaths.EmulationStorageDirectory,
-                StoragePathConstants.CassettesDirectory, moduleFolder),
+            EmulationDefaultFolderCategory.Floppy => Path.Combine(StoragePaths.EmulationStorageDirectory, StoragePathConstants.FloppiesDirectory, moduleFolder),
+            EmulationDefaultFolderCategory.CompactDisc => Path.Combine(StoragePaths.EmulationStorageDirectory, StoragePathConstants.CompactDiscsDirectory, moduleFolder),
+            EmulationDefaultFolderCategory.HardDisk => Path.Combine(StoragePaths.EmulationStorageDirectory, StoragePathConstants.HardDisksDirectory, moduleFolder),
+            EmulationDefaultFolderCategory.Cartridge => Path.Combine(StoragePaths.EmulationStorageDirectory, StoragePathConstants.CartridgesDirectory, moduleFolder),
+            EmulationDefaultFolderCategory.Cassette => Path.Combine(StoragePaths.EmulationStorageDirectory, StoragePathConstants.CassettesDirectory, moduleFolder),
             EmulationDefaultFolderCategory.State => Path.Combine(StoragePaths.EmulationStateDirectory, moduleFolder),
             EmulationDefaultFolderCategory.Capture => Path.Combine(StoragePaths.EmulationCaptureDirectory, moduleFolder),
+            EmulationDefaultFolderCategory.Cheats => Path.Combine(StoragePaths.EmulationStorageDirectory, "Cheats", moduleFolder, _configuration.MachineId),
             EmulationDefaultFolderCategory.Firmware => _firmwareManagement?.GetFirmwareDirectory()
                 ?? Path.Combine(StoragePaths.EmulationStorageDirectory, StoragePathConstants.RomsDirectory, moduleFolder),
             _ => StoragePaths.EmulationStorageDirectory

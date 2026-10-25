@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>Pevný disk</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>Rozhraní</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Předalokovat soubor</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>z běžícího stroje se vloží nebo nahradí disketa a CD.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Pomocí emulačního pohledu vložte nebo změňte média.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Odebrat médium</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Obraz disku již existuje: {0}\nChcete jej nahradit?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Dostupné typy, modely a identifikátory závisí na vybraném počítači.</value></data>
@@ -75,4 +75,13 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Rozhraní náplně</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>První čtyři disky se připojí DF0-DF3</value></data>
   <data name="Emulation.DiskNumber"><value>Disk {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Použít kartu</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Vybraný soubor bude připojen k tomuto virtuálnímu úložišti.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Vyberte existující kartový soubor.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Kartový soubor má neplatnou velikost.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Vyberte formát souboru podporovaný tímto zařízením.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Bez omezení</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Vymazat při zavření hry</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Paměťová karta</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>Název karty</value></data>
 </root>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Error.ContentNotFound" xml:space="preserve"><value>لم يتم العثور على وسائل الإعلام المُشكلة في (سنكلير).</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported" xml:space="preserve"><value>هذه الآلة لا تدعم وسائل الإعلام المختارة</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound" xml:space="preserve"><value>لم يتم العثور على الجوهر المطلوب من (سينكلير).</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected" xml:space="preserve"><value>لا يمكن تحميل نواة (سينكلير) المختارة</value></data>
+  <data name="Emulation.Sinclair.Error.Details" xml:space="preserve"><value>التفاصيل: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid" xml:space="preserve"><value>النظام ROM غير صحيح أو غير متوافق</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing" xml:space="preserve"><value>شركة (سينكلير) مطلوبة مفقودة</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure" xml:space="preserve"><value>الاتصالات مع مضيفة السنكلير فشلت</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid" xml:space="preserve"><value>خيار (سينكلير) له قيمة غير صحيحة</value></data>
+  <data name="Emulation.Sinclair.Error.StateIncompatible" xml:space="preserve"><value>ولاية (سينكلير) المنقذة لا تتوافق مع الآلة الحالية</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid" xml:space="preserve"><value>ولاية (سينكلير) المنقذة غير صحيحة</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected" xml:space="preserve"><value>حدث خطأ غير متوقع في القذف</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>قيادة بيئة غير معروفة: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing" xml:space="preserve"><value>الطريق إلى برنامج "سينكلير" المضيف غير متاح</value></data>
+</root>

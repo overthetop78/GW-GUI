@@ -1,3 +1,4 @@
+using EmulatorCatalogFunctions = GWGUI.Emulation.Atari.Common.Functions.EmulatorCatalogFunctions;
 namespace GWGUI.Emulation.Atari.Emulators.Hatari.Constants;
 
 internal static class EmulatorConstants
@@ -7,5 +8,6 @@ internal static class EmulatorConstants
         "https://github.com/libretro/hatari",
         "24e7bd744f24f20b464385f365a3850c269bd140",
         MachineModel.St, MachineModel.Stf, MachineModel.Stfm, MachineModel.MegaSt,
-        MachineModel.Ste, MachineModel.MegaSte, MachineModel.Tt, MachineModel.Falcon);
+        MachineModel.Ste, MachineModel.MegaSte, MachineModel.Tt, MachineModel.Falcon)
+        with { DescriptionResourceKey = StModelConstants.EmulatorDescriptionResourceKey };
 }

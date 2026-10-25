@@ -33,9 +33,7 @@ internal static partial class EmulationSettingsLayout
             Grid.SetColumn(rowDefinition.Value, 1);
             row.Children.Add(rowDefinition.Value);
 
-            var browse = ControlUiFactory.TextButton(LocExtension.Get(ControlVisualConstants.BrowseResource),
-                DefaultFolderBrowseButtonWidth,
-                async (_, _) => await rowDefinition.Browse(), new Thickness(8, 0, 0, 0), DefaultFolderControlHeight);
+            var browse = ControlUiFactory.TextButton(LocExtension.Get(ControlVisualConstants.BrowseResource), DefaultFolderBrowseButtonWidth, async (_, _) => await rowDefinition.Browse(), new Thickness(8, 0, 0, 0), DefaultFolderControlHeight);
             AutomationProperties.SetName(browse, $"{LocExtension.Get("Common.Browse")}: {rowDefinition.Label}");
             Grid.SetColumn(browse, 2);
             row.Children.Add(browse);

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Help.DisplayArea" xml:space="preserve"><value>Select the visible area of the console image.</value></data>
+  <data name="Emulation.Epoch.Help.PixelAspect" xml:space="preserve"><value>Select rectangular or square pixels.</value></data>
+  <data name="Emulation.Epoch.Help.Resolution" xml:space="preserve"><value>Select the internal rendering resolution.</value></data>
+  <data name="Emulation.Epoch.Help.ColorPalette" xml:space="preserve"><value>Select the console color palette.</value></data>
+  <data name="Emulation.Epoch.Help.RefreshRate" xml:space="preserve"><value>Select the console refresh rate.</value></data>
+  <data name="Emulation.Epoch.Help.ShowVideoMemory" xml:space="preserve"><value>Display video memory beyond the television image.</value></data>
+  <data name="Emulation.Epoch.Help.ShowInputs" xml:space="preserve"><value>Display the current controller state over the image.</value></data>
+  <data name="Emulation.Epoch.Help.Language" xml:space="preserve"><value>Select the language of the emulator screens.</value></data>
+  <data name="Emulation.Epoch.Help.ValidateFirmware" xml:space="preserve"><value>Verify the console BIOS checksum before starting.</value></data>
+  <data name="Emulation.Epoch.Help.ShowKeypadAtStart" xml:space="preserve"><value>Display the console keypad when emulation starts.</value></data>
+  <data name="Emulation.Epoch.Help.AnnounceCourseSwitch" xml:space="preserve"><value>Display the selected game course when it changes.</value></data>
+</root>

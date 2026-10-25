@@ -47,9 +47,7 @@ internal static class WpfResourceCleanup
         dispatcher.ShutdownFinished += onShutdownFinished;
         try
         {
-            var operation = dispatcher.InvokeAsync(
-                () => CloseAndShutdown(application, dispatcher),
-                DispatcherPriority.Send);
+            var operation = dispatcher.InvokeAsync(() => CloseAndShutdown(application, dispatcher), DispatcherPriority.Send);
             if (!operation.Task.Wait(ShutdownTimeout))
                 throw new TimeoutException("The WPF cleanup operation did not complete.");
             operation.Task.GetAwaiter().GetResult();

@@ -35,10 +35,7 @@ public partial class ExplorerSection
 
     private void ShowContents(IEnumerable<FileSystemEntry> entries)
     {
-        ContentsList.ItemsSource = entries
-            .OrderBy(entry => entry.Kind != FileSystemEntryKind.Directory)
-            .ThenBy(entry => entry.Name, StringComparer.CurrentCultureIgnoreCase)
-            .Select(entry => new ExplorerContentItem(entry)).ToArray();
+        ContentsList.ItemsSource = entries.OrderBy(entry => entry.Kind != FileSystemEntryKind.Directory).ThenBy(entry => entry.Name, StringComparer.CurrentCultureIgnoreCase).Select(entry => new ExplorerContentItem(entry)).ToArray();
         ContentsList.SelectedItem = null;
         if (_document is not null) DetailsPanel.ShowDisk(_document, CurrentSystem(_document));
         else if (_mediaDocument is not null && _mediaVolume is not null)
@@ -94,11 +91,7 @@ public partial class ExplorerSection
 
     private void WarningsButton_Click(object sender, RoutedEventArgs e)
     {
-        var issues = _document is not null
-            ? BuildIssues(_document)
-            : _mediaDocument is not null && _mediaVolume is not null
-                ? ExplorerIssueBuilder.Build(_mediaDocument, _mediaVolume)
-                : [];
+        var issues = _document is not null ? BuildIssues(_document) : _mediaDocument is not null && _mediaVolume is not null ? ExplorerIssueBuilder.Build(_mediaDocument, _mediaVolume) : [];
         if (issues.Count == 0) return;
         new ExplorerIssuesWindow(issues) { Owner = Window.GetWindow(this) }.ShowDialog();
     }

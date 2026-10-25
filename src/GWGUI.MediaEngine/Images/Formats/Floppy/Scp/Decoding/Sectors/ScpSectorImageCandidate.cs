@@ -30,21 +30,9 @@ internal sealed record ScpSectorImageCandidate(
         _ => Family.ToString()
     };
 
-    public Task<SectorImage> ReadWithProgressAsync(
-        string path,
-        string? formatId,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken) =>
-        ProgressiveReadAsync is null
-            ? ReadAsync(path, formatId, cancellationToken)
-            : ProgressiveReadAsync(path, formatId, progress, cancellationToken);
+    public Task<SectorImage> ReadWithProgressAsync(string path, string? formatId, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken) =>
+        ProgressiveReadAsync is null ? ReadAsync(path, formatId, cancellationToken) : ProgressiveReadAsync(path, formatId, progress, cancellationToken);
 
-    public Task<SectorImage> ReadWithProgressAsync(
-        ProtectedTrackImage image,
-        string? formatId,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken) =>
-        FluxReadAsync is null
-            ? throw new NotSupportedException($"The flux candidate '{Id}' requires an SCP source path.")
-            : FluxReadAsync(image, formatId, progress, cancellationToken);
+    public Task<SectorImage> ReadWithProgressAsync(ProtectedTrackImage image, string? formatId, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken) =>
+        FluxReadAsync is null ? throw new NotSupportedException($"The flux candidate '{Id}' requires an SCP source path.") : FluxReadAsync(image, formatId, progress, cancellationToken);
 }

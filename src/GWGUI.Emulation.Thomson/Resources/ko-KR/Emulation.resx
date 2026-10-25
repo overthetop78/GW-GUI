@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.theodore.Description"><value>Thomson MO / TO 시스템을 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Thomson.Start" xml:space="preserve"><value>프로그램 시작</value></data>
+  <data name="Emulation.Thomson.Start.AutoRun" xml:space="preserve"><value>로드 된 프로그램을 자동으로 시작</value></data>
+  <data name="Emulation.Thomson.Start.UseGameHash" xml:space="preserve"><value>checksum에 의해 프로그램을 식별</value></data>
+  <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>프로그램 시작 지침</value></data>
+  <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>의 특징</value></data>
+  <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>파일로 프린터 출력을 저장</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>라이트 펜</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>라이트 펜 접촉</value></data>
+</root>

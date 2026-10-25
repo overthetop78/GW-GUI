@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Konsolivideo</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Konsoliääni</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Konsolinhallinta</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Emuloi seuraavia järjestelmiä: WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Toistaa Playdia-levyjä emulaattorilla PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Emuloi laitetta Tamagotchi P1 emulaattorilla TamaLIBretro.</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Tämä ydin toistaa levyjä ilman prosessorien jäljittelyä.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Näytä muisti</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Näytön suunta</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>Ohjaussuunta</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Yksivärinen paletti</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>Videokehysten ohituksen kynnysarvo</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60 Hz:n tila</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>Ääninäytteenottotaajuus</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>Äänisuodatin</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>Vaihda painikkeet A ja B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>Automaattinen</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>Käsikirja</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>Vaaka</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>Pysty</value></data>
+</root>

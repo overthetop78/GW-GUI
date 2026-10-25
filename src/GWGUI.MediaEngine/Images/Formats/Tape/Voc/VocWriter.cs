@@ -17,12 +17,9 @@ public sealed class VocWriter : IMediaImageWriter
 {
     private const ushort Version = 0x0114;
     private static readonly byte[] Signature = System.Text.Encoding.ASCII.GetBytes("Creative Voice File\u001a");
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { TapeImageFormatIds.Voc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
-    private static readonly IReadOnlySet<string> SupportedExtensions =
-        new[] { DiskImageFileExtensions.Voc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { TapeImageFormatIds.Voc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedExtensions = new[] { DiskImageFileExtensions.Voc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private readonly IAtomicImageFileWriter files;
 
     public VocWriter(IAtomicImageFileWriter? files = null) => this.files = files ?? new AtomicImageFileWriter();
@@ -40,11 +37,7 @@ public sealed class VocWriter : IMediaImageWriter
         && PcmSampleFunctions.TryGetProfile(document.Metadata, out _, out _, out _, out _)
         && TryGetRanges(document, out _);
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!CanWrite(document, targetFormatId, extension)
@@ -72,8 +65,7 @@ public sealed class VocWriter : IMediaImageWriter
             pcm[index] = (byte)Math.Clamp(value + 128, 0, 255);
         }
 
-        await files.WriteAsync(outputPath, (output, token) => WriteVocAsync(output, pcm, timeConstant, token), cancellationToken)
-            .ConfigureAwait(false);
+        await files.WriteAsync(outputPath, (output, token) => WriteVocAsync(output, pcm, timeConstant, token), cancellationToken).ConfigureAwait(false);
         return [outputPath];
     }
 
@@ -88,7 +80,7 @@ public sealed class VocWriter : IMediaImageWriter
         await output.WriteAsync(header, cancellationToken).ConfigureAwait(false);
         await output.WriteAsync(new[] { (byte)1 }, cancellationToken).ConfigureAwait(false);
         var blockLength = new byte[3];
-        WriteUInt24(blockLength, pcm.Length + 2);
+        GWGUI.MediaEngine.Functions.BitPrimitives.WriteUInt24LittleEndian(blockLength, pcm.Length + 2);
         await output.WriteAsync(blockLength, cancellationToken).ConfigureAwait(false);
         await output.WriteAsync(new[] { timeConstant, (byte)0 }, cancellationToken).ConfigureAwait(false);
         await output.WriteAsync(pcm, cancellationToken).ConfigureAwait(false);
@@ -99,18 +91,9 @@ public sealed class VocWriter : IMediaImageWriter
     {
         ranges = [];
         if (document.Representation is not SequentialMediaImageRepresentation { Segments: { Count: > 0 } segments }) return false;
-        var selected = segments.Where(segment => segment.Kind == SequentialSegmentKind.Samples && segment.ChannelNumber is null or 0)
-            .Select(segment => segment.DataRange)
-            .ToArray();
+        var selected = segments.Where(segment => segment.Kind == SequentialSegmentKind.Samples && segment.ChannelNumber is null or 0).Select(segment => segment.DataRange).ToArray();
         if (selected.Length == 0 || selected.Any(range => range is not { Kind: MediaDataRangeKind.Stored, Source: not null })) return false;
         ranges = selected.Select(range => range!).ToArray();
         return true;
-    }
-
-    private static void WriteUInt24(Span<byte> destination, int value)
-    {
-        destination[0] = (byte)value;
-        destination[1] = (byte)(value >> 8);
-        destination[2] = (byte)(value >> 16);
     }
 }

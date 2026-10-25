@@ -4,9 +4,7 @@ using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Images.Conversion.Fat12;
 
-public sealed class Fat12ReinterpretationService(
-    DiskImageExplorer explorer,
-    Fat12TargetImageWriter writer)
+public sealed class Fat12ReinterpretationService(DiskImageExplorer explorer, Fat12TargetImageWriter writer)
 {
     public async Task ConvertAsync(string sourcePath, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {

@@ -2,17 +2,17 @@ namespace GWGUI.Emulation.Amstrad.Common.Machines.Common.Functions;
 
 internal static class StorageSettingsFunctions
 {
-    internal static EmulationStorageSettings Describe(MachineConfiguration configuration)
+    internal static EmulationStorageSettings Describe(MachineConfiguration configuration) => new Engine().Adapter(configuration).DescribeStorage(configuration);
+
+    internal static EmulationStorageSettings DescribeBasic(MachineConfiguration configuration)
     {
         var model = ModelCatalog.Get(configuration.Model);
         var options = configuration.Options ?? new Dictionary<string, string>();
         var devices = new List<EmulationMediaDevice>();
-        for (var index = 0; index < model.MaximumFloppyDriveCount; index++)
-            devices.Add(new EmulationMediaDevice(new EmulationMediaSlot(
-                    EmulationMediaCategory.FloppyDrive, index), EmulationMediaType.Floppy,
+        for (var index = BufferConstants.FirstCollectionIndex; index < model.MaximumFloppyDriveCount; index++)
+            devices.Add(new EmulationMediaDevice(new EmulationMediaSlot(EmulationMediaCategory.FloppyDrive, index), EmulationMediaType.Floppy,
                 [StorageSettingsFunctionsConstants.Dsk, StorageSettingsFunctionsConstants.M3u],
-                DisplayLabel: index == 0 ? StorageSettingsFunctionsConstants.FloppyDriveLabel
-                    : StorageSettingsFunctionsConstants.SecondFloppyDriveLabel,
+                DisplayLabel: index == BufferConstants.FirstCollectionIndex ? StorageSettingsFunctionsConstants.FloppyDriveLabel : StorageSettingsFunctionsConstants.SecondFloppyDriveLabel,
                 IsPermanent: index < model.BuiltInFloppyDriveCount));
         if (model.SupportsCassetteDrive)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cassette0, EmulationMediaType.Cassette,
@@ -25,10 +25,7 @@ internal static class StorageSettingsFunctions
                 [StorageSettingsFunctionsConstants.Cpr], RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.CartridgeSlotLabel,
                 IsPermanent: model.HasBuiltInCartridgeSlot));
-        var configuredFloppies = Math.Clamp(OptionInt(options,
-            StorageSettingsFunctionsConstants.FloppyDriveCountOption,
-            model.BuiltInFloppyDriveCount), model.BuiltInFloppyDriveCount,
-            model.MaximumFloppyDriveCount);
+        var configuredFloppies = Math.Clamp(OptionInt(options, StorageSettingsFunctionsConstants.FloppyDriveCountOption, model.BuiltInFloppyDriveCount), model.BuiltInFloppyDriveCount, model.MaximumFloppyDriveCount);
         var configured = devices.Where(device => device.Slot.Category switch
         {
             EmulationMediaCategory.FloppyDrive => device.Slot.Index < configuredFloppies,
@@ -42,8 +39,9 @@ internal static class StorageSettingsFunctions
         return new EmulationStorageSettings(devices, configured, mounted);
     }
 
-    internal static MachineConfiguration Apply(MachineConfiguration configuration,
-        EmulationStorageSettings settings)
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings) => new Engine().Adapter(configuration).ApplyStorage(configuration, settings);
+
+    internal static MachineConfiguration ApplyBasic(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
         var media = settings.MountedMedia.Select((item, index) => new MediaConfiguration(
             item.Path, item.Type switch
@@ -60,22 +58,15 @@ internal static class StorageSettingsFunctions
         var options = new Dictionary<string, string>(configuration.Options
             ?? new Dictionary<string, string>(), StringComparer.Ordinal)
         {
-            [StorageSettingsFunctionsConstants.FloppyDriveCountOption] = settings.ConfiguredSlots
-                .Count(slot => slot.Category == EmulationMediaCategory.FloppyDrive).ToString(
-                    System.Globalization.CultureInfo.InvariantCulture),
-            [StorageSettingsFunctionsConstants.CassetteDriveEnabledOption] = settings.ConfiguredSlots
-                .Contains(EmulationMediaSlot.Cassette0).ToString(),
-            [StorageSettingsFunctionsConstants.CartridgeSlotEnabledOption] = settings.ConfiguredSlots
-                .Contains(EmulationMediaSlot.Cartridge0).ToString()
+            [StorageSettingsFunctionsConstants.FloppyDriveCountOption] = settings.ConfiguredSlots.Count(slot => slot.Category == EmulationMediaCategory.FloppyDrive).ToString(System.Globalization.CultureInfo.InvariantCulture),
+            [StorageSettingsFunctionsConstants.CassetteDriveEnabledOption] = settings.ConfiguredSlots.Contains(EmulationMediaSlot.Cassette0).ToString(),
+            [StorageSettingsFunctionsConstants.CartridgeSlotEnabledOption] = settings.ConfiguredSlots.Contains(EmulationMediaSlot.Cartridge0).ToString()
         };
-        return configuration with { Media = media, Options = options };
+        var result = configuration with { Media = media, Options = options };
+        return result;
     }
 
-    private static int OptionInt(IReadOnlyDictionary<string, string> options,
-        string key, int defaultValue) => options.TryGetValue(key, out var value)
-        && int.TryParse(value, out var parsed) ? parsed : defaultValue;
+    private static int OptionInt(IReadOnlyDictionary<string, string> options, string key, int defaultValue) => options.TryGetValue(key, out var value) && int.TryParse(value, out var parsed) ? parsed : defaultValue;
 
-    private static bool OptionBool(IReadOnlyDictionary<string, string> options,
-        string key) => options.TryGetValue(key, out var value) && bool.TryParse(value, out var parsed)
-        && parsed;
+    private static bool OptionBool(IReadOnlyDictionary<string, string> options, string key) => options.TryGetValue(key, out var value) && bool.TryParse(value, out var parsed) && parsed;
 }

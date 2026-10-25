@@ -12,9 +12,7 @@ public static class AtariLynxModelCatalog
                 HardwareModelFunctions.Values(HardwareVideoCapability.Suzy, HardwareVideoCapability.Mikey),
                 HardwareModelFunctions.Values(HardwareAudioCapability.Mikey),
                 HardwareModelFunctions.Values(HardwareStorageCapability.Cartridge),
-                HardwareModelFunctions.Values(
-                    new HardwarePortDefinition(HardwarePortCapability.EnhancedController,
-                        AtariLynxModelConstants.OnePort)),
+                HardwareModelFunctions.Values(new HardwarePortDefinition(HardwarePortCapability.EnhancedController, AtariLynxModelConstants.OnePort)),
                 HardwareModelFunctions.Values(FirmwareCategory.LynxBootRom),
                 HardwareModelFunctions.Values(MediaCategory.Cartridge)));
 }

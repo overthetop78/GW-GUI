@@ -11,8 +11,7 @@ internal static class FilterVectorHalo
         }
         """;
 
-    internal static void Apply(float[] colors, float[] emission, int width, int height,
-        int lineIntensitySetting, int haloSetting, int radiusSetting)
+    internal static void Apply(float[] colors, float[] emission, int width, int height, int lineIntensitySetting, int haloSetting, int radiusSetting)
     {
         if (haloSetting <= 0) return;
         var strength = lineIntensitySetting / 100f * haloSetting / 100f * 0.5f;
@@ -25,7 +24,7 @@ internal static class FilterVectorHalo
             for (var offsetY = -radius; offsetY <= radius; offsetY++)
             for (var offsetX = -radius; offsetX <= radius; offsetX++)
             {
-                average += Sample(emission, width, height, x + offsetX, y + offsetY);
+                average += FilterSampling.ReadScalar(emission, width, height, x + offsetX, y + offsetY);
                 samples++;
             }
             var light = average / samples * strength;
@@ -35,7 +34,4 @@ internal static class FilterVectorHalo
             colors[index + 2] = Math.Clamp(colors[index + 2] + light, 0f, 1f);
         }
     }
-
-    private static float Sample(float[] values, int width, int height, int x, int y) =>
-        values[Math.Clamp(y, 0, height - 1) * width + Math.Clamp(x, 0, width - 1)];
 }

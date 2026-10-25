@@ -5,12 +5,7 @@ namespace GWGUI.App.Services.Input.GameInput;
 
 internal static class GameInputControllerStateReader
 {
-    internal static EmulationControllerState Read(
-        IGameInput? gameInput,
-        GameInputDeviceEntry entry,
-        IReadOnlyDictionary<string, GameInputSystemButtons> systemButtons,
-        Func<Exception, bool> isInteropFailure,
-        Action<object?> release)
+    internal static EmulationControllerState Read(IGameInput? gameInput, GameInputDeviceEntry entry, IReadOnlyDictionary<string, GameInputSystemButtons> systemButtons, Func<Exception, bool> isInteropFailure, Action<object?> release)
     {
         if (gameInput is null) return EmulationControllerState.Empty with { DeviceId = entry.Id };
         IGameInputReading? reading = null;
@@ -26,23 +21,14 @@ internal static class GameInputControllerStateReader
             var readingKind = reading.GetInputKind();
             var gamepad = default(GameInputGamepadState);
             var hasGamepad = kind == GameInputKind.Gamepad && reading.GetGamepadState(out gamepad);
-            var hasControllerArrays = kind != GameInputKind.RawDeviceReport &&
-                (entry.InputKinds & GameInputKind.Controller) != 0;
+            var hasControllerArrays = kind != GameInputKind.RawDeviceReport && (entry.InputKinds & GameInputKind.Controller) != 0;
             if (!hasControllerArrays)
             {
-                GameInputDiagnostics.RecordControllerArraysUnavailable(
-                    entry.Id, readingKind, hasGamepad);
-                return hasGamepad
-                    ? GameInputControllerStateMapper.MapGamepad(entry.Id, gamepad, systemButtons)
-                    : EmulationControllerState.Empty with { DeviceId = entry.Id };
+                GameInputDiagnostics.RecordControllerArraysUnavailable(entry.Id, readingKind, hasGamepad);
+                return hasGamepad ? GameInputControllerStateMapper.MapGamepad(entry.Id, gamepad, systemButtons) : EmulationControllerState.Empty with { DeviceId = entry.Id };
             }
-            GameInputDiagnostics.RecordControllerReading(
-                entry.Id, readingKind, hasGamepad,
-                reading.GetControllerAxisCount(), reading.GetControllerButtonCount(),
-                reading.GetControllerSwitchCount());
-            return hasGamepad
-                ? GameInputControllerStateMapper.MapGamepad(entry.Id, gamepad, systemButtons)
-                : GameInputControllerStateMapper.MapController(entry.Id, reading, entry.Mapper, systemButtons);
+            GameInputDiagnostics.RecordControllerReading(entry.Id, readingKind, hasGamepad, reading.GetControllerAxisCount(), reading.GetControllerButtonCount(), reading.GetControllerSwitchCount());
+            return hasGamepad ? GameInputControllerStateMapper.MapGamepad(entry.Id, gamepad, systemButtons) : GameInputControllerStateMapper.MapController(entry.Id, reading, entry.Mapper, systemButtons);
         }
         catch (Exception exception) when (isInteropFailure(exception))
         {
@@ -101,26 +87,16 @@ internal static class GameInputControllerStateReader
                     reading.GetControllerSwitchState((uint)switchCount, (IntPtr)pointer);
             }
 
-            var labels = entry.Descriptor.Controls.ToDictionary(
-                control => (control.Type, control.Index), control => control.Label);
+            var labels = entry.Descriptor.Controls.ToDictionary(control => (control.Type, control.Index), control => control.Label);
             var controls = new List<GameInputControlValue>(axes.Length + buttons.Length + switches.Length);
             for (var index = 0; index < axes.Length; index++)
-                controls.Add(new GameInputControlValue(
-                    GameInputControlType.Axis, index,
-                    labels.GetValueOrDefault((GameInputControlType.Axis, index), GameInputLabel.None),
-                    axes[index]));
+                controls.Add(new GameInputControlValue(GameInputControlType.Axis, index, labels.GetValueOrDefault((GameInputControlType.Axis, index), GameInputLabel.None), axes[index]));
             for (var index = 0; index < buttons.Length; index++)
-                controls.Add(new GameInputControlValue(
-                    GameInputControlType.Button, index,
-                    labels.GetValueOrDefault((GameInputControlType.Button, index), GameInputLabel.None),
-                    buttons[index] == 0 ? 0f : 1f));
+                controls.Add(new GameInputControlValue(GameInputControlType.Button, index, labels.GetValueOrDefault((GameInputControlType.Button, index), GameInputLabel.None), buttons[index] == 0 ? 0f : 1f));
             for (var index = 0; index < switches.Length; index++)
             {
                 var position = (GameInputSwitchPosition)switches[index];
-                controls.Add(new GameInputControlValue(
-                    GameInputControlType.Switch, index,
-                    labels.GetValueOrDefault((GameInputControlType.Switch, index), GameInputLabel.None),
-                    switches[index], position));
+                controls.Add(new GameInputControlValue(GameInputControlType.Switch, index, labels.GetValueOrDefault((GameInputControlType.Switch, index), GameInputLabel.None), switches[index], position));
             }
 
             var rawBytes = ReadRawReport(reading, isInteropFailure, release);
@@ -141,10 +117,7 @@ internal static class GameInputControllerStateReader
             if (entry.Descriptor.StandardCapabilities.HasRacingWheel &&
                 reading.GetRacingWheelState(out var wheelValue)) wheel = wheelValue;
 
-            return new GameInputLiveState(
-                entry.Id, reading.GetTimestamp(), reading.GetInputKind(), controls, rawBytes,
-                systemButtons.GetValueOrDefault(entry.Id), arcade, flight, gamepad, wheel,
-                entry.HidDecoder is not null);
+            return new GameInputLiveState(entry.Id, reading.GetTimestamp(), reading.GetInputKind(), controls, rawBytes, systemButtons.GetValueOrDefault(entry.Id), arcade, flight, gamepad, wheel, entry.HidDecoder is not null);
         }
         catch (Exception exception) when (isInteropFailure(exception))
         {
@@ -154,10 +127,7 @@ internal static class GameInputControllerStateReader
         finally { release(reading); }
     }
 
-    internal static unsafe IReadOnlyList<byte> ReadRawReport(
-        IGameInputReading reading,
-        Func<Exception, bool> isInteropFailure,
-        Action<object?> release)
+    internal static unsafe IReadOnlyList<byte> ReadRawReport(IGameInputReading reading, Func<Exception, bool> isInteropFailure, Action<object?> release)
     {
         IGameInputRawDeviceReport? report = null;
         try

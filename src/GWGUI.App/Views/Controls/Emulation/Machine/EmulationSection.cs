@@ -15,18 +15,22 @@ namespace GWGUI.App.Views.Controls.Emulation.Machine;
 
 public sealed partial class EmulationSection : UserControl
 {
-    private readonly ComboBox _module = new()
-        { DisplayMemberPath = nameof(EmulationModuleListItem.DisplayName) };
-    private readonly ComboBox _configuration = new()
-        { DisplayMemberPath = nameof(EmulationConfigurationListItem.DisplayName) };
+    private readonly EmulationConfigurationSelector _selectorRows = new();
+    private readonly TextBlock _selectorCollapsedText = new();
+    private readonly Border _selectorFrame = new();
+    private readonly Button _selectorToggle = new();
     private readonly Button _open = new() { MinWidth = 130 };
     private readonly TabControl _machines = new();
-    private readonly TextBlock _configurationLabel = new();
     private readonly MainTabHeader _welcomeHeader = new();
     private readonly TextBlock _welcomeText = new();
     private readonly IReadOnlyList<IEmulationModule> _modules = EmulationModuleRegistry.Modules;
     private IReadOnlyList<EmulationConfigurationListItem> _configurations = [];
     private readonly Dictionary<(string ModuleId, Guid Id), TabItem> _openMachines = [];
+    private IEmulationModule? _selectedModule;
+    private string? _selectedMachineId;
+    private Guid? _selectedConfigurationId;
+    private bool _selectorExpanded = true;
+    private bool _selectorRendering;
     private AppSettings _settings = new();
     private Point _tabDragStart;
     private TabItem? _draggedMachineTab;
@@ -35,50 +39,67 @@ public sealed partial class EmulationSection : UserControl
 
     public EmulationSection()
     {
-        AutomationProperties.SetName(_module,
-            LocExtension.Get(ControlVisualConstants.MachinesResource));
-        AutomationProperties.SetName(_configuration,
-            LocExtension.Get(ControlVisualConstants.ConfigurationResource));
-        AutomationProperties.SetName(_open,
-            LocExtension.Get(ControlVisualConstants.OpenMachineResource));
-        AutomationProperties.SetName(_machines,
-            LocExtension.Get(ControlVisualConstants.MachinesResource));
+        AutomationProperties.SetName(_open, LocExtension.Get(ControlVisualConstants.OpenMachineResource));
+        AutomationProperties.SetName(_machines, LocExtension.Get(ControlVisualConstants.MachinesResource));
         _open.Content = LocExtension.Get(ControlVisualConstants.OpenMachineResource);
         _open.Click += OpenSelectedMachine;
-        _module.SelectionChanged += ModuleSelectionChanged;
+        _selectorRows.BrandSelected += SelectModule;
+        _selectorRows.MachineSelected += SelectMachine;
+        _selectorRows.MachineOpened += (module, definition) =>
+        {
+            var selected = FindConfiguration(module.Id, definition.Id);
+            if (selected is null) return;
+            _selectedModule = module;
+            _selectedMachineId = definition.Id;
+            _selectedConfigurationId = selected.Configuration.Id;
+            RefreshSelector();
+            OpenSelectedMachine(_selectorRows, new RoutedEventArgs());
+        };
+        _selectorToggle.Click += ToggleSelector;
+        _machines.SelectionChanged += ActiveMachineTabChanged;
         _machines.AllowDrop = true;
         _machines.PreviewMouseLeftButtonDown += MachineTabMouseDown;
         _machines.PreviewMouseMove += MachineTabMouseMove;
         _machines.DragOver += MachineTabDragOver;
         _machines.Drop += MachineTabDrop;
-        EmulationPreferencesSection.ConfigurationSaved += ConfigurationSaved;
-        EmulationPreferencesSection.VideoConfigurationChanged += VideoConfigurationChanged;
         Content = BuildContent();
-        Loaded += async (_, _) => await ReloadConfigurationsAsync();
+        Loaded += async (_, _) =>
+        {
+            DetachConfigurationEvents();
+            EmulationPreferencesSection.ConfigurationSaved += ConfigurationSaved;
+            EmulationPreferencesSection.VideoConfigurationChanged += VideoConfigurationChanged;
+            EmulationPreferencesSection.ConfigurationDeleted += ReloadConfigurationsAsync;
+            await ReloadConfigurationsAsync();
+        };
+        Unloaded += (_, _) => DetachConfigurationEvents();
+    }
+
+    private void DetachConfigurationEvents()
+    {
+        EmulationPreferencesSection.ConfigurationSaved -= ConfigurationSaved;
+        EmulationPreferencesSection.VideoConfigurationChanged -= VideoConfigurationChanged;
+        EmulationPreferencesSection.ConfigurationDeleted -= ReloadConfigurationsAsync;
     }
 
     public void Configure(AppSettings settings) => _settings = settings;
 
     internal void RefreshLocalizedContent()
     {
-        var configurationText = LocExtension.Get(ControlVisualConstants.ConfigurationResource);
-        _configurationLabel.Text = configurationText;
-        AutomationProperties.SetName(_module,
-            LocExtension.Get(ControlVisualConstants.MachinesResource));
-        AutomationProperties.SetName(_configuration, configurationText);
+        _selectorCollapsedText.Text = LocExtension.Get(ControlVisualConstants.ConfigurationSelectorResource);
         var openText = LocExtension.Get(ControlVisualConstants.OpenMachineResource);
         _open.Content = openText;
         AutomationProperties.SetName(_open, openText);
+        UpdateSelectorToggle();
         _welcomeHeader.Text = LocExtension.Get(ControlVisualConstants.WelcomeTabResource);
         _welcomeText.Text = LocExtension.Get(ControlVisualConstants.WelcomeResource);
         foreach (var item in _openMachines)
         {
             if (item.Value.Header is not StackPanel header) continue;
-            var title = header.Children.OfType<TextBlock>().FirstOrDefault(text =>
-                !Equals(text.FontFamily, ControlVisualConstants.IconFont));
+            var title = header.Children.OfType<TextBlock>().FirstOrDefault(text => !Equals(text.FontFamily, ControlVisualConstants.IconFont));
             var machine = item.Value.Tag as EmulationMachineRuntime;
             if (title is not null && machine is not null) title.Text = RuntimeDisplayName(machine);
         }
+        RefreshSelector();
         _ = ReloadConfigurationsAsync();
     }
 }

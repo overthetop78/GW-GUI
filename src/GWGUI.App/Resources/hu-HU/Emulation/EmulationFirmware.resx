@@ -11,4 +11,5 @@
   <data name="Emulation.Firmware.PartiallyCompatible"><value>Részben kompatibilis</value></data>
   <data name="Emulation.Firmware.Official"><value>Hivatalos</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Nem kompatibilis</value></data>
+  <data name="Emulation.Firmware.VoiceSamples"><value>Hangminták</value></data>
 </root>

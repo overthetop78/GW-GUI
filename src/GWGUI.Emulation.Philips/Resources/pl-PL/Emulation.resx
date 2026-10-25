@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.m2000.Description" xml:space="preserve"><value>Emuluje PHILIPS P2000T komputer.</value></data>
+  <data name="Emulation.Emulator.o2em.Description" xml:space="preserve"><value>Emulaty MAGNAVOX ODYSSEY2 oraz PHILIPS VIDEOPAC G7000 konsole.</value></data>
+  <data name="Emulation.Emulator.same_cdi.Description" xml:space="preserve"><value>Emulaty PHILIPS CD-I konsole.</value></data>
+  <data name="Emulation.Philips.Audio.Native" xml:space="preserve"><value>Emulator audio</value></data>
+  <data name="Emulation.Philips.Keyboard.Native" xml:space="preserve"><value>Interpretacja klawiatury</value></data>
+  <data name="Emulation.Philips.Memory.Display" xml:space="preserve"><value>Pamięć wideo</value></data>
+  <data name="Emulation.Philips.Setting.AlternateRenderer" xml:space="preserve"><value>Alternatywne renderowanie wideo</value></data>
+  <data name="Emulation.Philips.Setting.AudioVolume" xml:space="preserve"><value>Objętość dźwięku konsoli</value></data>
+  <data name="Emulation.Philips.Setting.AutoSave" xml:space="preserve"><value>Automatyczne zapisywanie stanów</value></data>
+  <data name="Emulation.Philips.Setting.Cheats" xml:space="preserve"><value>Kody oszustw gry</value></data>
+  <data name="Emulation.Philips.Setting.CropOverscan" xml:space="preserve"><value>Usuń granicę wideo</value></data>
+  <data name="Emulation.Philips.Setting.KeyboardMapping" xml:space="preserve"><value>Mapowanie klawiszy klawiatury</value></data>
+  <data name="Emulation.Philips.Setting.LowPassFilter" xml:space="preserve"><value>Filtr audio z dolnym przelotem</value></data>
+  <data name="Emulation.Philips.Setting.LowPassRange" xml:space="preserve"><value>Częstotliwość odcięcia filtra audio</value></data>
+  <data name="Emulation.Philips.Setting.MixFrames" xml:space="preserve"><value>Zmieszać ramki wideo</value></data>
+  <data name="Emulation.Philips.Setting.NvramPerGame" xml:space="preserve"><value>Oddzielny pamięci trwałe dla każdej gry</value></data>
+  <data name="Emulation.Philips.Setting.StateNaming" xml:space="preserve"><value>Zapisane nazwy pliku stanu</value></data>
+  <data name="Emulation.Philips.Setting.Throttle" xml:space="preserve"><value>Prędkość emulacji granicznej</value></data>
+  <data name="Emulation.Philips.Setting.VoiceVolume" xml:space="preserve"><value>Objętość głosu</value></data>
+  <data name="Emulation.Philips.System.Native" xml:space="preserve"><value>Opcje emulatora</value></data>
+  <data name="Emulation.Philips.Value.Game" xml:space="preserve"><value>Na grę</value></data>
+  <data name="Emulation.Philips.Value.Positional" xml:space="preserve"><value>Pozycje klucza fizycznego</value></data>
+  <data name="Emulation.Philips.Value.Simple" xml:space="preserve"><value>Proste łączenie</value></data>
+  <data name="Emulation.Philips.Value.Symbolic" xml:space="preserve"><value>Drukowane znaki</value></data>
+  <data name="Emulation.Philips.Value.System" xml:space="preserve"><value>Na system</value></data>
+  <data name="Emulation.Philips.Video.Native" xml:space="preserve"><value>Wideo Emulatora</value></data>
+</root>

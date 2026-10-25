@@ -1,21 +1,32 @@
 using System.Buffers.Binary;
 using System.IO;
+using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradCpr;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradRom;
+using GWGUI.MediaEngine.Images.Formats.Cartridge.Console;
+using GWGUI.MediaEngine.Images.Formats.Floppy.FamicomFds;
+using GWGUI.MediaEngine.Images.Formats.Optical.Gdi;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Images.Formats.Tape;
+using GWGUI.MediaEngine.Images.Conversion;
 using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Amstrad;
 using GWGUI.MediaEngine.Images.Reading.Recognition;
+using GWGUI.MediaEngine.Images.Writing;
 using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Amstrad;
 using GWGUI.MediaEngine.Images.Models.Sectors;
+using GWGUI.MediaEngine.Images.Models.Blocks;
+using GWGUI.MediaEngine.Images.Visualization;
 using GWGUI.MediaEngine.Interfaces.Reading;
 using GWGUI.App.Services.DiskImages.Selection;
 using GWGUI.App.Presenters.Conversion;
 using GWGUI.MediaFileSystems.FileSystems.Amstrad.Cartridge;
+using GWGUI.MediaFileSystems.FileSystems.Console.Cartridge;
+using GWGUI.MediaFileSystems.FileSystems.Nintendo.FamicomDisk;
+using GWGUI.MediaFileSystems.Constants;
 using GWGUI.MediaFileSystems.FileSystems.Cpm;
 using GWGUI.MediaFileSystems.Contracts;
 
@@ -29,12 +40,7 @@ public sealed class AmstradCpcMediaFormatTests
         var curated = new BuiltInImageFormatCatalog(key => key);
         var runtime = new RuntimeImageFormatCatalog(curated,
         [
-            new DiskFormat(
-                DiskImageFormatIds.AmstradRom,
-                string.Empty,
-                "Format.amstrad.rom",
-                [new ImageExtension(".rom", "ROM", true)],
-                CompatibleSourceExtensions: new HashSet<string>([".bin"], StringComparer.OrdinalIgnoreCase))
+            new DiskFormat(DiskImageFormatIds.AmstradRom, string.Empty, "Format.amstrad.rom", [new ImageExtension(".rom", "ROM", true)], CompatibleSourceExtensions: new HashSet<string>([".bin"], StringComparer.OrdinalIgnoreCase))
         ]);
 
         var rom = runtime.Formats.Single(format => format.Id == DiskImageFormatIds.AmstradRom);
@@ -42,12 +48,7 @@ public sealed class AmstradCpcMediaFormatTests
         Assert.Equal("Format.amstrad.rom", rom.DisplayName);
         Assert.Contains(".bin", rom.CompatibleSourceExtensions!);
 
-        var items = new ConversionFormatPresenter().Build(
-            runtime,
-            ".bin",
-            null,
-            new HashSet<string>(["amiga.amigados"], StringComparer.OrdinalIgnoreCase),
-            new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase));
+        var items = new ConversionFormatPresenter().Build(runtime, ".bin", null, new HashSet<string>(["amiga.amigados"], StringComparer.OrdinalIgnoreCase), new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase));
         Assert.False(items.Single(item => item.Format.Id == "amiga.amigados").IsCompatible);
         Assert.True(items.Single(item => item.Format.Id == DiskImageFormatIds.AmstradRom).IsCompatible);
     }
@@ -66,18 +67,8 @@ public sealed class AmstradCpcMediaFormatTests
                 ["blockNumber"] = "1"
             });
         var encoder = new AmstradCpcTapeEncoder();
-        var representation = await encoder.EncodeAsync(new SequentialEncodeRequest(
-            TapeImageFormatIds.Tzx,
-            DiskSystemIds.Amstrad,
-            [block]));
-        var document = new MediaImageDocument(
-            new MediaSourceDescriptor("memory.cdt", []),
-            TapeImageFormatIds.Tzx,
-            MediaKind.Tape,
-            representation,
-            [],
-            [],
-            new Dictionary<string, string>());
+        var representation = await encoder.EncodeAsync(new SequentialEncodeRequest(TapeImageFormatIds.Tzx, DiskSystemIds.Amstrad, [block]));
+        var document = new MediaImageDocument(new MediaSourceDescriptor("memory.cdt", []), TapeImageFormatIds.Tzx, MediaKind.Tape, representation, [], [], new Dictionary<string, string>());
 
         var result = await new AmstradCpcTapeDecoder().DecodeAsync(document, DiskSystemIds.Amstrad);
 
@@ -114,6 +105,426 @@ public sealed class AmstradCpcMediaFormatTests
     }
 
     [Fact]
+    public async Task ConsoleCartridgeFormatsRoundTripWithNamedBanks()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"gwgui-console-cartridge-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var sourcePath = Path.Combine(directory, "game.nes");
+            var outputPath = Path.Combine(directory, "roundtrip.nes");
+            var source = Enumerable.Range(0, 16 * 1024 + 17).Select(value => (byte)(value % byte.MaxValue)).ToArray();
+            await File.WriteAllBytesAsync(sourcePath, source);
+
+            var document = await ReadAsync(new ConsoleCartridgeReader(), sourcePath);
+            Assert.Equal(DiskImageFormatIds.NintendoNes, document.FormatId);
+            Assert.Equal("2", document.Metadata[ConsoleCartridgeMetadataConstants.BankCount]);
+            Assert.Equal("16384", document.Metadata[ConsoleCartridgeMetadataConstants.BankSize]);
+            var blocks = Assert.IsType<BlockMediaImageRepresentation>(document.Representation);
+            Assert.Equal(2, blocks.Ranges.Count);
+
+            var explorer = new ConsoleCartridgeFileSystemReader();
+            var entries = explorer.Read(document, Volume(document)).Entries;
+            Assert.Equal(["bank00", "bank01"], entries.Select(entry => entry.Name));
+            Assert.All(entries, entry => Assert.Equal(ConsoleCartridgeMetadataConstants.BankEntryType, entry.NativeTypeId));
+            Assert.Equal(source.Length - (16 * 1024), entries[1].Size);
+
+            await new ConsoleCartridgeWriter().WriteAsync(document, outputPath, DiskImageFormatIds.NintendoNes);
+            Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task NintendoCartridgeFormatsRoundTripVisualizeExploreAndConvert()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"gwgui-nintendo-cartridges-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var source = Enumerable.Range(0, 16 * 1024 + 7).Select(value => (byte)(value % byte.MaxValue)).ToArray();
+            var cases = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                [".nes"] = DiskImageFormatIds.NintendoNes,
+                [".sfc"] = DiskImageFormatIds.NintendoSnes,
+                [".smc"] = DiskImageFormatIds.NintendoSnes,
+                [".n64"] = DiskImageFormatIds.NintendoN64,
+                [".z64"] = DiskImageFormatIds.NintendoN64,
+                [".v64"] = DiskImageFormatIds.NintendoN64,
+                [".gb"] = DiskImageFormatIds.NintendoGameBoy,
+                [".gbc"] = DiskImageFormatIds.NintendoGameBoyColor,
+                [".cgb"] = DiskImageFormatIds.NintendoGameBoyColor,
+                [".gba"] = DiskImageFormatIds.NintendoGameBoyAdvance,
+                [".nds"] = DiskImageFormatIds.NintendoNds,
+                [".mgw"] = DiskImageFormatIds.NintendoGameWatch,
+                [".3ds"] = DiskImageFormatIds.Nintendo3Ds,
+                [".cia"] = DiskImageFormatIds.Nintendo3Ds,
+                [".3dsx"] = DiskImageFormatIds.Nintendo3Ds,
+                [".cci"] = DiskImageFormatIds.Nintendo3Ds,
+                [".cxi"] = DiskImageFormatIds.Nintendo3Ds,
+                [".axf"] = DiskImageFormatIds.Nintendo3Ds,
+                [".elf"] = DiskImageFormatIds.Nintendo3Ds,
+                [".app"] = DiskImageFormatIds.Nintendo3Ds,
+                [".vb"] = DiskImageFormatIds.NintendoVirtualBoy
+            };
+            var reader = new ConsoleCartridgeReader();
+            var explorer = new ConsoleCartridgeFileSystemReader();
+            var engine = MediaEngineComposition.CreateDefault();
+            var visualization = MediaVisualizationComposition.CreateDefault();
+            var catalog = new BuiltInImageFormatCatalog();
+            var conversionIndex = 0;
+            foreach (var (extension, formatId) in cases)
+            {
+                var sourcePath = Path.Combine(directory, $"source{extension}");
+                await File.WriteAllBytesAsync(sourcePath, source);
+                var document = await ReadAsync(reader, sourcePath);
+                Assert.Equal(formatId, document.FormatId);
+                Assert.NotEmpty(visualization.Registry.CreateDescriptor(document).Elements);
+                Assert.NotEmpty(explorer.Read(document, Volume(document)).Entries);
+
+                var format = catalog.Formats.Single(candidate => candidate.Id == formatId);
+                foreach (var outputExtension in format.Extensions.Select(item => item.Extension))
+                {
+                    var outputPath = Path.Combine(directory, $"converted-{conversionIndex++}{outputExtension}");
+                    var result = await engine.ConversionService.ConvertAsync(new MediaConversionRequest(document, outputPath, formatId));
+                    Assert.Equal([outputPath], result.ProducedFiles);
+                    Assert.Equal(source.Length, new FileInfo(outputPath).Length);
+                }
+            }
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task NintendoGameWatchCartridgeFormatRoundTripsAndExploresBanks()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"gwgui-gamewatch-cartridge-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var sourcePath = Path.Combine(directory, "game.mgw");
+            var outputPath = Path.Combine(directory, "roundtrip.mgw");
+            var source = Enumerable.Repeat((byte)0x5a, 16 * 1024 + 3).ToArray();
+            await File.WriteAllBytesAsync(sourcePath, source);
+
+            var document = await ReadAsync(new ConsoleCartridgeReader(), sourcePath);
+            Assert.Equal(DiskImageFormatIds.NintendoGameWatch, document.FormatId);
+            var explorer = new ConsoleCartridgeFileSystemReader();
+            var entries = explorer.Read(document, Volume(document)).Entries;
+            Assert.Equal(2, entries.Count);
+            Assert.Equal(source.Length - 16 * 1024, entries[1].Size);
+
+            await new ConsoleCartridgeWriter().WriteAsync(document, outputPath, DiskImageFormatIds.NintendoGameWatch);
+            Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task Nintendo3DsFormatsRoundTripAndExposeAllCitraExtensions()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"gwgui-citra-cartridge-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var source = Enumerable.Range(0, 16 * 1024 + 5).Select(value => (byte)(value % byte.MaxValue)).ToArray();
+            foreach (var extension in new[] { ".3ds", ".3dsx", ".elf", ".axf", ".cci", ".cxi", ".app" })
+            {
+                var sourcePath = Path.Combine(directory, $"game{extension}");
+                var outputPath = Path.Combine(directory, $"roundtrip{extension}");
+                await File.WriteAllBytesAsync(sourcePath, source);
+                var document = await ReadAsync(new ConsoleCartridgeReader(), sourcePath);
+                Assert.Equal(DiskImageFormatIds.Nintendo3Ds, document.FormatId);
+                await new ConsoleCartridgeWriter().WriteAsync(document, outputPath, DiskImageFormatIds.Nintendo3Ds);
+                Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
+            }
+
+            var supported = MediaRecognitionComposition.CreateDefault().SupportedExtensions;
+            Assert.All(new[] { ".3ds", ".3dsx", ".elf", ".axf", ".cci", ".cxi", ".app" }, extension => Assert.Contains(extension, supported));
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task SegaMyCardAndNecSuperGrafxFormatsRoundTripAndExploreBanks()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"gwgui-card-formats-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var source = Enumerable.Range(0, 16 * 1024 + 7).Select(value => (byte)(value % byte.MaxValue)).ToArray();
+            var engine = MediaEngineComposition.CreateDefault();
+            var cases = new[]
+            {
+                (Extension: DiskImageFileExtensions.Sms, FormatId: DiskImageFormatIds.SegaMasterSystem),
+                (Extension: DiskImageFileExtensions.Sg, FormatId: DiskImageFormatIds.SegaSg1000),
+                (Extension: DiskImageFileExtensions.Mv, FormatId: DiskImageFormatIds.SegaSg1000),
+                (Extension: DiskImageFileExtensions.Md, FormatId: DiskImageFormatIds.SegaMegaDrive),
+                (Extension: DiskImageFileExtensions.Mdx, FormatId: DiskImageFormatIds.SegaMegaDrive),
+                (Extension: DiskImageFileExtensions.Sgd, FormatId: DiskImageFormatIds.SegaMegaDrive),
+                (Extension: DiskImageFileExtensions.Smd, FormatId: DiskImageFormatIds.SegaMegaDrive),
+                (Extension: DiskImageFileExtensions.Bms, FormatId: DiskImageFormatIds.SegaMegaDrive),
+                (Extension: DiskImageFileExtensions.SixtyEightK, FormatId: DiskImageFormatIds.SegaMegaDrive),
+                (Extension: DiskImageFileExtensions.Gen, FormatId: DiskImageFormatIds.SegaMegaDrive),
+                (Extension: DiskImageFileExtensions.Gg, FormatId: DiskImageFormatIds.SegaGameGear),
+                (Extension: DiskImageFileExtensions.ThirtyTwoX, FormatId: DiskImageFormatIds.SegaThirtyTwoX),
+                (Extension: DiskImageFileExtensions.Pce, FormatId: DiskImageFormatIds.NecPcEngine),
+                (Extension: DiskImageFileExtensions.Sgx, FormatId: DiskImageFormatIds.NecSuperGrafx)
+            };
+            foreach (var item in cases)
+            {
+                var sourcePath = Path.Combine(directory, $"game{item.Extension}");
+                var outputPath = Path.Combine(directory, $"roundtrip{item.Extension}");
+                await File.WriteAllBytesAsync(sourcePath, source);
+
+                var document = await ReadAsync(new ConsoleCartridgeReader(), sourcePath);
+                Assert.Equal(item.FormatId, document.FormatId);
+                var visualization = MediaVisualizationComposition.CreateDefault().Registry.CreateDescriptor(document);
+                Assert.Equal(MediaRepresentationKind.Blocks, visualization.RepresentationKind);
+                Assert.Equal(MediaVisualizationProgressUnit.BlockRange, visualization.ProgressUnit);
+                Assert.True(visualization.Elements.Count >= 2);
+                var blocks = Assert.IsType<BlockMediaImageRepresentation>(document.Representation);
+                Assert.Equal(source.LongLength, visualization.Elements.Sum(element => element.Length));
+                Assert.Equal(source.LongLength, visualization.Elements[^1].Position + visualization.Elements[^1].Length);
+                var explorer = new ConsoleCartridgeFileSystemReader();
+                Assert.Equal(2, explorer.Read(document, Volume(document)).Entries.Count);
+                var invalidMetadata = new Dictionary<string, string>(document.Metadata, StringComparer.Ordinal)
+                {
+                    [$"{ConsoleCartridgeMetadataConstants.BankPrefix}0{ConsoleCartridgeMetadataConstants.LengthSuffix}"] = "0"
+                };
+                var invalidDocument = new MediaImageDocument(document.Source, document.FormatId, document.MediaKind, document.Representation, document.FileSystemVolumes, document.Diagnostics, invalidMetadata);
+                Assert.False(explorer.CanRead(invalidDocument, Volume(invalidDocument)));
+
+                var conversion = await engine.ConversionService.ConvertAsync(new MediaConversionRequest(document, outputPath, item.FormatId));
+                Assert.Equal([outputPath], conversion.ProducedFiles);
+                Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
+            }
+
+            var supported = MediaRecognitionComposition.CreateDefault().SupportedExtensions;
+            Assert.Contains(DiskImageFileExtensions.Sms, supported);
+            Assert.Contains(DiskImageFileExtensions.Sg, supported);
+            Assert.Contains(DiskImageFileExtensions.Mv, supported);
+            Assert.Contains(DiskImageFileExtensions.Md, supported);
+            Assert.Contains(DiskImageFileExtensions.Mdx, supported);
+            Assert.Contains(DiskImageFileExtensions.Sgd, supported);
+            Assert.Contains(DiskImageFileExtensions.Smd, supported);
+            Assert.Contains(DiskImageFileExtensions.Bms, supported);
+            Assert.Contains(DiskImageFileExtensions.SixtyEightK, supported);
+            Assert.Contains(DiskImageFileExtensions.Gen, supported);
+            Assert.Contains(DiskImageFileExtensions.Gg, supported);
+            Assert.Contains(DiskImageFileExtensions.ThirtyTwoX, supported);
+            Assert.Contains(DiskImageFileExtensions.Pce, supported);
+            Assert.Contains(DiskImageFileExtensions.Sgx, supported);
+            var megaDrive = new BuiltInImageFormatCatalog().Formats.Single(format => format.Id == DiskImageFormatIds.SegaMegaDrive);
+            Assert.Equal(
+                [DiskImageFileExtensions.Md, DiskImageFileExtensions.Mdx,
+                 DiskImageFileExtensions.Sgd, DiskImageFileExtensions.Smd,
+                 DiskImageFileExtensions.Bms, DiskImageFileExtensions.SixtyEightK,
+                 DiskImageFileExtensions.Gen],
+                megaDrive.Extensions.Select(extension => extension.Extension));
+            Assert.Equal([DiskImageFileExtensions.Sms], new BuiltInImageFormatCatalog().Formats.Single(format => format.Id == DiskImageFormatIds.SegaMasterSystem).Extensions.Select(extension => extension.Extension));
+            Assert.Equal([DiskImageFileExtensions.Gg], new BuiltInImageFormatCatalog().Formats.Single(format => format.Id == DiskImageFormatIds.SegaGameGear).Extensions.Select(extension => extension.Extension));
+            Assert.Equal([DiskImageFileExtensions.ThirtyTwoX], new BuiltInImageFormatCatalog().Formats.Single(format => format.Id == DiskImageFormatIds.SegaThirtyTwoX).Extensions.Select(extension => extension.Extension));
+            Assert.Contains(MediaImageWriterIds.ConsoleCartridge, MediaWritingComposition.CreateDefault().Writers.Select(writer => writer.Id));
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task RealSegaCorpusCartridgesUseAllMediaPathsWhenCorpusIsProvided()
+    {
+        var corpus = Environment.GetEnvironmentVariable("GWGUI_SEGA_MEDIA_ROOT");
+        if (string.IsNullOrWhiteSpace(corpus) || !Directory.Exists(corpus)) return;
+
+        var directory = Path.Combine(Path.GetTempPath(), $"gwgui-sega-real-media-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var cases = new[]
+            {
+                (Extension: DiskImageFileExtensions.Sms, FormatId: DiskImageFormatIds.SegaMasterSystem),
+                (Extension: DiskImageFileExtensions.Sg, FormatId: DiskImageFormatIds.SegaSg1000),
+                (Extension: DiskImageFileExtensions.Mv, FormatId: DiskImageFormatIds.SegaSg1000),
+                (Extension: DiskImageFileExtensions.Md, FormatId: DiskImageFormatIds.SegaMegaDrive),
+                (Extension: DiskImageFileExtensions.Gg, FormatId: DiskImageFormatIds.SegaGameGear),
+                (Extension: DiskImageFileExtensions.ThirtyTwoX, FormatId: DiskImageFormatIds.SegaThirtyTwoX)
+            };
+            var engine = MediaEngineComposition.CreateDefault();
+            var reader = new ConsoleCartridgeReader();
+            var explorer = new ConsoleCartridgeFileSystemReader();
+            var found = 0;
+            foreach (var item in cases)
+            {
+                var sourcePath = Directory.EnumerateFiles(corpus, $"*{item.Extension}", SearchOption.AllDirectories).FirstOrDefault();
+                if (sourcePath is null) continue;
+                found++;
+
+                var document = await ReadAsync(reader, sourcePath);
+                Assert.Equal(item.FormatId, document.FormatId);
+                var visualization = MediaVisualizationComposition.CreateDefault().Registry.CreateDescriptor(document);
+                Assert.NotEmpty(visualization.Elements);
+                Assert.NotEmpty(explorer.Read(document, Volume(document)).Entries);
+
+                var outputPath = Path.Combine(directory, $"export-{found}{item.Extension}");
+                var conversion = await engine.ConversionService.ConvertAsync(new MediaConversionRequest(document, outputPath, item.FormatId));
+                Assert.Equal([outputPath], conversion.ProducedFiles);
+                Assert.True(File.Exists(outputPath));
+                Assert.True(new FileInfo(outputPath).Length > 0);
+            }
+
+            Assert.Equal(cases.Length, found);
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task EveryRealSegaCartridgeUsesVisualizationAndExploration()
+    {
+        var corpus = Environment.GetEnvironmentVariable("GWGUI_SEGA_MEDIA_ROOT");
+        if (string.IsNullOrWhiteSpace(corpus) || !Directory.Exists(corpus)) return;
+
+        var directory = Path.Combine(Path.GetTempPath(), $"gwgui-sega-all-media-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var formats = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                [DiskImageFileExtensions.Sms] = DiskImageFormatIds.SegaMasterSystem,
+                [DiskImageFileExtensions.Sg] = DiskImageFormatIds.SegaSg1000,
+                [DiskImageFileExtensions.Mv] = DiskImageFormatIds.SegaSg1000,
+                [DiskImageFileExtensions.Md] = DiskImageFormatIds.SegaMegaDrive,
+                [DiskImageFileExtensions.Gg] = DiskImageFormatIds.SegaGameGear,
+                [DiskImageFileExtensions.ThirtyTwoX] = DiskImageFormatIds.SegaThirtyTwoX
+            };
+            var paths = Directory.EnumerateFiles(corpus, "*", SearchOption.AllDirectories).Where(path => formats.ContainsKey(Path.GetExtension(path))).ToArray();
+            Assert.NotEmpty(paths);
+
+            var reader = new ConsoleCartridgeReader();
+            var explorer = new ConsoleCartridgeFileSystemReader();
+            var engine = MediaEngineComposition.CreateDefault();
+            var catalog = new BuiltInImageFormatCatalog();
+            var convertedFormats = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var counts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            var converted = 0;
+            foreach (var path in paths)
+            {
+                var extension = Path.GetExtension(path);
+                var document = await ReadAsync(reader, path);
+                Assert.Equal(formats[extension], document.FormatId);
+                var visualization = MediaVisualizationComposition.CreateDefault().Registry.CreateDescriptor(document);
+                Assert.NotEmpty(visualization.Elements);
+                Assert.NotEmpty(explorer.Read(document, Volume(document)).Entries);
+                counts[extension] = counts.TryGetValue(extension, out var count) ? count + 1 : 1;
+
+                if (!convertedFormats.Add(document.FormatId)) continue;
+                var format = catalog.Formats.Single(candidate => candidate.Id == document.FormatId);
+                var destinations = engine.ConversionService.GetAvailableDestinations(document);
+                foreach (var destinationExtension in format.Extensions.Select(item => item.Extension))
+                {
+                    Assert.Contains(destinations, destination => destination.FormatId == document.FormatId && destination.Extension.Equals(destinationExtension, StringComparison.OrdinalIgnoreCase));
+                    var outputPath = Path.Combine(directory, $"export-{++converted}{destinationExtension}");
+                    var result = await engine.ConversionService.ConvertAsync(new MediaConversionRequest(document, outputPath, document.FormatId));
+                    Assert.Equal([outputPath], result.ProducedFiles);
+                    Assert.Equal(new FileInfo(path).Length, new FileInfo(outputPath).Length);
+                }
+            }
+
+            Assert.Equal(formats.Keys.OrderBy(key => key), counts.Keys.OrderBy(key => key));
+            Assert.All(counts.Values, count => Assert.True(count > 0));
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task FamicomDiskSystemFacesRoundTripAndExposeFiles()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"gwgui-fds-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var sourcePath = Path.Combine(directory, "game.fds");
+            var outputPath = Path.Combine(directory, "roundtrip.fds");
+            var source = CreateFds();
+            await File.WriteAllBytesAsync(sourcePath, source);
+
+            var document = await ReadAsync(new FamicomFdsReader(), sourcePath);
+            Assert.Equal(DiskImageFormatIds.NintendoFamicomDisk, document.FormatId);
+            var blocks = Assert.IsType<BlockMediaImageRepresentation>(document.Representation);
+            Assert.Equal(1, blocks.LogicalBlockCount);
+            var explorer = new FamicomDiskFileSystemReader();
+            var file = Assert.Single(explorer.Read(document, Volume(document)).Entries);
+            Assert.Equal("HELLO", file.Name);
+            Assert.Equal(5, file.Size);
+            Assert.Equal("0", file.Metadata["side"]);
+
+            await new FamicomFdsWriter().WriteAsync(document, outputPath, DiskImageFormatIds.NintendoFamicomDisk);
+            Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
+            Assert.Contains(DiskImageFileExtensions.Fds, MediaRecognitionComposition.CreateDefault().SupportedExtensions);
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task DreamcastGdiTracksRoundTripWithAssociatedFiles()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), $"gwgui-gdi-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var descriptorPath = Path.Combine(directory, "game.gdi");
+            var trackOnePath = Path.Combine(directory, "track01.bin");
+            var trackTwoPath = Path.Combine(directory, "track02.raw");
+            var outputPath = Path.Combine(directory, "roundtrip.gdi");
+            await File.WriteAllBytesAsync(trackOnePath, Enumerable.Repeat((byte)0x11, 100 * 2048).ToArray());
+            await File.WriteAllBytesAsync(trackTwoPath, Enumerable.Repeat((byte)0x22, 2 * 2352).ToArray());
+            await File.WriteAllTextAsync(descriptorPath, "2\n1 0 4 2048 \"track01.bin\" 0\n2 100 0 2352 \"track02.raw\" 0\n");
+
+            var document = await ReadAsync(new GdiReader(), descriptorPath);
+            Assert.Equal(OpticalImageFormatIds.Gdi, document.FormatId);
+            var optical = Assert.IsType<GWGUI.MediaEngine.Images.Models.Optical.OpticalMediaImageRepresentation>(document.Representation);
+            Assert.Equal(2, optical.Tracks!.Count);
+            Assert.Equal(100, optical.Tracks[0].SectorCount);
+            Assert.Equal(OpticalTrackMode.Audio, optical.Tracks[1].Mode);
+            Assert.Equal(2, optical.Tracks[1].SectorCount);
+
+            await new GdiWriter().WriteAsync(document, outputPath, OpticalImageFormatIds.Gdi);
+            var roundtrip = await ReadAsync(new GdiReader(), outputPath);
+            var roundtripOptical = Assert.IsType<GWGUI.MediaEngine.Images.Models.Optical.OpticalMediaImageRepresentation>(roundtrip.Representation);
+            Assert.Equal(optical.Tracks.Select(track => (track.TrackNumber, track.FirstSector, track.SectorCount, track.Mode)), roundtripOptical.Tracks!.Select(track => (track.TrackNumber, track.FirstSector, track.SectorCount, track.Mode)));
+            Assert.Contains(DiskImageFileExtensions.Gdi, MediaRecognitionComposition.CreateDefault().SupportedExtensions);
+            Assert.Contains(MediaImageWriterIds.OpticalGdi, MediaWritingComposition.CreateDefault().Writers.Select(writer => writer.Id));
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
     public async Task AutomaticRomRecognitionRequiresCpcStructureInsteadOfAnAmbiguousSize()
     {
         var directory = Path.Combine(Path.GetTempPath(), $"gwgui-amstrad-rom-{Guid.NewGuid():N}");
@@ -137,12 +548,9 @@ public sealed class AmstradCpcMediaFormatTests
             await File.WriteAllBytesAsync(amsdosPath, amsdos);
             IMediaImageReader reader = new AmstradRomReader();
 
-            Assert.True(await reader.CanReadAsync(new MediaRecognitionContext(
-                new MediaSourceDescriptor(dandanatorPath, [])), CancellationToken.None));
-            Assert.True(await reader.CanReadAsync(new MediaRecognitionContext(
-                new MediaSourceDescriptor(amsdosPath, [])), CancellationToken.None));
-            Assert.False(await reader.CanReadAsync(new MediaRecognitionContext(
-                new MediaSourceDescriptor(foreignPath, [])), CancellationToken.None));
+            Assert.True(await reader.CanReadAsync(new MediaRecognitionContext(new MediaSourceDescriptor(dandanatorPath, [])), CancellationToken.None));
+            Assert.True(await reader.CanReadAsync(new MediaRecognitionContext(new MediaSourceDescriptor(amsdosPath, [])), CancellationToken.None));
+            Assert.False(await reader.CanReadAsync(new MediaRecognitionContext(new MediaSourceDescriptor(foreignPath, [])), CancellationToken.None));
         }
         finally
         {
@@ -185,12 +593,26 @@ public sealed class AmstradCpcMediaFormatTests
     }
 
     [Fact]
-    public void CpcDataDskDirectoryIsListedFromTheNeutralContainerFormat()
-        => AssertCpcDirectoryIsListed(0x41, 0);
+    public void DefaultRecognitionPublishesOpticalDescriptorExtensions()
+    {
+        var extensions = MediaRecognitionComposition.CreateDefault().SupportedExtensions;
+
+        foreach (var extension in new[] { ".cue", ".ccd", ".mds", ".chd" })
+            Assert.Contains(extension, extensions);
+    }
 
     [Fact]
-    public void CpcSystemDskDirectoryIsListedFromTheNeutralContainerFormat()
-        => AssertCpcDirectoryIsListed(0xc1, 2);
+    public void SonyOpticalMediaFormatsRemainAvailableToMediaEngine()
+    {
+        var extensions = MediaRecognitionComposition.CreateDefault().SupportedExtensions;
+
+        foreach (var extension in new[] { ".cue", ".bin", ".iso", ".chd", ".ccd", ".mds" })
+            Assert.Contains(extension, extensions);
+    }
+
+    [Fact] public void CpcDataDskDirectoryIsListedFromTheNeutralContainerFormat() => AssertCpcDirectoryIsListed(0x41, 0);
+
+    [Fact] public void CpcSystemDskDirectoryIsListedFromTheNeutralContainerFormat() => AssertCpcDirectoryIsListed(0xc1, 2);
 
     private static void AssertCpcDirectoryIsListed(int firstSectorId, int reservedTracks)
     {
@@ -208,18 +630,9 @@ public sealed class AmstradCpcMediaFormatTests
         entry[16] = 2;
         bytes.AsSpan(directoryOffset + 2 * 1024, 128).Fill(0x41);
         var blocks = Enumerable.Range(0, cylinders * sectorsPerTrack)
-            .Select(index => new SectorBlock(
-                index,
-                new SectorAddress(index / sectorsPerTrack, 0, firstSectorId + index % sectorsPerTrack),
-                bytes.AsSpan(index * sectorSize, sectorSize).ToArray()))
+            .Select(index => new SectorBlock(index, new SectorAddress(index / sectorsPerTrack, 0, firstSectorId + index % sectorsPerTrack), bytes.AsSpan(index * sectorSize, sectorSize).ToArray()))
             .ToArray();
-        var image = new SectorImage(
-            DiskImageFormatIds.CpcEmuDsk,
-            sectorSize,
-            cylinders,
-            1,
-            sectorsPerTrack,
-            blocks);
+        var image = new SectorImage(DiskImageFormatIds.CpcEmuDsk, sectorSize, cylinders, 1, sectorsPerTrack, blocks);
         var reader = new AmstradCpmFileSystemReader();
 
         Assert.True(reader.CanRead(image));
@@ -228,10 +641,7 @@ public sealed class AmstradCpcMediaFormatTests
         Assert.Equal(128, file.Size);
     }
 
-    private static async Task<MediaImageDocument> ReadAsync(
-        IMediaImageReader reader,
-        string path,
-        string? requestedFormatId = null)
+    private static async Task<MediaImageDocument> ReadAsync(IMediaImageReader reader, string path, string? requestedFormatId = null)
     {
         var context = new MediaRecognitionContext(new MediaSourceDescriptor(path, [], RequestedFormatId: requestedFormatId));
         Assert.True(await reader.CanReadAsync(context, CancellationToken.None));
@@ -260,6 +670,31 @@ public sealed class AmstradCpcMediaFormatTests
             offset += 8 + bankLength;
         }
         return bytes;
+    }
+
+    private static byte[] CreateFds()
+    {
+        const int headerLength = 16;
+        const int sideLength = 65_500;
+        var source = new byte[headerLength + sideLength];
+        System.Text.Encoding.ASCII.GetBytes("FDS\x1A", source);
+        source[4] = 1;
+        var side = source.AsSpan(headerLength, sideLength);
+        side[0] = 1;
+        System.Text.Encoding.ASCII.GetBytes("NINTENDO-HVC", side[1..13]);
+        side[56] = 2;
+        side[57] = 1;
+        var fileHeader = side[58..76];
+        fileHeader[0] = 3;
+        fileHeader[1] = 0;
+        System.Text.Encoding.ASCII.GetBytes("HVC", fileHeader[2..5]);
+        System.Text.Encoding.ASCII.GetBytes("HELLO", fileHeader[5..10]);
+        BinaryPrimitives.WriteUInt16LittleEndian(fileHeader[13..15], 0x8000);
+        BinaryPrimitives.WriteUInt16LittleEndian(fileHeader[15..17], 5);
+        fileHeader[17] = 2;
+        side[76] = 4;
+        System.Text.Encoding.ASCII.GetBytes("HELLO", side[77..82]);
+        return source;
     }
 
 }

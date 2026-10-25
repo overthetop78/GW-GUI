@@ -15,9 +15,7 @@ internal static class MediaIconImageCache
         var image = new BitmapImage();
         image.BeginInit();
         image.CacheOption = BitmapCacheOption.OnLoad;
-        image.UriSource = new Uri(
-            $"pack://application:,,,/gwgui.app;component/Assets/Media/{fileName}",
-            UriKind.Absolute);
+        image.UriSource = new Uri($"pack://application:,,,/gwgui.app;component/Assets/Media/{fileName}", UriKind.Absolute);
         image.EndInit();
         image.Freeze();
         MediaImages[fileName] = image;

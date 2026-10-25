@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Setting.DisplayRotation.Help" xml:space="preserve"><value>Wybierz orientację krajobrazu lub portretu. Tryb ręczny używa przyporządkowanego przycisku rotacji.</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation.Help" xml:space="preserve"><value>Automatyczny tryb jest zgodny z ustawieniami wyświetlania. Inne tryby utrzymują ustawienia w wybranej orientacji.</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Wybierz kolory używane do gier monochromatycznych.</value></data>
+  <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Wybierz głębokość kolorów wyjściowych. Tryb 24- bit wymaga większej mocy obliczeniowej.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Pomiń ramki wideo, aby zmniejszyć trzask dźwięku. Automatyczny tryb następuje po bufora audio.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help"><value>Tryb ręczny: pomijaj klatki, gdy poziom zapełnienia bufora audio spadnie poniżej wybranego progu.</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Pomiń co piąte ramy, aby wyświetlić 60 Hz. To zmniejsza płynność ruchu.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Wyższe częstotliwości próbkowania nieznacznie poprawiają jakość dźwięku i wymagają większej mocy obliczeniowej.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Aby zmiękczyć dźwięk, należy zastosować filtr niskoprzepustowy.</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Zamień działania przycisków A i B.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.DetailedHelp"><value>Przy 33% klatki są pomijane, gdy bufor audio jest zapełniony w mniej niż 33%, aby ograniczyć trzaski. Wyższe wartości uruchamiają pomijanie wcześniej. Opóźnienie dźwięku i rozmiar bufora nie zmieniają się.</value></data>
+</root>

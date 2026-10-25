@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="../MediaAuditTree.cs" Link="MediaAuditTree.cs" />
     <ProjectReference Include="..\..\..\src\GWGUI.MediaFileSystems\GWGUI.MediaFileSystems.csproj" />
     <ProjectReference Include="..\..\..\src\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
   </ItemGroup>

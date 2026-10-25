@@ -100,13 +100,12 @@ internal static class WriteOperationScenarios
                 Token = (CancellationToken)args[2]!; Started.TrySetResult(); return Pending.Task;
             });
             Controller = new(View, Model, null!, () => ControlledDependencies.Reject<IImageFormatCatalog>(), null!, () => settings, new GwCommandBuilder(), files,
-                dialogs, definitions, Operation, progress, log, runner, null!, new TextBox(), new TextBox(), Output,
+                dialogs, definitions, Operation, progress, log, runner, null!, new TextBox(), Output,
                 () => 1, _ => { }, () => "controller", () => "B", () => true, () => null, Operation.RequestCancellation,
                 _ => throw new InvalidOperationException(), (_, _) => throw new InvalidOperationException(), _ => throw new InvalidOperationException(), (_, _) => throw new InvalidOperationException(), () => { },
                 path => path is "virtual-tool" or "virtual-source.img");
         }
     }
 
-    private static string Text(RichTextBox output) =>
-        new TextRange(output.Document.ContentStart, output.Document.ContentEnd).Text;
+    private static string Text(RichTextBox output) => new TextRange(output.Document.ContentStart, output.Document.ContentEnd).Text;
 }

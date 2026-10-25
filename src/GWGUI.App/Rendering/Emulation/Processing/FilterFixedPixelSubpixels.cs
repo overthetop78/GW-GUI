@@ -22,16 +22,14 @@ internal static class FilterFixedPixelSubpixels
     private const float GreenLuminance = 0.7152f;
     private const float BlueLuminance = 0.0722f;
 
-    internal static void Apply(float[] colors, int sourceWidth, int outputWidth, int outputHeight,
-        EmulationSubpixelLayout layout, EmulationMonochromePalette palette, int intensitySetting)
+    internal static void Apply(float[] colors, int sourceWidth, int outputWidth, int outputHeight, EmulationSubpixelLayout layout, EmulationMonochromePalette palette, int intensitySetting)
     {
         if (layout == EmulationSubpixelLayout.Monochrome)
         {
             var tint = Tint(palette);
             for (var index = 0; index < colors.Length; index += 3)
             {
-                var luminance = colors[index] * RedLuminance
-                    + colors[index + 1] * GreenLuminance + colors[index + 2] * BlueLuminance;
+                var luminance = colors[index] * RedLuminance + colors[index + 1] * GreenLuminance + colors[index + 2] * BlueLuminance;
                 colors[index] = luminance * tint.Red;
                 colors[index + 1] = luminance * tint.Green;
                 colors[index + 2] = luminance * tint.Blue;
@@ -75,6 +73,5 @@ internal static class FilterFixedPixelSubpixels
         return (Linear(srgb.Item1), Linear(srgb.Item2), Linear(srgb.Item3));
     }
 
-    private static float Linear(float value) =>
-        SoftwareEmulationVideoProcessingPipeline.SrgbToLinear(value);
+    private static float Linear(float value) => SoftwareEmulationVideoProcessingPipeline.SrgbToLinear(value);
 }

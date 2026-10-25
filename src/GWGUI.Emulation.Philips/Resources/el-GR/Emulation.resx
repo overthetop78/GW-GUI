@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.m2000.Description" xml:space="preserve"><value>Προσομοιάζει το PHILIPS P2000T Υπολογιστή.</value></data>
+  <data name="Emulation.Emulator.o2em.Description" xml:space="preserve"><value>Εξομοίωση MAGNAVOX ODYSSEY2 και PHILIPS VIDEOPAC G7000 κονσόλες.</value></data>
+  <data name="Emulation.Emulator.same_cdi.Description" xml:space="preserve"><value>Εξομοίωση PHILIPS CD-I κονσόλες.</value></data>
+  <data name="Emulation.Philips.Audio.Native" xml:space="preserve"><value>Ήχος εξομοιωτή</value></data>
+  <data name="Emulation.Philips.Keyboard.Native" xml:space="preserve"><value>Ερμηνεία πληκτρολογίου</value></data>
+  <data name="Emulation.Philips.Memory.Display" xml:space="preserve"><value>μνήμη βίντεο</value></data>
+  <data name="Emulation.Philips.Setting.AlternateRenderer" xml:space="preserve"><value>Εναλλακτική απόδοση βίντεο</value></data>
+  <data name="Emulation.Philips.Setting.AudioVolume" xml:space="preserve"><value>Όγκος ήχου της κονσόλας</value></data>
+  <data name="Emulation.Philips.Setting.AutoSave" xml:space="preserve"><value>Αυτόματη αποθήκευση καταστάσεων</value></data>
+  <data name="Emulation.Philips.Setting.Cheats" xml:space="preserve"><value>Κωδικοί εξαπατήσεως παιχνιδιού</value></data>
+  <data name="Emulation.Philips.Setting.CropOverscan" xml:space="preserve"><value>Αφαίρεση του περιγράμματος βίντεο</value></data>
+  <data name="Emulation.Philips.Setting.KeyboardMapping" xml:space="preserve"><value>χαρτογράφηση κλειδιού πληκτρολογίου</value></data>
+  <data name="Emulation.Philips.Setting.LowPassFilter" xml:space="preserve"><value>Φίλτρο ήχου χαμηλής διέλευσης</value></data>
+  <data name="Emulation.Philips.Setting.LowPassRange" xml:space="preserve"><value>Συχνότητα διακοπής φίλτρου ήχου</value></data>
+  <data name="Emulation.Philips.Setting.MixFrames" xml:space="preserve"><value>Μείγμα πλαισίων βίντεο</value></data>
+  <data name="Emulation.Philips.Setting.NvramPerGame" xml:space="preserve"><value>Ξεχωριστή επίμονη μνήμη για κάθε παιχνίδι</value></data>
+  <data name="Emulation.Philips.Setting.StateNaming" xml:space="preserve"><value>Αποθηκευμένη ονομασία αρχείου κατάστασης</value></data>
+  <data name="Emulation.Philips.Setting.Throttle" xml:space="preserve"><value>Οριακή ταχύτητα εξομοίωσης</value></data>
+  <data name="Emulation.Philips.Setting.VoiceVolume" xml:space="preserve"><value>Ήχος φωνής</value></data>
+  <data name="Emulation.Philips.System.Native" xml:space="preserve"><value>Επιλογές εξομοιωτή</value></data>
+  <data name="Emulation.Philips.Value.Game" xml:space="preserve"><value>Ανά παιχνίδι</value></data>
+  <data name="Emulation.Philips.Value.Positional" xml:space="preserve"><value>Θέσεις-κλειδιά</value></data>
+  <data name="Emulation.Philips.Value.Simple" xml:space="preserve"><value>Απλή ανάμειξη</value></data>
+  <data name="Emulation.Philips.Value.Symbolic" xml:space="preserve"><value>Τυπωμένοι χαρακτήρες</value></data>
+  <data name="Emulation.Philips.Value.System" xml:space="preserve"><value>Ανά σύστημα</value></data>
+  <data name="Emulation.Philips.Video.Native" xml:space="preserve"><value>Βίντεο εξομοιωτή</value></data>
+</root>

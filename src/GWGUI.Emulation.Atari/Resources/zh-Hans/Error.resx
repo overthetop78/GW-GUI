@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Error.CoreNotFound"><value>未找到所需的Atari核.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected"><value>无法装入选中的 Atari 核心 。</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing"><value>需要的Atari号固件不见了.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid"><value>Atari 固件无效或不兼容 。</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound"><value>未找到配置的 Atari 介质 。</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported"><value>此 Atari 机器不支持配置的媒体 。</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid"><value>Atari 选项的值无效 。</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure"><value>与Atari主机通信失败.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid"><value>Atari 保存状态无效 。</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible"><value>Atari 保存状态与当前机器不相容.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected"><value>发生了出乎意料的 Atari 仿真错误 。</value></data>
+  <data name="Emulation.Atari.Error.Details"><value>细节 :{0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration"><value>活动 Atari 配置无法被修改或删除 。</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>需要的 Atari 固件没有配置 。 坚固软件:{0}. 机器:{1} (中文(简体) ).</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing"><value>未找到配置的 Atari 固件文件 。 坚固软件:{0}. 文件 :{1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing"><value>未找到配置的 Atari 介质 :{0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing"><value>Atari 主机可执行路径没有可用 。</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled"><value>Atari 仿真核心没有安装 。 核心:{0}</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>选中的 Atari 模拟器不使用共享的墨盒控制器 。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>所选取的Atari机需要弹匣介质.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>选中的 Atari 仿真器不支持弹匣扩展 。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Atari 弹匣无法打开读取 。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Atari模拟器拒绝更换弹匣。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Atari模拟器拒绝替换和先前的弹匣。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>这个Atari模拟器没有弹匣就无法保持动力。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>选中的 Atari 模拟器不显示弹匣区域选择 。</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>这个Atari模拟器不能使用命名为SECAM.的弹匣定时模式</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel"><value>此值由所选模式决定 。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>此模型没有兼容的 FPU 可用.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory"><value>此模型没有可供选择的内存 。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware"><value>此型号没有可配置的固件.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard"><value>这个模型没有键盘.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse"><value>这个模型没有鼠标.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage"><value>这个模型没有存储介质.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>要使用光盘介质,请选择此模式: Jaguar CD.</value></data>
+</root>

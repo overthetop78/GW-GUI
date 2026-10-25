@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Error.StateIncompatible" xml:space="preserve"><value>Bandai safe States ขัดแย้งกับเครื่องปัจจุบัน</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected" xml:space="preserve"><value>เกิดความผิดพลาดที่ไม่คาดคิด Bandai ที่เกิดขึ้น</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing" xml:space="preserve"><value>Bandai Founder ที่ต้องการหายไป</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid" xml:space="preserve"><value>ระบบ ROM ใช้งานไม่ได้หรือเข้ากันไม่ได้</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound" xml:space="preserve"><value>ไม่พบสื่อที่ปรับแต่งแล้ว Bandai สื่อ</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported" xml:space="preserve"><value>เครื่องนี้ไม่รองรับสื่อที่เลือก</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid" xml:space="preserve"><value>ตัวเลือก Bandai มีค่าที่ไม่ถูกต้อง</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound" xml:space="preserve"><value>ไม่ พบ แกน กลาง Bandai ที่ ต้องการ.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected" xml:space="preserve"><value>ไม่สามารถโหลดแกน Bandai ได้</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid" xml:space="preserve"><value>Bandai safe State เป็นโมฆะ</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing" xml:space="preserve"><value>ไม่สามารถใช้เส้นทางประมวลผลของเครื่อง Bandai ได้</value></data>
+  <data name="Emulation.Bandai.Error.Details" xml:space="preserve"><value>รายละเอียด: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure" xml:space="preserve"><value>การสื่อสารกับโฮสต์ Bandai ล้มเหลว</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>ไม่รู้จักคําสั่งสภาพแวดล้อม: {0}</value></data>
+</root>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Help.AdpcmVolume" xml:space="preserve"><value>A ADPCM Hangcsatorna.</value></data>
+  <data name="Emulation.Sharp.Help.AudioDesynchronization" xml:space="preserve"><value>A hangszinkronizációs hibák csökkentése érdekében a felesleges hangmintákat ki kell dobni.</value></data>
+  <data name="Emulation.Sharp.Help.AudioSampleRate" xml:space="preserve"><value>Válassza ki a hangminta-mintavétel gyakoriságát.</value></data>
+  <data name="Emulation.Sharp.Help.ButtonOrder" xml:space="preserve"><value>Válassza ki a vezérlő gombok sorrendjét.</value></data>
+  <data name="Emulation.Sharp.Help.CpuSpeed" xml:space="preserve"><value>Válassza ki a processzor frekvenciáját.</value></data>
+  <data name="Emulation.Sharp.Help.DiskSeekSound" xml:space="preserve"><value>Játszd le a hangot a floppy lemez fej mozgás.</value></data>
+  <data name="Emulation.Sharp.Help.FmBoard" xml:space="preserve"><value>A FM Hangfal.</value></data>
+  <data name="Emulation.Sharp.Help.FmVolume" xml:space="preserve"><value>A FM Hangcsatorna.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRate" xml:space="preserve"><value>Válassza ki a képkockák számát másodpercenként.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRateAdjustment" xml:space="preserve"><value>A hangszóró hangszórásának csökkentése érdekében a modern kijelzők videó időzítésének beállítása.</value></data>
+  <data name="Emulation.Sharp.Help.FrameSkip" xml:space="preserve"><value>Válassza ki a töredéke videó képek kihagyni. Megújítása egy kép ki három kihagyja kettő a három.</value></data>
+  <data name="Emulation.Sharp.Help.HideGraphics" xml:space="preserve"><value>A videó kép grafikus rétegének elrejtése.</value></data>
+  <data name="Emulation.Sharp.Help.HideSprites" xml:space="preserve"><value>Rejtse el a videó képének sprite és háttérrétegeit.</value></data>
+  <data name="Emulation.Sharp.Help.HideText" xml:space="preserve"><value>A videó képének szövegrétegét el kell rejteni.</value></data>
+  <data name="Emulation.Sharp.Help.MemorySize" xml:space="preserve"><value>Válassza ki az emulált összeget RAM.</value></data>
+  <data name="Emulation.Sharp.Help.RapidFire" xml:space="preserve"><value>A vezérlő gomb automatikusan nyomja meg.</value></data>
+  <data name="Emulation.Sharp.Help.Raster" xml:space="preserve"><value>A rasztereffektek engedélyezése az emulált videó képben.</value></data>
+  <data name="Emulation.Sharp.Help.Resolution" xml:space="preserve"><value>Válassza ki az alacsony vagy magas kimeneti felbontást.</value></data>
+  <data name="Emulation.Sharp.Help.ReverseJoystick" xml:space="preserve"><value>Az emulátor által biztosított vezérlő bemenet megfordítása.</value></data>
+  <data name="Emulation.Sharp.Help.UnlimitedSpeed" xml:space="preserve"><value>Futtasd a gépet, amilyen gyorsan csak lehet. A hang szinkronizálatlan lehet.</value></data>
+  <data name="Emulation.Sharp.Help.VerticalSync" xml:space="preserve"><value>Szinkronizálja az emulált kijelzőt függőlegesen.</value></data>
+  <data name="Emulation.Sharp.Help.VideoBeforeAudio" xml:space="preserve"><value>Csökkentse a videó láthatóságot az audió láthatóság előtt.</value></data>
+</root>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Konzol videó</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Konzol hang</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Konzolok kezelőszerve</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>WonderSwan rendszereket emulál.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Playdia lemezeket játszik le PlaydiaEmu segítségével.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Tamagotchi P1 eszközt emulál TamaLIBretro segítségével.</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Ez a mag lemezeket játszik anélkül, hogy a processzorokat utánozná.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Memória megjelenítése</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>A kijelző iránya</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>Irányítási irány</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Monokróm paletta</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>Képkockakihagyás indítási küszöbe</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60 Hz-es üzemmód</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>Hangminta-mintavétel aránya</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>Hangszűrő</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>Az A és B cseregombok</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>Automatikus</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>Kézi</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>Fekvő</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>Álló</value></data>
+</root>

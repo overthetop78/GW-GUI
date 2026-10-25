@@ -43,9 +43,7 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
             }
             foreach (var window in ScpTrackDecodeWindowFactory.Create(track))
             {
-                var decoded = decoderId == FluxCodecIds.AppleMacGcr
-                    ? DecodeMacTrack(track, window.Flux)
-                    : decoders.Decode(decoderId, window.Flux);
+                var decoded = decoderId == FluxCodecIds.AppleMacGcr ? DecodeMacTrack(track, window.Flux) : decoders.Decode(decoderId, window.Flux);
                 foreach (var sector in decoded.Sectors)
                 {
                     if (sector.Data is not { Count: var length } || length != size) continue;
@@ -59,18 +57,8 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
         return result;
     }
 
-    private static void ReportTrack(
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        ScpTrack track,
-        int completed,
-        int total) =>
-        progress?.Report(new(
-            GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgressKind.TrackDecoded,
-            $"Apple · {track.Cylinder}:{track.Head}",
-            completed,
-            total,
-            Cylinder: track.Cylinder,
-            Head: track.Head));
+    private static void ReportTrack(IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, ScpTrack track, int completed, int total) =>
+        progress?.Report(new(GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgressKind.TrackDecoded, $"Apple · {track.Cylinder}:{track.Head}", completed, total, Cylinder: track.Cylinder, Head: track.Head));
 
     /// <summary>SÃ©lectionne le meilleur candidat d'une adresse selon son intÃ©gritÃ©.</summary>
     /// <param name="logical">NumÃ©ro de bloc logique Ã  attribuer au secteur sÃ©lectionnÃ©.</param>
@@ -97,17 +85,14 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
         foreach (var factor in factors)
         {
             var candidate = _macDecoder.DecodeAtBitCell(revolution, initial * factor);
-            var plausible = candidate.Sectors.Where(sector => sector.Data?.Count == AppleIwmGcrFormat.SectorByteCount &&
-                sector.Cylinder == track.Cylinder && sector.Head == track.Head &&
-                sector.Number >= 0 && sector.Number < expected).ToArray() ?? [];
+            var plausible = candidate.Sectors.Where(sector => sector.Data?.Count == AppleIwmGcrFormat.SectorByteCount && sector.Cylinder == track.Cylinder && sector.Head == track.Head && sector.Number >= 0 && sector.Number < expected).ToArray() ?? [];
             var score = plausible.Select(sector => sector.Number).Distinct().Count() * AppleScpReconstructionDefinitions.DistinctSectorScoreWeight + plausible.Count(sector => sector.IntegrityValid == true) * AppleScpReconstructionDefinitions.ValidSectorScoreWeight + plausible.Length;
             if (score > bestScore)
             {
                 best = candidate;
                 bestScore = score;
             }
-            if (plausible.Where(sector => sector.IntegrityValid == true).Select(sector => sector.Number)
-                    .Distinct().Count() == expected) break;
+            if (plausible.Where(sector => sector.IntegrityValid == true).Select(sector => sector.Number).Distinct().Count() == expected) break;
         }
         return best ?? _macDecoder.Decode(revolution);
     }

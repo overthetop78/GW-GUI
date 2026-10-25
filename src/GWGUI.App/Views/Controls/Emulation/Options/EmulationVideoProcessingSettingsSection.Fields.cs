@@ -30,12 +30,9 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         return section;
     }
 
-    private FrameworkElement ChoiceField<T>(string labelResourceKey,
-        IReadOnlyDictionary<T, string> resourceKeys, T selected, Action<T> changed,
-        string? automationId = null) where T : struct, Enum
+    private FrameworkElement ChoiceField<T>(string labelResourceKey, IReadOnlyDictionary<T, string> resourceKeys, T selected, Action<T> changed, string? automationId = null) where T : struct, Enum
     {
-        var choices = resourceKeys.Select(choice => new Choice<T>(choice.Key,
-            LocExtension.Get(choice.Value))).ToArray();
+        var choices = resourceKeys.Select(choice => new Choice<T>(choice.Key, LocExtension.Get(choice.Value))).ToArray();
         var selector = new ComboBox
         {
             ItemsSource = choices,
@@ -51,17 +48,14 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         return Field(labelResourceKey, selector);
     }
 
-    private void AddIntensity(Panel panel, string id, int value, Action<int> changed) =>
-        AddSlider(panel, id, value, EmulationVideoProcessingLimits.IntensityMinimum,
-            EmulationVideoProcessingLimits.IntensityMaximum, changed);
+    private void AddIntensity(Panel panel, string id, int value, Action<int> changed) => AddSlider(panel, id, value, EmulationVideoProcessingLimits.IntensityMinimum, EmulationVideoProcessingLimits.IntensityMaximum, changed);
 
     private void AddOptionalIntensity(Panel panel, string id, int? value, Action<int?> changed)
     {
         var enabled = value.HasValue;
         var row = new StackPanel();
         var toggle = new CheckBox { IsChecked = enabled };
-        AutomationProperties.SetAutomationId(toggle,
-            id + EmulationVideoSettingsLayoutConstants.EnabledAutomationIdSuffix);
+        AutomationProperties.SetAutomationId(toggle, id + EmulationVideoSettingsLayoutConstants.EnabledAutomationIdSuffix);
         toggle.Checked += (_, _) =>
         {
             if (!_loading) changed(value ?? EmulationVideoProcessingLimits.IntensityMinimum);
@@ -74,13 +68,11 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         };
         row.Children.Add(Field(ParameterKey(id), toggle));
         if (enabled)
-            AddSlider(row, id, value!.Value, EmulationVideoProcessingLimits.IntensityMinimum,
-                EmulationVideoProcessingLimits.IntensityMaximum, number => changed(number));
+            AddSlider(row, id, value!.Value, EmulationVideoProcessingLimits.IntensityMinimum, EmulationVideoProcessingLimits.IntensityMaximum, number => changed(number));
         panel.Children.Add(row);
     }
 
-    private void AddSlider(Panel panel, string id, int value, int minimum, int maximum,
-        Action<int> changed)
+    private void AddSlider(Panel panel, string id, int value, int minimum, int maximum, Action<int> changed)
     {
         var grid = new Grid();
         grid.ColumnDefinitions.Add(new ColumnDefinition());
@@ -127,9 +119,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
     {
         var input = new TextBox
         {
-            Text = value?.ToString(
-                EmulationVideoSettingsLayoutConstants.ArgbHexadecimalFormat,
-                CultureInfo.InvariantCulture) ?? string.Empty
+            Text = value?.ToString(EmulationVideoSettingsLayoutConstants.ArgbHexadecimalFormat, CultureInfo.InvariantCulture) ?? string.Empty
         };
         AutomationProperties.SetAutomationId(input, id);
         input.LostKeyboardFocus += (_, _) =>
@@ -139,9 +129,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
             else if (string.IsNullOrWhiteSpace(input.Text))
                 changed(null);
             else
-            input.Text = value?.ToString(
-                EmulationVideoSettingsLayoutConstants.ArgbHexadecimalFormat,
-                CultureInfo.InvariantCulture) ?? string.Empty;
+            input.Text = value?.ToString(EmulationVideoSettingsLayoutConstants.ArgbHexadecimalFormat, CultureInfo.InvariantCulture) ?? string.Empty;
         };
         panel.Children.Add(Field(ParameterKey(id), input));
     }
@@ -159,7 +147,6 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         return field;
     }
 
-    private static string ParameterKey(string id) =>
-        EmulationVideoProcessingCatalog.ParameterResourceKeys[id];
+    private static string ParameterKey(string id) => EmulationVideoProcessingCatalog.ParameterResourceKeys[id];
 
 }

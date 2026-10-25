@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Atari joystick</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Číselná klávesnice</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed"><value>Rychlost pohybu pádla</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton"><value>Zatímco požární tlačítko je přidrženo.</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways"><value>Vždycky.</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility"><value>Kompatibilita kontrolorů</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity"><value>Digitální citlivost</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity"><value>Analogová citlivost</value></data>
+  <data name="Emulation.Atari.Controller.DualStick"><value>Dva joysticky používané společně</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts"><value>Swap ports</value></data>
+</root>

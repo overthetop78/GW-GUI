@@ -18,13 +18,11 @@ internal static class FilterGrain
         for (var y = 0; y < height; y++)
         for (var x = 0; x < width; x++)
         {
-            var hash = unchecked((uint)(x * 1597334677) ^ (uint)(y * 3812015801L)
-                ^ (uint)(sequence * 95868931L));
+            var hash = unchecked((uint)(x * 1597334677) ^ (uint)(y * 3812015801L) ^ (uint)(sequence * 95868931L));
             hash ^= hash >> 16;
             hash *= 2246822519u;
             var offset = (y * width + x) * 3;
-            var luminance = colors[offset] * 0.2126f + colors[offset + 1] * 0.7152f
-                + colors[offset + 2] * 0.0722f;
+            var luminance = colors[offset] * 0.2126f + colors[offset + 1] * 0.7152f + colors[offset + 2] * 0.0722f;
             var visibility = 0.22f + 0.78f * (1f - MathF.Abs(luminance * 2f - 1f));
             var noise = ((hash & 2047) / 1023.5f - 1f) * amount * visibility;
             for (var channel = 0; channel < 3; channel++)

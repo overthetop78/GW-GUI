@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Joystick Atari</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Pavé numérique</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed"><value>Vitesse de déplacement du paddle</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton"><value>Tant que le bouton de tir est maintenu</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways"><value>Toujours</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility"><value>Compatibilité de la manette</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity"><value>Sensibilité du joystick numérique</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity"><value>Sensibilité du joystick analogique</value></data>
+  <data name="Emulation.Atari.Controller.DualStick"><value>Deux joysticks</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts"><value>Permuter les ports</value></data>
+</root>

@@ -1,7 +1,6 @@
 using GWGUI.MediaEngine.Images.Writing.Encoding;
 
 namespace GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
-
 /// <summary>Regroupe les définitions techniques du format Micropolis MFM.</summary>
 internal static class MicropolisMfmFormat
 {
@@ -83,9 +82,11 @@ internal static class MicropolisChecksum
         var value = MicropolisMfmFormat.InitialChecksum;
         foreach (var item in data)
         {
-            if (value > MicropolisMfmFormat.ChecksumModulus) value -= MicropolisMfmFormat.ChecksumModulus;
+            if (value > MicropolisMfmFormat.ChecksumModulus)
+                value -= MicropolisMfmFormat.ChecksumModulus;
             value += item;
         }
+
         return (byte)value;
     }
 }
@@ -99,8 +100,16 @@ internal sealed record MicropolisMfmRecord(byte Cylinder, byte Sector, byte[] Da
     /// <summary>Analyse les octets d'un record complet.</summary>
     public static MicropolisMfmRecord? Parse(byte[] bytes)
     {
-        if (bytes.Length != MicropolisMfmFormat.RecordByteCount || bytes[MicropolisMfmFormat.AddressMarkOffset] != MicropolisMfmFormat.AddressMark) return null;
-        return new(bytes[MicropolisMfmFormat.CylinderOffset], bytes[MicropolisMfmFormat.SectorOffset], bytes.AsSpan(MicropolisMfmFormat.DataOffset, MicropolisMfmFormat.SectorSize).ToArray(), bytes[MicropolisMfmFormat.ChecksumOffset], bytes.AsSpan(MicropolisMfmFormat.TrailerOffset, MicropolisMfmFormat.TrailerPaddingByteCount).ToArray(), bytes);
+        if (bytes.Length != MicropolisMfmFormat.RecordByteCount || bytes[MicropolisMfmFormat.AddressMarkOffset] != MicropolisMfmFormat.AddressMark)
+            return null;
+        return new(
+            bytes[MicropolisMfmFormat.CylinderOffset],
+            bytes[MicropolisMfmFormat.SectorOffset],
+            bytes.AsSpan(MicropolisMfmFormat.DataOffset, MicropolisMfmFormat.SectorSize).ToArray(),
+            bytes[MicropolisMfmFormat.ChecksumOffset],
+            bytes.AsSpan(MicropolisMfmFormat.TrailerOffset, MicropolisMfmFormat.TrailerPaddingByteCount).ToArray(),
+            bytes
+        );
     }
 
     /// <summary>Crée les octets d'un record à encoder.</summary>

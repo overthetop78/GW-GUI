@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
+  <data name="Emulation.Controller.Visual.Model.sony-pocketstation"><value>PocketStation</value></data>
+  <data name="Emulation.Controller.Visual.Model.watara-supervision-controls"><value>Supervision</value></data>
+  <data name="Emulation.Controller.Visual.Model.thomson-mj90-102"><value>Thomson MJ 90-102</value></data>
+  <data name="Emulation.Controller.Visual.Model.snk-neo-geo-arcade-stick"><value>Neo Geo Arcade Stick</value></data>
+  <data name="Emulation.Controller.Visual.Model.snk-neo-geo-cd-pad"><value>Neo Geo CD</value></data>
+  <data name="Emulation.Controller.Visual.Model.snk-neo-geo-pocket"><value>Neo Geo Pocket</value></data>
+  <data name="Emulation.Controller.Visual.Model.snk-neo-geo-pocket-color"><value>Neo Geo Pocket Color</value></data>
+  <data name="Emulation.Controller.Visual.Model.sharp-cyberstick"><value>Sharp Cyber Stick</value></data>
+  <data name="Emulation.Controller.Visual.Model.mattel-intellivision-controller"><value>Intellivision</value></data>
+  <data name="Emulation.Controller.Visual.Model.bandai-wonderswan"><value>WonderSwan</value></data>
+  <data name="Emulation.Controller.Visual.Model.bandai-wonderswan-color"><value>WonderSwan Color</value></data>
+  <data name="Emulation.Controller.Visual.Model.bandai-swancrystal"><value>SwanCrystal</value></data>
+  <data name="Emulation.Controller.Visual.Model.bandai-playdia"><value>Playdia</value></data>
+  <data name="Emulation.Controller.Visual.Model.bandai-tamagotchi-p1"><value>Tamagotchi P1</value></data>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
@@ -51,6 +65,198 @@
   <data name="Emulation.Controller.Visual.Model.atari-7800-control-pad-europe" xml:space="preserve"><value>Atari 7800 Control Pad (Europe)</value></data>
   <data name="Emulation.Controller.Visual.Model.atari-jaguar-controller" xml:space="preserve"><value>Atari Jaguar Controller</value></data>
   <data name="Emulation.Controller.Visual.Model.atari-jaguar-pro-controller" xml:space="preserve"><value>Atari Jaguar Pro Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sega-sg1000-joystick" xml:space="preserve"><value>Sega SG-1000 SJ-200</value></data>
+  <data name="Emulation.Controller.Visual.Model.sega-sg1000-ii" xml:space="preserve"><value>Sega SG-1000 II SJ-150</value></data>
+  <data name="Emulation.Controller.Visual.Model.master-system" xml:space="preserve"><value>Master System Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sega-control-stick" xml:space="preserve"><value>Sega Control Stick</value></data>
+  <data name="Emulation.Controller.Visual.Model.game-gear-controls" xml:space="preserve"><value>Game Gear</value></data>
+  <data name="Emulation.Controller.Visual.Model.mega-drive-3" xml:space="preserve"><value>Mega Drive 3-button Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.mega-drive-6" xml:space="preserve"><value>Mega Drive 6-button Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sega-arcade-power-stick-3" xml:space="preserve"><value>Sega Arcade Power Stick</value></data>
+  <data name="Emulation.Controller.Visual.Model.sega-arcade-power-stick-6" xml:space="preserve"><value>Sega Arcade Power Stick 6B</value></data>
+  <data name="Emulation.Controller.Visual.Model.saturn" xml:space="preserve"><value>Saturn Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.saturn-3d" xml:space="preserve"><value>Saturn 3D Control Pad</value></data>
+  <data name="Emulation.Controller.Visual.Model.sega-saturn-virtua-stick-hss0104" xml:space="preserve"><value>Sega Saturn Virtua Stick HSS-0104</value></data>
+  <data name="Emulation.Controller.Visual.Model.sega-saturn-virtua-stick-hss0136" xml:space="preserve"><value>Sega Saturn Virtua Stick HSS-0136</value></data>
+  <data name="Emulation.Controller.Visual.Model.dreamcast" xml:space="preserve"><value>Dreamcast Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.flight-stick" xml:space="preserve"><value>Flight Stick</value></data>
+  <data name="Emulation.Controller.Visual.Model.racing-wheel" xml:space="preserve"><value>Racing Wheel</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-pc-engine-pad"><value>NEC PC Engine Pad (PI-PD001)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-pc-engine-turbopad"><value>NEC Turbo Pad (PI-PD002)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-turbografx-turbopad"><value>NEC TurboPad (HES-PAD-01)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-coregrafx-turbopad"><value>NEC Turbo Pad (PI-PD6)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-coregrafx-ii-turbopad"><value>NEC Turbo Pad (PI-PD8)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-duor-turbopad"><value>NEC Turbo Pad (PCE-TP2)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-pc-engine-turbopad-ii"><value>NEC Turbo Pad II (PI-PD5)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-pc-engine-turbostick"><value>NEC Turbo Stick (PI-PD4)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-avenue-pad-3"><value>NEC Avenue Pad 3 (NAPD-1001)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-avenue-pad-6"><value>NEC Avenue Pad 6 (NAPD-1002)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-arcade-pad-6"><value>NEC Arcade Pad 6 (PCE-TP1)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-turbografx-turbostick"><value>NEC TurboGrafx TurboStick (HES-STK-01)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-duopad"><value>NEC DuoPad</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-cordless-pad"><value>NEC Cordless Pad (PI-PD12)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-pc-engine-mouse"><value>NEC PC Engine Mouse (PI-PD10)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-turboexpress-controls"><value>NEC TurboExpress controls</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-pc-engine-lt-controls"><value>NEC PC Engine LT controls</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-pc-fx-pad"><value>NEC PC-FX Pad</value></data>
+  <data name="Emulation.Controller.Visual.Model.nec-pc-fx-mouse"><value>NEC PC-FX Mouse</value></data>
+  <data name="Emulation.Controller.Visual.Model.xbox-duke"><value>Xbox Controller (Duke)</value></data>
+  <data name="Emulation.Controller.Visual.Model.xbox-controller-s"><value>Xbox Controller S</value></data>
+  <data name="Emulation.Controller.Visual.Model.xbox-360-transforming-dpad"><value>Xbox 360 Wireless Controller with Transforming D-Pad</value></data>
+  <data name="Emulation.Controller.Visual.Model.xbox-360-wireless-racing-wheel"><value>Xbox 360 Wireless Racing Wheel</value></data>
+  <data name="Emulation.Controller.Visual.Model.xbox-360-wireless-speed-wheel"><value>Xbox 360 Wireless Speed Wheel</value></data>
+  <data name="Emulation.Controller.Visual.Model.xbox-360-big-button-pad"><value>Xbox 360 Big Button Pad</value></data>
+  <data name="Emulation.Controller.Visual.Model.xbox-dvd-movie-playback-kit"><value>Xbox DVD Movie Playback Kit</value></data>
+  <data name="Emulation.Controller.Visual.Model.xbox-360-chatpad"><value>Xbox 360 Chatpad</value></data>
+  <data name="Emulation.Controller.Visual.Model.xbox-chatpad"><value>Xbox Chatpad</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-playstation-controller"><value>PlayStation</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dualshock-1"><value>PlayStation DualShock</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dualshock-2"><value>DUALSHOCK 2</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dualshock-3"><value>DUALSHOCK 3</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-psp-1000"><value>Sony PSP-1000</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dualshock-4"><value>DUALSHOCK 4</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dualsense"><value>DualSense</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-nes-pad"><value>Nintendo NES Controller (NES-004)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-nes-max"><value>Nintendo NES Max (NES-027)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-nes-advantage"><value>Nintendo NES Advantage (NES-026)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-nes-dogbone-pad"><value>Nintendo NES Controller (NES-039)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-famicom-pad-1"><value>Nintendo Famicom Controller I</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-super-nes-pad"><value>Nintendo Super NES Controller (SNS-005)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-super-famicom-pad"><value>Nintendo Super Famicom Controller (SHVC-005)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-game-boy"><value>Nintendo Game Boy (DMG-01)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-game-boy-color"><value>Nintendo Game Boy Color (CGB-001)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-game-boy-advance"><value>Nintendo Game Boy Advance (AGB-001)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-64-pad"><value>Nintendo 64 Controller (NUS-005)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-gamecube-pad"><value>Nintendo GameCube Controller (DOL-003)</value></data>
+  <data name="Emulation.Controller.Visual.Model.nintendo-gamecube-wavebird"><value>Nintendo GameCube WaveBird Wireless Controller (DOL-004)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Visual</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Controller {0}</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dual-analog"><value>PlayStation Dual Analog</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-analog-joystick"><value>PlayStation Analog Joystick</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-playstation-mouse"><value>PlayStation Mouse</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-negcon"><value>Namco neGcon</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-guncon"><value>Namco GunCon / G-Con 45</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-guncon2"><value>Namco GunCon2 / G-Con 2</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-justifier"><value>Konami Justifier / Hyper Blaster</value></data>
+  <data name="Emulation.Controller.Multitap"><value>Multitap</value></data>
+  <data name="Emulation.Controller.Visual.Model.coleco-controller"><value>ColecoVision Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.epoch-super-cassette-vision-controller"><value>Super Cassette Vision · CONTROLLER</value></data>
+  <data name="Emulation.Controller.Visual.Model.fairchild-channel-f-controller"><value>Channel F Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.philips-videopac-joystick"><value>Odyssey² / Videopac</value></data>
+  <data name="Emulation.Controller.Visual.Model.philips-cdi-gamepad"><value>Philips CD-i Gamepad</value></data>
+  <data name="Emulation.Controller.Visual.Model.philips-cdi-mouse"><value>Philips CD-i Mouse</value></data>
+  <data name="Emulation.Controller.Visual.Model.panasonic-fz-jp1" xml:space="preserve"><value>Panasonic FZ-JP1</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Pointing device</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Flight simulation</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Racing simulation</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Dance simulation</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Singing simulation</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Other simulation peripherals</value></data>
+  <data name="Emulation.Controller.Category.Joystick"><value>Joystick</value></data>
+  <data name="Emulation.Controller.Visual.Model.coleco-driving-controller"><value>ColecoVision Expansion Module #2</value></data>
+  <data name="Emulation.Controller.Visual.Model.coleco-super-action-controller"><value>ColecoVision Super Action Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.coleco-roller-controller"><value>ColecoVision Roller Controller</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>Strong vibration</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>Weak vibration</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>Reload</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Crosshair colour</value></data>
+  <data name="Emulation.Controller.Visual.Model.amstrad-gx4000-controller" xml:space="preserve"><value>Amstrad GX4000</value></data>
+  <data name="Emulation.Controller.Visual.Model.apple-standard-j665" xml:space="preserve"><value>Standard J-665 / G-665</value></data>
+  <data name="Emulation.Controller.Visual.Model.apple-pippin-applejack" xml:space="preserve"><value>Pippin Applejack PA-82014</value></data>
+  <data name="Emulation.Controller.Visual.Model.apple-a2m2002" xml:space="preserve"><value>Apple Joystick IIe / IIc A2M2002</value></data>
+  <data name="Emulation.Controller.Visual.Model.apple-pippin-applejack-wired" xml:space="preserve"><value>Pippin Applejack P-ADB</value></data>
+  <data name="Emulation.Controller.Visual.Model.apple-ch-mach-ii" xml:space="preserve"><value>CH Products Mach II</value></data>
+  <data name="Emulation.Controller.Visual.Model.apple-ch-mach-iii" xml:space="preserve"><value>CH Products Mach III</value></data>
+  <data name="Emulation.Controller.Visual.Model.apple-kraft-premium-ii" xml:space="preserve"><value>Kraft Premium II</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Dance mat</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-buzz"><value>Buzz! ×4</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-jogcon"><value>Namco JogCon NPC-105</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-guitar-hero-sg"><value>RedOctane Guitar Hero Gibson SG</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-hori-fighting-stick-ps"><value>HORI Fighting Stick PS</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-eyetoy"><value>Sony EyeToy</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-singstar"><value>Sony SingStar ×2</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Configure the keyboard in the Keyboard tab.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Configure the mouse in the Mouse tab.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Device type</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-volume-controller"><value>Namco Volume Controller SLPH-00015</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-ascii-specialized-pad"><value>ASCIIWARE Specialized Control Pad</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-ascii-arcade-stick"><value>ASCIIWARE Specialized Arcade Stick</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-namco-arcade-stick"><value>Namco Arcade Stick NPC-102</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-hori-fighting-commander-2way"><value>HORI Fighting Commander 2Way</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-hori-fighting-commander-10b"><value>HORI Fighting Commander 10B</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-ascii-enhanced-pad"><value>ASCIIWARE Enhanced Pad 8180E</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-ascii-grip"><value>ASCII Grip SLEH-00008</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-biohazard-pad"><value>ASCII Biohazard / Resident Evil Pad</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-ascii-sphere-360"><value>ASCII Sphere 360</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-reality-quest-glove"><value>Reality Quest The Glove</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-ascii-fighter-stick-v"><value>ASCII Fighter Stick V</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-beatmania"><value>ASCII / Konami beatmania Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-guitar-freaks"><value>Konami GuitarFreaks Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-beatmania-iidx"><value>Konami beatmania IIDX RU029</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-beatmania-iidx-arcade"><value>Konami beatmania IIDX Arcade Style RU038</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-popn-music"><value>Konami pop’n music RU014-J2</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-popn-music-arcade"><value>Konami pop’n music Arcade Style RU036</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-taiko-drum"><value>Namco TaTaCon NPC-107AB</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-konami-ddr"><value>Konami Dance Dance Revolution — Stay Cool!</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-usb-keyboard"><value>Sony USB Keyboard SCPH-10240</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-usb-mouse"><value>Sony USB Mouse SCPH-10230</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-netplay"><value>Logitech / Logicool NetPlay LPKC-40000</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-logitech-cordless"><value>Logitech Cordless Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-logitech-cordless-action"><value>Logitech Cordless Action Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-sega-saturn-ps2"><value>Sega Saturn Control Pad for PlayStation 2</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-hori-fighting-stick-2"><value>HORI Fighting Stick 2 HP2-135</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-hori-real-arcade-pro"><value>HORI Real Arcade Pro (PS2)</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-gt-force"><value>Logitech / Logicool GT Force</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-driving-force"><value>Logitech Driving Force</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-driving-force-pro"><value>Logitech / Logicool Driving Force Pro</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-driving-force-gt"><value>Logitech Driving Force GT</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-buzz-wireless"><value>Buzz! Wireless (PS2 / PS3)</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-singstar-wireless"><value>Sony SingStar Wireless</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-socom-headset"><value>Logitech / Sony SOCOM USB Headset</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-logitech-vantage"><value>Logitech Vantage USB Microphone</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-rock-band-microphone"><value>Rock Band USB Microphone</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-guitar-hero-microphone"><value>Guitar Hero USB Microphone</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-seamic"><value>ASCII / Sega SeaMic ASC-1606SM</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-kramer-striker"><value>RedOctane Kramer Striker (PS2)</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-onimusha-katana"><value>HORI Onimusha 3 Katana / Soul Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-re4-chainsaw"><value>NubyTech Resident Evil 4 Chainsaw (PS2)</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dvd-remote"><value>Sony DVD Remote Control SCPH-10150</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-fishing-controller"><value>ASCII Tsuricon / Agetec Bass Landing SLPH-00100 / SLUH-00063</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-densha-controller"><value>Taito Densha de GO! SLPH-00051</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-densha-one-handle"><value>Taito Densha de GO! One Handle TCPP-20001</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-densha-mamecon"><value>Taito / HORI Densha de GO! Mamecon TCPP-20002 HPS-55</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-jet-controller"><value>Taito Jet de GO! TCPP-20005</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-densha-usb"><value>Taito Densha de GO! Type 2 TCPP-20009</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-densha-shinkansen"><value>Taito Densha de GO! Shinkansen TCPP-20011</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-densha-ryojohen"><value>Taito Densha de GO! Ryojōhen TCPP-20014</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-train-mascon"><value>Collection Train Mascon COTM-02001</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-multi-train"><value>Multi Train Controller SOTP-031201</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-kids-station"><value>Bandai Kids Station BANC-0002</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-maestro-baton"><value>The Maestromusic GAE001</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-tambourine"><value>ASCII Tambourine ASC-0528T</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-hori-flight-stick-2"><value>HORI Flight Stick 2</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-keyboardmania"><value>Konami KeyboardMania RU025</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-drummania"><value>Konami DrumMania RU021</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-parapara"><value>Konami ParaParaParadise RU034</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-rock-band-guitar"><value>Harmonix Rock Band Fender Stratocaster</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-rock-band-drums"><value>Harmonix Rock Band Drum Kit</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-guitar-hero-drums"><value>Guitar Hero World Tour Drum Kit</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dj-hero"><value>DJ Hero Turntable Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-gametrak"><value>In2Games GameTrak</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-mad-catz-wheel"><value>Mad Catz Analog / Digital Steering Wheel</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-interact-v3"><value>InterAct V3 Racing Wheel SV-1118</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-fanatec-speedster-2"><value>Fanatec Speedster 2</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-fanatec-speedster-3"><value>Fanatec Speedster 3</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-psp-2000"><value>Sony PSP-2000</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-psp-3000"><value>Sony PSP-3000</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-psp-go"><value>Sony PSP Go</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>Vibration controller</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>Stick and axis assignments</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>Stick {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>Keyboard or custom assignments</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>Left stick</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>Right stick</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>Axis {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>Axes {0} / {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>Saved assignment</value></data>
 </root>

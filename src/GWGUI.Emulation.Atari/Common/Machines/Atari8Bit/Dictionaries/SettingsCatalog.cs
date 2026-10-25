@@ -51,30 +51,19 @@ public static class EightBitSettingsCatalog
         Visible(EightBitSettingsConstants.PokeyStereoOptionKey),
         Hidden(EightBitSettingsConstants.LegacyConfigurationOptionKey)
     ];
-    public static readonly IReadOnlyList<string> PaddleMovementSpeeds =
-        Enumerable.Range(1, 9).Select(value => value.ToString()).ToArray();
+    public static readonly IReadOnlyList<string> PaddleMovementSpeeds = Enumerable.Range(1, 9).Select(value => value.ToString()).ToArray();
 
-    public static readonly IReadOnlyList<string> AutofireModes =
-    [
-        EightBitSettingsConstants.Disabled,
-        EightBitSettingsConstants.AutofireOnButton,
-        EightBitSettingsConstants.AutofireAlways
-    ];
-    public static readonly IReadOnlyList<string> ToggleModes =
-        [EightBitSettingsConstants.Disabled, EightBitSettingsConstants.Enabled];
+    public static readonly IReadOnlyList<string> AutofireModes = [EightBitSettingsConstants.Disabled, EightBitSettingsConstants.AutofireOnButton, EightBitSettingsConstants.AutofireAlways];
+    public static readonly IReadOnlyList<string> ToggleModes = [EightBitSettingsConstants.Disabled, EightBitSettingsConstants.Enabled];
 
-    public static readonly IReadOnlyList<string> ControllerCompatibilityModes =
-        [EightBitSettingsConstants.None, EightBitSettingsConstants.DualStick,
-            EightBitSettingsConstants.SwapPorts, EightBitSettingsConstants.Joy2BPlus];
+    public static readonly IReadOnlyList<string> ControllerCompatibilityModes = [EightBitSettingsConstants.None, EightBitSettingsConstants.DualStick, EightBitSettingsConstants.SwapPorts, EightBitSettingsConstants.Joy2BPlus];
 
-    public static readonly IReadOnlyList<string> Sensitivities =
-        Enumerable.Range(1, 20).Select(value => (value * 5).ToString()).ToArray();
+    public static readonly IReadOnlyList<string> Sensitivities = Enumerable.Range(1, 20).Select(value => (value * 5).ToString()).ToArray();
 
     public static readonly IReadOnlyList<string> ColorAdjustments = DecimalValues(-1.0m, 1.0m, 0.05m);
     public static readonly IReadOnlyList<string> ContrastAndBrightness = DecimalValues(-2.0m, 2.0m, 0.05m);
     public static readonly IReadOnlyList<string> GammaValues = DecimalValues(1.0m, 3.5m, 0.05m);
-    public static readonly IReadOnlyList<string> ColorDelayValues =
-        [EightBitSettingsConstants.DefaultColorDelay, ..DecimalValues(10.0m, 50.0m, 0.5m)];
+    public static readonly IReadOnlyList<string> ColorDelayValues = [EightBitSettingsConstants.DefaultColorDelay, ..DecimalValues(10.0m, 50.0m, 0.5m)];
     public static readonly IReadOnlyList<string> ExternalPalettes =
         [EightBitSettingsConstants.None, EightBitSettingsCatalogConstants.Default, EightBitSettingsCatalogConstants.Gray, EightBitSettingsCatalogConstants.Jakub, EightBitSettingsCatalogConstants.Real, EightBitSettingsCatalogConstants.Xformer];
     public static readonly IReadOnlyList<string> OriginalComputerResolutions =
@@ -103,22 +92,15 @@ public static class EightBitSettingsCatalog
         new(EightBitSettingsCatalogConstants.Value4MB, 4 * 1024 * 1024)
     ];
 
-    public static bool SupportsOriginalComputerOptions(MachineModel model) =>
-        model is MachineModel.Atari400 or MachineModel.Atari800;
+    public static bool SupportsOriginalComputerOptions(MachineModel model) => model is MachineModel.Atari400 or MachineModel.Atari800;
 
-    public static bool SupportsComputerOptions(MachineModel model) => model is
-        MachineModel.Atari400 or MachineModel.Atari800 or MachineModel.Atari800Xl or
-        MachineModel.Atari130Xe or MachineModel.Xegs or MachineModel.XlXe;
+    public static bool SupportsComputerOptions(MachineModel model) => model is MachineModel.Atari400 or MachineModel.Atari800 or MachineModel.Atari800Xl or MachineModel.Atari130Xe or MachineModel.Xegs or MachineModel.XlXe;
 
-    public static bool SupportsMapRam(MachineModel model) => model is
-        MachineModel.Atari800Xl or MachineModel.Atari130Xe or
-        MachineModel.Xegs or MachineModel.XlXe;
+    public static bool SupportsMapRam(MachineModel model) => model is MachineModel.Atari800Xl or MachineModel.Atari130Xe or MachineModel.Xegs or MachineModel.XlXe;
 
-    public static IReadOnlyList<MemoryExpansionChoice> Mosaic(MachineModel model) =>
-        SupportsOriginalComputerOptions(model) ? MosaicChoices : [];
+    public static IReadOnlyList<MemoryExpansionChoice> Mosaic(MachineModel model) => SupportsOriginalComputerOptions(model) ? MosaicChoices : [];
 
-    public static IReadOnlyList<MemoryExpansionChoice> Axlon(MachineModel model) =>
-        SupportsOriginalComputerOptions(model) ? AxlonChoices : [];
+    public static IReadOnlyList<MemoryExpansionChoice> Axlon(MachineModel model) => SupportsOriginalComputerOptions(model) ? AxlonChoices : [];
 
     public static long CpuFrequency(HardwareRegion region) => region switch
     {
@@ -145,19 +127,14 @@ public static class EightBitSettingsCatalog
             _ => true
         };
 
-    private static EightBitNativeSetting Visible(string key) =>
-        new(key, EightBitSettingDisposition.UserVisible);
-    private static EightBitNativeSetting Managed(string key) =>
-        new(key, EightBitSettingDisposition.ManagedByApplication);
-    private static EightBitNativeSetting Hidden(string key) =>
-        new(key, EightBitSettingDisposition.HiddenInternal);
-    private static EightBitNativeSetting Different(string key) =>
-        new(key, EightBitSettingDisposition.DifferentModel);
+    private static EightBitNativeSetting Visible(string key) => new(key, EightBitSettingDisposition.UserVisible);
+    private static EightBitNativeSetting Managed(string key) => new(key, EightBitSettingDisposition.ManagedByApplication);
+    private static EightBitNativeSetting Hidden(string key) => new(key, EightBitSettingDisposition.HiddenInternal);
+    private static EightBitNativeSetting Different(string key) => new(key, EightBitSettingDisposition.DifferentModel);
 
     private static IReadOnlyList<string> DecimalValues(decimal minimum, decimal maximum, decimal step)
     {
         var count = decimal.ToInt32((maximum - minimum) / step) + 1;
-        return Enumerable.Range(0, count).Select(index => (minimum + index * step).ToString(EightBitSettingsCatalogConstants.Value000,
-            System.Globalization.CultureInfo.InvariantCulture)).ToArray();
+        return Enumerable.Range(0, count).Select(index => (minimum + index * step).ToString(EightBitSettingsCatalogConstants.Value000, System.Globalization.CultureInfo.InvariantCulture)).ToArray();
     }
 }

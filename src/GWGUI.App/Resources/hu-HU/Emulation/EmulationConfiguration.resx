@@ -15,4 +15,5 @@
   <data name="Emulation.Configuration" xml:space="preserve"><value>Beállítás</value></data>
   <data name="Emulation.Configurations" xml:space="preserve"><value>Beállítások</value></data>
   <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Törölje ezt az Amiga konfigurációt?</value></data>
+  <data name="Emulation.Configuration.Selector"><value>Márkák és gépek</value></data>
 </root>

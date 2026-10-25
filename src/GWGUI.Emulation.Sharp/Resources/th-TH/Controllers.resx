@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Controller.CyberstickAnalog" xml:space="preserve"><value>CYBERSTICK (เสียง บรรณ)</value></data>
+  <data name="Emulation.Sharp.Controller.CyberstickDigital" xml:space="preserve"><value>CYBERSTICK (เลขทศนิยม)</value></data>
+  <data name="Emulation.Sharp.Controller.X1Joystick" xml:space="preserve"><value>X1 แท่งควบคุม</value></data>
+  <data name="Emulation.Sharp.Input.Fire1" xml:space="preserve"><value>ปุ่มยิง 1</value></data>
+  <data name="Emulation.Sharp.Input.Fire2" xml:space="preserve"><value>ปุ่มยิง 2</value></data>
+  <data name="Emulation.Sharp.Input.Fire3" xml:space="preserve"><value>ปุ่มยิง 3</value></data>
+  <data name="Emulation.Sharp.Input.Fire4" xml:space="preserve"><value>เมาส์ปุ่ม 4</value></data>
+  <data name="Emulation.Sharp.Input.Fire5" xml:space="preserve"><value>ปุ่มยิง 5</value></data>
+  <data name="Emulation.Sharp.Input.Fire6" xml:space="preserve"><value>เมาส์ปุ่ม 6</value></data>
+  <data name="Emulation.Sharp.Input.Fire7" xml:space="preserve"><value>ปุ่มยิง 7</value></data>
+  <data name="Emulation.Sharp.Input.Fire8" xml:space="preserve"><value>เมาส์ปุ่ม 8</value></data>
+  <data name="Emulation.Sharp.Input.ThrottleDecrease" xml:space="preserve"><value>ลดความเร็วการลาก</value></data>
+  <data name="Emulation.Sharp.Input.ThrottleIncrease" xml:space="preserve"><value>เพิ่มความเร็ว</value></data>
+</root>

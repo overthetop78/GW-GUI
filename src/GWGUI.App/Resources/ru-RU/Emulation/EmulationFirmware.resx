@@ -11,4 +11,5 @@
   <data name="Emulation.Firmware.PartiallyCompatible"><value>Частично совместима</value></data>
   <data name="Emulation.Firmware.Official"><value>Официальная</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Несовместима</value></data>
+  <data name="Emulation.Firmware.VoiceSamples"><value>Голосовые образцы</value></data>
 </root>

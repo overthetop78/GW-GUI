@@ -16,7 +16,7 @@ Toute décision architecturale ou fonctionnelle prise pendant la refonte doit ê
 
 ## Règle impérative d'examen comparatif du code existant
 
-Avant de créer, modifier, déplacer, découper ou renommer un fichier lié à l'émulation, il faut examiner tous les fichiers concernés et suivre leur fonctionnement réel. Cet examen comprend obligatoirement les implémentations équivalentes existant dans App, `GWGUI.Emulation.Amiga`, `GWGUI.Emulation.Atari` et, lorsqu'elles existent, les autres bibliothèques `GWGUI.Emulation.xxx`. Il ne faut jamais concevoir la partie Atari sans vérifier son équivalent Amiga, ni l'inverse.
+Avant de créer, modifier, déplacer, découper ou renommer un fichier lié à l'émulation, il faut examiner tous les fichiers concernés et suivre leur fonctionnement réel. Cet examen comprend obligatoirement les implémentations équivalentes existant dans App, `GWGUI.Emulation.Commodore`, `GWGUI.Emulation.Atari` et, lorsqu'elles existent, les autres bibliothèques `GWGUI.Emulation.xxx`. Il ne faut jamais concevoir la partie Atari sans vérifier son équivalent Amiga, ni l'inverse.
 
 Le but est d'éviter les implémentations répétées, les architectures parallèles incompatibles, les fichiers inutiles et les noms différents pour une même responsabilité. Par exemple, deux fichiers tels que `AmigaVideoOutputMachine.cs` et `AtariVideoOptions.cs` ne doivent pas être conservés comme deux concepts distincts s'ils remplissent réellement la même fonction. Il faut d'abord déterminer ce qui peut devenir commun. Si une implémentation spécialisée reste nécessaire dans chaque bibliothèque, elle doit suivre une structure, une responsabilité et un nom cohérents dans toutes les bibliothèques concernées.
 
@@ -61,7 +61,7 @@ Les bibliothèques prises en charge restent référencées à la compilation par
 Actuellement, `GWGUI.App.csproj` référence notamment :
 
 - `GWGUI.Emulation` ;
-- `GWGUI.Emulation.Amiga` ;
+- `GWGUI.Emulation.Commodore` ;
 - `GWGUI.Emulation.Atari`.
 
 Une future bibliothèque `GWGUI.Emulation.Sega` pourra être ajoutée de la même manière. Le chargeur,
@@ -82,7 +82,7 @@ Le rendu reste commun dans App et reçoit les données du module ciblé. Il ne f
 
 Chaque fenêtre de module possède sa propre instance du contrôle générique. La construction graphique est commune, mais chaque fenêtre crée ses propres instances de boutons, sélecteurs, champs, listes et autres contrôles. Aucun objet graphique n’est partagé entre les fenêtres Amiga, Atari ou une future famille.
 
-Les contrôles de chaque instance sont remplis avec les données de la bibliothèque correspondante : `GWGUI.Emulation.Amiga` pour la fenêtre Amiga, `GWGUI.Emulation.Atari` pour la fenêtre Atari, puis la bibliothèque concernée pour toute nouvelle famille.
+Les contrôles de chaque instance sont remplis avec les données de la bibliothèque correspondante : `GWGUI.Emulation.Commodore` pour la fenêtre Amiga, `GWGUI.Emulation.Atari` pour la fenêtre Atari, puis la bibliothèque concernée pour toute nouvelle famille.
 
 Ces instances restent en mémoire pendant la durée de vie de leur boîte de dialogue. Seuls le code de construction, la disposition et les comportements graphiques sont communs ; les objets créés et les données qu’ils contiennent sont indépendants.
 
@@ -94,7 +94,7 @@ L’onglet **Configurations** reste commun à toutes les familles. Il rassemble 
 
 Il dirige une configuration Amiga vers `AmigaEngine` et une configuration Atari vers `AtariEngine`. Chaque bibliothèque possède un seul Engine de famille, chargé uniquement de créer ou recréer les instances de machines :
 
-- `AmigaEngine` et `AmigaMachine` sont dans `src/GWGUI.Emulation.Amiga` ;
+- `AmigaEngine` et `AmigaMachine` sont dans `src/GWGUI.Emulation.Commodore` ;
 - `AtariEngine` et `AtariMachine` sont dans `src/GWGUI.Emulation.Atari`.
 
 Pour Sega, `SegaEngine` et `SegaMachine` seront créés dans `src/GWGUI.Emulation.Sega`, puis raccordés à `EmulationSection`.
@@ -105,7 +105,7 @@ Une nouvelle instance de machine est créée pour chaque onglet d’exécution. 
 
 `GWGUI.Emulation` contient les contrats et comportements réellement communs. Il ne contient pas les règles propres à Amiga, Atari ou une autre famille.
 
-`GWGUI.Emulation` est une dépendance commune obligatoire de l'application et de toutes les bibliothèques `GWGUI.Emulation.xxx`. `GWGUI.App`, `GWGUI.Emulation.Amiga`, `GWGUI.Emulation.Atari` et les futures bibliothèques utilisent directement les interfaces, enums et contrats définis dans ce projet. App découvre les bibliothèques spécialisées dans `Modules` et communique avec elles uniquement par ces contrats communs.
+`GWGUI.Emulation` est une dépendance commune obligatoire de l'application et de toutes les bibliothèques `GWGUI.Emulation.xxx`. `GWGUI.App`, `GWGUI.Emulation.Commodore`, `GWGUI.Emulation.Atari` et les futures bibliothèques utilisent directement les interfaces, enums et contrats définis dans ce projet. App découvre les bibliothèques spécialisées dans `Modules` et communique avec elles uniquement par ces contrats communs.
 
 Les appels passent directement entre `GWGUI.App` et la bibliothèque `GWGUI.Emulation.xxx` ciblée. `GWGUI.Emulation` n'intercepte pas et ne retransmet pas ces appels. Chaque bibliothèque spécialisée traduit elle-même les identifiants, choix et valeurs communs vers les paramètres exacts attendus par son ou ses émulateurs. Elle effectue également la conversion inverse avant de renvoyer à App un résultat exprimé avec les contrats communs.
 
@@ -178,7 +178,7 @@ Le contrat commun d'un message reste plat et contient six données :
 
 Les journaux techniques produits par un émulateur sont reçus et traités par la bibliothèque `Emulation.xxx` qui gère cet émulateur. Ils restent les journaux propres à cette bibliothèque et à ses émulateurs ; ils ne sont pas transformés en messages utilisateur et ne sont pas intégrés aux journaux généraux d'App.
 
-Chaque bibliothèque `Emulation.xxx` possède son propre journal. Le nom du fichier journal correspond au nom de la bibliothèque afin que son origine soit identifiable directement. Par exemple, `GWGUI.Emulation.Atari` utilise son journal de bibliothèque `emulation-atari.log` et `GWGUI.Emulation.Amiga` utilise `emulation-amiga.log`. Toutes les instances et tous les émulateurs gérés par une même bibliothèque alimentent ce journal commun à la bibliothèque.
+Chaque bibliothèque `Emulation.xxx` possède son propre journal. Le nom du fichier journal correspond au nom de la bibliothèque afin que son origine soit identifiable directement. Par exemple, `GWGUI.Emulation.Atari` utilise son journal de bibliothèque `emulation-atari.log` et `GWGUI.Emulation.Commodore` utilise `emulation-commodore.log`. Toutes les instances et tous les émulateurs gérés par une même bibliothèque alimentent ce journal commun à la bibliothèque.
 
 Les messages que l'émulateur destine à l'utilisateur suivent un chemin différent. `Emulation.xxx` cherche obligatoirement une correspondance traduite avant de remplir `OriginalText`. Lorsqu'il reconnaît le message, il le convertit vers le contrat commun avec son `MessageCode` et laisse `OriginalText` vide. Dans le cas contraire seulement, `MessageCode` prend la valeur générique `UntranslatedEmulatorMessage` et `OriginalText` contient le texte original à afficher sans traduction. Dans les deux cas, `Emulation.xxx` transmet également `Severity` et `Target`, puis App applique l'apparence et la destination demandées. `Silent` signifie qu'App ne produit aucun affichage pour ce message. Le message original reste enregistré séparément dans le journal propre à la bibliothèque.
 
@@ -192,7 +192,7 @@ Les composants visuels actuels de gestion des émulateurs deviennent communs et 
 
 Les commandes de clavier, souris et manette sont envoyées directement par l'onglet App à son instance de machine. Il en va de même pour les changements de disquette et de CD. App choisit l'instance grâce à la référence déjà conservée par l'onglet ; aucun routage par l'Engine n'intervient.
 
-Plusieurs machines d'une même famille produisent donc plusieurs chaînes indépendantes : chaque onglet App correspond directement à une instance de machine de la bibliothèque concernée. Une machine Atari exécute l'implémentation fournie par `GWGUI.Emulation.Atari`, tandis qu'une machine Amiga exécute celle de `GWGUI.Emulation.Amiga`. App appelle les interfaces communes ; la référence obtenue après la découverte dynamique détermine la bonne implémentation.
+Plusieurs machines d'une même famille produisent donc plusieurs chaînes indépendantes : chaque onglet App correspond directement à une instance de machine de la bibliothèque concernée. Une machine Atari exécute l'implémentation fournie par `GWGUI.Emulation.Atari`, tandis qu'une machine Amiga exécute celle de `GWGUI.Emulation.Commodore`. App appelle les interfaces communes ; la référence obtenue après la découverte dynamique détermine la bonne implémentation.
 
 Elle fournit uniquement des données et comportements, jamais des boutons, sélecteurs, onglets ou autres objets graphiques.
 
@@ -211,7 +211,7 @@ Après sa création par l’Engine et la Factory appropriée, chaque machine est
 La même définition est utilisée des deux côtés :
 
 - `GWGUI.App` référence l’interface pour connaître les propriétés qu’il peut lire et les méthodes qu’il peut appeler ;
-- `GWGUI.Emulation.Amiga`, `GWGUI.Emulation.Atari` et les futures bibliothèques référencent cette même interface pour l’implémenter dans leurs classes de machines concrètes ;
+- `GWGUI.Emulation.Commodore`, `GWGUI.Emulation.Atari` et les futures bibliothèques référencent cette même interface pour l’implémenter dans leurs classes de machines concrètes ;
 - une instance concrète, par exemple `AmigaMachine` ou `AtariMachine`, exécute réellement le code demandé.
 
 Il n’existe pas une copie de l’interface dans App et une autre dans chaque bibliothèque. Il n’existe pas non plus d’objet intermédiaire qui reçoit, copie puis retransmet chaque commande. Une variable typée avec une interface désigne directement l’instance concrète. L’interface indique uniquement les membres disponibles, les données acceptées, les résultats renvoyés et les garanties fournies par l’instance.
@@ -518,7 +518,7 @@ Le bouton commun **Utiliser** transmet à la bibliothèque associée à l'onglet
 
 Les traitements vidéo réalisés après la production d’une `VideoFrame` sont communs à toutes les
 familles de machines. Ils ne sont pas décrits ni exécutés séparément par
-`GWGUI.Emulation.Amiga`, `GWGUI.Emulation.Atari` ou une future bibliothèque spécialisée.
+`GWGUI.Emulation.Commodore`, `GWGUI.Emulation.Atari` ou une future bibliothèque spécialisée.
 
 La séparation obligatoire est la suivante :
 
@@ -650,7 +650,7 @@ correspondante.
 Chaque fichier `Amiga...cs` ou `Atari...cs` présent dans App doit être examiné :
 
 - sa construction graphique devient un contrôle commun dans App ;
-- ses règles propres rejoignent `GWGUI.Emulation.Amiga` ou `GWGUI.Emulation.Atari` ;
+- ses règles propres rejoignent `GWGUI.Emulation.Commodore` ou `GWGUI.Emulation.Atari` ;
 - ses comportements réellement communs rejoignent le projet commun approprié.
 
 Il ne faut pas déplacer un fichier entier aveuglément : son contenu doit être séparé selon ses responsabilités. Tout objet graphique placé à tort dans une bibliothèque d’émulation doit revenir dans App.

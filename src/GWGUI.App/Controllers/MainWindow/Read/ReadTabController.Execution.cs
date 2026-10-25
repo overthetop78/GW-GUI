@@ -76,17 +76,9 @@ internal sealed partial class ReadTabController
                 if (advanced.AutoNumberCheckBox.IsChecked != true) advanced.AutoNumberCheckBox.IsChecked = true;
                 var sequenceKind = advanced.SequenceKindComboBox.SelectedIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;
                 if (!SequenceFormatter.TryParse(advanced.SequenceValueTextBox.Text, sequenceKind, out var next)) next = sequenceKind == SequenceKind.Alphabetic ? 0 : 1;
-                var available = OutputConflictResolver.FindNextAvailableWithValue(
-                    view.FolderBlock.Input.Text,
-                    fileName.Text.Trim(),
-                    extension,
-                    sequenceKind,
-                    advanced.SequenceWidthComboBox.SelectedIndex + 1,
-                    next, exists);
+                var available = OutputConflictResolver.FindNextAvailableWithValue(view.FolderBlock.Input.Text, GetOutputBaseName(extension), extension, sequenceKind, advanced.SequenceWidthComboBox.SelectedIndex + 1, next, exists);
                 target = available.Path;
-                viewModel.Read.SequenceValue = sequenceKind == SequenceKind.Numeric
-                    ? available.Value.ToString()
-                    : SequenceFormatter.Format(available.Value, sequenceKind, 1);
+                viewModel.Read.SequenceValue = sequenceKind == SequenceKind.Numeric ? available.Value.ToString() : SequenceFormatter.Format(available.Value, sequenceKind, 1);
             }
         }
 
@@ -96,11 +88,6 @@ internal sealed partial class ReadTabController
             if (hardware is null)
             {
                 dialogs.Show(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Warning);
-                return;
-            }
-            if (RawScpRadio.IsChecked != true)
-            {
-                dialogs.Show(LocExtension.Get("Read.InternalRawScpOnly"), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Warning);
                 return;
             }
             if (HasUnsupportedInternalOptions())
@@ -115,7 +102,13 @@ internal sealed partial class ReadTabController
                 dialogs.Show(LocExtension.Get("Read.InternalInvalidOptions"), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Warning);
                 return;
             }
-            await ExecuteInternalAsync(options, target);
+            var targetFormatId = RawScpRadio.IsChecked == true ? null : (FormatCombo.SelectedItem as DiskFormat)?.Id;
+            if (RawScpRadio.IsChecked != true && string.IsNullOrWhiteSpace(targetFormatId))
+            {
+                dialogs.Show(LocExtension.Get("Read.InternalInvalidOptions"), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Warning);
+                return;
+            }
+            await ExecuteInternalAsync(options, target, targetFormatId);
             return;
         }
 
@@ -139,9 +132,7 @@ internal sealed partial class ReadTabController
             if (result.IsSuccess)
             {
                 diskImageWorkspace.LastCapturedPath = target;
-                var summary = extension.Equals(ReadTabConstants.ScpExtension, StringComparison.OrdinalIgnoreCase)
-                    ? await AppendScpCaptureSummaryAsync(target)
-                    : string.Empty;
+                var summary = extension.Equals(ReadTabConstants.ScpExtension, StringComparison.OrdinalIgnoreCase) ? await AppendScpCaptureSummaryAsync(target) : string.Empty;
                 view.CompletionBlock.CompleteCapture(target, summary);
             }
             if (result.IsSuccess) viewModel.Read.TryAdvanceSequence();
@@ -152,7 +143,7 @@ internal sealed partial class ReadTabController
         view.ExecuteActionButton.Content = LocExtension.Get("Common.Execute");
     }
 
-    private async Task ExecuteInternalAsync(PhysicalDiskReadOptions options, string target)
+    private async Task ExecuteInternalAsync(PhysicalDiskReadOptions options, string target, string? targetFormatId)
     {
         view.ExecuteActionButton.Content = LocExtension.Get("Common.Stop");
         operation.Begin();
@@ -167,7 +158,14 @@ internal sealed partial class ReadTabController
         {
             var reader = createInternalReader();
             var readProgress = new Progress<PhysicalDiskReadOperationProgress>(ReportInternalProgress);
-            capture = await reader.ReadAsync(options, target, readProgress, token);
+            try
+            {
+                capture = await reader.ReadAsync(options, target, readProgress, token, targetFormatId);
+            }
+            catch (OperationCanceledException) when (token.IsCancellationRequested)
+            {
+                return new GwExecutionResult(1, true, stopwatch.Elapsed, []);
+            }
             return new GwExecutionResult(0, false, stopwatch.Elapsed, []);
         });
         await operation.FlushPendingAsync();
@@ -178,9 +176,7 @@ internal sealed partial class ReadTabController
         {
             diskImageWorkspace.RememberReadImage(capture.Document);
             diskImageWorkspace.LastCapturedPath = target;
-            var summary = Path.GetExtension(target).Equals(ReadTabConstants.ScpExtension, StringComparison.OrdinalIgnoreCase)
-                ? await AppendScpCaptureSummaryAsync(target)
-                : string.Empty;
+            var summary = Path.GetExtension(target).Equals(ReadTabConstants.ScpExtension, StringComparison.OrdinalIgnoreCase) ? await AppendScpCaptureSummaryAsync(target) : string.Empty;
             view.CompletionBlock.CompleteCapture(target, summary);
             viewModel.Read.TryAdvanceSequence();
         }
@@ -195,9 +191,7 @@ internal sealed partial class ReadTabController
     private void ReportInternalProgress(PhysicalDiskReadOperationProgress readProgress)
     {
         progress.Accept(readProgress);
-        var line = readProgress.Cylinder is int cylinder && readProgress.Head is int head
-            ? LocExtension.Get("Status.TrackProgress", cylinder, head, readProgress.CompletedTracks, readProgress.TotalTracks)
-            : LocExtension.Get("Status.Running");
+        var line = readProgress.Cylinder is int cylinder && readProgress.Head is int head ? LocExtension.Get("Status.TrackProgress", cylinder, head, readProgress.CompletedTracks, readProgress.TotalTracks) : LocExtension.Get("Status.Running");
         if (string.Equals(line, lastInternalReadProgressLine, StringComparison.Ordinal)) return;
         lastInternalReadProgressLine = line;
         operation.AppendText(line + Environment.NewLine);

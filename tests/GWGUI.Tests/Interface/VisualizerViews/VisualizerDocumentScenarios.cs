@@ -94,8 +94,7 @@ internal static class VisualizerDocumentScenarios
         {
             Settings = settings ?? new AppSettings();
             var scope = new DiskImageCancellationScope();
-            var reader = ControlledDependencies.Simulate<IScpReader>((method, args) => method.Name == "ReadAsync"
-                ? Read((string)args[0]!, (CancellationToken)args[1]!) : throw new InvalidOperationException(method.Name));
+            var reader = ControlledDependencies.Simulate<IScpReader>((method, args) => method.Name == "ReadAsync" ? Read((string)args[0]!, (CancellationToken)args[1]!) : throw new InvalidOperationException(method.Name));
             Controller = new(Explorer, Visualizer, Model, Face0Progress, Face1Progress,
                 () => Settings, () => throw new InvalidOperationException("Unexpected detection"),
                 () => throw new InvalidOperationException("Unexpected capabilities"),
@@ -108,17 +107,8 @@ internal static class VisualizerDocumentScenarios
                     ErrorPresentations.Add((titleKey, messageKey));
                 }, (key, _) => key,
                 explore: useDefaultExplorer ? null : (path, format, token) => Explore(path, format, token),
-                mediaReader: withMediaServices
-                    ? new MediaImageReadingService(new MediaRecognitionRegistry([
-                        mediaImageReader ?? new SectorDocumentReader(sectorCylinders, sectorHeads, () => MediaReadCount++)
-                    ]))
-                    : null,
-                mediaExplorer: withMediaServices
-                    ? new MediaExplorer(new GWGUI.MediaFileSystems.Exploration.MediaExplorer(
-                        [],
-                        new GWGUI.MediaFileSystems.Exploration.MediaVolumeDetectorRegistry(
-                            [new GWGUI.MediaFileSystems.Exploration.Partitioning.WholeMediaVolumeDetector()])))
-                    : null,
+                mediaReader: withMediaServices ? new MediaImageReadingService(new MediaRecognitionRegistry([mediaImageReader ?? new SectorDocumentReader(sectorCylinders, sectorHeads, () => MediaReadCount++)])) : null,
+                mediaExplorer: withMediaServices ? new MediaExplorer(new GWGUI.MediaFileSystems.Exploration.MediaExplorer([], new GWGUI.MediaFileSystems.Exploration.MediaVolumeDetectorRegistry([new GWGUI.MediaFileSystems.Exploration.Partitioning.WholeMediaVolumeDetector()]))) : null,
                 visualizationProviders: withVisualizationProviders ? MediaVisualizationComposition.CreateDefault().Registry : null);
         }
         public void Dispose() => Controller.Dispose();
@@ -137,10 +127,8 @@ internal static class VisualizerDocumentScenarios
         var source = ExplorerDocumentScenarios.Document("EXPLICIT");
         var detectedImage = source.Image.WithFormatId("test.detected");
         var manualImage = source.Image.WithFormatId("test.manual");
-        var detected = new ExploredDiskImage(source.SourcePath, detectedImage, source.Volume, source.Metadata,
-            detectedFileSystems: [new("detected-reader", detectedImage, source.Volume)], scpImage: source.ScpImage);
-        var manual = new ExploredDiskImage(source.SourcePath, manualImage, source.Volume, source.Metadata,
-            detectedFileSystems: [new("manual-reader", manualImage, source.Volume)], scpImage: source.ScpImage);
+        var detected = new ExploredDiskImage(source.SourcePath, detectedImage, source.Volume, source.Metadata, detectedFileSystems: [new("detected-reader", detectedImage, source.Volume)], scpImage: source.ScpImage);
+        var manual = new ExploredDiskImage(source.SourcePath, manualImage, source.Volume, source.Metadata, detectedFileSystems: [new("manual-reader", manualImage, source.Volume)], scpImage: source.ScpImage);
         var requests = new List<string?>();
         workspace.Explore = (_, requestedFormat, _) =>
         {
@@ -153,8 +141,7 @@ internal static class VisualizerDocumentScenarios
         automatic.IsChecked = false;
         var selector = workspace.Explorer.ClassificationSelector;
         var machines = Assert.IsType<System.Windows.Controls.ComboBox>(selector.FindName("Machine"));
-        machines.SelectedItem = machines.Items.Cast<GWGUI.App.Contracts.Storage.DiskMachineChoice>()
-            .Single(item => item.DisplayName == "manual-family");
+        machines.SelectedItem = machines.Items.Cast<GWGUI.App.Contracts.Storage.DiskMachineChoice>().Single(item => item.DisplayName == "manual-family");
 
         await workspace.Controller.SelectExplorerRepresentationAsync();
 
@@ -164,10 +151,7 @@ internal static class VisualizerDocumentScenarios
 
     public static async Task NonScpFormatSelectionAttemptsTheChosenFormatAndReloadsTheInitialFormat()
     {
-        using var workspace = new Workspace(
-            withVisualizationProviders: true,
-            withMediaServices: true,
-            sectorCylinders: 1);
+        using var workspace = new Workspace(withVisualizationProviders: true, withMediaServices: true, sectorCylinders: 1);
         var formats = new[]
         {
             new DiskFormat("test.sector", "initial-family", "initial-format", [new(".dll", "dll", true)]),
@@ -177,18 +161,12 @@ internal static class VisualizerDocumentScenarios
         workspace.Visualizer.Header.SetFormats(formats);
         var sourcePath = typeof(VisualizerDocumentScenarios).Assembly.Location;
         var source = ExplorerDocumentScenarios.Document("NON-SCP");
-        var initial = new ExploredDiskImage(
-            sourcePath,
-            source.Image.WithFormatId("test.sector"),
-            source.Volume,
-            source.Metadata);
+        var initial = new ExploredDiskImage(sourcePath, source.Image.WithFormatId("test.sector"), source.Volume, source.Metadata);
         var requests = new List<string?>();
         workspace.Explore = (_, formatId, _) =>
         {
             requests.Add(formatId);
-            return formatId == "test.incompatible"
-                ? Task.FromException<ExploredDiskImage>(new IOException("reader failure"))
-                : Task.FromResult(initial);
+            return formatId == "test.incompatible" ? Task.FromException<ExploredDiskImage>(new IOException("reader failure")) : Task.FromResult(initial);
         };
 
         await workspace.Controller.LoadAsync(sourcePath);
@@ -203,20 +181,16 @@ internal static class VisualizerDocumentScenarios
         var selector = workspace.Visualizer.Header.ClassificationSelector;
         selector.SetAutomaticDetection(false);
         var machines = Assert.IsType<System.Windows.Controls.ComboBox>(selector.FindName("Machine"));
-        machines.SelectedItem = machines.Items.Cast<GWGUI.App.Contracts.Storage.DiskMachineChoice>()
-            .Single(item => item.DisplayName == "other-family");
+        machines.SelectedItem = machines.Items.Cast<GWGUI.App.Contracts.Storage.DiskMachineChoice>().Single(item => item.DisplayName == "other-family");
         await completedSelection.Task;
 
         Assert.Equal("test.incompatible", selector.SelectedFormatId);
         Assert.IsType<DiskImageWorkspaceController.SelectedFormatUnsupportedException>(Assert.Single(workspace.Errors));
-        Assert.Equal(
-            ("Explorer.SelectedFormatUnsupportedTitle", "Explorer.SelectedFormatUnsupported"),
-            Assert.Single(workspace.ErrorPresentations));
+        Assert.Equal(("Explorer.SelectedFormatUnsupportedTitle", "Explorer.SelectedFormatUnsupported"), Assert.Single(workspace.ErrorPresentations));
         Assert.Equal(["test.incompatible"], requests);
 
         completedSelection = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-        machines.SelectedItem = machines.Items.Cast<GWGUI.App.Contracts.Storage.DiskMachineChoice>()
-            .Single(item => item.DisplayName == "initial-family");
+        machines.SelectedItem = machines.Items.Cast<GWGUI.App.Contracts.Storage.DiskMachineChoice>().Single(item => item.DisplayName == "initial-family");
         await completedSelection.Task;
 
         Assert.Equal("test.sector", selector.SelectedFormatId);
@@ -237,29 +211,15 @@ internal static class VisualizerDocumentScenarios
 
         public bool SupportsFormatId(string formatId) => FormatIds.Contains(formatId);
 
-        public ValueTask<bool> CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken) =>
-            ValueTask.FromResult(true);
+        public ValueTask<bool> CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken) => ValueTask.FromResult(true);
 
         public Task<MediaImageDocument> ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             onRead();
-            var blocks = Enumerable.Range(0, cylinders * heads)
-                .Select(index => new SectorBlock(
-                    index,
-                    new SectorAddress(index / heads, index % heads, 1),
-                    new byte[512],
-                    true))
-                .ToArray();
+            var blocks = Enumerable.Range(0, cylinders * heads).Select(index => new SectorBlock(index, new SectorAddress(index / heads, index % heads, 1), new byte[512], true)).ToArray();
             var image = new SectorImage("test.sector", 512, cylinders, heads, 1, blocks);
-            return Task.FromResult(new MediaImageDocument(
-                context.Source,
-                "test.sector",
-                MediaKind.Floppy,
-                new SectorMediaImageRepresentation(image),
-                [],
-                [],
-                new Dictionary<string, string>()));
+            return Task.FromResult(new MediaImageDocument(context.Source, "test.sector", MediaKind.Floppy, new SectorMediaImageRepresentation(image), [], [], new Dictionary<string, string>()));
         }
     }
 
@@ -275,8 +235,7 @@ internal static class VisualizerDocumentScenarios
 
         public bool SupportsFormatId(string formatId) => FormatIds.Contains(formatId);
 
-        public ValueTask<bool> CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken) =>
-            ValueTask.FromResult(true);
+        public ValueTask<bool> CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken) => ValueTask.FromResult(true);
 
         public Task<MediaImageDocument> ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
         {
@@ -286,25 +245,14 @@ internal static class VisualizerDocumentScenarios
                 new SequentialMediaSegment(0, SequentialSegmentKind.DataBlock, length: 8, faceNumber: 0, trackNumber: 0, channelNumber: 0),
                 new SequentialMediaSegment(8, SequentialSegmentKind.Silence, length: 4, faceNumber: 0, trackNumber: 0, channelNumber: 0)
             };
-            return Task.FromResult(new MediaImageDocument(
-                context.Source,
-                "test.tape",
-                MediaKind.Tape,
-                new SequentialMediaImageRepresentation(12, segments: segments),
-                [],
-                [],
-                new Dictionary<string, string>()));
+            return Task.FromResult(new MediaImageDocument(context.Source, "test.tape", MediaKind.Tape, new SequentialMediaImageRepresentation(12, segments: segments), [], [], new Dictionary<string, string>()));
         }
     }
 
     public static async Task CassettePresentationUsesRecognizedMediaKindRatherThanExtension()
     {
         var existingNonTapePath = typeof(VisualizerDocumentScenarios).Assembly.Location;
-        using (var tapeWorkspace = new Workspace(
-                   withVisualizationProviders: true,
-                   withMediaServices: true,
-                   useDefaultExplorer: true,
-                   mediaImageReader: new SequentialDocumentReader()))
+        using (var tapeWorkspace = new Workspace(withVisualizationProviders: true, withMediaServices: true, useDefaultExplorer: true, mediaImageReader: new SequentialDocumentReader()))
         {
             await tapeWorkspace.Controller.LoadAsync(existingNonTapePath);
 
@@ -318,11 +266,7 @@ internal static class VisualizerDocumentScenarios
         try
         {
             File.WriteAllBytes(falseCassettePath, [0]);
-            using var floppyWorkspace = new Workspace(
-                withVisualizationProviders: true,
-                withMediaServices: true,
-                useDefaultExplorer: true,
-                sectorCylinders: 1);
+            using var floppyWorkspace = new Workspace(withVisualizationProviders: true, withMediaServices: true, useDefaultExplorer: true, sectorCylinders: 1);
 
             await floppyWorkspace.Controller.LoadAsync(falseCassettePath);
 
@@ -338,11 +282,7 @@ internal static class VisualizerDocumentScenarios
 
     public static async Task SharedOpeningReadsMediaOnce()
     {
-        using var workspace = new Workspace(
-            withVisualizationProviders: true,
-            withMediaServices: true,
-            useDefaultExplorer: true,
-            sectorCylinders: 1);
+        using var workspace = new Workspace(withVisualizationProviders: true, withMediaServices: true, useDefaultExplorer: true, sectorCylinders: 1);
         var sourcePath = typeof(VisualizerDocumentScenarios).Assembly.Location;
 
         await workspace.Controller.LoadAsync(sourcePath);
@@ -421,16 +361,8 @@ internal static class VisualizerDocumentScenarios
         using var workspace = new Workspace();
         var pending = new TaskCompletionSource<ExploredDiskImage>();
         var latestSource = ExplorerDocumentScenarios.Document("latest");
-        var latestScp = new ScpImage(latestSource.ScpImage!.Header,
-        [
-            new ScpTrack(0, 0, 0, [new ScpRevolution(8_000_000, 3, [80, 120, 160])])
-        ], true, latestSource.ScpImage.FileSize);
-        var latest = new ExploredDiskImage(
-            latestSource.SourcePath,
-            latestSource.Image,
-            latestSource.Volume,
-            latestSource.Metadata,
-            scpImage: latestScp);
+        var latestScp = new ScpImage(latestSource.ScpImage!.Header, [new ScpTrack(0, 0, 0, [new ScpRevolution(8_000_000, 3, [80, 120, 160])])], true, latestSource.ScpImage.FileSize);
+        var latest = new ExploredDiskImage(latestSource.SourcePath, latestSource.Image, latestSource.Volume, latestSource.Metadata, scpImage: latestScp);
         workspace.Explore = async (path, _, cancellationToken) =>
         {
             if (path != "old.scp") return latest;
@@ -456,16 +388,8 @@ internal static class VisualizerDocumentScenarios
         var firstStarted = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
         var events = new System.Collections.Concurrent.ConcurrentQueue<string>();
         var latestSource = ExplorerDocumentScenarios.Document("latest-serialized");
-        var latestScp = new ScpImage(latestSource.ScpImage!.Header,
-        [
-            new ScpTrack(0, 0, 0, [new ScpRevolution(8_000_000, 3, [80, 120, 160])])
-        ], true, latestSource.ScpImage.FileSize);
-        var latest = new ExploredDiskImage(
-            latestSource.SourcePath,
-            latestSource.Image,
-            latestSource.Volume,
-            latestSource.Metadata,
-            scpImage: latestScp);
+        var latestScp = new ScpImage(latestSource.ScpImage!.Header, [new ScpTrack(0, 0, 0, [new ScpRevolution(8_000_000, 3, [80, 120, 160])])], true, latestSource.ScpImage.FileSize);
+        var latest = new ExploredDiskImage(latestSource.SourcePath, latestSource.Image, latestSource.Volume, latestSource.Metadata, scpImage: latestScp);
         workspace.Explore = async (path, _, cancellationToken) =>
         {
             events.Enqueue($"start:{path}");
@@ -492,9 +416,7 @@ internal static class VisualizerDocumentScenarios
 
         await Task.WhenAll(first, intermediate, last);
 
-        Assert.Equal(
-            ["start:first.scp", "stop:first.scp", "start:latest.scp"],
-            events.ToArray());
+        Assert.Equal(["start:first.scp", "stop:first.scp", "start:latest.scp"], events.ToArray());
         Assert.Same(latest, workspace.Controller.LastReadImage);
         Assert.Equal("latest.scp", workspace.Visualizer.Header.FileNameText.Text);
         Assert.Empty(workspace.Errors);
@@ -507,11 +429,7 @@ internal static class VisualizerDocumentScenarios
         workspace.Explore = (path, _, _) =>
         {
             var source = ExplorerDocumentScenarios.Document(Path.GetFileNameWithoutExtension(path));
-            return Task.FromResult(new ExploredDiskImage(
-                path,
-                source.Image.WithFormatId("test.sector"),
-                source.Volume,
-                source.Metadata));
+            return Task.FromResult(new ExploredDiskImage(path, source.Image.WithFormatId("test.sector"), source.Volume, source.Metadata));
         };
 
         var replaced = workspace.Controller.LoadAsync(sourcePath);
@@ -526,20 +444,12 @@ internal static class VisualizerDocumentScenarios
 
     public static async Task SectorStatusProgressUsesMediaGeometry(int cylinders, int heads)
     {
-        using var workspace = new Workspace(
-            withVisualizationProviders: true,
-            withMediaServices: true,
-            sectorCylinders: cylinders,
-            sectorHeads: heads);
+        using var workspace = new Workspace(withVisualizationProviders: true, withMediaServices: true, sectorCylinders: cylinders, sectorHeads: heads);
         var sourcePath = typeof(VisualizerDocumentScenarios).Assembly.Location;
         workspace.Explore = (path, _, _) =>
         {
             var source = ExplorerDocumentScenarios.Document(Path.GetFileNameWithoutExtension(path));
-            return Task.FromResult(new ExploredDiskImage(
-                path,
-                source.Image.WithFormatId("test.sector"),
-                source.Volume,
-                source.Metadata));
+            return Task.FromResult(new ExploredDiskImage(path, source.Image.WithFormatId("test.sector"), source.Volume, source.Metadata));
         };
 
         var loading = workspace.Controller.LoadAsync(sourcePath);
@@ -570,21 +480,15 @@ internal static class VisualizerDocumentScenarios
         Assert.Equal(Visibility.Collapsed, selector.Visibility);
         Assert.Null(Assert.Single(selector.Items.Cast<ExplorerFormatChoice>()).Id);
 
-        header.ApplyDetection(
-            DiskImageFormatIds.AmigaDos,
-            null,
-            [DiskImageFormatIds.AmigaDos, DiskImageFormatIds.Ibm720, DiskImageFormatIds.AtariSt720]);
+        header.ApplyDetection(DiskImageFormatIds.AmigaDos, null, [DiskImageFormatIds.AmigaDos, DiskImageFormatIds.Ibm720, DiskImageFormatIds.AtariSt720]);
 
-        Assert.Equal(
-            new string?[] { null, DiskImageFormatIds.AmigaDos, DiskImageFormatIds.Ibm720, DiskImageFormatIds.AtariSt720 },
-            selector.Items.Cast<ExplorerFormatChoice>().Select(choice => choice.Id));
+        Assert.Equal(new string?[] { null, DiskImageFormatIds.AmigaDos, DiskImageFormatIds.Ibm720, DiskImageFormatIds.AtariSt720 }, selector.Items.Cast<ExplorerFormatChoice>().Select(choice => choice.Id));
     }
 
     public static async Task Heads(int mask)
     {
         using var workspace = new Workspace();
-        var tracks = Enumerable.Range(0, 2).Where(head => (mask & (1 << head)) != 0)
-            .Select(head => new ScpTrack((byte)head, 0, head, [])).ToArray();
+        var tracks = Enumerable.Range(0, 2).Where(head => (mask & (1 << head)) != 0).Select(head => new ScpTrack((byte)head, 0, head, [])).ToArray();
         var image = new ScpImage(ExplorerDocumentScenarios.Document("heads").ScpImage!.Header, tracks, true, 688);
         workspace.Read = (_, _) => Task.FromResult(image);
         await workspace.Controller.LoadScpAsync("heads.scp");
@@ -605,10 +509,7 @@ internal static class VisualizerDocumentScenarios
     {
         using var workspace = new Workspace();
         var source = ExplorerDocumentScenarios.Document("paced").ScpImage!;
-        var tracks = Enumerable.Range(0, 4)
-            .SelectMany(cylinder => Enumerable.Range(0, 2)
-                .Select(head => new ScpTrack((byte)(cylinder * 2 + head), cylinder, head, [])))
-            .ToArray();
+        var tracks = Enumerable.Range(0, 4).SelectMany(cylinder => Enumerable.Range(0, 2).Select(head => new ScpTrack((byte)(cylinder * 2 + head), cylinder, head, []))).ToArray();
         var image = new ScpImage(source.Header, tracks, true, source.FileSize);
         workspace.Read = (_, _) => Task.FromResult(image);
         var elapsed = System.Diagnostics.Stopwatch.StartNew();
@@ -616,49 +517,27 @@ internal static class VisualizerDocumentScenarios
         await workspace.Controller.LoadScpAsync("paced.scp");
 
         elapsed.Stop();
-        Assert.True(elapsed.Elapsed >= TimeSpan.FromMilliseconds(180),
-            $"The eight tracks were presented in only {elapsed.Elapsed.TotalMilliseconds:N0} ms.");
-        Assert.Equal(
-            Enumerable.Range(0, 4).SelectMany(cylinder => new[] { (Head: 0, Cylinder: cylinder), (Head: 1, Cylinder: cylinder) }),
-            workspace.Controller.ScpTrackPresentationOrder);
+        Assert.True(elapsed.Elapsed >= TimeSpan.FromMilliseconds(180), $"The eight tracks were presented in only {elapsed.Elapsed.TotalMilliseconds:N0} ms.");
+        Assert.Equal(Enumerable.Range(0, 4).SelectMany(cylinder => new[] { (Head: 0, Cylinder: cylinder), (Head: 1, Cylinder: cylinder) }), workspace.Controller.ScpTrackPresentationOrder);
         Assert.Equal(Visibility.Collapsed, workspace.Model.ProgressVisibility);
         Assert.Empty(workspace.Errors);
     }
 
     public static void SectorTrackPresentationDeductsAnalysisTime()
     {
-        Assert.Equal(
-            TimeSpan.FromMilliseconds(75),
-            DiskImageWorkspaceController.RemainingSectorTrackPresentationDelay(TimeSpan.FromMilliseconds(25)));
-        Assert.Equal(
-            TimeSpan.Zero,
-            DiskImageWorkspaceController.RemainingSectorTrackPresentationDelay(TimeSpan.FromMilliseconds(125)));
+        Assert.Equal(TimeSpan.FromMilliseconds(75), DiskImageWorkspaceController.RemainingSectorTrackPresentationDelay(TimeSpan.FromMilliseconds(25)));
+        Assert.Equal(TimeSpan.Zero, DiskImageWorkspaceController.RemainingSectorTrackPresentationDelay(TimeSpan.FromMilliseconds(125)));
     }
 
     public static async Task SelectingScpSectorFormatRevealsEveryTrack()
     {
         using var workspace = new Workspace(withVisualizationProviders: true);
         var source = ExplorerDocumentScenarios.Document("multi");
-        var scpTrack = new ScpTrack(0, 0, 0,
-        [
-            new ScpRevolution(8_000_000, 3, [80, 120, 160])
-        ]);
+        var scpTrack = new ScpTrack(0, 0, 0, [new ScpRevolution(8_000_000, 3, [80, 120, 160])]);
         var scpImage = new ScpImage(source.ScpImage!.Header, [scpTrack], true, source.ScpImage.FileSize);
-        var blocks = Enumerable.Range(0, 4)
-            .Select(index => new SectorBlock(
-                index,
-                new SectorAddress(index / 2, index % 2, 0),
-                Enumerable.Repeat((byte)(index + 1), 512).ToArray(),
-                true))
-            .ToArray();
+        var blocks = Enumerable.Range(0, 4).Select(index => new SectorBlock(index, new SectorAddress(index / 2, index % 2, 0), Enumerable.Repeat((byte)(index + 1), 512).ToArray(), true)).ToArray();
         var sectorImage = new SectorImage("amiga.amigados", 512, 2, 2, 1, blocks);
-        var explored = new ExploredDiskImage(
-            "multi.scp",
-            sectorImage,
-            source.Volume,
-            source.Metadata,
-            detectedSectorImages: [sectorImage],
-            scpImage: scpImage);
+        var explored = new ExploredDiskImage("multi.scp", sectorImage, source.Volume, source.Metadata, detectedSectorImages: [sectorImage], scpImage: scpImage);
         workspace.Read = (_, _) => Task.FromResult(scpImage);
 
         await workspace.Controller.LoadVisualizerAsync("multi.scp", exploredImage: explored);
@@ -681,23 +560,11 @@ internal static class VisualizerDocumentScenarios
     {
         using var workspace = new Workspace(withVisualizationProviders: true);
         var source = ExplorerDocumentScenarios.Document("shared");
-        var scpImage = new ScpImage(source.ScpImage!.Header,
-        [
-            new ScpTrack(0, 0, 0, [new ScpRevolution(8_000_000, 3, [80, 120, 160])])
-        ], true, source.ScpImage.FileSize);
-        var blocks = Enumerable.Range(0, 4)
-            .Select(index => new SectorBlock(
-                index,
-                new SectorAddress(index / 2, index % 2, 0),
-                new byte[512],
-                true))
-            .ToArray();
+        var scpImage = new ScpImage(source.ScpImage!.Header, [new ScpTrack(0, 0, 0, [new ScpRevolution(8_000_000, 3, [80, 120, 160])])], true, source.ScpImage.FileSize);
+        var blocks = Enumerable.Range(0, 4).Select(index => new SectorBlock(index, new SectorAddress(index / 2, index % 2, 0), new byte[512], true)).ToArray();
         var amiga = new SectorImage(DiskImageFormatIds.AmigaDos, 512, 2, 2, 1, blocks);
         var ibm = new SectorImage(DiskImageFormatIds.Ibm720, 512, 2, 2, 1, blocks);
-        var explored = new ExploredDiskImage(
-            "shared.scp", amiga, source.Volume, source.Metadata,
-            detectedFileSystems: [new("amiga", amiga, source.Volume)],
-            detectedSectorImages: [ibm], scpImage: scpImage);
+        var explored = new ExploredDiskImage("shared.scp", amiga, source.Volume, source.Metadata, detectedFileSystems: [new("amiga", amiga, source.Volume)], detectedSectorImages: [ibm], scpImage: scpImage);
         workspace.Visualizer.Header.SetFormats(new BuiltInImageFormatCatalog(key => key).Formats);
         workspace.Explorer.SetFormats(new BuiltInImageFormatCatalog(key => key).Formats, null);
         workspace.Explore = (_, _, _) => Task.FromResult(explored);
@@ -706,10 +573,7 @@ internal static class VisualizerDocumentScenarios
         await workspace.Controller.LoadAsync("shared.scp");
 
         Assert.Equal("shared.scp", ExplorerDocumentScenarios.Find<System.Windows.Controls.TextBox>(workspace.Explorer, "PathText").Text);
-        Assert.Equal(
-            "DIR",
-            Assert.IsType<ExplorerContentItem>(Assert.Single(
-                ExplorerDocumentScenarios.Find<System.Windows.Controls.ListView>(workspace.Explorer, "ContentsList").Items.Cast<object>())).Entry.Name);
+        Assert.Equal("DIR", Assert.IsType<ExplorerContentItem>(Assert.Single(ExplorerDocumentScenarios.Find<System.Windows.Controls.ListView>(workspace.Explorer, "ContentsList").Items.Cast<object>())).Entry.Name);
         Assert.Equal("shared.scp", workspace.Visualizer.Header.FileNameText.Text);
         Assert.Equal(MediaRepresentationKind.Flux, workspace.Visualizer.ActiveRepresentationKind);
 
@@ -743,16 +607,8 @@ internal static class VisualizerDocumentScenarios
     {
         using var workspace = new Workspace(withVisualizationProviders: true);
         var first = ExplorerDocumentScenarios.Document("first");
-        var firstScp = new ScpImage(first.ScpImage!.Header,
-        [
-            new ScpTrack(0, 0, 0, [new ScpRevolution(8_000_000, 3, [80, 120, 160])])
-        ], true, first.ScpImage.FileSize);
-        first = new ExploredDiskImage(
-            first.SourcePath,
-            first.Image,
-            first.Volume,
-            first.Metadata,
-            scpImage: firstScp);
+        var firstScp = new ScpImage(first.ScpImage!.Header, [new ScpTrack(0, 0, 0, [new ScpRevolution(8_000_000, 3, [80, 120, 160])])], true, first.ScpImage.FileSize);
+        first = new ExploredDiskImage(first.SourcePath, first.Image, first.Volume, first.Metadata, scpImage: firstScp);
         workspace.Read = (_, _) => throw new InvalidOperationException("The shared pipeline must not reopen the SCP source.");
         workspace.Explore = (_, _, _) => Task.FromResult(first);
         await workspace.Controller.LoadAsync("first.scp");
@@ -767,16 +623,8 @@ internal static class VisualizerDocumentScenarios
         Assert.Equal("Tab.Read", workspace.Model.OperationText);
 
         var second = ExplorerDocumentScenarios.Document("second");
-        var secondScp = new ScpImage(second.ScpImage!.Header,
-        [
-            new ScpTrack(0, 0, 0, [new ScpRevolution(8_000_000, 3, [90, 130, 170])])
-        ], true, second.ScpImage.FileSize);
-        second = new ExploredDiskImage(
-            second.SourcePath,
-            second.Image,
-            second.Volume,
-            second.Metadata,
-            scpImage: secondScp);
+        var secondScp = new ScpImage(second.ScpImage!.Header, [new ScpTrack(0, 0, 0, [new ScpRevolution(8_000_000, 3, [90, 130, 170])])], true, second.ScpImage.FileSize);
+        second = new ExploredDiskImage(second.SourcePath, second.Image, second.Volume, second.Metadata, scpImage: secondScp);
         await Task.Delay(100);
 
         Assert.Null(workspace.Visualizer.CurrentDocument);
@@ -797,11 +645,7 @@ internal static class VisualizerDocumentScenarios
         var visualizerFolder = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
         var explorerFolder = Path.GetTempPath();
         var requests = new List<OpenFileRequest>();
-        var selectedPaths = new Queue<string>(
-        [
-            Path.Combine(visualizerFolder, "visualizer.scp"),
-            Path.Combine(explorerFolder, "explorer.adf")
-        ]);
+        var selectedPaths = new Queue<string>([Path.Combine(visualizerFolder, "visualizer.scp"), Path.Combine(explorerFolder, "explorer.adf")]);
         var dialogs = ControlledDependencies.Simulate<IFileDialogService>((method, args) =>
         {
             Assert.Equal(nameof(IFileDialogService.OpenFile), method.Name);

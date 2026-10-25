@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Console video</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Console-geluid</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Console-besturing</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Emuleert WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Speelt Playdia-schijven af met PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Emuleert Tamagotchi P1 met TamaLIBretro.</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Deze kern speelt schijven zonder de processors na te bootsen.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Toon geheugen</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Richting tonen</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>Controleoriëntatie</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Monochroom palet</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>Drempel voor het overslaan van beelden</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60 Hz modus</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>Geluidsbemonsteringssnelheid</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>Audiofilter</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>Wisselknoppen A en B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>Automatisch</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>Handleiding</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>Liggend</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>Staand</value></data>
+</root>

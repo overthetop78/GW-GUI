@@ -22,5 +22,5 @@
   <data name="Emulation.Input.Binding.LabelConflict"><value>Çakışma</value></data>
   <data name="Emulation.Input.Binding.LabelReserved"><value>Ayrılmış</value></data>
   <data name="Emulation.Input.Binding.LabelUnassigned"><value>Atanmamış</value></data>
-  <data name="Emulation.Input.Capture.Hint"><value>Ata&apos;ya tıklayın, ardından bir klavye tuşu, fare düğmesi veya denetleyici düğmesi kullanın.</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Ata'ya tıklayın, ardından bir klavye tuşu, fare düğmesi veya denetleyici düğmesi kullanın.</value></data>
 </root>

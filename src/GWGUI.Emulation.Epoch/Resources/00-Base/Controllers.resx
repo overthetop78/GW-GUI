@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Controller.CassetteVision" xml:space="preserve"><value>Cassette Vision</value></data>
+  <data name="Emulation.Epoch.Controller.CassetteVisionJr" xml:space="preserve"><value>Cassette Vision Jr.</value></data>
+  <data name="Emulation.Epoch.Controller.SuperCassetteVision" xml:space="preserve"><value>Super Cassette Vision</value></data>
+  <data name="Emulation.Epoch.Controller.SuperCassetteVisionYeno" xml:space="preserve"><value>Yeno Super Cassette Vision</value></data>
+  <data name="Emulation.Epoch.Controller.SuperCassetteVisionLady" xml:space="preserve"><value>Super Cassette Vision Lady</value></data>
+  <data name="Emulation.Epoch.Input.FireLeft" xml:space="preserve"><value>Left side button</value></data>
+  <data name="Emulation.Epoch.Input.FireRight" xml:space="preserve"><value>Right side button</value></data>
+  <data name="Emulation.Epoch.Input.Enter" xml:space="preserve"><value>EN</value></data>
+  <data name="Emulation.Epoch.Input.Clear" xml:space="preserve"><value>CL</value></data>
+  <data name="Emulation.Epoch.Input.Power" xml:space="preserve"><value>Power button</value></data>
+  <data name="Emulation.Epoch.Input.Reset" xml:space="preserve"><value>Reset button</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft" xml:space="preserve"><value>Move the lever to the left</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight" xml:space="preserve"><value>Move the lever to the right</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease" xml:space="preserve"><value>Select the next game course</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease" xml:space="preserve"><value>Select the previous game course</value></data>
+  <data name="Emulation.Epoch.Input.GunFire" xml:space="preserve"><value>Light gun trigger</value></data>
+  <data name="Emulation.Epoch.Input.GunReload" xml:space="preserve"><value>Light gun reload</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease" xml:space="preserve"><value>Aim the gun left.</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease" xml:space="preserve"><value>Aim the gun right.</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease" xml:space="preserve"><value>Aim the gun upwards.</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease" xml:space="preserve"><value>Aim the gun downwards.</value></data>
+  <data name="Emulation.Epoch.Input.Start" xml:space="preserve"><value>START</value></data>
+  <data name="Emulation.Epoch.Input.Select" xml:space="preserve"><value>SELECT</value></data>
+  <data name="Emulation.Epoch.Input.Aux" xml:space="preserve"><value>AUX</value></data>
+  <data name="Emulation.Epoch.Input.Push1" xml:space="preserve"><value>PUSH 1</value></data>
+  <data name="Emulation.Epoch.Input.Push2" xml:space="preserve"><value>PUSH 2</value></data>
+  <data name="Emulation.Epoch.Input.Push3" xml:space="preserve"><value>PUSH 3</value></data>
+  <data name="Emulation.Epoch.Input.Push4" xml:space="preserve"><value>PUSH 4</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease" xml:space="preserve"><value>Paddle 1: turn counterclockwise</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase" xml:space="preserve"><value>Paddle 1: turn clockwise</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease" xml:space="preserve"><value>Paddle 2: turn counterclockwise</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase" xml:space="preserve"><value>Paddle 2: turn clockwise</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease" xml:space="preserve"><value>Paddle 3: turn counterclockwise</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase" xml:space="preserve"><value>Paddle 3: turn clockwise</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease" xml:space="preserve"><value>Paddle 4: turn counterclockwise</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase" xml:space="preserve"><value>Paddle 4: turn clockwise</value></data>
+  <data name="Emulation.Epoch.Input.Keypad0" xml:space="preserve"><value>0</value></data>
+  <data name="Emulation.Epoch.Input.Keypad1" xml:space="preserve"><value>1</value></data>
+  <data name="Emulation.Epoch.Input.Keypad2" xml:space="preserve"><value>2</value></data>
+  <data name="Emulation.Epoch.Input.Keypad3" xml:space="preserve"><value>3</value></data>
+  <data name="Emulation.Epoch.Input.Keypad4" xml:space="preserve"><value>4</value></data>
+  <data name="Emulation.Epoch.Input.Keypad5" xml:space="preserve"><value>5</value></data>
+  <data name="Emulation.Epoch.Input.Keypad6" xml:space="preserve"><value>6</value></data>
+  <data name="Emulation.Epoch.Input.Keypad7" xml:space="preserve"><value>7</value></data>
+  <data name="Emulation.Epoch.Input.Keypad8" xml:space="preserve"><value>8</value></data>
+  <data name="Emulation.Epoch.Input.Keypad9" xml:space="preserve"><value>9</value></data>
+</root>

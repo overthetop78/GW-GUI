@@ -92,13 +92,11 @@ public sealed class EmulationStorageDeviceList : UserControl
             var row = CreateColumns();
             row.MinHeight = EmulationStorageDeviceListConstants.RowMinimumHeight;
             row.Children.Add(Cell(device.Identifier, FontWeights.SemiBold));
-            AddCell(row, TypeLabel(device.Type), 1);
+            AddCell(row, device.TypeDisplayName ?? TypeLabel(device.Type), 1);
             AddCell(row, device.Model, 2);
-            var support = string.IsNullOrWhiteSpace(device.SupportPath)
-                ? LocExtension.Get(EmulationResourceKeys.NotUsed)
-                : SupportSummary(device.SupportPath);
+            var support = device.SupportDisplayName ?? (string.IsNullOrWhiteSpace(device.SupportPath) ? LocExtension.Get(EmulationResourceKeys.NotUsed) : SupportSummary(device.SupportPath));
             var supportText = Cell(support);
-            if (string.IsNullOrWhiteSpace(device.SupportPath))
+            if (string.IsNullOrWhiteSpace(device.SupportPath) && device.SupportDisplayName is null)
                 supportText.SetResourceReference(ForegroundProperty, "MutedTextBrush");
             Grid.SetColumn(supportText, 3);
             row.Children.Add(supportText);
@@ -117,8 +115,7 @@ public sealed class EmulationStorageDeviceList : UserControl
                     MinWidth = EmulationStorageDeviceListConstants.ConfigureButtonMinimumWidth,
                     Tag = device
                 };
-                configure.Click += (_, _) => ConfigureRequested?.Invoke(this,
-                    new EmulationStorageDeviceEventArgs(device));
+                configure.Click += (_, _) => ConfigureRequested?.Invoke(this, new EmulationStorageDeviceEventArgs(device));
                 actions.Children.Add(configure);
             }
             var remove = new Button
@@ -150,16 +147,11 @@ public sealed class EmulationStorageDeviceList : UserControl
     private static Grid CreateColumns()
     {
         var grid = new Grid();
-        grid.ColumnDefinitions.Add(new ColumnDefinition
-            { Width = new GridLength(EmulationStorageDeviceListConstants.IdentifierColumnWidth) });
-        grid.ColumnDefinitions.Add(new ColumnDefinition
-            { Width = new GridLength(EmulationStorageDeviceListConstants.TypeColumnWidth) });
-        grid.ColumnDefinitions.Add(new ColumnDefinition
-            { Width = new GridLength(EmulationStorageDeviceListConstants.ModelColumnRatio, GridUnitType.Star) });
-        grid.ColumnDefinitions.Add(new ColumnDefinition
-            { Width = new GridLength(EmulationStorageDeviceListConstants.MediaColumnRatio, GridUnitType.Star) });
-        grid.ColumnDefinitions.Add(new ColumnDefinition
-            { Width = new GridLength(EmulationStorageDeviceListConstants.ActionsColumnWidth) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(EmulationStorageDeviceListConstants.IdentifierColumnWidth) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(EmulationStorageDeviceListConstants.TypeColumnWidth) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(EmulationStorageDeviceListConstants.ModelColumnRatio, GridUnitType.Star) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(EmulationStorageDeviceListConstants.MediaColumnRatio, GridUnitType.Star) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(EmulationStorageDeviceListConstants.ActionsColumnWidth) });
         return grid;
     }
 
@@ -191,6 +183,7 @@ public sealed class EmulationStorageDeviceList : UserControl
         EmulationMediaType.Floppy => LocExtension.Get(EmulationResourceKeys.FloppyDevice),
         EmulationMediaType.HardDisk => LocExtension.Get(EmulationResourceKeys.HardDiskDevice),
         EmulationMediaType.CompactDisc => LocExtension.Get(EmulationResourceKeys.CompactDiscDevice),
+        EmulationMediaType.MemoryCard => LocExtension.Get(EmulationResourceKeys.MemoryCardDevice),
         EmulationMediaType.Cassette => LocExtension.Get(EmulationResourceKeys.CassetteDevice),
         EmulationMediaType.Cartridge => LocExtension.Get(EmulationResourceKeys.CartridgeDevice),
         _ => type.ToString()

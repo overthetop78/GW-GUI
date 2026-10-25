@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Fairchild.Error.StateIncompatible" xml:space="preserve"><value>Η κατάσταση που έσωσε ο Φέρτσαϊλντ είναι ασύμβατη με την τρέχουσα μηχανή.</value></data>
+  <data name="Emulation.Fairchild.Error.Unexpected" xml:space="preserve"><value>Συνέβη ένα απροσδόκητο σφάλμα εξομοίωσης του Φέρτσαϊλντ.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareMissing" xml:space="preserve"><value>Λείπει ένα απαιτούμενο firmware Fairchild.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareInvalid" xml:space="preserve"><value>Το σύστημα ROM είναι άκυρη ή ασυμβίβαστη.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound" xml:space="preserve"><value>Τα ρυθμισμένα μέσα του Fairchild δε βρέθηκαν.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentUnsupported" xml:space="preserve"><value>Αυτή η μηχανή δεν υποστηρίζει τα επιλεγμένα μέσα.</value></data>
+  <data name="Emulation.Fairchild.Error.OptionInvalid" xml:space="preserve"><value>Μια επιλογή Fairchild έχει μια μη έγκυρη τιμή.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreNotFound" xml:space="preserve"><value>Ο απαιτούμενος πυρήνας Φέρτσαϊλντ δεν βρέθηκε.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreRejected" xml:space="preserve"><value>Ο επιλεγμένος πυρήνας Fairchild δεν ήταν δυνατό να φορτωθεί.</value></data>
+  <data name="Emulation.Fairchild.Error.StateInvalid" xml:space="preserve"><value>Η κατάσταση που έσωσε ο Φέρτσαϊλντ είναι άκυρη.</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>Η διαδρομή του προγράμματος εξομοιωτή δεν είναι διαθέσιμη.</value></data>
+  <data name="Emulation.Fairchild.Error.Details" xml:space="preserve"><value>Λεπτομέρειες: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>Η επικοινωνία με τον οικοδεσπότη του Φέρτσαϊλντ απέτυχε.</value></data>
+  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Άγνωστη εντολή περιβάλλοντος: {0}</value></data>
+</root>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Error.ContentNotFound" xml:space="preserve"><value>Nie znaleziono skonfigurowanych mediów Philipsa.</value></data>
+  <data name="Emulation.Philips.Error.ContentUnsupported" xml:space="preserve"><value>Ta maszyna nie obsługuje wybranych mediów.</value></data>
+  <data name="Emulation.Philips.Error.CoreNotFound" xml:space="preserve"><value>Nie znaleziono wymaganego rdzenia Philipsa.</value></data>
+  <data name="Emulation.Philips.Error.CoreRejected" xml:space="preserve"><value>Wybrany rdzeń Philipsa nie mógł być wczytany.</value></data>
+  <data name="Emulation.Philips.Error.Details" xml:space="preserve"><value>Szczegóły: {0}</value></data>
+  <data name="Emulation.Philips.Error.FirmwareInvalid" xml:space="preserve"><value>System ROM jest nieważny lub niezgodny.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareMissing" xml:space="preserve"><value>Brakuje wymaganego oprogramowania Philips firmware.</value></data>
+  <data name="Emulation.Philips.Error.HostExecutableMissing" xml:space="preserve"><value>Ścieżka wykonywalna Philips host jest niedostępna.</value></data>
+  <data name="Emulation.Philips.Error.HostProtocolFailure" xml:space="preserve"><value>Komunikacja z gospodarzem Philips nie powiodła się.</value></data>
+  <data name="Emulation.Philips.Error.OptionInvalid" xml:space="preserve"><value>Opcja Philips ma nieprawidłową wartość.</value></data>
+  <data name="Emulation.Philips.Error.StateIncompatible" xml:space="preserve"><value>Zapisany stan Philipsa jest niezgodny z obecną maszyną.</value></data>
+  <data name="Emulation.Philips.Error.StateInvalid" xml:space="preserve"><value>Zapisane przez Philipsa państwo jest nieważne.</value></data>
+  <data name="Emulation.Philips.Error.Unexpected" xml:space="preserve"><value>Wystąpił nieoczekiwany błąd emulacji Philipsa.</value></data>
+  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Polecenie nieznanego środowiska: {0}</value></data>
+</root>

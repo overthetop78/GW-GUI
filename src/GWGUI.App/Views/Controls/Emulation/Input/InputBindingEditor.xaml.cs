@@ -19,6 +19,9 @@ public partial class InputBindingEditor : UserControl
     private readonly ObservableCollection<InputBindingRow> _rows = [];
     private readonly HashSet<Key> _capturePressed = [];
     private readonly List<Key> _captureOrder = [];
+    private readonly HashSet<string> _captureSourcesPressed = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _capturedSources = new(StringComparer.OrdinalIgnoreCase);
+    private readonly GWGUI.App.Functions.Input.Keyboard.KeyboardModifierState _captureModifierState = new();
     private InputBindingRow? _captureRow;
     private Button? _captureButton;
     private object? _captureButtonContent;
@@ -26,11 +29,15 @@ public partial class InputBindingEditor : UserControl
     private ModifierKeys _captureModifiers;
     private InputCaptureSources _captureSources = InputCaptureSources.Keyboard;
     private bool _prefixKeyboardSource;
+    private bool _allowIdentityKeyboardBindings;
     private readonly DispatcherTimer _controllerCaptureTimer;
     private IReadOnlyList<EmulationControllerState> _controllerBaseline = [];
     private IReadOnlyList<GameInputLiveState> _controllerDetailedBaseline = [];
+    private IReadOnlyList<EmulationControllerState> _controllerAxisBaseline = [];
+    private IReadOnlyList<GameInputLiveState> _controllerDetailedAxisBaseline = [];
     private IReadOnlySet<string> _reservedBindings = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
     private HwndSource? _windowSource;
+    private System.Windows.Window? _captureWindow;
 
     public InputBindingEditor()
     {
@@ -40,9 +47,9 @@ public partial class InputBindingEditor : UserControl
         AddHandler(PreviewKeyDownEvent, new KeyEventHandler(CaptureKeyDown), true);
         AddHandler(PreviewKeyUpEvent, new KeyEventHandler(CaptureKeyUp), true);
         AddHandler(PreviewMouseDownEvent, new MouseButtonEventHandler(CaptureMouseDown), true);
+        AddHandler(PreviewMouseUpEvent, new MouseButtonEventHandler(CaptureMouseUp), true);
         AddHandler(PreviewMouseWheelEvent, new MouseWheelEventHandler(CaptureMouseWheel), true);
-        _controllerCaptureTimer = new DispatcherTimer(ControllerCaptureConstants.PollingInterval, DispatcherPriority.Input,
-            CaptureControllerInput, Dispatcher);
+        _controllerCaptureTimer = new DispatcherTimer(ControllerCaptureConstants.PollingInterval, DispatcherPriority.Input, CaptureControllerInput, Dispatcher);
         _controllerCaptureTimer.Stop();
         Loaded += (_, _) => AttachWindowHook();
         Unloaded += (_, _) => { CancelCapture(); DetachWindowHook(); };
@@ -59,29 +66,30 @@ public partial class InputBindingEditor : UserControl
         SearchPlaceholder.Text = searchPlaceholder;
     }
 
-    public void ConfigureCaptureSources(InputCaptureSources sources, bool prefixKeyboardSource = false)
+    public void ConfigureCaptureSources(InputCaptureSources sources, bool prefixKeyboardSource = false, bool allowIdentityKeyboardBindings = false)
     {
         _captureSources = sources;
+        _allowIdentityKeyboardBindings = allowIdentityKeyboardBindings;
         _prefixKeyboardSource = prefixKeyboardSource;
         ValidateBindings();
     }
 
     public void SetRows(IEnumerable<InputBindingDefinition> definitions, IReadOnlyDictionary<string, string>? values, string? moduleId = null)
     {
+        _analogSelectors.Clear();
         _rows.Clear();
         foreach (var definition in definitions)
             _rows.Add(new InputBindingRow(definition.Id,
-                definition.InvariantDisplayValue ?? (moduleId is null
-                    ? LocExtension.Get(definition.DisplayResourceKey)
-                    : LocExtension.GetForModule(moduleId, definition.DisplayResourceKey)),
-                values?.GetValueOrDefault(definition.Id) ?? definition.DefaultBinding, definition.DefaultBinding));
+                definition.InvariantDisplayValue ?? (moduleId is null ? LocExtension.Get(definition.DisplayResourceKey) : LocExtension.GetForModule(moduleId, definition.DisplayResourceKey)),
+                values?.GetValueOrDefault(definition.Id) ?? definition.DefaultBinding, definition.DefaultBinding)
+            { OppositeDirectionId = definition.OppositeDirectionId });
         ValidateBindings();
+        RebuildAnalogBindings();
     }
 
     internal bool SelectAndStartCapture(string bindingId, Button? button = null)
     {
-        var row = _rows.FirstOrDefault(item =>
-            string.Equals(item.Id, bindingId, StringComparison.Ordinal));
+        var row = _rows.FirstOrDefault(item => string.Equals(item.Id, bindingId, StringComparison.Ordinal));
         if (row is null) return false;
         BindingsList.SelectedItem = row;
         BindingsList.ScrollIntoView(row);
@@ -91,8 +99,7 @@ public partial class InputBindingEditor : UserControl
 
     public void SetReservedBindings(IEnumerable<string> bindings)
     {
-        _reservedBindings = bindings.Where(value => !string.IsNullOrWhiteSpace(value))
-            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        _reservedBindings = bindings.Where(value => !string.IsNullOrWhiteSpace(value)).ToHashSet(StringComparer.OrdinalIgnoreCase);
         ValidateBindings();
     }
 }

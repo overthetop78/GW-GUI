@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Fairchild.Error.StateIncompatible" xml:space="preserve"><value>המדינה הנתלה של פיירילד אינה עולה בקנה אחד עם המכונה הנוכחית.</value></data>
+  <data name="Emulation.Fairchild.Error.Unexpected" xml:space="preserve"><value>טעות של חיקוי של Fairchild התרחשה.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareMissing" xml:space="preserve"><value>קושחה של פייריילד נדרשה חסרה.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareInvalid" xml:space="preserve"><value>המערכת ROM הוא לא חוקי או לא עקבי.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound" xml:space="preserve"><value>התקשורת של פייריילד לא נמצאה.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentUnsupported" xml:space="preserve"><value>מכונה זו אינה תומכת בתקשורת הנבחרת.</value></data>
+  <data name="Emulation.Fairchild.Error.OptionInvalid" xml:space="preserve"><value>לאופציה של Fairchild יש ערך לא חוקי.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreNotFound" xml:space="preserve"><value>הליבה הנדרשת של פיירילד לא נמצאה.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreRejected" xml:space="preserve"><value>לא ניתן לטעון את הליבה של פיירילד הנבחר.</value></data>
+  <data name="Emulation.Fairchild.Error.StateInvalid" xml:space="preserve"><value>המדינה הנתעבה הצילה היא בלתי נסבלת.</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>מסלול התוכנה של חיקוי אינו זמין.</value></data>
+  <data name="Emulation.Fairchild.Error.Details" xml:space="preserve"><value>פרטים: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>התקשורת עם המארחת של פייריילד נכשלה.</value></data>
+  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>פיקוד הסביבה הלא ידוע: {0}</value></data>
+</root>

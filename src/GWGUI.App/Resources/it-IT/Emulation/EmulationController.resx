@@ -29,11 +29,34 @@
   <data name="Emulation.Controller.Action.Fire2"><value>Pulsante di fuoco 2</value></data>
   <data name="Emulation.Controller.AnalogJoystick"><value>Joystick analogico</value></data>
   <data name="Emulation.Controller.Automatic"><value>Automatico</value></data>
-  <data name="Emulation.Controller.None"><value>Nessuna</value></data>
+  <data name="Emulation.Controller.None"><value>Nessuno</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Interruttore joystick/mouse</value></data>
   <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Impossibile inizializzare GameInput. Installa o ripara il runtime GameInput incluso.</value></data>
   <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (mano sinistra)</value></data>
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (mano destro)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Aspetto</value></data>
   <data name="Emulation.Controller"><value>Controller {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Dispositivo di puntamento</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Simulazione del volo</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Simulazione Racing</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Simulazione di danza</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Simulazione di canti</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Altre periferiche di simulazione</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>Vibrazione forte</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>Vibrazione debole</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>Ricarica</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Colore del mirino</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Tappetino da ballo</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Configurare la tastiera nella scheda tastiera.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Configurare il mouse nella scheda Mouse.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Tipo di dispositivo</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>Controller utilizzato per le vibrazioni</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>Assegnazioni di bastone e asse</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>Stick Stick {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>Tastiera o assegnazioni personalizzate</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>bastone sinistro</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>Braccio destro</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>Asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse asse {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>Assi {0} / {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>Incarico salvato</value></data>
 </root>

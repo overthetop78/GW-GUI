@@ -1,12 +1,9 @@
 using System.Buffers.Binary;
 using GWGUI.MediaEngine.Constants;
-
 using GWGUI.MediaEngine.Images.Formats.Floppy.Raw;
-
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.DiskCopy;
-
 /// <summary>Écrit les conteneurs Apple DiskCopy 4.2 avec données, tags et checksums.</summary>
 public sealed class DiskCopyWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWriter? fileSystem = null)
 {
@@ -23,11 +20,14 @@ public sealed class DiskCopyWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFile
     internal static byte[] Build(SectorImage image, DiskCopyImage metadata)
     {
         var blocks = image.AvailableBlocks.OrderBy(block => block.LogicalBlock).ToArray();
-        if (blocks.Length != image.BlockCount || blocks.Select((block, index) => block.LogicalBlock == index).Any(valid => !valid)) throw new InvalidDataException("DiskCopy exige une image sectorielle complète et ordonnée.");
+        if (blocks.Length != image.BlockCount || blocks.Select((block, index) => block.LogicalBlock == index).Any(valid => !valid))
+            throw new InvalidDataException("DiskCopy exige une image sectorielle complète et ordonnée.");
         var data = blocks.SelectMany(block => block.Data).ToArray();
-        if (data.Length != image.BlockCount * DiskCopyLayout.DataBlockSize) throw new InvalidDataException("DiskCopy exige des blocs de 512 octets.");
+        if (data.Length != image.BlockCount * DiskCopyLayout.DataBlockSize)
+            throw new InvalidDataException("DiskCopy exige des blocs de 512 octets.");
         var tagged = blocks.Any(block => block.Tag is not null);
-        if (tagged && blocks.Any(block => block.Tag?.Count != DiskCopyLayout.TagSizePerBlock)) throw new InvalidDataException("Tous les tags DiskCopy doivent contenir 12 octets.");
+        if (tagged && blocks.Any(block => block.Tag?.Count != DiskCopyLayout.TagSizePerBlock))
+            throw new InvalidDataException("Tous les tags DiskCopy doivent contenir 12 octets.");
         var tags = tagged ? blocks.SelectMany(block => block.Tag!).ToArray() : [];
         var container = new byte[checked(DiskCopyLayout.HeaderSize + data.Length + tags.Length)];
         WriteName(container, metadata.NameBytes);
@@ -54,7 +54,9 @@ public sealed class DiskCopyWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFile
             MacintoshMfmGeometry.Capacity => DiskCopyFormat.DiskFormat1440K,
             _ => throw new InvalidDataException($"La capacité DiskCopy {image.Capacity} n'est pas prise en charge.")
         };
-        var formatByte = image.FormatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) ? DiskCopyFormat.FormatByteLisa : image.FormatId.Contains("mfs", StringComparison.OrdinalIgnoreCase) ? DiskCopyFormat.FormatByteMacintoshMfs : DiskCopyFormat.FormatByteMacintoshHfs;
+        var formatByte = image.FormatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) 
+            ? DiskCopyFormat.FormatByteLisa 
+            : image.FormatId.Contains("mfs", StringComparison.OrdinalIgnoreCase) ? DiskCopyFormat.FormatByteMacintoshMfs : DiskCopyFormat.FormatByteMacintoshHfs;
         return new(image, System.Text.Encoding.ASCII.GetBytes(name), diskFormat, formatByte);
     }
 

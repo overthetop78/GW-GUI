@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.m2000.Description" xml:space="preserve"><value>Emuloi PHILIPS P2000T tietokone.</value></data>
+  <data name="Emulation.Emulator.o2em.Description" xml:space="preserve"><value>Emulgointi MAGNAVOX ODYSSEY2 sekä PHILIPS VIDEOPAC G7000 Konsoleja.</value></data>
+  <data name="Emulation.Emulator.same_cdi.Description" xml:space="preserve"><value>Emulgointi PHILIPS CD-I Konsoleja.</value></data>
+  <data name="Emulation.Philips.Audio.Native" xml:space="preserve"><value>Emulaattoriääni</value></data>
+  <data name="Emulation.Philips.Keyboard.Native" xml:space="preserve"><value>Näppäimistön tulkinta</value></data>
+  <data name="Emulation.Philips.Memory.Display" xml:space="preserve"><value>Videomuisti</value></data>
+  <data name="Emulation.Philips.Setting.AlternateRenderer" xml:space="preserve"><value>Vaihtoehtoinen videonkäsittely</value></data>
+  <data name="Emulation.Philips.Setting.AudioVolume" xml:space="preserve"><value>Konsolin äänenvoimakkuus</value></data>
+  <data name="Emulation.Philips.Setting.AutoSave" xml:space="preserve"><value>Automaattinen tallennettu tila</value></data>
+  <data name="Emulation.Philips.Setting.Cheats" xml:space="preserve"><value>Pelinumerot</value></data>
+  <data name="Emulation.Philips.Setting.CropOverscan" xml:space="preserve"><value>Poista videon raja</value></data>
+  <data name="Emulation.Philips.Setting.KeyboardMapping" xml:space="preserve"><value>Näppäimistön näppäimistökartoitus</value></data>
+  <data name="Emulation.Philips.Setting.LowPassFilter" xml:space="preserve"><value>Matalan kierron äänisuodatin</value></data>
+  <data name="Emulation.Philips.Setting.LowPassRange" xml:space="preserve"><value>Äänisuodattimen katkaisutaajuus</value></data>
+  <data name="Emulation.Philips.Setting.MixFrames" xml:space="preserve"><value>Sekoita videokehykset</value></data>
+  <data name="Emulation.Philips.Setting.NvramPerGame" xml:space="preserve"><value>Erillinen jatkuva muisti jokaiselle pelille</value></data>
+  <data name="Emulation.Philips.Setting.StateNaming" xml:space="preserve"><value>Tallennetun tilan tiedoston nimi</value></data>
+  <data name="Emulation.Philips.Setting.Throttle" xml:space="preserve"><value>Emulointinopeudeltaan rajoitettu</value></data>
+  <data name="Emulation.Philips.Setting.VoiceVolume" xml:space="preserve"><value>Äänimäärä</value></data>
+  <data name="Emulation.Philips.System.Native" xml:space="preserve"><value>Emulaattorin valinnat</value></data>
+  <data name="Emulation.Philips.Value.Game" xml:space="preserve"><value>Peliä kohti</value></data>
+  <data name="Emulation.Philips.Value.Positional" xml:space="preserve"><value>Fyysiset avainasemat</value></data>
+  <data name="Emulation.Philips.Value.Simple" xml:space="preserve"><value>Yksinkertainen sekoittaminen</value></data>
+  <data name="Emulation.Philips.Value.Symbolic" xml:space="preserve"><value>Painetut merkit</value></data>
+  <data name="Emulation.Philips.Value.System" xml:space="preserve"><value>Järjestelmä</value></data>
+  <data name="Emulation.Philips.Video.Native" xml:space="preserve"><value>Emulaattorivideo</value></data>
+</root>

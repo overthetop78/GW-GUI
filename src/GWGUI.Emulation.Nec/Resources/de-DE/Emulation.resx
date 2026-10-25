@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.beetle_pcfx_fast.Description"><value>Emuliert NEC PC-FX Systeme.</value></data>
+  <data name="Emulation.Nec.Language"><value>NEC-Systemsprache</value></data>
+  <data name="Emulation.Nec.Language.English"><value>Englische Sprache</value></data>
+  <data name="Emulation.Nec.Language.French"><value>Französisch</value></data>
+  <data name="Emulation.Nec.Language.Spanish"><value>Spanisch</value></data>
+  <data name="Emulation.Nec.Firmware.Integrated"><value>ROM in den Emulator eingebaut</value></data>
+  <data name="Emulation.Emulator.beetle_pce_fast.Description"><value>Emuliert PC Engine, CoreGrafx, TurboGrafx-16, PC Engine Duo und TurboExpress Systeme.</value></data>
+  <data name="Emulation.Nec.Firmware.NotRequired"><value>Kein externes BIOS erforderlich</value></data>
+  <data name="Emulation.Nec.Audio.CdVolume"><value>CD Audiovolumen</value></data>
+  <data name="Emulation.Nec.Audio.SoundQuality"><value>Klangqualität</value></data>
+  <data name="Emulation.Nec.Mouse.Sensitivity"><value>Empfindlichkeit der Maus</value></data>
+  <data name="Emulation.Nec.Memory.CdRam"><value>CD-Arbeit RAM</value></data>
+  <data name="Emulation.Nec.Audio.AdpcmVolume"><value>CD ADPCM Volumen</value></data>
+  <data name="Emulation.Nec.Audio.CdPsgVolume"><value>CD PSG Volumen</value></data>
+  <data name="Emulation.Nec.Audio.AdpcmLowPass"><value>CD ADPCM-Tiefpassfilter</value></data>
+  <data name="Emulation.Nec.Audio.SuppressClicks"><value>Unterdrückung von Channel Reset Klicks</value></data>
+  <data name="Emulation.Nec.Audio.BuggyCodec"><value>Emulieren Sie Buggy ADPCM Codec</value></data>
+  <data name="Emulation.Nec.Storage.CdImageCache"><value>CD-Image in den Speicher laden</value></data>
+  <data name="Emulation.Nec.Storage.CdIgnoreErrors"><value>CD-Korrekturfehler ignorieren</value></data>
+  <data name="Emulation.Emulator.beetle_sgx.Description"><value>Emuliert PC Engine SuperGrafx Spiele, HuCards und CD-ROM2 Medien.</value></data>
+  <data name="Emulation.Emulator.geargrafx.Description"><value>Emuliert PC Engine, SuperGrafx und NEC LaserActive Systeme.</value></data>
+  <data name="Emulation.Nec.Cpu.Region"><value>Konsolenregion</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Auto"><value>Automatisch</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Japan"><value>Japan</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Usa"><value>Vereinigte Staaten</value></data>
+</root>

@@ -4,12 +4,7 @@ using GWGUI.Emulation;
 
 namespace GWGUI.App.Rendering.Emulation.Processing;
 
-internal sealed record CpuVideoFrameProcessingResult(
-    VideoFrame SourceFrame,
-    VideoFrame? ProcessedFrame,
-    byte[]? Bgra32Pixels,
-    long ConfigurationVersion,
-    Exception? Error);
+internal sealed record CpuVideoFrameProcessingResult(VideoFrame SourceFrame, VideoFrame? ProcessedFrame, byte[]? Bgra32Pixels, long ConfigurationVersion, Exception? Error);
 
 internal sealed class SoftwareVideoFrameProcessingWorker : IDisposable
 {
@@ -35,18 +30,14 @@ internal sealed class SoftwareVideoFrameProcessingWorker : IDisposable
         }
     }
 
-    internal SoftwareVideoFrameProcessingWorker(IEmulationVideoProcessingPipeline pipeline) =>
-        _pipeline = pipeline;
+    internal SoftwareVideoFrameProcessingWorker(IEmulationVideoProcessingPipeline pipeline) => _pipeline = pipeline;
 
-    internal void Submit(EmulationVideoProcessingConfiguration configuration,
-        VideoFrame frame, EmulationVideoProcessingSize outputSize,
-        long configurationVersion, Action<CpuVideoFrameProcessingResult> completed)
+    internal void Submit(EmulationVideoProcessingConfiguration configuration, VideoFrame frame, EmulationVideoProcessingSize outputSize, long configurationVersion, Action<CpuVideoFrameProcessingResult> completed)
     {
         lock (_gate)
         {
             if (_disposed) return;
-            _pending = new WorkItem(configuration, frame, outputSize,
-                configurationVersion, completed);
+            _pending = new WorkItem(configuration, frame, outputSize, configurationVersion, completed);
             if (_running) return;
             _running = true;
             _processingTask = Task.Run(ProcessPending);
@@ -63,8 +54,8 @@ internal sealed class SoftwareVideoFrameProcessingWorker : IDisposable
             _pending = null;
             processingTask = _processingTask;
         }
-        processingTask?.GetAwaiter().GetResult();
-        _pipeline.Dispose();
+        try { processingTask?.GetAwaiter().GetResult(); }
+        finally { _pipeline.Dispose(); }
     }
 
     private void ProcessPending()
@@ -90,12 +81,8 @@ internal sealed class SoftwareVideoFrameProcessingWorker : IDisposable
             try
             {
                 if (resetHistory) _pipeline.ResetTemporalHistory();
-                var processed = _pipeline.Process(work.Configuration, work.Frame,
-                    new EmulationVideoProcessingSize(work.Frame.Width, work.Frame.Height),
-                    work.OutputSize);
-                result = new(work.Frame, processed,
-                    EmulationVideoPixelFunctions.ToBgra32(processed),
-                    work.ConfigurationVersion, null);
+                var processed = _pipeline.Process(work.Configuration, work.Frame, new EmulationVideoProcessingSize(work.Frame.Width, work.Frame.Height), work.OutputSize);
+                result = new(work.Frame, processed, EmulationVideoPixelFunctions.ToBgra32(processed), work.ConfigurationVersion, null);
             }
             catch (Exception error)
             {
@@ -113,10 +100,5 @@ internal sealed class SoftwareVideoFrameProcessingWorker : IDisposable
         }
     }
 
-    private sealed record WorkItem(
-        EmulationVideoProcessingConfiguration Configuration,
-        VideoFrame Frame,
-        EmulationVideoProcessingSize OutputSize,
-        long ConfigurationVersion,
-        Action<CpuVideoFrameProcessingResult> Completed);
+    private sealed record WorkItem(EmulationVideoProcessingConfiguration Configuration, VideoFrame Frame, EmulationVideoProcessingSize OutputSize, long ConfigurationVersion, Action<CpuVideoFrameProcessingResult> Completed);
 }

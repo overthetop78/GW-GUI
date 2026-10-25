@@ -3,4 +3,8 @@ namespace GWGUI.Emulation.Contracts;
 public sealed record EmulationStorageDeviceSettings(
     EmulationMediaSlot Slot,
     FloppyDriveSettings? Floppy = null,
-    string? InterfaceId = null);
+    string? InterfaceId = null,
+    CartridgeSlotSettings? Cartridge = null,
+    EmulationCompactDiscDriveSettings? CompactDisc = null,
+    string? MemoryCardPath = null,
+    IReadOnlyDictionary<string, string>? Options = null);

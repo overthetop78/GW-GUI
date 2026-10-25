@@ -30,6 +30,5 @@ internal static class RawHardDiskFormat
 
     public static bool CanWrite => true;
 
-    public static bool IsLengthCompatible(long length, int logicalBlockSize) =>
-        length > 0 && LogicalBlockSizes.Contains(logicalBlockSize) && length % logicalBlockSize == 0;
+    public static bool IsLengthCompatible(long length, int logicalBlockSize) => length > 0 && LogicalBlockSizes.Contains(logicalBlockSize) && length % logicalBlockSize == 0;
 }

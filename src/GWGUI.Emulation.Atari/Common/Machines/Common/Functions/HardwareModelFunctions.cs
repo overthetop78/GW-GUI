@@ -6,8 +6,7 @@ internal static class HardwareModelFunctions
 {
     internal static IReadOnlyList<T> Values<T>(params T[] values) => Array.AsReadOnly(values);
 
-    internal static IReadOnlyDictionary<MachineModel, HardwareModelDefinition> Index(
-        IReadOnlyList<HardwareModelDefinition> definitions)
+    internal static IReadOnlyDictionary<MachineModel, HardwareModelDefinition> Index(IReadOnlyList<HardwareModelDefinition> definitions)
     {
         var result = definitions.ToDictionary(definition => definition.Model);
         if (result.Count != definitions.Count)
@@ -30,22 +29,5 @@ internal static class HardwareModelFunctions
         IReadOnlyList<HardwarePortDefinition> ports,
         IReadOnlyList<FirmwareCategory> firmware,
         IReadOnlyList<MediaCategory> media) =>
-        new(model, stableModelId, displayNameResourceKey, emulator, cpus, cpuFrequencyHz,
-            mainMemoryBytes, regions, video, audio, storage, ports, firmware, media);
-
-    internal static bool IsFirmwareCompatible(HardwareModelDefinition definition, FirmwareCategory category) =>
-        definition.Firmware.Contains(category);
-
-    internal static bool IsMediaCompatible(HardwareModelDefinition definition, MediaCategory category,
-        EmulationMediaSlot slot) => definition.Media.Contains(category) && IsSlotCompatible(category, slot);
-
-    private static bool IsSlotCompatible(MediaCategory category, EmulationMediaSlot slot) => category switch
-    {
-        MediaCategory.Floppy => slot == EmulationMediaSlot.Floppy0 || slot == EmulationMediaSlot.Floppy1
-            || slot == EmulationMediaSlot.Floppy2 || slot == EmulationMediaSlot.Floppy3,
-        MediaCategory.Cassette => slot == EmulationMediaSlot.Cassette0,
-        MediaCategory.Cartridge => slot == EmulationMediaSlot.Cartridge0,
-        MediaCategory.CompactDisc => slot == EmulationMediaSlot.Cd0,
-        _ => false
-    };
+        new(model, stableModelId, displayNameResourceKey, emulator, cpus, cpuFrequencyHz, mainMemoryBytes, regions, video, audio, storage, ports, firmware, media);
 }

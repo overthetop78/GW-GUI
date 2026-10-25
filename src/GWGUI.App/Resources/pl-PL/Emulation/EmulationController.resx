@@ -36,4 +36,27 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (prawa ręka)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Wygląd</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Sterownik {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Urządzenie wskazujące</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Symulacja lotu</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Symulacja wyścigowa</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Symulacja tańca</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Symulacja śpiewu</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Pozostałe urządzenia peryferyjne do symulacji</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>Silna wibracja</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>Słabe wibracje</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>Przeładuj</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Kolor celownika</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Mata do tańca</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Konfiguracja klawiatury w zakładce Keyboard.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Konfiguracja myszy w zakładce Mysz.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Typ urządzenia</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>Sterownik stosowany do wibracji</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>Przydziały "kij" i "oś"</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>Kij {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>Przydziały klawiszowe lub niestandardowe</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>Lewy kij</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>Prawy kij</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>Oś {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>Osie {0} / {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>Oszczędzane przyporządkowanie</value></data>
 </root>

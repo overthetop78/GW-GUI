@@ -2,7 +2,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 
 internal static class FilterBicubic
 {
-        internal static float Sample(float[] source, int width, int height, float x, float y, int channel)
+    internal static float Sample(float[] source, int width, int height, float x, float y, int channel)
     {
         var left = (int)MathF.Floor(x);
         var top = (int)MathF.Floor(y);
@@ -14,7 +14,7 @@ internal static class FilterBicubic
             for (var offsetX = -1; offsetX <= 2; offsetX++)
             {
                 var weight = weightY * CubicWeight(x - (left + offsetX));
-                sum += Read(source, width, height, left + offsetX, top + offsetY, channel) * weight;
+                sum += FilterSampling.Read(source, width, height, left + offsetX, top + offsetY, channel) * weight;
                 weightSum += weight;
             }
         }
@@ -29,14 +29,7 @@ internal static class FilterBicubic
         if (value < 2f) return coefficient * value * value * value - 5f * coefficient * value * value + 8f * coefficient * value - 4f * coefficient;
         return 0f;
     }
-
-    private static float Read(float[] source, int width, int height, int x, int y, int channel)
-    {
-        x = Math.Clamp(x, 0, width - 1);
-        y = Math.Clamp(y, 0, height - 1);
-        return source[(y * width + x) * 3 + channel];
-    }
-internal const string OpenGlShader = """
+    internal const string OpenGlShader = """
         float cubicWeight(float distance)
         {
             const float a = -0.5;

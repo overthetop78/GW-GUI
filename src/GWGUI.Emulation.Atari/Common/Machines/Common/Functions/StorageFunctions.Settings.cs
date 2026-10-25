@@ -14,26 +14,17 @@ internal static partial class StorageSettingsFunctions
     internal static EmulationStorageSettings Describe(MachineConfiguration configuration)
     {
         var compatibility = CompatibilityCatalog.Get(configuration.Model);
-        var devices = compatibility.Media
-            .Where(rule => rule.Availability == MediaAvailability.Available
-                && rule.Category != MediaCategory.Directory)
+        var devices = compatibility.Media.Where(rule => rule.Availability == MediaAvailability.Available && rule.Category != MediaCategory.Directory)
             .SelectMany(rule => rule.Slots.Select(slot => new EmulationMediaDevice(slot,
-                ToMediaType(rule.Category), rule.Category == MediaCategory.HardDisk
-                    ? HardDiskFormats.For(configuration.Model).Select(format => format.Extension).ToArray()
-                    : rule.Category == MediaCategory.Cartridge
-                        ? CartridgeExtensions(configuration)
-                        : Extensions(rule.Category),
+                ToMediaType(rule.Category), rule.Category == MediaCategory.HardDisk ? HardDiskFormats.For(configuration.Model).Select(format => format.Extension).ToArray() : rule.Category == MediaCategory.Cartridge ? CartridgeExtensions(configuration) : Extensions(rule.Category),
                 StorageConfigurationFunctions.IsRemovable(rule.Category),
-                rule.Category == MediaCategory.Cartridge && compatibility.Core == Emulator.Atari800,
+                rule.Category == MediaCategory.Cartridge && configuration.Family is MachineFamily.EightBit or MachineFamily.Atari5200,
                 DisplayLabel(configuration.Model, slot),
-                rule.Category == MediaCategory.Floppy
-                    ? FloppyOptions(configuration.Model, configuration.Folders.Floppies) : null,
+                rule.Category == MediaCategory.Floppy ? FloppyOptions(configuration.Model, configuration.Folders.Floppies) : null,
                 Interfaces(configuration.Model, rule.Category),
-                rule.Category == MediaCategory.HardDisk
-                    ? configuration.Folders.HardDisks : null,
+                rule.Category == MediaCategory.HardDisk ? configuration.Folders.HardDisks : null,
                 IsPermanent: StorageConfigurationFunctions.IsPrimaryDevice(configuration.Model, slot),
-                HardDiskFormats: rule.Category == MediaCategory.HardDisk
-                    ? HardDiskFormats.For(configuration.Model) : null,
+                HardDiskFormats: rule.Category == MediaCategory.HardDisk ? HardDiskFormats.For(configuration.Model) : null,
                 ConfigurationKind: rule.Category switch
                 {
                     MediaCategory.Floppy => EmulationStorageConfigurationKind.FloppyDrive,
@@ -42,9 +33,7 @@ internal static partial class StorageSettingsFunctions
                 })))
             .ToArray();
         var primary = StorageConfigurationFunctions.PrimaryDevice(configuration.Model)?.Slot;
-        var configured = configuration.Options
-            .Where(option => option.Key.StartsWith(DeviceOptionPrefix, StringComparison.Ordinal)
-                && EmulationMediaSlot.TryParse(option.Key[DeviceOptionPrefix.Length..], out _))
+        var configured = configuration.Options.Where(option => option.Key.StartsWith(DeviceOptionPrefix, StringComparison.Ordinal) && EmulationMediaSlot.TryParse(option.Key[DeviceOptionPrefix.Length..], out _))
             .Select(option =>
             {
                 EmulationMediaSlot.TryParse(option.Key[DeviceOptionPrefix.Length..], out var slot);
@@ -53,18 +42,14 @@ internal static partial class StorageSettingsFunctions
             .Concat(configuration.Media.Select(media => media.Slot))
             .Concat(primary is { } slot ? [slot] : [])
             .Distinct().ToArray();
-        var mounted = configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon)
-            .OfType<EmulationMedia>().ToArray();
+        var mounted = configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).OfType<EmulationMedia>().ToArray();
         var settings = configured.Select(slot => DeviceSettings(configuration, slot)).ToArray();
         return new EmulationStorageSettings(devices, configured, mounted, settings);
     }
 
-    internal static MachineConfiguration Apply(MachineConfiguration configuration,
-        EmulationStorageSettings settings)
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
-        var options = configuration.Options
-            .Where(option => !IsDeviceOption(option.Key))
-            .ToDictionary(option => option.Key, option => option.Value);
+        var options = configuration.Options.Where(option => !IsDeviceOption(option.Key)).ToDictionary(option => option.Key, option => option.Value);
         foreach (var slot in settings.ConfiguredSlots)
         {
             if (StorageConfigurationFunctions.IsPrimaryDevice(configuration.Model, slot)) continue;
@@ -83,18 +68,16 @@ internal static partial class StorageSettingsFunctions
             if (!string.IsNullOrWhiteSpace(deviceSettings.InterfaceId))
             {
                 var device = settings.AvailableDevices.First(item => item.Slot == deviceSettings.Slot);
-                var selectedInterface = device.InterfaceChoices?.FirstOrDefault(choice =>
-                    string.Equals(choice.Id, deviceSettings.InterfaceId, StringComparison.OrdinalIgnoreCase));
+                var selectedInterface = device.InterfaceChoices?.FirstOrDefault(choice => string.Equals(choice.Id, deviceSettings.InterfaceId, StringComparison.OrdinalIgnoreCase));
                 if (selectedInterface is not null)
                     options[$"{InterfaceOptionPrefix}{deviceSettings.Slot}"] = selectedInterface.Id;
             }
         }
         var media = settings.MountedMedia.Select(item =>
         {
-            var converted = EmulationMediaConversionFunctions.ToAtari(item, configuration.Media);
+            var converted = EmulationMediaConversionFunctions.ToModule(item, configuration.Media);
             if (item.Type != EmulationMediaType.HardDisk) return converted;
-            var format = HardDiskFormats.For(configuration.Model).FirstOrDefault(candidate =>
-                string.Equals(candidate.Extension, Path.GetExtension(item.Path), StringComparison.OrdinalIgnoreCase))
+            var format = HardDiskFormats.For(configuration.Model).FirstOrDefault(candidate => string.Equals(candidate.Extension, Path.GetExtension(item.Path), StringComparison.OrdinalIgnoreCase))
                 ?? throw new ArgumentException(ErrorMessages.StorageExtensionInvalid);
             var selected = settings.DeviceSettings?.FirstOrDefault(device => device.Slot == item.Slot)?.InterfaceId;
             if (selected is not null && !string.Equals(selected, format.InterfaceName, StringComparison.OrdinalIgnoreCase))

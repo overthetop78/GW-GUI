@@ -1,4 +1,4 @@
-using System.Globalization;
+using GWGUI.MediaFileSystems.Functions;
 using GWGUI.MediaEngine.Images.Conversion.Flux;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 using GWGUI.MediaEngine.Images.Models.Flux;
@@ -8,9 +8,20 @@ namespace GWGUI.MediaEngine.Images.Formats.Floppy.Hfe;
 /// <summary>Builds an HFE v1 container model from the common protected-track representation.</summary>
 internal static class ProtectedTrackHfeImageAdapter
 {
-    public static HfeImage Create(
-        ProtectedTrackImage image,
-        IReadOnlyDictionary<string, string> metadata)
+    internal static bool CanRepresentExactly(ProtectedTrackImage image)
+    {
+        try
+        {
+            Create(image, new Dictionary<string, string> { [HfeMetadataKeys.Encoding] = "0" });
+            return true;
+        }
+        catch (Exception exception) when (exception is InvalidDataException or NotSupportedException or OverflowException)
+        {
+            return false;
+        }
+    }
+
+    public static HfeImage Create(ProtectedTrackImage image, IReadOnlyDictionary<string, string> metadata)
     {
         ArgumentNullException.ThrowIfNull(image);
         ArgumentNullException.ThrowIfNull(metadata);
@@ -22,13 +33,7 @@ internal static class ProtectedTrackHfeImageAdapter
         var bitRate = ReadUInt16(metadata, HfeMetadataKeys.BitRate) ?? bitRates[0];
         if (bitRate != bitRates[0])
             throw new InvalidDataException("The HFE metadata bit rate does not match the represented track timing.");
-        return new HfeImage(
-            ReadByte(metadata, HfeMetadataKeys.Revision) ?? HfeFormat.Revision,
-            tracks.Max(track => track.Cylinder) + 1,
-            tracks.Max(track => track.Head) + 1,
-            ResolveEncoding(metadata),
-            bitRate,
-            tracks);
+        return new HfeImage(ReadByte(metadata, HfeMetadataKeys.Revision) ?? HfeFormat.Revision, tracks.Max(track => track.Cylinder) + 1, tracks.Max(track => track.Head) + 1, ResolveEncoding(metadata), bitRate, tracks);
     }
 
     private static HfeTrack ToHfeTrack(ProtectedTrack track)
@@ -42,13 +47,13 @@ internal static class ProtectedTrackHfeImageAdapter
         if (revolution.ResolutionNanoseconds % HfeFormat.TickNanoseconds != 0)
             throw new NotSupportedException("The flux timing resolution cannot be expressed in HFE ticks.");
         var scale = checked((uint)(revolution.ResolutionNanoseconds / HfeFormat.TickNanoseconds));
-        var values = revolution.Flux.FluxIntervals
-            .Append(revolution.Flux.IndexTimeTicks)
-            .Select(value => checked(value * scale));
+        var values = revolution.Flux.FluxIntervals.Append(revolution.Flux.IndexTimeTicks).Select(value => checked(value * scale));
         var bitCellTicks = FluxBitCellConverter.GreatestCommonDivisor(values);
         if (bitCellTicks == 0) throw new InvalidDataException("The flux track does not contain representable timing.");
         var intervals = revolution.Flux.FluxIntervals.Select(value => checked(value * scale)).ToArray();
         var indexTime = checked(revolution.Flux.IndexTimeTicks * scale);
+        if ((long)indexTime / bitCellTicks > ushort.MaxValue / HfeFormat.MaximumHeadCount * HfeFormat.BitsPerByte)
+            throw new NotSupportedException("The exact flux timing exceeds the HFE v1 track length limit.");
         var bits = FluxBitCellConverter.ToBits(intervals, indexTime, bitCellTicks);
         return new HfeTrack(track.Cylinder, track.Head, bits, bitCellTicks);
     }
@@ -94,22 +99,13 @@ internal static class ProtectedTrackHfeImageAdapter
     private static ushort CalculateBitRate(uint bitCellTicks)
     {
         if (bitCellTicks == 0) throw new InvalidDataException("The HFE bit-cell duration cannot be zero.");
-        var value = HfeFormat.NanosecondsPerSecond /
-                    (HfeFormat.BitsPerDataBit * HfeFormat.TickNanoseconds * 1000L * bitCellTicks);
+        var value = HfeFormat.NanosecondsPerSecond / (HfeFormat.BitsPerDataBit * HfeFormat.TickNanoseconds * 1000L * bitCellTicks);
         if (value is < 1 or > ushort.MaxValue)
             throw new NotSupportedException($"The calculated HFE bit rate '{value}' is invalid.");
         return checked((ushort)value);
     }
 
-    private static byte? ReadByte(IReadOnlyDictionary<string, string> metadata, string key)
-        => metadata.TryGetValue(key, out var value) &&
-           byte.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out var parsed)
-            ? parsed
-            : null;
+    private static byte? ReadByte(IReadOnlyDictionary<string, string> metadata, string key) => MediaMetadataFunctions.TryReadByte(metadata, key, out var value) ? value : null;
 
-    private static ushort? ReadUInt16(IReadOnlyDictionary<string, string> metadata, string key)
-        => metadata.TryGetValue(key, out var value) &&
-           ushort.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out var parsed)
-            ? parsed
-            : null;
+    private static ushort? ReadUInt16(IReadOnlyDictionary<string, string> metadata, string key) => MediaMetadataFunctions.TryReadUInt16(metadata, key, out var value) ? value : null;
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.m2000.Description" xml:space="preserve"><value>Emuluje se PHILIPS P2000T počítač.</value></data>
+  <data name="Emulation.Emulator.o2em.Description" xml:space="preserve"><value>Emuláty MAGNAVOX ODYSSEY2 a PHILIPS VIDEOPAC G7000 konzole.</value></data>
+  <data name="Emulation.Emulator.same_cdi.Description" xml:space="preserve"><value>Emuláty PHILIPS CD-I konzole.</value></data>
+  <data name="Emulation.Philips.Audio.Native" xml:space="preserve"><value>Emulátor audio</value></data>
+  <data name="Emulation.Philips.Keyboard.Native" xml:space="preserve"><value>Výklad klávesnice</value></data>
+  <data name="Emulation.Philips.Memory.Display" xml:space="preserve"><value>Video paměť</value></data>
+  <data name="Emulation.Philips.Setting.AlternateRenderer" xml:space="preserve"><value>Alternativní video renderování</value></data>
+  <data name="Emulation.Philips.Setting.AudioVolume" xml:space="preserve"><value>Zvukový objem konzole</value></data>
+  <data name="Emulation.Philips.Setting.AutoSave" xml:space="preserve"><value>Automatické stavy</value></data>
+  <data name="Emulation.Philips.Setting.Cheats" xml:space="preserve"><value>Kódy podvádění hry</value></data>
+  <data name="Emulation.Philips.Setting.CropOverscan" xml:space="preserve"><value>Odstranit hranici videa</value></data>
+  <data name="Emulation.Philips.Setting.KeyboardMapping" xml:space="preserve"><value>Mapování klávesových klíčů</value></data>
+  <data name="Emulation.Philips.Setting.LowPassFilter" xml:space="preserve"><value>Zvukový filtr Low- pass</value></data>
+  <data name="Emulation.Philips.Setting.LowPassRange" xml:space="preserve"><value>Zvukový filtr s uzavírací frekvencí</value></data>
+  <data name="Emulation.Philips.Setting.MixFrames" xml:space="preserve"><value>Rozmíchané videorámy</value></data>
+  <data name="Emulation.Philips.Setting.NvramPerGame" xml:space="preserve"><value>Samostatná perzistentní paměť pro každou hru</value></data>
+  <data name="Emulation.Philips.Setting.StateNaming" xml:space="preserve"><value>Uložené pojmenování souboru</value></data>
+  <data name="Emulation.Philips.Setting.Throttle" xml:space="preserve"><value>Mezní rychlost emulace</value></data>
+  <data name="Emulation.Philips.Setting.VoiceVolume" xml:space="preserve"><value>Hlasitost</value></data>
+  <data name="Emulation.Philips.System.Native" xml:space="preserve"><value>Možnosti emulátoru</value></data>
+  <data name="Emulation.Philips.Value.Game" xml:space="preserve"><value>V každé hře</value></data>
+  <data name="Emulation.Philips.Value.Positional" xml:space="preserve"><value>Fyzikální klíčové pozice</value></data>
+  <data name="Emulation.Philips.Value.Simple" xml:space="preserve"><value>Jednoduché míchání</value></data>
+  <data name="Emulation.Philips.Value.Symbolic" xml:space="preserve"><value>Tištěné znaky</value></data>
+  <data name="Emulation.Philips.Value.System" xml:space="preserve"><value>Systém</value></data>
+  <data name="Emulation.Philips.Video.Native" xml:space="preserve"><value>Emulátor video</value></data>
+</root>

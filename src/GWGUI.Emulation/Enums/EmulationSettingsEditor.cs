@@ -9,5 +9,7 @@ public enum EmulationSettingsEditor
     DirectoryPath,
     Number,
     Percentage,
-    Information
+    Information,
+    Slider,
+    OpenDirectory
 }

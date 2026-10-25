@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Error.StateIncompatible" xml:space="preserve"><value>Den Coleco gemt tilstand er uforenelig med den nuværende maskine.</value></data>
+  <data name="Emulation.Coleco.Error.Unexpected" xml:space="preserve"><value>En uventet Coleco emulering fejl opstod.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareMissing" xml:space="preserve"><value>En krævet Coleco firmware mangler.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid" xml:space="preserve"><value>Systemet ROM er ugyldig eller inkompatibel.</value></data>
+  <data name="Emulation.Coleco.Error.ContentNotFound" xml:space="preserve"><value>De konfigurerede Coleco medier blev ikke fundet.</value></data>
+  <data name="Emulation.Coleco.Error.ContentUnsupported" xml:space="preserve"><value>Denne maskine understøtter ikke de valgte medier.</value></data>
+  <data name="Emulation.Coleco.Error.OptionInvalid" xml:space="preserve"><value>En Coleco-indstilling har en ugyldig værdi.</value></data>
+  <data name="Emulation.Coleco.Error.CoreNotFound" xml:space="preserve"><value>Den krævede Coleco-kerne blev ikke fundet.</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected" xml:space="preserve"><value>Den valgte Coleco-kerne kunne ikke indlæses.</value></data>
+  <data name="Emulation.Coleco.Error.StateInvalid" xml:space="preserve"><value>Den Coleco gemte tilstand er ugyldig.</value></data>
+  <data name="Emulation.Coleco.Error.Details" xml:space="preserve"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostProtocolFailure" xml:space="preserve"><value>Kommunikation med Coleco-værten mislykkedes.</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Ukendt miljøkommando: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing" xml:space="preserve"><value>emulatorprogrammets sti er ikke tilgængelig.</value></data>
+</root>

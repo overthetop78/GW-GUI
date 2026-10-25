@@ -29,9 +29,7 @@ public static class SequenceFormatter
     {
         if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
         if (minimumWidth is < 1 or > 16) throw new ArgumentOutOfRangeException(nameof(minimumWidth));
-        return kind == SequenceKind.Numeric
-            ? value.ToString().PadLeft(minimumWidth, '0')
-            : ToLetters(value).PadLeft(minimumWidth, 'A');
+        return kind == SequenceKind.Numeric ? value.ToString().PadLeft(minimumWidth, '0') : ToLetters(value).PadLeft(minimumWidth, 'A');
     }
 
     // Zero-based: A, B, ... Z, AA, AB, ...

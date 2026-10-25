@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Error.ContentNotFound" xml:space="preserve"><value>De konfigurerede Sharp medier blev ikke fundet.</value></data>
+  <data name="Emulation.Sharp.Error.ContentUnsupported" xml:space="preserve"><value>Denne maskine understøtter ikke de valgte medier.</value></data>
+  <data name="Emulation.Sharp.Error.CoreNotFound" xml:space="preserve"><value>Den krævede Sharp core blev ikke fundet.</value></data>
+  <data name="Emulation.Sharp.Error.CoreRejected" xml:space="preserve"><value>Den valgte Sharp-kerne kunne ikke indlæses.</value></data>
+  <data name="Emulation.Sharp.Error.Details" xml:space="preserve"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareInvalid" xml:space="preserve"><value>Systemet ROM er ugyldig eller inkompatibel.</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareMissing" xml:space="preserve"><value>Der mangler en nødvendig Sharp firmware.</value></data>
+  <data name="Emulation.Sharp.Error.HostExecutableMissing" xml:space="preserve"><value>Sharp vært eksekverbar sti er ikke tilgængelig.</value></data>
+  <data name="Emulation.Sharp.Error.HostProtocolFailure" xml:space="preserve"><value>Kommunikation med Sharp-værten mislykkedes.</value></data>
+  <data name="Emulation.Sharp.Error.OptionInvalid" xml:space="preserve"><value>En Sharp-indstilling har en ugyldig værdi.</value></data>
+  <data name="Emulation.Sharp.Error.StateIncompatible" xml:space="preserve"><value>Den Sharp gemt tilstand er uforenelig med den nuværende maskine.</value></data>
+  <data name="Emulation.Sharp.Error.StateInvalid" xml:space="preserve"><value>Den gemte Sharp tilstand er ugyldig.</value></data>
+  <data name="Emulation.Sharp.Error.Unexpected" xml:space="preserve"><value>Der opstod en uventet Sharp-emuleringsfejl.</value></data>
+  <data name="Emulation.Sharp.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Ukendt miljøkommando: {0}</value></data>
+</root>

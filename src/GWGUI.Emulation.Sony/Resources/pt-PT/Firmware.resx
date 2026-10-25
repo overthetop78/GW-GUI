@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Firmware.Integrated"><value>ROM do sistema</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (Japão)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (América do Norte)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (Europa)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>ROM opcional do leitor de DVD da PS2.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>Selecione o dump ROM1 correspondente ao BIOS selecionado, normalmente um ficheiro .rom1 ou rom1.bin. Contém módulos do leitor de DVD e dados de identificação. Deixe o campo vazio se a consola não tiver um dump ROM1. Selecione o BIOS principal no campo BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>ROM opcional da PS2 que contém tipos de letra chineses.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>Selecione o dump ROM2 da consola chinesa SCPH-50009 correspondente ao BIOS selecionado, normalmente um ficheiro .rom2 ou rom2.bin. Deixe o campo vazio nas consolas sem ROM2. Este ficheiro não substitui o BIOS principal.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>Definições guardadas da consola.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>Selecione um ficheiro .nvm de 1024 bytes correspondente ao BIOS escolhido. Contém as definições da consola. O ficheiro é opcional: deixe o campo vazio para reutilizar as definições guardadas ou permitir que o emulador crie os valores predefinidos.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>Versão do controlador mecânico.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>Selecione um ficheiro .mec de 4 bytes correspondente ao BIOS escolhido. Contém o número de versão do controlador mecânico, não o firmware completo. O ficheiro é opcional: deixe o campo vazio para reutilizar os dados guardados ou permitir que o emulador crie um ficheiro predefinido.</value></data>
+</root>

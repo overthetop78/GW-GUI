@@ -7,8 +7,8 @@
   <data name="Emulation.Memory.Main"><value>Ana bellek</value></data>
   <data name="Emulation.Memory.Extensions"><value>Bellek genişletmeleri</value></data>
   <data name="Emulation.Memory.None"><value>Yok</value></data>
-  <data name="Emulation.Memory.CompatibleWithModel"><value>Memory yapılandırması ile uyumludur {0}.</value></data>
-  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Memory uzantıları ile uyumludur {0}.</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>Uyumlu yapılandırma: {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Uyumlu hafıza uzantıları: {0}.</value></data>
   <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM mevcut değildir {0}.</value></data>
   <data name="Emulation.Memory.TotalConfigured"><value>Toplam yapılandırılmış bellek: {0} {1}</value></data>
 </root>

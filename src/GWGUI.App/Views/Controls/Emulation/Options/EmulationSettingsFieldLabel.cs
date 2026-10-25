@@ -18,11 +18,7 @@ internal sealed class EmulationSettingsFieldLabel : TextBlock
     private FieldHelpAdorner? _adorner;
     private bool _inputHandlerAttached;
 
-    internal EmulationSettingsFieldLabel(
-        string label,
-        string? explanation = null,
-        string? detailedExplanation = null,
-        FrameworkElement? associatedControl = null)
+    internal EmulationSettingsFieldLabel(string label, string? explanation = null, string? detailedExplanation = null, FrameworkElement? associatedControl = null)
     {
         Text = label;
         VerticalAlignment = VerticalAlignment.Center;
@@ -49,10 +45,13 @@ internal sealed class EmulationSettingsFieldLabel : TextBlock
             },
             ToolTip = new ToolTip
             {
+                MaxWidth = EmulationSettingsFieldHelpConstants.MaximumWidth,
                 Content = new TextBlock
                 {
                     Text = explanation,
-                    TextWrapping = TextWrapping.NoWrap
+                    TextWrapping = TextWrapping.Wrap,
+                    MaxWidth = EmulationSettingsFieldHelpConstants.MaximumWidth
+                        - 2 * EmulationSettingsFieldHelpConstants.ContentPadding
                 }
             }
         };
@@ -71,8 +70,7 @@ internal sealed class EmulationSettingsFieldLabel : TextBlock
         postItText.Inlines.Add(new Run(label) { FontWeight = FontWeights.SemiBold });
         postItText.Inlines.Add(new LineBreak());
         postItText.Inlines.Add(new Run(detailedExplanation));
-        postItText.SetResourceReference(ForegroundProperty,
-            EmulationSettingsFieldHelpConstants.TextBrushResource);
+        postItText.SetResourceReference(ForegroundProperty, EmulationSettingsFieldHelpConstants.TextBrushResource);
 
         _postIt = new Border
         {
@@ -190,11 +188,7 @@ internal sealed class EmulationSettingsFieldLabel : TextBlock
         private readonly FrameworkElement _horizontalTarget;
         private readonly FrameworkElement _verticalTarget;
 
-        internal FieldHelpAdorner(
-            FrameworkElement adornedElement,
-            FrameworkElement content,
-            FrameworkElement horizontalTarget,
-            FrameworkElement verticalTarget)
+        internal FieldHelpAdorner(FrameworkElement adornedElement, FrameworkElement content, FrameworkElement horizontalTarget, FrameworkElement verticalTarget)
             : base(adornedElement)
         {
             _content = content;
@@ -221,8 +215,7 @@ internal sealed class EmulationSettingsFieldLabel : TextBlock
             var desired = _content.DesiredSize;
             var icon = _horizontalTarget.TranslatePoint(new Point(), AdornedElement);
             var fieldTop = _verticalTarget.TranslatePoint(new Point(), AdornedElement);
-            var fieldBottom = _verticalTarget.TranslatePoint(
-                new Point(0, _verticalTarget.ActualHeight), AdornedElement);
+            var fieldBottom = _verticalTarget.TranslatePoint(new Point(0, _verticalTarget.ActualHeight), AdornedElement);
             var spacing = EmulationSettingsFieldHelpConstants.IconPopupSpacing;
             var x = Math.Clamp(icon.X, 0, Math.Max(0, finalSize.Width - desired.Width));
             var below = fieldBottom.Y + spacing;

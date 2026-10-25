@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.pcsx2.Description"><value>يحاكي أنظمة PlayStation 2.</value></data>
+  <data name="Emulation.Emulator.ppsspp.Description"><value>يحاكي أنظمة PlayStation Portable.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>يحاكي أنظمة Sony PlayStation / PS one.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>يحاكي جهاز Sony PocketStation المحمول باستخدام BIOS خارجي وصور بطاقات الذاكرة.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>يحاكي أنظمة PlayStation باستخدام عارض Beetle PSX البرمجي.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>يحاكي أنظمة PlayStation باستخدام عارض Beetle PSX المعتمد على العتاد.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>يحاكي أنظمة PlayStation باستخدام PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>يحاكي أنظمة PlayStation 2 باستخدام PCEE2 وBIOS خارجي.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>يحاكي أنظمة PlayStation 2 باستخدام Play! ومحاكاته المدمجة للبرامج الثابتة للنظام.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>يحاكي أنظمة PlayStation 3 باستخدام RPCS3 وبرامج ثابتة خارجية للنظام.</value></data>
+</root>

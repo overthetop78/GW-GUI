@@ -8,8 +8,7 @@ internal static class EmulationImageRestorationFunctions
     private const float MinimumPatternContrast = 0.015f;
     private const float MaximumPatternContrast = 0.45f;
 
-    internal static void ApplyDeinterlacing(float[] colors, int width, int height,
-        EmulationDeinterlacingMode mode)
+    internal static void ApplyDeinterlacing(float[] colors, int width, int height, EmulationDeinterlacingMode mode)
     {
         if (mode == EmulationDeinterlacingMode.Off || height < 2) return;
         var source = colors.ToArray();
@@ -33,9 +32,7 @@ internal static class EmulationImageRestorationFunctions
                 var offset = (y * width + x) * 3 + channel;
                 var first = source[(firstY * width + x) * 3 + channel];
                 var second = source[(secondY * width + x) * 3 + channel];
-                colors[offset] = mode == EmulationDeinterlacingMode.Blend
-                    ? first * 0.25f + source[offset] * 0.5f + second * 0.25f
-                    : (first + second) * 0.5f;
+                colors[offset] = mode == EmulationDeinterlacingMode.Blend ? first * 0.25f + source[offset] * 0.5f + second * 0.25f : (first + second) * 0.5f;
             }
         }
     }
@@ -101,9 +98,7 @@ internal static class EmulationImageRestorationFunctions
             for (var offsetX = -1; offsetX <= 1; offsetX++)
             {
                 var sample = Read(x + offsetX, y + offsetY);
-                var spatialWeight = offsetX == 0 && offsetY == 0
-                    ? 4f
-                    : offsetX == 0 || offsetY == 0 ? 2f : 1f;
+                var spatialWeight = offsetX == 0 && offsetY == 0 ? 4f : offsetX == 0 || offsetY == 0 ? 2f : 1f;
                 var distance = DistanceSquared(center, sample);
                 var weight = spatialWeight * MathF.Exp(-distance * inverseRangeVariance);
                 red += sample.Red * weight;
@@ -142,9 +137,7 @@ internal static class EmulationImageRestorationFunctions
             var center = Read(x, y);
             var horizontal = Direction(Read(x - 1, y), center, Read(x + 1, y));
             var vertical = Direction(Read(x, y - 1), center, Read(x, y + 1));
-            var selected = horizontal.Valid && (!vertical.Valid || horizontal.Score <= vertical.Score)
-                ? horizontal
-                : vertical;
+            var selected = horizontal.Valid && (!vertical.Valid || horizontal.Score <= vertical.Score) ? horizontal : vertical;
             if (!selected.Valid) continue;
             var offset = (y * width + x) * 3;
             colors[offset] = Lerp(center.Red, selected.Candidate.Red, strength);
@@ -159,8 +152,7 @@ internal static class EmulationImageRestorationFunctions
             var score = MathF.Max(Distance(before, center), Distance(after, center));
             var hasStep = score > 0.0005f;
             var isGradient = beforeDelta * afterDelta <= 0.000001f;
-            return (hasStep && isGradient && score <= threshold, score,
-                Average(before, center, after));
+            return (hasStep && isGradient && score <= threshold, score, Average(before, center, after));
         }
 
         Color Read(int x, int y)
@@ -191,12 +183,9 @@ internal static class EmulationImageRestorationFunctions
             {
                 if (offsetX == 0 && offsetY == 0) continue;
                 var sample = Read(x + offsetX, y + offsetY);
-                sum = new Color(sum.Red + sample.Red, sum.Green + sample.Green,
-                    sum.Blue + sample.Blue);
-                minimum = new Color(MathF.Min(minimum.Red, sample.Red),
-                    MathF.Min(minimum.Green, sample.Green), MathF.Min(minimum.Blue, sample.Blue));
-                maximum = new Color(MathF.Max(maximum.Red, sample.Red),
-                    MathF.Max(maximum.Green, sample.Green), MathF.Max(maximum.Blue, sample.Blue));
+                sum = new Color(sum.Red + sample.Red, sum.Green + sample.Green, sum.Blue + sample.Blue);
+                minimum = new Color(MathF.Min(minimum.Red, sample.Red), MathF.Min(minimum.Green, sample.Green), MathF.Min(minimum.Blue, sample.Blue));
+                maximum = new Color(MathF.Max(maximum.Red, sample.Red), MathF.Max(maximum.Green, sample.Green), MathF.Max(maximum.Blue, sample.Blue));
                 localContrast = MathF.Max(localContrast, Distance(center, sample));
             }
 
@@ -207,12 +196,9 @@ internal static class EmulationImageRestorationFunctions
             if (amount <= 0f) continue;
             var extension = localContrast * 0.25f * strength;
             var candidate = new Color(
-                Math.Clamp(center.Red + (center.Red - average.Red) * amount,
-                    minimum.Red - extension, maximum.Red + extension),
-                Math.Clamp(center.Green + (center.Green - average.Green) * amount,
-                    minimum.Green - extension, maximum.Green + extension),
-                Math.Clamp(center.Blue + (center.Blue - average.Blue) * amount,
-                    minimum.Blue - extension, maximum.Blue + extension));
+                Math.Clamp(center.Red + (center.Red - average.Red) * amount, minimum.Red - extension, maximum.Red + extension),
+                Math.Clamp(center.Green + (center.Green - average.Green) * amount, minimum.Green - extension, maximum.Green + extension),
+                Math.Clamp(center.Blue + (center.Blue - average.Blue) * amount, minimum.Blue - extension, maximum.Blue + extension));
             var offset = (y * width + x) * 3;
             colors[offset] = Math.Clamp(candidate.Red, 0f, 1f);
             colors[offset + 1] = Math.Clamp(candidate.Green, 0f, 1f);
@@ -228,8 +214,7 @@ internal static class EmulationImageRestorationFunctions
         }
     }
 
-    private static bool Similar(Color first, Color second) =>
-        Distance(first, second) <= SimilarityThreshold;
+    private static bool Similar(Color first, Color second) => Distance(first, second) <= SimilarityThreshold;
 
     private static float Distance(Color first, Color second)
     {
@@ -247,26 +232,15 @@ internal static class EmulationImageRestorationFunctions
         return red * red + green * green + blue * blue;
     }
 
-    private static Color Average(Color first, Color second) => new(
-        (first.Red + second.Red) * 0.5f,
-        (first.Green + second.Green) * 0.5f,
-        (first.Blue + second.Blue) * 0.5f);
+    private static Color Average(Color first, Color second) => new((first.Red + second.Red) * 0.5f, (first.Green + second.Green) * 0.5f, (first.Blue + second.Blue) * 0.5f);
 
-    private static Color Average(Color first, Color second, Color third) => new(
-        (first.Red + second.Red + third.Red) / 3f,
-        (first.Green + second.Green + third.Green) / 3f,
-        (first.Blue + second.Blue + third.Blue) / 3f);
+    private static Color Average(Color first, Color second, Color third) => new((first.Red + second.Red + third.Red) / 3f, (first.Green + second.Green + third.Green) / 3f, (first.Blue + second.Blue + third.Blue) / 3f);
 
-    private static Color Average(Color first, Color second, Color third, Color fourth) => new(
-        (first.Red + second.Red + third.Red + fourth.Red) * 0.25f,
-        (first.Green + second.Green + third.Green + fourth.Green) * 0.25f,
-        (first.Blue + second.Blue + third.Blue + fourth.Blue) * 0.25f);
+    private static Color Average(Color first, Color second, Color third, Color fourth) => new((first.Red + second.Red + third.Red + fourth.Red) * 0.25f, (first.Green + second.Green + third.Green + fourth.Green) * 0.25f, (first.Blue + second.Blue + third.Blue + fourth.Blue) * 0.25f);
 
-    private static float Lerp(float first, float second, float weight) =>
-        first + (second - first) * weight;
+    private static float Lerp(float first, float second, float weight) => first + (second - first) * weight;
 
-    private static float Luminance(Color color) =>
-        color.Red * 0.2126f + color.Green * 0.7152f + color.Blue * 0.0722f;
+    private static float Luminance(Color color) => color.Red * 0.2126f + color.Green * 0.7152f + color.Blue * 0.0722f;
 
     private readonly record struct Color(float Red, float Green, float Blue);
 }

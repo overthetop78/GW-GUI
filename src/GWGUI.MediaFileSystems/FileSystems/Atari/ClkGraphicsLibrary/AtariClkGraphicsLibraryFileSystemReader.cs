@@ -77,17 +77,7 @@ public sealed class AtariClkGraphicsLibraryFileSystemReader : IFileSystemReader
         }
 
         var freeSectors = Math.Max(0, image.BlockCount - occupiedSectors.Count);
-        return new FileSystemVolume(
-            FileSystemDisplayNames.AtariClkGraphicsLibrary,
-            FileSystemIds.AtariClkGraphicsLibrary,
-            image.Capacity,
-            (long)freeSectors * image.BlockSize,
-            null,
-            null,
-            entries,
-            [],
-            attributes: ["graphics-library"],
-            bootable: false);
+        return new FileSystemVolume( FileSystemDisplayNames.AtariClkGraphicsLibrary, FileSystemIds.AtariClkGraphicsLibrary, image.Capacity, (long)freeSectors * image.BlockSize, null, null, entries, [], attributes: ["graphics-library"], bootable: false);
     }
 
     private static IEnumerable<DirectoryRecord> EnumerateDirectoryRecords(IMediaSectorImage image)
@@ -106,12 +96,7 @@ public sealed class AtariClkGraphicsLibraryFileSystemReader : IFileSystemReader
         }
     }
 
-    private static byte[] ReadFile(
-        IMediaSectorImage image,
-        DirectoryRecord record,
-        ISet<int> occupiedSectors,
-        out bool dataValid,
-        out int occupiedSectorCount)
+    private static byte[] ReadFile(IMediaSectorImage image, DirectoryRecord record, ISet<int> occupiedSectors, out bool dataValid, out int occupiedSectorCount)
     {
         var content = new byte[record.Length];
         var written = 0;
@@ -154,9 +139,6 @@ public sealed class AtariClkGraphicsLibraryFileSystemReader : IFileSystemReader
     private readonly record struct DirectoryRecord(string Name, int StartSector, byte TypeId, int Length)
     {
         public bool IsActive => TypeId is (byte)'X' or (byte)'x';
-        public bool IsValid(int blockCount) =>
-            !string.IsNullOrWhiteSpace(Name)
-            && StartSector > 0 && StartSector <= blockCount
-            && Length is > 0 and <= DefaultIconLength;
+        public bool IsValid(int blockCount) => !string.IsNullOrWhiteSpace(Name) && StartSector > 0 && StartSector <= blockCount && Length is > 0 and <= DefaultIconLength;
     }
 }

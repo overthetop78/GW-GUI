@@ -7,16 +7,12 @@ namespace GWGUI.App.Functions.Explorer;
 
 internal static class ExplorerIssueBuilder
 {
-    public static int CountEntries(IEnumerable<FileSystemEntry> entries) =>
-        entries.Sum(entry => 1 + CountEntries(entry.Children));
+    public static int CountEntries(IEnumerable<FileSystemEntry> entries) => entries.Sum(entry => 1 + CountEntries(entry.Children));
 
     public static IReadOnlyList<string> Build(ExploredDiskImage document)
     {
         var issues = new List<string>();
-        foreach (var warning in (document.DetectedFileSystems ?? [])
-                     .SelectMany(item => item.Volume.Warnings)
-                     .Concat(document.Volume.Warnings)
-                     .Where(warning => !string.IsNullOrWhiteSpace(warning))
+        foreach (var warning in (document.DetectedFileSystems ?? []).SelectMany(item => item.Volume.Warnings).Concat(document.Volume.Warnings).Where(warning => !string.IsNullOrWhiteSpace(warning))
                      .Distinct(StringComparer.CurrentCultureIgnoreCase))
             issues.Add(ExplorerWarningLocalizer.Localize(warning));
 
@@ -28,12 +24,7 @@ internal static class ExplorerIssueBuilder
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(volume);
-        var issues = document.Diagnostics
-            .Concat(volume.Diagnostics)
-            .Concat(volume.FileSystem?.Warnings ?? [])
-            .Where(issue => !string.IsNullOrWhiteSpace(issue))
-            .Select(ExplorerWarningLocalizer.Localize)
-            .ToList();
+        var issues = document.Diagnostics.Concat(volume.Diagnostics).Concat(volume.FileSystem?.Warnings ?? []).Where(issue => !string.IsNullOrWhiteSpace(issue)).Select(ExplorerWarningLocalizer.Localize).ToList();
         if (document.Document.Representation is SectorMediaImageRepresentation sectors)
             AddSectorIssues(issues, sectors.Image);
         return issues.Distinct(StringComparer.CurrentCultureIgnoreCase).ToArray();
@@ -41,10 +32,8 @@ internal static class ExplorerIssueBuilder
 
     private static void AddSectorIssues(List<string> issues, SectorImage image)
     {
-        foreach (var block in image.AvailableBlocks.Where(block => block.IntegrityValid == false)
-                     .OrderBy(block => block.Address.Cylinder).ThenBy(block => block.Address.Head).ThenBy(block => block.Address.Number))
-            issues.Add(LocExtension.Get("Visual.SectorDetail", block.Address.Cylinder, block.Address.Head,
-                block.Address.Number, block.Data.Count, LocExtension.Get("Visual.Integrity.Crc"), LocExtension.Get("Visual.CrcInvalid")));
+        foreach (var block in image.AvailableBlocks.Where(block => block.IntegrityValid == false).OrderBy(block => block.Address.Cylinder).ThenBy(block => block.Address.Head).ThenBy(block => block.Address.Number))
+            issues.Add(LocExtension.Get("Visual.SectorDetail", block.Address.Cylinder, block.Address.Head, block.Address.Number, block.Data.Count, LocExtension.Get("Visual.Integrity.Crc"), LocExtension.Get("Visual.CrcInvalid")));
 
         foreach (var logical in image.MissingBlocks)
         {
@@ -53,8 +42,7 @@ internal static class ExplorerIssueBuilder
             var withinCylinder = logical % sectorsPerCylinder;
             var head = withinCylinder / Math.Max(1, image.SectorsPerTrack);
             var sector = withinCylinder % Math.Max(1, image.SectorsPerTrack);
-            issues.Add(LocExtension.Get("Visual.SectorDetail", cylinder, head, sector, 0,
-                LocExtension.Get("Visual.Integrity.Crc"), LocExtension.Get("Explorer.Unknown")));
+            issues.Add(LocExtension.Get("Visual.SectorDetail", cylinder, head, sector, 0, LocExtension.Get("Visual.Integrity.Crc"), LocExtension.Get("Explorer.Unknown")));
         }
     }
 }

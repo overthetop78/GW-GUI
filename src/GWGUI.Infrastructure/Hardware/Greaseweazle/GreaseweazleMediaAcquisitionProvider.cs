@@ -1,27 +1,24 @@
 using System.Collections.Frozen;
 using System.Globalization;
-using MediaPhysicalEncodingIds = global::GWGUI.MediaEngine.Constants.MediaPhysicalEncodingIds;
-using MediaPhysicalMetadataKeys = global::GWGUI.MediaEngine.Constants.MediaPhysicalMetadataKeys;
-using MediaAcquisitionProgress = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionProgress;
-using MediaAcquisitionResult = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
-using MediaFluxRevolutionData = global::GWGUI.MediaEngine.Contracts.MediaFluxRevolutionData;
-using MediaFluxTrackData = global::GWGUI.MediaEngine.Contracts.MediaFluxTrackData;
-using MediaPhysicalDataUnit = global::GWGUI.MediaEngine.Contracts.MediaPhysicalDataUnit;
+using MediaPhysicalEncodingIds = GWGUI.MediaEngine.Constants.MediaPhysicalEncodingIds;
+using MediaPhysicalMetadataKeys = GWGUI.MediaEngine.Constants.MediaPhysicalMetadataKeys;
+using MediaAcquisitionProgress = GWGUI.MediaEngine.Contracts.MediaAcquisitionProgress;
+using MediaAcquisitionResult = GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
+using MediaFluxRevolutionData = GWGUI.MediaEngine.Contracts.MediaFluxRevolutionData;
+using MediaFluxTrackData = GWGUI.MediaEngine.Contracts.MediaFluxTrackData;
+using MediaPhysicalDataUnit = GWGUI.MediaEngine.Contracts.MediaPhysicalDataUnit;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Functions;
-using IMediaAcquisitionProvider = global::GWGUI.MediaEngine.Interfaces.IMediaAcquisitionProvider;
+using IMediaAcquisitionProvider = GWGUI.MediaEngine.Interfaces.IMediaAcquisitionProvider;
 using GWGUI.Infrastructure.Constants;
 
 namespace GWGUI.Infrastructure.Hardware.Greaseweazle;
 
 /// <summary>Acquires Greaseweazle flux as neutral, versioned physical track units.</summary>
-public sealed class GreaseweazleMediaAcquisitionProvider(
-    Func<IGreaseweazleReadDevice> deviceFactory) : IMediaAcquisitionProvider
+public sealed class GreaseweazleMediaAcquisitionProvider(Func<IGreaseweazleReadDevice> deviceFactory) : IMediaAcquisitionProvider
 {
-    private static readonly IReadOnlySet<MediaKind> MediaKinds =
-        new[] { MediaKind.Floppy }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> RepresentationKinds =
-        new[] { MediaRepresentationKind.Flux }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaKind> MediaKinds = new[] { MediaKind.Floppy }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> RepresentationKinds = new[] { MediaRepresentationKind.Flux }.ToFrozenSet();
 
     public string Id => GreaseweazleProtocol.MediaProviderId;
 
@@ -29,8 +26,7 @@ public sealed class GreaseweazleMediaAcquisitionProvider(
 
     public IReadOnlySet<MediaRepresentationKind> OutputRepresentationKinds => RepresentationKinds;
 
-    public bool CanAcquire(MediaKind mediaKind, string deviceId) =>
-        mediaKind == MediaKind.Floppy && !string.IsNullOrWhiteSpace(deviceId);
+    public bool CanAcquire(MediaKind mediaKind, string deviceId) => mediaKind == MediaKind.Floppy && !string.IsNullOrWhiteSpace(deviceId);
 
     public async Task<MediaAcquisitionResult> AcquireAsync(
         MediaKind mediaKind,
@@ -42,9 +38,9 @@ public sealed class GreaseweazleMediaAcquisitionProvider(
         if (!CanAcquire(mediaKind, deviceId))
             throw new NotSupportedException($"Greaseweazle cannot acquire media family '{mediaKind}' from device '{deviceId}'.");
         ArgumentNullException.ThrowIfNull(options);
-        var busType = ReadEnum<GreaseweazleBusType>(options, GreaseweazleMediaOptionKeys.BusType);
+        var busType = GreaseweazleMediaOptionFunctions.ReadEnum<GreaseweazleBusType>(options, GreaseweazleMediaOptionKeys.BusType);
         var driveUnit = checked((byte)ReadInt(options, GreaseweazleMediaOptionKeys.DriveUnit));
-        var tracks = ParseTracks(ReadRequired(options, GreaseweazleMediaOptionKeys.Tracks));
+        var tracks = ParseTracks(GreaseweazleMediaOptionFunctions.ReadRequired(options, GreaseweazleMediaOptionKeys.Tracks));
         var revolutions = ReadInt(options, GreaseweazleMediaOptionKeys.Revolutions);
         var overflowRetries = ReadInt(options, GreaseweazleMediaOptionKeys.FluxOverflowRetries);
         var seekRetries = ReadInt(options, GreaseweazleMediaOptionKeys.SeekRetries);
@@ -67,27 +63,9 @@ public sealed class GreaseweazleMediaAcquisitionProvider(
             for (var index = 0; index < tracks.Length; index++)
             {
                 var track = tracks[index];
-                var acquired = await AcquireTrackAsync(
-                    device,
-                    track,
-                    revolutions,
-                    overflowRetries,
-                    seekRetries,
-                    fakeIndex,
-                    hardSectors,
-                    settleDelay,
-                    firmware.SampleFrequency,
-                    progress,
-                    index,
-                    tracks.Length,
-                    cancellationToken).ConfigureAwait(false);
+                var acquired = await AcquireTrackAsync(device, track, revolutions, overflowRetries, seekRetries, fakeIndex, hardSectors, settleDelay, firmware.SampleFrequency, progress, index, tracks.Length, cancellationToken).ConfigureAwait(false);
                 units.Add(acquired.Unit);
-                progress?.Report(new MediaAcquisitionProgress(
-                    index + 1,
-                    tracks.Length,
-                    acquired.Attempt,
-                    acquired.Unit,
-                    acquired.Unit.Metadata));
+                progress?.Report(new MediaAcquisitionProgress(index + 1, tracks.Length, acquired.Attempt, acquired.Unit, acquired.Unit.Metadata));
             }
         }
         finally
@@ -128,19 +106,8 @@ public sealed class GreaseweazleMediaAcquisitionProvider(
             {
                 await device.SeekAsync(checked((short)track.DriveCylinder), checked((byte)track.DriveHead), cancellationToken).ConfigureAwait(false);
                 if (settleDelay is { } settle) await Task.Delay(settle, cancellationToken).ConfigureAwait(false);
-                progress?.Report(new MediaAcquisitionProgress(
-                    completed,
-                    total,
-                    attempt,
-                    metadata: PositionMetadata(track.Cylinder, track.Head)));
-                var capture = await ReadTrackAsync(
-                    device,
-                    revolutions,
-                    overflowRetries,
-                    fakeIndex,
-                    hardSectors,
-                    sampleFrequency,
-                    cancellationToken).ConfigureAwait(false);
+                progress?.Report(new MediaAcquisitionProgress(completed, total, attempt, metadata: PositionMetadata(track.Cylinder, track.Head)));
+                var capture = await ReadTrackAsync(device, revolutions, overflowRetries, fakeIndex, hardSectors, sampleFrequency, cancellationToken).ConfigureAwait(false);
                 var layout = CreateLayout(capture, revolutions, fakeIndex, hardSectors);
                 var unit = CreateUnit(track.Cylinder, track.Head, capture, layout, revolutions, completed);
                 return (unit, attempt);
@@ -180,23 +147,11 @@ public sealed class GreaseweazleMediaAcquisitionProvider(
         return await device.ReadFluxAsync(revolutions, retries: overflowRetries, cancellationToken: cancellationToken).ConfigureAwait(false);
     }
 
-    private static GreaseweazleRotationLayout CreateLayout(
-        GreaseweazleFluxCapture capture,
-        int revolutions,
-        TimeSpan? fakeIndex,
-        bool hardSectors) => fakeIndex is { } indexPeriod
+    private static GreaseweazleRotationLayout CreateLayout(GreaseweazleFluxCapture capture, int revolutions, TimeSpan? fakeIndex, bool hardSectors) => fakeIndex is { } indexPeriod
         ? GreaseweazleFluxIndexNormalizer.FromFakeIndex(capture, revolutions, DurationToTicks(indexPeriod, capture.SampleFrequency))
-        : hardSectors
-            ? GreaseweazleFluxIndexNormalizer.FromHardSectorIndexes(capture, revolutions)
-            : GreaseweazleFluxIndexNormalizer.FromPhysicalIndexes(capture, revolutions);
+        : hardSectors ? GreaseweazleFluxIndexNormalizer.FromHardSectorIndexes(capture, revolutions) : GreaseweazleFluxIndexNormalizer.FromPhysicalIndexes(capture, revolutions);
 
-    private static MediaPhysicalDataUnit CreateUnit(
-        int cylinder,
-        int head,
-        GreaseweazleFluxCapture capture,
-        GreaseweazleRotationLayout layout,
-        int revolutionCount,
-        int position)
+    private static MediaPhysicalDataUnit CreateUnit(int cylinder, int head, GreaseweazleFluxCapture capture, GreaseweazleRotationLayout layout, int revolutionCount, int position)
     {
         if (layout.RevolutionTicks.Count < revolutionCount)
             throw new InvalidDataException("The normalized capture does not contain every requested revolution.");
@@ -223,9 +178,7 @@ public sealed class GreaseweazleMediaAcquisitionProvider(
                 intervals.Add(ConvertTicksToNanoseconds(endpoints[endpointIndex] - previous, capture.SampleFrequency));
                 previous = endpoints[endpointIndex++];
             }
-            revolutions.Add(new MediaFluxRevolutionData(
-                ConvertTicksToNanoseconds(duration, capture.SampleFrequency),
-                intervals));
+            revolutions.Add(new MediaFluxRevolutionData(ConvertTicksToNanoseconds(duration, capture.SampleFrequency), intervals));
             start = end;
         }
 
@@ -250,8 +203,7 @@ public sealed class GreaseweazleMediaAcquisitionProvider(
             [MediaPhysicalMetadataKeys.Head] = head.ToString(CultureInfo.InvariantCulture)
         };
 
-    private static uint ConvertTicksToNanoseconds(ulong ticks, uint sampleFrequency) =>
-        checked((uint)Math.Max(1, Math.Round(ticks * 1_000_000_000d / sampleFrequency)));
+    private static uint ConvertTicksToNanoseconds(ulong ticks, uint sampleFrequency) => checked((uint)Math.Max(1, Math.Round(ticks * 1_000_000_000d / sampleFrequency)));
 
     private static uint DurationToTicks(TimeSpan duration, uint sampleFrequency)
     {
@@ -261,53 +213,32 @@ public sealed class GreaseweazleMediaAcquisitionProvider(
 
     private static (int Cylinder, int Head, int DriveCylinder, int DriveHead)[] ParseTracks(string value)
     {
-        var tracks = value.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-            .Select(item => item.Split(':', StringSplitOptions.TrimEntries))
-            .Select(parts => parts.Length == 4
-                ? (ParseInt(parts[0]), ParseInt(parts[1]), ParseInt(parts[2]), ParseInt(parts[3]))
-                : throw new ArgumentException($"Invalid Greaseweazle track selection '{string.Join(':', parts)}'."))
+        var tracks = value.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Select(item => item.Split(':', StringSplitOptions.TrimEntries))
+            .Select(parts => parts.Length == 4 ? (ParseInt(parts[0]), ParseInt(parts[1]), ParseInt(parts[2]), ParseInt(parts[3])) : throw new ArgumentException($"Invalid Greaseweazle track selection '{string.Join(':', parts)}'."))
             .ToArray();
         if (tracks.Length == 0) throw new ArgumentException("At least one Greaseweazle track must be selected.", nameof(value));
         return tracks;
     }
 
-    private static void Validate(
-        IReadOnlyList<(int Cylinder, int Head, int DriveCylinder, int DriveHead)> tracks,
-        int revolutions,
-        int overflowRetries,
-        int seekRetries,
-        TimeSpan? fakeIndex,
-        bool hardSectors)
+    private static void Validate(IReadOnlyList<(int Cylinder, int Head, int DriveCylinder, int DriveHead)> tracks, int revolutions, int overflowRetries, int seekRetries, TimeSpan? fakeIndex, bool hardSectors)
     {
         if (revolutions is <= 0 or > byte.MaxValue) throw new ArgumentOutOfRangeException(nameof(revolutions));
         if (overflowRetries < 0) throw new ArgumentOutOfRangeException(nameof(overflowRetries));
         if (seekRetries < 0) throw new ArgumentOutOfRangeException(nameof(seekRetries));
         if (fakeIndex is not null && hardSectors)
             throw new ArgumentException("Fake index and hard-sector acquisition are mutually exclusive.");
-        if (tracks.Any(track => track.Cylinder is < 0 or > 83 || track.Head is < 0 or > 1
-                || track.DriveCylinder is < 0 or > short.MaxValue || track.DriveHead is < 0 or > byte.MaxValue))
+        if (tracks.Any(track => track.Cylinder is < 0 or > 83 || track.Head is < 0 or > 1 || track.DriveCylinder is < 0 or > short.MaxValue || track.DriveHead is < 0 or > byte.MaxValue))
             throw new ArgumentOutOfRangeException(nameof(tracks), "A selected track is outside the supported range.");
         if (tracks.GroupBy(track => (track.Cylinder, track.Head)).Any(group => group.Count() > 1))
             throw new ArgumentException("A logical track is selected more than once.", nameof(tracks));
     }
 
-    private static string ReadRequired(IReadOnlyDictionary<string, string> options, string key) =>
-        options.TryGetValue(key, out var value) && !string.IsNullOrWhiteSpace(value)
-            ? value
-            : throw new ArgumentException($"Required Greaseweazle option '{key}' is missing.", nameof(options));
+    private static int ReadInt(IReadOnlyDictionary<string, string> options, string key) => ParseInt(GreaseweazleMediaOptionFunctions.ReadRequired(options, key));
 
-    private static int ReadInt(IReadOnlyDictionary<string, string> options, string key) =>
-        ParseInt(ReadRequired(options, key));
-
-    private static int ParseInt(string value) =>
-        int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed)
-            ? parsed
-            : throw new ArgumentException($"Invalid invariant integer '{value}'.");
+    private static int ParseInt(string value) => int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : throw new ArgumentException($"Invalid invariant integer '{value}'.");
 
     private static bool ReadBool(IReadOnlyDictionary<string, string> options, string key, bool defaultValue) =>
-        !options.TryGetValue(key, out var value) ? defaultValue
-        : bool.TryParse(value, out var parsed) ? parsed
-        : throw new ArgumentException($"Invalid Boolean value '{value}' for option '{key}'.", nameof(options));
+        !options.TryGetValue(key, out var value) ? defaultValue : bool.TryParse(value, out var parsed) ? parsed : throw new ArgumentException($"Invalid Boolean value '{value}' for option '{key}'.", nameof(options));
 
     private static TimeSpan? ReadOptionalMilliseconds(IReadOnlyDictionary<string, string> options, string key)
     {
@@ -316,9 +247,4 @@ public sealed class GreaseweazleMediaAcquisitionProvider(
             throw new ArgumentException($"Invalid positive duration '{value}' for option '{key}'.", nameof(options));
         return TimeSpan.FromMilliseconds(milliseconds);
     }
-
-    private static T ReadEnum<T>(IReadOnlyDictionary<string, string> options, string key) where T : struct, Enum =>
-        Enum.TryParse<T>(ReadRequired(options, key), true, out var parsed)
-            ? parsed
-            : throw new ArgumentException($"Invalid {typeof(T).Name} value for option '{key}'.", nameof(options));
 }

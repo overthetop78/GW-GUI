@@ -6,25 +6,21 @@ namespace GWGUI.App.Views.Controls.Emulation.Machine;
 
 public sealed partial class EmulationSection
 {
-    private string? InitialMediaDirectory(
-        EmulationConfigurationListItem selected, EmulationMediaDevice device)
+    private string? InitialMediaDirectory(EmulationConfigurationListItem selected, EmulationMediaDevice device)
     {
         var category = MediaFolderCategory(device.MediaType);
         return _settings.EmulationMediaFolders.FirstOrDefault(item =>
             string.Equals(item.ModuleId, selected.Module.Id, StringComparison.Ordinal)
-            && string.Equals(item.MachineId, selected.Configuration.MachineId,
-                StringComparison.Ordinal)
+            && string.Equals(item.MachineId, selected.Configuration.MachineId, StringComparison.Ordinal)
             && item.Category == category)?.Folder;
     }
 
-    private void RememberMediaDirectory(
-        EmulationConfigurationListItem selected, EmulationMediaDevice device, string directory)
+    private void RememberMediaDirectory(EmulationConfigurationListItem selected, EmulationMediaDevice device, string directory)
     {
         var category = MediaFolderCategory(device.MediaType);
         var existing = _settings.EmulationMediaFolders.FirstOrDefault(item =>
             string.Equals(item.ModuleId, selected.Module.Id, StringComparison.Ordinal)
-            && string.Equals(item.MachineId, selected.Configuration.MachineId,
-                StringComparison.Ordinal)
+            && string.Equals(item.MachineId, selected.Configuration.MachineId, StringComparison.Ordinal)
             && item.Category == category);
         if (existing is null)
         {
@@ -40,8 +36,7 @@ public sealed partial class EmulationSection
         existing.Folder = directory;
     }
 
-    private static EmulationMediaFolderCategory MediaFolderCategory(
-        EmulationMediaType mediaType) => mediaType switch
+    private static EmulationMediaFolderCategory MediaFolderCategory(EmulationMediaType mediaType) => mediaType switch
     {
         EmulationMediaType.Floppy => EmulationMediaFolderCategory.Floppy,
         EmulationMediaType.CompactDisc => EmulationMediaFolderCategory.CompactDisc,

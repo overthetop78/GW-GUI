@@ -23,6 +23,8 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.TeleDisk;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Xfd;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradCpr;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradRom;
+using GWGUI.MediaEngine.Images.Formats.Cartridge.Console;
+using GWGUI.MediaEngine.Images.Formats.Floppy.FamicomFds;
 using GWGUI.MediaEngine.Images.Formats.HardDisk.Raw;
 using GWGUI.MediaEngine.Images.Formats.HardDisk.Chd;
 using GWGUI.MediaEngine.Images.Formats.HardDisk.Qcow2;
@@ -35,6 +37,9 @@ using GWGUI.MediaEngine.Images.Formats.Optical.CloneCd;
 using GWGUI.MediaEngine.Images.Formats.Optical.Chd;
 using GWGUI.MediaEngine.Images.Formats.Optical.Iso;
 using GWGUI.MediaEngine.Images.Formats.Optical.Alcohol;
+using GWGUI.MediaEngine.Images.Formats.Optical.Gdi;
+using GWGUI.MediaEngine.Images.Formats.Optical.Xdvdfs;
+using GWGUI.MediaEngine.Images.Formats.Optical.WiiU;
 using GWGUI.MediaEngine.Images.Formats.Tape.AtariCas;
 using GWGUI.MediaEngine.Images.Formats.Tape.Audio;
 using GWGUI.MediaEngine.Images.Formats.Tape.CommodoreTap;
@@ -59,9 +64,7 @@ public sealed class MediaRecognitionComposition
     {
         ScpReader = scpReader;
         Readers = readers;
-        SupportedExtensions = readers
-            .SelectMany(reader => reader.Extensions)
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+        SupportedExtensions = readers.SelectMany(reader => reader.Extensions).ToFrozenSet(StringComparer.OrdinalIgnoreCase);
         Registry = new MediaRecognitionRegistry(readers);
         ReadingService = new MediaImageReadingService(Registry);
     }
@@ -85,8 +88,11 @@ public sealed class MediaRecognitionComposition
                 new GWGUI.MediaEngine.Images.Formats.Floppy.Adf.AdfReader(),
                 new AmstradCprReader(),
                 new AmstradRomReader(),
+                new ConsoleCartridgeReader(),
+                new FamicomFdsReader(),
                 new AcornAtomDskReader(),
                 new ApridiskReader(),
+                new DefinedRawImageReader(),
                 new BbcDfsReader(),
                 new CoherentRawImageReader(),
                 new DecRx02Reader(),
@@ -117,6 +123,9 @@ public sealed class MediaRecognitionComposition
                 new CloneCdReader(),
                 new AlcoholMdsReader(),
                 new ChdOpticalReader(),
+                new GdiReader(),
+                new XdvdfsReader(),
+                new WiiUReader(),
                 new IsoReader(),
                 new WavTapeReader(),
                 new AudioTapeReader(),

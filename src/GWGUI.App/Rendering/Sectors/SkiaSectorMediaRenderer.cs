@@ -31,9 +31,7 @@ public sealed class SkiaSectorMediaRenderer
         var center = new SKPoint(width / 2f, height / 2f);
         var outerRadius = Math.Max(1, Math.Min(width, height) / 2f - SectorMediaRenderConstants.OuterMargin) * zoom;
         var innerRadius = outerRadius * SectorMediaRenderConstants.InnerRadiusRatio;
-        var tracks = direction == MediaVisualizationDirection.Descending
-            ? mediaSurface.Tracks.OrderByDescending(track => track.Cylinder).ToArray()
-            : mediaSurface.Tracks.OrderBy(track => track.Cylinder).ToArray();
+        var tracks = direction == MediaVisualizationDirection.Descending ? mediaSurface.Tracks.OrderByDescending(track => track.Cylinder).ToArray() : mediaSurface.Tracks.OrderBy(track => track.Cylinder).ToArray();
         var trackWidth = (outerRadius - innerRadius) / tracks.Length;
         using var trackBoundary = new SKPaint { Color = SectorMediaRenderConstants.PendingTrackBoundaryColor, IsAntialias = true, Style = SKPaintStyle.Stroke, StrokeWidth = 1 };
 
@@ -49,9 +47,7 @@ public sealed class SkiaSectorMediaRenderer
             {
                 var sector = sectors[sectorIndex];
                 var start = -90f + sectorIndex * sweep + SectorMediaRenderConstants.SectorGapDegrees / 2;
-                var visibleSweep = Math.Max(
-                    SectorMediaRenderConstants.MinimumSweepDegrees,
-                    sweep - SectorMediaRenderConstants.SectorGapDegrees);
+                var visibleSweep = Math.Max(SectorMediaRenderConstants.MinimumSweepDegrees, sweep - SectorMediaRenderConstants.SectorGapDegrees);
                 using var path = CreateRingSector(center, inner, outer, start, visibleSweep);
                 var revealed = revealedTracks is null || revealedTracks.Contains((surface, tracks[trackIndex].Cylinder));
                 using var fill = new SKPaint
@@ -74,14 +70,7 @@ public sealed class SkiaSectorMediaRenderer
         }
     }
 
-    public SectorMediaElement? HitTest(
-        SectorMediaRenderModel? model,
-        int surface,
-        MediaVisualizationDirection direction,
-        int width,
-        int height,
-        SKPoint point,
-        float zoom = 1)
+    public SectorMediaElement? HitTest(SectorMediaRenderModel? model, int surface, MediaVisualizationDirection direction, int width, int height, SKPoint point, float zoom = 1)
     {
         var mediaSurface = model?.Surfaces.FirstOrDefault(item => item.Index == surface);
         if (mediaSurface is null || mediaSurface.Tracks.Count == 0) return null;
@@ -95,9 +84,7 @@ public sealed class SkiaSectorMediaRenderer
         var radius = MathF.Sqrt(dx * dx + dy * dy);
         if (radius < innerRadius || radius > outerRadius) return null;
 
-        var tracks = direction == MediaVisualizationDirection.Descending
-            ? mediaSurface.Tracks.OrderByDescending(track => track.Cylinder).ToArray()
-            : mediaSurface.Tracks.OrderBy(track => track.Cylinder).ToArray();
+        var tracks = direction == MediaVisualizationDirection.Descending ? mediaSurface.Tracks.OrderByDescending(track => track.Cylinder).ToArray() : mediaSurface.Tracks.OrderBy(track => track.Cylinder).ToArray();
         var trackWidth = (outerRadius - innerRadius) / tracks.Length;
         var trackIndex = Math.Clamp((int)((outerRadius - radius) / trackWidth), 0, tracks.Length - 1);
         var sectors = tracks[trackIndex].Sectors.OrderBy(sector => sector.Number).ToArray();
@@ -107,14 +94,7 @@ public sealed class SkiaSectorMediaRenderer
         return sectors[sectorIndex];
     }
 
-    private static void RenderLogical(
-        SKCanvas canvas,
-        SectorMediaSurface surface,
-        long? selectedPosition,
-        int width,
-        int height,
-        float zoom,
-        IReadOnlySet<(int Surface, int Cylinder)>? revealedTracks)
+    private static void RenderLogical(SKCanvas canvas, SectorMediaSurface surface, long? selectedPosition, int width, int height, float zoom, IReadOnlySet<(int Surface, int Cylinder)>? revealedTracks)
     {
         var sectors = surface.Tracks.SelectMany(track => track.Sectors).OrderBy(sector => sector.LogicalBlock).ToArray();
         if (sectors.Length == 0) return;
@@ -142,12 +122,7 @@ public sealed class SkiaSectorMediaRenderer
         }
     }
 
-    private static SectorMediaElement? HitTestLogical(
-        SectorMediaSurface surface,
-        int width,
-        int height,
-        SKPoint point,
-        float zoom)
+    private static SectorMediaElement? HitTestLogical(SectorMediaSurface surface, int width, int height, SKPoint point, float zoom)
     {
         var sectors = surface.Tracks.SelectMany(track => track.Sectors).OrderBy(sector => sector.LogicalBlock).ToArray();
         if (sectors.Length == 0) return null;

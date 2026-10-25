@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>选择自动计时或视频标准。</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>选择模拟视频芯片 。</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>选择图像相像相像相像比例。自动选择使用游戏区域。</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>选择可见屏幕边框。</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>删除每条屏幕线上的图示限制。 这可能造成图形错误 。</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>允许将相反的方向按在一起 。</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>调整旋转控制器的灵敏度。</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>选择颜色调色板。</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>隐藏上屏幕边框 。</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>隐藏下方屏幕边框 。</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>隐藏左屏边框 。</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>隐藏右屏边框 。</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>将像素隐藏在显示图像的边缘。</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>跳过拖后腿。</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>卡带的存储电路。除非ROM识别有误，否则请保留自动模式。</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>标准：最大32 KiB。MegaCart和Activision：使用不同的ROM存储体切换电路。OCM：支持存储体切换和EEPROM存档。Activision在此是电路名称，并非游戏发行商。选错类型可能导致无法启动或运行出错。</value></data>
+</root>

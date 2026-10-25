@@ -23,8 +23,7 @@ internal static partial class EmulationSettingsLayout
         ScrollViewer.SetHorizontalScrollBarVisibility(settings.DetectedFirmware, ScrollBarVisibility.Disabled);
         ScrollViewer.SetVerticalScrollBarVisibility(settings.DetectedFirmware, ScrollBarVisibility.Auto);
 
-        var refresh = ControlUiFactory.IconTextButton(EmulationFirmwareSettingsConstants.RefreshIcon,
-            LocExtension.Get("Common.Refresh"));
+        var refresh = ControlUiFactory.IconTextButton(EmulationFirmwareSettingsConstants.RefreshIcon, LocExtension.Get("Common.Refresh"));
         refresh.Click += async (_, _) => await settings.Refresh(refresh);
         var use = settings.UseSelected;
         use.Content = LocExtension.Get("Emulation.Firmware.Use");
@@ -39,8 +38,7 @@ internal static partial class EmulationSettingsLayout
         var page = TwoColumnPage(configuredCard, detectedCard);
         page.RowDefinitions[0].Height = new GridLength(1, GridUnitType.Star);
 
-        var openFolder = ControlUiFactory.IconTextButton(EmulationFirmwareSettingsConstants.OpenFolderIcon,
-            LocExtension.Get("Emulation.Firmware.Rom.OpenFolder"));
+        var openFolder = ControlUiFactory.IconTextButton(EmulationFirmwareSettingsConstants.OpenFolderIcon, LocExtension.Get("Emulation.Firmware.Rom.OpenFolder"));
         openFolder.HorizontalAlignment = HorizontalAlignment.Left;
         openFolder.Margin = new Thickness(0, 12, 0, 0);
         openFolder.Click += async (_, _) => await settings.OpenFolder(openFolder);
@@ -50,13 +48,11 @@ internal static partial class EmulationSettingsLayout
         return page;
     }
 
-    internal static Grid FirmwareRow(string name, string? version,
-        EmulationFirmwareCompatibility compatibility, string? sourcePath = null, string destination = "")
+    internal static Grid FirmwareRow(string name, string? version, EmulationFirmwareCompatibility compatibility, string? sourcePath = null, string destination = "")
     {
         var grid = new Grid { MinHeight = EmulationFirmwareSettingsConstants.FirmwareRowMinimumHeight,
             Margin = new Thickness(8, 2, 8, 2) };
-        grid.ColumnDefinitions.Add(new ColumnDefinition
-            { Width = new GridLength(EmulationFirmwareSettingsConstants.FirmwareIconColumnWidth) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(EmulationFirmwareSettingsConstants.FirmwareIconColumnWidth) });
         grid.ColumnDefinitions.Add(new ColumnDefinition());
         grid.ColumnDefinitions.Add(new ColumnDefinition
         {
@@ -98,8 +94,7 @@ internal static partial class EmulationSettingsLayout
         return grid;
     }
 
-    private static Border FirmwareBadge(string text,
-        (string Text, Brush Foreground, Brush Background, Brush Border) colors) => new()
+    private static Border FirmwareBadge(string text, (string Text, Brush Foreground, Brush Background, Brush Border) colors) => new()
     {
         Child = new TextBlock
         {
@@ -115,8 +110,7 @@ internal static partial class EmulationSettingsLayout
         Padding = new Thickness(10, 5, 10, 5),
         HorizontalAlignment = HorizontalAlignment.Stretch,
         VerticalAlignment = VerticalAlignment.Center,
-        Margin = new Thickness(EmulationFirmwareSettingsConstants.FirmwareBadgeSpacing / 2, 0,
-            EmulationFirmwareSettingsConstants.FirmwareBadgeSpacing / 2, 0)
+        Margin = new Thickness(EmulationFirmwareSettingsConstants.FirmwareBadgeSpacing / 2, 0, EmulationFirmwareSettingsConstants.FirmwareBadgeSpacing / 2, 0)
     };
 
     private static string LimitFirmwareDestination(string destination)
@@ -124,10 +118,8 @@ internal static partial class EmulationSettingsLayout
         var characterIndexes = StringInfo.ParseCombiningCharacters(destination);
         if (characterIndexes.Length <= EmulationFirmwareSettingsConstants.FirmwareDestinationMaximumLength)
             return destination;
-        var retainedCharacters = EmulationFirmwareSettingsConstants.FirmwareDestinationMaximumLength -
-                                 EmulationFirmwareSettingsConstants.FirmwareDestinationEllipsis.Length;
-        return destination[..characterIndexes[retainedCharacters]] +
-               EmulationFirmwareSettingsConstants.FirmwareDestinationEllipsis;
+        var retainedCharacters = EmulationFirmwareSettingsConstants.FirmwareDestinationMaximumLength - EmulationFirmwareSettingsConstants.FirmwareDestinationEllipsis.Length;
+        return destination[..characterIndexes[retainedCharacters]] + EmulationFirmwareSettingsConstants.FirmwareDestinationEllipsis;
     }
 
     internal static int FirmwareCompatibilityOrder(EmulationFirmwareCompatibility compatibility) => compatibility switch
@@ -135,16 +127,14 @@ internal static partial class EmulationSettingsLayout
         EmulationFirmwareCompatibility.Official => 0,
         EmulationFirmwareCompatibility.Compatible => 1,
         EmulationFirmwareCompatibility.PartiallyCompatible => 2,
-        EmulationFirmwareCompatibility.Incompatible => 3,
-        _ => 4
+        EmulationFirmwareCompatibility.Unknown => 3,
+        EmulationFirmwareCompatibility.Incompatible => 4,
+        _ => 5
     };
 
-    internal static void UpdateFirmwareUseButton(Button button,
-        EmulationFirmwareCompatibility? compatibility) =>
-        button.IsEnabled = compatibility is not null and not EmulationFirmwareCompatibility.Incompatible;
+    internal static void UpdateFirmwareUseButton(Button button, EmulationFirmwareCompatibility? compatibility) => button.IsEnabled = compatibility is not null and not EmulationFirmwareCompatibility.Incompatible;
 
-    private static (string Text, Brush Foreground, Brush Background, Brush Border) FirmwareBadgeColors(
-        EmulationFirmwareCompatibility compatibility) => compatibility switch
+    private static (string Text, Brush Foreground, Brush Background, Brush Border) FirmwareBadgeColors(EmulationFirmwareCompatibility compatibility) => compatibility switch
         {
             EmulationFirmwareCompatibility.Official =>
                 (LocExtension.Get("Emulation.Firmware.Official"), new SolidColorBrush(Color.FromRgb(31, 87, 142)),

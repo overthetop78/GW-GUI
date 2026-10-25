@@ -6,12 +6,7 @@ namespace GWGUI.MediaEngine.Images.Conversion;
 /// <summary>Describes a conversion from an already read media document to one output target.</summary>
 public sealed class MediaConversionRequest
 {
-    public MediaConversionRequest(
-        MediaImageDocument source,
-        string outputPath,
-        string targetFormatId,
-        IReadOnlyDictionary<string, string>? options = null,
-        Action<MediaExplorationProgress>? progress = null)
+    public MediaConversionRequest(MediaImageDocument source, string outputPath, string targetFormatId, IReadOnlyDictionary<string, string>? options = null, Action<MediaExplorationProgress>? progress = null)
     {
         ArgumentNullException.ThrowIfNull(source);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
@@ -21,8 +16,7 @@ public sealed class MediaConversionRequest
         OutputPath = outputPath;
         TargetFormatId = targetFormatId;
         Progress = progress;
-        Options = new ReadOnlyDictionary<string, string>(
-            new Dictionary<string, string>(options ?? new Dictionary<string, string>(), StringComparer.Ordinal));
+        Options = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>(options ?? new Dictionary<string, string>(), StringComparer.Ordinal));
     }
 
     public MediaImageDocument Source { get; }

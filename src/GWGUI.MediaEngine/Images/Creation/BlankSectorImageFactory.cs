@@ -17,23 +17,16 @@ internal static class BlankSectorImageFactory
     public static SectorImage Create(string formatId)
     {
         if (Fat12TargetGeometryCatalog.TryResolve(formatId, out var fat))
-            return CreateLinearBlank(formatId, fat.SectorSize, fat.Cylinders, fat.Heads, fat.SectorsPerTrack,
-                SectorNumbering.OneBased);
+            return CreateLinearBlank(formatId, fat.SectorSize, fat.Cylinders, fat.Heads, fat.SectorsPerTrack, SectorNumbering.OneBased);
         if (formatId is DiskImageFormatIds.AmigaDos or DiskImageFormatIds.AmigaDosHighDensity)
         {
-            var geometry = formatId == DiskImageFormatIds.AmigaDos
-                ? AmigaAdfGeometry.DoubleDensity : AmigaAdfGeometry.HighDensity;
-            return CreateLinearBlank(formatId, geometry.BlockSize, geometry.Cylinders, geometry.Heads,
-                geometry.SectorsPerTrack, SectorNumbering.ZeroBased);
+            var geometry = formatId == DiskImageFormatIds.AmigaDos ? AmigaAdfGeometry.DoubleDensity : AmigaAdfGeometry.HighDensity;
+            return CreateLinearBlank(formatId, geometry.BlockSize, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, SectorNumbering.ZeroBased);
         }
         if (formatId is DiskImageFormatIds.AppleIIAppleDos113 or DiskImageFormatIds.AppleIIAppleDos140)
-            return CreateLinearBlank(formatId, AppleIIGeometry.SectorSize, AppleIIGeometry.TrackCount, 1,
-                formatId == DiskImageFormatIds.AppleIIAppleDos113
-                    ? AppleIIGeometry.Dos32SectorsPerTrack : AppleIIGeometry.SectorsPerTrack,
-                SectorNumbering.ZeroBased);
+            return CreateLinearBlank(formatId, AppleIIGeometry.SectorSize, AppleIIGeometry.TrackCount, 1, formatId == DiskImageFormatIds.AppleIIAppleDos113 ? AppleIIGeometry.Dos32SectorsPerTrack : AppleIIGeometry.SectorsPerTrack, SectorNumbering.ZeroBased);
         if (formatId is DiskImageFormatIds.AppleIIProDos140 or DiskImageFormatIds.AppleIIISos)
-            return CreateLinearBlank(formatId, AppleIIGeometry.ProDosBlockSize, AppleIIGeometry.TrackCount,
-                1, AppleIIGeometry.ProDosBlocksPerTrack, SectorNumbering.ZeroBased);
+            return CreateLinearBlank(formatId, AppleIIGeometry.ProDosBlockSize, AppleIIGeometry.TrackCount, 1, AppleIIGeometry.ProDosBlocksPerTrack, SectorNumbering.ZeroBased);
         if (formatId == DiskImageFormatIds.AppleIIProDos800)
         {
             var geometry = MacintoshGcrGeometry.ForHeads(MacintoshGcrGeometry.DoubleSidedHeadCount);
@@ -50,14 +43,11 @@ internal static class BlankSectorImageFactory
                 CancellationToken.None);
         }
         if (formatId == DiskImageFormatIds.Commodore1581)
-            return CreateLinearBlank(formatId, Commodore1581Geometry.LogicalBlockSize,
-                Commodore1581Geometry.LogicalCylinderCount, Commodore1581Geometry.LogicalHeadCount,
-                Commodore1581Geometry.LogicalBlocksPerTrack, SectorNumbering.ZeroBased);
+            return CreateLinearBlank(formatId, Commodore1581Geometry.LogicalBlockSize, Commodore1581Geometry.LogicalCylinderCount, Commodore1581Geometry.LogicalHeadCount, Commodore1581Geometry.LogicalBlocksPerTrack, SectorNumbering.ZeroBased);
         throw new ArgumentException($"Unsupported migration target format '{formatId}'.", nameof(formatId));
     }
 
-    private static SectorImage CreateLinearBlank(string formatId, int blockSize, int cylinders,
-        int heads, int sectorsPerTrack, SectorNumbering numbering)
+    private static SectorImage CreateLinearBlank(string formatId, int blockSize, int cylinders, int heads, int sectorsPerTrack, SectorNumbering numbering)
     {
         var geometry = new LinearSectorImageGeometry(blockSize, cylinders, heads, sectorsPerTrack, numbering);
         return LinearSectorImageBuilder.Create(new byte[geometry.Capacity], formatId, geometry);

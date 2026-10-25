@@ -20,9 +20,7 @@ internal static class DiskCopyMetadataFunctions
         return metadata;
     }
 
-    public static DiskCopyImage? Restore(
-        SectorImage image,
-        IReadOnlyDictionary<string, string> metadata)
+    public static DiskCopyImage? Restore(SectorImage image, IReadOnlyDictionary<string, string> metadata)
     {
         ArgumentNullException.ThrowIfNull(image);
         ArgumentNullException.ThrowIfNull(metadata);
@@ -51,9 +49,7 @@ internal static class DiskCopyMetadataFunctions
             !byte.TryParse(formatByteText, NumberStyles.None, CultureInfo.InvariantCulture, out var formatByte))
             throw new InvalidDataException("The DiskCopy format metadata is invalid.");
 
-        return new DiskCopyImage(image, nameBytes, diskFormat, formatByte,
-            ParseChecksumStatus(metadata, DiskCopyMetadataKeys.DataChecksumStatus),
-            ParseChecksumStatus(metadata, DiskCopyMetadataKeys.TagChecksumStatus));
+        return new DiskCopyImage(image, nameBytes, diskFormat, formatByte, ParseChecksumStatus(metadata, DiskCopyMetadataKeys.DataChecksumStatus), ParseChecksumStatus(metadata, DiskCopyMetadataKeys.TagChecksumStatus));
     }
 
     private static string ChecksumStatus(bool? valid) => valid switch { true => "valid", false => "invalid", null => "missing" };

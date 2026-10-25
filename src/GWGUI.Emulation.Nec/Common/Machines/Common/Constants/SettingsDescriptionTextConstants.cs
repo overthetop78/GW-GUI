@@ -1,0 +1,73 @@
+namespace GWGUI.Emulation.Nec.Common.Machines.Common.Constants;
+
+internal static partial class SettingsDescriptionFunctionsConstants
+{
+    internal const string Enabled = "enabled";
+    internal const string Disabled = "disabled";
+    internal const string General = "general";
+    internal const string Cpu = "cpu";
+    internal const string Memory = "memory";
+    internal const string Firmware = "firmware";
+    internal const string Video = "video";
+    internal const string Audio = "audio";
+    internal const string Mouse = "mouse";
+    internal const string ModelCpuSuffix = ".cpu";
+    internal const string ModelFrequencySuffix = ".frequency";
+    internal const string MemoryUnitKib = " KiB";
+    internal const string MemoryUnitMib = " MiB";
+    internal const string MillisecondUnit = " ms";
+    internal const string PercentUnit = "%";
+    internal const string DecimalFormat = "0.00";
+    internal const string Zero = "0";
+    internal const string One = "1";
+    internal const string Two = "2";
+    internal const string Three = "3";
+    internal const string Four = "4";
+    internal const string Five = "5";
+    internal const string DefaultMouseSensitivity = "1.25";
+    internal const string ResourceNoSpriteLimit = "Emulation.Nec.Video.NoSpriteLimit";
+    internal const string ResourceInitialScanline = "Emulation.Nec.Video.InitialScanline";
+    internal const string ResourceLastScanline = "Emulation.Nec.Video.LastScanline";
+    internal const string ResourceFirmwareNotRequired = "Emulation.Nec.Firmware.NotRequired";
+    internal const string ResourceMouseTab = "Emulation.Tab.Mouse";
+    internal const string ResourceMouseSensitivity = "Emulation.Nec.Mouse.Sensitivity";
+    internal const string MouseIcon = "\uE962";
+    internal const string ResourceGeneral = "Emulation.Tab.General";
+    internal const string ResourceMachineModel = "Emulation.Machine.Model";
+    internal const string ResourceEmulator = "Emulation.Core.Emulator";
+    internal const string ResourceCpuProcessor = "Emulation.Cpu.Processor";
+    internal const string ResourceCpuModel = "Emulation.Cpu.Model";
+    internal const string ResourceCpuSpeed = "Emulation.Cpu.SpeedOriginal";
+    internal const string ResourceMemoryMain = "Emulation.Memory.Main";
+    internal const string ResourceRom = "Emulation.Tab.Rom";
+    internal const string ResourceFirmwareSystemRom = "Emulation.Firmware.Rom.System";
+    internal const string ResourceFirmwareIntegrated = "Emulation.Nec.Firmware.Integrated";
+    internal const string ResourceVideo = "Emulation.Video.Settings.Display";
+    internal const string ResourceVideoResolution = "Emulation.Video.Resolution";
+    internal const string ResourceVideoMonitor = "Emulation.Nec.Video.Monitor";
+    internal const string ResourceVideoIntensity = "Emulation.Nec.Video.Intensity";
+    internal const string ResourceVideoCrop = "Emulation.Video.Crop";
+    internal const string ResourceAudio = "Emulation.Audio";
+    internal const string ResourceAudioEnabled = "Emulation.Audio.Enabled";
+    internal const string ResourceAudioDevice = "Emulation.Audio.Device";
+    internal const string ResourceAudioLatency = "Emulation.Audio.LatencyLabel";
+    internal const string ResourceAudioFloppySound = "Emulation.Audio.Floppy.Enabled";
+    internal const string CpuFrequency = "—";
+    internal const string IconGeneral = "\uE713";
+    internal const string IconCpu = "\uE950";
+    internal const string IconMemory = "\uE964";
+    internal const string IconFirmware = "\uE8B7";
+    internal const string IconVideo = "\uE7F4";
+    internal const string IconAudio = "\uE767";
+}
+
+internal static class StorageDirectorySettings
+{
+    internal const string HardDiskDirectory = "folders.hardDisks";
+    internal const string BlockId = "default-folders";
+    internal const string TitleResource = "Emulation.Folder.Default";
+    internal const string HardDiskResource = "Emulation.Storage.HardDisk.List";
+    internal const string ShortHelp = "Emulation.Help.Storage.HardDiskImageDirectory.Short";
+    internal const string DetailedHelp = "Emulation.Help.Storage.HardDiskImageDirectory.Detailed";
+    internal const string Icon = "\uEDA2";
+}

@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>A kért pozíció érvénytelen erre a fájlrendszerbeli objektumra.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>A hozzárendelési csomópont művelet nem sikerült.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Allocation- csomópont bitmap index blokk {0}/{1} Nem lehetett olvasni.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>A hajtófej nincs a kért hengernél ({0}). Újratalibrálja a meghajtót olvasás előtt.</value></data>
 </root>

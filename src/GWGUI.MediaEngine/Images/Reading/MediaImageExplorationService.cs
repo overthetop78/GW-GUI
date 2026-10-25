@@ -1,4 +1,4 @@
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Enums;
@@ -7,22 +7,13 @@ using System.IO;
 namespace GWGUI.MediaEngine.Images.Reading;
 
 /// <summary>Loads one media document and explores its file-system content without presentation dependencies.</summary>
-public sealed class MediaImageExplorationService(
-    MediaImageReadingService reader,
-    MediaExplorer explorer)
+public sealed class MediaImageExplorationService(MediaImageReadingService reader, MediaExplorer explorer)
 {
-    public async Task<ExploredMediaImage> ExploreAsync(
-        string path,
-        string? requestedFormatId,
-        CancellationToken cancellationToken = default,
-        Action<MediaExplorationProgress>? reportProgress = null)
+    public async Task<ExploredMediaImage> ExploreAsync(string path, string? requestedFormatId, CancellationToken cancellationToken = default, Action<MediaExplorationProgress>? reportProgress = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
 
-        reportProgress?.Invoke(new(
-            MediaExplorationProgressStage.ReadingMedia,
-            Path.GetFileName(path),
-            58));
+        reportProgress?.Invoke(new(MediaExplorationProgressStage.ReadingMedia, Path.GetFileName(path), 58));
 
         var source = new MediaSourceDescriptor(path, [], RequestedFormatId: requestedFormatId);
         MediaImageDocument document;
@@ -32,24 +23,14 @@ public sealed class MediaImageExplorationService(
         }
         catch (NotSupportedException) when (requestedFormatId is not null)
         {
-            document = await reader.ReadAsync(
-                source with { RequestedFormatId = null },
-                cancellationToken).ConfigureAwait(false);
+            document = await reader.ReadAsync(source with { RequestedFormatId = null }, cancellationToken).ConfigureAwait(false);
         }
 
         cancellationToken.ThrowIfCancellationRequested();
-        reportProgress?.Invoke(new(
-            MediaExplorationProgressStage.ReadingFileSystem,
-            document.FormatId,
-            78,
-            document.MediaKind));
+        reportProgress?.Invoke(new(MediaExplorationProgressStage.ReadingFileSystem, document.FormatId, 78, document.MediaKind));
 
         var explored = await explorer.ExploreAsync(document, cancellationToken).ConfigureAwait(false);
-        reportProgress?.Invoke(new(
-            MediaExplorationProgressStage.RecognizingFiles,
-            explored.FirstFileName ?? document.FormatId,
-            94,
-            document.MediaKind));
+        reportProgress?.Invoke(new(MediaExplorationProgressStage.RecognizingFiles, explored.FirstFileName ?? document.FormatId, 94, document.MediaKind));
         return explored;
     }
 

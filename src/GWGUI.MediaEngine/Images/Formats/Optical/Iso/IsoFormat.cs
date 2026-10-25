@@ -11,7 +11,8 @@ internal static class IsoFormat
 
     public static readonly IReadOnlySet<string> Extensions = new[]
     {
-        DiskImageFileExtensions.Iso
+        DiskImageFileExtensions.Iso,
+        DiskImageFileExtensions.Gcm
     }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public static string FormatId => OpticalImageFormatIds.Iso;

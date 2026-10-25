@@ -13,8 +13,7 @@ public static class NhdImageWriter
         if (comment.Length > 255 || comment.Any(c=>c < 32 || c > 126))
             throw new ArgumentException("The NHD comment must be printable ASCII and at most 255 characters.");
     }
-    public static void Write(Stream destination,long capacity,Action<Stream>? initialize = null,
-        int heads = 1,int sectors = 1,int sectorBytes = 512,string comment = "")
+    public static void Write(Stream destination,long capacity,Action<Stream>? initialize = null, int heads = 1,int sectors = 1,int sectorBytes = 512,string comment = "")
     {
         Validate(capacity,heads,sectors,sectorBytes,comment);
         var header=new byte[512]; "T98HDDIMAGE.R0"u8.CopyTo(header);

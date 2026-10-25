@@ -1,0 +1,61 @@
+using System.IO;
+
+namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
+
+internal static class ConfigurationSummaryFunctions
+{
+    internal static EmulationConfigurationSummary Create(MachineConfiguration configuration)
+    {
+        var model = ModelCatalog.Get(configuration.Model);
+        var details = new List<string> { $"CPU · {model.RamKib} KiB RAM" };
+        details.AddRange((configuration.Media ?? []).OrderBy(media => media.MountOrder).Select(media => Path.GetFileName(media.Path)));
+        return new EmulationConfigurationSummary(MachineConfigurationConstants.ResourceKey(model.Id), details);
+    }
+}
+
+internal static class ConfigurationValidationFunctions
+{
+    internal static void ValidateForSave(MachineConfiguration configuration)
+    {
+        var model = ModelCatalog.Get(configuration.Model);
+        if (string.IsNullOrWhiteSpace(configuration.EmulatorId))
+            throw new InvalidDataException(nameof(configuration.EmulatorId));
+        if (configuration.SchemaVersion != ConfigurationStoreConstants.CurrentSchemaVersion)
+            throw new InvalidDataException(nameof(configuration.SchemaVersion));
+        var adapter = EmulatorCatalog.CreateAdapters().Single(item => item.EmulatorId == configuration.EmulatorId);
+        if (!adapter.Definition.MachineIds.Contains(configuration.Model))
+            throw new InvalidDataException(nameof(configuration.Model));
+        adapter.ValidateConfiguration(configuration);
+        var slots = FirmwareConfigurationFunctions.Slots(configuration, adapter);
+        var paths = configuration.FirmwarePaths ?? new Dictionary<string, string>();
+        if (adapter.RequiresExternalFirmware(configuration) && !slots.Any(slot => paths.ContainsKey(slot.FieldId)))
+            throw new InvalidDataException(nameof(configuration.FirmwarePaths));
+        foreach (var slot in slots)
+            if (slot.IsRequired && !paths.ContainsKey(slot.FieldId))
+                throw new InvalidDataException(slot.FieldId);
+        foreach (var item in paths)
+        {
+            if (!slots.Any(slot => slot.FieldId == item.Key)) throw new InvalidDataException(item.Key);
+            if (!File.Exists(item.Value)) throw new FileNotFoundException(null, item.Value);
+        }
+        var devices = adapter.DescribeMediaDevices(configuration);
+        foreach (var media in configuration.Media ?? [])
+        {
+            if (!File.Exists(media.Path)) throw new FileNotFoundException(null, media.Path);
+            if (!Supports(model, media.Category, devices))
+                throw new InvalidDataException($"{model.Id}:{media.Category}");
+        }
+    }
+
+    internal static bool Supports(Model model, MediaCategory category, IReadOnlyList<EmulationMediaDevice>? devices = null) => category switch
+    {
+        MediaCategory.Floppy => model.MaximumFloppyDriveCount > 0,
+        MediaCategory.Cassette => model.SupportsCassetteDrive,
+        MediaCategory.Cartridge => model.SupportsCartridgeSlot,
+        MediaCategory.CompactDisc => model.SupportsCompactDiscDrive,
+        MediaCategory.Snapshot => true,
+        MediaCategory.MemoryCard => model.HasBuiltInMemoryCard,
+        MediaCategory.HardDisk => devices?.Any(device => device.MediaType == EmulationMediaType.HardDisk) == true,
+        _ => false
+    };
+}

@@ -76,7 +76,7 @@ if errorlevel 1 (
 
 echo.
 echo Construction !BUILD_CONFIGURATION!...
-set "POWERSHELL7=C:\Program Files\WindowsApps\Microsoft.PowerShell_7.6.6.0_x64__8wekyb3d8bbwe\pwsh.exe"
+set "POWERSHELL7=pwsh"
 if "!MODULE_MODE!"=="all" (
     "!POWERSHELL7!" -NoProfile -File "scripts\local-building\build.ps1" -Configuration "!BUILD_CONFIGURATION!" -AllModules
 ) else if "!MODULE_MODE!"=="selected" (

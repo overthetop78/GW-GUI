@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Error.StateIncompatible" xml:space="preserve"><value>המדינה שנשמרה קולקו אינה תואמת למכונה הנוכחית.</value></data>
+  <data name="Emulation.Coleco.Error.Unexpected" xml:space="preserve"><value>טעות של חיקוי קוליקו בלתי צפויה התרחשה.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareMissing" xml:space="preserve"><value>קושחה נדרשת של קולקו חסרה.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid" xml:space="preserve"><value>המערכת ROM הוא לא חוקי או לא עקבי.</value></data>
+  <data name="Emulation.Coleco.Error.ContentNotFound" xml:space="preserve"><value>התקשורת המפולגת של קולקו לא נמצאה.</value></data>
+  <data name="Emulation.Coleco.Error.ContentUnsupported" xml:space="preserve"><value>מכונה זו אינה תומכת בתקשורת הנבחרת.</value></data>
+  <data name="Emulation.Coleco.Error.OptionInvalid" xml:space="preserve"><value>לאופציה קולקו יש ערך לא חוקי.</value></data>
+  <data name="Emulation.Coleco.Error.CoreNotFound" xml:space="preserve"><value>הליבה הנדרשת של קולקו לא נמצאה.</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected" xml:space="preserve"><value>הליבה שנבחרה של קולקו לא יכולה להיות טעון.</value></data>
+  <data name="Emulation.Coleco.Error.StateInvalid" xml:space="preserve"><value>המדינה של קולקו הצילה היא בלתי נסבלת.</value></data>
+  <data name="Emulation.Coleco.Error.Details" xml:space="preserve"><value>פרטים: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostProtocolFailure" xml:space="preserve"><value>התקשורת עם המארחת של קולקו נכשלה.</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>פיקוד הסביבה הלא ידוע: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing" xml:space="preserve"><value>מסלול התוכנה של חיקוי אינו זמין.</value></data>
+</root>

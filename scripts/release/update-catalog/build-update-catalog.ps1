@@ -90,7 +90,7 @@ if ($Scope -eq 'Application') {
         packageUrl = "https://github.com/$owner/$repo/releases/download/$ApplicationTag/$packageName"
         sha256 = Read-Sha256 $packagePath
         notesUrl = "https://github.com/$owner/$repo/releases/tag/$ApplicationTag"
-        hostApiVersion = '1.0'
+        hostApiVersion = '1.1'
     }
     Set-Release $catalog 'gwgui' 'application' $release
 }

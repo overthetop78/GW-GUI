@@ -1,3 +1,5 @@
+using CommonStorageConstants = GWGUI.Emulation.Amstrad.Common.Machines.Common.Constants.StorageSettingsFunctionsConstants;
+using GWGUI.Emulation.Amstrad.Common.Machines.CpcPlus.Constants;
 using ModelConstants = GWGUI.Emulation.Amstrad.Common.Machines.CpcPlus.Constants.ModelConstants;
 using CommonModelConstants = GWGUI.Emulation.Amstrad.Common.Machines.Common.Constants.ModelConstants;
 
@@ -9,9 +11,9 @@ internal static class ModelCatalog
     [
         new(ModelConstants.Cpc464Plus, ModelConstants.DisplayCpc464Plus,
             CommonModelConstants.BackendCpcPlus, CommonModelConstants.Ram64Kib,
-            true, 0, 2, true, true, true, true),
+            true, CommonStorageConstants.NoFloppyDrives, CommonStorageConstants.MaximumFloppyDrives, true, true, true, true),
         new(ModelConstants.Cpc6128Plus, ModelConstants.DisplayCpc6128Plus,
             CommonModelConstants.BackendCpcPlus, CommonModelConstants.Ram128Kib,
-            true, 1, 2, false, true, true, true)
+            true, CommonStorageConstants.SingleFloppyDrive, CommonStorageConstants.MaximumFloppyDrives, false, true, true, true)
     ];
 }

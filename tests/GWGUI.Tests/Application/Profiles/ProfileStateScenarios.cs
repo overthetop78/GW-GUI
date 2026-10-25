@@ -23,8 +23,7 @@ internal static class ProfileStateScenarios
         Assert.Equal("session-input",conversion.SourcePath); Assert.Equal("session-output",conversion.OutputName);
         Assert.Equal(".one,.two",captured["extensions:test.format"]); Assert.Contains("tags",selected);
     }
-    private static OperationProfile Profile(string id, string name, OperationKind operation = OperationKind.Read) =>
-        new(id, operation, name, new Dictionary<string,string>{{"format","synthetic"}}, new HashSet<string>{"verify"});
+    private static OperationProfile Profile(string id, string name, OperationKind operation = OperationKind.Read) => new(id, operation, name, new Dictionary<string,string>{{"format","synthetic"}}, new HashSet<string>{"verify"});
     public static void Lifecycle(OperationKind operation)
     {
         var store = new InMemoryProfileStore(operation);

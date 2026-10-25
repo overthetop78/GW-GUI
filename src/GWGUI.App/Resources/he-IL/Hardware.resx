@@ -25,10 +25,10 @@
   <data name="Hardware.NotConfigured"><value>הבקר לא מוגדר</value></data>
   <data name="Hardware.Disconnected"><value>מְנוּתָק</value></data>
   <data name="Hardware.SelectedDisconnected"><value>הכונן שנבחר מנותק. חבר אותו מחדש או סרוק שוב באפשרויות ← בקרים וכוננים.</value></data>
-  <data name="Hardware.DriveLabel"><value>{0} אינץ&apos; · {1} · {2} · {3}</value></data>
+  <data name="Hardware.DriveLabel"><value>{0} אינץ' · {1} · {2} · {3}</value></data>
   <data name="Hardware.DriveDialogTitle"><value>לִנְהוֹג</value></data>
   <data name="Hardware.ControllerRequired"><value>תחילה סרוק או הוסף בקר Greaseweazle.</value></data>
-  <data name="Hardware.Description"><value>{0} אינץ&apos; · {1} · מבחר {2}{3}</value></data>
+  <data name="Hardware.Description"><value>{0} אינץ' · {1} · מבחר {2}{3}</value></data>
   <data name="Hardware.ScanTitle"><value>לִסְרוֹק</value></data>
   <data name="Hardware.GwRequired"><value>תחילה בחר או הורד את gw.exe למטה.</value></data>
   <data name="Hardware.StartupTitle"><value>בדיקת חומרה</value></data>

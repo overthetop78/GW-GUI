@@ -26,14 +26,9 @@ public static class MediaContentRecognitionCatalog
         .. UcsdMediaContentRecognitionTable.Rows
     ];
 
-    public static MediaContentRecognitionRule? Find(MediaFileSystemFamily family, string? extension)
-        => Find(family, extension, null, MediaContentRecognitionPriority.Standard);
+    public static MediaContentRecognitionRule? Find(MediaFileSystemFamily family, string? extension) => Find(family, extension, null, MediaContentRecognitionPriority.Standard);
 
-    public static MediaContentRecognitionRule? Find(
-        MediaFileSystemFamily family,
-        string? extension,
-        IReadOnlyList<byte>? content,
-        MediaContentRecognitionPriority priority)
+    public static MediaContentRecognitionRule? Find(MediaFileSystemFamily family, string? extension, IReadOnlyList<byte>? content, MediaContentRecognitionPriority priority)
     {
         var normalized = MediaContentRecognitionFunctions.NormalizeExtension(extension);
         foreach (var candidateFamily in CandidateFamilies(family))
@@ -42,9 +37,7 @@ public static class MediaContentRecognitionCatalog
                 row.Family == candidateFamily
                 && row.Priority == priority
                 && (row.Extension.Length == 0 || row.Extension == normalized)
-                && (MediaContentRecognitionRuleMatcher.HasContentConditions(row)
-                    ? MediaContentRecognitionRuleMatcher.Matches(row, content)
-                    : row.Extension.Length > 0));
+                && (MediaContentRecognitionRuleMatcher.HasContentConditions(row) ? MediaContentRecognitionRuleMatcher.Matches(row, content) : row.Extension.Length > 0));
             if (match is not null) return match;
         }
         return null;

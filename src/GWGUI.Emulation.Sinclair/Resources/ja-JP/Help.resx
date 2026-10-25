@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Help.AyStereoSeparation" xml:space="preserve"><value>注文を選択します。 AY ステレオ出力のサウンドチャンネル。</value></data>
+  <data name="Emulation.Sinclair.Help.AyVolume" xml:space="preserve"><value>音量を調整する AY 音の破片。</value></data>
+  <data name="Emulation.Sinclair.Help.BeeperVolume" xml:space="preserve"><value>内蔵のサウンドジェネレータの音量を調整します。</value></data>
+  <data name="Emulation.Sinclair.Help.BorderSize" xml:space="preserve"><value>画面境界の量が表示されるかを選択します。</value></data>
+  <data name="Emulation.Sinclair.Help.Chroma81" xml:space="preserve"><value>Chroma 81カラーグラフィック拡張機能をエミュレートします。</value></data>
+  <data name="Emulation.Sinclair.Help.EmulationSpeed" xml:space="preserve"><value>元の速度のパーセンテージとしてエミュレーション速度を選択します。</value></data>
+  <data name="Emulation.Sinclair.Help.FullerBox" xml:space="preserve"><value>より完全な箱の音およびジョイスティック延長を模倣して下さい。</value></data>
+  <data name="Emulation.Sinclair.Help.HighResolution" xml:space="preserve"><value>高解像度のグラフィック拡張機能を選択します。</value></data>
+  <data name="Emulation.Sinclair.Help.Issue2Keyboard" xml:space="preserve"><value>問題2ハードウェアのキーボード動作をエミュレートします。</value></data>
+  <data name="Emulation.Sinclair.Help.MemoryBankContent" xml:space="preserve"><value>メモリバンクの内容を8～16 KiBからお選びいただけます。</value></data>
+  <data name="Emulation.Sinclair.Help.MouseSwapButtons" xml:space="preserve"><value>マウスの左ボタンと右ボタンをスワッピングします。</value></data>
+  <data name="Emulation.Sinclair.Help.Palette" xml:space="preserve"><value>表示された色に使われるパレットを選択します。</value></data>
+  <data name="Emulation.Sinclair.Help.SoundHardware" xml:space="preserve"><value>絶縁されたサウンド・ハードウェアを選択します。</value></data>
+  <data name="Emulation.Sinclair.Help.SpeakerType" xml:space="preserve"><value>埋め込みラウドスピーカーに使用されるフィルタを選択します。</value></data>
+  <data name="Emulation.Sinclair.Help.TapeAutoLoad" xml:space="preserve"><value>カセットを自動的にロードする。</value></data>
+  <data name="Emulation.Sinclair.Help.TapeFastLoad" xml:space="preserve"><value>カセットデータを高速に読み込みます。</value></data>
+  <data name="Emulation.Sinclair.Help.TapeLoadSound" xml:space="preserve"><value>カセットデータをロードしながら生成された音を再生します。</value></data>
+  <data name="Emulation.Sinclair.Help.TurboSound" xml:space="preserve"><value>ターボサウンドの拡張機能を2つでエミュレートする AY チップ。</value></data>
+  <data name="Emulation.Sinclair.Help.USpeech" xml:space="preserve"><value>Currah uSpeech の音声拡張機能をエミュレートします。必要なファームウェアファイルの両方が存在しなければなりません。</value></data>
+  <data name="Emulation.Sinclair.Help.VideoPreset" xml:space="preserve"><value>封入されたビデオ信号の出現を選んで下さい。</value></data>
+  <data name="Emulation.Sinclair.Help.Melodik" xml:space="preserve"><value>エミュレータ MELODIK 音の延長。</value></data>
+</root>

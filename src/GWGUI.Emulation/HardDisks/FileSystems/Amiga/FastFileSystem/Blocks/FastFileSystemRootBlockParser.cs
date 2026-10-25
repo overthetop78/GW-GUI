@@ -30,8 +30,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem.Blocks
             var bitmapBlockOffsets = new List<uint>();
             for (var i = 0; i < 25; i++)
             {
-                var bitmapBlockOffset =
-                    BigEndianConverter.ConvertBytesToUInt32(blockBytes, blockBytes.Length - 0xc4 + (SizeOf.ULong * i));
+                var bitmapBlockOffset = BigEndianConverter.ConvertBytesToUInt32(blockBytes, blockBytes.Length - 0xc4 + (SizeOf.ULong * i));
                 bitmapBlockOffsets.Add(bitmapBlockOffset);
             }
 

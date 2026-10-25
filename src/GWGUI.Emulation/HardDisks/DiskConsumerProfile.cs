@@ -10,8 +10,7 @@ public sealed class DiskLayoutSupport
     public IReadOnlySet<string> FileSystemIds { get; }
     public IReadOnlySet<int> SectorSizes { get; }
 
-    public DiskLayoutSupport(string containerId, string partitionTableId, IEnumerable<string> fileSystemIds,
-        IEnumerable<int>? sectorSizes = null)
+    public DiskLayoutSupport(string containerId, string partitionTableId, IEnumerable<string> fileSystemIds, IEnumerable<int>? sectorSizes = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(containerId);
         ArgumentException.ThrowIfNullOrWhiteSpace(partitionTableId);

@@ -18,4 +18,13 @@ public sealed record EmulationSettingsField(
     long? NumericValue = null,
     EmulationSettingsChoiceSource ChoiceSource = EmulationSettingsChoiceSource.Declared,
     bool RefreshSettingsOnChange = false,
-    bool RequiresRestart = false);
+    bool RequiresRestart = false,
+    EmulationSettingsNumericRange? NumericRange = null,
+    IReadOnlyList<string>? AppliesToControllerIds = null,
+    int? ControllerPortNumber = null,
+    string? FrequencyScaleFieldId = null,
+    bool IsGlobalControllerOption = false,
+    EmulationVideoSettingsSection VideoSection = EmulationVideoSettingsSection.Display,
+    string? AutomaticValue = null,
+    bool UseChoiceLabelsForSlider = false,
+    string? ValueUnitResourceKey = null);

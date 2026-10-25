@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Zeigt die nominelle Taktfrequenz des Prozessors in der ausgewählten Maschine Sony an.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Ursprüngliche Prozessortaktfrequenz.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Zeigt das Prozessormodell an, das von der ausgewählten Maschine Sony bereitgestellt wird.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>Prozessor emuliert für diese Maschine.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>Zeigt den System-ROM-Status für die ausgewählte Maschine und den Emulator an.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>System ROM.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Identifiziert die Emulatorimplementierung, mit der diese Maschinenkonfiguration ausgeführt wird.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>Emulator für diese Maschine ausgewählt.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Identifiziert das Modell Sony, dessen Hardware-Konfiguration gerade bearbeitet wird.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony Maschinenmodell konfiguriert.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Zeigt die RAM an, die von der ausgewählten Sony Maschine bereitgestellt wird.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Menge an RAM, die der emulierten Maschine zur Verfügung steht.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Frequenz der emulierten CPU nach Anwendung des ausgewählten Taktanteils.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>Die Nennfrequenz der Konsole wird mit dem gewählten Prozentsatz multipliziert. Dies ändert den emulierten Prozessor, nicht den Host-Prozessor. Höhere Werte können Verlangsamungen reduzieren, aber das Timing des Spiels unterbrechen. Automatic verwendet den Emulator-Standard.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Ursprüngliche Grafikhardware der ausgewählten Maschine.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Zeigt die ursprüngliche Grafikhardware der ausgewählten Maschine an. Die Rendering-Einstellungen des Emulators ändern das erzeugte Bild. Die Filter von GW GUI werden anschließend angewendet.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Ursprüngliche Soundhardware der ausgewählten Maschine.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Zeigt die ursprüngliche Soundhardware der ausgewählten Maschine an. Audioausgabe und Latenzeinstellungen steuern die Wiedergabe auf Ihrem Computer.</value></data>
+</root>

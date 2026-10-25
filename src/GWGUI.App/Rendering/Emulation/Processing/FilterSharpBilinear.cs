@@ -2,9 +2,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 
 internal static class FilterSharpBilinear
 {
-        internal static float Sample(float[] source, int width, int height,
-        float x, float y, float scaleX, float scaleY, int channel) =>
-        FilterBilinear.Sample(source, width, height, SharpCoordinate(x, scaleX), SharpCoordinate(y, scaleY), channel);
+    internal static float Sample(float[] source, int width, int height, float x, float y, float scaleX, float scaleY, int channel) => FilterBilinear.Sample(source, width, height, SharpCoordinate(x, scaleX), SharpCoordinate(y, scaleY), channel);
 
     private static float SharpCoordinate(float coordinate, float scale)
     {
@@ -12,7 +10,7 @@ internal static class FilterSharpBilinear
         var fraction = coordinate - floor;
         return floor + Math.Clamp((fraction - 0.5f) * scale + 0.5f, 0f, 1f);
     }
-internal const string OpenGlShader = """
+    internal const string OpenGlShader = """
         vec4 sharpBilinearSample(vec2 uv)
         {
             vec2 pixel = uv * Processing.zw - 0.5;

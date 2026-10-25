@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>進化したコンパクトディスクドライブから読み込まれるオーディオトラックの再生量を設定します。</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>マウスの移動速度の設定</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>ホストマウスの動きをエミュレートされたマシンに報告された動きに変換するかを調整します。</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>ハードディスクイメージのフォルダを選択</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>ハードディスクのイメージを選択すると、最初に開いたフォルダを設定します。 フォルダ自体はディスクとしてマウントされていません。</value></data>
 </root>

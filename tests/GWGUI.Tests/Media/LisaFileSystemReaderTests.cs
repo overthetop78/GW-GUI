@@ -21,13 +21,7 @@ public sealed class LisaFileSystemReaderTests
         Encoding.ASCII.GetBytes("HELLO").CopyTo(catalog, 1);
         catalog[37] = 5;
 
-        var image = new SectorImage(DiskImageFormatIds.AppleLisaOffice, 512, 1, 1, 4,
-        [
-            Block(0, 1, mddf),
-            Block(1, 4, catalog),
-            Block(2, 5, [1, 2, 3]),
-            Block(3, 6, [4, 5, 6])
-        ], allowVariableBlockSize: true);
+        var image = new SectorImage(DiskImageFormatIds.AppleLisaOffice, 512, 1, 1, 4, [Block(0, 1, mddf), Block(1, 4, catalog), Block(2, 5, [1, 2, 3]), Block(3, 6, [4, 5, 6])], allowVariableBlockSize: true);
 
         var reader = Assert.Single(GWGUI.MediaFileSystems.Exploration.FileSystemReaderCatalog.CreateDefault(), item => item.Id == FileSystemIds.Lisa);
         Assert.True(reader.CanRead(image));

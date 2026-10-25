@@ -1,18 +1,13 @@
 using GWGUI.Infrastructure.Commands;
-using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
-using GwOptionValidator = global::GWGUI.Infrastructure.Commands.Options.GwOptionValidator;
+using EnabledOption = GWGUI.MediaEngine.Contracts.Options.EnabledOption;
+using GwOptionValidator = GWGUI.Infrastructure.Commands.Options.GwOptionValidator;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Images.Conversion;
 namespace GWGUI.Infrastructure.Conversion;
 
 public static class ConversionCommandBuilder
 {
-    public static GwCommand Build(
-        string executable,
-        string source,
-        ConversionOutput output,
-        IReadOnlyList<EnabledOption>? options = null,
-        string? expertArguments = null)
+    public static GwCommand Build(string executable, string source, ConversionOutput output, IReadOnlyList<EnabledOption>? options = null, string? expertArguments = null)
     {
         if (options is not null) GwOptionValidator.Validate(options);
         var arguments = new List<string>();

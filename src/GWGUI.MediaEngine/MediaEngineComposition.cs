@@ -11,18 +11,25 @@ using GWGUI.MediaEngine.Images.Reading;
 using MediaExplorer = GWGUI.MediaEngine.Images.Reading.MediaExplorer;
 using FileSystemsMediaExplorer = GWGUI.MediaFileSystems.Exploration.MediaExplorer;
 using FileSystemRegistry = GWGUI.MediaFileSystems.Exploration.SectorFileSystemRegistry;
+using GWGUI.MediaEngine.Interfaces;
+using GWGUI.MediaEngine.Services;
 
 namespace GWGUI.MediaEngine;
 
 /// <summary>Assembles the shared media engine services without implementing format algorithms.</summary>
 public sealed class MediaEngineComposition
 {
-    private MediaEngineComposition(
-        MediaRecognitionComposition recognition,
-        MediaExplorer explorer,
-        MediaConversionComposition conversion,
-        MediaWritingComposition writing,
-        MediaVisualizationComposition visualization)
+    /// <summary>Fournit les calculs d'intégrité par leur contrat public, sans initialiser les lecteurs ou convertisseurs.</summary>
+    /// <remarks>Le traitement est sans état et reste emprunté ; les octets et leur durée de vie appartiennent à l'appelant.</remarks>
+    public static IMediaDataIntegrity DataIntegrity { get; } = new MediaDataIntegrityService();
+
+    /// <summary>Fournit les préparations CUE et SCP sous leur contrat, avec création différée des convertisseurs.</summary>
+    public static IMediaRuntimePreparation RuntimePreparation { get; } = new MediaRuntimePreparationService();
+
+    /// <summary>Fournit les opérations de systèmes de fichiers sans exposer leur bibliothèque aux consommateurs.</summary>
+    public static IMediaFileSystemProcessing FileSystems { get; } = new MediaFileSystemProcessingService();
+
+    private MediaEngineComposition(MediaRecognitionComposition recognition, MediaExplorer explorer, MediaConversionComposition conversion, MediaWritingComposition writing, MediaVisualizationComposition visualization)
     {
         Recognition = recognition;
         Explorer = explorer;
@@ -31,10 +38,7 @@ public sealed class MediaEngineComposition
         Visualization = visualization;
         FloppyFluxAcquisitionService = new FloppyFluxAcquisitionService();
         FloppyMediaWritePlanningService = new FloppyMediaWritePlanningService(DiskImageExplorer.CreateDefault());
-        ConversionService = new MediaConversionService(
-            conversion.Registry,
-            writing.Registry,
-            writing.WritingService);
+        ConversionService = new MediaConversionService(conversion.Registry, writing.Registry, writing.WritingService);
         OpticalConversionService = conversion.CreateOpticalImageConverter(writing);
         SequentialConversionService = conversion.CreateSequentialMediaConverter(writing);
     }
@@ -65,8 +69,7 @@ public sealed class MediaEngineComposition
     {
         var recognition = MediaRecognitionComposition.CreateDefault();
         var sequentialMedia = SequentialMediaComposition.CreateDefault();
-        var mediaFileSystems = FileSystemsMediaExplorer.CreateDefault(
-            [new SequentialContentDecoderAdapter(sequentialMedia.Decoders)]);
+        var mediaFileSystems = FileSystemsMediaExplorer.CreateDefault([new SequentialContentDecoderAdapter(sequentialMedia.Decoders)]);
         var explorer = new MediaExplorer(mediaFileSystems);
         var decoding = new ScpSectorDecodingComposition(recognition.ScpReader, new FileSystemRegistry());
         var conversion = new MediaConversionComposition(recognition, decoding, sequentialMedia);

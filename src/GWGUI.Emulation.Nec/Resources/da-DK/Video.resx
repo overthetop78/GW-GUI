@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Video.Monitor"><value>Monitortype</value></data>
+  <data name="Emulation.Nec.Video.Intensity"><value>Skærmstyrke</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Color"><value>Farve</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Green"><value>Grøn monokromt</value></data>
+  <data name="Emulation.Nec.Video.Monitor.White"><value>Hvid monokrom</value></data>
+  <data name="Emulation.Nec.Video.Palette"><value>Farvepalet</value></data>
+  <data name="Emulation.Nec.Video.Palette.Composite"><value>Sammensætning</value></data>
+  <data name="Emulation.Nec.Video.HorizontalWidth"><value>Vandret bredde</value></data>
+  <data name="Emulation.Nec.Video.DotClockWidth"><value>Dot clockbredde</value></data>
+  <data name="Emulation.Nec.Video.ChromaInterpolation"><value>Interpolation af kroma</value></data>
+  <data name="Emulation.Nec.Video.NoSpriteLimit"><value>Fjern spritgrænse</value></data>
+  <data name="Emulation.Nec.Video.InitialScanline"><value>Første synlige scanline</value></data>
+  <data name="Emulation.Nec.Video.LastScanline"><value>Seneste synlige scanline</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip"><value>Frame skip</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>Deaktiveret</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Automatisk</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>Manual</value></data>
+  <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>Tærskelværdi for rammekastning</value></data>
+  <data name="Emulation.Nec.Video.Overscan"><value>Vis billedgrænser</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming"><value>Displayet billedhøjde</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming"><value>Displayet billedbredde</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Cropped"><value>Synligt billede (240 linjer)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Full"><value>Alle 263 linjer</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Cropped"><value>Synligt billede (348 pixels)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Full"><value>Alle 392 pixels</value></data>
+</root>

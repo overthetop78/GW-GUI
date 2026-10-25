@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Language"><value>Nintendo systeemtaal</value></data>
+  <data name="Emulation.Nintendo.Language.English"><value>Engelse taal</value></data>
+  <data name="Emulation.Nintendo.Language.French"><value>Frans</value></data>
+  <data name="Emulation.Nintendo.Language.Spanish"><value>Spaans</value></data>
+  <data name="Emulation.Nintendo.Firmware.Integrated"><value>Systeem-ROM</value></data>
+  <data name="Emulation.Emulator.mesen.Description"><value>Emuleert Nintendo Entertainment System en Famicom Disk System.</value></data>
+  <data name="Emulation.Emulator.gw.Description"><value>Emuleert Nintendo Game &amp; Watch.</value></data>
+  <data name="Emulation.Emulator.beetle_vb.Description"><value>Emuleert de Nintendo Virtual Boy.</value></data>
+  <data name="Emulation.Emulator.mupen64plus-next.Description"><value>Emuleert Nintendo 64 systemen.</value></data>
+  <data name="Emulation.Emulator.melonds.Description"><value>Emuleert Nintendo DS en DSi systemen.</value></data>
+  <data name="Emulation.Emulator.snes9x.Description"><value>Emuleert Super Nintendo en Super Famicom systemen.</value></data>
+  <data name="Emulation.Emulator.gambatte.Description"><value>Emuleert het Nintendo Game Boy systeem. Emuleert ook het Game Boy Color systeem.</value></data>
+  <data name="Emulation.Emulator.mgba.Description"><value>Emuleert Nintendo Game Boy Advance systemen.</value></data>
+  <data name="Emulation.Emulator.citra.Description"><value>Emuleert Nintendo 3DS systemen met Citra.</value></data>
+  <data name="Emulation.Emulator.dolphin.Description"><value>Emuleert Nintendo GameCube en Wii systemen met Dolphin.</value></data>
+</root>

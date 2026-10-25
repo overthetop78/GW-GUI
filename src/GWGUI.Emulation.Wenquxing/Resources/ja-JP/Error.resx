@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Wenquxing.Error.AlreadyInitialized"><value>エミュレーターのホストは初期化されています。</value></data>
+  <data name="Emulation.Wenquxing.Error.CommunicationFailed"><value>エミュレータホスト通信が失敗しました。</value></data>
+  <data name="Emulation.Wenquxing.Error.ContentFileMissing"><value>設定された媒体が見つかりませんでした。</value></data>
+  <data name="Emulation.Wenquxing.Error.DynamicMediaUnsupported"><value>今回のエミュレーションセッションは、この媒体を交換することはできません。</value></data>
+  <data name="Emulation.Wenquxing.Error.ExecutableMissing"><value>エミュレータホスト実行可能が欠落しています。</value></data>
+  <data name="Emulation.Wenquxing.Error.InstalledLibraryLockedFormat"><value>インストールされたライブラリは置換できません。 {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidArchitecture"><value>ダウンロードしたコアはWindows x64ではありません。</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidConfiguration"><value>エミュレータの設定は無効です。</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidResponseLengthFormat"><value>無効なエミュレーションのホスト応答の長さ: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.MachineInvalidState"><value>必須状態にエミュレーションセッションは必須ではありません。</value></data>
+  <data name="Emulation.Wenquxing.Error.MachineStopped"><value>エミュレータセッションは停止しました。</value></data>
+  <data name="Emulation.Wenquxing.Error.MissingExpectedLibraryFormat"><value>ダウンロードしたアーカイブは含まれていません {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.MissingPublishedDate"><value>正式な応答は、出版物の日付を識別しません。</value></data>
+  <data name="Emulation.Wenquxing.Error.NotInitialized"><value>エミュレータのホストは初期化されません。</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessExitSuffixFormat"><value> 出口コード: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessNotInitialized"><value>エミュレーターのホストプロセスは初期化されません。</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessStartFailed"><value>エミュレータのホストプロセスは起動できませんでした。</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessUnavailable"><value>エミュレーターのホストプロセスは利用できません。</value></data>
+  <data name="Emulation.Wenquxing.Error.ProtocolVersionMismatchFormat"><value>プロトコルバージョン {0} マッチしません {1}.</value></data>
+  <data name="Emulation.Wenquxing.Error.RequestCancelled"><value>エミュレータのホストリクエストはキャンセルされました。</value></data>
+  <data name="Emulation.Wenquxing.Error.ResponseTimeout"><value>エミュレータホスト応答がタイムアウトしました。</value></data>
+  <data name="Emulation.Wenquxing.Error.ResponseUnavailable"><value>エミュレータのホスト応答は利用できません。</value></data>
+  <data name="Emulation.Wenquxing.Error.SharedVideoUnavailable"><value>共有ビデオトランスポートは利用できません。</value></data>
+  <data name="Emulation.Wenquxing.Error.StateIncompatible"><value>保存状態は、現在のマシンと互換性がありません。</value></data>
+  <data name="Emulation.Wenquxing.Error.StateInvalid"><value>保存状態が無効です。</value></data>
+  <data name="Emulation.Wenquxing.Error.StateUnavailable"><value>エミュレータは保存状態をサポートしていません。</value></data>
+  <data name="Emulation.Wenquxing.Error.UnknownCommandFormat"><value>未知のエミュレーションホストコマンド: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.UnsupportedControllerDevice"><value>コントローラ装置はサポートしていません。</value></data>
+</root>

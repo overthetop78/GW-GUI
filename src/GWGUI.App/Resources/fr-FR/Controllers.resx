@@ -45,7 +45,7 @@
   <data name="Controllers.Model.GenericGamepad"><value>Jeu de jeu générique</value></data>
   <data name="Controllers.Model.RacingWheel"><value>Roue de course</value></data>
   <data name="Controllers.Model.FlightStick"><value>Stick de vol</value></data>
-  <data name="Controllers.Model.ArcadeStick"><value>Barre d&apos;arcade</value></data>
+  <data name="Controllers.Model.ArcadeStick"><value>Barre d'arcade</value></data>
   <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Octet brut</value></data>
   <data name="Controllers.AnalogValues" xml:space="preserve"><value>Valeurs analogiques</value></data>
   <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Échec de la détection des manettes</value></data>
@@ -75,7 +75,7 @@
   <data name="Controllers.Pitch" xml:space="preserve"><value>Tangage</value></data>
   <data name="Controllers.Yaw" xml:space="preserve"><value>Lacet</value></data>
   <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Capteurs</value></data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve"><value>Navigation dans l&apos;interface</value></data>
+  <data name="Controllers.Enum.UiNavigation" xml:space="preserve"><value>Navigation dans l'interface</value></data>
   <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>Manette</value></data>
   <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Moteur basse fréquence</value></data>
   <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Moteur haute fréquence</value></data>
@@ -94,7 +94,6 @@
   <data name="Controllers.Enum.Effect.Friction"><value>Friction</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Amortisseur</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Inertie</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Rouge-joie</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Contrôleur multiaxe</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Usage HID</value></data>
   <data name="Controllers.Enum.Axes"><value>axes</value></data>

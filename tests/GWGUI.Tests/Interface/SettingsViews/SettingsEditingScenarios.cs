@@ -15,8 +15,7 @@ internal static class SettingsEditingScenarios
             () => { controller!.ApplyTo(settings); saves++; return Task.CompletedTask; }, () => { }, (key, _) => key,
             () => { requests++; return response; });
         section.Measure(new Size(1200, 800)); section.Arrange(new Rect(0, 0, 1200, 800));
-        var browse = Assert.Single(GWGUI.Tests.Interface.Navigation.NavigationScenarios.Visuals<System.Windows.Controls.Button>(section),
-            button => Equals(button.Content, GWGUI.App.Localization.Extensions.LocExtension.Get("Common.Browse")));
+        var browse = Assert.Single(GWGUI.Tests.Interface.Navigation.NavigationScenarios.Visuals<System.Windows.Controls.Button>(section), button => Equals(button.Content, GWGUI.App.Localization.Extensions.LocExtension.Get("Common.Browse")));
         browse.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Button.ClickEvent));
         Assert.Equal(1, requests); Assert.Equal(response is null ? 0 : 1, saves);
         Assert.Equal(response?.Trim() ?? "virtual-old", settings.DefaultImagesFolder);

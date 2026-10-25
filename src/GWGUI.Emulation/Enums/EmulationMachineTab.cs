@@ -11,5 +11,7 @@ public enum EmulationMachineTab
     Storage,
     Keyboard,
     Mouse,
-    Controllers
+    Controllers,
+    Cheats,
+    Ethernet
 }

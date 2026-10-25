@@ -19,6 +19,5 @@ internal static class RegionDictionary
             [Language(HardwareSettingsFunctionsConstants.SvSE)] = StRegion.Sweden
         };
 
-    private static string Language(string cultureName) =>
-        CultureInfo.GetCultureInfo(cultureName).TwoLetterISOLanguageName;
+    private static string Language(string cultureName) => CultureInfo.GetCultureInfo(cultureName).TwoLetterISOLanguageName;
 }

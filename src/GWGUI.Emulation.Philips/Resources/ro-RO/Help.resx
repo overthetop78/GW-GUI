@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Help.AlternateRenderer" xml:space="preserve"><value>Utilizați metoda alternativă de redare furnizată de emulator.</value></data>
+  <data name="Emulation.Philips.Help.AudioVolume" xml:space="preserve"><value>Setează volumul de sunete generate de consolă, ca procent.</value></data>
+  <data name="Emulation.Philips.Help.AutoSave" xml:space="preserve"><value>Salvează starea mașinii când se închide și restaurează când același conținut începe din nou.</value></data>
+  <data name="Emulation.Philips.Help.Cheats" xml:space="preserve"><value>Activează codurile de trișor furnizate de emulator.</value></data>
+  <data name="Emulation.Philips.Help.CpuOverclock" xml:space="preserve"><value>Reglați viteza procesorului ca procent din frecvența inițială.</value></data>
+  <data name="Emulation.Philips.Help.CropOverscan" xml:space="preserve"><value>Scoateţi frontiera exterioară din imaginea video.</value></data>
+  <data name="Emulation.Philips.Help.KeyboardMapping" xml:space="preserve"><value>Alege dacă tastele de tastatură gazdă urmează personajele lor tipărite sau pozițiile lor fizice.</value></data>
+  <data name="Emulation.Philips.Help.LowPassFilter" xml:space="preserve"><value>Reduceţi frecvenţele înalte în audio consolă.</value></data>
+  <data name="Emulation.Philips.Help.LowPassRange" xml:space="preserve"><value>Setează cutoff-ul filtrului de trecere joasă ca procent din frecvența de eșantionare audio.</value></data>
+  <data name="Emulation.Philips.Help.MixFrames" xml:space="preserve"><value>Amestecă cadre video consecutive. Simplu folosește greutăți egale; un procent controlează cât de mult din imaginea anterioară rămâne vizibilă.</value></data>
+  <data name="Emulation.Philips.Help.NvramPerGame" xml:space="preserve"><value>Păstrați memoria persistentă separat pentru fiecare joc.</value></data>
+  <data name="Emulation.Philips.Help.Resolution" xml:space="preserve"><value>Alege rezoluţia de ieşire video.</value></data>
+  <data name="Emulation.Philips.Help.StateNaming" xml:space="preserve"><value>Stocați stări salvate separat pentru fiecare joc sau partajați-le pentru întregul sistem.</value></data>
+  <data name="Emulation.Philips.Help.Throttle" xml:space="preserve"><value>Limitaţi viteza de emulare la viteza maşinii originale.</value></data>
+  <data name="Emulation.Philips.Help.VideoStandard" xml:space="preserve"><value>Alegeţi standardul de televiziune utilizat de maşina emulată.</value></data>
+  <data name="Emulation.Philips.Help.VoiceVolume" xml:space="preserve"><value>Ajustează volumul vorbirii ca procent.</value></data>
+</root>

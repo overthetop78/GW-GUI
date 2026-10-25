@@ -2,7 +2,7 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Common.Constants;
 
 internal static partial class SettingsDescriptionFunctionsConstants
 {
-internal const string VisualAutomatic = "Visual.Automatic";
+    internal const string VisualAutomatic = "Visual.Automatic";
     internal const string PAL = "PAL";
     internal const string NTSC = "NTSC";
     internal const string Monochrome = "Monochrome";

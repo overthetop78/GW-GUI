@@ -57,8 +57,7 @@ public sealed class BbcDfsReader : IMediaImageReader
         if (kind is null) return ValueTask.FromResult(false);
         var heads = kind == BbcDfsContainerKind.Ssd ? DiskGeometryConstants.SingleSidedHeadCount : DiskGeometryConstants.DoubleSidedHeadCount;
         var maximumCapacity = BbcDfsGeometry.Supported.Where(geometry => geometry.Heads == heads).Max(geometry => geometry.Capacity);
-        var matches = context.Length >= BbcDfsGeometry.SectorSize
-            && context.Length <= maximumCapacity + BbcDfsGeometry.SectorSize - 1;
+        var matches = context.Length >= BbcDfsGeometry.SectorSize && context.Length <= maximumCapacity + BbcDfsGeometry.SectorSize - 1;
         return ValueTask.FromResult(matches);
     }
 
@@ -76,8 +75,7 @@ public sealed class BbcDfsReader : IMediaImageReader
         var completeLength = data.Length / BbcDfsGeometry.SectorSize * BbcDfsGeometry.SectorSize;
         if (completeLength == 0)
             throw BbcDfsExceptions.IncompleteTrack(data.Length, heads, BbcDfsGeometry.SectorSize);
-        var geometry = BbcDfsGeometry.Supported.Where(candidate => candidate.Heads == heads && candidate.Capacity >= completeLength)
-            .OrderBy(candidate => candidate.Capacity).FirstOrDefault()
+        var geometry = BbcDfsGeometry.Supported.Where(candidate => candidate.Heads == heads && candidate.Capacity >= completeLength).OrderBy(candidate => candidate.Capacity).FirstOrDefault()
             ?? throw BbcDfsExceptions.UnsupportedCylinderCount(data.Length, (int)Math.Ceiling(data.Length / (double)(BbcDfsGeometry.TrackSize * heads)), heads);
         var blocks = new SectorBlock[completeLength / BbcDfsGeometry.SectorSize];
         for (var logical = 0; logical < blocks.Length; logical++)
@@ -91,9 +89,5 @@ public sealed class BbcDfsReader : IMediaImageReader
     }
 
     private static BbcDfsContainerKind? GetContainerKind(string extension)
-        => extension.Equals(DiskImageFileExtensions.Ssd, StringComparison.OrdinalIgnoreCase)
-            ? BbcDfsContainerKind.Ssd
-            : extension.Equals(DiskImageFileExtensions.Dsd, StringComparison.OrdinalIgnoreCase)
-                ? BbcDfsContainerKind.Dsd
-                : null;
+        => extension.Equals(DiskImageFileExtensions.Ssd, StringComparison.OrdinalIgnoreCase) ? BbcDfsContainerKind.Ssd : extension.Equals(DiskImageFileExtensions.Dsd, StringComparison.OrdinalIgnoreCase) ? BbcDfsContainerKind.Dsd : null;
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft" xml:space="preserve"><value>Buton lateral stâng</value></data>
+  <data name="Emulation.Epoch.Input.FireRight" xml:space="preserve"><value>Butonul lateral din dreapta</value></data>
+  <data name="Emulation.Epoch.Input.Power" xml:space="preserve"><value>Buton de alimentare</value></data>
+  <data name="Emulation.Epoch.Input.Reset" xml:space="preserve"><value>Buton de resetare</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft" xml:space="preserve"><value>Mută maneta la stânga.</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight" xml:space="preserve"><value>Mută maneta la dreapta.</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease" xml:space="preserve"><value>Selectează următorul curs de joc</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease" xml:space="preserve"><value>Selectează cursul de joc anterior</value></data>
+  <data name="Emulation.Epoch.Input.GunFire" xml:space="preserve"><value>Declanşator cu tunul de lumină</value></data>
+  <data name="Emulation.Epoch.Input.GunReload" xml:space="preserve"><value>Reîncărcare a armei de lumină</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease" xml:space="preserve"><value>Padela 1: întoarceţi-vă în sens invers acelor de ceasornic</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase" xml:space="preserve"><value>Padel 1: viraţi în sensul acelor de ceasornic</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease" xml:space="preserve"><value>Padel 2: rândul său, în sens invers acelor de ceasornic</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase" xml:space="preserve"><value>Padel 2: rândul său, în sensul acelor de ceasornic</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease" xml:space="preserve"><value>Padela 3: rândul său, în sens invers acelor de ceasornic</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase" xml:space="preserve"><value>Vâsla 3: viraţi în sensul acelor de ceasornic</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease" xml:space="preserve"><value>Vâsla 4: întoarceţi-vă în sens invers acelor de ceasornic</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase" xml:space="preserve"><value>Vâslă 4: întoarceţi în sensul acelor de ceasornic</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease" xml:space="preserve"><value>Ţinteşte arma la stânga.</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease" xml:space="preserve"><value>Ţinteşte arma cum trebuie.</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease" xml:space="preserve"><value>Ţinteşte arma în sus.</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease" xml:space="preserve"><value>Ţinteşte arma în jos.</value></data>
+</root>

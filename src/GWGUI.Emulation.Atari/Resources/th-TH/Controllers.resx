@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Atari ชั้น</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>ปุ่มพิมพ์ตัวเลข</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed"><value>ความเร็วการเคลื่อนตัวแบบโหนด</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton"><value>ในขณะที่ปุ่มยิงถูกกดลง</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways"><value>เสมอ</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility"><value>ความเข้ากันได้ของตัวควบคุม</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity"><value>ความไวแสงดิจิทัล</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity"><value>ความไวของแอนาล็อก</value></data>
+  <data name="Emulation.Atari.Controller.DualStick"><value>สอง แท่ง ที่ ใช้ ด้วย กัน</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts"><value>พอร์ตเปลี่ยนหน้าที่</value></data>
+</root>

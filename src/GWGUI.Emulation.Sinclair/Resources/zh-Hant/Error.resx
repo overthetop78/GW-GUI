@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Error.ContentNotFound" xml:space="preserve"><value>找不到配置的 Sinclair 媒体 。</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported" xml:space="preserve"><value>此机器不支持所选的媒体 。</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound" xml:space="preserve"><value>所需的辛克莱核心没有找到.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected" xml:space="preserve"><value>无法装入选定的 Sinclair 核心 。</value></data>
+  <data name="Emulation.Sinclair.Error.Details" xml:space="preserve"><value>细节 : {0}</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid" xml:space="preserve"><value>系统 ROM 无效或不兼容。</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing" xml:space="preserve"><value>缺少一个需要的辛克莱固件</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure" xml:space="preserve"><value>与辛克莱主机的通信失败.</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid" xml:space="preserve"><value>一个辛克莱选项的值无效 。</value></data>
+  <data name="Emulation.Sinclair.Error.StateIncompatible" xml:space="preserve"><value>辛克莱所救状态与目前的机器不相容.</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid" xml:space="preserve"><value>辛克莱保存的状态无效 。</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected" xml:space="preserve"><value>发生了意外的辛克莱仿真错误 。</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>未知的环境命令 : {0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing" xml:space="preserve"><value>通往辛克莱主机程序的路径无法使用.</value></data>
+</root>

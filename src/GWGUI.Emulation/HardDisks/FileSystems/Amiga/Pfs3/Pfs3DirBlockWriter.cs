@@ -12,8 +12,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             var blockBytes = new byte[g.RootBlock.ReservedBlksize];
             if (dirBlock.BlockBytes != null)
             {
-                Array.Copy(dirBlock.BlockBytes, 0, blockBytes, 0,
-                    Math.Min(dirBlock.BlockBytes.Length, g.RootBlock.ReservedBlksize));
+                Array.Copy(dirBlock.BlockBytes, 0, blockBytes, 0, Math.Min(dirBlock.BlockBytes.Length, g.RootBlock.ReservedBlksize));
             }
 
             BigEndianConverter.ConvertUInt16ToBytes(Pfs3Constants.DBLKID, blockBytes, 0); // offset 0

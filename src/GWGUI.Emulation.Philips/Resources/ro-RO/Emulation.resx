@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.m2000.Description" xml:space="preserve"><value>Emulează PHILIPS P2000T Computer.</value></data>
+  <data name="Emulation.Emulator.o2em.Description" xml:space="preserve"><value>Emulează MAGNAVOX ODYSSEY2 şi PHILIPS VIDEOPAC G7000 console.</value></data>
+  <data name="Emulation.Emulator.same_cdi.Description" xml:space="preserve"><value>Emulează PHILIPS CD-I console.</value></data>
+  <data name="Emulation.Philips.Audio.Native" xml:space="preserve"><value>Audio emulator</value></data>
+  <data name="Emulation.Philips.Keyboard.Native" xml:space="preserve"><value>Interpretarea tastaturii</value></data>
+  <data name="Emulation.Philips.Memory.Display" xml:space="preserve"><value>Memorie video</value></data>
+  <data name="Emulation.Philips.Setting.AlternateRenderer" xml:space="preserve"><value>Rereading video alternativ</value></data>
+  <data name="Emulation.Philips.Setting.AudioVolume" xml:space="preserve"><value>Volumul audio al consolei</value></data>
+  <data name="Emulation.Philips.Setting.AutoSave" xml:space="preserve"><value>Stare salvată automată</value></data>
+  <data name="Emulation.Philips.Setting.Cheats" xml:space="preserve"><value>Coduri de trișor joc</value></data>
+  <data name="Emulation.Philips.Setting.CropOverscan" xml:space="preserve"><value>Elimină frontiera video</value></data>
+  <data name="Emulation.Philips.Setting.KeyboardMapping" xml:space="preserve"><value>Tastatură de cartografiere cheie</value></data>
+  <data name="Emulation.Philips.Setting.LowPassFilter" xml:space="preserve"><value>Filtru audio cu pas mic</value></data>
+  <data name="Emulation.Philips.Setting.LowPassRange" xml:space="preserve"><value>Frecvenţa de întrerupere a filtrului audio</value></data>
+  <data name="Emulation.Philips.Setting.MixFrames" xml:space="preserve"><value>Amestecă cadre video</value></data>
+  <data name="Emulation.Philips.Setting.NvramPerGame" xml:space="preserve"><value>Memorie persistentă separată pentru fiecare joc</value></data>
+  <data name="Emulation.Philips.Setting.StateNaming" xml:space="preserve"><value>Nume fișier de stare salvat</value></data>
+  <data name="Emulation.Philips.Setting.Throttle" xml:space="preserve"><value>Viteza de emulare limită</value></data>
+  <data name="Emulation.Philips.Setting.VoiceVolume" xml:space="preserve"><value>Volumul vocii</value></data>
+  <data name="Emulation.Philips.System.Native" xml:space="preserve"><value>Opțiuni emulator</value></data>
+  <data name="Emulation.Philips.Value.Game" xml:space="preserve"><value>Pe joc</value></data>
+  <data name="Emulation.Philips.Value.Positional" xml:space="preserve"><value>Poziții cheie fizice</value></data>
+  <data name="Emulation.Philips.Value.Simple" xml:space="preserve"><value>Amestec simplu</value></data>
+  <data name="Emulation.Philips.Value.Symbolic" xml:space="preserve"><value>Personaje imprimate</value></data>
+  <data name="Emulation.Philips.Value.System" xml:space="preserve"><value>Per sistem</value></data>
+  <data name="Emulation.Philips.Video.Native" xml:space="preserve"><value>Videoclipul emulatorului</value></data>
+</root>

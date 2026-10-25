@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.freeintv.Description" xml:space="preserve"><value>Emula il MATTEL INTELLIVISION Console.</value></data>
+  <data name="Emulation.Mattel.Controls.Native" xml:space="preserve"><value>Controller di console</value></data>
+  <data name="Emulation.Mattel.Memory.Display" xml:space="preserve"><value>Video memoria</value></data>
+  <data name="Emulation.Mattel.Setting.PlayerOneController" xml:space="preserve"><value>Controller per giocatore 1</value></data>
+  <data name="Emulation.Mattel.Value.LeftController" xml:space="preserve"><value>Controllore sinistro</value></data>
+  <data name="Emulation.Mattel.Value.RightController" xml:space="preserve"><value>Controller destro</value></data>
+</root>

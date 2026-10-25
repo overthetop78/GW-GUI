@@ -7,11 +7,8 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.CommodoreTap;
 internal static class CommodoreTapFormat
 {
     public static string FormatId => TapeImageFormatIds.CommodoreTap;
-    public static readonly IReadOnlySet<string> Extensions =
-        new[] { DiskImageFileExtensions.Tap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    public static readonly IReadOnlySet<string> Signatures =
-        new[] { CommodoreTapConstants.C64Signature, CommodoreTapConstants.C16Signature }
-            .ToFrozenSet(StringComparer.Ordinal);
+    public static readonly IReadOnlySet<string> Extensions = new[] { DiskImageFileExtensions.Tap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    public static readonly IReadOnlySet<string> Signatures = new[] { CommodoreTapConstants.C64Signature, CommodoreTapConstants.C16Signature }.ToFrozenSet(StringComparer.Ordinal);
     public static readonly IReadOnlySet<byte> Versions =
         new[]
         {

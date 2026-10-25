@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Error.StateIncompatible" xml:space="preserve"><value>Η αποθηκευμένη κατάσταση Επόχ είναι ασύμβατη με την τρέχουσα μηχανή.</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected" xml:space="preserve"><value>Συνέβη ένα απροσδόκητο σφάλμα εξομοίωσης Επόχ.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing" xml:space="preserve"><value>Λείπει ένα απαιτούμενο λογισμικό για την Epoch.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid" xml:space="preserve"><value>Το σύστημα ROM είναι άκυρη ή ασυμβίβαστη.</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound" xml:space="preserve"><value>Τα ρυθμισμένα μέσα Epoch δε βρέθηκαν.</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported" xml:space="preserve"><value>Αυτή η μηχανή δεν υποστηρίζει τα επιλεγμένα μέσα.</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid" xml:space="preserve"><value>Μια επιλογή Επόχ έχει μη έγκυρη τιμή.</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound" xml:space="preserve"><value>Ο απαιτούμενος πυρήνας Επόχ δεν βρέθηκε.</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected" xml:space="preserve"><value>Ο επιλεγμένος πυρήνας Epoch δεν ήταν δυνατό να φορτωθεί.</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid" xml:space="preserve"><value>Η κατάσταση που έσωσε ο Επόχ είναι άκυρη.</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing" xml:space="preserve"><value>Η διαδρομή του προγράμματος εξομοιωτή δεν είναι διαθέσιμη.</value></data>
+  <data name="Emulation.Epoch.Error.Details" xml:space="preserve"><value>Λεπτομέρειες: {0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure" xml:space="preserve"><value>Η επικοινωνία με τον ξενιστή της Επόχ απέτυχε.</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Άγνωστη εντολή περιβάλλοντος: {0}</value></data>
+</root>

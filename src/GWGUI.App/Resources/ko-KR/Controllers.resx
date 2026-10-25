@@ -94,7 +94,6 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>마찰</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>댐퍼</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>관성</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>조이스틱</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>다축 컨트롤러</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID 용도</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>축</value></data>

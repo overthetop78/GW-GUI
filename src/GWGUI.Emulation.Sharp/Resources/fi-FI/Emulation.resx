@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Emulgointi SHARP X68000 tietokoneet.</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Emulgointi SHARP X1 tietokoneet.</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Koneääni</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Kontrolloijan valinnat</value></data>
+  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>Merkki ROM</value></data>
+  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Näytä muisti</value></data>
+  <data name="Emulation.Sharp.Setting.AdpcmVolume" xml:space="preserve"><value>ADPCM tilavuus</value></data>
+  <data name="Emulation.Sharp.Setting.AudioDesynchronization" xml:space="preserve"><value>Hylkää ylimääräinen ääni</value></data>
+  <data name="Emulation.Sharp.Setting.AudioSampleRate" xml:space="preserve"><value>Ääninäytteen näytteenottonopeus</value></data>
+  <data name="Emulation.Sharp.Setting.ButtonOrder" xml:space="preserve"><value>Nappijärjestys</value></data>
+  <data name="Emulation.Sharp.Setting.DiskSeekSound" xml:space="preserve"><value>Levyhakuääni</value></data>
+  <data name="Emulation.Sharp.Setting.FmBoard" xml:space="preserve"><value>FM äänilevy</value></data>
+  <data name="Emulation.Sharp.Setting.FmVolume" xml:space="preserve"><value>FM tilavuus</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRate" xml:space="preserve"><value>Videokuvan kuvanopeus</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRateAdjustment" xml:space="preserve"><value>Kehysnopeuden säätö</value></data>
+  <data name="Emulation.Sharp.Setting.FrameSkip" xml:space="preserve"><value>Ohitetut videokehykset</value></data>
+  <data name="Emulation.Sharp.Setting.HideGraphics" xml:space="preserve"><value>Piilota grafiikka</value></data>
+  <data name="Emulation.Sharp.Setting.HideSprites" xml:space="preserve"><value>Piilota sprite ja taustat</value></data>
+  <data name="Emulation.Sharp.Setting.HideText" xml:space="preserve"><value>Piilota tekstikerros</value></data>
+  <data name="Emulation.Sharp.Setting.MemorySize" xml:space="preserve"><value>RAM kapasiteetti</value></data>
+  <data name="Emulation.Sharp.Setting.RapidFire" xml:space="preserve"><value>Nopea tulitus</value></data>
+  <data name="Emulation.Sharp.Setting.Raster" xml:space="preserve"><value>Rasterivaikutukset</value></data>
+  <data name="Emulation.Sharp.Setting.ReverseJoystick" xml:space="preserve"><value>Käänteinen ohjaimen syöte</value></data>
+  <data name="Emulation.Sharp.Setting.UnlimitedSpeed" xml:space="preserve"><value>Rajoittamaton emulgointinopeus</value></data>
+  <data name="Emulation.Sharp.Setting.VerticalSync" xml:space="preserve"><value>Pystysuuntainen synkronointi</value></data>
+  <data name="Emulation.Sharp.Setting.VideoBeforeAudio" xml:space="preserve"><value>Priorisoi video</value></data>
+  <data name="Emulation.Sharp.Value.High" xml:space="preserve"><value>Korkea</value></data>
+  <data name="Emulation.Sharp.Value.Low" xml:space="preserve"><value>Matala</value></data>
+  <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>Koneen näyttö</value></data>
+</root>

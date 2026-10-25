@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Wenquxing.Error.AlreadyInitialized"><value>ตัวจําลองเริ่มแล้ว</value></data>
+  <data name="Emulation.Wenquxing.Error.CommunicationFailed"><value>การทําการจําลองการสื่อสารของโฮสต์ล้มเหลว</value></data>
+  <data name="Emulation.Wenquxing.Error.ContentFileMissing"><value>ไม่พบสื่อที่ปรับแต่งแล้ว</value></data>
+  <data name="Emulation.Wenquxing.Error.DynamicMediaUnsupported"><value>วาระการจําลองไม่สามารถทําการเปลี่ยนสื่อได้</value></data>
+  <data name="Emulation.Wenquxing.Error.ExecutableMissing"><value>ตัวจําลองโปรแกรมหายไป</value></data>
+  <data name="Emulation.Wenquxing.Error.InstalledLibraryLockedFormat"><value>ไม่สามารถแทนที่ไลบรารีที่ถูกติดตั้งแล้วได้: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidArchitecture"><value>แกนดาวน์โหลดไม่ใช่วินโดวส์ x64</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidConfiguration"><value>การปรับแต่งการจําลองไม่ถูกต้อง</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidResponseLengthFormat"><value>ความยาวการจําลองเครื่องไม่ถูกต้อง: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.MachineInvalidState"><value>วาระการจําลองไม่ได้อยู่ในสถานะที่ต้องการ</value></data>
+  <data name="Emulation.Wenquxing.Error.MachineStopped"><value>หยุดการปั๊มแล้ว</value></data>
+  <data name="Emulation.Wenquxing.Error.MissingExpectedLibraryFormat"><value>แฟ้มจัดเก็บที่ดาวน์โหลดมาไม่มี {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.MissingPublishedDate"><value>คํา ตอบ ของ เจ้า หน้าที่ ไม่ ได้ ระบุ วัน ที่ ออก มา.</value></data>
+  <data name="Emulation.Wenquxing.Error.NotInitialized"><value>ตัวจําลองยังไม่ถูกตั้งขึ้นมา</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessExitSuffixFormat"><value> รหัสออก: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessNotInitialized"><value>โพรเซสการจําลองเครื่องยังไม่ถูกเริ่ม</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessStartFailed"><value>กระบวนการจําลองเครื่องไม่สามารถเริ่มได้</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessUnavailable"><value>ไม่สามารถใช้โพรเซสการจําลองได้</value></data>
+  <data name="Emulation.Wenquxing.Error.ProtocolVersionMismatchFormat"><value>รุ่นของโพรโตคอล {0} ไม่ตรงกัน {1}.</value></data>
+  <data name="Emulation.Wenquxing.Error.RequestCancelled"><value>การขอถอดเครื่องแล้วถูกยกเลิก</value></data>
+  <data name="Emulation.Wenquxing.Error.ResponseTimeout"><value>การจําลองระบบ เริ่มทํางานแล้ว</value></data>
+  <data name="Emulation.Wenquxing.Error.ResponseUnavailable"><value>ไม่สามารถทําการจําลองเครื่องได้</value></data>
+  <data name="Emulation.Wenquxing.Error.SharedVideoUnavailable"><value>ไม่มีข้อมูลการขนส่งวิดีโอที่ใช้ร่วมกัน</value></data>
+  <data name="Emulation.Wenquxing.Error.StateIncompatible"><value>รัฐที่บันทึกไว้ไม่ตรงกับเครื่องปัจจุบัน</value></data>
+  <data name="Emulation.Wenquxing.Error.StateInvalid"><value>รัฐที่บันทึกไว้ใช้งานไม่ได้</value></data>
+  <data name="Emulation.Wenquxing.Error.StateUnavailable"><value>ตัวจําลองไม่รองรับการบันทึกสถานะ</value></data>
+  <data name="Emulation.Wenquxing.Error.UnknownCommandFormat"><value>ไม่ทราบคําสั่งการจําลองเครื่อง: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.UnsupportedControllerDevice"><value>ยังไม่รองรับอุปกรณ์ควบคุม</value></data>
+</root>

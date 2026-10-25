@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Functions;
 using GWGUI.MediaEngine.Images.Writing;
 using GWGUI.MediaEngine.Constants;
 
@@ -8,33 +9,23 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 namespace GWGUI.MediaEngine.Images.Conversion.Flux;
 
 /// <summary>Convertit directement les conteneurs de flux sans construire d'image sectorielle.</summary>
-public sealed class FluxContainerConversionService(
-    ScpReader scpReader,
-    ScpWriter scpWriter,
-    HfeReader hfeReader,
-    HfeWriter hfeWriter)
+public sealed class FluxContainerConversionService(ScpReader scpReader, ScpWriter scpWriter, HfeReader hfeReader, HfeWriter hfeWriter)
 {
     public static bool CanConvert(string sourcePath, string formatId, string targetExtension)
     {
         var source = Path.GetExtension(sourcePath);
-        var target = Normalize(targetExtension);
+        var target = MediaFileExtensionFunctions.NormalizeCore(targetExtension);
         if (source.Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase))
             return target is DiskImageFileExtensions.Scp or DiskImageFileExtensions.Hfe;
         if (!source.Equals(DiskImageFileExtensions.Hfe, StringComparison.OrdinalIgnoreCase))
             return false;
-        return target == DiskImageFileExtensions.Scp &&
-               formatId.Equals(DiskImageFormatIds.RawScp, StringComparison.OrdinalIgnoreCase) ||
-               target == DiskImageFileExtensions.Hfe &&
-               formatId.Equals(DiskImageFormatIds.RawHfe, StringComparison.OrdinalIgnoreCase);
+        return target == DiskImageFileExtensions.Scp && formatId.Equals(DiskImageFormatIds.RawScp, StringComparison.OrdinalIgnoreCase) || target == DiskImageFileExtensions.Hfe && formatId.Equals(DiskImageFormatIds.RawHfe, StringComparison.OrdinalIgnoreCase);
     }
 
-    public async Task ConvertAsync(
-        string sourcePath,
-        string outputPath,
-        CancellationToken cancellationToken = default)
+    public async Task ConvertAsync(string sourcePath, string outputPath, CancellationToken cancellationToken = default)
     {
-        var source = Normalize(Path.GetExtension(sourcePath));
-        var target = Normalize(Path.GetExtension(outputPath));
+        var source = MediaFileExtensionFunctions.NormalizeCore(Path.GetExtension(sourcePath));
+        var target = MediaFileExtensionFunctions.NormalizeCore(Path.GetExtension(outputPath));
         if (source == DiskImageFileExtensions.Scp && target == DiskImageFileExtensions.Scp)
         {
             await CopyScpAsync(sourcePath, outputPath, cancellationToken).ConfigureAwait(false);
@@ -58,10 +49,7 @@ public sealed class FluxContainerConversionService(
         throw new NotSupportedException($"La conversion de flux {source} vers {target} n'est pas prise en charge.");
     }
 
-    private async Task CopyScpAsync(
-        string sourcePath,
-        string outputPath,
-        CancellationToken cancellationToken)
+    private async Task CopyScpAsync(string sourcePath, string outputPath, CancellationToken cancellationToken)
     {
         var bytes = await File.ReadAllBytesAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         var source = await scpReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
@@ -73,10 +61,7 @@ public sealed class FluxContainerConversionService(
             throw new InvalidDataException("Le conteneur SCP n'a pas été copié à l'identique.");
     }
 
-    private async Task CopyHfeAsync(
-        string sourcePath,
-        string outputPath,
-        CancellationToken cancellationToken)
+    private async Task CopyHfeAsync(string sourcePath, string outputPath, CancellationToken cancellationToken)
     {
         var bytes = await File.ReadAllBytesAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         var source = await hfeReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
@@ -88,10 +73,7 @@ public sealed class FluxContainerConversionService(
             throw new InvalidDataException("Le conteneur HFE n'a pas été copié à l'identique.");
     }
 
-    private async Task ConvertHfeToScpAsync(
-        string sourcePath,
-        string outputPath,
-        CancellationToken cancellationToken)
+    private async Task ConvertHfeToScpAsync(string sourcePath, string outputPath, CancellationToken cancellationToken)
     {
         var source = await hfeReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         var tracks = source.Tracks.Select(ToScpTrack).OrderBy(track => track.TrackNumber).ToArray();
@@ -115,32 +97,20 @@ public sealed class FluxContainerConversionService(
         HfeScpParityValidator.Validate(source, target);
     }
 
-    private async Task ConvertScpToHfeAsync(
-        string sourcePath,
-        string outputPath,
-        CancellationToken cancellationToken)
+    private async Task ConvertScpToHfeAsync(string sourcePath, string outputPath, CancellationToken cancellationToken)
     {
         var source = await scpReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         if (source.Header.Revolutions != 1 || source.Tracks.Any(track => track.Revolutions.Count != 1))
             throw new NotSupportedException("HFE v1 ne peut pas conserver plusieurs révolutions SCP séparées.");
         var scale = checked((uint)(source.Header.ResolutionNanoseconds / HfeFormat.TickNanoseconds));
-        var values = source.Tracks.SelectMany(track =>
-            track.Revolutions[0].FluxIntervals
-                .Append(track.Revolutions[0].IndexTimeTicks)
-                .Select(value => checked(value * scale)));
+        var values = source.Tracks.SelectMany(track => track.Revolutions[0].FluxIntervals.Append(track.Revolutions[0].IndexTimeTicks).Select(value => checked(value * scale)));
         var bitCellTicks = FluxBitCellConverter.GreatestCommonDivisor(values);
         if (bitCellTicks == 0)
             throw new InvalidDataException("Le SCP ne contient aucun timing représentable.");
         var bitRate = CalculateBitRate(bitCellTicks);
         var tracks = source.Tracks.Select(track => ToHfeTrack(track, scale, bitCellTicks)).ToArray();
         EnsureHfeTrackLengthsAreExact(tracks, source.Header);
-        var image = new HfeImage(
-            HfeFormat.Revision,
-            tracks.Max(track => track.Cylinder) + 1,
-            tracks.Max(track => track.Head) + 1,
-            ScpHfeEncodingResolver.Resolve(source.Header.DiskType),
-            bitRate,
-            tracks);
+        var image = new HfeImage(HfeFormat.Revision, tracks.Max(track => track.Cylinder) + 1, tracks.Max(track => track.Head) + 1, ScpHfeEncodingResolver.Resolve(source.Header.DiskType), bitRate, tracks);
         await hfeWriter.WriteAsync(image, outputPath, cancellationToken).ConfigureAwait(false);
         var target = await hfeReader.ReadAsync(outputPath, cancellationToken).ConfigureAwait(false);
         HfeFluxParityValidator.Validate(image, target);
@@ -151,11 +121,7 @@ public sealed class FluxContainerConversionService(
         var indexTime = checked((uint)(track.Bits.Count * (long)track.BitCellTicks));
         var intervals = FluxBitCellConverter.ToIntervals(track.Bits, track.BitCellTicks);
         var revolution = new ScpRevolution(indexTime, checked((uint)intervals.Count), intervals);
-        return new ScpTrack(
-            ScpFormatConstants.ToTrackNumber(track.Cylinder, track.Head),
-            track.Cylinder,
-            track.Head,
-            [revolution]);
+        return new ScpTrack(ScpFormatConstants.ToTrackNumber(track.Cylinder, track.Head), track.Cylinder, track.Head, [revolution]);
     }
 
     private static HfeTrack ToHfeTrack(ScpTrack track, uint scale, uint bitCellTicks)
@@ -167,9 +133,7 @@ public sealed class FluxContainerConversionService(
         return new HfeTrack(track.Cylinder, track.Head, bits, bitCellTicks);
     }
 
-    private static void EnsureHfeTrackLengthsAreExact(
-        IReadOnlyList<HfeTrack> tracks,
-        ScpHeader header)
+    private static void EnsureHfeTrackLengthsAreExact(IReadOnlyList<HfeTrack> tracks, ScpHeader header)
     {
         if (tracks.Any(track => track.Bits.Count % HfeFormat.BitsPerByte != 0))
             throw new NotSupportedException("HFE v1 imposerait un remplissage à la fin d'une piste SCP.");
@@ -185,14 +149,9 @@ public sealed class FluxContainerConversionService(
 
     private static ushort CalculateBitRate(uint bitCellTicks)
     {
-        var value = HfeFormat.NanosecondsPerSecond /
-            (HfeFormat.BitsPerDataBit * HfeFormat.TickNanoseconds * 1000L * bitCellTicks);
+        var value = HfeFormat.NanosecondsPerSecond / (HfeFormat.BitsPerDataBit * HfeFormat.TickNanoseconds * 1000L * bitCellTicks);
         if (value is < 1 or > ushort.MaxValue)
             throw new NotSupportedException("Le timing SCP ne possède pas de bitrate HFE v1 valide.");
         return checked((ushort)value);
     }
-
-    private static string Normalize(string extension) => extension.StartsWith('.')
-        ? extension.ToLowerInvariant()
-        : "." + extension.ToLowerInvariant();
 }

@@ -1,3 +1,4 @@
+using GWGUI.App.ViewModels;
 using GWGUI.App.Constants.Input.Bindings;
 using GWGUI.App.Contracts.Input;
 using GWGUI.App.Enums.Input;
@@ -5,15 +6,14 @@ using GWGUI.App.Functions.Input.Bindings;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Services.Input.GameInput;
 using GWGUI.Emulation;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Input;
 
 
 namespace GWGUI.App.ViewModels.Input;
 
-public sealed class InputBindingRow(string id, string label, string binding, string defaultBinding) : INotifyPropertyChanged
+public sealed class InputBindingRow(string id, string label, string binding, string defaultBinding) : ObservableObject
 {
     private string _binding = binding;
     private InputBindingState _state;
@@ -21,40 +21,41 @@ public sealed class InputBindingRow(string id, string label, string binding, str
     public string Id { get; } = id;
     public string Label { get; } = label;
     public string DefaultBinding { get; } = defaultBinding;
+    public string? OppositeDirectionId { get; init; }
     public string Binding
     {
         get => _binding;
         set
         {
             _binding = value;
-            OnChanged();
-            OnChanged(nameof(BindingParts));
-            OnChanged(nameof(ControllerDeviceName));
-            OnChanged(nameof(ControllerDeviceNameVisibility));
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(BindingParts));
+            OnPropertyChanged(nameof(ControllerDeviceName));
+            OnPropertyChanged(nameof(ControllerDeviceNameVisibility));
         }
     }
     public string ControllerDeviceName
     {
         get
         {
-            var deviceId = EmulationInputMappingFunctions.ParseControllerDeviceId(_binding);
+            var deviceId = EmulationSdk.InputProcessing.ParseControllerDeviceId(_binding);
             if (string.IsNullOrWhiteSpace(deviceId)) return string.Empty;
             return GameInputControllerReader.GetControllerName(deviceId) ?? deviceId;
         }
     }
-    public Visibility ControllerDeviceNameVisibility => string.IsNullOrWhiteSpace(ControllerDeviceName)
-        ? Visibility.Collapsed : Visibility.Visible;
+    public Visibility ControllerDeviceNameVisibility => string.IsNullOrWhiteSpace(ControllerDeviceName) ? Visibility.Collapsed : Visibility.Visible;
     public IReadOnlyList<InputBindingPart> BindingParts
     {
         get
         {
-            var parts = _binding.Split('+', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-            return parts.Select((part, index) => new InputBindingPart(DisplayPart(part),
-                index < parts.Length - 1 ? Visibility.Visible : Visibility.Collapsed)).ToArray();
+            var keyboard = InputBindingSyntax.TryRemovePrefix(_binding, InputBindingSyntaxConstants.KeyboardPrefix, out var source) ? source : _binding;
+            var ordered = KeyboardChordFunctions.TryParse(keyboard, out var chord) ? KeyboardChordFunctions.Format(chord.Modifiers, chord.Keys) : _binding;
+            var parts = ordered.Split('+', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+            return parts.Select((part, index) => new InputBindingPart(DisplayPart(part), index < parts.Length - 1 ? Visibility.Visible : Visibility.Collapsed)).ToArray();
         }
     }
 
-    public InputBindingState State { get => _state; private set { _state = value; OnChanged(); } }
+    public InputBindingState State { get => _state; private set { _state = value; OnPropertyChanged(); } }
     public string StateText => LocExtension.Get(State switch
     {
         InputBindingState.Valid => "Emulation.Input.Binding.LabelValid",
@@ -84,23 +85,21 @@ public sealed class InputBindingRow(string id, string label, string binding, str
         _ => "−"
     };
 
-    public event PropertyChangedEventHandler? PropertyChanged;
-
     internal void SetState(InputBindingState state)
     {
         State = state;
-        OnChanged(nameof(StateText));
-        OnChanged(nameof(StateForeground));
-        OnChanged(nameof(StateBackground));
-        OnChanged(nameof(StateIcon));
+        OnPropertyChanged(nameof(StateText));
+        OnPropertyChanged(nameof(StateForeground));
+        OnPropertyChanged(nameof(StateBackground));
+        OnPropertyChanged(nameof(StateIcon));
     }
 
     private static string DisplayPart(string part)
     {
-        if (InputBindingSyntax.TryRemovePrefix(part, InputBindingSyntaxConstants.KeyboardPrefix, out var keyboardSource)) return keyboardSource;
+        if (InputBindingSyntax.TryRemovePrefix(part, InputBindingSyntaxConstants.KeyboardPrefix, out var keyboardSource)) part = keyboardSource;
         if (InputBindingSyntax.TryRemovePrefix(part, InputBindingSyntaxConstants.ControllerPrefix, out var controllerSource))
             return DisplayControllerPart(controllerSource);
-        if (!InputBindingSyntax.TryRemovePrefix(part, InputBindingSyntaxConstants.MousePrefix, out var mouseSource)) return part;
+        if (!InputBindingSyntax.TryRemovePrefix(part, InputBindingSyntaxConstants.MousePrefix, out var mouseSource)) return DisplayKeyboardPart(part);
         return mouseSource.ToLowerInvariant() switch
         {
             "left" => LocExtension.Get("Emulation.Mouse.Button.Left"),
@@ -116,13 +115,32 @@ public sealed class InputBindingRow(string id, string label, string binding, str
         };
     }
 
+    private static string DisplayKeyboardPart(string part)
+    {
+        if (!KeyboardChordFunctions.TryParse(part, out var chord)) return part;
+        var key = chord.Keys.FirstOrDefault();
+        if (chord.Keys.Count > 0 && !KeyboardChordFunctions.IsModifierKey(key)) return part;
+        var label = chord.Modifiers switch
+        {
+            ModifierKeys.Control => LocExtension.Get("Emulation.Keyboard.Modifier.Control"),
+            ModifierKeys.Alt => LocExtension.Get(key == Key.RightAlt ? "Emulation.Keyboard.Modifier.AltGr" : "Emulation.Keyboard.Modifier.Alt"),
+            ModifierKeys.Shift => LocExtension.Get("Emulation.Keyboard.Modifier.Shift"),
+            _ => part
+        };
+        return key switch
+        {
+            Key.LeftCtrl or Key.LeftAlt or Key.LeftShift => $"{label} ({LocExtension.Get("Emulation.Controller.Action.Left")})",
+            Key.RightCtrl or Key.RightShift => $"{label} ({LocExtension.Get("Emulation.Controller.Action.Right")})",
+            _ => label
+        };
+    }
+
     private static string DisplayControllerPart(string source)
     {
         const string separator = " · ";
         var segments = source.Split(':', StringSplitOptions.RemoveEmptyEntries);
         var input = segments[^1];
-        var device = segments.Length >= 3 && segments[0].Equals("xinput", StringComparison.OrdinalIgnoreCase)
-                     && int.TryParse(segments[1], out var port) ? $"X{port + 1}" : null;
+        var device = segments.Length >= 3 && segments[0].Equals("xinput", StringComparison.OrdinalIgnoreCase) && int.TryParse(segments[1], out var port) ? $"X{port + 1}" : null;
         var inputName = input switch
         {
             "DPadUp" => $"D-pad{separator}{LocExtension.Get("Emulation.Controller.Action.Up")}",
@@ -145,7 +163,4 @@ public sealed class InputBindingRow(string id, string label, string binding, str
         };
         return device is null ? inputName : $"{device}{separator}{inputName}";
     }
-
-    private void OnChanged([CallerMemberName] string? property = null) =>
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.emuscv.Description" xml:space="preserve"><value>المواد SUPER CASSETTE VISION -أقنعة</value></data>
+  <data name="Emulation.Emulator.pd777.Description" xml:space="preserve"><value>المواد CASSETTE VISION -أقنعة</value></data>
+  <data name="Emulation.Epoch.Memory.Display" xml:space="preserve"><value>ذكرى فيديو</value></data>
+  <data name="Emulation.Epoch.Video.Native" xml:space="preserve"><value>شريط فيديو كونسول</value></data>
+  <data name="Emulation.Epoch.Controls.Native" xml:space="preserve"><value>ضوابط Console</value></data>
+  <data name="Emulation.Epoch.Setting.DisplayArea" xml:space="preserve"><value>مجال التصويب</value></data>
+  <data name="Emulation.Epoch.Setting.PixelAspect" xml:space="preserve"><value>شكل بيكسيل</value></data>
+  <data name="Emulation.Epoch.Setting.ColorPalette" xml:space="preserve"><value>شاحبة اللون</value></data>
+  <data name="Emulation.Epoch.Setting.RefreshRate" xml:space="preserve"><value>معدل التجديد</value></data>
+  <data name="Emulation.Epoch.Setting.ShowVideoMemory" xml:space="preserve"><value>?"? ?"?</value></data>
+  <data name="Emulation.Epoch.Setting.ShowInputs" xml:space="preserve"><value>جهاز التحكم بالتصرفات</value></data>
+  <data name="Emulation.Epoch.Setting.ValidateFirmware" xml:space="preserve"><value>التصديق BIOS شيك</value></data>
+  <data name="Emulation.Epoch.Setting.ShowKeypadAtStart" xml:space="preserve"><value>اعرض لوحة المفاتيح في البداية</value></data>
+  <data name="Emulation.Epoch.Setting.AnnounceCourseSwitch" xml:space="preserve"><value>اختيار مسارات الشرح</value></data>
+  <data name="Emulation.Epoch.Value.Rectangular" xml:space="preserve"><value>Rectangular</value></data>
+  <data name="Emulation.Epoch.Value.Low" xml:space="preserve"><value>منخفض</value></data>
+  <data name="Emulation.Epoch.Value.High" xml:space="preserve"><value>عالية</value></data>
+</root>

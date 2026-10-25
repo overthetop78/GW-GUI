@@ -1,0 +1,182 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Snk.Common.Functions.CoreHostFunctions;
+using AudioFunctions = GWGUI.Emulation.Snk.Common.Functions.AudioFunctions;
+using CommonControllerFunctions = GWGUI.Emulation.Snk.Common.Functions.ControllerFunctions;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Factories;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Snk.Emulators.Common.Dictionaries;
+using System.IO;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using GWGUI.Emulation;
+using GWGUI.Emulation.Services;
+
+namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
+internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCoreCallbacks
+{
+    /// <summary>Effets des callbacks natifs conservés par Common pendant leur activation.</summary>
+    internal IEmulationControllerFeedbackAccumulator Feedback { get; } = CommonCoreHostFunctions.EnvironmentProcessing.CreateControllerFeedbackAccumulator();
+
+    private readonly CoreOptionHost _optionHost;
+    private readonly int _inputDescriptorLimit;
+    private readonly IReadOnlyDictionary<ControllerCommand, uint> _controllerButtonIds;
+    private readonly ulong _inputCapabilities;
+    private readonly VideoBufferSet _videoBuffers = new();
+    private readonly IEmulationInputFrames _input = CommonControllerFunctions.CreateInputFrames();
+    private readonly DiskControl _diskControl = new();
+    private readonly long _videoStartTimestamp = Stopwatch.GetTimestamp();
+    private readonly AudioBuffer _audio = AudioFunctions.CreateBuffer();
+    private readonly Dictionary<int, bool> _ledStates = [];
+    private readonly HashSet<uint> _unknownEnvironmentCommands = [];
+    private readonly HashSet<uint> _environmentCommands = [];
+    private readonly IEmulationNativeString _systemDirectory;
+    private readonly IEmulationNativeString _contentDirectory;
+    private readonly IEmulationNativeString _saveDirectory;
+    private readonly IEmulationNativeString _assetsDirectory;
+    private long _videoSequence;
+    private long _audioSequence;
+    private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Xrgb8888;
+    private bool _disposed;
+    private readonly IEmulationVirtualFileSystem _virtualFileSystem;
+    internal ExternalHostCallbacks(MachineConfiguration configuration, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, IReadOnlyDictionary<string, string> configuredOptions) : this(
+        configuration.Core,
+        systemDirectory,
+        contentDirectory,
+        saveDirectory,
+        assetsDirectory,
+        configuredOptions,
+        configuration
+    )
+    {
+    }
+
+    internal ExternalHostCallbacks(
+        Emulator emulator,
+        string systemDirectory,
+        string contentDirectory,
+        string saveDirectory,
+        string assetsDirectory,
+        IReadOnlyDictionary<string, string> configuredOptions,
+        MachineConfiguration? configuration = null
+    )
+    {
+        if (!Enum.IsDefined(emulator))
+            throw new ArgumentOutOfRangeException(nameof(emulator));
+        var adapter = (LibretroMachineFactory)CoreCatalog.CreateAdapter(emulator);
+        var directoryStringBufferCapacity = adapter.DirectoryStringBufferCapacity;
+        _controllerButtonIds = configuration is null ? new Dictionary<ControllerCommand, uint>() : adapter!.ControllerButtonIds(configuration);
+        _inputCapabilities = configuration is null ? default : adapter!.InputCapabilities(configuration);
+        _inputDescriptorLimit = EnvironmentConstants.MaximumInputDescriptorCount;
+        Directory.CreateDirectory(systemDirectory);
+        Directory.CreateDirectory(contentDirectory);
+        Directory.CreateDirectory(saveDirectory);
+        Directory.CreateDirectory(assetsDirectory);
+        IEmulationNativeString? system = null;
+        IEmulationNativeString? content = null;
+        IEmulationNativeString? save = null;
+        IEmulationNativeString? assets = null;
+        CoreOptionHost? optionHost = null;
+        IEmulationVirtualFileSystem? virtualFileSystem = null;
+        var completed = false;
+        try
+        {
+            _systemDirectory = system = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(systemDirectory), directoryStringBufferCapacity);
+            _contentDirectory = content = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(contentDirectory), directoryStringBufferCapacity);
+            _saveDirectory = save = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(saveDirectory), directoryStringBufferCapacity);
+            _assetsDirectory = assets = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(assetsDirectory), directoryStringBufferCapacity);
+            _optionHost = optionHost = new CoreOptionHost(configuredOptions);
+            _virtualFileSystem = virtualFileSystem = CommonCoreHostFunctions.NativeResources.CreateVirtualFileSystem();
+            Environment = OnEnvironment;
+            Video = OnVideo;
+            AudioSample = OnAudioSample;
+            AudioBatch = OnAudioBatch;
+            InputPoll = OnInputPoll;
+            InputState = OnInputState;
+            SetLedState = OnSetLedState;
+            SetRumbleState = OnSetRumbleState;
+            SetSensorState = OnSetSensorState;
+            GetSensorInput = OnGetSensorInput;
+            Log = OnLog;
+            completed = true;
+        }
+        finally
+        {
+            if (!completed)
+            {
+                using (system)
+                using (content)
+                using (save)
+                using (assets)
+                using (virtualFileSystem)
+                using (_videoBuffers)
+                    optionHost?.Dispose();
+            }
+        }
+    }
+
+    public ExternalCoreApi.EnvironmentCallback Environment { get; }
+    public ExternalCoreApi.VideoCallback Video { get; }
+    public ExternalCoreApi.AudioSampleCallback AudioSample { get; }
+    public ExternalCoreApi.AudioBatchCallback AudioBatch { get; }
+    public ExternalCoreApi.InputPollCallback InputPoll { get; }
+    public ExternalCoreApi.InputStateCallback InputState { get; }
+    internal ExternalCoreApi.SetLedState SetLedState { get; }
+    internal ExternalCoreApi.SetRumbleState SetRumbleState { get; }
+    internal ExternalCoreApi.SetSensorState SetSensorState { get; }
+    internal ExternalCoreApi.GetSensorInput GetSensorInput { get; }
+    internal ExternalCoreApi.LogCallback Log { get; }
+    internal EmulationInputSnapshot Input { set => _input.Update(CommonControllerFunctions.FreezeMappedInput(value)); }
+    internal VideoFrame? LatestVideoFrame { get; private set; }
+    internal AudioChunk? LatestAudioChunk { get; private set; }
+    internal IReadOnlyList<CoreOption> Options => _optionHost.Catalog;
+    internal IReadOnlyList<CoreOptionCategory> OptionCategories => _optionHost.Categories;
+    internal IReadOnlyDictionary<string, string> OptionDocumentValues => _optionHost.DocumentValues;
+    internal List<string> Diagnostics { get; } = [];
+    internal IReadOnlyDictionary<int, bool> LedStates => _ledStates;
+    internal IReadOnlyList<InputDescriptor> InputDescriptors { get; private set; } = [];
+    internal IReadOnlyList<ControllerPort> ControllerPorts { get; private set; } = [];
+    internal IReadOnlyList<MemoryDescriptor> MemoryDescriptors { get; private set; } = [];
+    internal DiskControl DiskControl => _diskControl;
+    internal uint Rotation { get; private set; } = EnvironmentConstants.NoRotation;
+    internal bool SupportsAchievements { get; private set; }
+    internal uint PerformanceLevel { get; private set; }
+    internal ExternalCoreApi.Geometry Geometry { get; private set; }
+    internal ExternalCoreApi.SystemAvInfo SystemAvInfo { get; private set; }
+    internal List<EnvironmentMessage> Messages { get; } = [];
+    internal List<EnvironmentExtendedMessage> ExtendedMessages { get; } = [];
+    internal IReadOnlySet<uint> EnvironmentCommands => _environmentCommands;
+    internal bool SupportsNoGame { get; private set; }
+    internal double FramesPerSecond { get; private set; }
+    internal int SampleRate { get; private set; }
+    internal int BufferedAudioFrames => _audio.BufferedFrames;
+    internal long AudioOverrunCount => _audio.OverrunCount;
+    internal long AudioUnderrunCount => _audio.UnderrunCount;
+    internal float AspectRatio { get; private set; }
+
+    internal bool TryDequeueAudio(out AudioChunk? chunk) => _audio.TryDequeue(out chunk);
+    internal void ApplySystemAvInfo(ExternalCoreApi.SystemAvInfo info)
+    {
+        SystemAvInfo = info;
+        Geometry = info.Geometry;
+        FramesPerSecond = info.Timing.FramesPerSecond;
+        SampleRate = checked((int)Math.Round(info.Timing.SampleRate));
+        AspectRatio = info.Geometry.AspectRatio;
+    }
+
+    internal void SetOption(string key, string value) => _optionHost.SetValue(key, value);
+    internal void ValidateConfiguredOptions() => _optionHost.ValidateConfiguredValues();
+    internal void ValidateDeferredOptions(MachineConfiguration configuration)
+    {
+        var adapter = CoreCatalog.CreateAdapter(configuration.Core);
+        foreach (var pair in configuration.Options)
+        {
+            if (!adapter.IsDeferredOption(configuration, pair.Key))
+                continue;
+            var option = Options.FirstOrDefault(item => item.Key == pair.Key);
+            if (option is null || !option.Values.Any(value => value.Value == pair.Value))
+                throw new EmulationException(ErrorCategory.Option, ErrorCode.OptionInvalid, CoreFunctions.CreateInvalidOptionValueMessage(pair.Key, pair.Value));
+        }
+    }
+}

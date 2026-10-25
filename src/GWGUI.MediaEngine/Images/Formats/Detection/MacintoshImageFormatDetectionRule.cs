@@ -15,9 +15,7 @@ internal sealed class MacintoshImageFormatDetectionRule : IImageFormatDetectionR
                 1474644 or 1491844 => "mac.1440",
                 _ => null
             };
-            result = formatId is null
-                ? context.Ambiguous("Detection.AppleContainer")
-                : context.Result(formatId, FormatConfidence.Inferred, "Detection.AppleContainer");
+            result = formatId is null ? context.Ambiguous("Detection.AppleContainer") : context.Result(formatId, FormatConfidence.Inferred, "Detection.AppleContainer");
             return true;
         }
 

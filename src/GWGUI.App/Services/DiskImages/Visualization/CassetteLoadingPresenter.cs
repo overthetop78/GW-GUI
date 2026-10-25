@@ -7,6 +7,7 @@ using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.App.Views.Controls.Visualization;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts.Explorer;
+using GWGUI.MediaEngine;
 using System.Windows.Media;
 
 namespace GWGUI.App.Services.DiskImages.Visualization;
@@ -22,10 +23,7 @@ internal sealed class CassetteLoadingPresenter(
 {
     private static readonly TimeSpan MinimumSegmentPresentationInterval = TimeSpan.FromMilliseconds(100);
 
-    internal async Task CompleteAsync(
-        CancellationToken cancellationToken,
-        string shownName,
-        ExploredMediaImage? exploredMediaImage)
+    internal async Task CompleteAsync(CancellationToken cancellationToken, string shownName, ExploredMediaImage? exploredMediaImage)
     {
         cancellationToken.ThrowIfCancellationRequested();
         if (mediaVisualization.SequentialRenderModel is not { } model || model.Segments.Count == 0)
@@ -36,8 +34,7 @@ internal sealed class CassetteLoadingPresenter(
 
         mediaVisualization.ConfigureSequentialProgress(model);
         var recognizedFiles = FileDescriptions(exploredMediaImage);
-        var rowSize = (model.Segments.Count + MediaVisualizationLayoutConstants.SegmentProgressPageCount - 1)
-                      / MediaVisualizationLayoutConstants.SegmentProgressPageCount;
+        var rowSize = (model.Segments.Count + MediaVisualizationLayoutConstants.SegmentProgressPageCount - 1) / MediaVisualizationLayoutConstants.SegmentProgressPageCount;
         var lastPresentation = System.Diagnostics.Stopwatch.GetTimestamp();
         for (var index = 0; index < model.Segments.Count; index++)
         {
@@ -46,17 +43,11 @@ internal sealed class CassetteLoadingPresenter(
             var delay = MinimumSegmentPresentationInterval - elapsed;
             if (delay > TimeSpan.Zero) await Task.Delay(delay, cancellationToken);
 
-            var row = index < rowSize
-                ? MediaVisualizationLayoutConstants.SegmentProgressPageOne
-                : MediaVisualizationLayoutConstants.SegmentProgressPageTwo;
-            var position = row == MediaVisualizationLayoutConstants.SegmentProgressPageOne
-                ? index
-                : index - rowSize;
+            var row = index < rowSize ? MediaVisualizationLayoutConstants.SegmentProgressPageOne : MediaVisualizationLayoutConstants.SegmentProgressPageTwo;
+            var position = row == MediaVisualizationLayoutConstants.SegmentProgressPageOne ? index : index - rowSize;
             var segment = model.Segments[index];
             var color = SkiaSequentialMediaRenderer.ColorFor(segment);
-            (row == MediaVisualizationLayoutConstants.SegmentProgressPageOne ? face0Progress : face1Progress).SetColor(
-                position,
-                Color.FromRgb(color.Red, color.Green, color.Blue));
+            (row == MediaVisualizationLayoutConstants.SegmentProgressPageOne ? face0Progress : face1Progress).SetColor(position, Color.FromRgb(color.Red, color.Green, color.Blue));
 
             var completed = index + 1;
             var value = completed * 100d / model.Segments.Count;
@@ -78,20 +69,6 @@ internal sealed class CassetteLoadingPresenter(
     private static IReadOnlyList<string> FileDescriptions(ExploredMediaImage? explored)
     {
         if (explored?.Document.MediaKind != MediaKind.Tape) return [];
-        return explored.Volumes
-            .SelectMany(volume => volume.FileSystem?.Entries ?? [])
-            .SelectMany(EnumerateFiles)
-            .Select(entry => new ExplorerContentItem(entry))
-            .Select(item => $"{item.Name} — {item.TypeText}")
-            .ToArray();
-    }
-
-    private static IEnumerable<FileSystemEntry> EnumerateFiles(FileSystemEntry entry)
-    {
-        if (entry.Kind == FileSystemEntryKind.File) yield return entry;
-        foreach (var child in entry.Children)
-        {
-            foreach (var descendant in EnumerateFiles(child)) yield return descendant;
-        }
+        return explored.Volumes.SelectMany(volume => volume.FileSystem?.Entries ?? []).SelectMany(entry => MediaEngineComposition.FileSystems.EnumerateFiles(entry, static item => item.Kind == FileSystemEntryKind.File, static item => item.Children)).Select(entry => new ExplorerContentItem(entry)).Select(item => $"{item.Name} — {item.TypeText}").ToArray();
     }
 }

@@ -30,8 +30,7 @@ internal static class FilterLedMatrixColor
         };
         for (var index = 0; index < emission.Length; index += 3)
         {
-            var luminance = emission[index] * .2126f + emission[index + 1] * .7152f
-                + emission[index + 2] * .0722f;
+            var luminance = emission[index] * .2126f + emission[index + 1] * .7152f + emission[index + 2] * .0722f;
             emission[index] = luminance * tint.Item1;
             emission[index + 1] = luminance * tint.Item2;
             emission[index + 2] = luminance * tint.Item3;

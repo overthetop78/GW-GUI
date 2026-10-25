@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound"><value>Ortam tespit edilmedi.</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported"><value>Makine seçilmiş ortamı desteklemez.</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound"><value>Gerekli emulation çekirdeği bulunamadı.</value></data>
+  <data name="Emulation.Example.Error.CoreRejected"><value>Seçilen emulation çekirdeği yüklenemezdi.</value></data>
+  <data name="Emulation.Example.Error.Details"><value>Detaylar: {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid"><value>Bir bilgisayar geçersiz veya uyumlu.</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing"><value>Gerekli bir bilgisayar eksik.</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing"><value>Emulation host programına giden yol mevcut değildir.</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure"><value>Emulation host ile iletişim başarısız oldu.</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid"><value>Bir seçenek geçersiz bir değeri vardır.</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible"><value>Kurtarılan devlet mevcut makine ile uyumlu.</value></data>
+  <data name="Emulation.Example.Error.StateInvalid"><value>Kurtarılan devlet geçersizdir.</value></data>
+  <data name="Emulation.Example.Error.Unexpected"><value>Beklenmeyen bir emulation hatası meydana geldi.</value></data>
+</root>

@@ -37,8 +37,7 @@ internal sealed class FluxMediaImageWriterAdapter : MediaImageWriterAdapter<Prot
         return false;
     }
 
-    private static Func<ProtectedTrackImage, MediaImageDocument, string, string, bool> WrapCanWrite(
-        Func<ProtectedTrackImage, string, string, bool> canWrite)
+    private static Func<ProtectedTrackImage, MediaImageDocument, string, string, bool> WrapCanWrite(Func<ProtectedTrackImage, string, string, bool> canWrite)
     {
         ArgumentNullException.ThrowIfNull(canWrite);
         return (image, _, formatId, extension) => canWrite(image, formatId, extension);
@@ -48,7 +47,6 @@ internal sealed class FluxMediaImageWriterAdapter : MediaImageWriterAdapter<Prot
         Func<ProtectedTrackImage, IReadOnlyDictionary<string, string>, string, string, CancellationToken, Task<IReadOnlyList<string>>> write)
     {
         ArgumentNullException.ThrowIfNull(write);
-        return (image, document, path, formatId, token) =>
-            write(image, document.Metadata, path, formatId, token);
+        return (image, document, path, formatId, token) => write(image, document.Metadata, path, formatId, token);
     }
 }

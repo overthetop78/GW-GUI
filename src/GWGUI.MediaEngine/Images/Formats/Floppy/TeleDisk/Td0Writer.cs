@@ -109,15 +109,11 @@ public sealed class Td0Writer(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWrite
         return new(header, null, tracks, image);
     }
 
-    private static Td0Track[] CreateTracks(SectorImage image, byte sizeCode) => image.AvailableBlocks
-        .GroupBy(block => (block.Address.Cylinder, block.Address.Head))
-        .OrderBy(group => group.Key.Cylinder)
-        .ThenBy(group => group.Key.Head)
+    private static Td0Track[] CreateTracks(SectorImage image, byte sizeCode) => image.AvailableBlocks.GroupBy(block => (block.Address.Cylinder, block.Address.Head)).OrderBy(group => group.Key.Cylinder).ThenBy(group => group.Key.Head)
         .Select(group => new Td0Track(checked((byte)group.Key.Cylinder), checked((byte)group.Key.Head), CreateSectors(group, sizeCode)))
         .ToArray();
 
-    private static Td0Sector[] CreateSectors(IEnumerable<SectorBlock> blocks, byte sizeCode) => blocks
-        .OrderBy(block => block.Address.Number)
+    private static Td0Sector[] CreateSectors(IEnumerable<SectorBlock> blocks, byte sizeCode) => blocks.OrderBy(block => block.Address.Number)
         .Select(block => new Td0Sector(checked((byte)block.Address.Cylinder), checked((byte)block.Address.Head), checked((byte)block.Address.Number), sizeCode, block.IntegrityValid == false ? (byte)Td0SectorFlags.DataCrcError : (byte)Td0SectorFlags.None, block.Data))
         .ToArray();
 

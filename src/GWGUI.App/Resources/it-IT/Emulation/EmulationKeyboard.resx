@@ -12,4 +12,5 @@
   <data name="Emulation.Keyboard.Priority.Description"><value>Le scorciatoie di GW GUI e Windows rimangono attive e non vengono acquisite dalla macchina.</value></data>
   <data name="Emulation.Keyboard.EmulatedKey"><value>Tasto della macchina</value></data>
   <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Lettere, numeri e modificatori normali vengono trasmessi direttamente. Qui devono essere associati solo i tasti funzione e speciali dell’Amiga.</value></data>
+  <data name="Emulation.Keyboard.Modifier.Shift"><value>MAIUSC</value></data>
 </root>

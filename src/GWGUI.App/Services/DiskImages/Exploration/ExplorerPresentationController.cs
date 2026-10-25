@@ -49,14 +49,9 @@ internal sealed class ExplorerPresentationController
     internal ExploredDiskImage? CurrentImage { get; set; }
     internal MediaOpeningAnalysisResult? CurrentOpeningResult { get; private set; }
 
-    internal Task<ExploredDiskImage?> LoadAsync(string path, bool newImage = true) =>
-        LoadAsync(path, newImage, null, null);
+    internal Task<ExploredDiskImage?> LoadAsync(string path, bool newImage = true) => LoadAsync(path, newImage, null, null);
 
-    internal async Task<ExploredDiskImage?> LoadAsync(
-        string path,
-        bool newImage,
-        Action<string, string, double, bool>? sharedProgress,
-        Action<ScpImage>? scpImageLoaded)
+    internal async Task<ExploredDiskImage?> LoadAsync(string path, bool newImage, Action<string, string, double, bool>? sharedProgress, Action<ScpImage>? scpImageLoaded)
     {
         var cancellation = _cancellation.BeginExplorer();
         var cancellationToken = cancellation.Token;
@@ -67,18 +62,12 @@ internal sealed class ExplorerPresentationController
         try
         {
             ReportProgress(DiskImageResourceKeys.ExplorerLoadingRecognition, System.IO.Path.GetFileName(path), 12, sharedProgress);
-            var openingResult = SelectCachedInterpretation(path, newImage, requestedFormat)
-                ?? await AnalyzeAsync(path, requestedFormat, cancellationToken, sharedProgress, scpImageLoaded);
+            var openingResult = SelectCachedInterpretation(path, newImage, requestedFormat) ?? await AnalyzeAsync(path, requestedFormat, cancellationToken, sharedProgress, scpImageLoaded);
             cancellationToken.ThrowIfCancellationRequested();
             if (!_cancellation.IsCurrentExplorer(cancellation)) return null;
 
-            var document = openingResult.DiskExploration
-                ?? throw new InvalidOperationException("The requested disk exploration is missing.");
-            ReportProgress(
-                DiskImageResourceKeys.ExplorerLoadingFormatFound,
-                document.PrimaryFormatId,
-                document.ScpImage is not null ? 90d : 45d,
-                sharedProgress);
+            var document = openingResult.DiskExploration ?? throw new InvalidOperationException("The requested disk exploration is missing.");
+            ReportProgress(DiskImageResourceKeys.ExplorerLoadingFormatFound, document.PrimaryFormatId, document.ScpImage is not null ? 90d : 45d, sharedProgress);
             cancellationToken.ThrowIfCancellationRequested();
             if (!_cancellation.IsCurrentExplorer(cancellation)) return null;
 
@@ -94,19 +83,11 @@ internal sealed class ExplorerPresentationController
             if (mediaImage is not null)
             {
                 var mediaFormatId = mediaImage.Document.FormatId;
-                _visualizer.Header.ApplyDetection(
-                    mediaFormatId,
-                    document.Metadata.ProtectionId,
-                    detectedFormatIds,
-                    document.ScpImage is not null);
+                _visualizer.Header.ApplyDetection(mediaFormatId, document.Metadata.ProtectionId, detectedFormatIds, document.ScpImage is not null);
             }
             else
             {
-                _visualizer.Header.ApplyDetection(
-                    document.PrimaryFormatId,
-                    document.Metadata.ProtectionId,
-                    document.FormatsDetectes.Select(format => format.FormatId),
-                    document.ScpImage is not null);
+                _visualizer.Header.ApplyDetection(document.PrimaryFormatId, document.Metadata.ProtectionId, document.FormatsDetectes.Select(format => format.FormatId), document.ScpImage is not null);
             }
             _applyClassification();
             ReportProgress(DiskImageResourceKeys.ExplorerLoadingDisplay, System.IO.Path.GetFileName(path), 100, sharedProgress);
@@ -120,15 +101,8 @@ internal sealed class ExplorerPresentationController
         {
             if (!_cancellation.IsCurrentExplorer(cancellation) || cancellationToken.IsCancellationRequested) return null;
             var messageKey = DiskImageWorkspaceController.LoadFailureMessageKey(newImage, requestedFormat);
-            var titleKey = messageKey == DiskImageResourceKeys.ExplorerSelectedFormatUnsupported
-                ? DiskImageResourceKeys.ExplorerSelectedFormatUnsupportedTitle
-                : DiskImageResourceKeys.TabExplorer;
-            var presentedException = messageKey == DiskImageResourceKeys.ExplorerSelectedFormatUnsupported
-                ? new DiskImageWorkspaceController.SelectedFormatUnsupportedException(
-                    FormatName(requestedFormat!),
-                    System.IO.Path.GetFileName(path),
-                    exception)
-                : exception;
+            var titleKey = messageKey == DiskImageResourceKeys.ExplorerSelectedFormatUnsupported ? DiskImageResourceKeys.ExplorerSelectedFormatUnsupportedTitle : DiskImageResourceKeys.TabExplorer;
+            var presentedException = messageKey == DiskImageResourceKeys.ExplorerSelectedFormatUnsupported ? new DiskImageWorkspaceController.SelectedFormatUnsupportedException(DiskImageWorkspaceController.FormatName(requestedFormat!, _localize), System.IO.Path.GetFileName(path), exception) : exception;
             _showError(presentedException, $"Opening disk image in Explorer: {path}", titleKey, messageKey);
             return null;
         }
@@ -150,12 +124,7 @@ internal sealed class ExplorerPresentationController
         };
     }
 
-    private async Task<MediaOpeningAnalysisResult> AnalyzeAsync(
-        string path,
-        string? requestedFormat,
-        CancellationToken cancellationToken,
-        Action<string, string, double, bool>? sharedProgress,
-        Action<ScpImage>? scpImageLoaded)
+    private async Task<MediaOpeningAnalysisResult> AnalyzeAsync(string path, string? requestedFormat, CancellationToken cancellationToken, Action<string, string, double, bool>? sharedProgress, Action<ScpImage>? scpImageLoaded)
     {
         var latestValue = 12d;
         var scpProgress = new Progress<ScpExplorationProgress>(item =>
@@ -199,11 +168,7 @@ internal sealed class ExplorerPresentationController
             scpImageLoaded);
     }
 
-    private void ReportProgress(
-        string stageKey,
-        string detail,
-        double value,
-        Action<string, string, double, bool>? sharedProgress)
+    private void ReportProgress(string stageKey, string detail, double value, Action<string, string, double, bool>? sharedProgress)
     {
         var stage = _localize(stageKey, []);
         _explorer.SetLoadingProgress(stage, detail, value);
@@ -222,9 +187,4 @@ internal sealed class ExplorerPresentationController
                 _ => DiskImageResourceKeys.ExplorerLoadingRecognition
             },
             []);
-
-    private string FormatName(string formatId) =>
-        new BuiltInImageFormatCatalog(key => _localize(key, [])).Formats
-            .FirstOrDefault(format => format.Id.Equals(formatId, StringComparison.OrdinalIgnoreCase))?.DisplayName
-        ?? formatId;
 }

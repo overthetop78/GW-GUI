@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.m2000.Description" xml:space="preserve"><value>מטביעים את PHILIPS P2000T מחשב</value></data>
+  <data name="Emulation.Emulator.o2em.Description" xml:space="preserve"><value>⁇ MAGNAVOX ODYSSEY2 ו PHILIPS VIDEOPAC G7000 הקונסולות</value></data>
+  <data name="Emulation.Emulator.same_cdi.Description" xml:space="preserve"><value>⁇ PHILIPS CD-I הקונסולות</value></data>
+  <data name="Emulation.Philips.Audio.Native" xml:space="preserve"><value>תגית: Eulator Audio</value></data>
+  <data name="Emulation.Philips.Keyboard.Native" xml:space="preserve"><value>פרשנות Keyboard</value></data>
+  <data name="Emulation.Philips.Memory.Display" xml:space="preserve"><value>זיכרון וידאו</value></data>
+  <data name="Emulation.Philips.Setting.AlternateRenderer" xml:space="preserve"><value>וידאו חלופי</value></data>
+  <data name="Emulation.Philips.Setting.AudioVolume" xml:space="preserve"><value>נפח אודיו של הקונסולה</value></data>
+  <data name="Emulation.Philips.Setting.AutoSave" xml:space="preserve"><value>מדינות שוחרות</value></data>
+  <data name="Emulation.Philips.Setting.Cheats" xml:space="preserve"><value>משחקי לרמות</value></data>
+  <data name="Emulation.Philips.Setting.CropOverscan" xml:space="preserve"><value>להסיר את גבול הוידאו</value></data>
+  <data name="Emulation.Philips.Setting.KeyboardMapping" xml:space="preserve"><value>מיפוי מפתח Keyboard</value></data>
+  <data name="Emulation.Philips.Setting.LowPassFilter" xml:space="preserve"><value>מסנן אודיו נמוך</value></data>
+  <data name="Emulation.Philips.Setting.LowPassRange" xml:space="preserve"><value>תדירות קיצוץ</value></data>
+  <data name="Emulation.Philips.Setting.MixFrames" xml:space="preserve"><value>« « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « «</value></data>
+  <data name="Emulation.Philips.Setting.NvramPerGame" xml:space="preserve"><value>זיכרון מתמשך נפרד לכל משחק</value></data>
+  <data name="Emulation.Philips.Setting.StateNaming" xml:space="preserve"><value>שם הקובץ Saved State File</value></data>
+  <data name="Emulation.Philips.Setting.Throttle" xml:space="preserve"><value>מהירות חיקוי</value></data>
+  <data name="Emulation.Philips.Setting.VoiceVolume" xml:space="preserve"><value>נפח הקול</value></data>
+  <data name="Emulation.Philips.System.Native" xml:space="preserve"><value>אפשרויות ל Emulator</value></data>
+  <data name="Emulation.Philips.Value.Game" xml:space="preserve"><value>משחק Per Game</value></data>
+  <data name="Emulation.Philips.Value.Positional" xml:space="preserve"><value>עמדות מפתח פיזיות</value></data>
+  <data name="Emulation.Philips.Value.Simple" xml:space="preserve"><value>פשוט מיזוג</value></data>
+  <data name="Emulation.Philips.Value.Symbolic" xml:space="preserve"><value>דמויות מודפסות</value></data>
+  <data name="Emulation.Philips.Value.System" xml:space="preserve"><value>מערכת</value></data>
+  <data name="Emulation.Philips.Video.Native" xml:space="preserve"><value>וידאו</value></data>
+</root>

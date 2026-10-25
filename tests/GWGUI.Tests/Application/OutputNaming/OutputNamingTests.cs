@@ -10,8 +10,7 @@ public class OutputNamingTests
     [InlineData(26,SequenceKind.Alphabetic,1,"AA")]
     [InlineData(701,SequenceKind.Alphabetic,1,"ZZ")]
     [InlineData(702,SequenceKind.Alphabetic,1,"AAA")]
-    public void SequenceHasExpectedRepresentation(long value,SequenceKind kind,int width,string expected) =>
-        SequenceAndTagsScenarios.Sequence(value,kind,width,expected);
+    public void SequenceHasExpectedRepresentation(long value,SequenceKind kind,int width,string expected) => SequenceAndTagsScenarios.Sequence(value,kind,width,expected);
     [Theory]
     [InlineData("",SequenceKind.Numeric)]
     [InlineData("-1",SequenceKind.Numeric)]

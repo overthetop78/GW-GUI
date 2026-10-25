@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Onbekend omgevingscommando: {0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound" xml:space="preserve"><value>De vereiste Apple-kern is niet gevonden.</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected" xml:space="preserve"><value>De geselecteerde Apple-kern kon niet geladen worden.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing" xml:space="preserve"><value>Een vereiste Apple firmware ontbreekt.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid" xml:space="preserve"><value>Het systeem ROM is ongeldig of onverenigbaar.</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound" xml:space="preserve"><value>De geconfigureerde Apple media zijn niet gevonden.</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported" xml:space="preserve"><value>Deze machine ondersteunt de geselecteerde media niet.</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid" xml:space="preserve"><value>Een Apple-optie heeft een ongeldige waarde.</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure" xml:space="preserve"><value>Communicatie met de Apple-host is mislukt.</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid" xml:space="preserve"><value>De opgeslagen Apple-status is ongeldig.</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible" xml:space="preserve"><value>De Apple opgeslagen staat is onverenigbaar met de huidige machine.</value></data>
+  <data name="Emulation.Apple.Error.Unexpected" xml:space="preserve"><value>Er is een onverwachte Apple-emulatiefout opgetreden.</value></data>
+  <data name="Emulation.Apple.Error.Details" xml:space="preserve"><value>Gegevens: {0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing" xml:space="preserve"><value>Het uitvoerbare pad van Apple-host is niet beschikbaar.</value></data>
+</root>

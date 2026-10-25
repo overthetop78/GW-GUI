@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Language"><value>Língua do sistema Nintendo</value></data>
+  <data name="Emulation.Nintendo.Language.English"><value>Língua inglesa</value></data>
+  <data name="Emulation.Nintendo.Language.French"><value>Francês</value></data>
+  <data name="Emulation.Nintendo.Language.Spanish"><value>Espanhol</value></data>
+  <data name="Emulation.Nintendo.Firmware.Integrated"><value>ROM do sistema</value></data>
+  <data name="Emulation.Emulator.mesen.Description"><value>Emula Nintendo Entertainment System e Famicom Disk System.</value></data>
+  <data name="Emulation.Emulator.gw.Description"><value>Emula Nintendo Game &amp; Watch.</value></data>
+  <data name="Emulation.Emulator.beetle_vb.Description"><value>Emula o Nintendo Virtual Boy.</value></data>
+  <data name="Emulation.Emulator.mupen64plus-next.Description"><value>Emula sistemas Nintendo 64.</value></data>
+  <data name="Emulation.Emulator.melonds.Description"><value>Emula sistemas Nintendo DS e DSi.</value></data>
+  <data name="Emulation.Emulator.snes9x.Description"><value>Emula sistemas Super Nintendo e Super Famicom.</value></data>
+  <data name="Emulation.Emulator.gambatte.Description"><value>Emula o sistema Nintendo Game Boy. Também emula o sistema Game Boy Color.</value></data>
+  <data name="Emulation.Emulator.mgba.Description"><value>Emula os sistemas Nintendo Game Boy Advance.</value></data>
+  <data name="Emulation.Emulator.citra.Description"><value>Emula sistemas Nintendo 3DS com Citra.</value></data>
+  <data name="Emulation.Emulator.dolphin.Description"><value>Emula sistemas Nintendo GameCube e Wii com Dolphin.</value></data>
+</root>

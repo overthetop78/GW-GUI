@@ -1,6 +1,6 @@
 using System.Globalization;
-using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
-using IMediaImageDocument = global::GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
+using MediaVolumeDescriptor = GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
+using IMediaImageDocument = GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
 using GWGUI.MediaFileSystems.Definitions;
 
 namespace GWGUI.MediaFileSystems.Exploration.Sequential;
@@ -13,11 +13,7 @@ public sealed class SequentialContentFileSystemReader
 
     public string Id => FileSystemIds.SequentialContent;
 
-    public FileSystemVolume Read(
-        IMediaImageDocument document,
-        MediaVolumeDescriptor volume,
-        IMediaSequentialContent content,
-        string volumeName)
+    public FileSystemVolume Read(IMediaImageDocument document, MediaVolumeDescriptor volume, IMediaSequentialContent content, string volumeName)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(volume);
@@ -36,9 +32,7 @@ public sealed class SequentialContentFileSystemReader
             if (current.Count == 0 || currentName is null) return;
             var data = new List<byte>();
             foreach (var block in current) data.AddRange(block.Data.ToArray());
-            var integrity = current.Any(block => block.IntegrityValid == false)
-                ? false
-                : current.All(block => block.IntegrityValid == true) ? true : (bool?)null;
+            var integrity = current.Any(block => block.IntegrityValid == false) ? false : current.All(block => block.IntegrityValid == true) ? true : (bool?)null;
             var first = current[0];
             first.Metadata.TryGetValue("fileType", out var nativeTypeId);
             entries.Add(new FileSystemEntry(
@@ -71,9 +65,7 @@ public sealed class SequentialContentFileSystemReader
             }
 
             var name = storedName.Trim();
-            int? number = block.Metadata.TryGetValue(BlockNumberKey, out var rawNumber)
-                && int.TryParse(rawNumber, NumberStyles.None, CultureInfo.InvariantCulture, out var parsedNumber)
-                    ? parsedNumber : null;
+            int? number = block.Metadata.TryGetValue(BlockNumberKey, out var rawNumber) && int.TryParse(rawNumber, NumberStyles.None, CultureInfo.InvariantCulture, out var parsedNumber) ? parsedNumber : null;
             if (current.Count > 0 && (!string.Equals(currentName, name, StringComparison.Ordinal)
                 || number is null || previousNumber is null || number != previousNumber + 1))
                 Flush();
@@ -91,16 +83,6 @@ public sealed class SequentialContentFileSystemReader
         if (entries.Count == 0)
             warnings.Add("No named file is available for exploration.");
 
-        return new FileSystemVolume(
-            volumeName,
-            Id,
-            volume.Length,
-            0,
-            null,
-            null,
-            entries,
-            warnings.Distinct(StringComparer.Ordinal),
-            freeSpaceKnown: false,
-            attributes: content.DecoderId is null ? [document.FormatId] : [document.FormatId, content.DecoderId]);
+        return new FileSystemVolume( volumeName, Id, volume.Length, 0, null, null, entries, warnings.Distinct(StringComparer.Ordinal), freeSpaceKnown: false, attributes: content.DecoderId is null ? [document.FormatId] : [document.FormatId, content.DecoderId]);
     }
 }

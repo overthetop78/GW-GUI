@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft" xml:space="preserve"><value>Bouton latéral gauche</value></data>
+  <data name="Emulation.Epoch.Input.FireRight" xml:space="preserve"><value>Bouton latéral droit</value></data>
+  <data name="Emulation.Epoch.Input.Power" xml:space="preserve"><value>Bouton d'alimentation</value></data>
+  <data name="Emulation.Epoch.Input.Reset" xml:space="preserve"><value>bouton de réinitialisation</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft" xml:space="preserve"><value>Déplacer le levier vers la gauche</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight" xml:space="preserve"><value>Déplacer le levier vers la droite</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease" xml:space="preserve"><value>Sélectionner le parcours de jeu suivant</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease" xml:space="preserve"><value>Sélectionner le parcours de jeu précédent</value></data>
+  <data name="Emulation.Epoch.Input.GunFire" xml:space="preserve"><value>Gâchette du pistolet optique</value></data>
+  <data name="Emulation.Epoch.Input.GunReload" xml:space="preserve"><value>Recharger le pistolet optique</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease" xml:space="preserve"><value>Paddle 1 : tourner dans le sens antihoraire</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase" xml:space="preserve"><value>Paddle 1 : tourner dans le sens horaire</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease" xml:space="preserve"><value>Paddle 2 : tourner dans le sens antihoraire</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase" xml:space="preserve"><value>Paddle 2 : tourner dans le sens horaire</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease" xml:space="preserve"><value>Paddle 3 : tourner dans le sens antihoraire</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase" xml:space="preserve"><value>Paddle 3 : tourner dans le sens horaire</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease" xml:space="preserve"><value>Paddle 4 : tourner dans le sens antihoraire</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase" xml:space="preserve"><value>Paddle 4 : tourner dans le sens horaire</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease" xml:space="preserve"><value>Viser vers la gauche avec le pistolet optique</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease" xml:space="preserve"><value>Viser vers la droite avec le pistolet optique</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease" xml:space="preserve"><value>Viser vers le haut avec le pistolet optique</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease" xml:space="preserve"><value>Viser vers le bas avec le pistolet optique</value></data>
+</root>

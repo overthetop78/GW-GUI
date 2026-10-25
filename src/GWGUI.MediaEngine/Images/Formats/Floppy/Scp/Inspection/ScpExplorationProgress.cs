@@ -12,11 +12,4 @@ public enum ScpExplorationProgressKind
 }
 
 /// <summary>Décrit une unité d'analyse SCP terminée et le total correspondant.</summary>
-public sealed record ScpExplorationProgress(
-    ScpExplorationProgressKind Kind,
-    string Detail,
-    int Completed,
-    int Total,
-    bool? Recognized = null,
-    int? Cylinder = null,
-    int? Head = null);
+public sealed record ScpExplorationProgress(ScpExplorationProgressKind Kind, string Detail, int Completed, int Total, bool? Recognized = null, int? Cylinder = null, int? Head = null);

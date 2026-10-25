@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>ארכיון תגיות: {0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound" xml:space="preserve"><value>הליבה של Apple לא נמצאה.</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected" xml:space="preserve"><value>לא ניתן לטעון את הליבה של Apple.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing" xml:space="preserve"><value>קושחה של Apple נדרשה חסרה.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid" xml:space="preserve"><value>המערכת ROM היא בלתי חוקית או לא מתאימה.</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound" xml:space="preserve"><value>אמצעי Apple המוגדרים לא נמצאו.</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported" xml:space="preserve"><value>מכונה זו אינה תומכת בתקשורת שנבחרה.</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid" xml:space="preserve"><value>לאופציה של Apple יש ערך לא חוקי.</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure" xml:space="preserve"><value>התקשורת עם חברת Apple נכשלה.</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid" xml:space="preserve"><value>המדינה הנשמרת של Apple היא בלתי חוקית.</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible" xml:space="preserve"><value>המדינה Apple הצילה אינה תואמת למכונה הנוכחית.</value></data>
+  <data name="Emulation.Apple.Error.Unexpected" xml:space="preserve"><value>טעות חיקוי בלתי צפויה של Apple התרחשה.</value></data>
+  <data name="Emulation.Apple.Error.Details" xml:space="preserve"><value>תגית: {0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing" xml:space="preserve"><value>דרך ההפעלה של Apple אינה זמינה.</value></data>
+</root>

@@ -1,4 +1,4 @@
-using ConversionSelection = global::GWGUI.MediaEngine.Images.Conversion.ConversionSelection;
+using ConversionSelection = GWGUI.MediaEngine.Images.Conversion.ConversionSelection;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.App.Contracts.ViewModels.Conversion;
 using GWGUI.App.Enums.ViewModels.Conversion;
@@ -11,9 +11,7 @@ namespace GWGUI.App.Views.Controls.Conversion;
 public partial class ConversionFormatControl : UserControl
 {
     private bool _settingState;
-    public static readonly DependencyProperty PresentationProperty = DependencyProperty.Register(
-        nameof(Presentation), typeof(ConversionFormatPresentation), typeof(ConversionFormatControl),
-        new PropertyMetadata(null, PresentationChanged));
+    public static readonly DependencyProperty PresentationProperty = DependencyProperty.Register(nameof(Presentation), typeof(ConversionFormatPresentation), typeof(ConversionFormatControl), new PropertyMetadata(null, PresentationChanged));
 
     public ConversionFormatPresentation? Presentation
     {

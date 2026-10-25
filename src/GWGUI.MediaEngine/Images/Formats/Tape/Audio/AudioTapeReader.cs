@@ -39,9 +39,7 @@ public sealed class AudioTapeReader : IMediaImageReader
     ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        return ValueTask.FromResult(
-            (context.RequestedFormatId is null || SupportedFormatIds.Contains(context.RequestedFormatId))
-            && SupportedExtensions.Contains(context.Extension));
+        return ValueTask.FromResult((context.RequestedFormatId is null || SupportedFormatIds.Contains(context.RequestedFormatId)) && SupportedExtensions.Contains(context.Extension));
     }
 
     Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)

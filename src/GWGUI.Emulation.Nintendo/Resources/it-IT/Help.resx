@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Short"><value>Quantità di RAM disponibile per la macchina emulata.</value></data>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Detailed"><value>Visualizza la RAM fornita dalla macchina Nintendo selezionata.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Short"><value>Sistema ROM.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Detailed"><value>Visualizza lo stato ROM del sistema per la macchina e l'emulatore selezionato.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Short"><value>Il modello della macchina Nintendo è configurato.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Short"><value>Emulatore selezionato per questa macchina.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Detailed"><value>Identificare l'implementazione dell'emulatore utilizzata per eseguire questa configurazione della macchina.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Short"><value>Processore emulato per questa macchina.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Detailed"><value>Mostra il modello del processore fornito dalla macchina Nintendo selezionata.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Short"><value>Frequenza originale dell'orologio del processore.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Detailed"><value>Mostra la frequenza nominale dell'orologio del processore nella macchina Nintendo selezionata.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Short"><value>Abilitare o disabilitare il suono emulato.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Detailed"><value>Controlla se GW GUI riproduce i campioni audio generati dall'emulatore.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Short"><value>Uscita audio utilizzata da GW GUI.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Detailed"><value>Seleziona l'uscita audio di Windows utilizzata per riprodurre il suono da questa macchina emulata.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Detailed"><value>Identifica il modello Nintendo la cui configurazione hardware viene modificata.</value></data>
+</root>

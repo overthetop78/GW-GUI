@@ -12,8 +12,7 @@ public partial class HardwareUnavailableWindow : Window
     public HardwareUnavailableWindow(IReadOnlyList<ControllerSettings> controllers)
     {
         InitializeComponent();
-        MissingControllers.ItemsSource = controllers.Select(controller =>
-            $"{controller.Model} — {controller.UsbId} — {controller.LastPort}").ToArray();
+        MissingControllers.ItemsSource = controllers.Select(controller => $"{controller.Model} — {controller.UsbId} — {controller.LastPort}").ToArray();
     }
 
     private void Choice_Click(object sender, RoutedEventArgs e)

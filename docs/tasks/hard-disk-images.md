@@ -31,7 +31,7 @@ objet est supprimée.
     - [x] Modifier `src/GWGUI.Emulation/HardDisks/DiskImagePlan.cs` pour valider une composition à partir des capacités déclarées par le registre avant toute création de fichier.
     - [x] Modifier `docs/project/hard-disk-format-catalog.md` avec les paramètres, limites, tailles de secteurs et géométries effectivement exposés par le registre.
   - [x] 2.2 Adapter uniquement les catalogues propres aux émulateurs
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Functions/AmigaHardDiskFormats.cs` pour composer ses choix depuis les capacités communes tout en conservant uniquement les combinaisons acceptées par les émulateurs Amiga.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Functions/AmigaHardDiskFormats.cs` pour composer ses choix depuis les capacités communes tout en conservant uniquement les combinaisons acceptées par les émulateurs Amiga.
     - [x] Modifier `src/GWGUI.Emulation.Atari/Functions/AtariHardDiskFormats.cs` pour composer ses choix depuis les capacités communes tout en conservant uniquement les combinaisons acceptées par les émulateurs Atari.
     - [x] Modifier `src/GWGUI.App/Views/Dialogs/Emulation/Storage/HardDiskDriveConfigurationDialog.cs` pour afficher et valider les paramètres fournis par `HardDiskImageFormat` sans recréer les règles des formats dans l’interface.
     - [x] Modifier `docs/project/hard-disk-format-catalog.md` avec les combinaisons Amiga et Atari réellement vérifiées après ces adaptations.

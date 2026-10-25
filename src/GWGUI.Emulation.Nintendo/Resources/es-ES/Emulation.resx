@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Language"><value>Idioma del sistema Nintendo</value></data>
+  <data name="Emulation.Nintendo.Language.English"><value>Idioma inglés</value></data>
+  <data name="Emulation.Nintendo.Language.French"><value>Francés</value></data>
+  <data name="Emulation.Nintendo.Language.Spanish"><value>Español</value></data>
+  <data name="Emulation.Nintendo.Firmware.Integrated"><value>Sistema ROM</value></data>
+  <data name="Emulation.Emulator.mesen.Description"><value>Emula Nintendo Entertainment System y Famicom Disk System.</value></data>
+  <data name="Emulation.Emulator.gw.Description"><value>Emulates Nintendo Game &amp; Watch.</value></data>
+  <data name="Emulation.Emulator.beetle_vb.Description"><value>Emula al Nintendo Virtual Boy.</value></data>
+  <data name="Emulation.Emulator.mupen64plus-next.Description"><value>Emula los sistemas Nintendo 64.</value></data>
+  <data name="Emulation.Emulator.melonds.Description"><value>Emula los sistemas Nintendo DS y DSi.</value></data>
+  <data name="Emulation.Emulator.snes9x.Description"><value>Emula sistemas Super Nintendo y Super Famicom.</value></data>
+  <data name="Emulation.Emulator.gambatte.Description"><value>Emula el sistema Nintendo Game Boy. También emula el sistema Game Boy Color.</value></data>
+  <data name="Emulation.Emulator.mgba.Description"><value>Emula los sistemas Nintendo Game Boy Advance.</value></data>
+  <data name="Emulation.Emulator.citra.Description"><value>Emula sistemas Nintendo 3DS con Citra.</value></data>
+  <data name="Emulation.Emulator.dolphin.Description"><value>Emula los sistemas Nintendo GameCube y Wii con Dolphin.</value></data>
+</root>

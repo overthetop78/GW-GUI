@@ -11,9 +11,7 @@ public sealed record GwCommand(string ExecutablePath, string Verb, IReadOnlyList
 
     public string ToDisplayString()
     {
-        static string Quote(string value) => value.Length == 0 || value.Any(char.IsWhiteSpace) || value.Contains('"')
-            ? $"\"{value.Replace("\"", "\\\"")}\""
-            : value;
+        static string Quote(string value) => value.Length == 0 || value.Any(char.IsWhiteSpace) || value.Contains('"') ? $"\"{value.Replace("\"", "\\\"")}\"" : value;
 
         return string.Join(" ", new[] { Quote(ExecutablePath) }.Concat(AllArguments().Select(Quote)));
     }

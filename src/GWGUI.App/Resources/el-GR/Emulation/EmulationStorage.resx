@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>Σκληρός δίσκος</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>Διασύνδεση</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Προκατανομή αρχείου</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Τα floppies και τα CD εισάγονται ή αντικαθίστανται από το μηχάνημα που εκτελείται.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Χρησιμοποιήστε την εικόνα εξομοίωσης για να εισάγετε ή να αλλάξετε μέσα.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Αφαίρεση μέσου</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Η εικόνα δίσκου υπάρχει ήδη: {0}\nΘέλετε να την αντικαταστήσετε;</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Οι διαθέσιμοι τύποι, τα μοντέλα και τα αναγνωριστικά εξαρτώνται από το επιλεγμένο μηχάνημα.</value></data>
@@ -75,4 +75,13 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Κουλοχέρης</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Προσάρτηση των πρώτων τεσσάρων δίσκων στο DF0 ⁇ DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Δίσκος {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Χρήση κάρτας</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Το επιλεγμένο αρχείο θα προσαρτηθεί σε αυτή την εικονική συσκευή αποθήκευσης.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Επιλέξτε ένα υπάρχον αρχείο καρτών.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Το αρχείο της κάρτας έχει μη έγκυρο μέγεθος.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Επιλέξτε μια μορφή αρχείου που υποστηρίζεται από αυτή τη συσκευή.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Απεριόριστο</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Εκκαθάριση όταν κλείνει το παιχνίδι</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Κάρτα μνήμης</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>Όνομα κάρτας</value></data>
 </root>

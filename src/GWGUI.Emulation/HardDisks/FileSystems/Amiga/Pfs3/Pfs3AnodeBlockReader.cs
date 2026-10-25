@@ -19,8 +19,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             var seqNr = BigEndianConverter.ConvertBytesToUInt32(blockBytes, 0x8);
 
             var nodes = new List<Pfs3Anode>();
-            var nodesCount = (g.RootBlock.ReservedBlksize - Amiga.SizeOf.UWord * 2 - Amiga.SizeOf.ULong * 3) /
-                             (Amiga.SizeOf.ULong * 3);
+            var nodesCount = (g.RootBlock.ReservedBlksize - Amiga.SizeOf.UWord * 2 - Amiga.SizeOf.ULong * 3) / (Amiga.SizeOf.ULong * 3);
 
             var offset = 0x10;
             for (var i = 0; i < nodesCount; i++)

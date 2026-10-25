@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>减少宽幅工资</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>详细回收</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>解开连接</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>关闭</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>已禁用</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>鲍勃,连线</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - 奇数行</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>垂直组合</value></data>
@@ -242,7 +242,7 @@
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>连接降解</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>颜色标准</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>标准效果强度</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>自动</value></data>
+  <data name="Emulation.Video.Signal.Standard.Automatic"><value>自动的</value></data>
   <data name="Emulation.Video.Signal.Connection.None"><value>无</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>水平曲率</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>垂直曲率</value></data>
@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>边缘变暗</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>光线和光线</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>投影屏幕</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>硬件渲染</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>渲染模式</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>硬件渲染使用应用程序所选的图形 API，前提是模拟器支持该 API。</value></data>
 </root>

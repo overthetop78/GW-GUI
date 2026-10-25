@@ -5,13 +5,7 @@ namespace GWGUI.MediaEngine.Contracts;
 /// <summary>Contains one validated MDS session and the readable track blocks it declares.</summary>
 public sealed class AlcoholMdsSessionBlock
 {
-    public AlcoholMdsSessionBlock(
-        int number,
-        long startSector,
-        long endSector,
-        int firstTrack,
-        int lastTrack,
-        IReadOnlyList<AlcoholMdsTrackBlock> tracks)
+    public AlcoholMdsSessionBlock(int number, long startSector, long endSector, int firstTrack, int lastTrack, IReadOnlyList<AlcoholMdsTrackBlock> tracks)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(number);
         if (endSector <= startSector) throw new ArgumentOutOfRangeException(nameof(endSector));

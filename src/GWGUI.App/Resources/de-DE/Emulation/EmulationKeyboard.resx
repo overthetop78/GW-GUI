@@ -12,4 +12,5 @@
   <data name="Emulation.Keyboard.Priority.Description"><value>Tastenkürzel von GW GUI und Windows bleiben aktiv und werden von der Maschine nicht erfasst.</value></data>
   <data name="Emulation.Keyboard.EmulatedKey"><value>Maschinentaste</value></data>
   <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Buchstaben, Ziffern und normale Modifikatortasten werden direkt übertragen. Nur Funktions- und Sondertasten des Amiga müssen hier zugewiesen werden.</value></data>
+  <data name="Emulation.Keyboard.Modifier.Shift"><value>Umschalt</value></data>
 </root>

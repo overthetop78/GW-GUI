@@ -15,4 +15,5 @@
   <data name="Emulation.Configuration" xml:space="preserve"><value>Yapı oluşturma</value></data>
   <data name="Emulation.Configurations" xml:space="preserve"><value>Yapılar</value></data>
   <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Bu Amiga yapılandırmasını mi silin?</value></data>
+  <data name="Emulation.Configuration.Selector"><value>Markalar ve makineler</value></data>
 </root>

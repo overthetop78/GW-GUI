@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>Żądana pozycja jest niepoprawna dla tego obiektu systemu plików.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Operacja allocation- node nie powiodła się.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Blok indeksu mapy bitowej alokacji {0}/{1} Nie można go odczytać.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>Głowica napędowa nie znajduje się na wymaganym cylindrze ({0}). Przekalibrować dysk przed czytaniem.</value></data>
 </root>

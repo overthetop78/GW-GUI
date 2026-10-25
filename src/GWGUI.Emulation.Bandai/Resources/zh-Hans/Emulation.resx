@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>控制台视频</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>控制台声音</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>控制台控制</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>模拟 WonderSwan。</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>使用 PlaydiaEmu 播放 Playdia 光盘。</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>使用 TamaLIBretro 模拟 Tamagotchi P1。</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>此核心在播放盘片时不模仿处理器.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>显示内存</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>显示方向</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>控制方向</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>单色调色板</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>跳帧触发阈值</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60赫兹模式</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>音频采样率</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>音频过滤器</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>交换按钮 A 和 B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>自动</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>手动</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>横向</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>纵向</value></data>
+</root>

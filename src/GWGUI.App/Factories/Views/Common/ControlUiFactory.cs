@@ -6,8 +6,7 @@ namespace GWGUI.App.Factories.Views.Common;
 
 internal static class ControlUiFactory
 {
-    internal static Button TextButton(string text, double minWidth, RoutedEventHandler click,
-        Thickness? margin = null, double? height = null)
+    internal static Button TextButton(string text, double minWidth, RoutedEventHandler click, Thickness? margin = null, double? height = null)
     {
         var button = new Button { Content = text, MinWidth = minWidth, Margin = margin ?? new Thickness(0) };
         if (height is not null) button.Height = height.Value;

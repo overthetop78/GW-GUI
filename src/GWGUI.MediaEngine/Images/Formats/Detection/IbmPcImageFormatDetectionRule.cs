@@ -16,9 +16,7 @@ internal sealed class IbmPcImageFormatDetectionRule : IImageFormatDetectionRule
             737280 => "ibm.720", 819200 => "ibm.800", 1228800 => "ibm.1200", 1474560 => "ibm.1440",
             1720320 => "ibm.1680", 2949120 => "ibm.2880", _ => null
         };
-        result = formatId is null
-            ? context.Ambiguous("Detection.IbmAmbiguous")
-            : context.Result(formatId, FormatConfidence.Certain, "Detection.IbmSize");
+        result = formatId is null ? context.Ambiguous("Detection.IbmAmbiguous") : context.Result(formatId, FormatConfidence.Certain, "Detection.IbmSize");
         return true;
     }
 }

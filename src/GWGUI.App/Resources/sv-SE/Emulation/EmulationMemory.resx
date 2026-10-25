@@ -7,8 +7,8 @@
   <data name="Emulation.Memory.Main"><value>Huvudminne</value></data>
   <data name="Emulation.Memory.Extensions"><value>Minnesutökningar</value></data>
   <data name="Emulation.Memory.None"><value>Ingen</value></data>
-  <data name="Emulation.Memory.CompatibleWithModel"><value>Minneskonfigurationen är kompatibel med {0}.</value></data>
-  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Minnesutökningarna är kompatibla med {0}.</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>Kompatibel konfiguration: {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Kompatibla minnesförlängningar: {0}.</value></data>
   <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM är inte tillgänglig på {0}.</value></data>
   <data name="Emulation.Memory.TotalConfigured"><value>Totalt konfigurerat minne: {0} {1}</value></data>
 </root>

@@ -18,6 +18,36 @@ public static class MediaImageFormatIds
     public const string AmstradCpr = "amstrad.cpr";
     public const string AmstradRom = "amstrad.rom";
     public const string AmstradPcw = "amstrad.pcw";
+    public const string NintendoNes = "nintendo.nes";
+    /// <summary>Identifiant des images de disquette Nintendo Famicom Disk System.</summary>
+    public const string NintendoFamicomDisk = "nintendo.fds";
+    public const string NintendoSnes = "nintendo.snes";
+    public const string NintendoN64 = "nintendo.n64";
+    public const string NintendoGameBoy = "nintendo.gameboy";
+    public const string NintendoGameBoyColor = "nintendo.gameboy_color";
+    public const string NintendoGameBoyAdvance = "nintendo.gameboy_advance";
+    public const string NintendoNds = "nintendo.nds";
+    public const string NintendoGameWatch = "nintendo.game_watch";
+    public const string Nintendo3Ds = "nintendo.3ds";
+    public const string NintendoWiiU = "nintendo.wiiu";
+    /// <summary>Identifiant des ROM SG-1000 et Sega My Card.</summary>
+    public const string SegaSg1000 = "sega.sg1000";
+    public const string SegaMasterSystem = "sega.master_system";
+    public const string SegaMegaDrive = "sega.mega_drive";
+    public const string SegaGameGear = "sega.game_gear";
+    public const string SegaThirtyTwoX = "sega.32x";
+    /// <summary>Identifiant des cartouches NEC PC Engine et TurboGrafx HuCard.</summary>
+    public const string NecPcEngine = "nec.pc_engine";
+    public const string NecSuperGrafx = "nec.supergrafx";
+    public const string Atari2600 = "atari.2600";
+    public const string Atari5200 = "atari.5200";
+    public const string Atari7800 = "atari.7800";
+    public const string NintendoVirtualBoy = "nintendo.virtual_boy";
+    public const string BandaiWonderSwan = "bandai.wonderswan";
+    /// <summary>Identifiant des descripteurs de pistes optiques Dreamcast GD-ROM.</summary>
+    public const string OpticalGdi = "optical-gdi";
+    public const string OpticalIso = "optical-iso";
+    public const string MicrosoftXboxXdvdfs = "microsoft.xbox.xdvdfs";
     public const string AppleIIAppleDos113 = "apple2.appledos.113";
     public const string AppleIIAppleDos140 = "apple2.appledos.140";
     public const string AppleIIDos32 = "apple2.dos32";

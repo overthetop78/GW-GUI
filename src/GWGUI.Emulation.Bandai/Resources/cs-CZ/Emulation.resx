@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Konzolové video</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Zvuk konzole</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Ovládání konzole</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Emuluje WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Přehrává disky Playdia pomocí emulátoru PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Emuluje Tamagotchi P1 v emulátoru TamaLIBretro.</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Toto jádro hraje disky bez emulace procesorů.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Zobrazit paměť</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Orientace zobrazení</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>Orientace ovládání</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Monochromní paleta</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>Práh pro spouštění vynechávání snímků</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>Režim 60 Hz</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>Rychlost odběru zvukových vzorků</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>Audio filtr</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>Swap tlačítka A a B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>Automatické</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>Ručně</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>Na šířku</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>Na výšku</value></data>
+</root>

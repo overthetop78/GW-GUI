@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Panasonic.Error.AlreadyInitialized"><value>Emuleringsværten er allerede initialiseret.</value></data>
+  <data name="Emulation.Panasonic.Error.CommunicationFailed"><value>Emuleringsværtskommunikationen mislykkedes.</value></data>
+  <data name="Emulation.Panasonic.Error.ContentFileMissing"><value>Det konfigurerede medie kunne ikke findes.</value></data>
+  <data name="Emulation.Panasonic.Error.DynamicMediaUnsupported"><value>Emuleringssessionen kan ikke bytte dette medium.</value></data>
+  <data name="Emulation.Panasonic.Error.ExecutableMissing"><value>Emuleringsværtens eksekverbare er væk.</value></data>
+  <data name="Emulation.Panasonic.Error.InstalledLibraryLockedFormat"><value>Det installerede bibliotek kan ikke udskiftes: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.InvalidArchitecture"><value>Den downloadede kerne er ikke Windows x64.</value></data>
+  <data name="Emulation.Panasonic.Error.InvalidConfiguration"><value>Emulationskonfigurationen er ugyldig.</value></data>
+  <data name="Emulation.Panasonic.Error.InvalidResponseLengthFormat"><value>Ugyldig emuleringsværtssvarlængde: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.MachineInvalidState"><value>Emuleringssessionen er ikke i den krævede tilstand.</value></data>
+  <data name="Emulation.Panasonic.Error.MachineStopped"><value>Emuleringssessionen er stoppet.</value></data>
+  <data name="Emulation.Panasonic.Error.MissingExpectedLibraryFormat"><value>Det downloadede arkiv indeholder ikke {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.MissingPublishedDate"><value>Det officielle svar angiver ikke datoen for offentliggørelsen.</value></data>
+  <data name="Emulation.Panasonic.Error.NotInitialized"><value>Emuleringsværten er ikke initialiseret.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessExitSuffixFormat"><value> Udgangskode: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessNotInitialized"><value>Emuleringsværtsprocessen er ikke initialiseret.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessStartFailed"><value>Emuleringsværtsprocessen kunne ikke starte.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessUnavailable"><value>Emuleringsværtsprocessen er ikke tilgængelig.</value></data>
+  <data name="Emulation.Panasonic.Error.ProtocolVersionMismatchFormat"><value>Protokol {0} matcher ikke {1}.</value></data>
+  <data name="Emulation.Panasonic.Error.RequestCancelled"><value>Emuleringsværtens anmodning blev annulleret.</value></data>
+  <data name="Emulation.Panasonic.Error.ResponseTimeout"><value>Emuleringsværtens respons timet ud.</value></data>
+  <data name="Emulation.Panasonic.Error.ResponseUnavailable"><value>Emuleringsværtens respons er ikke tilgængelig.</value></data>
+  <data name="Emulation.Panasonic.Error.SharedVideoUnavailable"><value>Den delte video transport er ikke tilgængelig.</value></data>
+  <data name="Emulation.Panasonic.Error.StateIncompatible"><value>Den gemte tilstand er uforenelig med den nuværende maskine.</value></data>
+  <data name="Emulation.Panasonic.Error.StateInvalid"><value>Den gemte tilstand er ugyldig.</value></data>
+  <data name="Emulation.Panasonic.Error.StateUnavailable"><value>emulatoren understøtter ikke gemte tilstande.</value></data>
+  <data name="Emulation.Panasonic.Error.UnknownCommandFormat"><value>Ukendt emuleringsværtskommando: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.UnsupportedControllerDevice"><value>controlleren er ikke understøttet.</value></data>
+</root>

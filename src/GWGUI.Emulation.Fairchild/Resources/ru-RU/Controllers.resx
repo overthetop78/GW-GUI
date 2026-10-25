@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>Поверните ручку влево</value></data>
+  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>Поверните ручку вправо</value></data>
+  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>Нажмите ручку вниз</value></data>
+  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>Подними ручку вверх</value></data>
+  <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>Показать пуговицы консоли</value></data>
+  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>Своп двух контроллеров</value></data>
+</root>

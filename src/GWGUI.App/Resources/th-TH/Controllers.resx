@@ -94,7 +94,6 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>แรงเสียดทาน</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>แดมเปอร์</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>ความเฉื่อย</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>จอยสติ๊ก</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>ตัวควบคุมหลายแกน</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>การใช้งาน HID</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>แกน</value></data>

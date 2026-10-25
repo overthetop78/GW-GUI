@@ -1,9 +1,9 @@
+using EmulatorCatalogFunctions = GWGUI.Emulation.Atari.Common.Functions.EmulatorCatalogFunctions;
 namespace GWGUI.Emulation.Atari.Emulators.ProSystem.Constants;
 
 internal static class EmulatorConstants
 {
-    internal static readonly IReadOnlySet<string> CartridgeExtensions =
-        new HashSet<string>(["a78", "bin", "cdf"], StringComparer.OrdinalIgnoreCase);
+    internal static readonly IReadOnlySet<string> CartridgeExtensions = new HashSet<string>(["a78", "bin", "cdf"], StringComparer.OrdinalIgnoreCase);
 
     internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(
         Emulator.ProSystem, "prosystem", "ProSystem", "prosystem_libretro.dll",

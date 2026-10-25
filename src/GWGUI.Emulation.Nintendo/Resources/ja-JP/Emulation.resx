@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Language"><value>Nintendoシステム言語</value></data>
+  <data name="Emulation.Nintendo.Language.English"><value>中国語(簡体)</value></data>
+  <data name="Emulation.Nintendo.Language.French"><value>フレンチ</value></data>
+  <data name="Emulation.Nintendo.Language.Spanish"><value>スペイン語</value></data>
+  <data name="Emulation.Nintendo.Firmware.Integrated"><value>システムROM</value></data>
+  <data name="Emulation.Emulator.mesen.Description"><value>Nintendo Entertainment SystemおよびFamicom Disk Systemをエミュレートして下さい。</value></data>
+  <data name="Emulation.Emulator.gw.Description"><value>Nintendo Game &amp; Watchをエミュレートして下さい。</value></data>
+  <data name="Emulation.Emulator.beetle_vb.Description"><value>Nintendo Virtual Boyをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.mupen64plus-next.Description"><value>Nintendo 64システムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.melonds.Description"><value>Nintendo DS および DSi システムを模倣して下さい。</value></data>
+  <data name="Emulation.Emulator.snes9x.Description"><value>Super Nintendo および Super Famicom システムを模倣して下さい。</value></data>
+  <data name="Emulation.Emulator.gambatte.Description"><value>Nintendo Game Boyシステムを模倣して下さい。 また、Game Boy Colorシステムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.mgba.Description"><value>Nintendo Game Boy Advanceシステムをエミュレートして下さい。</value></data>
+  <data name="Emulation.Emulator.citra.Description"><value>CitraとNintendo 3DSシステムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.dolphin.Description"><value>DolphinのNintendo GameCubeおよびWiiシステムを模倣して下さい。</value></data>
+</root>

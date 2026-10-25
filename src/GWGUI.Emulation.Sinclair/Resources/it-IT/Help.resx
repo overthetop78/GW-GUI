@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Help.AyStereoSeparation" xml:space="preserve"><value>Scegli l'ordine del AY canali sonori in uscita stereo.</value></data>
+  <data name="Emulation.Sinclair.Help.AyVolume" xml:space="preserve"><value>Regolare il volume del AY chip audio.</value></data>
+  <data name="Emulation.Sinclair.Help.BeeperVolume" xml:space="preserve"><value>Regolare il volume del generatore di suono incorporato.</value></data>
+  <data name="Emulation.Sinclair.Help.BorderSize" xml:space="preserve"><value>Scegliere la quantità di bordo dello schermo viene visualizzata.</value></data>
+  <data name="Emulation.Sinclair.Help.Chroma81" xml:space="preserve"><value>Emula l'estensione grafica a colori Chroma 81.</value></data>
+  <data name="Emulation.Sinclair.Help.EmulationSpeed" xml:space="preserve"><value>Scegliere la velocità di emulazione come percentuale della velocità originale.</value></data>
+  <data name="Emulation.Sinclair.Help.FullerBox" xml:space="preserve"><value>Emulare il suono Fuller Box e l'estensione joystick.</value></data>
+  <data name="Emulation.Sinclair.Help.HighResolution" xml:space="preserve"><value>Scegliere un'estensione grafica ad alta risoluzione.</value></data>
+  <data name="Emulation.Sinclair.Help.Issue2Keyboard" xml:space="preserve"><value>Emula il comportamento della tastiera dell'hardware di Problema 2.</value></data>
+  <data name="Emulation.Sinclair.Help.MemoryBankContent" xml:space="preserve"><value>Scegli il contenuto della banca di memoria da 8 a 16 KiB.</value></data>
+  <data name="Emulation.Sinclair.Help.MouseSwapButtons" xml:space="preserve"><value>Sbattere i pulsanti di sinistra e di destra del mouse emulato.</value></data>
+  <data name="Emulation.Sinclair.Help.Palette" xml:space="preserve"><value>Scegli la tavolozza utilizzata per i colori visualizzati.</value></data>
+  <data name="Emulation.Sinclair.Help.SoundHardware" xml:space="preserve"><value>Scegli l'hardware audio emulato.</value></data>
+  <data name="Emulation.Sinclair.Help.SpeakerType" xml:space="preserve"><value>Scegli il filtro utilizzato per l'altoparlante emulato.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeAutoLoad" xml:space="preserve"><value>Inizia a caricare automaticamente una cassetta.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeFastLoad" xml:space="preserve"><value>Caricare i dati della cassetta più velocemente.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeLoadSound" xml:space="preserve"><value>Riproduci il suono prodotto durante il caricamento dei dati della cassetta.</value></data>
+  <data name="Emulation.Sinclair.Help.TurboSound" xml:space="preserve"><value>Emulare l'estensione del suono TurboSound con due AY - patatine.</value></data>
+  <data name="Emulation.Sinclair.Help.USpeech" xml:space="preserve"><value>Emulare l'estensione del discorso Currah uSpeech. Entrambi i file del firmware necessari devono essere presenti.</value></data>
+  <data name="Emulation.Sinclair.Help.VideoPreset" xml:space="preserve"><value>Scegli l'aspetto del segnale video emulato.</value></data>
+  <data name="Emulation.Sinclair.Help.Melodik" xml:space="preserve"><value>Emulare il MELODIK estensione del suono.</value></data>
+</root>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Help.AlternateRenderer" xml:space="preserve"><value>Utilice el método de renderización alternativo proporcionado por el emulador.</value></data>
+  <data name="Emulation.Philips.Help.AudioVolume" xml:space="preserve"><value>Establecer el volumen de sonidos generados por la consola, como porcentaje.</value></data>
+  <data name="Emulation.Philips.Help.AutoSave" xml:space="preserve"><value>Guardar el estado de la máquina al cerrar y restaurarlo cuando el mismo contenido comience de nuevo.</value></data>
+  <data name="Emulation.Philips.Help.Cheats" xml:space="preserve"><value>Permite que los códigos de trampa proporcionados por el emulador.</value></data>
+  <data name="Emulation.Philips.Help.CpuOverclock" xml:space="preserve"><value>Ajustar la velocidad del procesador como porcentaje de su frecuencia original.</value></data>
+  <data name="Emulation.Philips.Help.CropOverscan" xml:space="preserve"><value>Quitar la frontera exterior de la imagen de vídeo.</value></data>
+  <data name="Emulation.Philips.Help.KeyboardMapping" xml:space="preserve"><value>Elija si las teclas de teclado host siguen sus caracteres impresos o sus posiciones físicas.</value></data>
+  <data name="Emulation.Philips.Help.LowPassFilter" xml:space="preserve"><value>Reducir las frecuencias altas en el audio de la consola.</value></data>
+  <data name="Emulation.Philips.Help.LowPassRange" xml:space="preserve"><value>Establecer el corte de filtro de baja velocidad como porcentaje de la frecuencia de muestreo de audio.</value></data>
+  <data name="Emulation.Philips.Help.MixFrames" xml:space="preserve"><value>Marcos de vídeo consecutivos de color liso. Simple utiliza pesos iguales; un porcentaje controla la cantidad de la imagen anterior sigue siendo visible.</value></data>
+  <data name="Emulation.Philips.Help.NvramPerGame" xml:space="preserve"><value>Almacene la memoria persistente por separado para cada juego.</value></data>
+  <data name="Emulation.Philips.Help.Resolution" xml:space="preserve"><value>Elija la resolución de salida de vídeo.</value></data>
+  <data name="Emulation.Philips.Help.StateNaming" xml:space="preserve"><value>Almacene estados guardados por separado para cada juego o compartalos para todo el sistema.</value></data>
+  <data name="Emulation.Philips.Help.Throttle" xml:space="preserve"><value>Limite la velocidad de emulación a la velocidad de la máquina original.</value></data>
+  <data name="Emulation.Philips.Help.VideoStandard" xml:space="preserve"><value>Elija el estándar de televisión utilizado por la máquina emulada.</value></data>
+  <data name="Emulation.Philips.Help.VoiceVolume" xml:space="preserve"><value>Ajustar el volumen del discurso como porcentaje.</value></data>
+</root>

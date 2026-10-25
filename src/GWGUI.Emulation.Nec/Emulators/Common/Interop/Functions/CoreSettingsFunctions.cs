@@ -1,0 +1,64 @@
+using GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;
+using Pce = GWGUI.Emulation.Nec.Emulators.BeetlePce.Constants;
+using Quasi = GWGUI.Emulation.Nec.Emulators.Quasi88.Constants;
+using Neko = GWGUI.Emulation.Nec.Emulators.NekoProjectII.Constants;
+using Kai = GWGUI.Emulation.Nec.Emulators.NP2Kai.Constants;
+
+namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
+
+internal static class CoreSettingsFunctions
+{
+    /// <summary>Expose les définitions natives existantes dans le catalogue d'options commun.</summary>
+    /// <param name="emulatorId">Identifiant du backend dont les définitions sont déjà déclarées.</param>
+    /// <param name="configuration">Configuration empruntée fournissant les valeurs courantes et le modèle, ou null pour les valeurs déclarées.</param>
+    /// <returns>Descriptions natives avec leurs choix, traductions, onglets et restrictions de modèle.</returns>
+    /// <remarks>La projection conserve les valeurs invariantes et la règle BASIC du modèle.
+    /// Elle réutilise les définitions utilisées par les éditeurs et ne crée aucun cœur.</remarks>
+    internal static IReadOnlyList<CoreOption> Options(string emulatorId, MachineConfiguration? configuration) => Definitions(emulatorId).Select(option =>
+    {
+        var fallback = configuration is null ? option.DefaultValue : Default(configuration, option);
+        return new CoreOption(option.Key, option.LabelResourceKey, null, null, fallback, configuration?.Options?.GetValueOrDefault(option.Key) ?? fallback,
+            option.Choices.Select(choice => new CoreOptionValue(choice.Value, choice.Label, ResourceKey: choice.IsInvariant ? null : choice.Label, InvariantDisplayValue: choice.IsInvariant ? choice.Label : null)).ToArray(),
+            ResourceKey: option.LabelResourceKey, Tab: option.Tab, MachineIds: option.MachineIds);
+    }).ToArray();
+
+    internal static IReadOnlyList<CoreOptionDefinition> Definitions(string emulatorId) => emulatorId switch
+    {
+        Pce.CoreConstants.Id => Pce.OptionConstants.All,
+        Quasi.CoreConstants.Id => Quasi.OptionConstants.All,
+        Neko.CoreConstants.Id => Neko.OptionConstants.All,
+        Kai.CoreConstants.Id => Kai.OptionConstants.All,
+        _ => []
+    };
+
+    internal static bool HasDefinitions(string emulatorId) => Definitions(emulatorId).Count != 0;
+
+    internal static MachineConfiguration CopyConfiguredOptions(MachineConfiguration configuration) =>
+        configuration with { Options = CopyOptionValues(configuration.Options) };
+
+    private static Dictionary<string, string> CopyOptionValues(IReadOnlyDictionary<string, string>? options) =>
+        new(options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
+
+    internal static IReadOnlyList<EmulationSettingsField> Fields(MachineConfiguration configuration,
+        EmulationMachineTab tab,
+        string blockId) => Definitions(configuration.EmulatorId).Where(option => option.Tab == tab && AppliesTo(option, configuration.Model)).Select(option => new EmulationSettingsField(
+            option.Key, tab, blockId, option.LabelResourceKey, EmulationSettingsEditor.Selection,
+            configuration.Options?.GetValueOrDefault(option.Key) ?? Default(configuration, option),
+            option.Choices.Select(choice => new EmulationSettingsChoice(choice.Value, choice.IsInvariant ? string.Empty : choice.Label, choice.IsInvariant ? choice.Label : null)).ToArray())).ToArray();
+
+    internal static MachineConfiguration Configure(MachineConfiguration configuration)
+    {
+        var options = CopyOptionValues(configuration.Options);
+        foreach (var option in Definitions(configuration.EmulatorId))
+        {
+            var fallback = Default(configuration, option);
+            var selected = AppliesTo(option, configuration.Model) ? options.GetValueOrDefault(option.Key) ?? fallback : fallback;
+            options[option.Key] = option.Choices.Any(choice => choice.Value == selected) ? selected : fallback;
+        }
+        return configuration with { Options = options };
+    }
+
+    private static bool AppliesTo(CoreOptionDefinition option, string machineId) => option.MachineIds is null || option.MachineIds.Contains(machineId);
+
+    private static string Default(MachineConfiguration configuration, CoreOptionDefinition option) => configuration.EmulatorId == Quasi.CoreConstants.Id && option.Key == Quasi.ModelConstants.BasicModeOption ? Quasi.ModelConstants.BasicModeFor(configuration.Model) : option.DefaultValue;
+}

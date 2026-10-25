@@ -18,8 +18,7 @@ internal static class EmulationInteractionScenarios
         var directory = Path.Combine(Path.GetTempPath(), "gwgui-error-console-" + Guid.NewGuid().ToString("N"));
         var terminal = new TerminalSection();
         var settings = new AppSettings();
-        var controller = new TerminalPanelController(terminal, new RowDefinition(), new GridSplitter(),
-            () => settings);
+        var controller = new TerminalPanelController(terminal, new RowDefinition(), new GridSplitter(), () => settings);
         Action<string> append = controller.AppendError;
         ErrorLog.EntryWritten += append;
         try
@@ -34,8 +33,7 @@ internal static class EmulationInteractionScenarios
             Assert.True(controller.IsVisible);
 
             ErrorLog.EntryWritten -= append;
-            Assert.NotNull(ErrorLog.Write(new InvalidOperationException("after detach"),
-                "detached", directory));
+            Assert.NotNull(ErrorLog.Write(new InvalidOperationException("after detach"), "detached", directory));
             Assert.DoesNotContain("after detach", terminal.OutputText, StringComparison.Ordinal);
         }
         finally
@@ -81,7 +79,16 @@ internal static class EmulationInteractionScenarios
         var host = new DockPanel(); var calls = new List<int>(); var errors = new List<Exception>(); var restored = 0;
         Func<Task> Command(int index) => () => { calls.Add(index); return failure ? Task.FromException(new IOException("synthetic command")) : Task.CompletedTask; };
         var bar = new MachineCommandBar(host,new(Command(0),Command(1),Command(2),Command(3),Command(4),Command(5),Command(6),Command(7),Command(8),Command(9)),[],errors.Add,() => restored++);
-        var keys = new[] {EmulationResourceKeys.Power,EmulationResourceKeys.PauseResume,EmulationResourceKeys.SoftReset,EmulationResourceKeys.HardReset,EmulationResourceKeys.QuickSave,EmulationResourceKeys.QuickLoad,EmulationResourceKeys.CaptureScreen,EmulationResourceKeys.Fullscreen,EmulationResourceKeys.Audio,EmulationResourceKeys.SwitchControllerPointer};
+        var keys = new[] {EmulationResourceKeys.Power,
+            EmulationResourceKeys.PauseResume,
+            EmulationResourceKeys.SoftReset,
+            EmulationResourceKeys.HardReset,
+            EmulationResourceKeys.QuickSave,
+            EmulationResourceKeys.QuickLoad,
+            EmulationResourceKeys.CaptureScreen,
+            EmulationResourceKeys.Fullscreen,
+            EmulationResourceKeys.Audio,
+            EmulationResourceKeys.SwitchControllerPointer};
         Button Find(string key) => MachineConfigurationScenarios.Controls<Button>(host).Single(x => Equals(x.ToolTip,LocExtension.Get(key)));
         bar.SetPowered(false);
         foreach(var key in keys) Assert.Equal(key == EmulationResourceKeys.Power || key == EmulationResourceKeys.Fullscreen,Find(key).IsEnabled);

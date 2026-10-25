@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.applewin.Description"><value>Apple II számítógépeket emulál AppleWin segítségével.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Macintosh II számítógépeket emulál Mini vMac segítségével.</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Gépváltozat</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>Az emulációs mag videobeállításai</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Kiterjesztőkártyák</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>A mag által használt memória</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>A rendszer ROM-jai az AppleWin részei.</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>A rendelkezésre álló mag nem támogatja ezt a gépmodellt.</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Lemezlisták</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Üres</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>Kártya a 3. raklaphoz</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>Egérkártya</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>Kártya a 4. résbe</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>Kártya az 5. raktérben</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>A merevlemez-vezérlő</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>Kártya a 7. résben</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>Szín (RGB Kártya / monitor)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>Szín (kompozit idealizált)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>Szín (kompozit monitor)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>Szín TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>Monokróm (Amber)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>Monokróm (zöld)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>Monokróm (fehér)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>Video mód</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>Félvonalak</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>Video Style</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>Video Frissítési ráta</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>Első</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>Előző</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>Lejátszólista indító lemez</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>Mindkét floppy meghajtót használja</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>Állapot</value></data>
+</root>

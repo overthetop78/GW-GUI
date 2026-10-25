@@ -36,4 +36,27 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Hızlandırıcı (sağ el)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Görünüm</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Sorumlu denetçi {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Yönlendirici aygıt</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Uçuş simülasyonu</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Racing Simülasyon</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Dans simülasyonu</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Şarkı simülasyonu</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Diğer simülasyon periferileri</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>Güçlü titreşim</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>Zayıf titreşim</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>Yeniden doldur</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Nişangâh rengi</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Dans matı</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Klavye sekmesinde klavyeyi yapılandırın.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Mouse sekmede fareyi yapılandırın.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Device type</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>Titreşimli olarak kullanılan</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>Stick ve eksen atamaları</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>Stick {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>Klavye veya özel atamalar</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>Sol sopa</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>Doğru sopa</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>Axis Axis {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>Axes {0} / / / / / / / {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>Kaydetilen görev</value></data>
 </root>

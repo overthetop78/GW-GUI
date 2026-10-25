@@ -13,6 +13,7 @@ internal static class EmulationCoreManagementConstants
     internal const string SearchingResource = "Emulation.Core.NameSearching";
     internal const string VersionsFoundResource = "Emulation.Core.NameVersionsFound";
     internal const string NoneFoundResource = "Emulation.Core.NameNoneFound";
+    internal const string NoEmulatorAvailableResource = "Emulation.Core.NameNoEmulatorAvailable";
     internal const string DownloadingResource = "Emulation.Core.NameDownloading";
     internal const string InstalledPathResource = "Emulation.Core.NameInstalledPath";
     internal const string NotInstalledResource = "Emulation.Core.NameNotInstalled";
@@ -29,6 +30,7 @@ internal static class EmulationCoreManagementConstants
     internal const string StatusControlName = "CoreStatus";
     internal static string SearchGlyph => IconGlyphs.Search;
     internal static string DownloadGlyph => IconGlyphs.Download;
+    internal const double CreateButtonRightMargin = 12;
     internal const double InitialProgress = 0D;
     internal const double CompletedProgress = 1D;
     internal static readonly Color ErrorBackground = Color.FromRgb(255, 241, 241);

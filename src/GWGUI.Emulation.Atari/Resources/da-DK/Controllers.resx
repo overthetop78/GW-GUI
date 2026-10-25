@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Atari joystick</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Numerisk tastatur</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed"><value>Hastighed af padlebevægelse</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton"><value>Mens brandknappen holdes nede</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways"><value>Altid</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility"><value>Kontrollerens kompatibilitet</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity"><value>Digital følsomhed</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity"><value>Analog følsomhed</value></data>
+  <data name="Emulation.Atari.Controller.DualStick"><value>To joysticks brugt sammen</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts"><value>Swap- porte</value></data>
+</root>

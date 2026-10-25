@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Help.AdpcmVolume" xml:space="preserve"><value>Het volume van de ADPCM Geluidskanaal.</value></data>
+  <data name="Emulation.Sharp.Help.AudioDesynchronization" xml:space="preserve"><value>Gooi overtollige audiomonsters weg om geluidssynchronisatiefouten te verminderen.</value></data>
+  <data name="Emulation.Sharp.Help.AudioSampleRate" xml:space="preserve"><value>Kies de geluidsbemonsteringsfrequentie.</value></data>
+  <data name="Emulation.Sharp.Help.ButtonOrder" xml:space="preserve"><value>Kies de volgorde van de controllerknoppen.</value></data>
+  <data name="Emulation.Sharp.Help.CpuSpeed" xml:space="preserve"><value>Kies de frequentie van de processor.</value></data>
+  <data name="Emulation.Sharp.Help.DiskSeekSound" xml:space="preserve"><value>Speel het geluid van floppy disk head beweging af.</value></data>
+  <data name="Emulation.Sharp.Help.FmBoard" xml:space="preserve"><value>Inschakelen van de FM geluidsbord.</value></data>
+  <data name="Emulation.Sharp.Help.FmVolume" xml:space="preserve"><value>Het volume van de FM Geluidskanaal.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRate" xml:space="preserve"><value>Kies het aantal videoframes per seconde.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRateAdjustment" xml:space="preserve"><value>Pas video timing voor moderne displays aan om geluid stotteren te verminderen.</value></data>
+  <data name="Emulation.Sharp.Help.FrameSkip" xml:space="preserve"><value>Kies de fractie van videobeelden om over te slaan. Een afbeelding van drie springt twee van de drie over.</value></data>
+  <data name="Emulation.Sharp.Help.HideGraphics" xml:space="preserve"><value>Verberg de grafische laag van het videobeeld.</value></data>
+  <data name="Emulation.Sharp.Help.HideSprites" xml:space="preserve"><value>Sprite en achtergrondlagen van de videoafbeelding verbergen.</value></data>
+  <data name="Emulation.Sharp.Help.HideText" xml:space="preserve"><value>De tekstlaag van de videoafbeelding verbergen.</value></data>
+  <data name="Emulation.Sharp.Help.MemorySize" xml:space="preserve"><value>Kies het aantal emuleerde RAM.</value></data>
+  <data name="Emulation.Sharp.Help.RapidFire" xml:space="preserve"><value>Herhaal controller knop drukt automatisch.</value></data>
+  <data name="Emulation.Sharp.Help.Raster" xml:space="preserve"><value>Rastereffecten in de geëmulleerde videoafbeelding inschakelen.</value></data>
+  <data name="Emulation.Sharp.Help.Resolution" xml:space="preserve"><value>Kies de lage of hoge output resolutie.</value></data>
+  <data name="Emulation.Sharp.Help.ReverseJoystick" xml:space="preserve"><value>De invoer van de controller omkeren zoals door de emulator wordt geleverd.</value></data>
+  <data name="Emulation.Sharp.Help.UnlimitedSpeed" xml:space="preserve"><value>Start de machine zo snel mogelijk. Geluid kan niet gesynchroniseerd worden.</value></data>
+  <data name="Emulation.Sharp.Help.VerticalSync" xml:space="preserve"><value>Synchroniseer het vertikaal geemuleerde display.</value></data>
+  <data name="Emulation.Sharp.Help.VideoBeforeAudio" xml:space="preserve"><value>Verminder de videolatentie voor audio latentie.</value></data>
+</root>

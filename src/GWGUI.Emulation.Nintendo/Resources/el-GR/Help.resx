@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Short"><value>Ποσότητα της RAM που διατίθεται στην προσομοιωμένη μηχανή.</value></data>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Detailed"><value>Εμφανίζει τη RAM που παρέχεται από την επιλεγμένη μηχανή Nintendo.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Short"><value>Σύστημα ROM.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Detailed"><value>Εμφανίζει την κατάσταση ROM του συστήματος για το επιλεγμένο μηχάνημα και εξομοιωτή.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Short"><value>Το μοντέλο της μηχανής Nintendo διαμορφώνεται.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Short"><value>Ο εξομοιωτής επιλέχθηκε για αυτό το μηχάνημα.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Detailed"><value>Προσδιορίζει την εφαρμογή εξομοιωτή που χρησιμοποιείται για να τρέξει αυτή τη διαμόρφωση μηχανών.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Short"><value>Επεξεργαστής που μιμείται για αυτό το μηχάνημα.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Detailed"><value>Εμφανίζει το μοντέλο επεξεργαστή που παρέχεται από την επιλεγμένη μηχανή Nintendo.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Short"><value>Αρχική συχνότητα ⁇ ολογιού επεξεργαστή.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Detailed"><value>Εμφανίζει την ονομαστική συχνότητα ⁇ ολογιού του επεξεργαστή στην επιλεγμένη μηχανή Nintendo.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Short"><value>Ενεργοποίηση ή απενεργοποίηση εικονιζόμενου ήχου.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Detailed"><value>Ελέγχει αν το GW GUI παίζει τα δείγματα ήχου που παράγονται από τον εξομοιωτή.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Short"><value>Έξοδος ήχου που χρησιμοποιείται από το GW GUI.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Detailed"><value>Επιλέγει την έξοδο ήχου των Windows που χρησιμοποιείται για να παίξει τον ήχο από αυτό το μιμούμενο μηχάνημα.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Detailed"><value>Προσδιορίζει το μοντέλο Nintendo του οποίου η διαμόρφωση υλικού είναι υπό επεξεργασία.</value></data>
+</root>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Language"><value>Nintendo järjestelmän kieli</value></data>
+  <data name="Emulation.Nintendo.Language.English"><value>Englannin kieli</value></data>
+  <data name="Emulation.Nintendo.Language.French"><value>ranska</value></data>
+  <data name="Emulation.Nintendo.Language.Spanish"><value>espanja</value></data>
+  <data name="Emulation.Nintendo.Firmware.Integrated"><value>Järjestelmä ROM</value></data>
+  <data name="Emulation.Emulator.mesen.Description"><value>Emulates Nintendo Entertainment System ja Famicom Disk System.</value></data>
+  <data name="Emulation.Emulator.gw.Description"><value>Emulates Nintendo Game &amp; Watch.</value></data>
+  <data name="Emulation.Emulator.beetle_vb.Description"><value>Emuloidaan Nintendo Virtual Boy.</value></data>
+  <data name="Emulation.Emulator.mupen64plus-next.Description"><value>Emuloi Nintendo 64 -järjestelmiä.</value></data>
+  <data name="Emulation.Emulator.melonds.Description"><value>Emuloidaan Nintendo DS ja DSi järjestelmiä.</value></data>
+  <data name="Emulation.Emulator.snes9x.Description"><value>Emulgoi Super Nintendo ja Super Famicom järjestelmiä.</value></data>
+  <data name="Emulation.Emulator.gambatte.Description"><value>Emulgoi Nintendo Game Boy -järjestelmää. Emuloidaan myös Game Boy Color-järjestelmää.</value></data>
+  <data name="Emulation.Emulator.mgba.Description"><value>Emulates Nintendo Game Boy Advance järjestelmiä.</value></data>
+  <data name="Emulation.Emulator.citra.Description"><value>Emulgoi Nintendo 3DS järjestelmiä Citra.</value></data>
+  <data name="Emulation.Emulator.dolphin.Description"><value>Emulates Nintendo GameCube ja Wii järjestelmiä Dolphin.</value></data>
+</root>

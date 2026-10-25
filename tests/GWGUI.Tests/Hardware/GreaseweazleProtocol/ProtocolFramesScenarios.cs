@@ -64,7 +64,7 @@ internal static class ProtocolFramesScenarios
         {
             cancellationToken.ThrowIfCancellationRequested();
             if(buffer.Length==32) { buffer.Span.Clear(); buffer.Span[1]=FirmwareMinor; buffer.Span[2]=MainFirmware; new byte[]{0,54,110,1}.CopyTo(buffer[4..]); return ValueTask.CompletedTask; }
-            if(buffer.Length==1) { buffer.Span[0]=0; return ValueTask.CompletedTask; }
+            if(buffer.Length==1) { buffer.Span[0]=Commands[^1][0]==20?(byte)1:(byte)0; return ValueTask.CompletedTask; }
             Assert.Equal(2,buffer.Length);
             buffer.Span[0]=WrongCommand==0?Commands[^1][0]:WrongCommand;
             buffer.Span[1]=Commands[^1][0]==9 && FluxFailures-->0?FluxError:Acknowledgement;return ValueTask.CompletedTask;
@@ -83,7 +83,7 @@ internal static class ProtocolFramesScenarios
         await client.SetMotorAsync(true);
         await client.SeekAsync(300,1);
         await client.CloseAsync();
-        byte[][] expected=[[14,3,1],[12,3,1],[6,4,1,1],[2,4,44,1],[3,3,1],[6,4,1,0],[13,2]];
+        byte[][] expected=[[14,3,1],[12,3,1],[6,4,1,1],[2,4,44,1],[20,3,26],[3,3,1],[6,4,1,0],[13,2]];
         Assert.Equal(expected.Length,transport.Commands.Count);
         for(var i=0;i<expected.Length;i++)Assert.Equal(expected[i],transport.Commands[i]);
         Assert.Equal(1,transport.Closes);

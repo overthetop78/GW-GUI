@@ -7,8 +7,7 @@ namespace GWGUI.Emulation.HardDisks.Partitioning;
 public static class SgiDisklabelWriter
 {
     private const long HeaderBytes = 4096 * 512L;
-    public static DiskFormatRegistry.PartitionTable Describe(string id, LegacyDiskGeometry geometry)
-        => new(id, (size, volumes) => Validate(size, volumes, geometry), (disk, volumes) => Write(disk, volumes, geometry));
+    public static DiskFormatRegistry.PartitionTable Describe(string id, LegacyDiskGeometry geometry) => new(id, (size, volumes) => Validate(size, volumes, geometry), (disk, volumes) => Write(disk, volumes, geometry));
 
     public static void Validate(long capacity, IReadOnlyList<DiskVolumePlan> volumes) => Validate(capacity, volumes, new());
     public static void Validate(long capacity, IReadOnlyList<DiskVolumePlan> volumes, LegacyDiskGeometry geometry)

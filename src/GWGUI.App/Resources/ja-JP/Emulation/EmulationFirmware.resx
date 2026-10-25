@@ -11,4 +11,5 @@
   <data name="Emulation.Firmware.PartiallyCompatible"><value>一部互換</value></data>
   <data name="Emulation.Firmware.Official"><value>公式</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>非対応</value></data>
+  <data name="Emulation.Firmware.VoiceSamples"><value>音声サンプル</value></data>
 </root>

@@ -36,4 +36,27 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (правая рука)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Внешний вид</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Контроллер {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Устройство для наведения</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Схема полета</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Симулирование гонки</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Танцующая симуляция</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Поющая симуляция</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Другие периферийные модели</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>Сильная вибрация</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>Слабая вибрация</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>Перезарядить</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Цвет прицела</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Танцевальный коврик</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Настройка клавиатуры во вкладке Keyboard.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Настройте мышь на вкладке Мышь.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Тип устройства</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>Контроллер, используемый для вибрации</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>Задания по шесту и оси</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>галочка {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>Клавиатура или пользовательские задания</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>Левая палка</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>Правая палка</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>ось {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>топоры {0} / {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>Спасенное задание</value></data>
 </root>

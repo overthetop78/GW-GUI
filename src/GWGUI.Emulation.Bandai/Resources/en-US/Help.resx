@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Setting.DisplayRotation.Help" xml:space="preserve"><value>Select landscape or portrait orientation. Manual mode uses the assigned rotation button.</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation.Help" xml:space="preserve"><value>Automatic mode follows the display orientation. Other modes keep the controls in the selected orientation.</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Select the colors used for monochrome games.</value></data>
+  <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Select the output color depth. The 24-bit mode requires more processing power.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Skip video frames to reduce audio crackling. Automatic mode follows the audio buffer. Manual mode uses the selected threshold.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help"><value>Manual mode: skip video frames below the selected audio buffer fill level.</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Skip every fifth frame to display at 60 Hz. This reduces motion smoothness.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Higher sampling rates slightly improve audio quality and require more processing power.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Apply a low-pass filter to soften the sound.</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Swap the actions of buttons A and B.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.DetailedHelp"><value>At 33%, video frames are skipped when the audio buffer is less than 33% full, to reduce crackling. Higher values trigger skipping sooner. Audio latency and buffer size are unchanged.</value></data>
+</root>

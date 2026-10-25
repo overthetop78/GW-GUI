@@ -19,12 +19,10 @@ internal static class FilterPlasmaPhosphorIntensity
         var intensity = setting / 100f;
         for (var index = 0; index < colors.Length; index += 3)
         {
-            var luminance = colors[index] * 0.2126f + colors[index + 1] * 0.7152f
-                + colors[index + 2] * 0.0722f;
+            var luminance = colors[index] * 0.2126f + colors[index + 1] * 0.7152f + colors[index + 2] * 0.0722f;
             for (var channel = 0; channel < 3; channel++)
             {
-                var saturated = luminance + (colors[index + channel] - luminance)
-                    * (1f + intensity * 0.28f);
+                var saturated = luminance + (colors[index + channel] - luminance) * (1f + intensity * 0.28f);
                 var emission = MathF.Max(0f, saturated - 0.42f) * intensity * 0.48f;
                 colors[index + channel] = Math.Clamp(saturated + emission, 0f, 1f);
             }

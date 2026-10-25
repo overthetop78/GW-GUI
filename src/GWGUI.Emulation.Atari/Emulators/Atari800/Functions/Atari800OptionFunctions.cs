@@ -51,11 +51,9 @@ internal static class Atari800OptionFunctions
         (EightBitSettingsConstants.AutofireOptionKey, Atari800OptionConstants.Autofire)
     ];
 
-    internal static IReadOnlyDictionary<string, string> ToNative(
-        IReadOnlyDictionary<string, string> options) => Translate(options);
+    internal static IReadOnlyDictionary<string, string> ToNative(IReadOnlyDictionary<string, string> options) => Translate(options);
 
-    private static IReadOnlyDictionary<string, string> Translate(
-        IReadOnlyDictionary<string, string> options)
+    private static IReadOnlyDictionary<string, string> Translate(IReadOnlyDictionary<string, string> options)
     {
         var translated = new Dictionary<string, string>(options, StringComparer.Ordinal);
         foreach (var mapping in Mappings)

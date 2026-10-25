@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Error.CoreNotFound"><value>Gerekli Atari çekirdeği bulunamadı.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected"><value>Seçilmiş Atari çekirdeği yüklenemezdi.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing"><value>Gerekli bir Atariware eksik.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid"><value>Bir Atari Software geçersiz ya da uyumlu.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound"><value>yapılandırılmış Atari medyası bulunamadı.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported"><value>yapılandırılmış medya bu Atari makinesi tarafından desteklenmez.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid"><value>Bir Atari seçeneğinin geçersiz bir değeri vardır.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure"><value>Atari host ile iletişim başarısız oldu.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid"><value>Atari kurtarılan devlet geçersizdir.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible"><value>Atari kurtarılan devlet mevcut makine ile uyumlu değildir.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected"><value>Beklenmeyen bir Atari emulation hatası gerçekleşti.</value></data>
+  <data name="Emulation.Atari.Error.Details"><value>Detaylar: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration"><value>Aktif Atari yapılandırması değiştirilemez veya silinemez.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>Gerekli Atari Hardware yapılandırılmıyor. Şirketware: {0}. Makine: {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing"><value>yapılandırılmış Atari Hardware dosyası bulunamadı. Şirketware: {0}. Dosya: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing"><value>Configured Atari media bulunamadı: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing"><value>Atari host executable yolu mevcut değildir.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled"><value>Atari emulation çekirdeği yüklenmez. Core: {0}</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Seçilmiş Atari emulator, paylaşılan kartuş kontrolörünü kullanmaz.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Seçilmiş Atari makinesi kartuş medyası gerektirir.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>kartuş uzatması, seçilmiş Atari emülatörü tarafından desteklenmez.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Atari kartuş okuma için açılamaz.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Atari Simulator, yedek kartuşu reddetti.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Atari Simulator hem değiştirmeyi hem de önceki kartuşu reddetti.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Bu Atari emulator, bir kartuş olmadan desteklenmez.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Seçilmiş Atari emulator, kartuş bölge seçimi açığa çıkarmaz.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Bu Atari emülatörü, SECAM. adındaki kartuş zamanlama modunu kullanamaz.</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel"><value>Bu değer seçilmiş model tarafından belirlenir.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>Bu model için uyumlu FPU mevcut değildir.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory"><value>Bu model için alternatif hafıza mevcut değildir.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware"><value>Bu model yapılandırılabilir bir donanıma sahip değildir.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard"><value>Bu modelin klavyesi yoktur.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse"><value>Bu modelin faresi yoktur.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage"><value>Bu modelin depolama medyası yoktur.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Kompakt disk medyayı kullanmak için, bu modeli seçin: Jaguar CD.</value></data>
+</root>

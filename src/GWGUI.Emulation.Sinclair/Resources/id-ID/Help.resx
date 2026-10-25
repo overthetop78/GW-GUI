@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Help.AyStereoSeparation" xml:space="preserve"><value>Pilih urutan AY saluran suara dalam output stereo.</value></data>
+  <data name="Emulation.Sinclair.Help.AyVolume" xml:space="preserve"><value>Atur volume AY sound chip.</value></data>
+  <data name="Emulation.Sinclair.Help.BeeperVolume" xml:space="preserve"><value>Sesuaikan volume built- dalam generator suara.</value></data>
+  <data name="Emulation.Sinclair.Help.BorderSize" xml:space="preserve"><value>Pilih berapa banyak batas layar yang ditampilkan.</value></data>
+  <data name="Emulation.Sinclair.Help.Chroma81" xml:space="preserve"><value>Meniru ekstensi Chroma 81 warna grafis.</value></data>
+  <data name="Emulation.Sinclair.Help.EmulationSpeed" xml:space="preserve"><value>Pilih kecepatan emulasi sebagai persentase dari kecepatan asli.</value></data>
+  <data name="Emulation.Sinclair.Help.FullerBox" xml:space="preserve"><value>Meniru suara Fuller Box dan ekstensi joystick.</value></data>
+  <data name="Emulation.Sinclair.Help.HighResolution" xml:space="preserve"><value>Pilih ekstensi grafis resolusi tinggi.</value></data>
+  <data name="Emulation.Sinclair.Help.Issue2Keyboard" xml:space="preserve"><value>Meniru perilaku keyboard dari Isu 2 perangkat keras.</value></data>
+  <data name="Emulation.Sinclair.Help.MemoryBankContent" xml:space="preserve"><value>Pilih isi bank memori dari 8 sampai 16 KiB.</value></data>
+  <data name="Emulation.Sinclair.Help.MouseSwapButtons" xml:space="preserve"><value>Tukar tombol kiri dan kanan dari tetikus yang tergandakan.</value></data>
+  <data name="Emulation.Sinclair.Help.Palette" xml:space="preserve"><value>Pilih palet yang dipakai untuk warna yang ditampilkan.</value></data>
+  <data name="Emulation.Sinclair.Help.SoundHardware" xml:space="preserve"><value>Pilih perangkat keras suara yang tergandakan.</value></data>
+  <data name="Emulation.Sinclair.Help.SpeakerType" xml:space="preserve"><value>Pilih filter yang dipakai untuk pengeras suara yang diemulasi.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeAutoLoad" xml:space="preserve"><value>Mulai memuat kaset secara otomatis.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeFastLoad" xml:space="preserve"><value>Muat data kaset lebih cepat.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeLoadSound" xml:space="preserve"><value>Mainkan suara yang diproduksi saat memuat data kaset.</value></data>
+  <data name="Emulation.Sinclair.Help.TurboSound" xml:space="preserve"><value>Meniru ekstensi suara TurboSound dengan dua AY Keripik.</value></data>
+  <data name="Emulation.Sinclair.Help.USpeech" xml:space="preserve"><value>Meniru ekstensi pidato Currah uSpeech. Kedua berkas firmware yang diperlukan harus ada.</value></data>
+  <data name="Emulation.Sinclair.Help.VideoPreset" xml:space="preserve"><value>Pilih tampilan dari sinyal video yang termodifikasi.</value></data>
+  <data name="Emulation.Sinclair.Help.Melodik" xml:space="preserve"><value>Mengemulasi MELODIK suara ekstensi.</value></data>
+</root>

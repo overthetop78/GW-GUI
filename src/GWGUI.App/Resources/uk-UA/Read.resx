@@ -17,7 +17,7 @@
   <data name="Read.Extension"><value>Розширення</value></data>
   <data name="Read.RawScp"><value>Необроблене зображення (SCP)</value></data>
   <data name="Read.KnownFormat"><value>Відомий формат диска</value></data>
-  <data name="Read.FileName"><value>Ім&apos;я файлу</value></data>
+  <data name="Read.FileName"><value>Ім'я файлу</value></data>
   <data name="Read.Folder"><value>Папка</value></data>
   <data name="Read.Revolutions"><value>Обертів на трек</value></data>
   <data name="Read.Retries"><value>Повторні спроби</value></data>

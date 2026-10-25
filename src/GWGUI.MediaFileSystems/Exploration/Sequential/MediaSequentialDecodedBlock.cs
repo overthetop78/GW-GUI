@@ -5,11 +5,7 @@ namespace GWGUI.MediaFileSystems.Exploration.Sequential;
 /// <summary>Un bloc de bande déjà décodé, sans hypothèse sur l'existence d'un fichier.</summary>
 public sealed class MediaSequentialDecodedBlock
 {
-    public MediaSequentialDecodedBlock(
-        long position,
-        ReadOnlyMemory<byte> data,
-        bool? integrityValid,
-        IReadOnlyDictionary<string, string> metadata)
+    public MediaSequentialDecodedBlock(long position, ReadOnlyMemory<byte> data, bool? integrityValid, IReadOnlyDictionary<string, string> metadata)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(position);
         ArgumentNullException.ThrowIfNull(metadata);

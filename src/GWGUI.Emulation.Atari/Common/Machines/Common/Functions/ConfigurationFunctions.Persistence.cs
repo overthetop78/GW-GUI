@@ -1,3 +1,4 @@
+using GWGUI.Emulation;
 using System.Text.Json;
 using GWGUI.Emulation.Functions;
 
@@ -10,12 +11,9 @@ internal static class ConfigurationStoreFunctions
         WriteIndented = ConfigurationStoreConstants.WriteIndentedJson
     };
 
-    internal static ConfigurationDocument Deserialize(JsonElement root) =>
-        root.Deserialize<ConfigurationDocument>(JsonOptions)
-        ?? throw new InvalidDataException();
+    internal static ConfigurationDocument Deserialize(JsonElement root) => root.Deserialize<ConfigurationDocument>(JsonOptions) ?? throw new InvalidDataException();
 
-    internal static ConfigurationDocument ToDocument(MachineConfiguration configuration,
-        string pathBase) => new(
+    internal static ConfigurationDocument ToDocument(MachineConfiguration configuration, string pathBase) => new(
         ConfigurationStoreConstants.CurrentSchemaVersion,
         configuration.Id,
         configuration.Model,
@@ -33,19 +31,16 @@ internal static class ConfigurationStoreFunctions
         StoreFolders(configuration.Folders, pathBase),
         configuration.AudioEnabled);
 
-    internal static MachineConfiguration FromDocument(ConfigurationDocument document,
-        string pathBase)
+    internal static MachineConfiguration FromDocument(ConfigurationDocument document, string pathBase)
     {
-        if (document.SchemaVersion is < ConfigurationStoreConstants.MinimumSchemaVersion
-            or > ConfigurationStoreConstants.CurrentSchemaVersion)
+        if (document.SchemaVersion != ConfigurationStoreConstants.CurrentSchemaVersion)
             throw new InvalidDataException();
         if (document.Id == Guid.Empty)
             throw new InvalidDataException();
         if (document.Firmwares is null || document.Media is null || document.Options is null
             || document.Input is null || document.Folders is null)
             throw new InvalidDataException();
-        if (!EmulatorCatalog.GetAll(document.Model.ToString()).Any(entry =>
-                entry.Id == EmulatorCatalog.Get(document.Core).Id))
+        if (!EmulatorCatalog.GetAll(document.Model.ToString()).Any(entry => entry.Id == EmulatorCatalog.Get(document.Core).Id))
             throw new InvalidDataException();
         return new MachineConfiguration(document.Model,
             document.Firmwares.Select(firmware => firmware with
@@ -66,57 +61,14 @@ internal static class ConfigurationStoreFunctions
     }
 
     internal static string? StorePath(string? path, string pathBase)
-    {
-        if (string.IsNullOrWhiteSpace(path)) return path;
-        var fullPath = Path.GetFullPath(path);
-        var relative = Path.GetRelativePath(pathBase, fullPath);
-        return IsInsideBase(relative)
-            ? relative.Replace(Path.DirectorySeparatorChar,
-                ConfigurationStoreConstants.StoredDirectorySeparator)
-            : fullPath;
-    }
+        => EmulationSdk.ConfigurationFiles.StorePath(path, pathBase);
 
     internal static string? ResolvePath(string? path, string pathBase)
-    {
-        if (string.IsNullOrWhiteSpace(path) || Path.IsPathFullyQualified(path)) return path;
-        return Path.GetFullPath(Path.Combine(pathBase,
-            path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator,
-                Path.DirectorySeparatorChar)));
-    }
+        => EmulationSdk.ConfigurationFiles.ResolvePath(path, pathBase);
 
-    internal static async Task WriteDocumentAtomicallyAsync(string path, ConfigurationDocument document,
-        CancellationToken cancellationToken)
-    {
-        var fullPath = Path.GetFullPath(path);
-        Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);
-        var temporaryPath = fullPath + ConfigurationStoreConstants.TemporaryNameSeparator
-            + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat)
-            + ConfigurationStoreConstants.TemporaryFileSuffix;
-        try
-        {
-            await using (var stream = new FileStream(temporaryPath, FileMode.Create, FileAccess.Write,
-                             FileShare.None, ConfigurationStoreConstants.WriteBufferSize,
-                             FileOptions.Asynchronous | FileOptions.WriteThrough))
-            {
-                await JsonSerializer.SerializeAsync(stream, document, JsonOptions,
-                    cancellationToken).ConfigureAwait(false);
-                await stream.FlushAsync(cancellationToken).ConfigureAwait(false);
-            }
-            ConfigurationFileAccessFunctions.ReplaceFile(temporaryPath, fullPath);
-        }
-        finally
-        {
-            if (File.Exists(temporaryPath)) File.Delete(temporaryPath);
-        }
-    }
-
-    private static bool IsInsideBase(string relative) =>
-        !Path.IsPathFullyQualified(relative)
-        && !string.Equals(relative, ConfigurationStoreConstants.ParentDirectoryName, StringComparison.Ordinal)
-        && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar,
-            StringComparison.Ordinal)
-        && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.AltDirectorySeparatorChar,
-            StringComparison.Ordinal);
+    internal static Task WriteDocumentAtomicallyAsync(string path, ConfigurationDocument document, CancellationToken cancellationToken)
+        =>
+            EmulationSdk.ConfigurationFiles.WriteDocumentAsync(path, document, JsonOptions, cancellationToken);
 
     private static FolderConfiguration StoreFolders(FolderConfiguration folders, string pathBase) =>
         new(StorePath(folders.Shared, pathBase), StorePath(folders.Floppies, pathBase),

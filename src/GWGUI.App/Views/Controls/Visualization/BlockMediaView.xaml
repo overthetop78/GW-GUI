@@ -33,12 +33,10 @@
         </Grid.RowDefinitions>
         <Border Style="{StaticResource SubtlePanel}" Margin="4,4,4,6" Padding="8">
             <DockPanel>
-                <Border DockPanel.Dock="Right" Padding="2" Background="#FAFFFFFF"
-                        BorderBrush="#FFB9C5CE" BorderThickness="1" CornerRadius="18">
+                <Border DockPanel.Dock="Right" Padding="2" Background="#FAFFFFFF" BorderBrush="#FFB9C5CE" BorderThickness="1" CornerRadius="18">
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="ZoomOutButton" Style="{StaticResource VisualizationZoomButton}" Content="&#x2212;" Click="ZoomOutButton_Click"/>
-                        <Button x:Name="ResetZoomButton" Style="{StaticResource VisualizationZoomButton}"
-                                Width="62" FontSize="12" Content="100 %" Click="ResetZoomButton_Click"/>
+                        <Button x:Name="ResetZoomButton" Style="{StaticResource VisualizationZoomButton}" Width="62" FontSize="12" Content="100 %" Click="ResetZoomButton_Click"/>
                         <Button x:Name="ZoomInButton" Style="{StaticResource VisualizationZoomButton}" Content="+" Click="ZoomInButton_Click"/>
                     </StackPanel>
                 </Border>

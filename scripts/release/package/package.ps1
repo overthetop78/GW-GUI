@@ -7,6 +7,8 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..\..'))
+. (Join-Path $PSScriptRoot 'organize_app\shared-component-files.ps1')
+. (Join-Path $repository 'scripts\release\update-catalog\emulation-modules\emulation-modules.ps1')
 if ([string]::IsNullOrWhiteSpace($DistDirectory)) { $DistDirectory = Join-Path $repository 'dist' }
 $dist = [IO.Path]::GetFullPath($DistDirectory)
 if (-not $dist.StartsWith($repository + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
@@ -16,10 +18,11 @@ if (-not $dist.StartsWith($repository + [IO.Path]::DirectorySeparatorChar, [Stri
 $publish = Join-Path $dist 'publish\win-x64'
 $applicationPublish = Join-Path $dist '.application-publish'
 $updaterPublish = Join-Path $dist '.updater-publish'
+$examplePublish = Join-Path $dist '.example-publish'
 $portable = Join-Path $dist 'portable\GW GUI'
 $portablePackageRoot = Join-Path $dist '.portable-package'
 $portablePackage = Join-Path $portablePackageRoot 'GW GUI'
-foreach ($target in @($publish, $applicationPublish, $updaterPublish, $portablePackageRoot)) {
+foreach ($target in @($publish, $applicationPublish, $updaterPublish, $examplePublish, $portablePackageRoot)) {
     if (Test-Path -LiteralPath $target) { Remove-Item -LiteralPath $target -Recurse -Force }
 }
 New-Item -ItemType Directory -Path $publish,$portable,$portablePackage -Force | Out-Null
@@ -31,6 +34,15 @@ Get-ChildItem -LiteralPath $dist -File -ErrorAction SilentlyContinue | Where-Obj
 
 dotnet publish (Join-Path $repository 'src\GWGUI.App\GWGUI.App.csproj') -c $Configuration -r win-x64 --self-contained false -p:Version=$Version -o $applicationPublish --disable-build-servers
 if ($LASTEXITCODE -ne 0) { throw 'dotnet publish failed.' }
+# Example est livré dans le dossier normal des modules. Son manifeste et les interfaces
+# habituelles suffisent à le charger, sans inscription particulière dans l’application.
+$example = Resolve-GwGuiEmulationModule -Modules @(Get-GwGuiEmulationModules -RepositoryRoot $repository) -Module 'example'
+dotnet publish $example.ProjectPath -c $Configuration -r win-x64 --self-contained false `
+    -p:Version=$($example.Manifest.moduleVersion) -o $examplePublish --disable-build-servers
+if ($LASTEXITCODE -ne 0) { throw 'Example module publish failed.' }
+$sharedApplicationHashes = Get-GwGuiFileHashes -Files @(Get-ChildItem -LiteralPath $applicationPublish -Recurse -File)
+Copy-GwGuiComponentFiles -SourceDirectory $examplePublish -DestinationDirectory (Join-Path $applicationPublish "Modules\$($example.Id)") `
+    -SharedHashes $sharedApplicationHashes -RequiredFiles @('module.json', $example.EntryAssembly, ($example.AssemblyName + '.deps.json'))
 dotnet publish (Join-Path $repository 'src\GWGUI.Launcher\GWGUI.Launcher.csproj') -c $Configuration -r win-x64 --self-contained false -p:Version=$Version -o $publish --disable-build-servers
 if ($LASTEXITCODE -ne 0) { throw 'GW GUI bootstrap publish failed.' }
 Copy-Item -Path (Join-Path $applicationPublish '*') -Destination $publish -Recurse -Force
@@ -42,7 +54,10 @@ dotnet publish (Join-Path $repository 'src\GWGUI.Updater\GWGUI.Updater.csproj') 
 if ($LASTEXITCODE -ne 0) { throw 'GW GUI updater publish failed.' }
 $updaterOutput = Join-Path $publish 'Updater'
 New-Item -ItemType Directory -Path $updaterOutput -Force | Out-Null
-Copy-Item -Path (Join-Path $updaterPublish '*') -Destination $updaterOutput -Recurse -Force
+$sharedHashes = Get-GwGuiFileHashes -Files @(Get-ChildItem -LiteralPath (Join-Path $publish 'lib') -Recurse -File)
+Copy-GwGuiComponentFiles -SourceDirectory $updaterPublish -DestinationDirectory $updaterOutput `
+    -SharedHashes $sharedHashes -RequiredFiles @('gwgui.updater.exe', 'gwgui.updater.dll', 'gwgui.updater.pdb',
+        'gwgui.updater.deps.json', 'gwgui.updater.runtimeconfig.json')
 Get-ChildItem -LiteralPath $publish -Recurse -File -Filter '*.pdb' | Remove-Item -Force
 
 Copy-Item -Path (Join-Path $publish '*') -Destination $portablePackage -Recurse -Force
@@ -90,3 +105,4 @@ $packages | Select-Object Name,Length
 Remove-Item -LiteralPath $portablePackageRoot -Recurse -Force
 Remove-Item -LiteralPath $applicationPublish -Recurse -Force
 Remove-Item -LiteralPath $updaterPublish -Recurse -Force
+Remove-Item -LiteralPath $examplePublish -Recurse -Force

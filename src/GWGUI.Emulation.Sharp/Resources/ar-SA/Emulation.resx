@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>المواد SHARP X68000 حواسيب</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>المواد SHARP X1 حواسيب</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>الصوت المسموع</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>خيارات المراقب المالي</value></data>
+  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>السمعة ROM</value></data>
+  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>ذكري</value></data>
+  <data name="Emulation.Sharp.Setting.AdpcmVolume" xml:space="preserve"><value>ADPCM الحجم</value></data>
+  <data name="Emulation.Sharp.Setting.AudioDesynchronization" xml:space="preserve"><value>فائض الصوت</value></data>
+  <data name="Emulation.Sharp.Setting.AudioSampleRate" xml:space="preserve"><value>معدل العينات الصوتية</value></data>
+  <data name="Emulation.Sharp.Setting.ButtonOrder" xml:space="preserve"><value>(بتون)</value></data>
+  <data name="Emulation.Sharp.Setting.DiskSeekSound" xml:space="preserve"><value>البحث عن الصوت</value></data>
+  <data name="Emulation.Sharp.Setting.FmBoard" xml:space="preserve"><value>FM صوت اللوح</value></data>
+  <data name="Emulation.Sharp.Setting.FmVolume" xml:space="preserve"><value>FM الحجم</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRate" xml:space="preserve"><value>معدل إطار الفيديو</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRateAdjustment" xml:space="preserve"><value>تسوية معدل الفطر</value></data>
+  <data name="Emulation.Sharp.Setting.FrameSkip" xml:space="preserve"><value>أشرطة فيديو مُصَوَّلة</value></data>
+  <data name="Emulation.Sharp.Setting.HideGraphics" xml:space="preserve"><value>رسومات مخفية</value></data>
+  <data name="Emulation.Sharp.Setting.HideSprites" xml:space="preserve"><value>إخفاء المناشير والخلفيات</value></data>
+  <data name="Emulation.Sharp.Setting.HideText" xml:space="preserve"><value>اخفي طبقة النص</value></data>
+  <data name="Emulation.Sharp.Setting.MemorySize" xml:space="preserve"><value>RAM القدرات</value></data>
+  <data name="Emulation.Sharp.Setting.RapidFire" xml:space="preserve"><value>إطلاق النار السريع</value></data>
+  <data name="Emulation.Sharp.Setting.Raster" xml:space="preserve"><value>آثار الغضب</value></data>
+  <data name="Emulation.Sharp.Setting.ReverseJoystick" xml:space="preserve"><value>مدخلات المراقبة العكسية</value></data>
+  <data name="Emulation.Sharp.Setting.UnlimitedSpeed" xml:space="preserve"><value>سرعة الاختراع غير المحدودة</value></data>
+  <data name="Emulation.Sharp.Setting.VerticalSync" xml:space="preserve"><value>التزامنة الافتراضية</value></data>
+  <data name="Emulation.Sharp.Setting.VideoBeforeAudio" xml:space="preserve"><value>أولوية الفيديو</value></data>
+  <data name="Emulation.Sharp.Value.High" xml:space="preserve"><value>عالية</value></data>
+  <data name="Emulation.Sharp.Value.Low" xml:space="preserve"><value>منخفض</value></data>
+  <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>عرض آلة</value></data>
+</root>

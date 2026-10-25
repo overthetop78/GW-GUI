@@ -8,12 +8,9 @@ namespace GWGUI.App.Views.Controls.Visualization;
 
 public partial class MediaInspectorPanel : UserControl
 {
-    public static readonly DependencyProperty ModelProperty = DependencyProperty.Register(
-        nameof(Model), typeof(MediaInspectorModel), typeof(MediaInspectorPanel),
-        new PropertyMetadata(null, ModelChanged));
+    public static readonly DependencyProperty ModelProperty = DependencyProperty.Register(nameof(Model), typeof(MediaInspectorModel), typeof(MediaInspectorPanel), new PropertyMetadata(null, ModelChanged));
 
-    public static readonly DependencyProperty SurfaceTitleProperty = DependencyProperty.Register(
-        nameof(SurfaceTitle), typeof(string), typeof(MediaInspectorPanel), new PropertyMetadata(string.Empty));
+    public static readonly DependencyProperty SurfaceTitleProperty = DependencyProperty.Register(nameof(SurfaceTitle), typeof(string), typeof(MediaInspectorPanel), new PropertyMetadata(string.Empty));
 
     public MediaInspectorPanel()
     {
@@ -36,9 +33,7 @@ public partial class MediaInspectorPanel : UserControl
     {
         var panel = (MediaInspectorPanel)target;
         var model = args.NewValue as MediaInspectorModel;
-        panel.SectionItems.ItemsSource = model?.Sections.Select(section => new SectionPresentation(
-            section,
-            section.Entries.Take(3).ToArray())).ToArray() ?? [];
+        panel.SectionItems.ItemsSource = model?.Sections.Select(section => new SectionPresentation(section, section.Entries.Take(3).ToArray())).ToArray() ?? [];
         panel.SectionItems.Visibility = model?.Sections.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
         panel.MoreInfoButton.Visibility = model?.Sections.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
         panel.DetailsSections.ItemsSource = model?.Sections;
@@ -55,7 +50,5 @@ public partial class MediaInspectorPanel : UserControl
         DetailsPopup.IsOpen = !DetailsPopup.IsOpen;
     }
 
-    private sealed record SectionPresentation(
-        MediaInspectorSection Section,
-        IReadOnlyList<MediaInspectorEntry> PreviewEntries);
+    private sealed record SectionPresentation(MediaInspectorSection Section, IReadOnlyList<MediaInspectorEntry> PreviewEntries);
 }

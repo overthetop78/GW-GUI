@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>Draai het handvat naar links</value></data>
+  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>Draai het handvat naar rechts</value></data>
+  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>Duw het handvat naar beneden</value></data>
+  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>Trek het handvat omhoog</value></data>
+  <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>De consoleknoppen tonen</value></data>
+  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>Verwissel de twee controllers</value></data>
+</root>

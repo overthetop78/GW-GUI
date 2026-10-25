@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>自動タイミングかビデオ標準を選んで下さい。</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>埋め込みビデオチップを選択します。</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>画像アスペクト比を選択します。自動選択はゲーム領域を使用します。</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>表示される画面の境界を選択します。</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>画面ラインごとにスプライトの制限を削除します。これにより、グラフィカルなエラーが発生する可能性があります。</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>逆方向に押し合わせるようにします。</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>ロータリーコントローラーの感度を調整します。</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>カラーパレットを選択します。</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>画面の境界を隠す。</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>一番下の画面の境界線を隠します。</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>左画面の境界線を非表示にします。</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>画面の境界線を非表示にします。</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>表示される画像のエッジでピクセルを非表示にします。</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>起動遅延をスキップします。</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>カートリッジのメモリー回路です。ROMが誤認識される場合を除き、自動のままにしてください。</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>標準：最大32 KiB。MegaCartとActivision：異なるROMバンク切り替え回路。OCM：バンク切り替えとEEPROMへのセーブ。Activisionはゲームの発売元ではなく、回路の名称です。種類を誤ると、起動できない場合や不具合が発生する場合があります。</value></data>
+</root>

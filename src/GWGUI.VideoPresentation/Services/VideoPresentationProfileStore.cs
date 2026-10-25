@@ -3,10 +3,8 @@ using System.Text.Json.Serialization;
 
 namespace GWGUI.VideoPresentation.Services;
 
-/// <summary>Host-owned profiles. Legacy data is read before any module may replace its JSON.</summary>
-public sealed class VideoPresentationProfileStore(
-    string directory, Func<string, Guid, IEnumerable<string>>? legacyPaths = null,
-    IVideoProfileFiles? fileSystem = null, Func<Action, Task>? schedule = null)
+/// <summary>Host-owned video profiles stored independently from machine configurations.</summary>
+public sealed class VideoPresentationProfileStore(string directory, IVideoProfileFiles? fileSystem = null, Func<Action, Task>? schedule = null)
 {
     private readonly IVideoProfileFiles _files = fileSystem ?? new VideoProfileFiles();
     private readonly Func<Action, Task> _schedule = schedule ?? Task.Run;
@@ -24,17 +22,9 @@ public sealed class VideoPresentationProfileStore(
             var path = ProfilePath(module, id);
             EmulationVideoPresentationProfile profile;
             if (_files.Exists(path))
-                profile = (JsonSerializer.Deserialize<EmulationVideoPresentationProfile>(
-                    _files.Read(path), JsonOptions)
-                    ?? throw new InvalidDataException(path)).Normalize();
+                profile = (JsonSerializer.Deserialize<EmulationVideoPresentationProfile>(_files.Read(path), JsonOptions) ?? throw new InvalidDataException(path)).Normalize();
             else
-            {
-                var legacy = ReadLegacy(module, id);
-                profile = legacy ?? new EmulationVideoPresentationProfile().Normalize();
-                // Only an actual legacy profile requires a migration write.
-                // Keep the source untouched, and never cache a migration whose write failed.
-                if (legacy is not null) Write(path, profile);
-            }
+                profile = new EmulationVideoPresentationProfile().Normalize();
             _profiles[(module, id)] = profile;
             return profile;
         }
@@ -115,38 +105,7 @@ public sealed class VideoPresentationProfileStore(
         ArgumentException.ThrowIfNullOrWhiteSpace(module);
         // Encoding the module ID prevents paths escaping the host-owned directory.
         var key = Convert.ToHexString(System.Text.Encoding.UTF8.GetBytes(module));
-        return Path.Combine(directory, key,
-            id.ToString(VideoPresentationStorageConstants.IdentifierFormat)
-                + VideoPresentationStorageConstants.FileExtension);
-    }
-
-    private EmulationVideoPresentationProfile? ReadLegacy(string module, Guid id)
-    {
-        foreach (var path in legacyPaths?.Invoke(module, id) ?? [])
-        {
-            if (!_files.Exists(path)) continue;
-            using var document = JsonDocument.Parse(_files.Read(path));
-            var renderer = EmulationVideoRenderer.Direct3D11;
-            EmulationVideoProcessingConfiguration? processing = null;
-            var found = false;
-            foreach (var property in document.RootElement.EnumerateObject())
-            {
-                if (property.Name.Equals(VideoPresentationStorageConstants.LegacyRenderer,
-                    StringComparison.OrdinalIgnoreCase))
-                {
-                    renderer = property.Value.Deserialize<EmulationVideoRenderer>(JsonOptions);
-                    found = true;
-                }
-                if (property.Name.Equals(VideoPresentationStorageConstants.LegacyProcessing,
-                    StringComparison.OrdinalIgnoreCase))
-                {
-                    processing = property.Value.Deserialize<EmulationVideoProcessingConfiguration>(JsonOptions);
-                    found = true;
-                }
-            }
-            if (found) return new EmulationVideoPresentationProfile(renderer, processing).Normalize();
-        }
-        return null;
+        return Path.Combine(directory, key, id.ToString(VideoPresentationStorageConstants.IdentifierFormat) + VideoPresentationStorageConstants.FileExtension);
     }
 
     private void Write(string path, EmulationVideoPresentationProfile profile)
@@ -158,7 +117,6 @@ public sealed class VideoPresentationProfileStore(
     {
         var options = new JsonSerializerOptions(JsonSerializerDefaults.Web) { WriteIndented = true };
         options.Converters.Add(new JsonStringEnumConverter());
-        options.Converters.Add(new LegacyBooleanJsonConverter());
         return options;
     }
 }

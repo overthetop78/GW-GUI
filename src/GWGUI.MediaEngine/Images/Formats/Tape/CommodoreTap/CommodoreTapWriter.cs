@@ -1,6 +1,7 @@
+using static GWGUI.MediaFileSystems.Functions.MediaMetadataFunctions;
+using GWGUI.MediaFileSystems.Functions;
 using System.Buffers.Binary;
 using System.Collections.Frozen;
-using System.Globalization;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
@@ -14,14 +15,11 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.CommodoreTap;
 /// <summary>Writes pulse durations that are exactly representable by the selected Commodore TAP version.</summary>
 public sealed class CommodoreTapWriter : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { TapeImageFormatIds.CommodoreTap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { TapeImageFormatIds.CommodoreTap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
-    public CommodoreTapWriter(IAtomicImageFileWriter? files = null) =>
-        this.files = files ?? new AtomicImageFileWriter();
+    public CommodoreTapWriter(IAtomicImageFileWriter? files = null) => this.files = files ?? new AtomicImageFileWriter();
 
     public string Id => MediaImageWriterIds.TapeCommodoreTap;
     public IReadOnlySet<string> FormatIds => SupportedFormatIds;
@@ -36,11 +34,7 @@ public sealed class CommodoreTapWriter : IMediaImageWriter
         && TryGetProfile(document.Metadata, out var profile)
         && TryEncodeRecords(document, profile.Version, out _);
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!SupportedFormatIds.Contains(targetFormatId)
@@ -61,9 +55,7 @@ public sealed class CommodoreTapWriter : IMediaImageWriter
                 header[CommodoreTapConstants.VersionOffset] = profile.Version;
                 header[CommodoreTapConstants.PlatformOffset] = profile.Platform;
                 header[CommodoreTapConstants.VideoStandardOffset] = profile.VideoStandard;
-                BinaryPrimitives.WriteUInt32LittleEndian(
-                    header.AsSpan(CommodoreTapConstants.DataLengthOffset, CommodoreTapConstants.DataLengthSize),
-                    checked((uint)dataLength));
+                BinaryPrimitives.WriteUInt32LittleEndian(header.AsSpan(CommodoreTapConstants.DataLengthOffset, CommodoreTapConstants.DataLengthSize), checked((uint)dataLength));
                 await output.WriteAsync(header, token).ConfigureAwait(false);
                 foreach (var record in records) await output.WriteAsync(record, token).ConfigureAwait(false);
             },
@@ -94,8 +86,7 @@ public sealed class CommodoreTapWriter : IMediaImageWriter
         foreach (var segment in segments.OrderBy(segment => segment.Position))
         {
             if (segment.Kind != SequentialSegmentKind.Pulse
-                || !segment.Metadata.TryGetValue(CommodoreTapConstants.CycleCountMetadataKey, out var cycleText)
-                || !int.TryParse(cycleText, NumberStyles.None, CultureInfo.InvariantCulture, out var cycles)
+                || !MediaMetadataFunctions.TryReadInt(segment.Metadata, CommodoreTapConstants.CycleCountMetadataKey, out var cycles)
                 || cycles <= 0)
                 return false;
             if (cycles % CommodoreTapConstants.ShortPulseCycleMultiplier == 0
@@ -109,13 +100,6 @@ public sealed class CommodoreTapWriter : IMediaImageWriter
         }
         records = encoded;
         return true;
-    }
-
-    private static bool TryReadByte(IReadOnlyDictionary<string, string> metadata, string key, out byte value)
-    {
-        value = 0;
-        return metadata.TryGetValue(key, out var text)
-            && byte.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value);
     }
 
     private readonly record struct TapProfile(string Signature, byte Version, byte Platform, byte VideoStandard);

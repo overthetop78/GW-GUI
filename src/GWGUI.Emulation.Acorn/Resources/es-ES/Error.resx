@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Acorn.Error.ContentNotFound" xml:space="preserve"><value>El configurado ACORN Los medios no fueron encontrados.</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported" xml:space="preserve"><value>Esta máquina no admite los medios seleccionados.</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound" xml:space="preserve"><value>El requisito ACORN El núcleo no fue encontrado.</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected" xml:space="preserve"><value>El seleccionado ACORN El núcleo no se puede cargar.</value></data>
+  <data name="Emulation.Acorn.Error.Details" xml:space="preserve"><value>Detalles: {0}</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid" xml:space="preserve"><value>Una ACORN firmware es inválido o incompatible.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing" xml:space="preserve"><value>A required ACORN Firmware está desaparecido.</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing" xml:space="preserve"><value>El camino hacia el ACORN El programa de acogida no está disponible.</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure" xml:space="preserve"><value>Comunicación con la ACORN El anfitrión falló.</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid" xml:space="preserve"><value>Una ACORN la opción tiene un valor inválido.</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible" xml:space="preserve"><value>El ACORN estado salvado es incompatible con la máquina actual.</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>El ACORN Estado salvo es inválido.</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>Un inesperado ACORN error de emulación ocurrió.</value></data>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand"><value>Unknown environment command: {0}</value></data>
+</root>

@@ -23,9 +23,7 @@ internal static class LocalizedViewsScenarios
             var longPath = "virtual/" + string.Concat(Enumerable.Repeat("long-directory/", 50)) + "synthetic.scp";
             read.FolderBlock.Input.Text = longPath; write.SourceBlock.Input.Text = longPath; convert.SourceBlock.Input.Text = longPath;
             read.CompletionBlock.BeginCapture(longPath);
-            read.CompletionBlock.CompleteCapture(
-                longPath,
-                string.Join(" ", Enumerable.Repeat(LocExtension.Get("Read.ScpSummaryTitle"), 500)));
+            read.CompletionBlock.CompleteCapture(longPath, string.Join(" ", Enumerable.Repeat(LocExtension.Get("Read.ScpSummaryTitle"), 500)));
             var summary = read.CompletionBlock.SummaryTextBlock;
             foreach (var (section, command, path) in new (UserControl, Button, TextBox)[] {
                 (read, read.ExecuteActionButton, read.FolderBlock.Input),
@@ -67,8 +65,7 @@ internal static class LocalizedViewsScenarios
                 Assert.False(string.IsNullOrWhiteSpace(value),"Empty resource: "+key+" in "+language);
                 Assert.NotEqual("["+key+"]",value);
             }
-            var incompatibleFormat = LocExtension.Get(
-                "Explorer.SelectedFormatUnsupported", "FORMAT_TOKEN", "FILE_TOKEN");
+            var incompatibleFormat = LocExtension.Get("Explorer.SelectedFormatUnsupported", "FORMAT_TOKEN", "FILE_TOKEN");
             Assert.Contains("FORMAT_TOKEN", incompatibleFormat);
             Assert.Contains("FILE_TOKEN", incompatibleFormat);
             Assert.Contains("\n", incompatibleFormat);

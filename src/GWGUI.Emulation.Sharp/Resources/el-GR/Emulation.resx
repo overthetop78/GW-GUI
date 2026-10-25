@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Εξομοίωση SHARP X68000 υπολογιστές.</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Εξομοίωση SHARP X1 υπολογιστές.</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Ηχητικό μηχάνημα</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Επιλογές ελεγκτή</value></data>
+  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>Χαρακτήρας ROM</value></data>
+  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Εμφάνιση μνήμης</value></data>
+  <data name="Emulation.Sharp.Setting.AdpcmVolume" xml:space="preserve"><value>ADPCM όγκος</value></data>
+  <data name="Emulation.Sharp.Setting.AudioDesynchronization" xml:space="preserve"><value>Απόρριψη υπερβάλλοντος ήχου</value></data>
+  <data name="Emulation.Sharp.Setting.AudioSampleRate" xml:space="preserve"><value>Ρυθμός δειγματοληψίας ήχου</value></data>
+  <data name="Emulation.Sharp.Setting.ButtonOrder" xml:space="preserve"><value>Σειρά κουμπιού</value></data>
+  <data name="Emulation.Sharp.Setting.DiskSeekSound" xml:space="preserve"><value>Ήχος αναζήτησης δίσκου</value></data>
+  <data name="Emulation.Sharp.Setting.FmBoard" xml:space="preserve"><value>FM Ηχοδιακόπτης</value></data>
+  <data name="Emulation.Sharp.Setting.FmVolume" xml:space="preserve"><value>FM όγκος</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRate" xml:space="preserve"><value>Ρυθμός πλαισίου βίντεο</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRateAdjustment" xml:space="preserve"><value>Προσαρμογή του ρυθμού του πλαισίου</value></data>
+  <data name="Emulation.Sharp.Setting.FrameSkip" xml:space="preserve"><value>Παράλειψη πλαισίων βίντεο</value></data>
+  <data name="Emulation.Sharp.Setting.HideGraphics" xml:space="preserve"><value>Απόκρυψη γραφικών</value></data>
+  <data name="Emulation.Sharp.Setting.HideSprites" xml:space="preserve"><value>Απόκρυψη sprites και φόντου</value></data>
+  <data name="Emulation.Sharp.Setting.HideText" xml:space="preserve"><value>Απόκρυψη του στρώματος κειμένου</value></data>
+  <data name="Emulation.Sharp.Setting.MemorySize" xml:space="preserve"><value>RAM Ικανότητα</value></data>
+  <data name="Emulation.Sharp.Setting.RapidFire" xml:space="preserve"><value>Ταχείες πυρκαγιές</value></data>
+  <data name="Emulation.Sharp.Setting.Raster" xml:space="preserve"><value>Επιδράσεις από ρόδες</value></data>
+  <data name="Emulation.Sharp.Setting.ReverseJoystick" xml:space="preserve"><value>Αντίστροφη είσοδος ελεγκτή</value></data>
+  <data name="Emulation.Sharp.Setting.UnlimitedSpeed" xml:space="preserve"><value>Απεριόριστη ταχύτητα εξομοίωσης</value></data>
+  <data name="Emulation.Sharp.Setting.VerticalSync" xml:space="preserve"><value>Κατακόρυφος συγχρονισμός</value></data>
+  <data name="Emulation.Sharp.Setting.VideoBeforeAudio" xml:space="preserve"><value>Προτεραιότητα βίντεο</value></data>
+  <data name="Emulation.Sharp.Value.High" xml:space="preserve"><value>Υψηλό</value></data>
+  <data name="Emulation.Sharp.Value.Low" xml:space="preserve"><value>Χαμηλή</value></data>
+  <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>Εμφάνιση μηχανής</value></data>
+</root>

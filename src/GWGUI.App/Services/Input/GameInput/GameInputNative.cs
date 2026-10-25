@@ -41,24 +41,17 @@ internal static class GameInputNative
 
         try
         {
-            using var key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32)
-                .OpenSubKey(@"SOFTWARE\Microsoft\GameInput");
+            using var key = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32).OpenSubKey(@"SOFTWARE\Microsoft\GameInput");
             if (key?.GetValue("RedistDir") is string directory)
-                AddCandidate(candidates, Path.Combine(directory, "GameInputRedist.dll"),
-                    GameInputRuntimeSource.Registered);
+                AddCandidate(candidates, Path.Combine(directory, "GameInputRedist.dll"), GameInputRuntimeSource.Registered);
         }
         catch (Exception exception) when (exception is SecurityException or UnauthorizedAccessException) { }
 
-        AddCandidate(candidates,
-            Path.Combine(Environment.SystemDirectory, "GameInputRedist.dll"),
-            GameInputRuntimeSource.SystemFallback);
+        AddCandidate(candidates, Path.Combine(Environment.SystemDirectory, "GameInputRedist.dll"), GameInputRuntimeSource.SystemFallback);
         return SelectRuntime(candidates);
     }
 
-    private static void AddCandidate(
-        ICollection<GameInputRuntimeCandidate> candidates,
-        string path,
-        GameInputRuntimeSource source)
+    private static void AddCandidate(ICollection<GameInputRuntimeCandidate> candidates, string path, GameInputRuntimeSource source)
     {
         if (File.Exists(path))
             candidates.Add(new GameInputRuntimeCandidate(path, VersionOf(path), source));
@@ -66,8 +59,7 @@ internal static class GameInputNative
 
     internal static string? SelectRuntime(IEnumerable<GameInputRuntimeCandidate> candidates)
     {
-        return candidates
-            .OrderByDescending(candidate => candidate.Version)
+        return candidates.OrderByDescending(candidate => candidate.Version)
             // Windows.Gaming.Input already loads the system GameInput runtime.
             // Reuse it when versions are equal instead of mapping an identical
             // second copy from the registered redistributable directory.

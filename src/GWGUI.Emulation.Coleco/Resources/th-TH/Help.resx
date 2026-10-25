@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>เลือกเวลาอัตโนมัติหรือมาตรฐานวิดีโอ</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>เลือกชิพวิดีโอที่คัดลอก</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>เลือกขอบเขตสัดส่วนภาพ การเลือกอัตโนมัติจะใช้ขอบเขตเกม</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>เลือกขอบเขตจอที่มองเห็น</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>ลบค่าลิมิตของช่วงบนกราฟต่อบรรทัดหน้าจอ ซึ่งจะทําให้ภาพผิดพลาดได้</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>ให้ พยายาม ทํา ให้ มี การ สื่อ ความ กัน ใน ทิศ ทาง ที่ ตรง ข้าม กัน.</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>ปรับความไวของตัวควบคุมการหมุน</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>เลือกจานสี</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>ซ่อนขอบจอด้านบน</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>ซ่อนขอบจอด้านล่าง</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>ซ่อนขอบจอด้านซ้าย</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>ซ่อนขอบจอด้านขวา</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>ซ่อนพิกเซลที่ขอบของภาพที่แสดงผล</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>ข้ามการบูตล่าช้า</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>วงจรหน่วยความจำของตลับเกม ให้ใช้อัตโนมัติ เว้นแต่ระบบตรวจพบชนิด ROM ผิด</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>มาตรฐาน: สูงสุด 32 KiB ส่วน MegaCart และ Activision ใช้วงจรสลับแบงก์ ROM ต่างกัน OCM มีการสลับแบงก์และบันทึกข้อมูลใน EEPROM ชื่อ Activision หมายถึงวงจร ไม่ใช่ผู้จัดจำหน่ายเกม การเลือกชนิดผิดอาจทำให้เกมเริ่มไม่ได้หรือเกิดข้อผิดพลาด</value></data>
+</root>

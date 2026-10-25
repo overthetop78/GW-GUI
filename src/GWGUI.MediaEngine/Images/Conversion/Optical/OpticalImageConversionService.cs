@@ -1,4 +1,4 @@
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Images.Reading;
@@ -13,10 +13,7 @@ public sealed class OpticalImageConversionService
     private readonly MediaImageWriterRegistry writers;
     private readonly MediaImageWritingService writing;
 
-    public OpticalImageConversionService(
-        MediaImageReadingService reading,
-        MediaImageWriterRegistry writers,
-        MediaImageWritingService writing)
+    public OpticalImageConversionService(MediaImageReadingService reading, MediaImageWriterRegistry writers, MediaImageWritingService writing)
     {
         ArgumentNullException.ThrowIfNull(reading);
         ArgumentNullException.ThrowIfNull(writers);
@@ -30,63 +27,30 @@ public sealed class OpticalImageConversionService
     {
         ArgumentNullException.ThrowIfNull(document);
         if (document.MediaKind != MediaKind.Optical) return [];
-        return writers.Writers
-            .SelectMany(writer => writer.FormatIds.SelectMany(formatId =>
-                writer.ProducedFileExtensions.Select(extension => (Writer: writer, FormatId: formatId, Extension: extension))))
+        return writers.Writers.SelectMany(writer => writer.FormatIds.SelectMany(formatId => writer.ProducedFileExtensions.Select(extension => (Writer: writer, FormatId: formatId, Extension: extension))))
             .Where(candidate => candidate.Writer.CanWrite(document, candidate.FormatId, candidate.Extension))
-            .Select(candidate => new MediaConversionDestination(
-                candidate.FormatId,
-                candidate.Extension,
-                candidate.Writer.Id,
-                candidate.Writer.ProducesMultipleFiles))
+            .Select(candidate => new MediaConversionDestination(candidate.FormatId, candidate.Extension, candidate.Writer.Id, candidate.Writer.ProducesMultipleFiles))
             .Distinct()
             .OrderBy(destination => destination.FormatId, StringComparer.OrdinalIgnoreCase)
             .ThenBy(destination => destination.Extension, StringComparer.OrdinalIgnoreCase)
             .ToArray();
     }
 
-    public async Task<IReadOnlyList<string>> ConvertAsync(
-        string sourcePath,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
-        => await ConvertAsync(
-            sourcePath,
-            outputPath,
-            targetFormatId,
-            null,
-            cancellationToken).ConfigureAwait(false);
+    public async Task<IReadOnlyList<string>> ConvertAsync(string sourcePath, string outputPath, string targetFormatId, CancellationToken cancellationToken = default) => await ConvertAsync(sourcePath, outputPath, targetFormatId, null, cancellationToken).ConfigureAwait(false);
 
-    public async Task<IReadOnlyList<string>> ConvertAsync(
-        string sourcePath,
-        string outputPath,
-        string targetFormatId,
-        Action<MediaExplorationProgress>? progress,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> ConvertAsync(string sourcePath, string outputPath, string targetFormatId, Action<MediaExplorationProgress>? progress, CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(sourcePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
         ArgumentException.ThrowIfNullOrWhiteSpace(targetFormatId);
-        var document = await reading.ReadAsync(
-            new MediaSourceDescriptor(sourcePath, []),
-            cancellationToken).ConfigureAwait(false);
+        var document = await reading.ReadAsync(new MediaSourceDescriptor(sourcePath, []), cancellationToken).ConfigureAwait(false);
         if (document.MediaKind != MediaKind.Optical)
             throw new NotSupportedException("The source is not an optical media image.");
         var extension = Path.GetExtension(outputPath);
         if (writers.Resolve(document, targetFormatId, extension) is null)
-            throw new NotSupportedException(
-                "The requested optical destination would lose unsupported track, sector, session, layer, pregap, postgap, or subchannel information.");
-        var produced = await writing.WriteAsync(
-            document,
-            outputPath,
-            targetFormatId,
-            progress,
-            cancellationToken).ConfigureAwait(false);
-        progress?.Invoke(new(
-            MediaExplorationProgressStage.ReadingMedia,
-            targetFormatId,
-            100,
-            document.MediaKind));
+            throw new NotSupportedException("The requested optical destination would lose unsupported track, sector, session, layer, pregap, postgap, or subchannel information.");
+        var produced = await writing.WriteAsync(document, outputPath, targetFormatId, progress, cancellationToken).ConfigureAwait(false);
+        progress?.Invoke(new(MediaExplorationProgressStage.ReadingMedia, targetFormatId, 100, document.MediaKind));
         return produced;
     }
 }

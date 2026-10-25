@@ -29,18 +29,15 @@ internal sealed class EmulationCoreManagementPanel : UserControl
     internal TextBlock Description { get; } = new() { TextWrapping = TextWrapping.Wrap };
     internal TextBlock Status { get; } = new() { TextWrapping = TextWrapping.Wrap };
 
-    internal EmulationCoreManagementPanel(Func<string, object[], string> localize)
+    internal EmulationCoreManagementPanel(Func<string, object[], string> localize, Button createButton)
     {
         Search.Content = localize(EmulationCoreManagementConstants.SearchResource, []);
         Download.Content = localize(EmulationCoreManagementConstants.DownloadResource, []);
         Cancel.Content = localize(EmulationCoreManagementConstants.CancelResource, []);
-        AutomationProperties.SetName(Emulators,
-            localize(EmulationCoreManagementConstants.EmulatorResource, []));
+        AutomationProperties.SetName(Emulators, localize(EmulationCoreManagementConstants.EmulatorResource, []));
         AutomationProperties.SetName(Search, localize(EmulationCoreManagementConstants.SearchResource, []));
-        AutomationProperties.SetName(Versions,
-            localize(EmulationCoreManagementConstants.VersionsFoundResource, [0]));
-        AutomationProperties.SetName(Download,
-            localize(EmulationCoreManagementConstants.DownloadResource, []));
+        AutomationProperties.SetName(Versions, localize(EmulationCoreManagementConstants.VersionsFoundResource, [0]));
+        AutomationProperties.SetName(Download, localize(EmulationCoreManagementConstants.DownloadResource, []));
         AutomationProperties.SetName(Status, localize(EmulationCoreManagementConstants.EmulatorResource, []));
         AutomationProperties.SetLiveSetting(Status, AutomationLiveSetting.Assertive);
 
@@ -83,6 +80,7 @@ internal sealed class EmulationCoreManagementPanel : UserControl
         releases.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         releases.ColumnDefinitions.Add(new ColumnDefinition());
         releases.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        releases.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         Search.Margin = new Thickness(0, 0, 12, 0);
         releases.Children.Add(Search);
         Grid.SetColumn(Versions, 1);
@@ -90,6 +88,9 @@ internal sealed class EmulationCoreManagementPanel : UserControl
         Download.Margin = new Thickness(12, 0, 0, 0);
         Grid.SetColumn(Download, 2);
         releases.Children.Add(Download);
+        createButton.Margin = new Thickness(0, 0, EmulationCoreManagementConstants.CreateButtonRightMargin, 0);
+        Grid.SetColumn(createButton, 3);
+        releases.Children.Add(createButton);
         Grid.SetRow(releases, 2);
         Grid.SetColumnSpan(releases, 4);
         content.Children.Add(releases);
@@ -125,8 +126,6 @@ internal sealed class EmulationCoreManagementPanel : UserControl
     internal void SetStatus(string text, bool isError = false)
     {
         Status.Text = text;
-        Status.Foreground = isError
-            ? new SolidColorBrush(EmulationCoreManagementConstants.ErrorText)
-            : (Brush)FindResource(ControlVisualConstants.MutedTextBrushResource);
+        Status.Foreground = isError ? new SolidColorBrush(EmulationCoreManagementConstants.ErrorText) : (Brush)FindResource(ControlVisualConstants.MutedTextBrushResource);
     }
 }

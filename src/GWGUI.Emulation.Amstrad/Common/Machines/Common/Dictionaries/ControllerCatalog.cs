@@ -2,23 +2,22 @@ namespace GWGUI.Emulation.Amstrad.Common.Machines.Common.Dictionaries;
 
 public static class ControllerCatalog
 {
-    public static IReadOnlyList<ControllerType> Types(Model model)
+    public static IReadOnlyList<PeripheralCategory> Types(Model model)
     {
-        var types = new List<ControllerType>();
-        if (model.ControllerPortCount > 0)
-            types.Add(ControllerType.Joystick);
-        types.Add(ControllerType.None);
+        var types = new List<PeripheralCategory>();
+        if (model.ControllerPortCount > BufferConstants.EmptyCollectionCount)
+        {
+            types.Add(PeripheralCategory.Joystick);
+            types.Add(PeripheralCategory.Gamepad);
+        }
+        types.Add(PeripheralCategory.None);
         return types;
     }
 
-    public static ControllerType Default(Model model) =>
-        model.ControllerPortCount > 0
-            ? ControllerType.Joystick
-            : ControllerType.None;
+    public static PeripheralCategory Default(Model model) => model.ControllerPortCount <= BufferConstants.EmptyCollectionCount ? PeripheralCategory.None : model.HasKeyboard ? PeripheralCategory.Joystick : PeripheralCategory.Gamepad;
 
-    public static ControllerType Normalize(Model model, ControllerType type) =>
-        type != ControllerType.Automatic && Types(model).Contains(type) ? type : Default(model);
+    public static PeripheralCategory Normalize(Model model, PeripheralCategory type) => type != PeripheralCategory.Automatic && Types(model).Contains(type) ? type : Default(model);
 
-    public static IReadOnlyList<ControllerType> ParallelPortTypes { get; } =
-        [ControllerType.Joystick, ControllerType.None];
+    public static IReadOnlyList<PeripheralCategory> ParallelPortTypes { get; } =
+        [PeripheralCategory.Joystick, PeripheralCategory.None];
 }

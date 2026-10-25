@@ -36,4 +36,27 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (rechterhand)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Uiterlijk</value></data>
   <data name="Emulation.Controller"><value>Controller {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Puntvoorziening</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Vluchtsimulatie</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Racing simulatie</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Danssimulatie</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Zingende simulatie</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Andere simulatierandapparatuur</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>Sterke trillingen</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>Zwakke trillingen</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>Herladen</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Kleur van het dradenkruis</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Dansmat</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Het toetsenbord instellen in het tabblad Toetsenbord.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>De muis instellen in het tabblad Muis.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Apparaattype</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>Controller gebruikt voor trillingen</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>Toewijzingen van de stick en as</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>Stick {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>Toetsenbord of aangepaste opdrachten</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>Linker stick</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>Rechter stick</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>As {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>Bijlen {0} ' {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>Opgeslagen opdracht</value></data>
 </root>

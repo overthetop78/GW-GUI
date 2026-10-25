@@ -1,3 +1,5 @@
+using CommonStorageConstants = GWGUI.Emulation.Amstrad.Common.Machines.Common.Constants.StorageSettingsFunctionsConstants;
+using GWGUI.Emulation.Amstrad.Common.Machines.Gx4000.Constants;
 using ModelConstants = GWGUI.Emulation.Amstrad.Common.Machines.Gx4000.Constants.ModelConstants;
 using CommonModelConstants = GWGUI.Emulation.Amstrad.Common.Machines.Common.Constants.ModelConstants;
 
@@ -9,6 +11,6 @@ internal static class ModelCatalog
     [
         new(ModelConstants.Gx4000, ModelConstants.DisplayGx4000,
             CommonModelConstants.BackendCpcPlus, CommonModelConstants.Ram64Kib,
-            false, 0, 0, false, false, true, true, MouseButtonCount: 0)
+            false, CommonStorageConstants.NoFloppyDrives, CommonStorageConstants.NoFloppyDrives, false, false, true, true, MouseButtonCount: CommonModelConstants.NoMouseButtons)
     ];
 }

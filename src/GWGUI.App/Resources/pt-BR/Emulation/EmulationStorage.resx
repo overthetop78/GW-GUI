@@ -19,7 +19,7 @@
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>Número de discos rígidos</value></data>
   <data name="Emulation.Storage.Floppy.Speed"><value>Velocidade de condução por disquete</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>Imagens de disquetes de proteção de gravação</value></data>
-  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Redireccionar as gravações do &apos;sloppy&apos;</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Redireccionar as gravações do 'sloppy'</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>Velocidade do CD</value></data>
   <data name="Emulation.Storage.HardDisk.Add"><value>Adicionar um disco rígido existente</value></data>
   <data name="Emulation.Storage.HardDisk.List"><value>Discos rígidos</value></data>
@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>Disco rígido</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>Interface</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Pré-alocar o arquivo</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Disquetes e CDs são inseridos ou substituídos na máquina em execução.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Use a área de emulação para inserir ou alterar mídia.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Remover mídia</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>A imagem de disco já existe: {0}\nDeseja substituí-la?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Os tipos, modelos e identificadores disponíveis dependem da máquina selecionada.</value></data>
@@ -75,4 +75,13 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Entrada de cartucho</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Montar os quatro primeiros discos em DF0–DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Disco {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Usar cartão</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>O arquivo selecionado será anexado a este dispositivo de armazenamento virtual.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Selecione um arquivo de cartão existente.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>O arquivo de cartão tem um tamanho inválido.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Escolha um formato de arquivo suportado por este dispositivo.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Ilimitado</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Esvaziar ao fechar o jogo</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Cartão de memória</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>Nome da carta</value></data>
 </root>

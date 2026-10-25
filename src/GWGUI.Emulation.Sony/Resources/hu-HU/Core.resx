@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.pcsx2.Description"><value>PlayStation 2 rendszerek emulációja.</value></data>
+  <data name="Emulation.Emulator.ppsspp.Description"><value>PlayStation Portable rendszerek emulációja.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Sony PlayStation / PS one rendszerek emulációja.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>A Sony PocketStation kézi készüléket emulálja külső BIOS és memóriakártya-lemezképek használatával.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>A PlayStation rendszereket emulálja a Beetle PSX szoftveres megjelenítőjével.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>A PlayStation rendszereket emulálja a Beetle PSX hardveres megjelenítőjével.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>A PlayStation rendszereket emulálja a PCSX-ReARMed használatával.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>A PlayStation 2 rendszereket emulálja a PCEE2 és külső BIOS használatával.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>A PlayStation 2 rendszereket emulálja a Play! és annak beépített rendszerfirmware-emulációja használatával.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>A PlayStation 3 rendszereket emulálja az RPCS3 és külső rendszerfirmware használatával.</value></data>
+</root>

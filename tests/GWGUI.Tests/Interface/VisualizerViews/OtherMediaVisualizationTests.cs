@@ -8,7 +8,7 @@ using GWGUI.App.Presenters.Visualization;
 using GWGUI.App.Rendering.Blocks;
 using GWGUI.App.Rendering.Optical;
 using GWGUI.App.Rendering.Sequential;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Images.Models.Optical;
@@ -27,9 +27,7 @@ public sealed class OtherMediaVisualizationTests
     public void AmstradCartridgeUsesItsThirtyTwoDeclaredBanksAsCartridgeBlocks()
     {
         const int bankSize = 16 * 1024;
-        var ranges = Enumerable.Range(0, 32)
-            .Select(bank => ((long)bank * bankSize, (long)bankSize))
-            .ToArray();
+        var ranges = Enumerable.Range(0, 32).Select(bank => ((long)bank * bankSize, (long)bankSize)).ToArray();
         var metadata = new Dictionary<string, string>(StringComparer.Ordinal)
         {
             ["mediaRole"] = "cartridge",
@@ -56,11 +54,9 @@ public sealed class OtherMediaVisualizationTests
         Assert.Equal("cb31", model.Ranges[^1].Label);
         Assert.All(model.Ranges, range => Assert.Equal(bankSize, range.Length));
         Assert.Equal(32, descriptor.Elements.Count);
-        Assert.NotNull(new SkiaBlockMediaRenderer().HitTest(
-            model, 800, 600, new SKPoint(240, 170)));
+        Assert.NotNull(new SkiaBlockMediaRenderer().HitTest(model, 800, 600, new SKPoint(240, 170)));
 
-        var inspector = new BlockMediaInspectorPresenter((key, _) => key)
-            .BuildInspectorModel(model, model.Ranges[21]);
+        var inspector = new BlockMediaInspectorPresenter((key, _) => key).BuildInspectorModel(model, model.Ranges[21]);
         var entries = inspector.Sections.SelectMany(section => section.Entries).ToArray();
         Assert.Equal("cb21", inspector.SelectedElement);
         Assert.DoesNotContain(entries, entry => entry.Value == "LBA" || entry.Unit == "LBA");
@@ -77,9 +73,7 @@ public sealed class OtherMediaVisualizationTests
             new MediaSourceDescriptor("test.rom", []),
             "amstrad.rom",
             MediaKind.Cartridge,
-            new BlockMediaImageRepresentation(
-                bankSize,
-                [(0L, (long)bankSize)]),
+            new BlockMediaImageRepresentation(bankSize, [(0L, (long)bankSize)]),
             [new MediaVolumeDescriptor(0, bankSize, GWGUI.MediaEngine.Constants.MediaVolumeOrigins.DirectVolume)],
             [],
             new Dictionary<string, string>
@@ -92,8 +86,7 @@ public sealed class OtherMediaVisualizationTests
         var inspector = presenter.BuildInspectorModel(model, Assert.Single(model.Ranges));
 
         Assert.Equal("bank00", inspector.SelectedElement);
-        Assert.DoesNotContain(inspector.Sections.SelectMany(section => section.Entries),
-            entry => entry.Value == "LBA" || entry.Unit == "LBA");
+        Assert.DoesNotContain(inspector.Sections.SelectMany(section => section.Entries), entry => entry.Value == "LBA" || entry.Unit == "LBA");
     }
 
     [Fact]
@@ -108,8 +101,7 @@ public sealed class OtherMediaVisualizationTests
 
         Assert.Same(range, selected);
         Assert.Equal(length, selected!.Length);
-        Assert.Contains(inspector.Sections.SelectMany(section => section.Entries),
-            entry => entry.Label == "Visual.LengthLabel" && entry.Value == length.ToString("N0"));
+        Assert.Contains(inspector.Sections.SelectMany(section => section.Entries), entry => entry.Label == "Visual.LengthLabel" && entry.Value == length.ToString("N0"));
     }
 
     [Fact]
@@ -117,14 +109,10 @@ public sealed class OtherMediaVisualizationTests
     {
         var track = new OpticalMediaTrack(1, 1, 0, 10_000, OpticalTrackKind.Data);
         var model = new OpticalMediaRenderModel(10_000, null, null, [track], []);
-        var selected = new SkiaOpticalMediaRenderer().HitTest(
-            model, null, null, null, 800, 800, new SKPoint(700, 400));
+        var selected = new SkiaOpticalMediaRenderer().HitTest(model, null, null, null, 800, 800, new SKPoint(700, 400));
         var representation = new OpticalMediaImageRepresentation(10_000, [(1, 1, 0L, 10_000L)]);
-        var document = new MediaImageDocument(
-            new MediaSourceDescriptor("memory.iso", []), "test.optical", MediaKind.Optical,
-            representation, [], [], new Dictionary<string, string>());
-        var inspector = new OpticalMediaInspectorPresenter((key, _) => key)
-            .BuildInspectorModel(document, model, selected);
+        var document = new MediaImageDocument(new MediaSourceDescriptor("memory.iso", []), "test.optical", MediaKind.Optical, representation, [], [], new Dictionary<string, string>());
+        var inspector = new OpticalMediaInspectorPresenter((key, _) => key).BuildInspectorModel(document, model, selected);
         var entries = inspector.Sections.SelectMany(section => section.Entries).ToArray();
 
         Assert.Same(track, selected);
@@ -137,34 +125,22 @@ public sealed class OtherMediaVisualizationTests
     [Fact]
     public void SequentialSelectionUsesLaneAndTime()
     {
-        var segment = new RenderSequentialMediaSegment(
-            0, 2, TimeSpan.Zero, TimeSpan.FromSeconds(10), GWGUI.App.Enums.Rendering.Sequential.SequentialSegmentKind.Signal,
-            ChannelNumber: 2);
+        var segment = new RenderSequentialMediaSegment(0, 2, TimeSpan.Zero, TimeSpan.FromSeconds(10), GWGUI.App.Enums.Rendering.Sequential.SequentialSegmentKind.Signal, ChannelNumber: 2);
         var model = new SequentialMediaRenderModel(null, TimeSpan.FromSeconds(10), [segment]);
 
-        var selected = new SkiaSequentialMediaRenderer().HitTest(
-            model, 1, 1_000, 200, new SKPoint(500, 100));
-        var inspector = new SequentialMediaInspectorPresenter((key, _) => key)
-            .BuildInspectorModel(model, selected);
+        var selected = new SkiaSequentialMediaRenderer().HitTest(model, 1, 1_000, 200, new SKPoint(500, 100));
+        var inspector = new SequentialMediaInspectorPresenter((key, _) => key).BuildInspectorModel(model, selected);
 
         Assert.Same(segment, selected);
-        Assert.Contains(inspector.Sections.SelectMany(section => section.Entries),
-            entry => entry.Label == "Visual.ChannelLabel" && entry.Value == "2");
-        Assert.DoesNotContain(inspector.Sections.SelectMany(section => section.Entries),
-            entry => entry.Label == "Visual.CapacityLabel");
+        Assert.Contains(inspector.Sections.SelectMany(section => section.Entries), entry => entry.Label == "Visual.ChannelLabel" && entry.Value == "2");
+        Assert.DoesNotContain(inspector.Sections.SelectMany(section => section.Entries), entry => entry.Label == "Visual.CapacityLabel");
     }
 
     [Fact]
     public void UntimedSequentialBlocksUseTheirStoredLengthsForTheTapeLayout()
     {
-        var first = new RenderSequentialMediaSegment(
-            0, 0, TimeSpan.Zero, TimeSpan.Zero,
-            GWGUI.App.Enums.Rendering.Sequential.SequentialSegmentKind.Signal,
-            StoredLength: 25);
-        var second = new RenderSequentialMediaSegment(
-            1, 0, TimeSpan.Zero, TimeSpan.Zero,
-            GWGUI.App.Enums.Rendering.Sequential.SequentialSegmentKind.DecodedBlock,
-            StoredLength: 75);
+        var first = new RenderSequentialMediaSegment(0, 0, TimeSpan.Zero, TimeSpan.Zero, GWGUI.App.Enums.Rendering.Sequential.SequentialSegmentKind.Signal, StoredLength: 25);
+        var second = new RenderSequentialMediaSegment(1, 0, TimeSpan.Zero, TimeSpan.Zero, GWGUI.App.Enums.Rendering.Sequential.SequentialSegmentKind.DecodedBlock, StoredLength: 75);
         var model = new SequentialMediaRenderModel(100, null, [first, second]);
         using var bitmap = new SKBitmap(1_000, 200);
         using var canvas = new SKCanvas(bitmap);

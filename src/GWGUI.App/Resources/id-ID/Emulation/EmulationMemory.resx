@@ -7,8 +7,8 @@
   <data name="Emulation.Memory.Main"><value>Memori utama</value></data>
   <data name="Emulation.Memory.Extensions"><value>Ekstensi memori</value></data>
   <data name="Emulation.Memory.None"><value>Tidak ada</value></data>
-  <data name="Emulation.Memory.CompatibleWithModel"><value>Konfigurasi memori kompatibel dengan {0}.</value></data>
-  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Ekstensi memori kompatibel dengan {0}.</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>Konfigurasi yang kompatibel: {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Ekstensi memori yang kompatibel: {0}.</value></data>
   <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM tidak tersedia di {0}.</value></data>
   <data name="Emulation.Memory.TotalConfigured"><value>Total memori yang dikonfigurasi: {0} {1}</value></data>
 </root>

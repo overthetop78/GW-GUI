@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Firmware.Integrated"><value>Systém ROM</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (Japonsko)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (Severní Amerika)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (Evropa)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>Volitelná ROM přehrávače DVD konzole PS2.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>Vyberte obraz ROM1 odpovídající zvolenému BIOSu, obvykle soubor .rom1 nebo rom1.bin. Obsahuje moduly přehrávače DVD a identifikační údaje. Pokud konzole nemá obraz ROM1, ponechte pole prázdné. Hlavní BIOS patří do pole BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>Volitelná ROM konzole PS2 s čínskými písmy.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>Vyberte obraz ROM2 z čínské konzole SCPH-50009 odpovídající zvolenému BIOSu, obvykle soubor .rom2 nebo rom2.bin. U konzolí bez ROM2 ponechte pole prázdné. Tento soubor nenahrazuje hlavní BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>Uložená nastavení konzole.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>Vyberte soubor .nvm o velikosti 1024 bajtů odpovídající zvolenému BIOSu. Obsahuje nastavení konzole. Soubor je volitelný: ponechte pole prázdné pro použití uložených nastavení nebo vytvoření výchozích hodnot emulátorem.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>Verze mechanického řadiče.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>Vyberte soubor .mec o velikosti 4 bajty odpovídající zvolenému BIOSu. Obsahuje číslo verze mechanického řadiče, nikoli jeho úplný firmware. Soubor je volitelný: ponechte pole prázdné pro použití uložených dat nebo vytvoření výchozího souboru emulátorem.</value></data>
+</root>

@@ -18,9 +18,7 @@ public sealed partial class SkiaScpRenderer
         foreach (var revolution in track.Revolutions)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var decodedRevolution = decoderId is null
-                ? null
-                : _decoders.Decode(decoderId, revolution.Flux);
+            var decodedRevolution = decoderId is null ? null : _decoders.Decode(decoderId, revolution.Flux);
             var prepared = PrepareRevolution(revolution, decodedRevolution, cancellationToken);
             preparedRevolutions.Add(prepared.Revolution);
             shortTransitionCount += prepared.ShortTransitions;
@@ -31,9 +29,7 @@ public sealed partial class SkiaScpRenderer
         preparedRevolutions = ApplyFluxAgreementQuality(track.Revolutions, preparedRevolutions);
 
         var structureArcs = new List<PreparedScpArc>();
-        var best = decoderId is null
-            ? null
-            : _decoders.DecodeBest(track.Revolutions.Select(item => item.Flux).ToArray(), decoderId);
+        var best = decoderId is null ? null : _decoders.DecodeBest(track.Revolutions.Select(item => item.Flux).ToArray(), decoderId);
         FluxDecodeResult? decodedResult = null;
         if (best is not null)
         {
@@ -43,10 +39,7 @@ public sealed partial class SkiaScpRenderer
             if (decoded.EstimatedBitCellTicks > 0)
             {
                 var totalBits = Math.Max(1d, decodedRevolution.FluxIntervals.Sum(interval => (double)interval) / decoded.EstimatedBitCellTicks);
-                structureArcs.AddRange(decoded.Structures.Select(structure => new PreparedScpArc(
-                    (float)(structure.BitOffset / totalBits * 360 - 90),
-                    Math.Max(.18f, (float)(structure.BitLength / totalBits * 360)),
-                    StructureColor(structure.Kind))));
+                structureArcs.AddRange(decoded.Structures.Select(structure => new PreparedScpArc( (float)(structure.BitOffset / totalBits * 360 - 90), Math.Max(.18f, (float)(structure.BitLength / totalBits * 360)), StructureColor(structure.Kind))));
             }
         }
         var sectors = decodedResult?.Sectors ?? [];
@@ -61,10 +54,7 @@ public sealed partial class SkiaScpRenderer
             preparedRevolutions.Any(item => item.FluxArcs.Count > 0));
     }
 
-    private static (PreparedScpRevolution Revolution, int ShortTransitions, int LongTransitions, int NormalTransitions) PrepareRevolution(
-        ScpRevolution revolution,
-        FluxDecodeResult? decoded,
-        CancellationToken cancellationToken)
+    private static (PreparedScpRevolution Revolution, int ShortTransitions, int LongTransitions, int NormalTransitions) PrepareRevolution(ScpRevolution revolution, FluxDecodeResult? decoded, CancellationToken cancellationToken)
     {
         var intervals = revolution.FluxIntervals;
         if (intervals.Count == 0) return (new PreparedScpRevolution([], 0), 0, 0, 0);
@@ -105,10 +95,7 @@ public sealed partial class SkiaScpRenderer
         var arcs = new PreparedScpArc[sampleCount];
         for (var index = 0; index < sampleCount; index++)
         {
-            var colors = revolutions
-                .Where(item => item.FluxArcs.Count > 0)
-                .Select(item => item.FluxArcs[Math.Min(item.FluxArcs.Count - 1, index * item.FluxArcs.Count / sampleCount)].Color)
-                .ToArray();
+            var colors = revolutions.Where(item => item.FluxArcs.Count > 0).Select(item => item.FluxArcs[Math.Min(item.FluxArcs.Count - 1, index * item.FluxArcs.Count / sampleCount)].Color).ToArray();
             var color = colors.GroupBy(item => item).OrderByDescending(group => group.Count()).First().Key;
             arcs[index] = new PreparedScpArc(-90f + index * 360f / sampleCount, 360f / sampleCount, color);
         }
@@ -129,9 +116,7 @@ public sealed partial class SkiaScpRenderer
         return intervals.Count == 0 || median == 0 ? 0 : 1;
     }
 
-    private static List<PreparedScpRevolution> ApplyFluxAgreementQuality(
-        IReadOnlyList<ScpRevolution> source,
-        IReadOnlyList<PreparedScpRevolution> prepared)
+    private static List<PreparedScpRevolution> ApplyFluxAgreementQuality(IReadOnlyList<ScpRevolution> source, IReadOnlyList<PreparedScpRevolution> prepared)
     {
         if (source.Count != prepared.Count || source.Count == 0) return prepared.ToList();
         if (source.Count == 1)

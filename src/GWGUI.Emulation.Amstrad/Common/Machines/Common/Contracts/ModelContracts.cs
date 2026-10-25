@@ -12,5 +12,5 @@ public sealed record Model(
     bool SupportsCassetteDrive,
     bool HasBuiltInCartridgeSlot,
     bool SupportsCartridgeSlot,
-    int ControllerPortCount = 2,
-    int MouseButtonCount = 2);
+    int ControllerPortCount = ModelConstants.DefaultControllerPortCount,
+    int MouseButtonCount = ModelConstants.DefaultMouseButtonCount);

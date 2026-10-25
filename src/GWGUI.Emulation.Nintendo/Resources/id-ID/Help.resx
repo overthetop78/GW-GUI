@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Short"><value>Jumlah RAM yang tersedia untuk mesin yang diemulasi.</value></data>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Detailed"><value>Tampilkan RAM yang disediakan oleh mesin Nintendo terpilih.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Short"><value>Sistem ROM.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Detailed"><value>Tampilkan status ROM sistem bagi mesin dan emulator terpilih.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Short"><value>Model mesin Nintendo sedang dikonfigurasi.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Short"><value>Emulator dipilih untuk mesin ini.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Detailed"><value>Identifikasi implementasi emulator yang dipakai untuk menjalankan konfigurasi mesin ini.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Short"><value>Prosesor meniru mesin ini.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Detailed"><value>Menampilkan model prosesor yang disediakan oleh mesin Nintendo terpilih.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Short"><value>Frekuensi jam prosesor asli.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Detailed"><value>Menampilkan frekuensi jam nominal dari prosesor dalam mesin Nintendo terpilih.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Short"><value>Aktifkan atau matikan suara yang tertimulasi.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Detailed"><value>Mengendalikan apakah GW GUI memainkan sampel audio yang dihasilkan oleh emulator.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Short"><value>Keluaran audio yang digunakan oleh GW GUI.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Detailed"><value>Memilih keluaran audio Windows yang digunakan untuk memutar suara dari mesin terukur ini.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Detailed"><value>Mengidentifikasi model Nintendo yang konfigurasi perangkat keras sedang diedit.</value></data>
+</root>

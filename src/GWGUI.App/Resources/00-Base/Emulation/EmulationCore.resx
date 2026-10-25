@@ -15,6 +15,7 @@
   <data name="Emulation.Core.NameDownload"><value>Download and replace</value></data>
   <data name="Emulation.Core.NameSearching"><value>Searching available versions…</value></data>
   <data name="Emulation.Core.NameNoneFound"><value>No official version found.</value></data>
+  <data name="Emulation.Core.NameNoEmulatorAvailable"><value>Select an emulator before creating this machine.</value></data>
   <data name="Emulation.Core.NameVersionsFound"><value>{0} version(s) available.</value></data>
   <data name="Emulation.Core.NameDownloading"><value>Downloading {0}…</value></data>
   <data name="Emulation.Core.NameInstalledPath"><value>Installed version: {0}</value></data>

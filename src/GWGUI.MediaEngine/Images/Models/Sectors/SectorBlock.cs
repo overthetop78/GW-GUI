@@ -1,4 +1,4 @@
-using IMediaSectorBlock = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorBlock;
+using IMediaSectorBlock = GWGUI.MediaFileSystems.Interfaces.IMediaSectorBlock;
 
 namespace GWGUI.MediaEngine.Images.Models.Sectors;
 

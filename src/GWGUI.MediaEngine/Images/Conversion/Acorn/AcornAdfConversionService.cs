@@ -15,7 +15,7 @@ public sealed class AcornAdfConversionService(IsoScpSectorImageReader scpReader,
     /// <summary>Reconstruit ou relit la source puis écrit l'ADF Acorn.</summary>
     public async Task ConvertAsync(string sourcePath, string outputPath, string formatId, CancellationToken cancellationToken = default)
     {
-        var image = Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) ? await scpReader.ReadAsync(sourcePath, formatId, cancellationToken).ConfigureAwait(false) : await reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
+        var image = await MediaConversionService.ReadSectorSourceAsync(sourcePath, () => scpReader.ReadAsync(sourcePath, formatId, cancellationToken), () => reader.ReadAsync(sourcePath, cancellationToken)).ConfigureAwait(false);
         await writer.WriteAsync(image, outputPath, cancellationToken).ConfigureAwait(false);
     }
 

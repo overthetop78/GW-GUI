@@ -62,8 +62,7 @@ internal sealed partial class UpdateOptionsController : IDisposable
         _moduleDirectoryService = moduleDirectoryService ?? new ModuleDirectoryService();
         _packagePreparation = packagePreparation ?? new UpdatePackagePreparationService();
         _pendingInstallations = pendingInstallations ?? new PendingModuleInstallationStore();
-        _moduleInstallation = moduleInstallation ?? new ModuleInstallationService(
-            packagePreparation: _packagePreparation, isPending: _pendingInstallations.Contains);
+        _moduleInstallation = moduleInstallation ?? new ModuleInstallationService(packagePreparation: _packagePreparation, isPending: _pendingInstallations.Contains);
         _localize = localize;
         _reportError = reportError;
         _section.Results.ItemsSource = ApplicationResults;
@@ -102,19 +101,12 @@ internal sealed partial class UpdateOptionsController : IDisposable
     {
         var items = new List<UpdateNavigationItem>
         {
-            new(UpdateOptionsConstants.ApplicationNavigationId, UpdateNavigationPage.Application,
-                _localize("Updates.Application", []),
-                _localize("Updates.NavigationApplicationSubtitle", []), IconGlyphs.Information, _applicationState),
-            new(UpdateOptionsConstants.DirectoryNavigationId, UpdateNavigationPage.Directory,
-                _localize("Updates.ModuleDirectoryTitle", []),
-                _localize("Updates.NavigationDirectorySubtitle", []), IconGlyphs.Directory, _directoryState)
+            new(UpdateOptionsConstants.ApplicationNavigationId, UpdateNavigationPage.Application, _localize("Updates.Application", []), _localize("Updates.NavigationApplicationSubtitle", []), IconGlyphs.Information, _applicationState),
+            new(UpdateOptionsConstants.DirectoryNavigationId, UpdateNavigationPage.Directory, _localize("Updates.ModuleDirectoryTitle", []), _localize("Updates.NavigationDirectorySubtitle", []), IconGlyphs.Directory, _directoryState)
         };
-        foreach (var package in EmulationModuleRegistry.Packages
-                     .OrderBy(package => LocExtension.GetForModule(package.Module,
-                         package.Module.DisplayResourceKey), StringComparer.CurrentCultureIgnoreCase))
+        foreach (var package in EmulationModuleRegistry.Packages.OrderBy(package => LocExtension.GetForModule(package.Module, package.Module.DisplayResourceKey), StringComparer.CurrentCultureIgnoreCase))
         {
-            var component = _moduleResult?.Components.FirstOrDefault(value =>
-                string.Equals(value.ComponentId, package.Module.Id, StringComparison.OrdinalIgnoreCase));
+            var component = _moduleResult?.Components.FirstOrDefault(value => string.Equals(value.ComponentId, package.Module.Id, StringComparison.OrdinalIgnoreCase));
             var state = component?.Availability switch
             {
                 UpdateAvailability.Available => UpdateVisualState.Available,
@@ -128,9 +120,7 @@ internal sealed partial class UpdateOptionsController : IDisposable
                 _localize("Updates.InstalledVersion", [package.Manifest.ModuleVersion]),
                 IconGlyphs.Controller, state, package.Module.Id));
         }
-        items.Add(new(UpdateOptionsConstants.AdvancedNavigationId, UpdateNavigationPage.Advanced,
-            _localize("Updates.ModuleAdvancedInstallationTitle", []),
-            _localize("Updates.NavigationAdvancedSubtitle", []), IconGlyphs.Settings, _advancedState));
+        items.Add(new(UpdateOptionsConstants.AdvancedNavigationId, UpdateNavigationPage.Advanced, _localize("Updates.ModuleAdvancedInstallationTitle", []), _localize("Updates.NavigationAdvancedSubtitle", []), IconGlyphs.Settings, _advancedState));
         _section.SetNavigationItems(items);
     }
 

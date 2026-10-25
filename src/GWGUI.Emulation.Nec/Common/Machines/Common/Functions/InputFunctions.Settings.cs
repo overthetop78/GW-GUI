@@ -1,0 +1,117 @@
+using CommonControllerFunctions = GWGUI.Emulation.Nec.Common.Functions.ControllerFunctions;
+using GWGUI.Emulation;
+using GWGUI.Emulation.Nec.Common.Machines.PcFx.Constants;
+
+namespace GWGUI.Emulation.Nec.Common.Machines.Common.Functions;
+
+internal static partial class InputSettingsFunctions
+{
+    internal static EmulationInputSettings Describe(MachineConfiguration configuration)
+    {
+        var model = ModelCatalog.Get(configuration.Model);
+        var input = configuration.Input ?? new InputConfiguration();
+        var mouseType = model.Id == PcFxMachineConstants.Id ? PeripheralCategory.PcFxMouse : PeripheralCategory.PcEngineMouse;
+        var keyboard = model.HasKeyboard ? new EmulationInputBindingSet((new Engine().SelectedAdapter(configuration)?.GetKeyboardDefinitions(configuration) ?? KeyboardDefinitions(model)), input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
+        var mouse = model.MouseButtonCount > InputSettingsFunctionsConstants.FirstPortIndex
+            ? new EmulationInputBindingSet(
+            MouseDefinitions(), EmulationSdk.InputProcessing.MouseBindings(input.MouseButtonMappings, MouseAction.None), EmulationInputSource.Mouse
+                | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true,
+            CompatibleVisualIds(mouseType), DefaultVisualId(mouseType),
+            VisualCommandIds(mouseType)) : null;
+        var configured = input.Controllers ?? [];
+        var ports = Enumerable.Range(InputSettingsFunctionsConstants.FirstPortIndex, CommonControllerFunctions.PortCount(configuration)).Select(index =>
+        {
+            var current = configured.FirstOrDefault(item => item.Port == index);
+            var type = ControllerCatalog.Normalize(model, current?.Peripheral ?? (index == InputSettingsFunctionsConstants.FirstPortIndex ? ControllerCatalog.Default(model) : PeripheralCategory.None));
+            return new EmulationControllerPort(index
+                    + InputSettingsFunctionsConstants.FirstPortNumber,
+                ControllerCatalog.Types(model).Select(Choice).ToArray(), type.ToString(),
+                current?.DeviceId,
+                new EmulationInputBindingSet(ControllerDefinitions(type), current?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
+                DeadZonePercent: current?.DeadZonePercent ?? 0, VisualId: current?.VisualId) { OutputBindings = current?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
+        }).ToArray();
+        return new EmulationInputSettings(keyboard, mouse, ports);
+    }
+
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
+    {
+        if (settings.ControllerPorts.Any(port => port.DeadZonePercent is < 0 or > 100)) throw new ArgumentOutOfRangeException(nameof(settings), nameof(EmulationControllerPort.DeadZonePercent));
+        var current = configuration.Input ?? new InputConfiguration();
+        var keyboard = settings.Keyboard?.Values ?? new Dictionary<string, string>();
+        var mouse = EmulationSdk.InputProcessing.CreateMouseMappings(settings.Mouse, MouseAction.None) ?? new Dictionary<string, MouseAction>();
+        var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(
+            port.Number - InputSettingsFunctionsConstants.FirstPortNumber,
+            Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var type)
+                ? ControllerCatalog.Normalize(ModelCatalog.Get(configuration.Model), type)
+                : port.Number == InputSettingsFunctionsConstants.FirstPortNumber ? ControllerCatalog.Default(ModelCatalog.Get(configuration.Model)) : PeripheralCategory.None,
+            port.PhysicalDeviceId,
+            EmulationSdk.InputProcessing.CopyNonEmptyBindings(port.Bindings.Values),
+            port.VisualId, OutputBindings: port.OutputBindings, DeadZonePercent: port.DeadZonePercent)).ToArray();
+        var adjustedConfiguration = configuration with
+        {
+            Input = current with
+            {
+                KeyboardBindings = keyboard,
+                KeyboardMappings = EmulationSdk.InputProcessing.ToKeys(keyboard),
+                MouseButtonMappings = mouse,
+                Controllers = controllers
+            }
+        };
+        return new Engine().SelectedAdapter(adjustedConfiguration)?.ApplyInputConfiguration(adjustedConfiguration) ?? adjustedConfiguration;
+    }
+
+    private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(Model model) => [];
+
+    private static IReadOnlyList<InputBindingDefinition> MouseDefinitions() =>
+    [
+        Definition(nameof(MouseAction.LeftButton), InputSettingsFunctionsConstants.ResourceMouseButtonLeft, InputSettingsFunctionsConstants.MouseLeft),
+        Definition(nameof(MouseAction.RightButton), InputSettingsFunctionsConstants.ResourceMouseButtonRight, InputSettingsFunctionsConstants.MouseRight)
+    ];
+
+    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(PeripheralCategory type)
+    {
+        if (type == PeripheralCategory.None || ControllerCatalog.IsMouse(type)) return [];
+        var definitions = new List<InputBindingDefinition>
+        {
+            Definition(InputSettingsFunctionsConstants.Up, InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
+            Definition(InputSettingsFunctionsConstants.Down, InputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
+            Definition(InputSettingsFunctionsConstants.Left, InputSettingsFunctionsConstants.ResourceControllerActionLeft, string.Empty),
+            Definition(InputSettingsFunctionsConstants.Right, InputSettingsFunctionsConstants.ResourceControllerActionRight, string.Empty),
+            Definition(InputSettingsFunctionsConstants.B, InputSettingsFunctionsConstants.ResourceActionII, string.Empty),
+            Definition(InputSettingsFunctionsConstants.A, InputSettingsFunctionsConstants.ResourceActionI, string.Empty),
+            Definition(EmulationControllerCommandIds.Option, InputSettingsFunctionsConstants.ResourceActionSelect, string.Empty),
+            Definition(EmulationControllerCommandIds.Start, InputSettingsFunctionsConstants.ResourceActionRun, string.Empty)
+        };
+        if (ControllerCatalog.HasSixButtons(type))
+        {
+            definitions.Add(Definition(EmulationControllerCommandIds.Y, InputSettingsFunctionsConstants.ResourceActionIII, string.Empty));
+            definitions.Add(Definition(EmulationControllerCommandIds.X, InputSettingsFunctionsConstants.ResourceActionIV, string.Empty));
+            definitions.Add(Definition(EmulationControllerCommandIds.L, InputSettingsFunctionsConstants.ResourceActionV, string.Empty));
+            definitions.Add(Definition(EmulationControllerCommandIds.R, InputSettingsFunctionsConstants.ResourceActionVI, string.Empty));
+            definitions.Add(Definition(EmulationControllerCommandIds.L2, InputSettingsFunctionsConstants.ResourceActionMode, string.Empty));
+        }
+        return definitions;
+    }
+
+    private static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding, string? invariant = null) => new(id, resourceKey, defaultBinding, EmulationSdk.InputProcessing.BindingDisplayValue(resourceKey, invariant));
+
+    private static EmulationControllerChoice Choice(PeripheralCategory type) => new(
+        type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type),
+        CompatibleVisualIds: CompatibleVisualIds(type), DefaultVisualId: DefaultVisualId(type),
+        VisualCommandIds: VisualCommandIds(type))
+    {
+        Category = type switch
+        {
+            PeripheralCategory.None => EmulationControllerCategory.None,
+            PeripheralCategory.Automatic => EmulationControllerCategory.Unspecified,
+            PeripheralCategory.Mouse or PeripheralCategory.PcEngineMouse or PeripheralCategory.PcFxMouse => EmulationControllerCategory.PointingDevice,
+            PeripheralCategory.Joystick or PeripheralCategory.PcEngineTurboStick or PeripheralCategory.TurboGrafxTurboStick => EmulationControllerCategory.Joystick,
+            _ => EmulationControllerCategory.Gamepad
+        }
+    };
+
+    /// <summary>Décrit les touches du clavier principal selon les règles matérielles déjà utilisées.</summary>
+    /// <param name="configuration">Profil et associations empruntés à consulter.</param>
+    /// <returns>Définitions de clavier du profil ; liste vide sans clavier pris en charge.</returns>
+    internal static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration) { var model = ModelCatalog.Get(configuration.Model); return model.HasKeyboard ? KeyboardDefinitions(model) : []; }
+}

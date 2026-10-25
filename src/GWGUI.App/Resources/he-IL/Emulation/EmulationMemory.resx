@@ -7,8 +7,8 @@
   <data name="Emulation.Memory.Main"><value>זיכרון ראשי</value></data>
   <data name="Emulation.Memory.Extensions"><value>הרחבות זיכרון</value></data>
   <data name="Emulation.Memory.None"><value>ללא</value></data>
-  <data name="Emulation.Memory.CompatibleWithModel"><value>תצורת הזיכרון תואמת ל־{0}.</value></data>
-  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>הרחבות הזיכרון תואמות ל־{0}.</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>המונחים: {0}</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>תוספות זיכרון מושלמות: {0}</value></data>
   <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM לא זמין {0}.</value></data>
   <data name="Emulation.Memory.TotalConfigured"><value>סך הזיכרון שהוגדר: {0} {1}</value></data>
 </root>

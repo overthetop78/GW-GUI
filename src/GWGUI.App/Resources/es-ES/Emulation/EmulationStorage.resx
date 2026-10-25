@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>Disco duro</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>Interfaz</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Preasignar el archivo</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Se insertan o reemplazan las Floppies y los CDs de la máquina de correr.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Utilice la vista de emulación para insertar o cambiar los medios.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Retirar medio</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>La imagen de disco ya existe: {0}\n¿Desea reemplazarla?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Los tipos, modelos e identificadores disponibles dependen de la máquina seleccionada.</value></data>
@@ -75,4 +75,13 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Ranura de cartucho</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Montar los primeros cuatro discos en DF0–DF3</value></data>
   <data name="Emulation.DiskNumber"><value>Disk {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Usar la tarjeta</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>El archivo seleccionado se adjuntará a este dispositivo de almacenamiento virtual.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Seleccione un archivo de tarjeta existente.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>El archivo de la tarjeta tiene un tamaño inválido.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Elija un formato de archivo compatible con este dispositivo.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Sin límite</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Vaciar al cerrar el juego</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Tarjeta de memoria</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>Nombre de la tarjeta</value></data>
 </root>

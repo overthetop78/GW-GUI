@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Viser processorens nominelle urfrekvens i den valgte Sony maskine.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Original processor clockfrekvens.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Viser processormodellen som leveres af den valgte Sony maskine.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>Processor emulerede til denne maskine.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>Viser systemet ROM status for den valgte maskine og emulator.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>System ROM.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Identificerer den emulator implementering, der bruges til at køre denne maskine konfiguration.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>Emulator valgt til denne maskine.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Identificerer Sony model, hvis hardware konfiguration bliver redigeret.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony maskine model bliver konfigureret.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Viser RAM som leveres af den valgte Sony maskine.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Mængde RAM til rådighed for den emulerede maskine.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Hyppighed af den emulerede CPU efter anvendelse af den valgte urprocentdel.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>Den nominelle konsolfrekvens ganges med den valgte procentdel. Dette ændrer den emulerede processor, ikke værtsprocessoren. Højere værdier kan reducere slowdowns, men kan bryde game timing. Automatisk bruger emulator standard.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Den valgte maskines oprindelige grafikhardware.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Viser den valgte maskines oprindelige grafikhardware. Emulatorens renderingsindstillinger ændrer det genererede billede. Filtrene i GW GUI anvendes bagefter.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Den valgte maskines oprindelige lydhardware.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Viser den valgte maskines oprindelige lydhardware. Indstillingerne for lydudgang og latenstid styrer afspilningen på din computer.</value></data>
+</root>

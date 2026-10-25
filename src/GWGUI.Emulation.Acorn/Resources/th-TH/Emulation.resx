@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Acorn.Option.AutoBoot" xml:space="preserve"><value>เริ่มจากแผ่นที่ใส่โดยอัตโนมัติ</value></data>
+  <data name="Emulation.Emulator.b2.Description" xml:space="preserve"><value>จําลอง BBC MICRO และ BBC MASTER คอมพิวเตอร์</value></data>
+  <data name="Emulation.Acorn.Storage.DiscController"><value>ตัวควบคุมดิสก์</value></data>
+  <data name="Emulation.Acorn.Video.Controller"><value>ตัวควบคุมจับเวลาวิดีโอ</value></data>
+  <data name="Emulation.Acorn.Video.Pixels"><value>เครื่องมือสร้างพิกเซลและสี</value></data>
+  <data name="Emulation.Acorn.Video.Teletext"><value>ตัวสร้างอักขระแบบข้อความ</value></data>
+</root>

@@ -60,6 +60,6 @@
   <data name="Options.Engines.StrictChoice" xml:space="preserve"><value>Le moteur sélectionné est utilisé strictement. S’il ne peut pas réaliser l’opération, GW GUI le signale sans utiliser silencieusement l’autre moteur.</value></data>
   <data name="Options.EmulationMachineTitle" xml:space="preserve"><value>{0} — {1} - Oui. {2}</value></data>
   <data name="Options.PreferencesTitle"><value>Préférences</value></data>
-  <data name="Options.EmulationTitle"><value>Préférences en matière d&apos;émulation</value></data>
-  <data name="Options.EmulationModuleTitle"><value>Paramètres d&apos;émulation {0}</value></data>
+  <data name="Options.EmulationTitle"><value>Préférences en matière d'émulation</value></data>
+  <data name="Options.EmulationModuleTitle"><value>Paramètres d'émulation {0}</value></data>
 </root>

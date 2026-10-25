@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Error.CoreNotFound"><value>Ο απαιτούμενος πυρήνας Atari δεν βρέθηκε.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected"><value>Δεν ήταν δυνατή η φόρτωση του επιλεγμένου πυρήνα Atari.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing"><value>Ένα απαιτούμενο Atari firmware λείπει.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid"><value>Ένα firmware Atari είναι άκυρο ή ασυμβίβαστο.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound"><value>Το ρυθμισμένο μέσο Atari δε βρέθηκε.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported"><value>Τα ρυθμισμένα μέσα δεν υποστηρίζονται από αυτή τη μηχανή Atari.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid"><value>Μια επιλογή Atari έχει μη έγκυρη τιμή.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure"><value>Η επικοινωνία με τον ξενιστή Atari απέτυχε.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid"><value>Το Atari σωζόμενο κράτος είναι άκυρο.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible"><value>Το Atari σωζόμενο κράτος είναι ασυμβίβαστο με την τρέχουσα μηχανή.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected"><value>Συνέβη ένα απροσδόκητο σφάλμα εξομοίωσης Atari.</value></data>
+  <data name="Emulation.Atari.Error.Details"><value>Λεπτομέρειες: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration"><value>Η ενεργή διαμόρφωση Atari δεν μπορεί να τροποποιηθεί ή να διαγραφεί.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>Το απαιτούμενο λογισμικό firmware Atari δεν έχει ρυθμιστεί. Firmware: {0}. Μηχανή: {1}</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing"><value>Το ρυθμισμένο αρχείο firmware Atari δε βρέθηκε. Firmware: {0}. Αρχείο: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing"><value>Δε βρέθηκε ρυθμισμένο μέσο Atari: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing"><value>Η εκτελέσιμη διαδρομή του ξενιστή Atari δεν είναι διαθέσιμη.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled"><value>Ο πυρήνας εξομοίωσης Atari δεν είναι εγκατεστημένος. Πυρήνας: {0}</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Ο επιλεγμένος εξομοιωτής Atari δεν χρησιμοποιεί τον κοινόχρηστο ελεγκτή φυσιγγίων.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Το επιλεγμένο μηχάνημα Atari απαιτεί μέσα φυσιγγίων.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Η επέκταση του φυσιγγίου δεν υποστηρίζεται από τον επιλεγμένο εξομοιωτή Atari.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Το φυσίγγιο Atari δεν μπορεί να ανοιχτεί για ανάγνωση.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Ο εξομοιωτής Atari απέρριψε το φυσίγγιο αντικατάστασης.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Ο εξομοιωτής Atari απέρριψε τόσο την αντικατάσταση όσο και το προηγούμενο φυσίγγιο.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Αυτός ο εξομοιωτής Atari δεν μπορεί να παραμείνει ενεργοποιημένος χωρίς φυσίγγιο.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Ο επιλεγμένος εξομοιωτής Atari δεν εκθέτει την επιλογή της περιοχής του φυσιγγίου.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Αυτός ο εξομοιωτής Atari δεν μπορεί να χρησιμοποιήσει τη λειτουργία χρονισμού φυσιγγίου με το όνομα SECAM.</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel"><value>Η τιμή αυτή καθορίζεται από το επιλεγμένο μοντέλο.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>Δεν είναι διαθέσιμο συμβατό FPU για αυτό το μοντέλο.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory"><value>Δεν υπάρχει εναλλακτική μνήμη για αυτό το μοντέλο.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware"><value>Αυτό το μοντέλο δεν έχει διαμορφώσιμο firmware.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard"><value>Αυτό το μοντέλο δεν έχει πληκτρολόγιο.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse"><value>Αυτό το μοντέλο δεν έχει ποντίκι.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage"><value>Αυτό το μοντέλο δεν έχει μέσα αποθήκευσης.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Για να χρησιμοποιήσετε συμπαγή μέσα δίσκου, επιλέξτε αυτό το μοντέλο: Jaguar CD.</value></data>
+</root>

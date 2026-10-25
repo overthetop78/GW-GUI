@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>请求的位置对于此文件系统对象无效 。</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>分配节点操作失败 。</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>分配节点位图索引块 {0}/ 数据{1} 无法读取 。</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>驱动器头不位于请求的气瓶上( 以{0})读取前调整驱动.</value></data>
 </root>

@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>والموقف المطلوب غير صحيح لهذا الغرض من نظام الملفات.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>فشلت عملية تحديد المخصصات.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>كتلة الرقم القياسي للعضلات {0}/{1} لا يمكن قراءته</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>رأس القرص ليس في الاسطوانة المطلوبة{0}اعيدي ترتيب القرص قبل القراءة</value></data>
 </root>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Firmware.Integrated"><value>系統ROM</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS(日本)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS(北美)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS(歐洲)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>PS2 DVD 播放器的選用 ROM。</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>請選擇與所選 BIOS 配套的 ROM1 傾印檔案，通常是 .rom1 檔案或 rom1.bin。其中包含 DVD 播放器模組與識別資訊。如果沒有該主機的 ROM1 傾印檔案，請留空。主要 BIOS 應在 BIOS 欄位中選擇。</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>包含中文字型的選用 PS2 ROM。</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>請選擇中國版 SCPH-50009 主機中與所選 BIOS 配套的 ROM2 傾印檔案，通常是 .rom2 檔案或 rom2.bin。沒有 ROM2 的主機請留空。此檔案不能取代主要 BIOS。</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>已儲存的主機設定。</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>請選擇與所選 BIOS 配套的 1024 位元組 .nvm 檔案。其中包含主機設定。此檔案為選用：留空可使用已儲存的設定，或讓模擬器建立預設設定。</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>機械控制器版本。</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>請選擇與所選 BIOS 配套的 4 位元組 .mec 檔案。其中僅包含機械控制器的版本號，並非完整韌體。此檔案為選用：留空可使用已儲存的資料，或讓模擬器建立預設檔案。</value></data>
+</root>

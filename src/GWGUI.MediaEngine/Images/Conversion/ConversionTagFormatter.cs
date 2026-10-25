@@ -16,10 +16,7 @@ public static class ConversionTagFormatter
         var separator = legacyTag.IndexOf('-');
         var family = separator < 0 ? legacyTag : legacyTag[..separator];
         var diskFormat = separator < 0 ? format.Id.Split('.').Last().ToUpperInvariant() : legacyTag[(separator + 1)..];
-        return pattern
-            .Replace("{TAG}", legacyTag, StringComparison.OrdinalIgnoreCase)
-            .Replace("{FAMILY}", family, StringComparison.OrdinalIgnoreCase)
-            .Replace("{FORMAT}", diskFormat, StringComparison.OrdinalIgnoreCase)
+        return pattern.Replace("{TAG}", legacyTag, StringComparison.OrdinalIgnoreCase).Replace("{FAMILY}", family, StringComparison.OrdinalIgnoreCase).Replace("{FORMAT}", diskFormat, StringComparison.OrdinalIgnoreCase)
             .Replace("{EXTENSION}", extension.TrimStart('.').ToUpperInvariant(), StringComparison.OrdinalIgnoreCase)
             .Replace("{NAME}", sourceName, StringComparison.OrdinalIgnoreCase)
             .Replace("{DATE:YYYY-MM-DD}", timestamp.ToString("yyyy-MM-dd"), StringComparison.OrdinalIgnoreCase)

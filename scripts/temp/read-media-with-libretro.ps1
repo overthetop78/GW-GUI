@@ -27,49 +27,7 @@ $repositoryRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $projectPath = Join-Path $repositoryRoot 'tests\GWGUI.LocalDiskImageTests\TemporaryLibretroMediaReader\TemporaryLibretroMediaReader.csproj'
 $assemblyPath = Join-Path $repositoryRoot 'tests\GWGUI.LocalDiskImageTests\TemporaryLibretroMediaReader\bin\TemporaryLibretroMediaReader\Debug\net10.0-windows10.0.19041.0\GWGUI.TemporaryLibretroMediaReader.dll'
 
-function Invoke-DotNetProcess {
-    param([Parameter(Mandatory)][string[]]$Arguments)
-
-    $startInfo = [System.Diagnostics.ProcessStartInfo]::new()
-    $startInfo.FileName = (Get-Command dotnet -CommandType Application).Source
-    $startInfo.UseShellExecute = $false
-    $startInfo.CreateNoWindow = $true
-    $startInfo.RedirectStandardOutput = $true
-    $startInfo.RedirectStandardError = $true
-    foreach ($argument in $Arguments) {
-        [void]$startInfo.ArgumentList.Add($argument)
-    }
-
-    $process = [System.Diagnostics.Process]::new()
-    $process.StartInfo = $startInfo
-    $started = $false
-    try {
-        if (-not $process.Start()) { throw 'The dotnet process could not be started.' }
-        $started = $true
-        $standardOutput = $process.StandardOutput.ReadToEndAsync()
-        $standardError = $process.StandardError.ReadToEndAsync()
-        $process.WaitForExitAsync().GetAwaiter().GetResult()
-        [pscustomobject]@{
-            ExitCode = $process.ExitCode
-            Output = $standardOutput.GetAwaiter().GetResult()
-            Error = $standardError.GetAwaiter().GetResult()
-        }
-    }
-    finally {
-        if ($started) {
-            try {
-                if (-not $process.HasExited) {
-                    $process.Kill($true)
-                    $process.WaitForExit()
-                }
-            }
-            catch [System.InvalidOperationException] {
-                # The process exited between the check and cleanup.
-            }
-        }
-        $process.Dispose()
-    }
-}
+. (Join-Path $PSScriptRoot 'common/DotNetProcess.ps1')
 
 $build = Invoke-DotNetProcess -Arguments @(
     'build', $projectPath, '--configuration', 'Debug', '--disable-build-servers',

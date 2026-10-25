@@ -34,4 +34,41 @@ internal static class InputSnapshotFunctionsConstants
     internal const string Controller = "Controller:";
     internal const string Keyboard = "Keyboard:";
     internal const string Mouse = "Mouse:";
+
+
+    internal const uint EmptyControllerButtons = 0;
+    internal const uint ControllerButtonMask = 1u;
+    internal const int UnmappedButtonIndex = -1;
+
+    internal const int BButtonIndex = 0;
+
+    internal const int YButtonIndex = 1;
+
+    internal const int SelectButtonIndex = 2;
+
+    internal const int StartButtonIndex = 3;
+
+    internal const int UpButtonIndex = 4;
+
+    internal const int DownButtonIndex = 5;
+
+    internal const int LeftButtonIndex = 6;
+
+    internal const int RightButtonIndex = 7;
+
+    internal const int AButtonIndex = 8;
+
+    internal const int XButtonIndex = 9;
+
+    internal const int LButtonIndex = 10;
+
+    internal const int RButtonIndex = 11;
+
+    internal const int L2ButtonIndex = 12;
+
+    internal const int R2ButtonIndex = 13;
+
+    internal const int L3ButtonIndex = 14;
+
+    internal const int R3ButtonIndex = 15;
 }

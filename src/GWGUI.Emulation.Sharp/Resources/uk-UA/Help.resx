@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Help.AdpcmVolume" xml:space="preserve"><value>Регулювання обсягу ADPCM звуковий канал.</value></data>
+  <data name="Emulation.Sharp.Help.AudioDesynchronization" xml:space="preserve"><value>Відхилити зайві аудіо зразки для зменшення помилок синхронізації звуку.</value></data>
+  <data name="Emulation.Sharp.Help.AudioSampleRate" xml:space="preserve"><value>Виберіть частоту відбору звуку.</value></data>
+  <data name="Emulation.Sharp.Help.ButtonOrder" xml:space="preserve"><value>Виберіть порядок кнопках контролера.</value></data>
+  <data name="Emulation.Sharp.Help.CpuSpeed" xml:space="preserve"><value>Виберіть частоту процесора.</value></data>
+  <data name="Emulation.Sharp.Help.DiskSeekSound" xml:space="preserve"><value>Грати звук люльки дискового руху.</value></data>
+  <data name="Emulation.Sharp.Help.FmBoard" xml:space="preserve"><value>Увімкнути FM звукова дошка.</value></data>
+  <data name="Emulation.Sharp.Help.FmVolume" xml:space="preserve"><value>Регулювання обсягу FM звуковий канал.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRate" xml:space="preserve"><value>Виберіть кількість відеорамок на другий.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRateAdjustment" xml:space="preserve"><value>Налаштування відео-іменю для сучасних дисплеїв для зменшення шумоізоляції.</value></data>
+  <data name="Emulation.Sharp.Help.FrameSkip" xml:space="preserve"><value>Виберіть дробу відеознімків для пропускання. Відступаючи один образ з трьох пропускаємо два з трьох.</value></data>
+  <data name="Emulation.Sharp.Help.HideGraphics" xml:space="preserve"><value>Прихильники відеоролика приховують графічний шар відеознімку.</value></data>
+  <data name="Emulation.Sharp.Help.HideSprites" xml:space="preserve"><value>Прихильники та фонові шари відео образу.</value></data>
+  <data name="Emulation.Sharp.Help.HideText" xml:space="preserve"><value>Прихильники відеоролика.</value></data>
+  <data name="Emulation.Sharp.Help.MemorySize" xml:space="preserve"><value>Виберіть кількість емульованої RAM.</value></data>
+  <data name="Emulation.Sharp.Help.RapidFire" xml:space="preserve"><value>Кнопка повторення автоматично натискає.</value></data>
+  <data name="Emulation.Sharp.Help.Raster" xml:space="preserve"><value>Увімкнути растрові ефекти в емулювати відео зображення.</value></data>
+  <data name="Emulation.Sharp.Help.Resolution" xml:space="preserve"><value>Виберіть низьку або високу роздільну здатність виведення.</value></data>
+  <data name="Emulation.Sharp.Help.ReverseJoystick" xml:space="preserve"><value>Перевернути вхід контролера, як передбачено емулятором.</value></data>
+  <data name="Emulation.Sharp.Help.UnlimitedSpeed" xml:space="preserve"><value>Запуск машини максимально швидко. Звук може стати несинхронізованим.</value></data>
+  <data name="Emulation.Sharp.Help.VerticalSync" xml:space="preserve"><value>Синхронізувати емульований дисплей вертикально.</value></data>
+  <data name="Emulation.Sharp.Help.VideoBeforeAudio" xml:space="preserve"><value>Зменшити затримки відео перед аудіо-пропорцією.</value></data>
+</root>

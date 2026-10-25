@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>De gevraagde positie is ongeldig voor dit bestandssysteemobject.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>De toewijzingsnode-operatie is mislukt.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Allocatie-node bitmap indexblok {0}'{1} kon niet worden gelezen.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>De aandrijfkop is niet op de gevraagde cilinder ({0}) Herkalibreer de schijf voordat u leest.</value></data>
 </root>

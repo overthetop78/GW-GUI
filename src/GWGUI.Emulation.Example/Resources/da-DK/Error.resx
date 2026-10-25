@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound"><value>Det konfigurerede medium blev ikke fundet.</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported"><value>Maskinen understøtter ikke det valgte medie.</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound"><value>Den krævede emulering kerne blev ikke fundet.</value></data>
+  <data name="Emulation.Example.Error.CoreRejected"><value>Den valgte emuleringskerne kunne ikke indlæses.</value></data>
+  <data name="Emulation.Example.Error.Details"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid"><value>En firmware er ugyldig eller inkompatibel.</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing"><value>Der mangler en nødvendig firmware.</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing"><value>Stien til emuleringsværtsprogrammet er ikke tilgængelig.</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure"><value>Kommunikation med emuleringsværten mislykkedes.</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid"><value>En indstilling har en ugyldig værdi.</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible"><value>Den gemte tilstand er uforenelig med den nuværende maskine.</value></data>
+  <data name="Emulation.Example.Error.StateInvalid"><value>Den gemte tilstand er ugyldig.</value></data>
+  <data name="Emulation.Example.Error.Unexpected"><value>Der opstod en uventet emuleringsfejl.</value></data>
+</root>

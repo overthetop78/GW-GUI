@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Menunjukkan frekuensi jam nominal dari prosesor dalam mesin Sony terpilih.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Frekuensi jam prosesor asli.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Menampilkan model prosesor yang disediakan oleh mesin Sony terpilih.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>Prosesor meniru mesin ini.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>Menampilkan status ROM sistem bagi mesin dan emulator terpilih.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>Sistem ROM.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Identifikasi implementasi emulator yang dipakai untuk menjalankan konfigurasi mesin ini.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>Emulator dipilih untuk mesin ini.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Mengidentifikasi model Sony yang konfigurasi perangkat keras sedang diedit.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>Model mesin Sony sedang dikonfigurasi.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Tampilkan RAM yang disediakan oleh mesin Sony terpilih.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Jumlah RAM yang tersedia untuk mesin yang diemulasi.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Frekuensi CPU yang telah digandakan setelah menerapkan persentase jam yang dipilih.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>Frekuensi konsol nominal dikalikan dengan persentase yang dipilih. Ini mengubah prosesor yang digandakan, bukan processor host. Nilai yang lebih tinggi dapat mengurangi slowdowns tetapi mungkin istirahat waktu permainan. Otomatis memakai emulator baku.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Perangkat keras grafis asli mesin yang dipilih.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Menampilkan perangkat keras grafis asli mesin yang dipilih. Pengaturan perenderan emulator mengubah gambar yang dihasilkan. Filter GW GUI diterapkan setelahnya.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Perangkat keras suara asli mesin yang dipilih.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Menampilkan perangkat keras suara asli mesin yang dipilih. Pengaturan keluaran audio dan latensi mengendalikan pemutaran suara di komputer Anda.</value></data>
+</root>

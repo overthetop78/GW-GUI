@@ -46,8 +46,7 @@ internal static class SettingsFailureScenarios
             snapshots.Add(value.DefaultImagesFolder);
             return fail ? Task.FromException(expected) : Task.CompletedTask;
         });
-        var view = new PreferencesWindow(settings,ControlledDependencies.Reject<IHardwareRegistry>(),
-            ControlledDependencies.Reject<IGwInstallationManager>(),settingsStore:store, dataDirectory:"virtual-data", fileExists: _ => false);
+        var view = new PreferencesWindow(settings,ControlledDependencies.Reject<IHardwareRegistry>(), ControlledDependencies.Reject<IGwInstallationManager>(),settingsStore:store, dataDirectory:"virtual-data", fileExists: _ => false);
         view.GeneralSection.ImagesFolder.Text = "  virtual-first  ";
         Assert.Same(expected,await Assert.ThrowsAsync<IOException>(view.PersistSettingsAsync));
         Assert.Equal("  virtual-first  ",view.GeneralSection.ImagesFolder.Text);
@@ -72,8 +71,7 @@ internal static class SettingsFailureScenarios
             saves++;
             return fail ? Task.FromException(failure) : Task.CompletedTask;
         });
-        var window = new EmulationPreferencesWindow(settings, settingsStore: store,
-            dataDirectory: "virtual-data", reportSaveError: shown.Add);
+        var window = new EmulationPreferencesWindow(settings, settingsStore: store, dataDirectory: "virtual-data", reportSaveError: shown.Add);
 
         await window.SaveFromEditorAsync();
         Assert.Same(failure, Assert.Single(shown));
@@ -96,9 +94,7 @@ internal static class SettingsFailureScenarios
         var window = new EmulationModuleOptionsWindow(module.Service, showError: shown.Add, profiles: profiles);
         try
         {
-            var create = MachineConfigurationScenarios.Controls<Button>(window)
-                .Single(button => Equals(button.Content,
-                    GWGUI.App.Localization.Extensions.LocExtension.Get("Common.Create")));
+            var create = MachineConfigurationScenarios.Controls<Button>(window).Single(button => Equals(button.Content, GWGUI.App.Localization.Extensions.LocExtension.Get("Common.Create")));
             create.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             await Dispatcher.Yield(DispatcherPriority.ContextIdle);
             Assert.Same(module.SaveError, Assert.Single(shown));

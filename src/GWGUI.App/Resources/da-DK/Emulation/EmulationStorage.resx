@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>Harddisk</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>Grænseflade</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Forudalloker filen</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Disketter og cd&apos;er indsættes eller udskiftes fra den kørende maskine.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Brug emuleringsvisningen til at indsætte eller ændre medier.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Fjern medie</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Diskafbildningen findes allerede: {0}\nVil du erstatte den?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Tilgængelige typer, modeller og identifikatorer afhænger af den valgte maskine.</value></data>
@@ -70,9 +70,18 @@
   <data name="Emulation.Storage.Geometry.Sectors"><value>Sektorer</value></data>
   <data name="Emulation.Storage.Cassettes"><value>Kassette</value></data>
   <data name="Emulation.Storage.Cartridges"><value>Spilkassette</value></data>
-  <data name="Emulation.Storage.CompactDiscs"><value>Cd&apos;er</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>Cd'er</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Vis drevaktivitet på emulatorens skærm</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kassetteport</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Montere de første fire diske i DF0-DF3</value></data>
   <data name="Emulation.DiskNumber"><value>Disk {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Brug kort</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Den valgte fil vil blive fastgjort til denne virtuelle lagerenhed.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Vælg en eksisterende kortfil.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Kortfilen har en ugyldig størrelse.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Vælg et filformat understøttet af denne enhed.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Ubegrænset</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Ryd, når spillet lukkes</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Hukommelseskort</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>Kortnavn</value></data>
 </root>

@@ -2,6 +2,7 @@ namespace GWGUI.Emulation.Atari.Common.Machines.AtariST.Constants;
 
 internal static class StModelConstants
 {
+    internal const string EmulatorDescriptionResourceKey = "Emulation.Emulator.atari-st.Description";
     internal const string StMachineId = "st";
     internal const string SteMachineId = "ste";
     internal const string TtMachineId = "tt";

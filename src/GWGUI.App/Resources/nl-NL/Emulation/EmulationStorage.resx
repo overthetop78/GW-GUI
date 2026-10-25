@@ -41,12 +41,12 @@
   <data name="Emulation.Storage.Floppy.Device"><value>Diskettestation</value></data>
   <data name="Emulation.Storage.Floppy.ImageFilter"><value>Amiga-diskettekopie|*.adf|Alle bestanden|*.*</value></data>
   <data name="Emulation.Storage.HardDisk.Device"><value>Harde schijf</value></data>
-  <data name="Emulation.Storage.Device.Interface"><value>Interface</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>interface</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Bestand vooraf toewijzen</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Diskettes en cd&apos;s worden vanuit de actieve machine geplaatst of vervangen.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Gebruik de emulatie-weergave om media in te voegen of te wijzigen.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Medium verwijderen</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>De schijfkopie bestaat al: {0}\nWilt u deze vervangen?</value></data>
-  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>De beschikbare typen, modellen en id&apos;s hangen af van de geselecteerde machine.</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>De beschikbare typen, modellen en id's hangen af van de geselecteerde machine.</value></data>
   <data name="Emulation.Storage.Tape.Device"><value>Bandstation</value></data>
   <data name="Emulation.Storage.Disk.Use"><value>Schijf gebruiken</value></data>
   <data name="Emulation.Storage.Disk.UseExisting"><value>Bestaande schijf gebruiken</value></data>
@@ -75,4 +75,13 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Cartridgesleuf</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Mount de eerste vier schijven in DF0DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Schijf {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Kaart gebruiken</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Het geselecteerde bestand zal aan dit virtuele opslagapparaat worden gekoppeld.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Selecteer een bestaand kaartbestand.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Het kaartbestand heeft een ongeldige grootte.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Kies een bestandsformaat dat door dit apparaat wordt ondersteund.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Onbeperkt</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Leegmaken bij het sluiten van het spel</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Geheugenkaart</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>Naam kaart</value></data>
 </root>

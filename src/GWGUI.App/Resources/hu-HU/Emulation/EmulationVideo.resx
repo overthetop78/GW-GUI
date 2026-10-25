@@ -7,7 +7,7 @@
   <data name="Emulation.Video.Summary"><value>Videó lapkakészlet: {0}</value></data>
   <data name="Emulation.Video.Standard"><value>Video standard</value></data>
   <data name="Emulation.Video.Resolution"><value>Felbontás</value></data>
-  <data name="Emulation.Video.AspectRatio"><value>Szemrevételezéses arány</value></data>
+  <data name="Emulation.Video.AspectRatio"><value>Képarány</value></data>
   <data name="Emulation.Video.Crop"><value>Növényvédőszer-maradékok</value></data>
   <data name="Emulation.Video.FlickerFixer"><value>Flicker-rögzítő</value></data>
   <data name="Emulation.Video.Resolution.AutoLow"><value>Automatikus alacsony felbontású</value></data>
@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>A horgonyzás csökkentése</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>Részlet visszanyerése</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>Dezinterlacing</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>Ki</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>Letiltva</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob - egyenletes vonalak</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - páratlan vonalak</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Függőleges keverék</value></data>
@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>A szélek sötétedése</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Optics and light</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Vetítővászon</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Hardveres renderelés</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Renderelési mód</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>A hardveres renderelés az alkalmazáshoz kiválasztott grafikus API-t használja, ha az emulátor támogatja.</value></data>
 </root>

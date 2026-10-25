@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Controller.CpsfMd" xml:space="preserve"><value>CPSF-MD</value></data>
+  <data name="Emulation.Sharp.Controller.CpsfSfc" xml:space="preserve"><value>CPSF-SFC</value></data>
+  <data name="Emulation.Sharp.Controller.CyberstickAnalog" xml:space="preserve"><value>CYBERSTICK (analog)</value></data>
+  <data name="Emulation.Sharp.Controller.CyberstickDigital" xml:space="preserve"><value>CYBERSTICK (digital)</value></data>
+  <data name="Emulation.Sharp.Controller.X1Joystick" xml:space="preserve"><value>X1 joystick</value></data>
+  <data name="Emulation.Sharp.Input.Fire1" xml:space="preserve"><value>Fire button 1</value></data>
+  <data name="Emulation.Sharp.Input.Fire2" xml:space="preserve"><value>Fire button 2</value></data>
+  <data name="Emulation.Sharp.Input.Fire3" xml:space="preserve"><value>Fire button 3</value></data>
+  <data name="Emulation.Sharp.Input.Fire4" xml:space="preserve"><value>Fire button 4</value></data>
+  <data name="Emulation.Sharp.Input.Fire5" xml:space="preserve"><value>Fire button 5</value></data>
+  <data name="Emulation.Sharp.Input.Fire6" xml:space="preserve"><value>Fire button 6</value></data>
+  <data name="Emulation.Sharp.Input.Fire7" xml:space="preserve"><value>Fire button 7</value></data>
+  <data name="Emulation.Sharp.Input.Fire8" xml:space="preserve"><value>Fire button 8</value></data>
+  <data name="Emulation.Sharp.Input.ThrottleDecrease" xml:space="preserve"><value>Decrease throttle</value></data>
+  <data name="Emulation.Sharp.Input.ThrottleIncrease" xml:space="preserve"><value>Increase throttle</value></data>
+  <data name="Emulation.Sharp.Keyboard.Break" xml:space="preserve"><value>BREAK</value></data>
+  <data name="Emulation.Sharp.Keyboard.Help" xml:space="preserve"><value>HELP</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpCode" xml:space="preserve"><value>CODE</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpCopy" xml:space="preserve"><value>COPY</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpFullWidth" xml:space="preserve"><value>Full-width</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpGraph" xml:space="preserve"><value>GRAPH</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpHiragana" xml:space="preserve"><value>HIRAGANA</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpKana" xml:space="preserve"><value>KANA</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpKeypadEquals" xml:space="preserve"><value>=</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpOption1" xml:space="preserve"><value>OPT.1</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpOption2" xml:space="preserve"><value>OPT.2</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpRegister" xml:space="preserve"><value>REGISTER</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpRoman" xml:space="preserve"><value>ROMAN</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpSymbol" xml:space="preserve"><value>SYMBOL</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpXf1" xml:space="preserve"><value>XF1</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpXf2" xml:space="preserve"><value>XF2</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpXf3" xml:space="preserve"><value>XF3</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpXf4" xml:space="preserve"><value>XF4</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpXf5" xml:space="preserve"><value>XF5</value></data>
+  <data name="Emulation.Sharp.Keyboard.Undo" xml:space="preserve"><value>UNDO</value></data>
+</root>

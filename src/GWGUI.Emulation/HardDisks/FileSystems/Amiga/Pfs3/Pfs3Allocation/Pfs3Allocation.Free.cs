@@ -67,8 +67,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
                 l1 = false;
                 if (lastChNode != null && lastChNode == chnode)
                 {
-                    throw new FileSystemDiagnosticException(FileSystemErrorCode.FreeBlockLoop,
-                        Pfs3ErrorMessages.FreeBlockLoop(chnode.an.nr), chnode.an.nr);
+                    throw new FileSystemDiagnosticException(FileSystemErrorCode.FreeBlockLoop, Pfs3ErrorMessages.FreeBlockLoop(chnode.an.nr), chnode.an.nr);
                 }
 
                 /* get blocks to free */

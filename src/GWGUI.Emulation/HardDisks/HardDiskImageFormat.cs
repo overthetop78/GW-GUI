@@ -1,4 +1,5 @@
 using System.Collections.Frozen;
+using System.IO;
 
 namespace GWGUI.Emulation.HardDisks;
 
@@ -9,6 +10,9 @@ public sealed record HardDiskImageFormat(string Id, string Extension, string Int
 {
     public long MinimumBytes { get; init; } = 512;
 
+    /// <summary>Exact native capacities, or null when the other size limits suffice.</summary>
+    public IReadOnlyList<long>? AllowedCapacitiesBytes { get; init; }
+
     public IReadOnlySet<int> LogicalSectorSizes { get; init; } = new[] { 512 }.ToFrozenSet();
 
     public DiskChsGeometry? Geometry { get; init; }
@@ -16,6 +20,9 @@ public sealed record HardDiskImageFormat(string Id, string Extension, string Int
     public DiskFormatOperations Operations { get; init; } = DiskFormatOperations.Create | DiskFormatOperations.Read;
 
     public bool SupportsFixedAllocation { get; init; } = true;
+
+    /// <summary>Initializes a newly created blank image. The caller owns the stream.</summary>
+    public Action<Stream>? InitializeBlankImage { get; init; }
 
     public IReadOnlyList<HardDiskPreparation> SupportedPreparations => Preparations ?? [HardDiskPreparation.Blank];
 

@@ -6,5 +6,8 @@ public enum EmulationStorageConfigurationKind
     FloppyDrive,
     HardDiskDrive,
     CassetteDrive,
-    CartridgeSlot
+    CartridgeSlot,
+    CompactDiscDrive,
+    MemoryCard,
+    ManagedStorage
 }

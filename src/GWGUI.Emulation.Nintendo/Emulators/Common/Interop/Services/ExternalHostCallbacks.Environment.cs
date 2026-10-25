@@ -1,0 +1,298 @@
+using CoreAudioBufferStatusCallback = GWGUI.Emulation.Interop.ExternalCoreApi.AudioBufferStatusCallback;
+using CommonCoreHostFunctions = GWGUI.Emulation.Nintendo.Common.Functions.CoreHostFunctions;
+using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Nintendo.Common.Exceptions;
+
+using System.Runtime.InteropServices;
+using GWGUI.Emulation;
+using static GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Constants.ExternalHostCallbacksConstants;
+
+namespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Services;
+
+internal sealed partial class ExternalHostCallbacks : IEmulationCoreEnvironmentCommands, IEmulationCoreOptionCommands
+{
+    /// <summary>Demande native de fermeture mémorisée pour la session, sans destruction depuis le callback.</summary>
+    internal bool ShutdownRequested { get; private set; }
+
+
+    private bool HandleEnvironment(uint command, nint data)
+    {
+        if (command == ExternalCoreApiConstants.Shutdown) { ShutdownRequested = true; return true; }
+        try
+        {
+            if (CommonCoreHostFunctions.EnvironmentProcessing.TryHandleAudioBufferCommand(command, data, ref _audioBufferStatusCallback, ref _minimumAudioLatencyMilliseconds, out var audioResult)) return audioResult;
+            if (CommonCoreHostFunctions.EnvironmentProcessing.TryHandleLegacyQuery(command, data,
+                    2, ExternalCoreInteropConstants.MessageInterfaceVersion, out var legacyQueryResult))
+                return legacyQueryResult;
+            if (CommonCoreHostFunctions.EnvironmentProcessing.TryHandleLegacyCallbackCommand(command, data,
+                    this, this, out var legacyCallbackResult))
+                return legacyCallbackResult;
+            switch (command)
+            {
+                case SetContentInfoOverride:
+                    return CaptureContentOverrides(data);
+                case GetGameInfoExtended:
+                    return ProvideExtendedGameInfo(data);
+                case HardwareRenderConstants.SetHardwareRender:
+                    return ConfigureHardwareRender(data);
+                case HardwareRenderConstants.GetPreferredHardwareRender:
+                    return CommonCoreHostFunctions.EnvironmentProcessing.WriteInteger(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);
+                default:
+                    if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic($"Unsupported environment command: {command}");
+                    return false;
+            }
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    bool IEmulationCoreEnvironmentCommands.WriteSystemDirectory(nint data)
+    {
+        return CommonCoreHostFunctions.EnvironmentProcessing.WritePointer(data, NativeString(SystemDirectory));
+    }
+
+    bool IEmulationCoreEnvironmentCommands.WriteContentDirectory(nint data)
+    {
+        return CommonCoreHostFunctions.EnvironmentProcessing.WritePointer(data, NativeString(ContentDirectory));
+    }
+
+    bool IEmulationCoreEnvironmentCommands.WriteSaveDirectory(nint data)
+    {
+        return CommonCoreHostFunctions.EnvironmentProcessing.WritePointer(data, NativeString(SaveDirectory));
+    }
+
+    bool IEmulationCoreEnvironmentCommands.ReadMessage(nint data)
+    {
+        return CaptureMessage(data, extended: false);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetPixelFormat(nint data)
+    {
+        _pixelFormat = CommonCoreHostFunctions.EnvironmentProcessing.ReadLegacyPixelFormat(data,
+    static value => new NotSupportedException(ErrorMessages.UnsupportedPixelFormat(value)));
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.GetDiskControlVersion(nint data)
+    {
+        _ = CommonCoreHostFunctions.EnvironmentProcessing.WriteInteger(data, 1);
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.CaptureInputDescriptors(nint data)
+    {
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetKeyboardCallback(nint data)
+    {
+        var keyboard = Marshal.PtrToStructure<ExternalCoreApi.KeyboardCallback>(data);
+        _keyboardEvent = CommonCoreHostFunctions.EnvironmentProcessing.OptionalDelegate<ExternalCoreApi.KeyboardEvent>(keyboard.Callback);
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.CaptureDiskControl(nint data)
+    {
+        DiskControl.Capture(data);
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.CaptureExtendedDiskControl(nint data)
+    {
+        DiskControl.CaptureExtended(data);
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.CaptureControllerInfo(nint data)
+    {
+        return CaptureControllerInfo(data);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.CaptureMemoryMaps(nint data)
+    {
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetSupportAchievements(nint data)
+    {
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetSupportNoGame(nint data)
+    {
+        SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
+        return true;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.ReadExtendedMessage(nint data)
+    {
+        return CaptureMessage(data, extended: true);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetGeometry(nint data)
+    {
+        return ApplyGeometry(data);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetSystemAvInfo(nint data)
+    {
+        return ApplySystemAvInfo(data);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetLogInterface(nint data)
+    {
+        return CommonCoreHostFunctions.EnvironmentProcessing.SetLogInterface(data, Log);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.ProvideVfs(nint data)
+    {
+        return false;
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetLedInterface(nint data)
+    {
+        return CommonCoreHostFunctions.EnvironmentProcessing.SetLedInterface(data, Led);
+    }
+
+    bool IEmulationCoreEnvironmentCommands.SetRotation(nint data) => false;
+    bool IEmulationCoreEnvironmentCommands.CapturePerformanceLevel(nint data) => false;
+    bool IEmulationCoreEnvironmentCommands.SetRumbleInterface(nint data) => CommonCoreHostFunctions.EnvironmentProcessing.SetRumbleInterface(data, _setRumbleState);
+    bool IEmulationCoreEnvironmentCommands.SetSensorInterface(nint data) => false;
+
+    void IEmulationCoreOptionCommands.RegisterVersionOne(nint data)
+    {
+        RegisterVersionOneOptions(data);
+    }
+
+    void IEmulationCoreOptionCommands.RegisterVersionOneInternational(nint data)
+    {
+        RegisterVersionOneOptions(Marshal.ReadIntPtr(data));
+    }
+
+    void IEmulationCoreOptionCommands.RegisterVersionTwo(nint data)
+    {
+        RegisterVersionTwoOptions(data);
+    }
+
+    void IEmulationCoreOptionCommands.RegisterVersionTwoInternational(nint data)
+    {
+        RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));
+    }
+
+    void IEmulationCoreOptionCommands.RegisterLegacyVariables(nint data)
+    {
+        RegisterLegacyOptions(data);
+    }
+
+    bool IEmulationCoreOptionCommands.ReturnValue(nint data)
+    {
+        return ReturnOption(data);
+    }
+
+    bool IEmulationCoreOptionCommands.GetAndClearUpdated(nint data)
+    {
+        _ = CommonCoreHostFunctions.OptionProcessing.GetAndClearUpdated(data, ref _optionsUpdated);
+        return true;
+    }
+
+    bool IEmulationCoreOptionCommands.ApplyVisibility(nint data)
+    {
+        return ApplyOptionVisibility(data);
+    }
+
+    bool IEmulationCoreOptionCommands.CaptureDisplayUpdate(nint data)
+    {
+        return CaptureOptionsDisplayCallback(data);
+    }
+
+    bool IEmulationCoreOptionCommands.SetNativeValue(nint data) => false;
+
+    private void RegisterLegacyOptions(nint data) => OptionCatalog = AdaptOptions(CommonCoreHostFunctions.OptionProcessing.ReadLegacy(data, _options, _optionVisibility));
+
+    private void RegisterVersionOneOptions(nint data)
+    {
+        if (CommonCoreHostFunctions.OptionProcessing.ReadVersionOne(data, _options, _optionVisibility) is { } options)
+            OptionCatalog = AdaptOptions(options);
+    }
+
+    private void RegisterVersionTwoOptions(nint data)
+    {
+        if (CommonCoreHostFunctions.OptionProcessing.ReadVersionTwo(data, _options, _optionVisibility) is { } options)
+            OptionCatalog = AdaptOptions(options);
+    }
+
+    private bool ApplyOptionVisibility(nint data)
+    {
+        if (!CommonCoreHostFunctions.OptionProcessing.ApplyNativeVisibility(data, _optionVisibility, OptionCatalog,
+                static option => option.Key, static (option, visible) => option with { IsVisible = visible },
+                out var catalog)) return false;
+        OptionCatalog = catalog;
+        return true;
+    }
+
+    private bool CaptureOptionsDisplayCallback(nint data)
+    {
+        if (!CommonCoreHostFunctions.OptionProcessing.TryGetDisplayCallback(data, out var callback)) return false;
+        _updateOptionsDisplay = callback;
+        return true;
+    }
+
+    private static IReadOnlyList<CoreOption> AdaptOptions(IReadOnlyList<EmulationOption> options) => options.Select(option =>
+        new CoreOption(option.Key, option.Name, option.Description, option.Category, option.DefaultValue, option.CurrentValue,
+            option.Values.Select(value => new CoreOptionValue(value.Value, value.Label)).ToArray(), IsVisible: option.IsVisible))
+        .Where(CoreSettingsFunctions.IsSupportedNintendoOption).Select(CoreSettingsFunctions.WithSupportedGraphicsApis).ToArray();
+
+    private bool ReturnOption(nint data)
+    => CommonCoreHostFunctions.OptionProcessing.ReturnNativeValue(data, _options, (_, value) => NativeString(value), unavailableResult: false);
+
+    internal void ValidateConfiguredOptions() =>
+        CommonCoreHostFunctions.OptionProcessing.ValidateConfiguredValues(
+            _configuredOptionKeys, _options, OptionCatalog,
+            static option => option.Key, static option => option.Values, static value => value.Value,
+            static (key, value) => throw new InvalidDataException(ErrorMessages.InvalidOptionValue(value, key)));
+
+    private bool CaptureMessage(nint data, bool extended)
+    {
+        if (data == 0) return false;
+        var textPointer = Marshal.ReadIntPtr(data);
+        CommonCoreHostFunctions.EnvironmentProcessing.CopyDiagnostic(textPointer, message => AddDiagnostic($"[message{(extended ? ExternalHostCallbacksConstants.Extended : string.Empty)}] {message}"));
+        return true;
+    }
+
+    private bool CaptureControllerInfo(nint data)
+    {
+        if (!CommonCoreHostFunctions.EnvironmentProcessing.TryCopyControllerPorts<IReadOnlyList<ControllerDevice>, ControllerDevice>(
+            data, 16, 64, static (name, id) => new(name, id), static devices => devices,
+            rejectOverflow: true, skipEmptyNames: true, out var ports)) return false;
+        ControllerPorts = ports;
+        return true;
+    }
+
+    private nint NativeString(string value)
+    {
+        if (_nativeStrings.TryGetValue(value, out var existing)) return existing.Pointer;
+        return CommonCoreHostFunctions.NativeResources.AddString(_nativeStrings, value, value).Pointer;
+    }
+
+    /// <summary>Callback natif emprunté, conservé uniquement pendant la session du cœur.</summary>
+    private CoreAudioBufferStatusCallback? _audioBufferStatusCallback;
+    private int _minimumAudioLatencyMilliseconds;
+    /// <summary>Instantané de la sortie physique transmis par Common avant le calcul de la frame.</summary>
+    internal AudioOutputBufferStatus? OutputAudioStatus { get; set; }
+    /// <summary>Latence minimale négociée avec le cœur, en millisecondes.</summary>
+    internal int MinimumAudioLatencyMilliseconds => _minimumAudioLatencyMilliseconds;
+    /// <summary>Notifie le délégué du cœur avec le calcul commun de remplissage et de sous-alimentation.</summary>
+    internal void NotifyAudioBufferStatus() => CommonCoreHostFunctions.EnvironmentProcessing.PublishAudioBufferStatus(_audioBufferStatusCallback, OutputAudioStatus, FramesPerSecond);
+    /// <summary>Retire les références empruntées avant le déchargement du code natif.</summary>
+    private void ClearAudioBufferFeedback()
+    {
+        _audioBufferStatusCallback = null;
+        OutputAudioStatus = null;
+        _minimumAudioLatencyMilliseconds = 0;
+    }
+}

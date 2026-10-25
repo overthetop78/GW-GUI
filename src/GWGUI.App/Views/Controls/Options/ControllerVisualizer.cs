@@ -69,8 +69,7 @@ public sealed partial class ControllerVisualizer : FrameworkElement
     private ControllerVisualState? _visualState;
     private ControllerArtworkProfile? _artworkProfile;
     private IReadOnlyDictionary<EmulationControllerVisualControl, string>? _visualCommandIds;
-    private ControllerVisualInput Input =>
-        _visualState is null ? new ControllerVisualInput(_state) : new ControllerVisualInput(_visualState);
+    private ControllerVisualInput Input => _visualState is null ? new ControllerVisualInput(_state) : new ControllerVisualInput(_visualState);
 
     protected override void OnRender(DrawingContext drawingContext)
     {
@@ -145,8 +144,7 @@ public sealed partial class ControllerVisualizer : FrameworkElement
         DrawArtworkProfileOverlays(drawingContext, profile, bounds);
     }
 
-    private void UpdateHoveredVisualControl(Point position) =>
-        SetHoveredVisualControl(HitTestVisualZone(position)?.Control);
+    private void UpdateHoveredVisualControl(Point position) => SetHoveredVisualControl(HitTestVisualZone(position)?.Control);
 
     private void SetHoveredVisualControl(EmulationControllerVisualControl? control)
     {
@@ -162,32 +160,32 @@ public sealed partial class ControllerVisualizer : FrameworkElement
         var (scale, offsetX, offsetY) = CalculateLayout();
         var point = new Point((position.X - offsetX) / scale, (position.Y - offsetY) / scale);
         var artworkBounds = FitArtworkProfileBounds(profile.Artwork);
+        var directions = profile.Zones.Where(zone => (zone.Shape is ControllerVisualZoneShape.DirectionalPad or ControllerVisualZoneShape.JoystickDirection) && HasVisualCommand(zone.Control))
+            .ToLookup(zone => (zone.Shape, zone.XPercent, zone.YPercent, zone.WidthPercent, zone.HeightPercent));
         for (var index = profile.Zones.Count - 1; index >= 0; index--)
         {
             var zone = profile.Zones[index];
             if (!HasVisualCommand(zone.Control)) continue;
             var bounds = ZoneBounds(artworkBounds, zone);
-            if (Contains(zone, bounds, point)) return zone;
+            var controls = zone.Shape is ControllerVisualZoneShape.DirectionalPad or ControllerVisualZoneShape.JoystickDirection
+                ? directions[(zone.Shape, zone.XPercent, zone.YPercent, zone.WidthPercent, zone.HeightPercent)].Select(item => item.Control).ToHashSet()
+                : null;
+            if (Contains(zone, bounds, point, controls)) return zone;
         }
         return null;
     }
 
-    private bool HasVisualCommand(EmulationControllerVisualControl control) =>
-        _visualCommandIds?.ContainsKey(control) == true;
+    private bool HasVisualCommand(EmulationControllerVisualControl control) => _visualCommandIds?.ContainsKey(control) == true;
 
     private static Rect ZoneBounds(Rect artworkBounds, ControllerVisualZone zone) =>
-        new(
-            artworkBounds.X + artworkBounds.Width * zone.XPercent / 100d,
-            artworkBounds.Y + artworkBounds.Height * zone.YPercent / 100d,
-            artworkBounds.Width * zone.WidthPercent / 100d,
-            artworkBounds.Height * zone.HeightPercent / 100d);
+        new(artworkBounds.X + artworkBounds.Width * zone.XPercent / 100d, artworkBounds.Y + artworkBounds.Height * zone.YPercent / 100d, artworkBounds.Width * zone.WidthPercent / 100d, artworkBounds.Height * zone.HeightPercent / 100d);
 
-    private static bool Contains(ControllerVisualZone zone, Rect bounds, Point point)
+    private static bool Contains(ControllerVisualZone zone, Rect bounds, Point point, IReadOnlySet<EmulationControllerVisualControl>? controls = null)
     {
         if (!bounds.Contains(point)) return false;
         if (zone.Shape is ControllerVisualZoneShape.DirectionalPad
             or ControllerVisualZoneShape.JoystickDirection)
-            return MatchesDirectionSector(zone.Control, bounds, point);
+            return MatchesDirectionSector(zone.Control, bounds, point, controls);
         if (zone.Shape != ControllerVisualZoneShape.Ellipse) return true;
 
         var radiusX = bounds.Width / 2d;
@@ -198,22 +196,26 @@ public sealed partial class ControllerVisualizer : FrameworkElement
         return dx * dx + dy * dy <= 1d;
     }
 
-    private static bool MatchesDirectionSector(
-        EmulationControllerVisualControl control,
-        Rect bounds,
-        Point point)
+    private static bool MatchesDirectionSector(EmulationControllerVisualControl control, Rect bounds, Point point, IReadOnlySet<EmulationControllerVisualControl>? controls)
     {
         var dx = point.X - (bounds.X + bounds.Width / 2d);
         var dy = point.Y - (bounds.Y + bounds.Height / 2d);
         if (Math.Abs(dx) < double.Epsilon && Math.Abs(dy) < double.Epsilon) return false;
-        if (Math.Abs(dx) > Math.Abs(dy))
-            return dx < 0d
-                ? control == EmulationControllerVisualControl.DirectionLeft
-                : control == EmulationControllerVisualControl.DirectionRight;
-        return dy < 0d
-            ? control == EmulationControllerVisualControl.DirectionUp
-            : control == EmulationControllerVisualControl.DirectionDown;
+        var horizontal = controls is null || controls.Any(IsHorizontalDirection);
+        var vertical = controls is null || controls.Any(IsVerticalDirection);
+        if (!horizontal && !vertical || !vertical && Math.Abs(dx) < double.Epsilon || !horizontal && Math.Abs(dy) < double.Epsilon) return false;
+        if (horizontal && (!vertical || Math.Abs(dx) > Math.Abs(dy)))
+            return dx < 0d ? control is EmulationControllerVisualControl.DirectionLeft or EmulationControllerVisualControl.StickLeft or EmulationControllerVisualControl.RightStickLeft
+                : control is EmulationControllerVisualControl.DirectionRight or EmulationControllerVisualControl.StickRight or EmulationControllerVisualControl.RightStickRight;
+        return dy < 0d ? control is EmulationControllerVisualControl.DirectionUp or EmulationControllerVisualControl.StickUp or EmulationControllerVisualControl.RightStickUp
+            : control is EmulationControllerVisualControl.DirectionDown or EmulationControllerVisualControl.StickDown or EmulationControllerVisualControl.RightStickDown;
     }
+
+    private static bool IsHorizontalDirection(EmulationControllerVisualControl control) => control is EmulationControllerVisualControl.DirectionLeft or EmulationControllerVisualControl.DirectionRight
+        or EmulationControllerVisualControl.StickLeft or EmulationControllerVisualControl.StickRight or EmulationControllerVisualControl.RightStickLeft or EmulationControllerVisualControl.RightStickRight;
+
+    private static bool IsVerticalDirection(EmulationControllerVisualControl control) => control is EmulationControllerVisualControl.DirectionUp or EmulationControllerVisualControl.DirectionDown
+        or EmulationControllerVisualControl.StickUp or EmulationControllerVisualControl.StickDown or EmulationControllerVisualControl.RightStickUp or EmulationControllerVisualControl.RightStickDown;
 
     private (double Scale, double OffsetX, double OffsetY) CalculateLayout()
     {
@@ -245,8 +247,7 @@ public sealed partial class ControllerVisualizer : FrameworkElement
             input.Direction(GameInputSwitchPosition.Down, GameInputGamepadButtons.DPadDown, 12));
     }
 
-    private void DrawDirectionalPad(
-        DrawingContext dc, double x, double y, bool left, bool right, bool up, bool down)
+    private void DrawDirectionalPad(DrawingContext dc, double x, double y, bool left, bool right, bool up, bool down)
     {
         var stroke = Stroke();
         dc.DrawRoundedRectangle(Active(left), stroke, new Rect(x - 52, y - 16, 38, 32), 6, 6);
@@ -291,10 +292,8 @@ public sealed partial class ControllerVisualizer : FrameworkElement
     {
         var edge = new Pen(ColorBrush(Color.FromRgb(128, 131, 137)), 3);
         dc.DrawEllipse(ColorBrush(Color.FromRgb(17, 18, 21)), edge, new Point(x, y), 38, 38);
-        dc.DrawEllipse(pressed ? Accent() : ColorBrush(Color.FromRgb(45, 47, 51)), edge,
-            new Point(x + axisX * 16, y + axisY * 16), 23, 23);
-        dc.DrawEllipse(null, new Pen(ColorBrush(Color.FromArgb(80, 255, 255, 255)), 1),
-            new Point(x + axisX * 16, y + axisY * 16), 16, 16);
+        dc.DrawEllipse(pressed ? Accent() : ColorBrush(Color.FromRgb(45, 47, 51)), edge, new Point(x + axisX * 16, y + axisY * 16), 23, 23);
+        dc.DrawEllipse(null, new Pen(ColorBrush(Color.FromArgb(80, 255, 255, 255)), 1), new Point(x + axisX * 16, y + axisY * 16), 16, 16);
     }
 
     private void DrawShoulder(DrawingContext dc, Rect rect, string label, bool pressed)
@@ -330,8 +329,7 @@ public sealed partial class ControllerVisualizer : FrameworkElement
 
     private void DrawText(DrawingContext dc, string value, Point center, double size, Brush? brush = null)
     {
-        var text = new FormattedText(value, CultureInfo.CurrentUICulture, FlowDirection.LeftToRight,
-            new Typeface("Segoe UI"), size, brush ?? Text(), VisualTreeHelper.GetDpi(this).PixelsPerDip);
+        var text = new FormattedText(value, CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, new Typeface("Segoe UI"), size, brush ?? Text(), VisualTreeHelper.GetDpi(this).PixelsPerDip);
         dc.DrawText(text, new Point(center.X - text.Width / 2, center.Y - text.Height / 2));
     }
 

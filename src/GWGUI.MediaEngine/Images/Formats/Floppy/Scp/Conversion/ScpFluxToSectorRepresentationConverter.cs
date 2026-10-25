@@ -13,16 +13,12 @@ namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Conversion;
 /// <summary>Reconstructs a sector document from an already recognized SCP flux document.</summary>
 internal sealed class ScpFluxToSectorRepresentationConverter : IMediaRepresentationConverter
 {
-    private static readonly IReadOnlySet<MediaRepresentationKind> SourceKinds =
-        new HashSet<MediaRepresentationKind> { MediaRepresentationKind.Flux };
-    private static readonly IReadOnlySet<MediaRepresentationKind> TargetKinds =
-        new HashSet<MediaRepresentationKind> { MediaRepresentationKind.Sectors };
+    private static readonly IReadOnlySet<MediaRepresentationKind> SourceKinds = new HashSet<MediaRepresentationKind> { MediaRepresentationKind.Flux };
+    private static readonly IReadOnlySet<MediaRepresentationKind> TargetKinds = new HashSet<MediaRepresentationKind> { MediaRepresentationKind.Sectors };
     private readonly ScpSectorImageReader reader;
     private readonly IReadOnlySet<string> targetFormatIds;
 
-    public ScpFluxToSectorRepresentationConverter(
-        ScpSectorImageReader reader,
-        IReadOnlySet<string> targetFormatIds)
+    public ScpFluxToSectorRepresentationConverter(ScpSectorImageReader reader, IReadOnlySet<string> targetFormatIds)
     {
         ArgumentNullException.ThrowIfNull(reader);
         ArgumentNullException.ThrowIfNull(targetFormatIds);
@@ -36,13 +32,7 @@ internal sealed class ScpFluxToSectorRepresentationConverter : IMediaRepresentat
 
     public IReadOnlySet<MediaRepresentationKind> TargetRepresentationKinds => TargetKinds;
 
-    public bool CanConvert(
-        MediaImageDocument source,
-        string targetFormatId,
-        MediaRepresentationKind targetRepresentationKind)
-        => source.Representation is FluxMediaImageRepresentation &&
-           targetRepresentationKind == MediaRepresentationKind.Sectors &&
-           targetFormatIds.Contains(targetFormatId);
+    public bool CanConvert(MediaImageDocument source, string targetFormatId, MediaRepresentationKind targetRepresentationKind) => source.Representation is FluxMediaImageRepresentation && targetRepresentationKind == MediaRepresentationKind.Sectors && targetFormatIds.Contains(targetFormatId);
 
     public async Task<MediaRepresentationConversionResult> ConvertAsync(
         MediaImageDocument source,
@@ -55,8 +45,7 @@ internal sealed class ScpFluxToSectorRepresentationConverter : IMediaRepresentat
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(options);
         if (!CanConvert(source, targetFormatId, targetRepresentationKind))
-            throw new NotSupportedException(
-                $"Flux cannot be reconstructed as sector format '{targetFormatId}'.");
+            throw new NotSupportedException($"Flux cannot be reconstructed as sector format '{targetFormatId}'.");
 
         var flux = (FluxMediaImageRepresentation)source.Representation;
         progress?.Invoke(new(
@@ -64,21 +53,12 @@ internal sealed class ScpFluxToSectorRepresentationConverter : IMediaRepresentat
             $"Converting c={string.Join(',', flux.Tracks.Select(track => track.Cylinder).Distinct().Order())}:h={string.Join(',', flux.Tracks.Select(track => track.Head).Distinct().Order())}",
             0,
             source.MediaKind));
-        var image = await reader.ReadAsync(
-            flux.Image,
-            targetFormatId,
-            progress is null ? null : new ConversionProgressRelay(progress, source.MediaKind),
-            cancellationToken).ConfigureAwait(false);
+        var image = await reader.ReadAsync(flux.Image, targetFormatId, progress is null ? null : new ConversionProgressRelay(progress, source.MediaKind), cancellationToken).ConfigureAwait(false);
         var document = MediaImageDocumentFactory.CreateFloppySector(source.Source, image);
-        return new MediaRepresentationConversionResult(
-            document,
-            [],
-            ["Physical flux timing and protection information is not preserved in the sector representation."]);
+        return new MediaRepresentationConversionResult(document, [], ["Physical flux timing and protection information is not preserved in the sector representation."]);
     }
 
-    private sealed class ConversionProgressRelay(
-        Action<MediaExplorationProgress> progress,
-        MediaKind mediaKind) : IProgress<ScpExplorationProgress>
+    private sealed class ConversionProgressRelay(Action<MediaExplorationProgress> progress, MediaKind mediaKind) : IProgress<ScpExplorationProgress>
     {
         public void Report(ScpExplorationProgress item)
         {
@@ -87,11 +67,7 @@ internal sealed class ScpFluxToSectorRepresentationConverter : IMediaRepresentat
                 item.Head is not int head)
                 return;
             var measured = 5d + 85d * item.Completed / Math.Max(1, item.Total);
-            progress(new(
-                MediaExplorationProgressStage.ReadingMedia,
-                $"T{cylinder}.{head}",
-                measured,
-                mediaKind));
+            progress(new(MediaExplorationProgressStage.ReadingMedia, $"T{cylinder}.{head}", measured, mediaKind));
         }
     }
 }

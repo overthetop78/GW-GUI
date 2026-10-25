@@ -12,8 +12,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             Logger = null;
         }
 
-        private static readonly Lazy<Pfs3Logger> SingletonInstance =
-            new Lazy<Pfs3Logger>(() => new Pfs3Logger(), LazyThreadSafetyMode.ExecutionAndPublication);
+        private static readonly Lazy<Pfs3Logger> SingletonInstance = new Lazy<Pfs3Logger>(() => new Pfs3Logger(), LazyThreadSafetyMode.ExecutionAndPublication);
 
         public static Pfs3Logger Instance => SingletonInstance.Value;
 

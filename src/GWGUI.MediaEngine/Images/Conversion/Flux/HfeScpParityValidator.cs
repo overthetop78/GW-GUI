@@ -19,10 +19,7 @@ internal static class HfeScpParityValidator
             if (target is null || target.Revolutions.Count != 1)
                 throw new InvalidDataException("Une piste HFE manque dans le SCP produit.");
             var revolution = target.Revolutions[0];
-            var bits = FluxBitCellConverter.ToBits(
-                revolution.FluxIntervals,
-                revolution.IndexTimeTicks,
-                source.BitCellTicks);
+            var bits = FluxBitCellConverter.ToBits(revolution.FluxIntervals, revolution.IndexTimeTicks, source.BitCellTicks);
             if (!source.Bits.SequenceEqual(bits))
                 throw new InvalidDataException("Les cellules HFE ont changé dans le SCP produit.");
         }

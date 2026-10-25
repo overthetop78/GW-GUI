@@ -24,10 +24,7 @@ public static class ExplorerFilePresentation
             Parse<ExplorerPreviewKind>(analysis.PreviewKindId, ExplorerPreviewKind.None));
     }
 
-    public static string TypeTextFor(ExplorerFileTypeDefinition definition) =>
-        definition.TypeResourceKey == "Explorer.FileWithExtension"
-            ? LocExtension.Get(definition.TypeResourceKey, definition.Extension.TrimStart('.').ToUpperInvariant())
-            : LocExtension.Get(definition.TypeResourceKey);
+    public static string TypeTextFor(ExplorerFileTypeDefinition definition) => definition.TypeResourceKey == "Explorer.FileWithExtension" ? LocExtension.Get(definition.TypeResourceKey, definition.Extension.TrimStart('.').ToUpperInvariant()) : LocExtension.Get(definition.TypeResourceKey);
 
     private static ExplorerFileTypeDefinition Generic(FileSystemEntryKind kind)
     {
@@ -37,13 +34,10 @@ public static class ExplorerFilePresentation
             FileSystemEntryKind.Link => (ExplorerFileCategory.Link, "Explorer.Link", ExplorerIconCategory.Link),
             _ => (ExplorerFileCategory.File, "Explorer.File", ExplorerIconCategory.File)
         };
-        return new ExplorerFileTypeDefinition(string.Empty, category, key,
-            ExplorerExecutionKind.None, icon, ExplorerContentFormat.Unknown,
-            ExplorerTextEncoding.NotApplicable, ExplorerPreviewKind.None);
+        return new ExplorerFileTypeDefinition(string.Empty, category, key, ExplorerExecutionKind.None, icon, ExplorerContentFormat.Unknown, ExplorerTextEncoding.NotApplicable, ExplorerPreviewKind.None);
     }
 
-    private static T Parse<T>(string id, T fallback) where T : struct, Enum =>
-        Enum.TryParse<T>(id, false, out var value) && Enum.IsDefined(value) ? value : fallback;
+    private static T Parse<T>(string id, T fallback) where T : struct, Enum => Enum.TryParse<T>(id, false, out var value) && Enum.IsDefined(value) ? value : fallback;
 
     private static ExplorerIconCategory IconFor(string id) => id switch
     {

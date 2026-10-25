@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>選択されたSony機械のプロセッサのわずかなクロック周波数を示します。</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>元のプロセッサのクロック頻度。</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>選択されたSony機械によって提供されるプロセッサ モデルを示します。</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>この機械のためにエミュレートされるプロセッサ。</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>選択された機械およびエミュレーターのためのシステムROMの状態を示します。</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>システム ROM。</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>このマシン構成を実行するために使用されるエミュレータの実装を特定します。</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>この機械のために選ばれるエミュレータ。</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>ハードウェア構成を編集しているSonyモデルを特定します。</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>構成されるSony機械モデル。</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>選択されたSony機械によって提供されるRAMを表示します。</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>エミュレートされた機械に利用できるRAMの量。</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>選択したクロックパーセンテージを適用した後、エミュレートCPUの周波数。</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>わずかなコンソール周波数は、選択したパーセンテージによって多岐に渡ります。 これは、ホストプロセッサではなくエミュレートされたプロセッサを変更します。 値が高いと減速が減りますが、ゲームのタイミングを崩す可能性があります。 エミュレータのデフォルトを自動使用して下さい。</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>選択した機種の本来のグラフィックハードウェア。</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>選択した機種の本来のグラフィックハードウェアを表示します。エミュレーターの描画設定によって生成される画像が変わります。その後、GW GUIのフィルターが適用されます。</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>選択した機種の本来のサウンドハードウェア。</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>選択した機種の本来のサウンドハードウェアを表示します。音声出力と遅延の設定で、コンピューター上での再生を調整します。</value></data>
+</root>

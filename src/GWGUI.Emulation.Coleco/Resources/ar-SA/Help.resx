@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>اختيار التوقيت التلقائي أو معيار الفيديو.</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>إختار رقاقة الفيديو المُحتَزَمة.</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>اختيار الجانب من الصورة، والاختيار الآلي يستخدم منطقة اللعبة</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>إختار الحدود الشاشة المرئية</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>ازيل الحد على كل خط من الشاشات هذا قد يسبب أخطاء بيانية</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>واسمحوا لضغط الاتجاهات المعاكسة معا.</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>عدل حساسية المتحكم الدوار</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>إختاروا اللوّن</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>اختبئوا على الحدود</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>اخفي الحدود الخفية</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>اختبئوا الحدود اليسرى</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>اخفي الحدود اليمنى</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>اخفي البكسل على حواف الصورة المُعرضة</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>اضغط على التأخير في الأحذية</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>دائرة ذاكرة الخرطوشة. اترك الاختيار تلقائيًا ما لم يكن اكتشاف ROM خاطئًا.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>القياسي: حتى 32 KiB. تستخدم MegaCart وActivision دوائر مختلفة لتبديل بنوك ROM. يوفر OCM تبديل البنوك وحفظ البيانات في EEPROM. يشير Activision إلى دائرة، وليس إلى ناشر اللعبة. قد يمنع النوع الخاطئ بدء اللعبة أو يسبب أخطاء.</value></data>
+</root>

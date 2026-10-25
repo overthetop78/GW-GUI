@@ -16,15 +16,13 @@ public static class HardwareRoutingPolicy
         var usedControllerIds = drives.Select(drive => drive.ControllerUsbId).ToHashSet(StringComparer.OrdinalIgnoreCase);
         var available = controllers.Where(controller => controller.IsAvailable && usedControllerIds.Contains(controller.UsbId)).ToArray();
         if (available.Length <= 1) return null;
-        return available.FirstOrDefault(controller =>
-            string.Equals(controller.UsbId, selectedDrive.ControllerUsbId, StringComparison.OrdinalIgnoreCase))?.LastPort;
+        return available.FirstOrDefault(controller => string.Equals(controller.UsbId, selectedDrive.ControllerUsbId, StringComparison.OrdinalIgnoreCase))?.LastPort;
     }
 
     public static string? DriveArgument(IReadOnlyCollection<DriveSettings> configuredDrives, DriveSettings? selectedDrive)
     {
         if (selectedDrive is null) return null;
-        var drivesOnController = configuredDrives.Count(drive =>
-            string.Equals(drive.ControllerUsbId, selectedDrive.ControllerUsbId, StringComparison.OrdinalIgnoreCase));
+        var drivesOnController = configuredDrives.Count(drive => string.Equals(drive.ControllerUsbId, selectedDrive.ControllerUsbId, StringComparison.OrdinalIgnoreCase));
         return drivesOnController > 1 ? selectedDrive.Selection : null;
     }
 }

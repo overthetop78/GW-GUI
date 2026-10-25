@@ -133,9 +133,7 @@ internal sealed class ProfileOptionsController
         if (sender is ListBox list) return list.SelectedItem as ProfileOptionRow;
         if (sender is MenuItem { Parent: ContextMenu context } && context.PlacementTarget is ListBox contextList)
             return contextList.SelectedItem as ProfileOptionRow;
-        return _section.ReadProfiles.SelectedItem as ProfileOptionRow ??
-               _section.WriteProfiles.SelectedItem as ProfileOptionRow ??
-               _section.ConvertProfiles.SelectedItem as ProfileOptionRow;
+        return _section.ReadProfiles.SelectedItem as ProfileOptionRow ?? _section.WriteProfiles.SelectedItem as ProfileOptionRow ?? _section.ConvertProfiles.SelectedItem as ProfileOptionRow;
     }
 
     private string Localize(string key, params object[] arguments) => _localize(key, arguments);

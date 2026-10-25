@@ -4,8 +4,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 // No source code from the GPL ScaleNx reference is used.
 internal static class FilterScaleNx
 {
-    public static void Sample(float[] source, int width, int height,
-        float positionX, float positionY, float scaleX, float scaleY, Span<float> result)
+    public static void Sample(float[] source, int width, int height, float positionX, float positionY, float scaleX, float scaleY, Span<float> result)
     {
         var x = Math.Clamp((int)MathF.Floor(positionX), 0, width - 1);
         var y = Math.Clamp((int)MathF.Floor(positionY), 0, height - 1);

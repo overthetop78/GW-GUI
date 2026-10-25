@@ -37,8 +37,7 @@ public sealed class SequentialMediaSegment
         ChannelNumber = channelNumber;
         Direction = direction;
         DataRange = dataRange;
-        Metadata = new ReadOnlyDictionary<string, string>(
-            new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.Ordinal));
+        Metadata = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.Ordinal));
     }
 
     public long Position { get; }
@@ -52,4 +51,6 @@ public sealed class SequentialMediaSegment
     public SequentialTravelDirection Direction { get; }
     public MediaDataRange? DataRange { get; }
     public IReadOnlyDictionary<string, string> Metadata { get; }
+
+    internal SequentialMediaSegment AtPosition(long position) => new(position, Kind, Length, Start, Duration, FaceNumber, TrackNumber, ChannelNumber, Direction, DataRange, Metadata);
 }

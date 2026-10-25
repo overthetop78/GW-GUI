@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Functions;
 using System.Buffers.Binary;
 using System.Collections.Frozen;
 using GWGUI.MediaEngine.Constants;
@@ -14,11 +15,8 @@ namespace GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Spectrum;
 /// <summary>Encodes validated Spectrum blocks as TAP, standard TZX blocks, or explicit 16-bit mono PCM samples.</summary>
 public sealed class SpectrumTapeEncoder : ISequentialMediaEncoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.SpectrumTap, TapeImageFormatIds.Tzx, TapeImageFormatIds.Wav }
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedMachines =
-        new[] { DiskSystemIds.Spectrum }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.SpectrumTap, TapeImageFormatIds.Tzx, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Spectrum }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => SpectrumTapConstants.EncoderId;
     public IReadOnlySet<string> FormatIds => SupportedFormats;
@@ -31,11 +29,9 @@ public sealed class SpectrumTapeEncoder : ISequentialMediaEncoder
         && request.Blocks.All(block => block.IntegrityValid == true && block.Data.Length is >= 2 and <= ushort.MaxValue)
         && request.RetainedSegments.Count == 0
         && (!request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase)
-            || TryReadSampleRate(request.Parameters, out _));
+            || PcmSampleFunctions.TryReadSampleRate(request.Parameters, out _));
 
-    public Task<SequentialMediaImageRepresentation> EncodeAsync(
-        SequentialEncodeRequest request,
-        CancellationToken cancellationToken = default)
+    public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)
     {
         if (!CanEncode(request))
             throw new InvalidDataException("Spectrum encoding requires checksum-valid blocks and explicit WAV sample rate when WAV is selected.");
@@ -51,15 +47,13 @@ public sealed class SpectrumTapeEncoder : ISequentialMediaEncoder
 
     private static SequentialMediaImageRepresentation EncodeWave(SequentialEncodeRequest request)
     {
-        TryReadSampleRate(request.Parameters, out var sampleRate);
+        PcmSampleFunctions.TryReadSampleRate(request.Parameters, out var sampleRate);
         var samples = new List<short>();
         var level = SpectrumTapConstants.PcmAmplitude;
         foreach (var block in request.Blocks)
         {
             var data = block.Data.Span;
-            var pilotCount = data[0] == SpectrumTapConstants.HeaderFlag
-                ? SpectrumTapConstants.HeaderPilotPulseCount
-                : SpectrumTapConstants.DataPilotPulseCount;
+            var pilotCount = data[0] == SpectrumTapConstants.HeaderFlag ? SpectrumTapConstants.HeaderPilotPulseCount : SpectrumTapConstants.DataPilotPulseCount;
             AddPulses(samples, ref level, SpectrumTapConstants.PilotPulseTStates, pilotCount, sampleRate);
             AddPulses(samples, ref level, SpectrumTapConstants.SyncFirstPulseTStates, 1, sampleRate);
             AddPulses(samples, ref level, SpectrumTapConstants.SyncSecondPulseTStates, 1, sampleRate);
@@ -112,26 +106,10 @@ public sealed class SpectrumTapeEncoder : ISequentialMediaEncoder
                 [SpectrumTapConstants.BlockMetadataKey] = bool.TrueString,
                 ["flag"] = bytes[0].ToString("x2", System.Globalization.CultureInfo.InvariantCulture),
                 ["checksumValid"] = bool.TrueString,
-                ["header"] = (bytes.Length == SpectrumTapConstants.HeaderBlockLength && bytes[0] == SpectrumTapConstants.HeaderFlag)
-                    .ToString(System.Globalization.CultureInfo.InvariantCulture)
+                ["header"] = (bytes.Length == SpectrumTapConstants.HeaderBlockLength && bytes[0] == SpectrumTapConstants.HeaderFlag).ToString(System.Globalization.CultureInfo.InvariantCulture)
             });
     }
 
     private static void AddPulses(List<short> samples, ref short level, ushort tStates, int count, int sampleRate)
-    {
-        var sampleCount = Math.Max(1, (int)Math.Round(tStates * sampleRate / (double)TzxConstants.TStatesPerSecond));
-        for (var pulse = 0; pulse < count; pulse++)
-        {
-            for (var sample = 0; sample < sampleCount; sample++) samples.Add(level);
-            level = (short)-level;
-        }
-    }
-
-    private static bool TryReadSampleRate(IReadOnlyDictionary<string, string> parameters, out int sampleRate)
-    {
-        sampleRate = 0;
-        return parameters.TryGetValue("sampleRate", out var text)
-            && int.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out sampleRate)
-            && sampleRate >= 8000;
-    }
+        => GWGUI.MediaEngine.Functions.PcmSampleFunctions.AppendPulses(samples, ref level, tStates, count, sampleRate, TzxConstants.TStatesPerSecond);
 }

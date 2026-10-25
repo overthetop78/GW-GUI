@@ -94,7 +94,6 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Friksjon</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Demper</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Treghet</value></data>
-  <data name="Controllers.Enum.Joystick"><value>Joystick</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Fleraksekontroller</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID-bruk</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>akser</value></data>

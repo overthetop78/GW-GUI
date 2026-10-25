@@ -1,7 +1,6 @@
 namespace GWGUI.App.Services.Emulation;
 
-internal sealed record EmulationVideoShaderLoadingChangedEventArgs(
-    string ModuleId, Guid ConfigurationId, bool IsLoading);
+internal sealed record EmulationVideoShaderLoadingChangedEventArgs(string ModuleId, Guid ConfigurationId, bool IsLoading);
 
 internal static class EmulationVideoShaderLoadingStatus
 {
@@ -20,12 +19,9 @@ internal static class EmulationVideoShaderLoadingStatus
         bool changed;
         lock (Gate)
         {
-            changed = isLoading
-                ? Loading.Add((moduleId, configurationId))
-                : Loading.Remove((moduleId, configurationId));
+            changed = isLoading ? Loading.Add((moduleId, configurationId)) : Loading.Remove((moduleId, configurationId));
         }
         if (changed)
-            Changed?.Invoke(null, new EmulationVideoShaderLoadingChangedEventArgs(
-                moduleId, configurationId, isLoading));
+            Changed?.Invoke(null, new EmulationVideoShaderLoadingChangedEventArgs(moduleId, configurationId, isLoading));
     }
 }

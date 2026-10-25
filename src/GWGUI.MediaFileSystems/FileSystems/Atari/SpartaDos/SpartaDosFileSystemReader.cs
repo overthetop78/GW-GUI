@@ -33,9 +33,7 @@ public sealed class SpartaDosFileSystemReader : IFileSystemReader
         var attributes = new List<string>
         {
             SpartaDosFileSystemLayout.VolumeAttribute,
-            header.Version == SpartaDosFileSystemLayout.Version1
-                ? SpartaDosFileSystemLayout.Version1Attribute
-                : SpartaDosFileSystemLayout.Version2Attribute
+            header.Version == SpartaDosFileSystemLayout.Version1 ? SpartaDosFileSystemLayout.Version1Attribute : SpartaDosFileSystemLayout.Version2Attribute
         };
         if (header.WriteProtected) attributes.Add(SpartaDosFileSystemLayout.WriteProtectedAttribute);
         var capacity = checked((long)header.TotalSectors * header.SectorSize);

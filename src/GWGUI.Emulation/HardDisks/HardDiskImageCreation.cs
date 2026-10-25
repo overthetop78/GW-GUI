@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace GWGUI.Emulation.HardDisks;
 
 public static class HardDiskImageCreation
@@ -5,19 +7,22 @@ public static class HardDiskImageCreation
     public static void Create(string path, DiskImagePlan plan, DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null)
     {
         var write = DiskImageBuilder.Prepare(plan, registry, consumer);
-        Publish(path, plan.FixedSize && string.Equals(plan.ContainerId, "raw", StringComparison.OrdinalIgnoreCase)
-            ? plan.CapacityBytes : 0, write);
+        Publish(path, plan.FixedSize && string.Equals(plan.ContainerId, "raw", StringComparison.OrdinalIgnoreCase) ? plan.CapacityBytes : 0, write);
     }
 
-    public static void Create(string path, long bytes, HardDiskImageFormat format, bool preallocate,
-        HardDiskPreparation preparation = HardDiskPreparation.Blank)
+    public static void Create(string path, long bytes, HardDiskImageFormat format, bool preallocate, HardDiskPreparation preparation = HardDiskPreparation.Blank)
     {
         HardDiskImageValidation.Validate(path, bytes, format);
         if (preparation != HardDiskPreparation.Blank && format.Preparations?.Contains(preparation) != true)
             throw new ArgumentException("Unsupported disk preparation.", nameof(preparation));
         Publish(path, preallocate && format.Container == Containers.DiskContainerKind.Raw ? bytes : 0,
             stream => Containers.DiskContainerWriter.Write(stream, bytes, format.Container,
-                content => HardDiskPreparationWriter.Prepare(content, preparation, formatId: format.Id), fixedSize: preallocate));
+                content =>
+                {
+                    if (preparation == HardDiskPreparation.Blank && format.InitializeBlankImage is { } initialize)
+                        initialize(content);
+                    else HardDiskPreparationWriter.Prepare(content, preparation, formatId: format.Id);
+                }, fixedSize: preallocate, logicalSectorBytes: format.LogicalSectorSizes.Order().First(sectorBytes => sectorBytes > 0 && bytes % sectorBytes == 0)));
     }
 
     private static void Publish(string path, long preallocationBytes, Action<Stream> write)

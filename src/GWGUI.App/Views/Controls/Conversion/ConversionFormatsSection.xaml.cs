@@ -1,5 +1,5 @@
-using ConversionFidelity = global::GWGUI.MediaEngine.Images.Conversion.ConversionFidelity;
-using ConversionFidelityLevel = global::GWGUI.MediaEngine.Images.Conversion.ConversionFidelityLevel;
+using ConversionFidelity = GWGUI.MediaEngine.Images.Conversion.ConversionFidelity;
+using ConversionFidelityLevel = GWGUI.MediaEngine.Images.Conversion.ConversionFidelityLevel;
 using GWGUI.App.Contracts.ViewModels.Conversion;
 using GWGUI.App.Localization.Extensions;
 using System.Windows.Controls;
@@ -23,21 +23,16 @@ public partial class ConversionFormatsSection : UserControl
         var selectedMachine = Machines.SelectedItem as string;
         _sourceExtension = sourceExtension ?? "";
         _items = items;
-        SelectedOutputs.ItemsSource = items.Where(item => item.IsSelected)
-            .SelectMany(item => SelectedLines(item)).ToArray();
-        var machines = items.Select(item => item.Format.Family).Distinct(StringComparer.OrdinalIgnoreCase)
-            .Order(StringComparer.CurrentCultureIgnoreCase).ToArray();
+        SelectedOutputs.ItemsSource = items.Where(item => item.IsSelected).SelectMany(item => SelectedLines(item)).ToArray();
+        var machines = items.Select(item => item.Format.Family).Distinct(StringComparer.OrdinalIgnoreCase).Order(StringComparer.CurrentCultureIgnoreCase).ToArray();
         Machines.ItemsSource = machines;
-        Machines.SelectedItem = machines.FirstOrDefault(machine => machine.Equals(selectedMachine, StringComparison.OrdinalIgnoreCase))
-            ?? machines.FirstOrDefault();
+        Machines.SelectedItem = machines.FirstOrDefault(machine => machine.Equals(selectedMachine, StringComparison.OrdinalIgnoreCase)) ?? machines.FirstOrDefault();
         RefreshFormats();
     }
 
     private IEnumerable<string> SelectedLines(ConversionFormatPresentation item)
     {
-        var extensions = item.ExplicitExtensions.Count == 0
-            ? item.Format.Extensions.Where(extension => extension.IsDefault).Take(1).Select(extension => extension.Extension)
-            : item.ExplicitExtensions.Order(StringComparer.OrdinalIgnoreCase);
+        var extensions = item.ExplicitExtensions.Count == 0 ? item.Format.Extensions.Where(extension => extension.IsDefault).Take(1).Select(extension => extension.Extension) : item.ExplicitExtensions.Order(StringComparer.OrdinalIgnoreCase);
         foreach (var extension in extensions)
         {
             var fidelity = ConversionFidelity.ForConversion(_sourceExtension, extension);
@@ -55,8 +50,7 @@ public partial class ConversionFormatsSection : UserControl
     private void RefreshFormats()
     {
         if (Machines.SelectedItem is not string machine) { Formats.ItemsSource = null; return; }
-        Formats.ItemsSource = _items.Where(item => item.Format.Family.Equals(machine, StringComparison.OrdinalIgnoreCase))
-            .OrderByDescending(item => item.IsSelected).ThenByDescending(item => item.Format.IsCommon)
+        Formats.ItemsSource = _items.Where(item => item.Format.Family.Equals(machine, StringComparison.OrdinalIgnoreCase)).OrderByDescending(item => item.IsSelected).ThenByDescending(item => item.Format.IsCommon)
             .ThenBy(item => item.Format.DisplayName, StringComparer.CurrentCultureIgnoreCase).ToArray();
     }
 

@@ -2,16 +2,11 @@ using GWGUI.App.Interfaces.Rendering.Emulation;
 
 namespace GWGUI.App.Rendering.Emulation.Processing;
 
-internal sealed class PassthroughEmulationVideoProcessingPipeline(
-    EmulationVideoRenderer renderer) : IEmulationVideoProcessingPipeline
+internal sealed class PassthroughEmulationVideoProcessingPipeline(EmulationVideoRenderer renderer) : IEmulationVideoProcessingPipeline
 {
     public EmulationVideoRenderer Renderer { get; } = renderer;
 
-    public VideoFrame Process(
-        EmulationVideoProcessingConfiguration configuration,
-        VideoFrame frame,
-        EmulationVideoProcessingSize sourceSize,
-        EmulationVideoProcessingSize outputSize)
+    public VideoFrame Process(EmulationVideoProcessingConfiguration configuration, VideoFrame frame, EmulationVideoProcessingSize sourceSize, EmulationVideoProcessingSize outputSize)
     {
         _ = EmulationVideoProcessingConfigurationFunctions.Normalize(configuration);
         Validate(sourceSize, nameof(sourceSize));

@@ -12,8 +12,7 @@ public sealed class AddStorageDeviceDialog : Window
 {
     private readonly ComboBox _type = new();
 
-    public EmulationMediaType SelectedType =>
-        _type.SelectedItem is StorageDeviceChoice choice ? choice.Type : EmulationMediaType.Floppy;
+    public EmulationMediaType SelectedType => _type.SelectedItem is StorageDeviceChoice choice ? choice.Type : EmulationMediaType.Floppy;
 
     public AddStorageDeviceDialog(IEnumerable<EmulationMediaType> availableTypes)
     {
@@ -24,12 +23,10 @@ public sealed class AddStorageDeviceDialog : Window
         SizeToContent = SizeToContent.WidthAndHeight;
         ResizeMode = ResizeMode.NoResize;
         MinWidth = 460;
-        _type.ItemsSource = availableTypes.Select(type =>
-            new StorageDeviceChoice(type, DeviceLabel(type))).ToArray();
+        _type.ItemsSource = availableTypes.Select(type => new StorageDeviceChoice(type, DeviceLabel(type))).ToArray();
         _type.SelectedIndex = 0;
         Content = StorageDialogUi.DialogLayout(
-            StorageDialogUi.Card(LocExtension.Get(EmulationResourceKeys.DeviceType),
-                StorageDialogUi.Field(LocExtension.Get(EmulationResourceKeys.DeviceType), _type)),
+            StorageDialogUi.Card(LocExtension.Get(EmulationResourceKeys.DeviceType), StorageDialogUi.Field(LocExtension.Get(EmulationResourceKeys.DeviceType), _type)),
             StorageDialogUi.Footer(this, LocExtension.Get(EmulationResourceKeys.StorageDeviceAdd)));
     }
 
@@ -40,6 +37,7 @@ public sealed class AddStorageDeviceDialog : Window
         EmulationMediaType.CompactDisc => LocExtension.Get(EmulationResourceKeys.CompactDiscDevice),
         EmulationMediaType.Cassette => LocExtension.Get(EmulationResourceKeys.CassetteDevice),
         EmulationMediaType.Cartridge => LocExtension.Get(EmulationResourceKeys.CartridgeDevice),
+        EmulationMediaType.MemoryCard => LocExtension.Get(EmulationResourceKeys.MemoryCardDevice),
         _ => type.ToString()
     };
 }

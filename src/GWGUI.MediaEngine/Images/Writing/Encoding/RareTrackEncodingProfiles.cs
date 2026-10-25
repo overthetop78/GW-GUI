@@ -27,8 +27,7 @@ internal static class RareTrackEncodingProfiles
 
     public static bool TryResolve(string formatId, out RareTrackEncodingProfile profile) => Profiles.TryGetValue(formatId, out profile!);
 
-    private static RareTrackEncodingProfile Default(string encoderId) =>
-        new(encoderId, TrackEncodingDefaults.BitCellTicks, TrackEncodingDefaults.IndexTimeTicks);
+    private static RareTrackEncodingProfile Default(string encoderId) => new(encoderId, TrackEncodingDefaults.BitCellTicks, TrackEncodingDefaults.IndexTimeTicks);
 }
 
 /// <summary>Décrit le codec et les durées nominales d'un format rare.</summary>

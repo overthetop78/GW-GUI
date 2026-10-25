@@ -22,8 +22,7 @@ internal sealed class HardwareOptionsState
     public List<ControllerSettings> UnconfiguredControllers { get; }
     public List<DriveSettings> Drives { get; }
 
-    public bool HasMaximumDrives(string controllerId) =>
-        Drives.Count(drive => drive.ControllerUsbId == controllerId) >= 2;
+    public bool HasMaximumDrives(string controllerId) => Drives.Count(drive => drive.ControllerUsbId == controllerId) >= 2;
 
     public bool Save(HardwareRow row)
     {
@@ -116,9 +115,7 @@ internal sealed class HardwareOptionsState
     private HardwareRow CreateRow(DriveSettings? drive, string controllerId, bool configured)
     {
         var controller = Controllers.Concat(UnconfiguredControllers).First(item => item.UsbId == controllerId);
-        var index = drive is null
-            ? Drives.Count(item => item.ControllerUsbId == controllerId) + 1
-            : Drives.Where(item => item.ControllerUsbId == controllerId).ToList().IndexOf(drive) + 1;
+        var index = drive is null ? Drives.Count(item => item.ControllerUsbId == controllerId) + 1 : Drives.Where(item => item.ControllerUsbId == controllerId).ToList().IndexOf(drive) + 1;
         return new HardwareRow(
             drive?.Id,
             controller.LastPort,
@@ -138,8 +135,7 @@ internal sealed class HardwareOptionsState
             AssignDriveSelections(controllerId);
     }
 
-    private void AssignDriveSelections(string controllerId) =>
-        HardwareRoutingPolicy.AssignAutomaticDriveSelections(Drives, controllerId);
+    private void AssignDriveSelections(string controllerId) => HardwareRoutingPolicy.AssignAutomaticDriveSelections(Drives, controllerId);
 
     private static ControllerSettings CloneController(ControllerSettings source) => new()
     {

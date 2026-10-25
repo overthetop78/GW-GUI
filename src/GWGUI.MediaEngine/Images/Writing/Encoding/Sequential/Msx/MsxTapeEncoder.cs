@@ -15,35 +15,22 @@ namespace GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Msx;
 /// <summary>Writes validated MSX byte groups as CAS data or reconstructs their standard FSK waveform.</summary>
 public sealed class MsxTapeEncoder : ISequentialMediaEncoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.MsxCas, TapeImageFormatIds.Wav }
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedMachines =
-        new[] { DiskSystemIds.Msx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.MsxCas, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Msx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => MsxCasConstants.EncoderId;
     public IReadOnlySet<string> FormatIds => SupportedFormats;
     public IReadOnlySet<string> MachineIds => SupportedMachines;
 
-    public bool CanEncode(SequentialEncodeRequest request) =>
-        SupportedFormats.Contains(request.TargetFormatId)
-        && SupportedMachines.Contains(request.MachineId)
-        && request.Blocks.Count > 0
-        && request.Blocks.All(block => block.IntegrityValid == true && block.Data.Length > 0)
-        && request.RetainedSegments.Count == 0
-        && (!request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase)
-            || TryReadSampleRate(request.Parameters, out _));
+    public bool CanEncode(SequentialEncodeRequest request)
+        => SequentialEncodeFunctions.CanEncodeValidatedBytes(request, SupportedFormats, SupportedMachines);
 
-    public Task<SequentialMediaImageRepresentation> EncodeAsync(
-        SequentialEncodeRequest request,
-        CancellationToken cancellationToken = default)
+    public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)
     {
         if (!CanEncode(request))
             throw new InvalidDataException("MSX tape encoding requires validated byte groups without retained undecoded segments.");
         cancellationToken.ThrowIfCancellationRequested();
-        return Task.FromResult(request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase)
-            ? EncodeWave(request.Blocks, request.Parameters)
-            : EncodeCas(request.Blocks));
+        return Task.FromResult(request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase) ? EncodeWave(request.Blocks, request.Parameters) : EncodeCas(request.Blocks));
     }
 
     private static SequentialMediaImageRepresentation EncodeCas(IReadOnlyList<SequentialDecodedBlock> blocks)
@@ -82,21 +69,15 @@ public sealed class MsxTapeEncoder : ISequentialMediaEncoder
         return new SequentialMediaImageRepresentation(logicalLength, segments: segments);
     }
 
-    private static SequentialMediaImageRepresentation EncodeWave(
-        IReadOnlyList<SequentialDecodedBlock> blocks,
-        IReadOnlyDictionary<string, string> parameters)
+    private static SequentialMediaImageRepresentation EncodeWave(IReadOnlyList<SequentialDecodedBlock> blocks, IReadOnlyDictionary<string, string> parameters)
     {
-        TryReadSampleRate(parameters, out var sampleRate);
+        PcmSampleFunctions.TryReadSampleRate(parameters, out var sampleRate);
         var samples = new List<short>();
         var level = MsxCasConstants.PcmAmplitude;
         for (var blockIndex = 0; blockIndex < blocks.Count; blockIndex++)
         {
-            var longHeader = blockIndex == 0
-                || blocks[blockIndex].Metadata.ContainsKey(MsxCasConstants.FileTypeMetadataKey);
-            PcmSampleFunctions.AppendSilence(
-                samples,
-                sampleRate,
-                longHeader ? MsxCasConstants.LongSilenceSeconds : MsxCasConstants.ShortSilenceSeconds);
+            var longHeader = blockIndex == 0 || blocks[blockIndex].Metadata.ContainsKey(MsxCasConstants.FileTypeMetadataKey);
+            PcmSampleFunctions.AppendSilence(samples, sampleRate, longHeader ? MsxCasConstants.LongSilenceSeconds : MsxCasConstants.ShortSilenceSeconds);
             FskSerialFunctions.AppendPcmCarrier(
                 samples,
                 ref level,
@@ -106,16 +87,7 @@ public sealed class MsxTapeEncoder : ISequentialMediaEncoder
                 MsxCasConstants.OneFrequency,
                 longHeader ? MsxCasConstants.LongCarrierSeconds : MsxCasConstants.ShortCarrierSeconds);
             foreach (var value in blocks[blockIndex].Data.Span)
-                FskSerialFunctions.AppendPcmFrame(
-                    samples,
-                    ref level,
-                    sampleRate,
-                    MsxCasConstants.StandardBaudRate,
-                    MsxCasConstants.ZeroFrequency,
-                    MsxCasConstants.OneFrequency,
-                    MsxCasConstants.DataBitsPerFrame,
-                    MsxCasConstants.StopBitsPerFrame,
-                    value);
+                FskSerialFunctions.AppendPcmFrame( samples, ref level, sampleRate, MsxCasConstants.StandardBaudRate, MsxCasConstants.ZeroFrequency, MsxCasConstants.OneFrequency, MsxCasConstants.DataBitsPerFrame, MsxCasConstants.StopBitsPerFrame, value);
         }
 
         var pcm = new byte[samples.Count * sizeof(short)];
@@ -142,13 +114,5 @@ public sealed class MsxTapeEncoder : ISequentialMediaEncoder
                 [MsxCasConstants.ReconstructionMetadataKey] = bool.TrueString
             });
         return new SequentialMediaImageRepresentation(pcm.Length, duration, [segment]);
-    }
-
-    private static bool TryReadSampleRate(IReadOnlyDictionary<string, string> parameters, out int sampleRate)
-    {
-        sampleRate = 0;
-        return parameters.TryGetValue("sampleRate", out var text)
-            && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out sampleRate)
-            && sampleRate >= 8000;
     }
 }

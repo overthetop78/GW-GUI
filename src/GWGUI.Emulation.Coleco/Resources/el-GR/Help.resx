@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Επιλέξτε αυτόματο συγχρονισμό ή το πρότυπο βίντεο.</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Επιλέξτε το μιμούμενο βίντεο τσιπ.</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Επιλέξτε την αναλογία διαστάσεων εικόνας. Η αυτόματη επιλογή χρησιμοποιεί την περιοχή του παιχνιδιού.</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>Επιλέξτε τα ορατά όρια οθόνης.</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>Αφαίρεση του ορίου των sprites ανά γραμμή οθόνης. Αυτό μπορεί να προκαλέσει γραφικά σφάλματα.</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>Να επιτρέπεται η συμπίεση των αντιθέτων κατευθύνσεων.</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>Ρυθμίστε την ευαισθησία του περιστροφικού ελεγκτή.</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>Επιλέξτε την παλέτα χρωμάτων.</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>Απόκρυψη του πάνω περιγράμματος της οθόνης.</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>Απόκρυψη του κάτω περιγράμματος οθόνης.</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>Απόκρυψη του αριστερού περιγράμματος οθόνης.</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Απόκρυψη του δεξιού περιγράμματος οθόνης.</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Απόκρυψη εικονοστοιχείων στις άκρες της εμφανιζόμενης εικόνας.</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Παράλειψε την καθυστέρηση της εκκίνησης.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>Κύκλωμα μνήμης της κασέτας. Διατηρήστε την αυτόματη ανίχνευση, εκτός αν η ROM αναγνωρίζεται λανθασμένα.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Τυπική: έως 32 KiB. MegaCart και Activision: διαφορετικά κυκλώματα εναλλαγής τραπεζών ROM. OCM: εναλλαγή τραπεζών και αποθήκευση EEPROM. Το Activision δηλώνει κύκλωμα, όχι τον εκδότη του παιχνιδιού. Λανθασμένος τύπος μπορεί να εμποδίσει την εκκίνηση ή να προκαλέσει σφάλματα.</value></data>
+</root>

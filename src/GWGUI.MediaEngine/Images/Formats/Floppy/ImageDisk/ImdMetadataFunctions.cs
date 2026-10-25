@@ -17,14 +17,7 @@ internal static class ImdMetadataFunctions
                 Mode = (byte)track.Mode,
                 track.Cylinder,
                 track.Head,
-                Sectors = track.Sectors.Select(sector => new
-                {
-                    sector.Cylinder,
-                    sector.Head,
-                    sector.Number,
-                    sector.Size,
-                    RecordType = (byte)sector.RecordType
-                })
+                Sectors = track.Sectors.Select(sector => new { sector.Cylinder, sector.Head, sector.Number, sector.Size, RecordType = (byte)sector.RecordType })
             })
         };
         return new Dictionary<string, string>(StringComparer.Ordinal)
@@ -33,9 +26,7 @@ internal static class ImdMetadataFunctions
         };
     }
 
-    public static ImdImage? Restore(
-        SectorImage image,
-        IReadOnlyDictionary<string, string> metadata)
+    public static ImdImage? Restore(SectorImage image, IReadOnlyDictionary<string, string> metadata)
     {
         ArgumentNullException.ThrowIfNull(image);
         ArgumentNullException.ThrowIfNull(metadata);
@@ -72,21 +63,11 @@ internal static class ImdMetadataFunctions
                         data = new byte[size];
                     }
 
-                    sectors.Add(new ImdSector(
-                        sectorElement.GetProperty("Cylinder").GetByte(),
-                        sectorElement.GetProperty("Head").GetByte(),
-                        sectorElement.GetProperty("Number").GetByte(),
-                        size,
-                        recordType,
-                        data));
+                    sectors.Add(new ImdSector(sectorElement.GetProperty("Cylinder").GetByte(), sectorElement.GetProperty("Head").GetByte(), sectorElement.GetProperty("Number").GetByte(), size, recordType, data));
                     logicalBlock++;
                 }
 
-                tracks.Add(new ImdTrack(
-                    mode,
-                    trackElement.GetProperty("Cylinder").GetByte(),
-                    trackElement.GetProperty("Head").GetByte(),
-                    sectors));
+                tracks.Add(new ImdTrack(mode, trackElement.GetProperty("Cylinder").GetByte(), trackElement.GetProperty("Head").GetByte(), sectors));
             }
 
             if (logicalBlock != image.BlockCount)

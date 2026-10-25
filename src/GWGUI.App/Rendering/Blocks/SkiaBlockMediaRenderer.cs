@@ -70,13 +70,7 @@ public sealed class SkiaBlockMediaRenderer
         return model.Ranges.FirstOrDefault(range => address >= range.Start && address < range.Start + range.Length);
     }
 
-    private static void RenderCartridge(
-        SKCanvas canvas,
-        BlockMediaRenderModel model,
-        BlockMediaRange? selectedRange,
-        int width,
-        int height,
-        float zoom)
+    private static void RenderCartridge(SKCanvas canvas, BlockMediaRenderModel model, BlockMediaRange? selectedRange, int width, int height, float zoom)
     {
         var body = CartridgeBounds(width, height, zoom);
         using (var bodyPaint = new SKPaint
@@ -85,8 +79,7 @@ public sealed class SkiaBlockMediaRenderer
                    IsAntialias = true,
                    Style = SKPaintStyle.Fill
                })
-            canvas.DrawRoundRect(body, BlockMediaRenderConstants.CartridgeCornerRadius,
-                BlockMediaRenderConstants.CartridgeCornerRadius, bodyPaint);
+            canvas.DrawRoundRect(body, BlockMediaRenderConstants.CartridgeCornerRadius, BlockMediaRenderConstants.CartridgeCornerRadius, bodyPaint);
         using (var outline = new SKPaint
                {
                    Color = BlockMediaRenderConstants.CartridgeOutlineColor,
@@ -94,8 +87,7 @@ public sealed class SkiaBlockMediaRenderer
                    Style = SKPaintStyle.Stroke,
                    StrokeWidth = BlockMediaRenderConstants.CartridgeOutlineWidth
                })
-            canvas.DrawRoundRect(body, BlockMediaRenderConstants.CartridgeCornerRadius,
-                BlockMediaRenderConstants.CartridgeCornerRadius, outline);
+            canvas.DrawRoundRect(body, BlockMediaRenderConstants.CartridgeCornerRadius, BlockMediaRenderConstants.CartridgeCornerRadius, outline);
 
         var panel = CartridgePanel(body);
         using (var panelPaint = new SKPaint
@@ -104,8 +96,7 @@ public sealed class SkiaBlockMediaRenderer
                    IsAntialias = true,
                    Style = SKPaintStyle.Fill
                })
-            canvas.DrawRoundRect(panel, BlockMediaRenderConstants.CartridgeCellRadius,
-                BlockMediaRenderConstants.CartridgeCellRadius, panelPaint);
+            canvas.DrawRoundRect(panel, BlockMediaRenderConstants.CartridgeCellRadius, BlockMediaRenderConstants.CartridgeCellRadius, panelPaint);
 
         DrawCartridgeConnector(canvas, body);
 
@@ -115,8 +106,7 @@ public sealed class SkiaBlockMediaRenderer
             var range = ranges[index];
             var cell = CartridgeCell(body, ranges.Count, index);
             using var fill = new SKPaint { Color = ColorFor(range.State), IsAntialias = true, Style = SKPaintStyle.Fill };
-            canvas.DrawRoundRect(cell, BlockMediaRenderConstants.CartridgeCellRadius,
-                BlockMediaRenderConstants.CartridgeCellRadius, fill);
+            canvas.DrawRoundRect(cell, BlockMediaRenderConstants.CartridgeCellRadius, BlockMediaRenderConstants.CartridgeCellRadius, fill);
             if (!string.IsNullOrWhiteSpace(range.Label))
             {
                 using var text = new SKPaint
@@ -125,13 +115,7 @@ public sealed class SkiaBlockMediaRenderer
                     IsAntialias = true
                 };
                 using var font = new SKFont { Size = Math.Clamp(cell.Height * .28f, 9f, 18f) };
-                canvas.DrawText(
-                    range.Label,
-                    cell.MidX,
-                    cell.MidY - (font.Metrics.Ascent + font.Metrics.Descent) / 2,
-                    SKTextAlign.Center,
-                    font,
-                    text);
+                canvas.DrawText(range.Label, cell.MidX, cell.MidY - (font.Metrics.Ascent + font.Metrics.Descent) / 2, SKTextAlign.Center, font, text);
             }
             if (!ReferenceEquals(range, selectedRange)) continue;
             using var selection = new SKPaint
@@ -141,17 +125,11 @@ public sealed class SkiaBlockMediaRenderer
                 Style = SKPaintStyle.Stroke,
                 StrokeWidth = BlockMediaRenderConstants.SelectionStrokeWidth
             };
-            canvas.DrawRoundRect(cell, BlockMediaRenderConstants.CartridgeCellRadius,
-                BlockMediaRenderConstants.CartridgeCellRadius, selection);
+            canvas.DrawRoundRect(cell, BlockMediaRenderConstants.CartridgeCellRadius, BlockMediaRenderConstants.CartridgeCellRadius, selection);
         }
     }
 
-    private static BlockMediaRange? HitTestCartridge(
-        BlockMediaRenderModel model,
-        int width,
-        int height,
-        SKPoint point,
-        float zoom)
+    private static BlockMediaRange? HitTestCartridge(BlockMediaRenderModel model, int width, int height, SKPoint point, float zoom)
     {
         var ranges = Aggregate(model.Ranges);
         var body = CartridgeBounds(width, height, zoom);
@@ -173,20 +151,12 @@ public sealed class SkiaBlockMediaRenderer
 
     private static SKRect CartridgePanel(SKRect body)
     {
-        return new SKRect(
-            body.Left + body.Width * .07f,
-            body.Top + body.Height * .08f,
-            body.Right - body.Width * .07f,
-            body.Bottom - body.Height * .20f);
+        return new SKRect(body.Left + body.Width * .07f, body.Top + body.Height * .08f, body.Right - body.Width * .07f, body.Bottom - body.Height * .20f);
     }
 
     private static void DrawCartridgeConnector(SKCanvas canvas, SKRect body)
     {
-        var connector = new SKRect(
-            body.Left + body.Width * .18f,
-            body.Bottom - body.Height * .12f,
-            body.Right - body.Width * .18f,
-            body.Bottom - body.Height * .035f);
+        var connector = new SKRect(body.Left + body.Width * .18f, body.Bottom - body.Height * .12f, body.Right - body.Width * .18f, body.Bottom - body.Height * .035f);
         using var slotPaint = new SKPaint
         {
             Color = BlockMediaRenderConstants.CartridgePanelColor,
@@ -221,11 +191,7 @@ public sealed class SkiaBlockMediaRenderer
         var column = index % columns;
         var row = index / columns;
         var gap = Math.Min(BlockMediaRenderConstants.CartridgeCellGap, Math.Min(cellWidth, cellHeight) * .18f);
-        return new SKRect(
-            content.Left + column * cellWidth + gap,
-            content.Top + row * cellHeight + gap,
-            content.Left + (column + 1) * cellWidth - gap,
-            content.Top + (row + 1) * cellHeight - gap);
+        return new SKRect(content.Left + column * cellWidth + gap, content.Top + row * cellHeight + gap, content.Left + (column + 1) * cellWidth - gap, content.Top + (row + 1) * cellHeight - gap);
     }
 
     private static IReadOnlyList<BlockMediaRange> Aggregate(IReadOnlyList<BlockMediaRange> ranges)

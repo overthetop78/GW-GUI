@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Help.AyStereoSeparation" xml:space="preserve"><value>Επιλέξτε τη σειρά του AY κανάλια ήχου σε στερεοφωνική έξοδο.</value></data>
+  <data name="Emulation.Sinclair.Help.AyVolume" xml:space="preserve"><value>Ρυθμίστε τον όγκο του AY - Το τσιπ ήχου.</value></data>
+  <data name="Emulation.Sinclair.Help.BeeperVolume" xml:space="preserve"><value>Ρυθμίστε την ένταση της ενσωματωμένης γεννήτριας ήχου.</value></data>
+  <data name="Emulation.Sinclair.Help.BorderSize" xml:space="preserve"><value>Επιλέξτε πόσο από το όριο οθόνης εμφανίζεται.</value></data>
+  <data name="Emulation.Sinclair.Help.Chroma81" xml:space="preserve"><value>Εξομοίωση της επέκτασης χρωμάτων Chroma 81.</value></data>
+  <data name="Emulation.Sinclair.Help.EmulationSpeed" xml:space="preserve"><value>Επιλέξτε την ταχύτητα εξομοίωσης ως ποσοστό της αρχικής ταχύτητας.</value></data>
+  <data name="Emulation.Sinclair.Help.FullerBox" xml:space="preserve"><value>Προσομοίωση του ήχου Fuller Box και επέκταση joystick.</value></data>
+  <data name="Emulation.Sinclair.Help.HighResolution" xml:space="preserve"><value>Επιλέξτε μια επέκταση γραφικών υψηλής ανάλυσης.</value></data>
+  <data name="Emulation.Sinclair.Help.Issue2Keyboard" xml:space="preserve"><value>Προσομοίωση της συμπεριφοράς του πληκτρολογίου του υλικού Τεύχος 2.</value></data>
+  <data name="Emulation.Sinclair.Help.MemoryBankContent" xml:space="preserve"><value>Επιλέξτε το περιεχόμενο της τράπεζας μνήμης από 8 έως 16 KiB.</value></data>
+  <data name="Emulation.Sinclair.Help.MouseSwapButtons" xml:space="preserve"><value>Εναλλαγή των αριστερών και δεξιών κουμπιών του μιμούμενου ποντικιού.</value></data>
+  <data name="Emulation.Sinclair.Help.Palette" xml:space="preserve"><value>Επιλέξτε την παλέτα που χρησιμοποιείται για τα χρώματα που εμφανίζονται.</value></data>
+  <data name="Emulation.Sinclair.Help.SoundHardware" xml:space="preserve"><value>Επιλέξτε το υλικό ήχου που θα χρησιμοποιηθεί.</value></data>
+  <data name="Emulation.Sinclair.Help.SpeakerType" xml:space="preserve"><value>Επιλέξτε το φίλτρο που χρησιμοποιείται για το μιμούμενο ηχείο.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeAutoLoad" xml:space="preserve"><value>Ξεκινήστε να φορτώνετε μια κασέτα αυτόματα.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeFastLoad" xml:space="preserve"><value>Φόρτωση των δεδομένων κασέτας γρηγορότερα.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeLoadSound" xml:space="preserve"><value>Παίξτε τον ήχο που παράγεται κατά τη φόρτωση των δεδομένων κασέτας.</value></data>
+  <data name="Emulation.Sinclair.Help.TurboSound" xml:space="preserve"><value>Προσομοίωση της επέκτασης ήχου TurboSound με δύο AY Πατατάκια.</value></data>
+  <data name="Emulation.Sinclair.Help.USpeech" xml:space="preserve"><value>Εξομοίωση της επέκτασης ομιλίας Currah uSpeech. Και τα δύο απαιτούμενα αρχεία firmware πρέπει να είναι παρόντα.</value></data>
+  <data name="Emulation.Sinclair.Help.VideoPreset" xml:space="preserve"><value>Επιλέξτε την εμφάνιση του εικονιζόμενου σήματος βίντεο.</value></data>
+  <data name="Emulation.Sinclair.Help.Melodik" xml:space="preserve"><value>Εξομοίωση του MELODIK επέκταση ήχου.</value></data>
+</root>

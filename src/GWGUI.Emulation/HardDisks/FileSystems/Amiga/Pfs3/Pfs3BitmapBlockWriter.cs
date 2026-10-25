@@ -13,8 +13,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             var blockBytes = new byte[g.blocksize * blocks];
             if (bitmapBlock.BlockBytes != null)
             {
-                Array.Copy(bitmapBlock.BlockBytes, 0, blockBytes, 0,
-                    Math.Min(bitmapBlock.BlockBytes.Length, g.blocksize));
+                Array.Copy(bitmapBlock.BlockBytes, 0, blockBytes, 0, Math.Min(bitmapBlock.BlockBytes.Length, g.blocksize));
             }
 
             BigEndianConverter.ConvertUInt16ToBytes(bitmapBlock.id, blockBytes, 0);

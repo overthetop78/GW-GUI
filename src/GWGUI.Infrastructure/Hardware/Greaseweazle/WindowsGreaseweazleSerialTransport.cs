@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using Microsoft.Win32.SafeHandles;
@@ -13,23 +14,13 @@ public sealed class WindowsGreaseweazleSerialTransport : IGreaseweazleSerialTran
 
     public bool IsOpen => _handle is { IsClosed: false, IsInvalid: false };
 
-    public ValueTask OpenAsync(
-        string portName,
-        int baudRate,
-        CancellationToken cancellationToken = default)
+    public ValueTask OpenAsync(string portName, int baudRate, CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(portName);
         cancellationToken.ThrowIfCancellationRequested();
         if (IsOpen) throw new InvalidOperationException("The serial transport is already open.");
 
-        _handle = CreateFile(
-            $@"\.\{portName}",
-            GenericRead | GenericWrite,
-            0,
-            IntPtr.Zero,
-            OpenExisting,
-            FileFlagOverlapped,
-            IntPtr.Zero);
+        _handle = CreateFile($@"\\.\{portName}", GenericRead | GenericWrite, 0, IntPtr.Zero, OpenExisting, FileFlagOverlapped, IntPtr.Zero);
         if (_handle.IsInvalid)
         {
             var error = Marshal.GetLastWin32Error();
@@ -41,7 +32,14 @@ public sealed class WindowsGreaseweazleSerialTransport : IGreaseweazleSerialTran
         try
         {
             Configure(baudRate);
-            _stream = new FileStream(_handle, FileAccess.ReadWrite, 4096, isAsync: true);
+            var timeouts = new CommunicationTimeouts
+            {
+                ReadInterval = uint.MaxValue,
+                ReadMultiplier = uint.MaxValue,
+                ReadConstant = 1000
+            };
+            if (!SetCommTimeouts(_handle, ref timeouts)) throw new Win32Exception(Marshal.GetLastWin32Error());
+            _stream = new FileStream(_handle, FileAccess.ReadWrite, 1, isAsync: true);
             return ValueTask.CompletedTask;
         }
         catch
@@ -68,29 +66,30 @@ public sealed class WindowsGreaseweazleSerialTransport : IGreaseweazleSerialTran
         return ValueTask.CompletedTask;
     }
 
-    public async ValueTask WriteAsync(
-        ReadOnlyMemory<byte> buffer,
-        CancellationToken cancellationToken = default)
+    public async ValueTask WriteAsync(ReadOnlyMemory<byte> buffer, CancellationToken cancellationToken = default)
     {
         EnsureOpen();
         await _stream!.WriteAsync(buffer, cancellationToken);
         await _stream.FlushAsync(cancellationToken);
     }
 
-    public async ValueTask ReadExactlyAsync(
-        Memory<byte> buffer,
-        CancellationToken cancellationToken = default)
+    public async ValueTask ReadExactlyAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)
     {
         EnsureOpen();
-        await _stream!.ReadExactlyAsync(buffer, cancellationToken);
+        while (!buffer.IsEmpty)
+            buffer = buffer[(await ReadAsync(buffer, cancellationToken))..];
     }
 
-    public async ValueTask<int> ReadAsync(
-        Memory<byte> buffer,
-        CancellationToken cancellationToken = default)
+    public async ValueTask<int> ReadAsync(Memory<byte> buffer, CancellationToken cancellationToken = default)
     {
         EnsureOpen();
-        return await _stream!.ReadAsync(buffer, cancellationToken);
+        if (buffer.IsEmpty) return 0;
+        while (true)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            var count = await _stream!.ReadAsync(buffer, cancellationToken);
+            if (count > 0) return count;
+        }
     }
 
     public ValueTask CloseAsync(CancellationToken cancellationToken = default)
@@ -125,6 +124,16 @@ public sealed class WindowsGreaseweazleSerialTransport : IGreaseweazleSerialTran
     }
 
     [StructLayout(LayoutKind.Sequential)]
+    private struct CommunicationTimeouts
+    {
+        public uint ReadInterval;
+        public uint ReadMultiplier;
+        public uint ReadConstant;
+        public uint WriteMultiplier;
+        public uint WriteConstant;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
     private struct DeviceControlBlock
     {
         public uint Length;
@@ -155,20 +164,16 @@ public sealed class WindowsGreaseweazleSerialTransport : IGreaseweazleSerialTran
     private const uint BinaryMode = 0x0001;
 
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-    private static extern SafeFileHandle CreateFile(
-        string fileName,
-        uint desiredAccess,
-        uint shareMode,
-        IntPtr securityAttributes,
-        uint creationDisposition,
-        uint flagsAndAttributes,
-        IntPtr templateFile);
+    private static extern SafeFileHandle CreateFile(string fileName, uint desiredAccess, uint shareMode, IntPtr securityAttributes, uint creationDisposition, uint flagsAndAttributes, IntPtr templateFile);
 
     [DllImport("kernel32.dll", SetLastError = true)]
     private static extern bool GetCommState(SafeFileHandle file, ref DeviceControlBlock state);
 
     [DllImport("kernel32.dll", SetLastError = true)]
     private static extern bool SetCommState(SafeFileHandle file, ref DeviceControlBlock state);
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    private static extern bool SetCommTimeouts(SafeFileHandle file, ref CommunicationTimeouts timeouts);
 
     [DllImport("kernel32.dll", SetLastError = true)]
     private static extern bool PurgeComm(SafeFileHandle file, uint flags);

@@ -20,10 +20,7 @@ public sealed class MediaRepresentationConverterRegistry
 
     public IReadOnlyList<IMediaRepresentationConverter> Converters => converters;
 
-    public IMediaRepresentationConverter? Resolve(
-        MediaImageDocument source,
-        string targetFormatId,
-        MediaRepresentationKind targetRepresentationKind)
+    public IMediaRepresentationConverter? Resolve(MediaImageDocument source, string targetFormatId, MediaRepresentationKind targetRepresentationKind)
     {
         ArgumentNullException.ThrowIfNull(source);
         ArgumentException.ThrowIfNullOrWhiteSpace(targetFormatId);

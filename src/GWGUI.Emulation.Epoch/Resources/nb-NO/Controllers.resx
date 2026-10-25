@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft" xml:space="preserve"><value>Venstre side knapp</value></data>
+  <data name="Emulation.Epoch.Input.FireRight" xml:space="preserve"><value>Høyre side knapp</value></data>
+  <data name="Emulation.Epoch.Input.Power" xml:space="preserve"><value>Strømknapp</value></data>
+  <data name="Emulation.Epoch.Input.Reset" xml:space="preserve"><value>Tilbakestill knapp</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft" xml:space="preserve"><value>Flytt spaken til venstre</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight" xml:space="preserve"><value>Flytt spaken til høyre</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease" xml:space="preserve"><value>Velg neste spillkurs</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease" xml:space="preserve"><value>Velg forrige spillkurs</value></data>
+  <data name="Emulation.Epoch.Input.GunFire" xml:space="preserve"><value>Lyspistol utløser</value></data>
+  <data name="Emulation.Epoch.Input.GunReload" xml:space="preserve"><value>Lett pistol reload</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease" xml:space="preserve"><value>Paddle 1: vri mot klokken</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase" xml:space="preserve"><value>Paddle 1: vri med klokka</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease" xml:space="preserve"><value>Paddle 2: vri mot klokken</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase" xml:space="preserve"><value>Paddle 2: vri med klokka</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease" xml:space="preserve"><value>Paddle 3: vri mot klokken</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase" xml:space="preserve"><value>Paddle 3: vri med klokka</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease" xml:space="preserve"><value>Paddle 4: vri mot klokken</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase" xml:space="preserve"><value>Paddle 4: vri med klokka</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease" xml:space="preserve"><value>Ta våpenet til venstre.</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease" xml:space="preserve"><value>Ta våpenet rett.</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease" xml:space="preserve"><value>Ta våpenet oppover.</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease" xml:space="preserve"><value>Ta våpenet nedover.</value></data>
+</root>

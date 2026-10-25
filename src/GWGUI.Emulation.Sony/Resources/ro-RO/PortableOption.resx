@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>Boot rapid</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Sare BIOS Startup ecran și începe jocul direct. Dezactivează acest lucru pentru a deschide setările consolei sau managerul cardului de memorie.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Automat</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU Nucleu</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Memorie rapidă</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Activați accesul mai rapid la memorie. Această opțiune poate face unele jocuri instabile.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Ignoră accesele de memorie proaste</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>Temporizarea accesului la stocare</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>Calculator gazdă</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>Întârzieri la citirea discurilor UMD</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>Sincronizare cu ceasul de timp real</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>Sincronizează emularea cu ceasul de timp real pentru a reduce latența intrării. Aceasta poate reduce performanța.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>Viteza blocată CPU</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>Cache Full ISO în RAM</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>Suport pentru inselaciuni interne</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Label"><value>Limbajul jocului</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Help"><value>"Automatica" va folosi limba frontend.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>Chineză tradițională</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>Chineză simplificată</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>Model PSP</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>Retrimiterea software-ului</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Utilizați randarea software pentru o precizie mai mare, cu cerințe de procesare mai ridicate.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>Retrimiterea rezoluției</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>Selectaţi rezoluţia de redare internă.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA Antialiasing</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Aplicați netezirea marginilor MSAA cu Vulkan.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>Recoltă până la 16x9</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>Decupați partea de sus și de jos a imaginii pentru a obține un format 16:9.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>Frameskip</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Label"><value>Tip frameskip</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.0"><value>Număr de cadre video</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>Procent din rata cadrelor video</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>Auto Frameskip</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>Returnează cadrele duplicate către 60 Hz</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>Dublează cadrele video pentru mișcări mai fluide în jocurile cu o rată scăzută de cadre.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Detectarea modificărilor ratei cadrelor video</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Raportați aplicației modificările ratei cadrelor video a jocului.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Stocarea comenzilor grafice în memoria tampon</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>Reduceți stocarea comenzilor grafice în memoria tampon pentru a micșora întârzierea de intrare. Acest lucru poate reduce performanța. Numai OpenGL și Vulkan.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Fără memorie tampon grafică suplimentară</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Stocarea a cel mult unui cadru video în memoria tampon</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Buton de confirmare</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Compensarea domeniului circular și pătrat al manetei analogice</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Analog Deadzone</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Aplicați o zonă moartă suplimentară manetei analogice după procesarea intrărilor de către aplicație.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Scala axei analogice</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Help"><value>Aplicați un reglaj suplimentar al sensibilității manetei analogice după procesarea intrărilor de către aplicație.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Label"><value>Sari peste efectele bufferului</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Omiteți efectele memoriei tampon de cadre pentru a îmbunătăți performanța. Unele jocuri pot rămâne fără imagine.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Săriți peste replicile GPU</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Omiteți copierea datelor grafice de la GPU la CPU. Unele jocuri au nevoie de aceste copii pentru afișarea corectă.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Stocare amânată a texturilor în cache (accelerare)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Mai repede, dar poate provoca probleme de text în câteva jocuri.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>calitatea curbelor spline/bezier</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Folosit doar de unele jocuri, controlează netezimea curbelor.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Label"><value>Rezoluţia mai mică a efectelor</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Help"><value>Reduceți rezoluția unor efecte vizuale pentru a evita erorile de redare.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Value.2"><value>Echilibrat</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_gpu_hardware_transform.Label"><value>Transformare hardware</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Label"><value>Software Skinning</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Help"><value>Procesați și grupați pe CPU operațiile de desenare a modelelor 3D animate. Acest lucru îmbunătățește performanța în majoritatea jocurilor.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Label"><value>Distilarea hardware-ului</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Help"><value>Utilizați GPU pentru a reda curbe netede.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Label"><value>Tip de extensie textură</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Value.3"><value>Hibrid + Bicubic</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Label"><value>Nivelul de actualizare a texturii</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Help"><value>Mărirea texturilor crește utilizarea CPU. Unele texturi sunt mărite ulterior pentru a evita sacadările.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Label"><value>Abatere textură</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Help"><value>Reduceți benzile de culoare vizibile în texturile mărite.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_replacement.Label"><value>Înlocuirea texturii</value></data>
+  </root>

@@ -1,0 +1,40 @@
+using System.IO;
+using System.Text.Json;
+
+namespace GWGUI.Emulation.Interfaces;
+
+/// <summary>Format de sauvegarde unique et empreintes partagées par les modules.</summary>
+public interface IEmulationStateFiles
+{
+    /// <summary>Écrit atomiquement un état dont l’en-tête complet et l’empreinte sont valides.</summary>
+    void WriteState<TModel, TCore>(string path, EmulationSavedStateHeader<TModel, TCore> header, ReadOnlySpan<byte> state);
+    /// <summary>Lit le seul format commun et vérifie l’intégrité ; le module fournit son erreur de format.</summary>
+    (EmulationSavedStateHeader<TModel, TCore> Header, byte[] State) ReadState<TModel, TCore>(string path, Func<Exception> invalid);
+    /// <summary>Vérifie qu’un en-tête correspond au modèle, au cœur et aux contenus de la session courante.</summary>
+    /// <param name="header">En-tête lu et contrôlé par ReadState.</param>
+    /// <param name="model">Identité du modèle attendu.</param>
+    /// <param name="emulator">Identité du backend attendu.</param>
+    /// <param name="core">Cœur emprunté fournissant son nom, sa version et son empreinte.</param>
+    /// <param name="configurationHash">Calcul de l’empreinte de configuration, appelé lorsque les identités préalables correspondent.</param>
+    /// <param name="contentHash">Calcul de l’empreinte des contenus courants.</param>
+    /// <returns>True si le format, les identités et les empreintes correspondent selon les règles du format unique.</returns>
+    bool IsCompatible<TModel, TCore, TConfiguration, TOption>(EmulationSavedStateHeader<TModel, TCore> header,
+        TModel model, TCore emulator, IEmulationCoreRuntime<TConfiguration, TOption> core, Func<string> configurationHash, Func<string> contentHash);
+    /// <summary>Calcule une empreinte JSON avec clés triées et ordre des tableaux conservé.</summary>
+    string HashDocument<T>(T value, JsonSerializerOptions? options = null);
+    /// <summary>Trie les associations par clé ordinale avant leur projection dans une empreinte.</summary>
+    /// <param name="mappings">Associations empruntées ; null représente une collection vide.</param>
+    /// <returns>Énumération ordonnée sans modifier la collection reçue ni normaliser ses valeurs.</returns>
+    /// <remarks>Le tri reste différé : une modification de la collection avant son énumération est observable.
+    /// L’appelant matérialise le résultat lorsqu’il veut conserver un instantané pour son empreinte.</remarks>
+    IOrderedEnumerable<KeyValuePair<string, TValue>> OrderInputMappings<TValue>(IReadOnlyDictionary<string, TValue>? mappings);
+    /// <summary>Calcule le SHA-256 des octets empruntés.</summary>
+    string HashBytes(ReadOnlySpan<byte> bytes);
+    /// <summary>Calcule le SHA-256 des octets restant dans le flux emprunté.</summary>
+    /// <param name="stream">Flux lisible, consommé depuis sa position courante jusqu’à sa fin.</param>
+    /// <returns>Empreinte hexadécimale en majuscules, identique à HashBytes sur ces mêmes octets.</returns>
+    /// <remarks>Le flux reste ouvert ; sa position finale et sa libération appartiennent à son propriétaire.</remarks>
+    string HashStream(Stream stream);
+    /// <summary>Calcule le SHA-256 d’un fichier ou dossier selon la représentation du module.</summary>
+    string HashPath(string path, string pattern, char separator, int bufferSize, Func<Exception> missing);
+}

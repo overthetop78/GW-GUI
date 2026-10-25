@@ -7,8 +7,7 @@ public enum MinixStorageOrder { LittleEndian, BigEndian16, BigEndian32, BigEndia
 /// <summary>Empty Minix v1/v2/v3 volumes with explicit byte/bitmap order and 1 KiB blocks and zones.</summary>
 public static class MinixVolumeFormatter
 {
-    public static void Validate(long capacity,int version,int inodes=256,
-        MinixStorageOrder order=MinixStorageOrder.LittleEndian,int nameLength=0)
+    public static void Validate(long capacity,int version,int inodes=256, MinixStorageOrder order=MinixStorageOrder.LittleEndian,int nameLength=0)
     {
         if(version is <1 or >3 || inodes is <16 or >65535)
             throw new ArgumentOutOfRangeException(nameof(version));
@@ -22,8 +21,7 @@ public static class MinixVolumeFormatter
             throw new ArgumentException("The metadata leaves no addressable data zone.");
     }
 
-    public static void Format(Stream volume,int version,int inodes=256,
-        MinixStorageOrder order=MinixStorageOrder.LittleEndian,int nameLength=0)
+    public static void Format(Stream volume,int version,int inodes=256, MinixStorageOrder order=MinixStorageOrder.LittleEndian,int nameLength=0)
     {
         Validate(volume.Length,version,inodes,order,nameLength);
         nameLength = nameLength == 0 ? (version == 3 ? 60 : 30) : nameLength;

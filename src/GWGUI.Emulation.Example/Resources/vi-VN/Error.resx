@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound"><value>Không tìm thấy môi trường được cấu hình.</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported"><value>Máy không hỗ trợ phương tiện được chọn.</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound"><value>Không tìm thấy lõi mô yêu cầu.</value></data>
+  <data name="Emulation.Example.Error.CoreRejected"><value>Không thể tải lõi mô phỏng đã chọn.</value></data>
+  <data name="Emulation.Example.Error.Details"><value>Chi tiết: {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid"><value>Một phần mềm vững chắc không hợp lệ hoặc không thích hợp.</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing"><value>Thiếu một phần cứng cần thiết.</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing"><value>Đường dẫn tới chương trình máy phát điện không sẵn sàng.</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure"><value>Liên lạc với vật chủ đã thất bại.</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid"><value>Một tùy chọn có giá trị không hợp lệ.</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible"><value>Tình trạng đã lưu không tương thích với máy hiện thời.</value></data>
+  <data name="Emulation.Example.Error.StateInvalid"><value>Tình trạng được lưu không hợp lệ.</value></data>
+  <data name="Emulation.Example.Error.Unexpected"><value>Một lỗi mô phỏng bất ngờ xảy ra.</value></data>
+</root>

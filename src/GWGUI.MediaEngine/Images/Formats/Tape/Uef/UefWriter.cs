@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Images.Reading.Blocks;
 using System.Buffers.Binary;
 using System.Collections.Frozen;
 using System.Globalization;
@@ -15,10 +16,8 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.Uef;
 /// <summary>Writes retained UEF chunks directly or through explicitly requested gzip compression.</summary>
 public sealed class UefWriter : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { TapeImageFormatIds.Uef }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { TapeImageFormatIds.Uef }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
     public UefWriter(IAtomicImageFileWriter? files = null) => this.files = files ?? new AtomicImageFileWriter();
@@ -35,11 +34,7 @@ public sealed class UefWriter : IMediaImageWriter
         && TryGetProfile(document, out _)
         && TryGetChunks(document, out _);
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!CanWrite(document, targetFormatId, extension)
@@ -63,11 +58,7 @@ public sealed class UefWriter : IMediaImageWriter
         return [outputPath];
     }
 
-    private static async Task WriteLogicalAsync(
-        Stream output,
-        UefProfile profile,
-        IReadOnlyList<UefChunk> chunks,
-        CancellationToken cancellationToken)
+    private static async Task WriteLogicalAsync(Stream output, UefProfile profile, IReadOnlyList<UefChunk> chunks, CancellationToken cancellationToken)
     {
         var header = new byte[UefConstants.HeaderSize];
         System.Text.Encoding.ASCII.GetBytes(UefConstants.Signature, header);
@@ -80,7 +71,7 @@ public sealed class UefWriter : IMediaImageWriter
             BinaryPrimitives.WriteUInt16LittleEndian(chunkHeader, chunk.Id);
             BinaryPrimitives.WriteUInt32LittleEndian(chunkHeader.AsSpan(2), checked((uint)(chunk.Range?.Length ?? 0)));
             await output.WriteAsync(chunkHeader, cancellationToken).ConfigureAwait(false);
-            if (chunk.Range is not null) await CopyAsync(chunk.Range, output, cancellationToken).ConfigureAwait(false);
+            if (chunk.Range is not null) await BlockMediaDataReader.CopyToAsync(chunk.Range, output, cancellationToken).ConfigureAwait(false);
         }
     }
 
@@ -126,22 +117,6 @@ public sealed class UefWriter : IMediaImageWriter
         }
         chunks = selected;
         return true;
-    }
-
-    private static async Task CopyAsync(MediaDataRange range, Stream output, CancellationToken cancellationToken)
-    {
-        var buffer = new byte[64 * 1024];
-        var completed = 0L;
-        while (completed < range.Length)
-        {
-            var count = (int)Math.Min(buffer.Length, range.Length - completed);
-            await range.Source!.ReadExactlyAsync(
-                range.SourceOffset + completed,
-                buffer.AsMemory(0, count),
-                cancellationToken).ConfigureAwait(false);
-            await output.WriteAsync(buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
-            completed += count;
-        }
     }
 
     private readonly record struct UefProfile(bool Gzip, byte MajorVersion, byte MinorVersion);

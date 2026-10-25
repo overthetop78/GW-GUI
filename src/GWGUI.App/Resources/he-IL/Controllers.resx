@@ -94,7 +94,6 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>חיכוך</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>מרסן</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>אינרציה</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>מוט היגוי</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>בקר רב־צירי</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>שימוש HID</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>צירים</value></data>

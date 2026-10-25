@@ -25,10 +25,7 @@ internal sealed class ProfileOptionsState
         _ => throw new ArgumentOutOfRangeException(nameof(operation))
     };
 
-    public bool ContainsName(ProfileOptionRow row, string name) =>
-        For(row.Operation).Any(item =>
-            item.Id != row.Id &&
-            string.Equals(item.Name, name, StringComparison.CurrentCultureIgnoreCase));
+    public bool ContainsName(ProfileOptionRow row, string name) => For(row.Operation).Any(item => item.Id != row.Id && string.Equals(item.Name, name, StringComparison.CurrentCultureIgnoreCase));
 
     public void Rename(ProfileOptionRow row, string name)
     {
@@ -40,8 +37,7 @@ internal sealed class ProfileOptionsState
     public void ApplyTo(AppSettings settings)
     {
         var retained = Read.Concat(Write).Concat(Convert).ToDictionary(item => item.Id);
-        settings.Profiles = settings.Profiles
-            .Where(item => retained.ContainsKey(item.Id))
+        settings.Profiles = settings.Profiles.Where(item => retained.ContainsKey(item.Id))
             .Select(item =>
             {
                 item.Name = retained[item.Id].Name;

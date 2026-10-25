@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>リクエストされた位置は、このファイルシステムオブジェクトでは無効です。</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>割り当てノードの動作が失敗しました。</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>アロケーションノードのビットマップインデックスブロック {0}/{1} を読み取れませんでした。</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>駆動ヘッドは、要求されたシリンダー()では使用できません。{0})。読書の前にドライブを再較正して下さい。</value></data>
 </root>

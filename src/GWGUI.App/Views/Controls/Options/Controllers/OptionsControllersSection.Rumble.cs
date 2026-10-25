@@ -87,9 +87,7 @@ public partial class OptionsControllersSection
     private void UpdateRumbleControls()
     {
         var motors = _selectedDevice?.RumbleMotors ?? GameInputRumbleMotors.None;
-        RumblePanel.Visibility = motors == GameInputRumbleMotors.None
-            ? Visibility.Collapsed
-            : Visibility.Visible;
+        RumblePanel.Visibility = motors == GameInputRumbleMotors.None ? Visibility.Collapsed : Visibility.Visible;
         var enabled = !_testingRumble;
         LowFrequencyRumbleButton.IsEnabled = enabled && motors.HasFlag(GameInputRumbleMotors.LowFrequency);
         HighFrequencyRumbleButton.IsEnabled = enabled && motors.HasFlag(GameInputRumbleMotors.HighFrequency);

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Model.NeoGeoAes" xml:space="preserve"><value>Neo Geo AES</value></data>
+  <data name="Emulation.Snk.Model.NeoGeoMvs" xml:space="preserve"><value>Neo Geo MVS</value></data>
+  <data name="Emulation.Snk.Model.NeoGeoPocket" xml:space="preserve"><value>Neo Geo Pocket</value></data>
+  <data name="Emulation.Snk.Model.NeoGeoPocketColor" xml:space="preserve"><value>Neo Geo Pocket Color</value></data>
+  <data name="Emulation.Snk.Model.NeoGeoCd" xml:space="preserve"><value>Neo Geo CD</value></data>
+  <data name="Emulation.Snk.Model.NeoGeoCdz" xml:space="preserve"><value>Neo Geo CDZ</value></data>
+</root>

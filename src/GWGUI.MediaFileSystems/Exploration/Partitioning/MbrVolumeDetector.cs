@@ -1,9 +1,9 @@
-using MediaVolumeOrigins = global::GWGUI.MediaFileSystems.Constants.MediaVolumeOrigins;
-using PartitionTableIds = global::GWGUI.MediaFileSystems.Constants.PartitionTableIds;
-using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
-using MediaVolumeDetectionResult = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDetectionResult;
-using IMediaBlockRepresentation = global::GWGUI.MediaFileSystems.Interfaces.IMediaBlockRepresentation;
-using IMediaImageDocument = global::GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
+using MediaVolumeOrigins = GWGUI.MediaFileSystems.Constants.MediaVolumeOrigins;
+using PartitionTableIds = GWGUI.MediaFileSystems.Constants.PartitionTableIds;
+using MediaVolumeDescriptor = GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
+using MediaVolumeDetectionResult = GWGUI.MediaFileSystems.Contracts.MediaVolumeDetectionResult;
+using IMediaBlockRepresentation = GWGUI.MediaFileSystems.Interfaces.IMediaBlockRepresentation;
+using IMediaImageDocument = GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
 using GWGUI.MediaFileSystems.Interfaces.Exploration;
 using System.Buffers.Binary;
 using System.Globalization;
@@ -24,9 +24,7 @@ public sealed class MbrVolumeDetector : IMediaVolumeDetector
     private const byte ProtectiveGptType = 0xEE;
     private const int MaximumEbrCount = 4_096;
 
-    public async ValueTask<MediaVolumeDetectionResult?> DetectAsync(
-        IMediaImageDocument document,
-        CancellationToken cancellationToken = default)
+    public async ValueTask<MediaVolumeDetectionResult?> DetectAsync(IMediaImageDocument document, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
         if (!document.IsHardDisk
@@ -54,13 +52,7 @@ public sealed class MbrVolumeDetector : IMediaVolumeDetector
             }
             if (IsExtended(entry.Type))
             {
-                await ReadExtendedChainAsync(
-                    blocks,
-                    entry,
-                    partitions,
-                    diagnostics,
-                    () => ++partitionNumber,
-                    cancellationToken).ConfigureAwait(false);
+                await ReadExtendedChainAsync(blocks, entry, partitions, diagnostics, () => ++partitionNumber, cancellationToken).ConfigureAwait(false);
                 continue;
             }
             partitionNumber++;
@@ -68,26 +60,13 @@ public sealed class MbrVolumeDetector : IMediaVolumeDetector
         }
 
         AddOverlapDiagnostics(partitions, diagnostics);
-        var volumes = partitions
-            .OrderBy(partition => partition.Start)
-            .Select(partition => new MediaVolumeDescriptor(
-                partition.Start,
-                partition.Length,
-                MediaVolumeOrigins.Partition,
-                PartitionTableIds.Mbr,
-                partition.Number,
-                partitionType: $"0x{partition.Type:X2}"))
+        var volumes = partitions.OrderBy(partition => partition.Start)
+            .Select(partition => new MediaVolumeDescriptor(partition.Start, partition.Length, MediaVolumeOrigins.Partition, PartitionTableIds.Mbr, partition.Number, partitionType: $"0x{partition.Type:X2}"))
             .ToArray();
         return new MediaVolumeDetectionResult(volumes, diagnostics);
     }
 
-    private static async Task ReadExtendedChainAsync(
-        IMediaBlockRepresentation blocks,
-        MbrEntry container,
-        List<PartitionRange> partitions,
-        List<string> diagnostics,
-        Func<int> nextPartitionNumber,
-        CancellationToken cancellationToken)
+    private static async Task ReadExtendedChainAsync(IMediaBlockRepresentation blocks, MbrEntry container, List<PartitionRange> partitions, List<string> diagnostics, Func<int> nextPartitionNumber, CancellationToken cancellationToken)
     {
         var extendedBase = (long)container.FirstLba;
         var containerEnd = checked(extendedBase + container.SectorCount);
@@ -153,14 +132,7 @@ public sealed class MbrVolumeDetector : IMediaVolumeDetector
         if (currentEbr != 0) diagnostics.Add("The EBR chain exceeds the supported entry limit.");
     }
 
-    private static bool TryAddPartition(
-        IMediaBlockRepresentation blocks,
-        long firstLba,
-        long sectorCount,
-        byte type,
-        int number,
-        List<PartitionRange> partitions,
-        List<string> diagnostics)
+    private static bool TryAddPartition(IMediaBlockRepresentation blocks, long firstLba, long sectorCount, byte type, int number, List<PartitionRange> partitions, List<string> diagnostics)
     {
         if (firstLba <= 0 || sectorCount <= 0
             || firstLba > long.MaxValue / blocks.LogicalBlockSize
@@ -186,31 +158,20 @@ public sealed class MbrVolumeDetector : IMediaVolumeDetector
         for (var index = 1; index < ordered.Length; index++)
         {
             if (ordered[index].Start < ordered[index - 1].Start + ordered[index - 1].Length)
-                diagnostics.Add(string.Format(
-                    CultureInfo.InvariantCulture,
-                    "MBR partitions {0} and {1} overlap.",
-                    ordered[index - 1].Number,
-                    ordered[index].Number));
+                diagnostics.Add(string.Format(CultureInfo.InvariantCulture, "MBR partitions {0} and {1} overlap.", ordered[index - 1].Number, ordered[index].Number));
         }
     }
 
-    private static async Task<byte[]> ReadBootRecordAsync(
-        IMediaBlockRepresentation blocks,
-        long lba,
-        CancellationToken cancellationToken)
+    private static async Task<byte[]> ReadBootRecordAsync(IMediaBlockRepresentation blocks, long lba, CancellationToken cancellationToken)
     {
         if (lba < 0 || lba > blocks.LogicalBlockCount - 1)
             throw new InvalidDataException("The requested boot record is outside the media.");
         var buffer = new byte[BootRecordSize];
-        await blocks.ReadExactlyAsync(
-            checked(lba * blocks.LogicalBlockSize),
-            buffer,
-            cancellationToken).ConfigureAwait(false);
+        await blocks.ReadExactlyAsync(checked(lba * blocks.LogicalBlockSize), buffer, cancellationToken).ConfigureAwait(false);
         return buffer;
     }
 
-    private static bool HasSignature(ReadOnlySpan<byte> record)
-        => record[510] == 0x55 && record[511] == 0xAA;
+    private static bool HasSignature(ReadOnlySpan<byte> record) => record[510] == 0x55 && record[511] == 0xAA;
 
     private static MbrEntry[] ReadEntries(ReadOnlySpan<byte> record)
     {
@@ -218,10 +179,7 @@ public sealed class MbrVolumeDetector : IMediaVolumeDetector
         for (var index = 0; index < entries.Length; index++)
         {
             var entry = record.Slice(PartitionTableOffset + index * PartitionEntrySize, PartitionEntrySize);
-            entries[index] = new MbrEntry(
-                entry[4],
-                BinaryPrimitives.ReadUInt32LittleEndian(entry[8..12]),
-                BinaryPrimitives.ReadUInt32LittleEndian(entry[12..16]));
+            entries[index] = new MbrEntry(entry[4], BinaryPrimitives.ReadUInt32LittleEndian(entry[8..12]), BinaryPrimitives.ReadUInt32LittleEndian(entry[12..16]));
         }
         return entries;
     }

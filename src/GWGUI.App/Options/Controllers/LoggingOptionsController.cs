@@ -25,14 +25,7 @@ internal sealed class LoggingOptionsController
     private readonly Action<Exception> _reportOpenFolderError;
     private readonly string _logsDirectory;
 
-    public LoggingOptionsController(
-        OptionsLogsSection section,
-        AppSettings settings,
-        Func<bool> isInitializing,
-        Func<Task> persistAsync,
-        Func<string, string> localize,
-        Action<Exception> reportOpenFolderError,
-        string? logsDirectory = null)
+    public LoggingOptionsController(OptionsLogsSection section, AppSettings settings, Func<bool> isInitializing, Func<Task> persistAsync, Func<string, string> localize, Action<Exception> reportOpenFolderError, string? logsDirectory = null)
     {
         _section = section;
         _settings = settings;
@@ -85,8 +78,7 @@ internal sealed class LoggingOptionsController
         await _persistAsync();
     }
 
-    private static void NumericTextEntered(object sender, TextCompositionEventArgs e) =>
-        e.Handled = e.Text.Any(character => !char.IsDigit(character));
+    private static void NumericTextEntered(object sender, TextCompositionEventArgs e) => e.Handled = e.Text.Any(character => !char.IsDigit(character));
 
     private void OpenLogsFolder(object sender, RoutedEventArgs e)
     {

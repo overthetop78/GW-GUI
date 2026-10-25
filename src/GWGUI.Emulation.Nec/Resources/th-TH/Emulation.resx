@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.beetle_pcfx_fast.Description"><value>จําลอง NEC PC-FX ระบบ</value></data>
+  <data name="Emulation.Nec.Language"><value>NEC ภาษาระบบ</value></data>
+  <data name="Emulation.Nec.Language.English"><value>ภาษาอังกฤษName</value></data>
+  <data name="Emulation.Nec.Language.French"><value>ฝรั่งเศส</value></data>
+  <data name="Emulation.Nec.Language.Spanish"><value>สเปน</value></data>
+  <data name="Emulation.Nec.Firmware.Integrated"><value>ROM ที่สร้างขึ้นในเครื่องจําลอง</value></data>
+  <data name="Emulation.Emulator.beetle_pce_fast.Description"><value>จําลองPC Engine, Coregraphx,TurboGrafx-16PC Engine Duo และระบบTurboExpress (พ.ศ.</value></data>
+  <data name="Emulation.Nec.Firmware.NotRequired"><value>ไม่มีความต้องการภายนอก BIOS</value></data>
+  <data name="Emulation.Nec.Audio.CdVolume"><value>CD ระดับเสียงเสียง</value></data>
+  <data name="Emulation.Nec.Audio.SoundQuality"><value>คุณภาพเสียง</value></data>
+  <data name="Emulation.Nec.Mouse.Sensitivity"><value>ความไวแสงของเมาส์</value></data>
+  <data name="Emulation.Nec.Memory.CdRam"><value>RAM ของงาน CD</value></data>
+  <data name="Emulation.Nec.Audio.AdpcmVolume"><value>CD ADPCM เล่ม</value></data>
+  <data name="Emulation.Nec.Audio.CdPsgVolume"><value>CD PSG เล่ม</value></data>
+  <data name="Emulation.Nec.Audio.AdpcmLowPass"><value>กรองทางผ่านต่ําของ CD ADPCM</value></data>
+  <data name="Emulation.Nec.Audio.SuppressClicks"><value>คลิกใหม่เพื่อลดช่องเสียง</value></data>
+  <data name="Emulation.Nec.Audio.BuggyCodec"><value>จําลองการเข้ารหัส ADPCM</value></data>
+  <data name="Emulation.Nec.Storage.CdImageCache"><value>โหลดอิมเมจ CD เข้าไปยังหน่วยความจํา</value></data>
+  <data name="Emulation.Nec.Storage.CdIgnoreErrors"><value>ไม่สนใจการแก้ไขข้อผิดพลาด CD</value></data>
+  <data name="Emulation.Emulator.beetle_sgx.Description"><value>จําลอง PC Engine SuperGrafx เกม ฮิคคาร์ดและ CD-ROM2 สื่อ</value></data>
+  <data name="Emulation.Emulator.geargrafx.Description"><value>จําลอง PC Engine, SuperGrafx และ NEC LaserActive ระบบ</value></data>
+  <data name="Emulation.Nec.Cpu.Region"><value>บริเวณ cosole</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Auto"><value>อัตโนมัติ</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Japan"><value>ญี่ปุ่น</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Usa"><value>สหรัฐ</value></data>
+</root>

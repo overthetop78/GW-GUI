@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.applewin.Description"><value>Емулює комп’ютери Apple II за допомогою AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Емулює комп’ютери Macintosh II за допомогою Mini vMac.</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Варіант машини</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>Налаштування відео ядра емуляції</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Розширювальні картки</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Пам'ять, що використовується ядром</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>Системні ROM включено до AppleWin.</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>Доступний ядро не підтримує цю модель машини.</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Дискові списки відтворення</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Зручності</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>Картка в слоті 3</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>Картка миші</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>Картка в слоті 4</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>Картка в слоті 5</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>Жорсткий диск контролер</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>Картка в слоті 7</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>Колір (чорний)RGB Картка/Монітор)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>Колір (Компостований ідеалізований)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>Колір (Компостентний монітор)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>Колір TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>Монохром (Амбер)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>Монохром (зелений)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>Монохром (білий)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>Відеорежим</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>Половина Скандинав</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>Відео стиль</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>Відео Refresh Оцініть</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>Перший</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>Попереднє</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>Плейлист Старт Диск</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>Використовуйте як флоппінгові диски</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>Статус Бар</value></data>
+</root>

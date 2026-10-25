@@ -16,8 +16,7 @@ public static class SparseImageWriter
             throw new ArgumentOutOfRangeException(nameof(capacity));
     }
 
-    public static void Write(Stream destination, long capacity, Action<Stream>? initialize = null,
-        int bandBytes = DefaultBandBytes)
+    public static void Write(Stream destination, long capacity, Action<Stream>? initialize = null, int bandBytes = DefaultBandBytes)
     {
         ContainerValidation.Validate(destination, capacity);
         Validate(capacity, bandBytes);

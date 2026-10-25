@@ -8,13 +8,9 @@ namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Recognition;
 /// <summary>Sonde rapidement des pistes réparties avant de lancer les reconstructions complètes.</summary>
 internal sealed class ScpFamilyProbe(IScpReader scpReader, FluxDecoderRegistry decoders)
 {
-    public Task<IReadOnlySet<ScpFormatFamily>> DetectAsync(string path, CancellationToken cancellationToken) =>
-        DetectAsync(path, null, cancellationToken);
+    public Task<IReadOnlySet<ScpFormatFamily>> DetectAsync(string path, CancellationToken cancellationToken) => DetectAsync(path, null, cancellationToken);
 
-    public async Task<IReadOnlySet<ScpFormatFamily>> DetectAsync(
-        string path,
-        IProgress<ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+    public async Task<IReadOnlySet<ScpFormatFamily>> DetectAsync(string path, IProgress<ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         var samples = ScpTrackSampler.Sample(scp.Tracks);
@@ -25,30 +21,18 @@ internal sealed class ScpFamilyProbe(IScpReader scpReader, FluxDecoderRegistry d
         {
             cancellationToken.ThrowIfCancellationRequested();
             var definition = ScpFamilyProbeCatalog.Definitions[index];
-            progress?.Report(new(
-                ScpExplorationProgressKind.FormatProbeStarted,
-                definition.DisplayName,
-                index,
-                ScpFamilyProbeCatalog.Definitions.Count));
+            progress?.Report(new(ScpExplorationProgressKind.FormatProbeStarted, definition.DisplayName, index, ScpFamilyProbeCatalog.Definitions.Count));
 
             var recognized = await ProbeFamilyAsync(definition, samples, cancellationToken).ConfigureAwait(false);
             if (recognized) found.Add(definition.Family);
 
-            progress?.Report(new(
-                ScpExplorationProgressKind.FormatProbeCompleted,
-                definition.DisplayName,
-                index + 1,
-                ScpFamilyProbeCatalog.Definitions.Count,
-                recognized));
+            progress?.Report(new(ScpExplorationProgressKind.FormatProbeCompleted, definition.DisplayName, index + 1, ScpFamilyProbeCatalog.Definitions.Count, recognized));
         }
 
         return found;
     }
 
-    private async Task<bool> ProbeFamilyAsync(
-        ScpFamilyProbeDefinition definition,
-        IReadOnlyList<ScpTrack> samples,
-        CancellationToken cancellationToken)
+    private async Task<bool> ProbeFamilyAsync(ScpFamilyProbeDefinition definition, IReadOnlyList<ScpTrack> samples, CancellationToken cancellationToken)
     {
         var recognized = 0;
         await Parallel.ForEachAsync(
@@ -75,6 +59,5 @@ internal sealed class ScpFamilyProbe(IScpReader scpReader, FluxDecoderRegistry d
         return recognized != 0;
     }
 
-    private static bool HasValidSector(FluxDecodeResult result) =>
-        result.Sectors.Any(sector => sector.Data is not null && sector.IntegrityValid == true);
+    private static bool HasValidSector(FluxDecodeResult result) => result.Sectors.Any(sector => sector.Data is not null && sector.IntegrityValid == true);
 }

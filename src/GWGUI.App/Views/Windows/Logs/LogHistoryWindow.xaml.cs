@@ -13,9 +13,7 @@ public partial class LogHistoryWindow : Window
     public LogHistoryWindow(string directory)
     {
         InitializeComponent();
-        FilesList.ItemsSource = Directory.Exists(directory)
-            ? new DirectoryInfo(directory).GetFiles("*.log").Where(file => !file.Name.StartsWith("errors-", StringComparison.OrdinalIgnoreCase)).OrderByDescending(file => file.LastWriteTimeUtc).ToArray()
-            : Array.Empty<FileInfo>();
+        FilesList.ItemsSource = Directory.Exists(directory) ? new DirectoryInfo(directory).GetFiles("*.log").Where(file => !file.Name.StartsWith("errors-", StringComparison.OrdinalIgnoreCase)).OrderByDescending(file => file.LastWriteTimeUtc).ToArray() : Array.Empty<FileInfo>();
         FilesList.SelectedIndex = FilesList.Items.Count > 0 ? 0 : -1;
     }
 

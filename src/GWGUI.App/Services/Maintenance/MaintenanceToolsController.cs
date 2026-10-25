@@ -1,8 +1,8 @@
 using GWGUI.Infrastructure.Commands;
 using GWGUI.Infrastructure.Commands.Building;
 using GWGUI.Infrastructure.Commands.Execution;
-using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
-using GwOptionValidator = global::GWGUI.Infrastructure.Commands.Options.GwOptionValidator;
+using EnabledOption = GWGUI.MediaEngine.Contracts.Options.EnabledOption;
+using GwOptionValidator = GWGUI.Infrastructure.Commands.Options.GwOptionValidator;
 using GWGUI.Infrastructure.Maintenance;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.App.Interfaces.Services.Dialogs;
@@ -52,12 +52,7 @@ public sealed class MaintenanceToolsController(
         if (tools.EraseTracksEnabled.IsChecked == true) options.Add(new("--tracks", tools.EraseTracksValue.Text.Trim()));
         if (tools.EraseRevsEnabled.IsChecked == true) options.Add(new("--revs", tools.EraseRevsValue.Text.Trim()));
         GwOptionValidator.Validate(options);
-        return commandBuilder.BuildErase(new EraseRequest(
-            settings().GwExecutablePath ?? "gw.exe",
-            options,
-            deviceArgument(),
-            driveArgument(),
-            tools.EraseExpertArguments.Text));
+        return commandBuilder.BuildErase(new EraseRequest(settings().GwExecutablePath ?? "gw.exe", options, deviceArgument(), driveArgument(), tools.EraseExpertArguments.Text));
     }
 
     public GwCommand BuildClean() => commandBuilder.BuildClean(new CleanRequest(

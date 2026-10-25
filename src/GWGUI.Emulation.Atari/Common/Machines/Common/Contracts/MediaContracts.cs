@@ -2,19 +2,9 @@ using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Atari.Common.Machines.Common.Contracts;
 
-public sealed record CompatibilityDefinition(
-    MachineModel Model,
-    Emulator Core,
-    IReadOnlyList<SettingsTab> VisibleTabs,
-    IReadOnlyList<FirmwareCategory> Firmware,
-    IReadOnlyList<MediaCompatibilityRule> Media,
-    int ControllerPortCount);
+public sealed record CompatibilityDefinition(MachineModel Model, Emulator Core, IReadOnlyList<SettingsTab> VisibleTabs, IReadOnlyList<FirmwareCategory> Firmware, IReadOnlyList<MediaCompatibilityRule> Media, int ControllerPortCount);
 
-public sealed record MediaCompatibilityRule(
-    MediaCategory Category,
-    IReadOnlyList<EmulationMediaSlot> Slots,
-    MediaAvailability Availability = MediaAvailability.Available,
-    string? ExplanationResourceKey = null);
+public sealed record MediaCompatibilityRule(MediaCategory Category, IReadOnlyList<EmulationMediaSlot> Slots, MediaAvailability Availability = MediaAvailability.Available, string? ExplanationResourceKey = null);
 
 public sealed record MediaConfiguration(
     string Path,

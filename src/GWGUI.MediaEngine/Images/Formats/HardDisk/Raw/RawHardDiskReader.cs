@@ -13,12 +13,9 @@ namespace GWGUI.MediaEngine.Images.Formats.HardDisk.Raw;
 /// <summary>Recognizes a headerless hard disk image only from explicit intent or coherent disk structures.</summary>
 public sealed class RawHardDiskReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { HardDiskImageFormatIds.Raw }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.HardDisk }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { HardDiskImageFormatIds.Raw }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.HardDisk }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
 
@@ -34,9 +31,7 @@ public sealed class RawHardDiskReader : IMediaImageReader
 
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.RequestedFormatId is not null)
         {
@@ -48,9 +43,7 @@ public sealed class RawHardDiskReader : IMediaImageReader
         return await TryResolveStructuredBlockSizeAsync(context, cancellationToken).ConfigureAwait(false) is not null;
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var logicalBlockSize = await ResolveLogicalBlockSize(context, cancellationToken).ConfigureAwait(false);
         if (!RawHardDiskFormat.IsLengthCompatible(context.Length, logicalBlockSize))
@@ -60,10 +53,7 @@ public sealed class RawHardDiskReader : IMediaImageReader
         if (source.Length != context.Length)
             throw new InvalidDataException("The raw image length changed after recognition.");
 
-        var representation = new BlockMediaImageRepresentation(
-            context.Length,
-            logicalBlockSize,
-            [new MediaDataRange(0, context.Length, MediaDataRangeKind.Stored, source)]);
+        var representation = new BlockMediaImageRepresentation(context.Length, logicalBlockSize, [new MediaDataRange(0, context.Length, MediaDataRangeKind.Stored, source)]);
         return new MediaImageDocument(
             context.Source,
             HardDiskImageFormatIds.Raw,
@@ -77,9 +67,7 @@ public sealed class RawHardDiskReader : IMediaImageReader
             });
     }
 
-    private static async ValueTask<int> ResolveLogicalBlockSize(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    private static async ValueTask<int> ResolveLogicalBlockSize(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var structuredSize = await TryResolveStructuredBlockSizeAsync(context, cancellationToken).ConfigureAwait(false);
         if (structuredSize is { } resolved) return resolved;
@@ -88,9 +76,7 @@ public sealed class RawHardDiskReader : IMediaImageReader
         throw new InvalidDataException("A headerless hard disk image requires an explicit format choice or a coherent MBR/GPT structure.");
     }
 
-    private static async ValueTask<int?> TryResolveStructuredBlockSizeAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    private static async ValueTask<int?> TryResolveStructuredBlockSizeAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (await HasGptHeaderAsync(context, HardDiskFormatConstants.LargeLogicalSectorSize, cancellationToken).ConfigureAwait(false))
             return HardDiskFormatConstants.LargeLogicalSectorSize;
@@ -107,10 +93,7 @@ public sealed class RawHardDiskReader : IMediaImageReader
         return null;
     }
 
-    private static async ValueTask<bool> HasGptHeaderAsync(
-        MediaRecognitionContext context,
-        int logicalBlockSize,
-        CancellationToken cancellationToken)
+    private static async ValueTask<bool> HasGptHeaderAsync(MediaRecognitionContext context, int logicalBlockSize, CancellationToken cancellationToken)
     {
         if (!RawHardDiskFormat.IsLengthCompatible(context.Length, logicalBlockSize)
             || context.Length < logicalBlockSize + 8L)

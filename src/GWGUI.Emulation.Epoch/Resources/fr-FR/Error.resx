@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Error.StateIncompatible" xml:space="preserve"><value>L'état de sauvegarde Epoch est incompatible avec la machine actuelle.</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected" xml:space="preserve"><value>Une erreur inattendue d'émulation d'Epoch s'est produite.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing" xml:space="preserve"><value>Un firmware Epoch requis est manquant.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid" xml:space="preserve"><value>Le système ROM est invalide ou incompatible.</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound" xml:space="preserve"><value>Le support Epoch configuré n'a pas été trouvé.</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported" xml:space="preserve"><value>Cette machine ne supporte pas les médias sélectionnés.</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid" xml:space="preserve"><value>Une option Epoch a une valeur non valide.</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound" xml:space="preserve"><value>Le noyau d'Epoch requis n'a pas été trouvé.</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected" xml:space="preserve"><value>Le noyau Epoch sélectionné n'a pas pu être chargé.</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid" xml:space="preserve"><value>L'état d'Epoch est invalide.</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing" xml:space="preserve"><value>Le chemin du programme d’émulation est indisponible.</value></data>
+  <data name="Emulation.Epoch.Error.Details" xml:space="preserve"><value>Détails: {0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure" xml:space="preserve"><value>La communication avec l'hôte Epoch a échoué.</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Commande d'environnement inconnu : {0}</value></data>
+</root>

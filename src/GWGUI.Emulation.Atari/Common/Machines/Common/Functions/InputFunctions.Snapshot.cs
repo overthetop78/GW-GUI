@@ -1,100 +1,99 @@
+using CommonControllerFunctions = GWGUI.Emulation.Atari.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 
 internal static class InputSnapshotFunctions
 {
-    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot,
-        InputConfiguration? configuration, MachineModel model)
+    /// <summary>Projette les entrées de session par le contrat Common et applique la bascule du pointeur.</summary>
+    /// <param name="snapshot">Instantané physique emprunté, dont les collections restent inchangées.</param>
+    /// <param name="configuration">Configuration complète et courante : modèle, cœur, options et associations.</param>
+    /// <param name="mapper">Adaptateur emprunté chargé de traduire les commandes ; null utilise la projection de repli du module.</param>
+    /// <param name="controllerPointerSwitchPressed">Impulsion de session ajoutant Contrôle droit aux touches projetées.</param>
+    /// <returns>Instantané adapté au cœur ; sans impulsion, le résultat du projecteur est conservé tel quel.</returns>
+    /// <remarks>La bascule est appliquée après la projection, comme pour les cœurs qui la prennent déjà en charge.
+    /// Elle copie l'ensemble des touches avant ajout, conserve les autres entrées et ne modifie ni la source
+    /// ni la configuration. Cette opération ne crée aucun cœur et ne possède aucune ressource native.</remarks>
+    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, MachineConfiguration configuration, IEmulatorInputMapper? mapper = null, bool controllerPointerSwitchPressed = false)
+    {
+        var mapped = mapper?.MapInput(snapshot, configuration) ?? InputSnapshotFunctions.Apply(snapshot, configuration.Input, configuration.Model);
+        return controllerPointerSwitchPressed ? mapped with { Keys = new HashSet<EmulationKey>(mapped.Keys) { EmulationKey.RightControl } } : mapped;
+    }
+
+
+    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration? configuration, MachineModel model)
     {
         var mappedKeyboard = snapshot with
         {
-            Keys = EmulationInputMappingFunctions.MapKeyboard(snapshot.Keys, configuration?.KeyboardMappings)
+            Keys = EmulationSdk.InputProcessing.MapKeyboard(snapshot, configuration?.KeyboardBindings ?? configuration?.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal))
         };
-        var withDeadZones = ControllerFunctions.ApplyDeadZones(mappedKeyboard, configuration?.Controllers);
-        if (configuration?.Controllers is not { Count: > 0 }) return withDeadZones;
-        var count = Math.Max(withDeadZones.Controllers.Count,
-            configuration.Controllers.Max(binding => binding.Port) + 1);
+        var withDeadZones = CommonControllerFunctions.ApplyDeadZones(mappedKeyboard, configuration?.Controllers);
+        if (configuration?.Controllers is not { Count: > 0 }) return withDeadZones with { Controllers = [] };
+        var count = Math.Max(withDeadZones.Controllers.Count, configuration.Controllers.Max(binding => binding.Port) + 1);
         var controllers = Enumerable.Repeat(EmulationControllerState.Empty, count).ToArray();
         foreach (var binding in configuration.Controllers)
         {
             if (binding.Port < 0 || binding.Port >= controllers.Length) continue;
-            var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId,
-                withDeadZones.Controllers, binding.Port);
+            var source = EmulationSdk.InputProcessing.ResolveController(binding.DeviceId, withDeadZones.Controllers, binding.Port);
             if (binding.Mappings is not { Count: > 0 })
             {
-                controllers[binding.Port] = source;
+                controllers[binding.Port] = EmulationControllerState.Empty;
                 continue;
             }
             uint buttons = 0;
             foreach (var mapping in binding.Mappings)
             {
                 var target = ResolveButton(model, mapping.Key);
-                var mappingController = ControllerForSource(
-                    mapping.Value, withDeadZones.Controllers, source);
-                if (target >= 0 && IsPressed(mapping.Value, mappingController,
-                        withDeadZones.Keys, withDeadZones.Pointer))
+                var mappingController = ControllerForSource(mapping.Value, withDeadZones.Controllers, source);
+                if (target >= 0 && IsPressed(mapping.Value, mappingController, withDeadZones.Keys, withDeadZones.Pointer))
                     buttons |= 1u << target;
             }
-            controllers[binding.Port] = source with { Buttons = buttons };
+            var analog = binding.Peripheral is PeripheralCategory.AnalogJoystick or PeripheralCategory.Paddle;
+            var mouse = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
+            {
+                [InputSnapshotFunctionsConstants.Left] = withDeadZones.Pointer.Left, [InputSnapshotFunctionsConstants.Right] = withDeadZones.Pointer.Right, [InputSnapshotFunctionsConstants.Middle] = withDeadZones.Pointer.Middle,
+                [InputSnapshotFunctionsConstants.XButton1] = withDeadZones.Pointer.ExtendedButton1, [InputSnapshotFunctionsConstants.XButton2] = withDeadZones.Pointer.ExtendedButton2,
+                [InputSnapshotFunctionsConstants.WheelUp] = withDeadZones.Pointer.Wheel > 0, [InputSnapshotFunctionsConstants.WheelDown] = withDeadZones.Pointer.Wheel < 0
+            };
+            controllers[binding.Port] = source with
+            {
+                Buttons = buttons,
+                LeftX = analog ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.Right, EmulationControllerCommandIds.Left, source, withDeadZones.Controllers, withDeadZones.Keys, mouse) : source.LeftX,
+                LeftY = binding.Peripheral == PeripheralCategory.AnalogJoystick ? EmulationSdk.InputProcessing.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.Down, EmulationControllerCommandIds.Up, source, withDeadZones.Controllers, withDeadZones.Keys, mouse) : source.LeftY
+            };
         }
         return withDeadZones with { Controllers = controllers };
     }
 
-    private static bool IsPressed(string sourceName, EmulationControllerState controller,
-        IReadOnlySet<EmulationKey> keys, EmulationPointerState pointer)
+    private static bool IsPressed(string sourceName, EmulationControllerState controller, IReadOnlySet<EmulationKey> keys, EmulationPointerState pointer)
     {
-        if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Keyboard,
-                out var keyboardSource)
+        if (sourceName.Contains('+' ) && !sourceName.EndsWith('+')) return EmulationSdk.InputProcessing.InputSourcePressure(sourceName, controller, new EmulationInputSnapshot(keys, pointer, [controller])) > .5f;
+        if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Keyboard, out var keyboardSource)
             && Enum.TryParse<EmulationKey>(keyboardSource, true, out var key))
             return keys.Contains(key);
-        if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Mouse,
-                out var mouseSource))
+        if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Mouse, out var mouseSource))
             return PhysicalMouse(pointer).GetValueOrDefault(mouseSource);
-        return EmulationInputMappingFunctions.IsControllerSourcePressed(sourceName, controller);
+        return EmulationSdk.InputProcessing.IsControllerSourcePressed(sourceName, controller);
     }
 
-    private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) =>
-        new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
-        {
-            [InputSnapshotFunctionsConstants.Left] = pointer.Left,
-            [InputSnapshotFunctionsConstants.Right] = pointer.Right,
-            [InputSnapshotFunctionsConstants.Middle] = pointer.Middle,
-            [InputSnapshotFunctionsConstants.XButton1] = pointer.ExtendedButton1,
-            [InputSnapshotFunctionsConstants.XButton2] = pointer.ExtendedButton2,
-            [InputSnapshotFunctionsConstants.WheelUp] = pointer.Wheel > 0,
-            [InputSnapshotFunctionsConstants.WheelDown] = pointer.Wheel < 0,
-            [InputSnapshotFunctionsConstants.WheelLeft] = pointer.HorizontalWheel < 0,
-            [InputSnapshotFunctionsConstants.WheelRight] = pointer.HorizontalWheel > 0
-        };
+    private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) => EmulationSdk.InputProcessing.PhysicalMouse(pointer);
 
     private static bool TryRemovePrefix(string? value, string prefix, out string source)
-    {
-        source = string.Empty;
-        if (string.IsNullOrWhiteSpace(value)
-            || !value.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
-            return false;
-        source = value[prefix.Length..];
-        return source.Length > 0;
-    }
+    => EmulationSdk.InputProcessing.TryRemovePrefix(value, prefix, out source);
 
-    private static EmulationControllerState ControllerForSource(
-        string source,
-        IReadOnlyList<EmulationControllerState> controllers,
-        EmulationControllerState fallback)
-    {
-        var deviceId = EmulationInputMappingFunctions.ParseControllerDeviceId(source);
-        return deviceId is null ? fallback : controllers.FirstOrDefault(controller =>
-            string.Equals(controller.DeviceId, deviceId, StringComparison.OrdinalIgnoreCase))
-            ?? fallback;
-    }
+    private static EmulationControllerState ControllerForSource(string source, IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback)
+    => EmulationSdk.InputProcessing.ResolveSourceController(source, controllers, fallback, fallbackWhenMissing: true);
 
     private static int ResolveButton(MachineModel model, string action)
     {
         if (model == MachineModel.Lynx)
             return action switch
             {
-                InputSnapshotFunctionsConstants.Option1 => 10, InputSnapshotFunctionsConstants.Option2 => 11, InputSnapshotFunctionsConstants.Pause => 3,
+                InputSnapshotFunctionsConstants.A => LynxInputConstants.ButtonACommand,
+                InputSnapshotFunctionsConstants.B => LynxInputConstants.ButtonBCommand,
+                InputSnapshotFunctionsConstants.Option1 => LynxInputConstants.Option1Command,
+                InputSnapshotFunctionsConstants.Option2 => LynxInputConstants.Option2Command,
+                InputSnapshotFunctionsConstants.Pause => LynxInputConstants.PauseCommand,
                 _ => InputSnapshotDictionary.CommonButtons.GetValueOrDefault(action, -1)
             };
         if (model == MachineModel.Atari5200)

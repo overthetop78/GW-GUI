@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>Жесткий диск</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>Интерфейс</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Предварительно выделить файл</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Floppies и CD вставляются или заменяются с запущенной машины.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Используйте вид эмуляции для вставки или изменения медиа.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Извлечь носитель</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Образ диска уже существует: {0}\nЗаменить его?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Доступные типы, модели и идентификаторы зависят от выбранной машины.</value></data>
@@ -75,4 +75,13 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Слот для картриджа</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>нажмите первые четыре диска DF0-DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Диск {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Используйте карту</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Выбранный файл будет прикреплен к этому виртуальному запоминающему устройству.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Выберите существующий карточный файл.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Файл карты имеет недействительный размер.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Выберите формат файла, поддерживаемый этим устройством.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Без ограничений</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Очищать при закрытии игры</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Карта памяти</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>Имя на карте</value></data>
 </root>

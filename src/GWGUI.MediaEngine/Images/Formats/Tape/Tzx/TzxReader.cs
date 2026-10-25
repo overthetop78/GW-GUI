@@ -14,11 +14,9 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.Tzx;
 /// <summary>Reads and structurally validates TZX 1.20 blocks while retaining every complete payload.</summary>
 public sealed class TzxReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { TapeImageFormatIds.Tzx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { TapeImageFormatIds.Tzx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Tape }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
     private static readonly byte[] HeaderSignature = [.. System.Text.Encoding.ASCII.GetBytes(TzxConstants.Signature), TzxConstants.EndOfTextMarker];
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
@@ -40,8 +38,7 @@ public sealed class TzxReader : IMediaImageReader
     async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var source = new FileRandomAccessData(context.Source.PrimaryPath);
-        await using var input = new FileStream(context.Source.PrimaryPath, FileMode.Open, FileAccess.Read, FileShare.Read,
-            64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
+        await using var input = new FileStream(context.Source.PrimaryPath, FileMode.Open, FileAccess.Read, FileShare.Read, 64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
         var header = new byte[TzxConstants.HeaderSize];
         await input.ReadExactlyAsync(header, cancellationToken).ConfigureAwait(false);
         if (!header.AsSpan(0, HeaderSignature.Length).SequenceEqual(HeaderSignature))
@@ -67,9 +64,7 @@ public sealed class TzxReader : IMediaImageReader
             block.Index,
             SegmentKind(block.Id),
             block.PayloadLength == 0 ? null : block.PayloadLength,
-            dataRange: block.PayloadLength == 0
-                ? null
-                : new MediaDataRange(block.PayloadOffset, block.PayloadLength, MediaDataRangeKind.Stored, source, block.PayloadOffset),
+            dataRange: block.PayloadLength == 0 ? null : new MediaDataRange(block.PayloadOffset, block.PayloadLength, MediaDataRangeKind.Stored, source, block.PayloadOffset),
             metadata: new Dictionary<string, string>(StringComparer.Ordinal)
             {
                 [TzxConstants.BlockIdMetadataKey] = block.Id.ToString("x2", System.Globalization.CultureInfo.InvariantCulture),

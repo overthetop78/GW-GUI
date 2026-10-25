@@ -4,11 +4,9 @@ namespace GWGUI.Emulation.HardDisks;
 
 public static class DiskImageBuilder
 {
-    public static void Validate(DiskImagePlan plan, DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null)
-        => _ = Prepare(plan, registry, consumer);
+    public static void Validate(DiskImagePlan plan, DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null) => _ = Prepare(plan, registry, consumer);
 
-    public static void Write(Stream destination, DiskImagePlan plan, DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null)
-        => Prepare(plan, registry, consumer)(destination);
+    public static void Write(Stream destination, DiskImagePlan plan, DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null) => Prepare(plan, registry, consumer)(destination);
 
     internal static Action<Stream> Prepare(DiskImagePlan plan, DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null)
     {
@@ -23,19 +21,16 @@ public static class DiskImageBuilder
         };
     }
 
-    public static void ValidateSet(DiskImagePlan plan, DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null)
-        => _ = PrepareSet(plan, registry, consumer);
+    public static void ValidateSet(DiskImagePlan plan, DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null) => _ = PrepareSet(plan, registry, consumer);
 
-    public static void WriteSet(DiskImagePlan plan, Action<string, Stream> emit,
-        DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null)
+    public static void WriteSet(DiskImagePlan plan, Action<string, Stream> emit, DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null)
     {
         ArgumentNullException.ThrowIfNull(emit);
         PrepareSet(plan, registry, consumer)(emit);
     }
 
     /// <summary>Validates first, then publishes all members together in a new directory.</summary>
-    public static string CreateSet(string directory, DiskImagePlan plan,
-        DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null)
+    public static string CreateSet(string directory, DiskImagePlan plan, DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null)
     {
         ArgumentNullException.ThrowIfNull(plan);
         registry ??= DiskFormatRegistry.CreateDefault();
@@ -43,8 +38,7 @@ public static class DiskImageBuilder
         return DiskImageSetPublication.CreateTree(directory, registry.GetImageSet(plan.ContainerId).EntryPoint, build);
     }
 
-    private static Action<Action<string, Stream>> PrepareSet(DiskImagePlan plan, DiskFormatRegistry? registry,
-        DiskConsumerProfile? consumer)
+    private static Action<Action<string, Stream>> PrepareSet(DiskImagePlan plan, DiskFormatRegistry? registry, DiskConsumerProfile? consumer)
     {
         ArgumentNullException.ThrowIfNull(plan);
         registry ??= DiskFormatRegistry.CreateDefault();
@@ -53,8 +47,7 @@ public static class DiskImageBuilder
         return emit => container.Write(plan.CapacityBytes, emit, initialize);
     }
 
-    private static Action<Stream> PrepareContent(DiskImagePlan plan, DiskFormatRegistry registry,
-        DiskConsumerProfile? consumer, Action<long, bool> validateContainer, IReadOnlySet<int>? containerSectors)
+    private static Action<Stream> PrepareContent(DiskImagePlan plan, DiskFormatRegistry registry, DiskConsumerProfile? consumer, Action<long, bool> validateContainer, IReadOnlySet<int>? containerSectors)
     {
         // Freeze the collection before validation, so callbacks cannot change the planned layout.
         var table = registry.GetPartitionTable(plan.PartitionTableId);

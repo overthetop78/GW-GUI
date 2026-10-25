@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Help.DisplayArea" xml:space="preserve"><value>Виберіть видиму площу зображення консолі.</value></data>
+  <data name="Emulation.Epoch.Help.PixelAspect" xml:space="preserve"><value>Виберіть прямокутні або квадратні пікселів.</value></data>
+  <data name="Emulation.Epoch.Help.Resolution" xml:space="preserve"><value>Виберіть внутрішню роздільну здатність рендерингу.</value></data>
+  <data name="Emulation.Epoch.Help.ColorPalette" xml:space="preserve"><value>Виберіть палітру консольного кольору.</value></data>
+  <data name="Emulation.Epoch.Help.RefreshRate" xml:space="preserve"><value>Виберіть частоту оновлення консолі.</value></data>
+  <data name="Emulation.Epoch.Help.ShowVideoMemory" xml:space="preserve"><value>Відображення відео пам'яті за телевізійним зображенням.</value></data>
+  <data name="Emulation.Epoch.Help.ShowInputs" xml:space="preserve"><value>Відобразити поточний стан контролера над зображенням.</value></data>
+  <data name="Emulation.Epoch.Help.Language" xml:space="preserve"><value>Виберіть мову емулятора екранів.</value></data>
+  <data name="Emulation.Epoch.Help.ValidateFirmware" xml:space="preserve"><value>Перевірити консолі BIOS перед початком.</value></data>
+  <data name="Emulation.Epoch.Help.ShowKeypadAtStart" xml:space="preserve"><value>Відобразити при емульсії при запуску емульсії.</value></data>
+  <data name="Emulation.Epoch.Help.AnnounceCourseSwitch" xml:space="preserve"><value>Відобразити вибраний ігровий курс при його зміні.</value></data>
+</root>

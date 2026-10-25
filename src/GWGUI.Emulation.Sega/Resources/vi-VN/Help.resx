@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sega.Help.General.Model.Short"><value>Mô hình máy Sega đang được cấu hình.</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Một núi RAM sẵn sàng cho máy mô phỏng.</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Chọn cách mở rộng RAM được phơi bày bởi lõi mô phỏng.</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>Hệ thống ROM được xây dựng thành nhân tạo.</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>lõi mô phỏng cung cấp hệ thống ROM nội bộ và không phơi bày bộ chọn tập tin ROM.</value></data>
+  <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Mô phỏng được chọn cho chiếc máy này.</value></data>
+  <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>Nhận diện trình giả lập sử dụng để chạy cấu hình máy này.</value></data>
+  <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System mẫu phần cứng.</value></data>
+  <data name="Emulation.Sega.Help.MasterSystem.Variant.Detailed"><value>Chọn Master System Tôi hay Master System II Phần cứng.</value></data>
+  <data name="Emulation.Sega.Help.MasterSystem.ThreeDGlasses.Short"><value>Kính 3D cho Master System.</value></data>
+  <data name="Emulation.Sega.Help.MasterSystem.ThreeDGlasses.Detailed"><value>Kích hoạt giao diện 3 chiều và dự trữ khe cắm thẻ Sega.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.Model.Short"><value>Mô hình phần cứng Mega Drive.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.Model.Detailed"><value>Chọn Mega Drive I hoặc Mega Drive II phần cứng.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.Region.Short"><value>Mega Drive khu vực.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.Region.Detailed"><value>Lựa chọn tự động,NTSC-U, NTSC-J, PAL hoặc SECAM hành vi vùng.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.VideoStandard.Short"><value>Hệ thống video của Mega Drive.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.VideoStandard.Detailed"><value>Chọn tự động, 50 Hz hoặc 60 Hz thời gian video.</value></data>
+  <data name="Emulation.Sega.Help.Cpu.Model.Short"><value>Bộ xử lý đã mô phỏng cho chiếc máy này.</value></data>
+  <data name="Emulation.Sega.Help.Cpu.Model.Detailed"><value>Hiện mô hình xử lý được cung cấp bởi máy Sega đã chọn.</value></data>
+  <data name="Emulation.Sega.Help.Cpu.Frequency.Short"><value>Tần số đồng hồ xử lý gốc.</value></data>
+  <data name="Emulation.Sega.Help.Cpu.Frequency.Detailed"><value>Hiển thị tần số đồng hồ trên danh nghĩa của bộ xử lý trong máy Sega đã chọn.</value></data>
+  <data name="Emulation.Sega.Help.Audio.Enabled.Short"><value>Kích hoạt hay tắt âm thanh đã mô phỏng.</value></data>
+  <data name="Emulation.Sega.Help.Audio.Enabled.Detailed"><value>Điều khiển cho dù GW GUI chơi các mẫu âm thanh được tạo ra bởi giả lập.</value></data>
+  <data name="Emulation.Sega.Help.Audio.Output.Short"><value>Kết xuất âm thanh được dùng bởi GW GUI.</value></data>
+  <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>Chọn kết xuất âm thanh Windows được dùng để phát ra âm thanh từ máy mô phỏng này.</value></data>
+  <data name="Emulation.Sega.Help.General.Model.Detailed"><value>Xác nhận mô hình Sega mà phần cứng đang được chỉnh sửa.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Short"><value>Mô hình phần cứng Mega-CD.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Detailed"><value>Chọn Mega-CD I hoặc Mega-CD II.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed"><value>Kích hoạt Mega-CD. Ổ đĩa quang học của nó được tự động thêm vào.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Detailed"><value>Kích hoạt 32X trên đường Mega Drive. Nó bị tắt theo mặc định và có thể dùng 32X hộp đạn khi nó được bật.</value></data>
+</root>

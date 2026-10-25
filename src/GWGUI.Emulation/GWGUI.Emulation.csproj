@@ -5,7 +5,8 @@
     <Nullable>enable</Nullable>
     <AssemblyName>gwgui.emulation</AssemblyName>
     <PackageId>GWGUI.Emulation.SDK</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.2.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <Description>Versioned contracts for independent GW GUI emulation modules.</Description>
     <Authors>overthetop78</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -18,6 +19,9 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="\" />
+    <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" PrivateAssets="all" />
+    <PackageReference Include="K4os.Compression.LZ4" Version="1.3.8" PrivateAssets="all" />
+    <PackageReference Include="NAudio" Version="2.3.0" PrivateAssets="all" />
     <PackageReference Include="LTRData.DiscUtils.Vhd" Version="1.0.88" />
     <PackageReference Include="LTRData.DiscUtils.Vhdx" Version="1.0.88" />
     <PackageReference Include="LTRData.DiscUtils.Vdi" Version="1.0.88" />
@@ -27,11 +31,18 @@
     <PackageReference Include="LTRData.DiscUtils.ExFat" Version="1.0.88" />
     <PackageReference Include="LTRData.DiscUtils.Ext" Version="1.0.88" />
     <PackageReference Include="LTRData.DiscUtils.HfsPlus" Version="1.0.88" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Amiga" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Atari" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Amstrad" />
     <InternalsVisibleTo Include="GWGUI.Tests" />
+    <InternalsVisibleTo Include="GWGUI.LocalEmulationTests" />
     <InternalsVisibleTo Include="GWGUI.LocalDiskImageTests" />
-    <InternalsVisibleTo Include="GWGUI.TemporaryLibretroMediaReader" />
   </ItemGroup>
+  <PropertyGroup>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);IncludeMediaEngineRuntime</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+  <!-- Le SDK transporte ses composants média sans demander des paquets de projets non publiés. -->
+  <Target Name="IncludeMediaEngineRuntime" DependsOnTargets="ResolveReferences">
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="$(TargetPath)" PackagePath="runtimes/any/lib/$(TargetFramework)/" />
+      <TfmSpecificPackageFile Include="@(ReferenceCopyLocalPaths)" PackagePath="runtimes/any/lib/$(TargetFramework)/" Condition="'%(ReferenceCopyLocalPaths.Extension)' == '.dll' And ('%(ReferenceCopyLocalPaths.Filename)' == 'gwgui.mediaengine' Or '%(ReferenceCopyLocalPaths.Filename)' == 'gwgui.mediafilesystems' Or '%(ReferenceCopyLocalPaths.Filename)' == 'gwgui.mediaanalysis')" />
+    </ItemGroup>
+  </Target>
 </Project>

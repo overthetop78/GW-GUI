@@ -17,40 +17,26 @@ namespace GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Amstrad;
 /// <summary>Decodes CPC firmware cassette records retained in CDT/TZX or captured as PCM audio.</summary>
 public sealed class AmstradCpcTapeDecoder : ISequentialMediaDecoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.Tzx, TapeImageFormatIds.Wav, TapeImageFormatIds.Audio, TapeImageFormatIds.Voc }
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedMachines =
-        new[] { DiskSystemIds.Amstrad }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.Tzx, TapeImageFormatIds.Wav, TapeImageFormatIds.Audio, TapeImageFormatIds.Voc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Amstrad }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => AmstradCpcTapeConstants.DecoderId;
     public IReadOnlySet<string> FormatIds => SupportedFormats;
     public IReadOnlySet<string> MachineIds => SupportedMachines;
 
-    public bool CanDecode(MediaImageDocument document, string? machineId = null) =>
-        document.MediaKind == MediaKind.Tape
-        && SupportedFormats.Contains(document.FormatId)
-        && (machineId is null || SupportedMachines.Contains(machineId))
-        && document.Representation is SequentialMediaImageRepresentation;
+    public bool CanDecode(MediaImageDocument document, string? machineId = null) => SequentialDecodeFunctions.CanDecodeTape(document, machineId, SupportedFormats, SupportedMachines);
 
-    public async Task<SequentialDecodeResult> DecodeAsync(
-        MediaImageDocument document,
-        string? machineId = null,
-        CancellationToken cancellationToken = default)
+    public async Task<SequentialDecodeResult> DecodeAsync(MediaImageDocument document, string? machineId = null, CancellationToken cancellationToken = default)
     {
         if (!CanDecode(document, machineId))
             throw new InvalidDataException("The media document is not compatible with the Amstrad CPC cassette decoder.");
 
         var representation = (SequentialMediaImageRepresentation)document.Representation;
-        var records = document.FormatId.Equals(TapeImageFormatIds.Tzx, StringComparison.OrdinalIgnoreCase)
-            ? await DecodeStructuredRecordsAsync(representation, cancellationToken).ConfigureAwait(false)
-            : await DecodePcmRecordsAsync(document, representation, cancellationToken).ConfigureAwait(false);
+        var records = document.FormatId.Equals(TapeImageFormatIds.Tzx, StringComparison.OrdinalIgnoreCase) ? await DecodeStructuredRecordsAsync(representation, cancellationToken).ConfigureAwait(false) : await DecodePcmRecordsAsync(document, representation, cancellationToken).ConfigureAwait(false);
         return BuildResult(representation, records);
     }
 
-    private static async Task<IReadOnlyList<DecodedRecord>> DecodeStructuredRecordsAsync(
-        SequentialMediaImageRepresentation representation,
-        CancellationToken cancellationToken)
+    private static async Task<IReadOnlyList<DecodedRecord>> DecodeStructuredRecordsAsync(SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)
     {
         var records = new List<DecodedRecord>();
         foreach (var segment in representation.Segments ?? [])
@@ -66,17 +52,13 @@ public sealed class AmstradCpcTapeDecoder : ISequentialMediaDecoder
         return records;
     }
 
-    private static async Task<IReadOnlyList<DecodedRecord>> DecodePcmRecordsAsync(
-        MediaImageDocument document,
-        SequentialMediaImageRepresentation representation,
-        CancellationToken cancellationToken)
+    private static async Task<IReadOnlyList<DecodedRecord>> DecodePcmRecordsAsync(MediaImageDocument document, SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)
     {
         if (!PcmSampleFunctions.TryGetProfile(document.Metadata, out var channels, out var sampleRate, out var bitsPerSample, out var blockAlign))
             return [];
 
         var records = new List<DecodedRecord>();
-        foreach (var segment in (representation.Segments ?? [])
-                     .Where(segment => segment.Kind == SequentialSegmentKind.Samples && segment.ChannelNumber == 0))
+        foreach (var segment in (representation.Segments ?? []).Where(segment => segment.Kind == SequentialSegmentKind.Samples && segment.ChannelNumber == 0))
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (segment.DataRange is not { Source: not null, Length: <= int.MaxValue } range) continue;
@@ -89,9 +71,7 @@ public sealed class AmstradCpcTapeDecoder : ISequentialMediaDecoder
         return records;
     }
 
-    private static SequentialDecodeResult BuildResult(
-        SequentialMediaImageRepresentation representation,
-        IReadOnlyList<DecodedRecord> records)
+    private static SequentialDecodeResult BuildResult(SequentialMediaImageRepresentation representation, IReadOnlyList<DecodedRecord> records)
     {
         var blocks = new List<SequentialDecodedBlock>();
         var consumed = records.SelectMany(record => record.SourcePositions).ToHashSet();
@@ -149,10 +129,7 @@ public sealed class AmstradCpcTapeDecoder : ISequentialMediaDecoder
     private static HeaderRecord ParseHeader(DecodedRecord record)
     {
         var header = record.Data.Span;
-        var name = Encoding.Latin1.GetString(header.Slice(
-                AmstradCpcTapeConstants.FileNameOffset,
-                AmstradCpcTapeConstants.FileNameLength))
-            .TrimEnd('\0', ' ');
+        var name = Encoding.Latin1.GetString(header.Slice(AmstradCpcTapeConstants.FileNameOffset, AmstradCpcTapeConstants.FileNameLength)).TrimEnd('\0', ' ');
         var blockNumber = header[AmstradCpcTapeConstants.BlockNumberOffset];
         var dataLength = BinaryPrimitives.ReadUInt16LittleEndian(header[AmstradCpcTapeConstants.DataLengthOffset..]);
         var metadata = new Dictionary<string, string>(StringComparer.Ordinal)
@@ -170,10 +147,7 @@ public sealed class AmstradCpcTapeDecoder : ISequentialMediaDecoder
         return new HeaderRecord(blockNumber, dataLength, record.IntegrityValid, record.SourcePositions, metadata);
     }
 
-    private static bool TryDecodeRecord(
-        ReadOnlySpan<byte> encoded,
-        IReadOnlyList<long> sourcePositions,
-        out DecodedRecord record)
+    private static bool TryDecodeRecord(ReadOnlySpan<byte> encoded, IReadOnlyList<long> sourcePositions, out DecodedRecord record)
     {
         record = default!;
         if (encoded.Length < 1 + AmstradCpcTapeConstants.SegmentDataLength + AmstradCpcTapeConstants.SegmentCrcLength)
@@ -300,28 +274,11 @@ public sealed class AmstradCpcTapeDecoder : ISequentialMediaDecoder
     private static int ReadUInt24(ReadOnlySpan<byte> bytes) => bytes[0] | bytes[1] << 8 | bytes[2] << 16;
 
     private static ushort ComputeCrc(ReadOnlySpan<byte> data)
-    {
-        var crc = AmstradCpcTapeConstants.CrcSeed;
-        foreach (var value in data)
-        {
-            crc ^= (ushort)(value << 8);
-            for (var bit = 0; bit < 8; bit++)
-                crc = (ushort)((crc & 0x8000) != 0
-                    ? (crc << 1) ^ AmstradCpcTapeConstants.CrcPolynomial
-                    : crc << 1);
-        }
-        return crc;
-    }
+    => GWGUI.MediaEngine.Functions.Crc16Calculator.ComputeSpan(data, AmstradCpcTapeConstants.CrcPolynomial, AmstradCpcTapeConstants.CrcSeed);
 
-    private static bool Close(double actual, double expected) =>
-        Math.Abs(actual - expected) <= expected * AmstradCpcTapeConstants.PulseToleranceRatio;
+    private static bool Close(double actual, double expected) => Math.Abs(actual - expected) <= expected * AmstradCpcTapeConstants.PulseToleranceRatio;
 
     private sealed record DecodedRecord(byte Sync, ReadOnlyMemory<byte> Data, bool IntegrityValid, IReadOnlyList<long> SourcePositions);
 
-    private sealed record HeaderRecord(
-        int BlockNumber,
-        int DataLength,
-        bool IntegrityValid,
-        IReadOnlyList<long> SourcePositions,
-        IReadOnlyDictionary<string, string> Metadata);
+    private sealed record HeaderRecord(int BlockNumber, int DataLength, bool IntegrityValid, IReadOnlyList<long> SourcePositions, IReadOnlyDictionary<string, string> Metadata);
 }

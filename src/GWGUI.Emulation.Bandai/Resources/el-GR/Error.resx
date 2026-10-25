@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Error.StateIncompatible" xml:space="preserve"><value>Το Bandai σωζόμενο κράτος είναι ασυμβίβαστο με την τρέχουσα μηχανή.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected" xml:space="preserve"><value>Συνέβη ένα απροσδόκητο σφάλμα εξομοίωσης Bandai.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing" xml:space="preserve"><value>Λείπει ένα απαιτούμενο firmware Bandai.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid" xml:space="preserve"><value>Το σύστημα ROM δεν είναι έγκυρο ή ασυμβίβαστο.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound" xml:space="preserve"><value>Τα ρυθμισμένα μέσα Bandai δε βρέθηκαν.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported" xml:space="preserve"><value>Αυτή η μηχανή δεν υποστηρίζει τα επιλεγμένα μέσα.</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid" xml:space="preserve"><value>Μια επιλογή Bandai έχει μη έγκυρη τιμή.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound" xml:space="preserve"><value>Ο απαιτούμενος πυρήνας Bandai δεν βρέθηκε.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected" xml:space="preserve"><value>Ο επιλεγμένος πυρήνας Bandai δεν ήταν δυνατό να φορτωθεί.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid" xml:space="preserve"><value>Το Bandai σωζόμενο κράτος είναι άκυρο.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing" xml:space="preserve"><value>Η εκτελέσιμη διαδρομή υποδοχής Bandai δεν είναι διαθέσιμη.</value></data>
+  <data name="Emulation.Bandai.Error.Details" xml:space="preserve"><value>Λεπτομέρειες: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure" xml:space="preserve"><value>Η επικοινωνία με τον οικοδεσπότη Bandai απέτυχε.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Άγνωστη εντολή περιβάλλοντος: {0}</value></data>
+</root>

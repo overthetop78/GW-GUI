@@ -1,4 +1,3 @@
-using System.Runtime.ExceptionServices;
 using System.Windows.Threading;
 
 namespace GWGUI.Tests.Application.TestInfrastructure;
@@ -12,27 +11,60 @@ public sealed class StaExecutionScenarios : IDisposable
 
     public StaExecutionScenarios()
     {
-        var ready = new TaskCompletionSource<(Dispatcher Dispatcher, ResourceApplication Application)>(
-            TaskCreationOptions.RunContinuationsAsynchronously);
+        var ready = new TaskCompletionSource<(Dispatcher Dispatcher, ResourceApplication Application)>(TaskCreationOptions.RunContinuationsAsynchronously);
         thread = new Thread(() =>
         {
+            Dispatcher? current = null;
+            ResourceApplication? resources = null;
             try
             {
-                var current = Dispatcher.CurrentDispatcher;
+                current = Dispatcher.CurrentDispatcher;
                 SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(current));
-                var resources = new ResourceApplication { ShutdownMode = System.Windows.ShutdownMode.OnExplicitShutdown };
-                resources.Resources = new System.Windows.ResourceDictionary
+                try
                 {
-                    Source = new Uri("/gwgui.app;component/Resources/ApplicationStyles.xaml", UriKind.Relative)
-                };
-                ready.SetResult((current, resources));
-                Dispatcher.Run();
+                    resources = new ResourceApplication { ShutdownMode = System.Windows.ShutdownMode.OnExplicitShutdown };
+                    resources.Resources = new System.Windows.ResourceDictionary
+                    {
+                        Source = new Uri("/gwgui.app;component/Resources/ApplicationStyles.xaml", UriKind.Relative)
+                    };
+                    ready.SetResult((current, resources));
+                    Dispatcher.Run();
+                }
+                finally
+                {
+                    try
+                    {
+                        if (resources is not null && !current.HasShutdownStarted)
+                        {
+                            try { TestResourceCleanup.ReleaseWindows(resources); }
+                            finally
+                            {
+                                try { resources.Resources.MergedDictionaries.Clear(); }
+                                finally
+                                {
+                                    try { resources.Resources.Clear(); }
+                                    finally { resources.Shutdown(); }
+                                }
+                            }
+                        }
+                    }
+                    finally
+                    {
+                        if (!current.HasShutdownStarted) current.InvokeShutdown();
+                    }
+                }
             }
             catch (Exception exception) { ready.TrySetException(exception); }
         }) { IsBackground = true, Name = "GWGUI test dispatcher" };
         thread.SetApartmentState(ApartmentState.STA);
         thread.Start();
-        (dispatcher, application) = ready.Task.GetAwaiter().GetResult();
+        try { (dispatcher, application) = ready.Task.GetAwaiter().GetResult(); }
+        catch
+        {
+            if (!thread.Join(TimeSpan.FromSeconds(10))) throw new TimeoutException("The failed test dispatcher thread did not terminate.");
+            throw;
+        }
+        TestResourceCleanup.Register(application);
     }
 
     public Task Run(Action scenario) => RunAsync(() =>
@@ -46,83 +78,14 @@ public sealed class StaExecutionScenarios : IDisposable
         try { await scenario(); }
         finally
         {
-            CloseAndReleaseWindows();
+            TestResourceCleanup.ReleaseWindows(application);
             await Dispatcher.Yield(DispatcherPriority.ApplicationIdle);
             foreach (System.Windows.Window window in application.Windows)
                 Assert.Equal(IntPtr.Zero, new System.Windows.Interop.WindowInteropHelper(window).Handle);
         }
     }).Task.Unwrap().WaitAsync(TimeSpan.FromSeconds(30));
 
-    public void Dispose()
-    {
-        Exception? cleanupFailure = null;
-        try
-        {
-            if (!dispatcher.HasShutdownStarted && !dispatcher.HasShutdownFinished)
-            {
-                dispatcher.Invoke(() =>
-                {
-                    CloseAndReleaseWindows();
-                    application.Shutdown();
-                }, DispatcherPriority.Send);
-            }
-        }
-        catch (Exception error)
-        {
-            cleanupFailure = error;
-        }
-        finally
-        {
-            try
-            {
-                if (!dispatcher.HasShutdownStarted && !dispatcher.HasShutdownFinished)
-                    dispatcher.BeginInvokeShutdown(DispatcherPriority.Send);
-            }
-            catch (Exception error)
-            {
-                cleanupFailure ??= error;
-            }
-
-            if (!thread.Join(TimeSpan.FromSeconds(5)))
-                cleanupFailure ??= new TimeoutException("WPF test dispatcher did not stop.");
-            else if (thread.IsAlive || !dispatcher.HasShutdownFinished)
-                cleanupFailure ??= new InvalidOperationException(
-                    "WPF test dispatcher thread did not finish its shutdown.");
-
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            GC.Collect();
-        }
-
-        if (cleanupFailure is not null)
-            ExceptionDispatchInfo.Capture(cleanupFailure).Throw();
-    }
-
-    private void CloseAndReleaseWindows()
-    {
-        Exception? closeFailure = null;
-        foreach (System.Windows.Window window in application.Windows.Cast<System.Windows.Window>().ToArray())
-        {
-            try
-            {
-                window.Owner = null;
-                var handle = new System.Windows.Interop.WindowInteropHelper(window).Handle;
-                if (handle != IntPtr.Zero) window.Close();
-            }
-            catch (Exception error)
-            {
-                closeFailure ??= error;
-            }
-            finally
-            {
-                window.DataContext = null;
-                window.Content = null;
-            }
-        }
-
-        if (closeFailure is not null)
-            ExceptionDispatchInfo.Capture(closeFailure).Throw();
-    }
+    public void Dispose() => TestResourceCleanup.ReleaseFixture(application, thread, dispatcher);
 
     private sealed class ResourceApplication : System.Windows.Application
     {

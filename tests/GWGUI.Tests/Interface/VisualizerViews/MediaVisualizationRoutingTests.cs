@@ -1,11 +1,11 @@
 using GWGUI.App.Contracts.Views.Visualization;
 using GWGUI.App.Contracts.ViewModels.Visualization;
 using GWGUI.App.Views.Controls.Visualization;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 
-using IMediaImageRepresentation = global::GWGUI.MediaEngine.Interfaces.IMediaImageRepresentation;
+using IMediaImageRepresentation = GWGUI.MediaEngine.Interfaces.IMediaImageRepresentation;
 using GWGUI.MediaEngine.Images.Visualization;
 using GWGUI.Tests.Application.TestInfrastructure;
 using System.Windows;
@@ -25,38 +25,22 @@ public sealed class MediaVisualizationRoutingTests(StaExecutionScenarios sta)
     public Task RepresentationSelectsItsRegisteredView(MediaRepresentationKind kind) => sta.Run(() =>
     {
         var section = new VisualizerTabSection();
-        var views = Enum.GetValues<MediaRepresentationKind>()
-            .ToDictionary(value => value, _ => new RoutedView());
+        var views = Enum.GetValues<MediaRepresentationKind>().ToDictionary(value => value, _ => new RoutedView());
         foreach (var pair in views) section.RegisterRepresentationView(pair.Key, pair.Value);
 
         var document = Document(kind, "same-extension.image");
-        var descriptor = new MediaVisualizationDescriptor(
-            kind,
-            [0],
-            ProgressUnit(kind),
-            MediaVisualizationDirection.Ascending,
-            [new MediaVisualizationElement(0, 0)]);
+        var descriptor = new MediaVisualizationDescriptor(kind, [0], ProgressUnit(kind), MediaVisualizationDirection.Ascending, [new MediaVisualizationElement(0, 0)]);
 
         Assert.True(section.ShowDocument(document, descriptor, Inspector(kind)));
         Assert.Equal(kind, section.ActiveRepresentationKind);
         Assert.Same(document, section.CurrentDocument);
         Assert.Same(descriptor, section.CurrentDescriptor);
-        Assert.All(views, pair => Assert.Equal(
-            pair.Key == kind ? Visibility.Visible : Visibility.Collapsed,
-            pair.Value.Visibility));
+        Assert.All(views, pair => Assert.Equal(pair.Key == kind ? Visibility.Visible : Visibility.Collapsed, pair.Value.Visibility));
     });
 
-    private static MediaImageDocument Document(MediaRepresentationKind kind, string path) => new(
-        new MediaSourceDescriptor(path, []),
-        "test.format",
-        MediaKind.Unknown,
-        new Representation(kind),
-        [],
-        [],
-        new Dictionary<string, string>());
+    private static MediaImageDocument Document(MediaRepresentationKind kind, string path) => new(new MediaSourceDescriptor(path, []), "test.format", MediaKind.Unknown, new Representation(kind), [], [], new Dictionary<string, string>());
 
-    private static MediaInspectorModel Inspector(MediaRepresentationKind kind) =>
-        new(kind.ToString(), null, []);
+    private static MediaInspectorModel Inspector(MediaRepresentationKind kind) => new(kind.ToString(), null, []);
 
     private static MediaVisualizationProgressUnit ProgressUnit(MediaRepresentationKind kind) => kind switch
     {

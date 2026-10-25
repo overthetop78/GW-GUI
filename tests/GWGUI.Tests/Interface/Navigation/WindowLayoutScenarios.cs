@@ -8,6 +8,7 @@ using GWGUI.App.Views.Controls.Conversion;
 using GWGUI.App.Views.Controls.Visualization;
 using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.App.Views.Controls.Tools;
+using GWGUI.App.Views.Controls.Emulation.Machine;
 
 namespace GWGUI.Tests.Interface.Navigation;
 
@@ -39,7 +40,7 @@ internal static class WindowLayoutScenarios
             AssertInside(statusBar, root);
             Assert.Equal(2, NavigationScenarios.Visuals<TrackProgressStrip>(statusBar).Count());
             Assert.Empty(NavigationScenarios.Visuals<ProgressBar>(statusBar));
-            var command = section switch
+            FrameworkElement? command = section switch
             {
                 ReadTabSection read => read.ExecuteActionButton,
                 WriteTabSection write => write.ExecuteActionButton,
@@ -47,10 +48,14 @@ internal static class WindowLayoutScenarios
                 VisualizerTabSection visualizer => visualizer.Header.OpenButton,
                 ExplorerSection explorer => explorer.OpenImageButton,
                 ToolsTabSection tools => tools.ToolsList.SelectedIndex == 1 ? tools.CleanExecuteButton : tools.EraseExecuteButton,
+                EmulationSection => null,
                 _ => NavigationScenarios.Visuals<Button>(section).Single(button => button.MinWidth == 130)
             };
-            AssertInside(command, root);
-            AssertInside(command, section);
+            if (command is not null)
+            {
+                AssertInside(command, root);
+                AssertInside(command, section);
+            }
             foreach (TabItem tab in tabs.Items) AssertInside(tab, root);
             Assert.False(window.IsLoaded);
         }
@@ -86,8 +91,7 @@ internal static class WindowLayoutScenarios
         }
     }
 
-    public static void Restore(double width, double height, double? left, double? top,
-        double expectedWidth, double expectedHeight, double? expectedLeft, double? expectedTop)
+    public static void Restore(double width, double height, double? left, double? top, double expectedWidth, double expectedHeight, double? expectedLeft, double? expectedTop)
     {
         var saved = new WindowPlacementSettings { Width = width, Height = height, Left = left, Top = top };
         var actual = WindowPlacementPolicy.Normalize(saved, 1280, 720, -1920, 0, 3840, 1080);

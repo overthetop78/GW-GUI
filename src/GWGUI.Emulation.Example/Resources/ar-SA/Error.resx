@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound"><value>لم يتم العثور على الوسيط المكون.</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported"><value>الآلة لا تدعم الوسيط المختار</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound"><value>ولم يعثر على الجوهر المطلوب.</value></data>
+  <data name="Emulation.Example.Error.CoreRejected"><value>لا يمكن تحميل جوهر الاختبارات المختارة.</value></data>
+  <data name="Emulation.Example.Error.Details"><value>التفاصيل: {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid"><value>البرمجيات الجاهزة غير صحيحة أو غير متوافقة.</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing"><value>البرمجيات المطلوبة مفقودة</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing"><value>الطريق إلى برنامج مضيف المحاكاة غير متاح</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure"><value>الاتصالات مع مضيف المحاكاة فشلت</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid"><value>الخيار له قيمة غير صحيحة</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible"><value>الدولة المنقذة لا تتوافق مع الآلة الحالية</value></data>
+  <data name="Emulation.Example.Error.StateInvalid"><value>الولاية المنقذة باطلة</value></data>
+  <data name="Emulation.Example.Error.Unexpected"><value>حدث خطأ غير متوقع في الاختراع</value></data>
+</root>

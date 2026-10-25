@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.applewin.Description"><value>Emulează calculatoare Apple II folosind AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Emulează calculatoare Macintosh II folosind Mini vMac.</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Varianta mașinii</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>Setări video ale nucleului de emulare</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Cărți de extindere</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Memorie utilizată de nucleu</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>ROM-urile de sistem sunt incluse în AppleWin.</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>Miezul disponibil nu suportă acest model de mașină.</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Liste de redare disc</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Gol</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>Card în Slot 3</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>Carte de mouse</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>Card în Slot 4</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>Card în Slot 5</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>Controlor de disc dur</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>Card în Slot 7</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>Culoare (RGB Card/Monitor)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>Culoare (Composite Idealizat)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>Culoare (Monitor de Composite)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>Culoare TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>Monocrom (Amber)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>Monocrom (Green)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>Monocrom (Alb)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>Mod video</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>Jumătate de linii de scanare</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>Stil video</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>Video Reîmprospătează rata</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>Prima dată</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>Precedent</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>Disc de pornire lista de redare</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>Utilizați ambele drive-uri de floppy</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>Bară de stare</value></data>
+</root>

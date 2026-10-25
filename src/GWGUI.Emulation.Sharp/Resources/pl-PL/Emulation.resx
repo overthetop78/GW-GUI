@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Emulaty SHARP X68000 komputerów.</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Emulaty SHARP X1 komputerów.</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Dźwięk maszynowy</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Opcje sterowania</value></data>
+  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>Charakter ROM</value></data>
+  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Wyświetl pamięć</value></data>
+  <data name="Emulation.Sharp.Setting.AdpcmVolume" xml:space="preserve"><value>ADPCM objętość</value></data>
+  <data name="Emulation.Sharp.Setting.AudioDesynchronization" xml:space="preserve"><value>Wyrzuć nadmiar dźwięku</value></data>
+  <data name="Emulation.Sharp.Setting.AudioSampleRate" xml:space="preserve"><value>Częstotliwość próbkowania dźwięku</value></data>
+  <data name="Emulation.Sharp.Setting.ButtonOrder" xml:space="preserve"><value>Zamówienie przycisku</value></data>
+  <data name="Emulation.Sharp.Setting.DiskSeekSound" xml:space="preserve"><value>Dysk szukaj dźwięku</value></data>
+  <data name="Emulation.Sharp.Setting.FmBoard" xml:space="preserve"><value>FM płyta dźwiękowa</value></data>
+  <data name="Emulation.Sharp.Setting.FmVolume" xml:space="preserve"><value>FM objętość</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRate" xml:space="preserve"><value>Szybkość ramki wideo</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRateAdjustment" xml:space="preserve"><value>Korekta stopy procentowej</value></data>
+  <data name="Emulation.Sharp.Setting.FrameSkip" xml:space="preserve"><value>Pominięte ramy wideo</value></data>
+  <data name="Emulation.Sharp.Setting.HideGraphics" xml:space="preserve"><value>Ukryj grafikę</value></data>
+  <data name="Emulation.Sharp.Setting.HideSprites" xml:space="preserve"><value>Ukryj spiryty i tła</value></data>
+  <data name="Emulation.Sharp.Setting.HideText" xml:space="preserve"><value>Ukryj warstwę tekstową</value></data>
+  <data name="Emulation.Sharp.Setting.MemorySize" xml:space="preserve"><value>RAM zdolność przewozowa</value></data>
+  <data name="Emulation.Sharp.Setting.RapidFire" xml:space="preserve"><value>Szybki ogień</value></data>
+  <data name="Emulation.Sharp.Setting.Raster" xml:space="preserve"><value>Efekty rastrowe</value></data>
+  <data name="Emulation.Sharp.Setting.ReverseJoystick" xml:space="preserve"><value>Wprowadzenie kontrolera wstecznego</value></data>
+  <data name="Emulation.Sharp.Setting.UnlimitedSpeed" xml:space="preserve"><value>Nieograniczona prędkość emulacji</value></data>
+  <data name="Emulation.Sharp.Setting.VerticalSync" xml:space="preserve"><value>Synchronizacja pionowa</value></data>
+  <data name="Emulation.Sharp.Setting.VideoBeforeAudio" xml:space="preserve"><value>Prioritize wideo</value></data>
+  <data name="Emulation.Sharp.Value.High" xml:space="preserve"><value>Wysoki</value></data>
+  <data name="Emulation.Sharp.Value.Low" xml:space="preserve"><value>Niski</value></data>
+  <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>Wyświetlacz maszynowy</value></data>
+</root>

@@ -22,7 +22,20 @@ internal static class ReadFormatScenarios
         var model=new MainWindowViewModel("synthetic","synthetic");
         view.DataContext=model;
         var settings=new AppSettings();settings.Engines.PhysicalRead=OperationEngine.Internal;
-        var formats=new[]{new DiskFormat("test.one","family-one","one",[new(".one","one"),new(".two","two",true)]),new DiskFormat("test.blocked","family-one","blocked",[new(".blocked","blocked",true)],SupportsPhysicalRead:false),new DiskFormat("test.other","family-other","other",[new(".other","other",true)])};
+        var formats=new[]{new DiskFormat("test.one",
+            "family-one",
+            "one",
+            [new(".one", "one"),
+            new(".two", "two", true)]),
+            new DiskFormat("test.blocked",
+            "family-one",
+            "blocked",
+            [new(".blocked", "blocked", true)],
+            SupportsPhysicalRead:false),
+            new DiskFormat("test.other",
+            "family-other",
+            "other",
+            [new(".other", "other", true)])};
         var catalog=ControlledDependencies.Simulate<IImageFormatCatalog>((method,_)=>method.Name=="get_Formats"?formats:throw new InvalidOperationException(method.Name));
         var requests=new List<ReadRequest>();
         var builder=ControlledDependencies.Simulate<IGwCommandBuilder>((method,args)=>{
@@ -47,9 +60,7 @@ internal static class ReadFormatScenarios
         context.Controller.FamilyChanged();context.Controller.FormatChanged();context.Controller.ModeChanged();
         var proposedFormats = image.FormatCombo.Items.Cast<DiskFormat>().ToArray();
         Assert.All(proposedFormats, format => Assert.True(format.SupportsPhysicalRead));
-        Assert.DoesNotContain(
-            context.Formats.Where(format => !format.SupportsPhysicalRead),
-            disabled => proposedFormats.Any(proposed => proposed.Id == disabled.Id));
+        Assert.DoesNotContain(context.Formats.Where(format => !format.SupportsPhysicalRead), disabled => proposedFormats.Any(proposed => proposed.Id == disabled.Id));
         Assert.Equal(Visibility.Visible,image.KnownFormatPanel.Visibility);
         Assert.Equal("test.one",Assert.IsType<DiskFormat>(image.FormatCombo.SelectedItem).Id);
         Assert.Equal(".two",context.Controller.GetExtension());

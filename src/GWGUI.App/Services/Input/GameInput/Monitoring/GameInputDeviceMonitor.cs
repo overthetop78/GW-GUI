@@ -9,20 +9,9 @@ internal static partial class GameInputDeviceMonitor
 {
     private static readonly TimeSpan ShutdownTimeout = TimeSpan.FromSeconds(5);
     private static readonly TimeSpan CallbackUnregisterTimeout = TimeSpan.FromSeconds(3);
-    private const GameInputKind ControllerKinds = GameInputKind.Controller | GameInputKind.ArcadeStick |
-        GameInputKind.FlightStick | GameInputKind.Gamepad | GameInputKind.RacingWheel;
-    private static readonly GameInputKind[] DeviceCallbackFilters =
-    [
-        GameInputKind.RawDeviceReport,
-        ControllerKinds,
-        GameInputKind.Keyboard,
-        GameInputKind.Mouse
-    ];
-    private static readonly GameInputKind[] ControllerRefreshFilters =
-    [
-        GameInputKind.RawDeviceReport,
-        ControllerKinds
-    ];
+    private const GameInputKind ControllerKinds = GameInputKind.Controller | GameInputKind.ArcadeStick | GameInputKind.FlightStick | GameInputKind.Gamepad | GameInputKind.RacingWheel;
+    private static readonly GameInputKind[] DeviceCallbackFilters = [GameInputKind.RawDeviceReport, ControllerKinds, GameInputKind.Keyboard, GameInputKind.Mouse];
+    private static readonly GameInputKind[] ControllerRefreshFilters = [GameInputKind.RawDeviceReport, ControllerKinds];
     internal static IReadOnlyList<GameInputKind> RegisteredDeviceCallbackFilters => DeviceCallbackFilters;
     internal static IReadOnlyList<GameInputKind> RegisteredControllerRefreshFilters => ControllerRefreshFilters;
     private static readonly object Sync = new();
@@ -65,23 +54,18 @@ internal static partial class GameInputDeviceMonitor
                 }
                 else
                 {
-                    _gameInput.SetFocusPolicy(GameInputFocusPolicy.ExclusiveForegroundGuideButton);
+                    _gameInput.SetFocusPolicy(GameInputFocusPolicy.ExclusiveForegroundInput
+                        | GameInputFocusPolicy.ExclusiveForegroundGuideButton | GameInputFocusPolicy.ExclusiveForegroundShareButton);
                     foreach (var filter in DeviceCallbackFilters)
                     {
-                        result = _gameInput.RegisterDeviceCallback(null, filter,
-                            GameInputDeviceStatus.Any, GameInputEnumerationKind.Async, new IntPtr(unchecked((long)(uint)filter)),
-                            Marshal.GetFunctionPointerForDelegate(DeviceCallback), out var deviceToken);
+                        result = _gameInput.RegisterDeviceCallback(null, filter, GameInputDeviceStatus.Any, GameInputEnumerationKind.Async, new IntPtr(unchecked((long)(uint)filter)), Marshal.GetFunctionPointerForDelegate(DeviceCallback), out var deviceToken);
                         if (result < 0)
-                            throw new COMException(
-                                GameInputDiagnostics.DeviceEnumerationFailure(filter), result);
+                            throw new COMException(GameInputDiagnostics.DeviceEnumerationFailure(filter), result);
                         DeviceTokens.Add(deviceToken);
                     }
-                    result = _gameInput.RegisterSystemButtonCallback(null,
-                        GameInputSystemButtons.Guide | GameInputSystemButtons.Share, IntPtr.Zero,
-                        Marshal.GetFunctionPointerForDelegate(SystemButtonCallback), out _systemButtonToken);
+                    result = _gameInput.RegisterSystemButtonCallback(null, GameInputSystemButtons.Guide | GameInputSystemButtons.Share, IntPtr.Zero, Marshal.GetFunctionPointerForDelegate(SystemButtonCallback), out _systemButtonToken);
                     if (result < 0)
-                        throw new COMException(
-                            GameInputDiagnostics.SystemButtonRegistrationFailure, result);
+                        throw new COMException(GameInputDiagnostics.SystemButtonRegistrationFailure, result);
                     DrainDeviceChanges();
                 }
             }
@@ -97,8 +81,7 @@ internal static partial class GameInputDeviceMonitor
         else RawGameControllerFallback.StopMonitoring();
     }
 
-    private static void DeviceChanged(ulong token, IntPtr context, IGameInputDevice device,
-        ulong timestamp, GameInputDeviceStatus currentStatus, GameInputDeviceStatus previousStatus)
+    private static void DeviceChanged(ulong token, IntPtr context, IGameInputDevice device, ulong timestamp, GameInputDeviceStatus currentStatus, GameInputDeviceStatus previousStatus)
     {
         // A GameInput callback must never register or unregister another callback.
         // Keep the RCW alive in the queued closure and do all COM lifecycle work on
@@ -107,8 +90,7 @@ internal static partial class GameInputDeviceMonitor
         try
         {
             lifetime = Marshal.GetIUnknownForObject(device);
-            PendingDeviceChanges.Enqueue(new PendingGameInputDeviceChange(
-                token, context, device, lifetime, timestamp, currentStatus, previousStatus));
+            PendingDeviceChanges.Enqueue(new PendingGameInputDeviceChange(token, context, device, lifetime, timestamp, currentStatus, previousStatus));
             lifetime = IntPtr.Zero;
             Worker.Post(DrainDeviceChanges);
         }
@@ -125,9 +107,7 @@ internal static partial class GameInputDeviceMonitor
         {
             try
             {
-                ProcessDeviceChange(
-                    change.Token, change.Context, change.Device, change.Timestamp,
-                    change.CurrentStatus, change.PreviousStatus);
+                ProcessDeviceChange(change.Token, change.Context, change.Device, change.Timestamp, change.CurrentStatus, change.PreviousStatus);
             }
             finally
             {
@@ -136,23 +116,20 @@ internal static partial class GameInputDeviceMonitor
         }
     }
 
-    private static void ProcessDeviceChange(ulong token, IntPtr context, IGameInputDevice device,
-        ulong timestamp, GameInputDeviceStatus currentStatus, GameInputDeviceStatus previousStatus)
+    private static void ProcessDeviceChange(ulong token, IntPtr context, IGameInputDevice device, ulong timestamp, GameInputDeviceStatus currentStatus, GameInputDeviceStatus previousStatus)
     {
         try
         {
             if (!TryDescribe(device, out var entry)) return;
             lock (Sync)
             {
-                GameInputDiagnostics.RecordDeviceCallback(
-                    context, token, entry, currentStatus, previousStatus);
+                GameInputDiagnostics.RecordDeviceCallback(context, token, entry, currentStatus, previousStatus);
                 if ((currentStatus & GameInputDeviceStatus.Connected) != 0)
                 {
                     entry = RegisterRawReading(entry);
                     if (Devices.Remove(entry.Id, out var previous)) DisposeEntry(previous);
                     Devices[entry.Id] = entry;
-                    GameInputDiagnostics.CaptureRawDevice(
-                        entry.Id, device, token, context, timestamp, currentStatus, previousStatus);
+                    GameInputDiagnostics.CaptureRawDevice(entry.Id, device, token, context, timestamp, currentStatus, previousStatus);
                 }
                 else
                 {
@@ -171,8 +148,7 @@ internal static partial class GameInputDeviceMonitor
         }
     }
 
-    private static void SystemButtonsChanged(ulong token, IntPtr context, IGameInputDevice device,
-        ulong timestamp, GameInputSystemButtons currentButtons, GameInputSystemButtons previousButtons)
+    private static void SystemButtonsChanged(ulong token, IntPtr context, IGameInputDevice device, ulong timestamp, GameInputSystemButtons currentButtons, GameInputSystemButtons previousButtons)
     {
         try
         {
@@ -192,8 +168,7 @@ internal static partial class GameInputDeviceMonitor
             if (context == IntPtr.Zero) return;
             var handle = GCHandle.FromIntPtr(context);
             if (handle.Target is not string deviceId) return;
-            var bytes = GameInputControllerStateReader.ReadRawReport(
-                reading, IsInteropFailure, Release);
+            var bytes = GameInputControllerStateReader.ReadRawReport(reading, IsInteropFailure, Release);
             if (bytes.Count == 0) return;
             lock (Sync) LatestRawReports[deviceId] = bytes.ToArray();
         }
@@ -208,8 +183,7 @@ internal static partial class GameInputDeviceMonitor
         if (_gameInput is null || (entry.InputKinds & GameInputKind.RawDeviceReport) == 0) return entry;
         var handle = GCHandle.Alloc(entry.Id);
         var context = GCHandle.ToIntPtr(handle);
-        var result = _gameInput.RegisterReadingCallback(entry.Device, GameInputKind.RawDeviceReport,
-            context, Marshal.GetFunctionPointerForDelegate(RawReadingCallback), out var token);
+        var result = _gameInput.RegisterReadingCallback(entry.Device, GameInputKind.RawDeviceReport, context, Marshal.GetFunctionPointerForDelegate(RawReadingCallback), out var token);
         if (result >= 0) return entry with { RawReadingToken = token, RawReadingContext = context };
         handle.Free();
         return entry;
@@ -251,16 +225,7 @@ internal static partial class GameInputDeviceMonitor
                 GameInputDiagnostics.RecordEnumeration(descriptor, info, mapper);
             }
 
-            entry = new GameInputDeviceEntry(
-                descriptor.Id,
-                descriptor.ProductName,
-                descriptor.SupportedInput,
-                device,
-                Marshal.GetIUnknownForObject(device),
-                mapper,
-                isController,
-                descriptor,
-                hidDecoder);
+            entry = new GameInputDeviceEntry(descriptor.Id, descriptor.ProductName, descriptor.SupportedInput, device, Marshal.GetIUnknownForObject(device), mapper, isController, descriptor, hidDecoder);
             return true;
         }
         catch (Exception exception) when (IsInteropFailure(exception))
@@ -270,16 +235,11 @@ internal static partial class GameInputDeviceMonitor
         }
     }
 
-    private static EmulationControllerState Read(GameInputDeviceEntry entry) =>
-        GameInputControllerStateReader.Read(
-            _gameInput, entry, SystemButtons, IsInteropFailure, Release);
+    private static EmulationControllerState Read(GameInputDeviceEntry entry) => GameInputControllerStateReader.Read(_gameInput, entry, SystemButtons, IsInteropFailure, Release);
 
-    private static GameInputLiveState ReadDetailed(GameInputDeviceEntry entry) =>
-        GameInputControllerStateReader.ReadDetailed(
-            _gameInput, entry, LatestRawReports, SystemButtons, IsInteropFailure, Release);
+    private static GameInputLiveState ReadDetailed(GameInputDeviceEntry entry) => GameInputControllerStateReader.ReadDetailed(_gameInput, entry, LatestRawReports, SystemButtons, IsInteropFailure, Release);
 
-    internal static EmulationControllerState MapGamepad(string deviceId, GameInputGamepadState gamepad) =>
-        GameInputControllerStateMapper.MapGamepad(deviceId, gamepad, SystemButtons);
+    internal static EmulationControllerState MapGamepad(string deviceId, GameInputGamepadState gamepad) => GameInputControllerStateMapper.MapGamepad(deviceId, gamepad, SystemButtons);
 
 
     private static bool Shutdown()
@@ -298,12 +258,7 @@ internal static partial class GameInputDeviceMonitor
 
         if (gameInput is not null)
         {
-            var callbackTokens = deviceTokens
-                .Append(systemButtonToken)
-                .Concat(entries.Select(entry => entry.RawReadingToken))
-                .Where(token => token != 0)
-                .Distinct()
-                .ToArray();
+            var callbackTokens = deviceTokens.Append(systemButtonToken).Concat(entries.Select(entry => entry.RawReadingToken)).Where(token => token != 0).Distinct().ToArray();
             // Never wait for a callback while holding Sync: the system-button and
             // raw-reading callbacks both acquire it before returning.
             var pendingTokens = callbackTokens.ToHashSet();
@@ -349,11 +304,9 @@ internal static partial class GameInputDeviceMonitor
         return true;
     }
 
-    private static bool SafeUnregister(ulong token)
-        => GameInputResourceReleaser.SafeUnregister(_gameInput, token);
+    private static bool SafeUnregister(ulong token) => GameInputResourceReleaser.SafeUnregister(_gameInput, token);
 
-    private static bool IsInteropFailure(Exception exception) =>
-        GameInputResourceReleaser.IsInteropFailure(exception);
+    private static bool IsInteropFailure(Exception exception) => GameInputResourceReleaser.IsInteropFailure(exception);
 
     private static void Release(object? value) => GameInputResourceReleaser.Release(value);
 

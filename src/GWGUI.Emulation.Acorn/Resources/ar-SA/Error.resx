@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Acorn.Error.ContentNotFound" xml:space="preserve"><value>المُختل ACORN لم يتم العثور على وسائل الإعلام.</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported" xml:space="preserve"><value>هذه الآلة لا تدعم وسائل الإعلام المختارة</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound" xml:space="preserve"><value>المطلوب ACORN لم يتم العثور على الجوهر</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected" xml:space="preserve"><value>المختارون ACORN لا يمكن تحميل الجوهر</value></data>
+  <data name="Emulation.Acorn.Error.Details" xml:space="preserve"><value>التفاصيل: {0}</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid" xml:space="preserve"><value>An ACORN البرمجيات الساكنة غير صحيحة أو غير متوافقة.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing" xml:space="preserve"><value>ألف - الاحتياجات ACORN البرمجيات مفقودة</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing" xml:space="preserve"><value>الطريق إلى ACORN برنامج المضيف غير متاح</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure" xml:space="preserve"><value>البلاغ مع ACORN المضيف فشل</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid" xml:space="preserve"><value>An ACORN الخيار له قيمة غير صحيحة</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible" xml:space="preserve"><value>The ACORN الولاية المنقذة لا تتوافق مع الآلة الحالية</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>The ACORN الولاية المنقذة باطلة</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>غير متوقع ACORN حدث خطأ في الاختبار</value></data>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>قيادة بيئة غير معروفة: {0}</value></data>
+</root>

@@ -9,8 +9,7 @@ internal static class FilterVfdHalo
         }
         """;
 
-    internal static float[] Create(float[] emission, int width, int height, int sourceWidth,
-        int sourceHeight, int radiusSetting, int intensitySetting)
+    internal static float[] Create(float[] emission, int width, int height, int sourceWidth, int sourceHeight, int radiusSetting, int intensitySetting)
     {
         var result = new float[emission.Length];
         if (intensitySetting <= 0) return result;
@@ -30,8 +29,7 @@ internal static class FilterVfdHalo
         return result;
     }
 
-    private static float Samples(float[] values, int width, int height, int x, int y,
-        int radiusX, int radiusY)
+    private static float Samples(float[] values, int width, int height, int x, int y, int radiusX, int radiusY)
     {
         var sum = 0f;
         for (var offsetY = -1; offsetY <= 1; offsetY++)

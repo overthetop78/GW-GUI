@@ -8,10 +8,7 @@ using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Images.Conversion.Fat12;
 
-public sealed class Fat12TargetImageWriter(
-    AtariStWriter atariWriter,
-    IbmRawImageWriter ibmWriter,
-    MsxRawImageWriter msxWriter)
+public sealed class Fat12TargetImageWriter(AtariStWriter atariWriter, IbmRawImageWriter ibmWriter, MsxRawImageWriter msxWriter)
 {
     public Task WriteAsync(SectorImage image, string path, string targetFormatId, CancellationToken cancellationToken = default)
     {

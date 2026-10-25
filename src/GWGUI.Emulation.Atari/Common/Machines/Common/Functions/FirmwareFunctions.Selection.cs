@@ -27,14 +27,9 @@ internal static class FirmwareSelectionFunctions
         };
     }
 
-    internal static IReadOnlyList<FirmwareConfiguration> ReplaceField(MachineModel model,
-        IEnumerable<FirmwareConfiguration> firmwares, string fieldId,
-        FirmwareConfiguration? selected)
+    internal static IReadOnlyList<FirmwareConfiguration> ReplaceField(MachineModel model, IEnumerable<FirmwareConfiguration> firmwares, string fieldId, FirmwareConfiguration? selected)
     {
-        bool Matches(FirmwareConfiguration item) =>
-            string.Equals(FieldId(model, item.Category), fieldId, StringComparison.Ordinal);
-        return firmwares.Where(item => !Matches(item))
-            .Concat(selected is null ? [] : [selected])
-            .ToArray();
+        bool Matches(FirmwareConfiguration item) => string.Equals(FieldId(model, item.Category), fieldId, StringComparison.Ordinal);
+        return firmwares.Where(item => !Matches(item)).Concat(selected is null ? [] : [selected]).ToArray();
     }
 }

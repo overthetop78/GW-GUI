@@ -3,16 +3,9 @@ namespace GWGUI.App.Functions.Options.Tags;
 
 internal static class TagPatternFormatter
 {
-    private static readonly TagExample[] Examples =
-    [
-        new("Disquette", "PC", "720", "IMA"),
-        new("Workbench", "AMIGA", "DD", "ADF"),
-        new("Jeu", "ST", "720", "ST"),
-        new("Archive", "PC", "1440", "IMG")
-    ];
+    private static readonly TagExample[] Examples = [new("Disquette", "PC", "720", "IMA"), new("Workbench", "AMIGA", "DD", "ADF"), new("Jeu", "ST", "720", "ST"), new("Archive", "PC", "1440", "IMG")];
 
-    internal static string Render(string pattern, string name, string family, string format, string extension, DateTime timestamp) => pattern
-        .Replace("{TAG}", family + "-" + format, StringComparison.OrdinalIgnoreCase)
+    internal static string Render(string pattern, string name, string family, string format, string extension, DateTime timestamp) => pattern.Replace("{TAG}", family + "-" + format, StringComparison.OrdinalIgnoreCase)
         .Replace("{NAME}", name, StringComparison.OrdinalIgnoreCase)
         .Replace("{FAMILY}", family, StringComparison.OrdinalIgnoreCase)
         .Replace("{FORMAT}", format, StringComparison.OrdinalIgnoreCase)

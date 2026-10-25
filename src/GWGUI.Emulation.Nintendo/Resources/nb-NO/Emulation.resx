@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Language"><value>Nintendo systemspråk</value></data>
+  <data name="Emulation.Nintendo.Language.English"><value>Engelsk</value></data>
+  <data name="Emulation.Nintendo.Language.French"><value>fransk</value></data>
+  <data name="Emulation.Nintendo.Language.Spanish"><value>Spansk</value></data>
+  <data name="Emulation.Nintendo.Firmware.Integrated"><value>System-ROM</value></data>
+  <data name="Emulation.Emulator.mesen.Description"><value>emulgerer Nintendo Entertainment System og Famicom Disk System.</value></data>
+  <data name="Emulation.Emulator.gw.Description"><value>Emulgerer Nintendo Game &amp; Watch.</value></data>
+  <data name="Emulation.Emulator.beetle_vb.Description"><value>Emulerer Nintendo Virtual Boy.</value></data>
+  <data name="Emulation.Emulator.mupen64plus-next.Description"><value>Emulerer Nintendo 64 systemer.</value></data>
+  <data name="Emulation.Emulator.melonds.Description"><value>Emulgerer Nintendo DS og DSi systemer.</value></data>
+  <data name="Emulation.Emulator.snes9x.Description"><value>emulerer Super Nintendo og Super Famicom-systemer.</value></data>
+  <data name="Emulation.Emulator.gambatte.Description"><value>Emulerer Nintendo Game Boy systemet. I tillegg emulerer Game Boy Color-systemet.</value></data>
+  <data name="Emulation.Emulator.mgba.Description"><value>Emulerer Nintendo Game Boy Advance-systemer.</value></data>
+  <data name="Emulation.Emulator.citra.Description"><value>Emulerer Nintendo 3DS-systemer med Citra.</value></data>
+  <data name="Emulation.Emulator.dolphin.Description"><value>Emulgerer Nintendo GameCube og Wii systemer medDolphin.</value></data>
+</root>

@@ -15,21 +15,12 @@ public sealed class ConversionPlanner(IImageFormatCatalog catalog)
         {
             var format = validator.ResolveFormat(sourceExtension, selection.FormatId);
             foreach (var extension in validator.ResolveExtensions(format, selection))
-                outputs.Add(ConversionOutputFactory.Create(
-                    destinationFolder,
-                    outputBaseName,
-                    format,
-                    extension,
-                    sourceExtension,
-                    addTags,
-                    tagPattern,
-                    selection.ExplicitExtensions.Count == 0));
+                outputs.Add(ConversionOutputFactory.Create(destinationFolder, outputBaseName, format, extension, sourceExtension, addTags, tagPattern, selection.ExplicitExtensions.Count == 0));
         }
 
         ConversionCompatibilityValidator.EnsureDistinctOutputs(outputs);
         return outputs;
     }
 
-    public static string FormatTag(string pattern, DiskFormat format, string extension, string sourceName, DateTime timestamp) =>
-        ConversionTagFormatter.Format(pattern, format, extension, sourceName, timestamp);
+    public static string FormatTag(string pattern, DiskFormat format, string extension, string sourceName, DateTime timestamp) => ConversionTagFormatter.Format(pattern, format, extension, sourceName, timestamp);
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.applewin.Description"><value>מדמה מחשבי Apple II באמצעות AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>מדמה מחשבי Macintosh II באמצעות Mini vMac.</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>גירסאות מכונה</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>הגדרות הווידאו של ליבת האמולציה</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>כרטיסי הרחבה</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>זיכרון המשמש את הליבה</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>קובצי ה-ROM של המערכת כלולים ב-AppleWin.</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>הליבה הזמינה אינה תומכת במודל המכונה הזה.</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>דיסק Playlists</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>ריק ריק</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>כרטיס ב-Trot 3</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>כרטיס עכבר</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>כרטיס ב-Trot 4</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>כרטיס ב-Sle 5</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>ביקורת דיסק קשיח</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>כרטיס ב-Tro 7</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>צבע (RGB Card / monitor</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>צבע (Composite Idealized)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>צבע (Composite Monitor)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>צבע צבע TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>מונוכרום (Amber)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>מונוכרום (Green)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>מונוכרום (לבן)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>וידאו מצב</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>חצי קרקס</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>סגנון וידאו</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>וידאו: מרעננים Rate</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>הראשון הראשון</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>הקודם</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>Playlist מתחיל דיסק</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>שימוש בשני הכוננים ה-Foppy</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>סטטוס Bar</value></data>
+</root>

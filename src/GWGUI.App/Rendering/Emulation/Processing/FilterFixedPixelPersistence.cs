@@ -7,6 +7,5 @@ internal static class FilterFixedPixelPersistence
         { return clamp(max(current,previous*intensity),0.0,1.0); }
         """;
 
-    internal static float Apply(float responded, float previous, int intensity) =>
-        Math.Clamp(Math.Max(responded, previous * intensity / 100f), 0f, 1f);
+    internal static float Apply(float responded, float previous, int intensity) => Math.Clamp(Math.Max(responded, previous * intensity / 100f), 0f, 1f);
 }

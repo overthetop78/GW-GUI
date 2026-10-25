@@ -94,7 +94,6 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Tření</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Tlumič</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Setrvačnost</value></data>
-  <data name="Controllers.Enum.Joystick"><value>Joystick</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Víceosý ovladač</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Použití HID</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>osy</value></data>

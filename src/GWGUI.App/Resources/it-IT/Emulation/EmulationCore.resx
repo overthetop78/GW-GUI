@@ -24,4 +24,5 @@
   <data name="Emulation.Core.Install"><value>Installazione</value></data>
   <data name="Emulation.Core.InstalledBadge"><value>Installato</value></data>
   <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Opzioni di base</value></data>
+  <data name="Emulation.Core.NameNoEmulatorAvailable"><value>Selezionare un emulatore prima di creare questa macchina.</value></data>
 </root>

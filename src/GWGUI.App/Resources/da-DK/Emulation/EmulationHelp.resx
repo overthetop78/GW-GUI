@@ -33,7 +33,7 @@
   <data name="Emulation.Help.Controller.DigitalSensitivity.Short" xml:space="preserve"><value>Sæt digital inputfølsomhed</value></data>
   <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed" xml:space="preserve"><value>Sætter hvor hurtigt en digital retning når fuld bevægelse. En højere værdi gør retningsændringer nå deres maksimale hurtigere.</value></data>
   <data name="Emulation.Help.Controller.Autofire.Short" xml:space="preserve"><value>Vælg autobrandtilstand</value></data>
-  <data name="Emulation.Help.Controller.Autofire.Detailed" xml:space="preserve"><value>Handicappede slukker autoaffyring. På knappen gentager ild mens den tildelte knap holdes. Altid gentager ild løbende.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed" xml:space="preserve"><value>Deaktiveret slukker autoaffyring. På knappen gentager ild mens den tildelte knap holdes. Altid gentager ild løbende.</value></data>
   <data name="Emulation.Help.Controller.PaddleSpeed.Short" xml:space="preserve"><value>Sæt temahastighed</value></data>
   <data name="Emulation.Help.Controller.PaddleSpeed.Detailed" xml:space="preserve"><value>Sætter hvor hurtigt digitalt input flytter en emuleret padle. En lavere værdi bevæger det langsommere. En højere værdi flytter det hurtigere.</value></data>
   <data name="Emulation.Help.Cpu.FpuModel.Short" xml:space="preserve"><value>Vælg FPU</value></data>
@@ -51,9 +51,9 @@
   <data name="Emulation.Help.Memory.AxlonShadow.Short" xml:space="preserve"><value>Aktivér Axlon $0F skyggebank</value></data>
   <data name="Emulation.Help.Memory.AxlonShadow.Detailed" xml:space="preserve"><value>Spejle Axlon kontrolbank på adresse $0F. Aktivér det kun for software eller hukommelse udvidelser, der bruger denne ekstra adresse.</value></data>
   <data name="Emulation.Help.Memory.Axlon.Short" xml:space="preserve"><value>Sæt Axlon ekspansionshukommelse</value></data>
-  <data name="Emulation.Help.Memory.Axlon.Detailed" xml:space="preserve"><value>Indstiller mængden af bank- byttet Axlon hukommelse. Handicappede fjerner udvidelsen. De andre valg giver den valgte hukommelse kapacitet.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed" xml:space="preserve"><value>Indstiller mængden af bank- byttet Axlon hukommelse. Deaktiveret fjerner udvidelsen. De andre valg giver den valgte hukommelse kapacitet.</value></data>
   <data name="Emulation.Help.Memory.Mosaic.Short" xml:space="preserve"><value>Sæt Mosaic ekspansionshukommelse</value></data>
-  <data name="Emulation.Help.Memory.Mosaic.Detailed" xml:space="preserve"><value>Indstiller mængden af bank- byttet Mosaic hukommelse. Handicappede fjerner udvidelsen. De andre valg giver den valgte hukommelse kapacitet.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed" xml:space="preserve"><value>Indstiller mængden af bank- byttet Mosaic hukommelse. Deaktiveret fjerner udvidelsen. De andre valg giver den valgte hukommelse kapacitet.</value></data>
   <data name="Emulation.Help.Memory.Extensions.Short" xml:space="preserve"><value>Sæt ekstra udvidelseshukommelse</value></data>
   <data name="Emulation.Help.Memory.Extensions.Detailed" xml:space="preserve"><value>Indstiller mængden af ekstra udvidelseshukommelse understøttet af den valgte maskine. Vælg Ingen til kun at bruge den indstillede hovedhukommelse.</value></data>
   <data name="Emulation.Help.Memory.Fast.Short" xml:space="preserve"><value>Sæt Fast RAM størrelse</value></data>
@@ -109,7 +109,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Short" xml:space="preserve"><value>Justér GTIA Farveforsinkelse</value></data>
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Indstiller GTIA farve fase forsinkelse bruges til at reproducere farver. Standard bruger standardværdien. Numeriske valg skifter de resulterende nuancer.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>Indstil frame skipping</value></data>
-  <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Sætter hvor mange skærmrammer der udelades. Handicappede trækker hver ramme. Højere værdier reducerer rendering arbejde, men gøre bevægelse mindre glat.</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Sætter hvor mange skærmrammer der udelades. Deaktiveret trækker hver ramme. Højere værdier reducerer rendering arbejde, men gøre bevægelse mindre glat.</value></data>
   <data name="Emulation.Help.Cpu.Model.Short"><value>Vælg den emulerede processor</value></data>
   <data name="Emulation.Help.Cpu.Model.Detailed"><value>Vælger processormodellen installeret i den emulerede maskine. Tilgængelige modeller afhænger af den valgte maskine og emulator.</value></data>
   <data name="Emulation.Help.Cpu.OriginalSpeed.Short"><value>Brug den oprindelige processorhastighed</value></data>
@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Sætter afspilningsvolumen af lydspor læst fra det emulerede komprimerede diskdrev.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>Sæt musemoment</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Justerer hvordan værtsmusemobilitet konverteres til bevægelse rapporteret til den emulerede maskine.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Vælg mappen for harddisk- billeder</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Sætter mappen som oprindeligt blev åbnet når du vælger et harddisk- billede. Selve mappen er ikke monteret som en disk.</value></data>
 </root>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.applewin.Description"><value>使用 AppleWin 模拟 Apple II 计算机。</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>使用 Mini vMac 模拟 Macintosh II 计算机。</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>机器变体</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>模拟核心的视频设置</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>扩展卡</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>核心使用的内存</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>AppleWin 已包含系统 ROM。</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>可用的核心不支持这种机器模型.</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>磁盘播放列表</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>空的 。</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>3号舱卡</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>鼠标卡</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>4号舱卡</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>5号舱卡</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>硬盘控制器</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>7号房的卡片</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>颜色( R)RGB 牌/监督员)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>颜色( 混合理想)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>颜色( 复合监视器)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>颜色 TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>单色 (安伯)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>单色( 绿色 )</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>单色( 白)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>视频模式</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>半条扫描线</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>视频样式</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>视频刷新率</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>第一届</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>上一个</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>播放列表启动磁盘</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>使用两个软盘</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>状态栏</value></data>
+</root>

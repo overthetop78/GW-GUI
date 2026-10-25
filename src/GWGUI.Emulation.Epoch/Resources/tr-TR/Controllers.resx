@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft" xml:space="preserve"><value>Sol side düğmesine</value></data>
+  <data name="Emulation.Epoch.Input.FireRight" xml:space="preserve"><value>Doğru taraf düğmesi</value></data>
+  <data name="Emulation.Epoch.Input.Power" xml:space="preserve"><value>Power düğmesine güç</value></data>
+  <data name="Emulation.Epoch.Input.Reset" xml:space="preserve"><value>reset düğmesine</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft" xml:space="preserve"><value>Solun soluna hareket edin</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight" xml:space="preserve"><value>Sağına doğru hareket edin</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease" xml:space="preserve"><value>Bir sonraki oyun kursu seçin</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease" xml:space="preserve"><value>Önceki oyun kursunu seçin</value></data>
+  <data name="Emulation.Epoch.Input.GunFire" xml:space="preserve"><value>Işık tabancası tetik</value></data>
+  <data name="Emulation.Epoch.Input.GunReload" xml:space="preserve"><value>Işık tabanca yeniden yük</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease" xml:space="preserve"><value>Paddle 1: saatli olarak</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase" xml:space="preserve"><value>Paddle 1: saatif</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease" xml:space="preserve"><value>Paddle 2: saat yönünden</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase" xml:space="preserve"><value>Paddle 2: saatif</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease" xml:space="preserve"><value>Paddle 3: saat yönünden</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase" xml:space="preserve"><value>Paddle 3: saatif</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease" xml:space="preserve"><value>Paddle 4: saatle karşı karşıya</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase" xml:space="preserve"><value>Paddle 4: saatif</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease" xml:space="preserve"><value>Silahın solunda kaldı.</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease" xml:space="preserve"><value>Silahı doğru bir şekilde ifade edin.</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease" xml:space="preserve"><value>Silahı yukarı doğrult.</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease" xml:space="preserve"><value>Silah aşağı doğru gidiyor.</value></data>
+</root>

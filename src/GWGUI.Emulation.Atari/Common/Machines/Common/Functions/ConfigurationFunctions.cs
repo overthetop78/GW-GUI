@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Atari.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
@@ -13,7 +14,7 @@ internal static class ConfigurationFunctions
             or MachineModel.Atari130Xe or MachineModel.Xegs or MachineModel.XlXe
             or MachineModel.Atari5200
             => Emulator.Atari800,
-        MachineModel.Atari2600 => Emulator.Stella,
+        MachineModel.Atari2600 => Emulator.Stella2023,
         MachineModel.Atari7800 => Emulator.ProSystem,
         MachineModel.Lynx => Emulator.BeetleLynx,
         MachineModel.Jaguar or MachineModel.JaguarCd => Emulator.VirtualJaguar,
@@ -36,9 +37,7 @@ internal static class ConfigurationFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(model), model, null)
     };
 
-    internal static void Validate(int schemaVersion, MachineModel model,
-        IReadOnlyList<FirmwareConfiguration> firmwares, IReadOnlyList<MediaConfiguration> media,
-        InputConfiguration input)
+    internal static void Validate(int schemaVersion, MachineModel model, IReadOnlyList<FirmwareConfiguration> firmwares, IReadOnlyList<MediaConfiguration> media, InputConfiguration input)
     {
         if (schemaVersion != ConfigurationStoreConstants.CurrentSchemaVersion)
             throw new ArgumentOutOfRangeException(nameof(schemaVersion), ErrorMessages.UnsupportedSchema);
@@ -62,8 +61,7 @@ internal static class ConfigurationFunctions
         }
     }
 
-    private static bool IsFirmwareCompatible(MachineModel model, FirmwareCategory category)
-        => CompatibilityFunctions.IsFirmwareCompatible(CompatibilityCatalog.Get(model), category);
+    private static bool IsFirmwareCompatible(MachineModel model, FirmwareCategory category) => CompatibilityFunctions.IsFirmwareCompatible(CompatibilityCatalog.Get(model), category);
 
     private static void ValidateMedia(MachineModel model, IReadOnlyList<MediaConfiguration> media)
     {
@@ -79,8 +77,7 @@ internal static class ConfigurationFunctions
         }
     }
 
-    private static bool IsMediaCompatible(MachineModel model, MediaCategory category, EmulationMediaSlot slot)
-        => CompatibilityFunctions.IsMediaCompatible(CompatibilityCatalog.Get(model), category, slot);
+    private static bool IsMediaCompatible(MachineModel model, MediaCategory category, EmulationMediaSlot slot) => CompatibilityFunctions.IsMediaCompatible(CompatibilityCatalog.Get(model), category, slot);
 
     private static void ValidateInput(MachineModel model, InputConfiguration input)
     {
@@ -96,7 +93,7 @@ internal static class ConfigurationFunctions
             if (controller.DeadZonePercent is < ControllerConstants.MinimumDeadZonePercent
                 or > ControllerConstants.MaximumDeadZonePercent)
                 throw new ArgumentOutOfRangeException(nameof(input), ErrorMessages.InvalidControllerDeadZone);
-            if (!ControllerFunctions.Peripherals(model).Contains(controller.Peripheral))
+            if (!CommonControllerFunctions.Peripherals(model).Contains(controller.Peripheral))
                 throw new ArgumentException(ErrorMessages.UnsupportedControllerDevice, nameof(input));
         }
     }

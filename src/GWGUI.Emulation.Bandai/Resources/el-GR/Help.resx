@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Setting.DisplayRotation.Help" xml:space="preserve"><value>Επιλέξτε τον προσανατολισμό τοπίου ή πορτραίτας. Η λειτουργία χειροκίνητων χρησιμοποιεί το καθορισμένο κουμπί περιστροφής.</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation.Help" xml:space="preserve"><value>Η αυτόματη λειτουργία ακολουθεί τον προσανατολισμό της οθόνης. Άλλες λειτουργίες διατηρούν τα χειριστήρια στον επιλεγμένο προσανατολισμό.</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Επιλέξτε τα χρώματα που χρησιμοποιούνται για μονόχρωμα παιχνίδια.</value></data>
+  <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Επιλέξτε το βάθος του χρώματος εξόδου. Η λειτουργία 24-bit απαιτεί περισσότερη ισχύ επεξεργασίας.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Παράλειψη πλαισίων βίντεο για τη μείωση του crrackling ήχου. Η αυτόματη λειτουργία ακολουθεί την ενδιάμεση μνήμη ήχου. Η λειτουργία χειροκίνητων χρησιμοποιεί το επιλεγμένο κατώφλι.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help"><value>Χειροκίνητη λειτουργία: παράλειψη καρέ όταν η πληρότητα της προσωρινής μνήμης ήχου πέσει κάτω από το επιλεγμένο όριο.</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Παράκαμψη κάθε πέμπτου πλαισίου για εμφάνιση στα 60 Hz. Αυτό μειώνει την ομαλότητα κίνησης.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Υψηλότεροι ρυθμοί δειγματοληψίας βελτιώνουν ελαφρώς την ποιότητα του ήχου και απαιτούν περισσότερη ισχύ επεξεργασίας.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Εφαρμόστε ένα φίλτρο χαμηλής διέλευσης για να μαλακώσετε τον ήχο.</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Εναλλαγή των ενεργειών των κουμπιών A και B.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.DetailedHelp"><value>Στο 33%, παραλείπονται καρέ όταν η προσωρινή μνήμη ήχου είναι γεμάτη λιγότερο από 33%, ώστε να μειωθούν οι κρότοι. Υψηλότερες τιμές ενεργοποιούν την παράλειψη νωρίτερα. Η καθυστέρηση ήχου και το μέγεθος της μνήμης δεν αλλάζουν.</value></data>
+</root>

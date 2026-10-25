@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Beállítja az emulált kompakt-lemez meghajtóból olvasott audió sávok lejátszási mennyiségét.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>Az egér mozgási sebességének beállítása</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Beállítja, hogy a gazdatest egér mozgása hogyan alakul át az emulált gép által jelentett mozgásra.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Válassza ki a merevlemezes képek mappáját</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Beállítja az eredetileg megnyitott mappát egy merevlemez kép kiválasztásakor. A mappát nem lemezként szerelték fel.</value></data>
 </root>

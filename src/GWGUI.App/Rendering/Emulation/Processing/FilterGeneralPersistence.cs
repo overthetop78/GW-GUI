@@ -15,8 +15,7 @@ internal sealed class FilterGeneralPersistence
             Reset();
             return;
         }
-        var compatible = _history is not null && _width == width && _height == height
-            && sequence > _sequence;
+        var compatible = _history is not null && _width == width && _height == height && sequence > _sequence;
         if (compatible)
             for (var index = 0; index < colors.Length; index++)
                 colors[index] = Math.Clamp(Math.Max(colors[index], _history![index] * amount), 0f, 1f);

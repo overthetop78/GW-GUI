@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Zobrazuje nominální hodinovou frekvenci procesoru ve zvoleném zařízení Sony.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Původní procesorová hodinová frekvence.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Zobrazuje model procesoru poskytnutý vybraným zařízením Sony.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>Procesor emuloval pro tento stroj.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>Zobrazuje stav systému ROM pro vybraný stroj a emulátor.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>Systém ROM.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Identifikuje implementaci emulátoru používanou pro spuštění této konfigurace stroje.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>Emulátor vybrán pro tento stroj.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Identifikuje model Sony, jehož hardwarová konfigurace je editována.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>Model Sony stroje je nastaven.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Zobrazí RAM, které poskytuje vybraný stroj Sony.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Množství RAM dostupné pro emulovaný stroj.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Frekvence emulovaného CPU po použití zvoleného procentního podílu hodin.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>Jmenovitá frekvence konzole se vynásobí zvoleným procentem. To mění emulovaný procesor, ne hostitelský procesor. Vyšší hodnoty mohou snížit zpomalení, ale může zlomit načasování hry. Automaticky používá výchozí emulátor.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Původní grafický hardware vybraného stroje.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Zobrazuje původní grafický hardware vybraného stroje. Nastavení vykreslování emulátoru mění výsledný obraz. Filtry GW GUI se použijí následně.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Původní zvukový hardware vybraného stroje.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Zobrazuje původní zvukový hardware vybraného stroje. Nastavení zvukového výstupu a latence řídí přehrávání na počítači.</value></data>
+</root>

@@ -3,14 +3,13 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 // Original edge-aware 3x3 implementation; no GPL xBRZ source code is used.
 internal static class FilterXbrz
 {
-    public static void Sample(float[] source, int width, int height,
-        float sourcePositionX, float sourcePositionY, Span<float> result)
+    public static void Sample(float[] source, int width, int height, float sourcePositionX, float sourcePositionY, Span<float> result)
     {
         var centerX = (int)MathF.Floor(sourcePositionX);
         var centerY = (int)MathF.Floor(sourcePositionY);
         var fractionX = sourcePositionX - MathF.Floor(sourcePositionX);
         var fractionY = sourcePositionY - MathF.Floor(sourcePositionY);
-        var center = Read(source, width, height, centerX, centerY);
+        var center = FilterSampling.ReadSrgbColor(source, width, height, centerX, centerY);
         var candidate = center;
         var bestBlend = 0f;
         EvaluateCorner(1, 1, fractionX + fractionY);
@@ -18,8 +17,7 @@ internal static class FilterXbrz
         EvaluateCorner(-1, -1, 2f - fractionX - fractionY);
         EvaluateCorner(-1, 1, 1f - fractionX + fractionY);
         for (var channel = 0; channel < 3; channel++)
-            result[channel] = SoftwareEmulationVideoProcessingPipeline.SrgbToLinear(
-                Lerp(center[channel], candidate[channel], bestBlend));
+            result[channel] = SoftwareEmulationVideoProcessingPipeline.SrgbToLinear(Lerp(center[channel], candidate[channel], bestBlend));
 
         void EvaluateCorner(int directionX, int directionY, float toward)
         {
@@ -33,37 +31,17 @@ internal static class FilterXbrz
             var centerHorizontal = ColorDistance(center, horizontal);
             var centerVertical = ColorDistance(center, vertical);
             if (centerHorizontal <= 0.01f || centerVertical <= 0.01f) return;
-            var edge = ColorDistance(center, outerHorizontal)
-                + ColorDistance(center, outerVertical)
-                + ColorDistance(vertical, diagonal)
-                + ColorDistance(horizontal, diagonal)
-                + 4f * ColorDistance(vertical, horizontal);
-            var alternative = ColorDistance(vertical, oppositeHorizontal)
-                + ColorDistance(horizontal, oppositeVertical)
-                + 4f * ColorDistance(center, diagonal);
+            var edge = ColorDistance(center, outerHorizontal) + ColorDistance(center, outerVertical) + ColorDistance(vertical, diagonal) + ColorDistance(horizontal, diagonal) + 4f * ColorDistance(vertical, horizontal);
+            var alternative = ColorDistance(vertical, oppositeHorizontal) + ColorDistance(horizontal, oppositeVertical) + 4f * ColorDistance(center, diagonal);
             if (edge >= alternative) return;
             var strong = edge * 1.5f < alternative;
-            var blend = strong ? SmoothStep(0.9f, 1.7f, toward)
-                : SmoothStep(1.2f, 1.9f, toward);
+            var blend = strong ? SmoothStep(0.9f, 1.7f, toward) : SmoothStep(1.2f, 1.9f, toward);
             if (blend <= bestBlend) return;
             bestBlend = blend;
             candidate = centerHorizontal <= centerVertical ? horizontal : vertical;
         }
 
-        FilterColor At(int offsetX, int offsetY) => Read(source, width, height,
-            centerX + offsetX, centerY + offsetY);
-    }
-
-    private static FilterColor Read(float[] source, int width, int height, int x, int y)
-    {
-        x = Math.Clamp(x, 0, width - 1);
-        y = Math.Clamp(y, 0, height - 1);
-        var offset = (y * width + x) * 3;
-        return new FilterColor(
-            SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset]),
-            SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 1]),
-            SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 2])
-        );
+        FilterColor At(int offsetX, int offsetY) => FilterSampling.ReadSrgbColor(source, width, height, centerX + offsetX, centerY + offsetY);
     }
 
     private static float ColorDistance(FilterColor first, FilterColor second)
@@ -83,8 +61,7 @@ internal static class FilterXbrz
         return amount * amount * (3f - 2f * amount);
     }
 
-    private static float Lerp(float start, float end, float amount) =>
-        start + (end - start) * amount;
+    private static float Lerp(float start, float end, float amount) => start + (end - start) * amount;
 
     internal const string OpenGlShader = """
         float advancedColorDistance(vec3 first, vec3 second)

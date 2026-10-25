@@ -29,8 +29,7 @@ public sealed class ModuleDirectoryCatalogValidator
             if (!Uri.TryCreate(module.CatalogUrl, UriKind.Absolute, out var catalogUri)
                 || catalogUri.Scheme != Uri.UriSchemeHttps
                 || !catalogUri.AbsolutePath.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
-                throw new InvalidDataException(
-                    $"Module directory entry '{module.Id}' must contain a direct HTTPS catalog URL ending in .json.");
+                throw new InvalidDataException($"Module directory entry '{module.Id}' must contain a direct HTTPS catalog URL ending in .json.");
             if (!catalogUrls.Add(catalogUri.AbsoluteUri))
                 throw new InvalidDataException($"Duplicate module directory catalog URL '{module.CatalogUrl}'.");
         }

@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>Η ζητούμενη θέση είναι άκυρη για αυτό το αντικείμενο συστήματος αρχείων.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Η λειτουργία του κόμβου κατανομής απέτυχε.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Πεδίο δείκτη bitmap κατανομής- κόμβου {0}/{1} Δεν ήταν δυνατόν να διαβαστεί.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>Η κεφαλή του δίσκου δεν είναι στον απαιτούμενο κύλινδρο ({0}. Επαναρυθμίστε την κίνηση πριν από την ανάγνωση.</value></data>
 </root>

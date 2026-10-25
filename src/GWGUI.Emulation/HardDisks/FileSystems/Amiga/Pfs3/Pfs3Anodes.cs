@@ -238,8 +238,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 
                     if (s < 0)
                     {
-                        throw new FileSystemDiagnosticException(FileSystemErrorCode.AnodeOperationFailed,
-                            Pfs3ErrorMessages.AnodeOperationFailed);
+                        throw new FileSystemDiagnosticException(FileSystemErrorCode.AnodeOperationFailed, Pfs3ErrorMessages.AnodeOperationFailed);
                     }
 
                     sblk = await GetSuperBlock((ushort)s, g);
@@ -259,17 +258,14 @@ namespace Hst.Amiga.FileSystems.Pfs3
 
                 if (i < 0)
                 {
-                    throw new FileSystemDiagnosticException(FileSystemErrorCode.AnodeOperationFailed,
-                        Pfs3ErrorMessages.AnodeOperationFailed);
+                    throw new FileSystemDiagnosticException(FileSystemErrorCode.AnodeOperationFailed, Pfs3ErrorMessages.AnodeOperationFailed);
                 }
 
                 iblk = await GetIndexBlock((ushort)(s * andata.indexperblock + i), g);
 
                 if (iblk == null)
                 {
-                            throw new FileSystemDiagnosticException(
-                                FileSystemErrorCode.AnodeBitmapIndexBlockMissing,
-                                Pfs3ErrorMessages.AnodeBitmapIndexBlockMissing(s, i), s, i);
+                            throw new FileSystemDiagnosticException(FileSystemErrorCode.AnodeBitmapIndexBlockMissing, Pfs3ErrorMessages.AnodeBitmapIndexBlockMissing(s, i), s, i);
                 }
 
                 var iblk_blk = iblk.IndexBlock;
@@ -280,8 +276,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 
             if (g.SuperMode)
             {
-                andata.maxanseqnr =
-                    (uint)(s * andata.indexperblock * andata.indexperblock + i * andata.indexperblock + j);
+                andata.maxanseqnr = (uint)(s * andata.indexperblock * andata.indexperblock + i * andata.indexperblock + j);
                 size = (uint)(((s * andata.indexperblock + i + 1) * andata.indexperblock + 7) / 8);
             }
             else

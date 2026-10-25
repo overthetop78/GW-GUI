@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.opera.Description"><value>Емулює 3DO.</value></data>
+  <data name="Emulation.Panasonic.Memory.Capacity" xml:space="preserve"><value>Об'єм пам'яті</value></data>
+  <data name="Emulation.Panasonic.Video.Mode" xml:space="preserve"><value>Відеорежим</value></data>
+  <data name="Emulation.Panasonic.Video.PixelFormat" xml:space="preserve"><value>Формат кольору пікселя</value></data>
+  <data name="Emulation.Panasonic.Video.BypassClut" xml:space="preserve"><value>Ігнорувати колірний стіл</value></data>
+  <data name="Emulation.Panasonic.Video.HighResolution" xml:space="preserve"><value>Висока роздільна здатність, що дає</value></data>
+  <data name="Emulation.Panasonic.Audio.Processing" xml:space="preserve"><value>Аудіообробка</value></data>
+  <data name="Emulation.Panasonic.Audio.Parallel" xml:space="preserve"><value>Паралельна аудіо-обробка</value></data>
+  <data name="Emulation.Panasonic.Storage.SaveMode" xml:space="preserve"><value>Режим зберігання даних</value></data>
+  <data name="Emulation.Panasonic.Storage.Version" xml:space="preserve"><value>Банк пам'яті збережених даних</value></data>
+  <data name="Emulation.Panasonic.Storage.CdSpeed" xml:space="preserve"><value>Швидкість зчитування CD-ROM</value></data>
+  <data name="Emulation.Panasonic.System" xml:space="preserve"><value>Системы</value></data>
+  <data name="Emulation.Panasonic.System.RandomSeed" xml:space="preserve"><value>Початкова вартість генератора випадкових чисел</value></data>
+  <data name="Emulation.Panasonic.System.Diagnostics" xml:space="preserve"><value>Діагностичне повідомлення</value></data>
+  <data name="Emulation.Panasonic.Value.Hardware" xml:space="preserve"><value>КСНУМКС</value></data>
+  <data name="Emulation.Panasonic.Value.Software" xml:space="preserve"><value>Програмне забезпечення</value></data>
+  <data name="Emulation.Panasonic.Value.PerGame" xml:space="preserve"><value>На гру</value></data>
+  <data name="Emulation.Panasonic.Value.Shared" xml:space="preserve"><value>Поділитися між ігри</value></data>
+  <data name="Emulation.Panasonic.Value.Unlimited" xml:space="preserve"><value>Без категорії</value></data>
+  <data name="Emulation.Panasonic.Value.Random" xml:space="preserve"><value>Випадкові</value></data>
+</root>

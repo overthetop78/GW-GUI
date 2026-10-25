@@ -19,16 +19,8 @@ public sealed class ScpDocumentLoader(IScpReader reader, Func<string, object[], 
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
         ArgumentNullException.ThrowIfNull(image);
-        var checksum = Localize(image.ChecksumValid
-            ? DiskImageResourceKeys.VisualChecksumValid
-            : DiskImageResourceKeys.VisualChecksumInvalid);
-        var summary = Localize(
-            DiskImageResourceKeys.VisualSummary,
-            image.Header.VersionText,
-            image.Tracks.Count,
-            image.Header.Revolutions,
-            image.Header.ResolutionNanoseconds,
-            checksum);
+        var checksum = Localize(image.ChecksumValid ? DiskImageResourceKeys.VisualChecksumValid : DiskImageResourceKeys.VisualChecksumInvalid);
+        var summary = Localize(DiskImageResourceKeys.VisualSummary, image.Header.VersionText, image.Tracks.Count, image.Header.Revolutions, image.Header.ResolutionNanoseconds, checksum);
         return new(image, Path.GetFileName(path), summary, image.Tracks.Select(track => track.Head).ToHashSet());
     }
 

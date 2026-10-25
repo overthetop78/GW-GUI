@@ -18,8 +18,7 @@ internal sealed class MachineView : UserControl
 {
     private readonly Dictionary<string, Ellipse> _deviceLeds = new(StringComparer.Ordinal);
     private readonly Dictionary<string, TextBlock> _deviceStatuses = new(StringComparer.Ordinal);
-    private readonly Dictionary<string, Dictionary<EmulationCassetteCommand, Button>> _cassetteButtons =
-        new(StringComparer.Ordinal);
+    private readonly Dictionary<string, Dictionary<EmulationCassetteCommand, Button>> _cassetteButtons = new(StringComparer.Ordinal);
     private readonly HashSet<Button> _blinkingCassetteButtons = [];
     private readonly DispatcherTimer _cassetteBlinkTimer;
     private bool _cassetteBlinkVisible = true;
@@ -30,8 +29,7 @@ internal sealed class MachineView : UserControl
 
     internal MachineView()
     {
-        _cassetteBlinkTimer = new DispatcherTimer(
-            TimeSpan.FromMilliseconds(400), DispatcherPriority.Render, CassetteBlinkTick, Dispatcher);
+        _cassetteBlinkTimer = new DispatcherTimer(TimeSpan.FromMilliseconds(400), DispatcherPriority.Render, CassetteBlinkTick, Dispatcher);
         _cassetteBlinkTimer.Stop();
         Root = new Grid { Background = Brushes.Transparent };
         Root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -172,8 +170,7 @@ internal sealed class MachineView : UserControl
         _shaderLoadingOverlay.Visibility = isLoading ? Visibility.Visible : Visibility.Collapsed;
     }
 
-    internal void SetDevices(IEnumerable<MachineViewDevice> devices, Action<Exception> showError,
-        Action restoreFocus)
+    internal void SetDevices(IEnumerable<MachineViewDevice> devices, Action<Exception> showError, Action restoreFocus)
     {
         DeviceStrip.Children.Clear();
         _deviceLeds.Clear();
@@ -187,8 +184,7 @@ internal sealed class MachineView : UserControl
         UpdateCassetteBlinkTimer();
     }
 
-    private FrameworkElement DeviceItem(MachineViewDevice device, Action<Exception> showError,
-        Action restoreFocus)
+    private FrameworkElement DeviceItem(MachineViewDevice device, Action<Exception> showError, Action restoreFocus)
     {
         var root = new StackPanel
         {
@@ -315,8 +311,7 @@ internal sealed class MachineView : UserControl
                     Margin = new Thickness(1, 0, 1, 0)
                 };
                 button.SetResourceReference(StyleProperty, "StatusIconButton");
-                SetCassetteButtonVisual(button, command.Command, command.IsSupported,
-                    command.IsActive, command.IsBlinking);
+                SetCassetteButtonVisual(button, command.Command, command.IsSupported, command.IsActive, command.IsBlinking);
                 button.Click += async (_, _) => await RunAsync(command.Execute, showError, restoreFocus);
                 buttons[command.Command] = button;
                 commandRow.Children.Add(button);
@@ -368,9 +363,7 @@ internal sealed class MachineView : UserControl
         if (_deviceStatuses.TryGetValue(key, out var text)) text.Text = status;
     }
 
-    internal void SetCassetteTransport(string key, EmulationCassetteState state,
-        EmulationCassetteCommand? activeOperation,
-        IReadOnlySet<EmulationCassetteCommand> supportedCommands, bool powered)
+    internal void SetCassetteTransport(string key, EmulationCassetteState state, EmulationCassetteCommand? activeOperation, IReadOnlySet<EmulationCassetteCommand> supportedCommands, bool powered)
     {
         if (!_cassetteButtons.TryGetValue(key, out var buttons)) return;
         foreach (var (command, button) in buttons)
@@ -378,15 +371,13 @@ internal sealed class MachineView : UserControl
             var supported = supportedCommands.Contains(command);
             var active = CassetteTransportPresentationFunctions.IsActive(state, activeOperation, command);
             var blinking = CassetteTransportPresentationFunctions.IsBlinking(state, activeOperation, command);
-            button.IsEnabled = CassetteTransportPresentationFunctions.IsEnabled(
-                powered, supported, state, activeOperation, command);
+            button.IsEnabled = CassetteTransportPresentationFunctions.IsEnabled(powered, supported, state, activeOperation, command);
             SetCassetteButtonVisual(button, command, supported, active, blinking);
         }
         UpdateCassetteBlinkTimer();
     }
 
-    private void SetCassetteButtonVisual(Button button, EmulationCassetteCommand command,
-        bool supported, bool active, bool blinking)
+    private void SetCassetteButtonVisual(Button button, EmulationCassetteCommand command, bool supported, bool active, bool blinking)
     {
         _blinkingCassetteButtons.Remove(button);
         var foreground = command switch
@@ -403,8 +394,7 @@ internal sealed class MachineView : UserControl
         };
         button.Foreground = foreground;
         button.Background = Brushes.Transparent;
-        button.Opacity = supported ? 1 : command is EmulationCassetteCommand.Play or EmulationCassetteCommand.Record
-            ? 0.72 : 0.42;
+        button.Opacity = supported ? 1 : command is EmulationCassetteCommand.Play or EmulationCassetteCommand.Record ? 0.72 : 0.42;
         if (button.Content is Border face && face.Child is TextBlock icon)
         {
             icon.Foreground = foreground;
@@ -440,8 +430,7 @@ internal sealed class MachineView : UserControl
             button.Opacity = _cassetteBlinkVisible ? 1 : 0.25;
     }
 
-    private static async Task RunAsync(Func<Task> action, Action<Exception> showError,
-        Action restoreFocus)
+    private static async Task RunAsync(Func<Task> action, Action<Exception> showError, Action restoreFocus)
     {
         try { await action(); }
         catch (Exception error) { showError(error); }

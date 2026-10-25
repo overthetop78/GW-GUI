@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Conflict.Title"><value>File esistenti</value></data>
   <data name="Conflict.Heading"><value>Alcuni file esistono già</value></data>
-  <data name="Conflict.Help"><value>Scegli un&apos;azione per ciascun file o applica la stessa azione a tutti i file.</value></data>
+  <data name="Conflict.Help"><value>Scegli un'azione per ciascun file o applica la stessa azione a tutti i file.</value></data>
   <data name="Conflict.File"><value>File</value></data>
   <data name="Conflict.Action"><value>Azione</value></data>
   <data name="Conflict.Overwrite"><value>Sovrascrivi</value></data>

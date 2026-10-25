@@ -2,294 +2,358 @@ using System.Runtime.InteropServices;
 
 namespace GWGUI.Emulation.Interop;
 
-internal static class ExternalCoreApi
+/// <summary>Déclarations ABI partagées des cœurs externes : délégués Cdecl et structures natives séquentielles.</summary>
+/// <remarks>Les pointeurs restent empruntés selon le contrat natif. Le propriétaire conserve les délégués vivants pendant leur enregistrement et libère ses allocations après désenregistrement et arrêt du cœur. La visibilité ne dépend pas du nom du module consommateur.</remarks>
+public static class ExternalCoreApi
 {
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     [return: MarshalAs(UnmanagedType.I1)]
-    internal delegate bool EnvironmentCallback(uint command, nint data);
+    public delegate bool EnvironmentCallback(uint command, nint data);
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    internal delegate void VideoCallback(nint data, uint width, uint height, nuint pitch);
+    public delegate void VideoCallback(nint data, uint width, uint height, nuint pitch);
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    internal delegate void AudioSampleCallback(short left, short right);
+    public delegate void AudioSampleCallback(short left, short right);
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    internal delegate nuint AudioBatchCallback(nint data, nuint frames);
+    public delegate nuint AudioBatchCallback(nint data, nuint frames);
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    internal delegate void InputPollCallback();
+    public delegate void InputPollCallback();
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    internal delegate short InputStateCallback(uint port, uint device, uint index, uint id);
+    public delegate short InputStateCallback(uint port, uint device, uint index, uint id);
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    internal delegate void LogCallback(int level, nint format);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate nint VfsGetPath(nint stream);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate nint VfsOpen(nint path, uint mode, uint hints);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate int VfsClose(nint stream);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate long VfsSize(nint stream);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate long VfsTell(nint stream);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate long VfsSeek(nint stream, long offset, int origin);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate long VfsRead(nint stream, nint destination, ulong length);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate long VfsWrite(nint stream, nint source, ulong length);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate int VfsFlush(nint stream);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate int VfsRemove(nint path);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate int VfsRename(nint oldPath, nint newPath);
+    public delegate void LogCallback(int level, nint format);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate nint VfsGetPath(nint stream);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate nint VfsOpen(nint path, uint mode, uint hints);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int VfsClose(nint stream);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate long VfsSize(nint stream);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate long VfsTell(nint stream);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate long VfsSeek(nint stream, long offset, int origin);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate long VfsRead(nint stream, nint destination, ulong length);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate long VfsWrite(nint stream, nint source, ulong length);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int VfsFlush(nint stream);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int VfsRemove(nint path);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int VfsRename(nint oldPath, nint newPath);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int VfsStat(nint path, nint size);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate long VfsTruncate(nint stream, long length);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int VfsMakeDirectory(nint path);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate nint VfsOpenDirectory(nint path, [MarshalAs(UnmanagedType.I1)] bool includeHidden);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)] public delegate bool VfsReadDirectory(nint directory);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate nint VfsDirectoryEntryName(nint directory);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)] public delegate bool VfsDirectoryEntryIsDirectory(nint directory);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int VfsCloseDirectory(nint directory);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
-    internal delegate bool SetEjectState([MarshalAs(UnmanagedType.I1)] bool ejected);
+    public delegate bool SetEjectState([MarshalAs(UnmanagedType.I1)] bool ejected);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
-    internal delegate bool GetEjectState();
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate uint GetImageIndex();
+    public delegate bool GetEjectState();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate uint GetImageIndex();
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
-    internal delegate bool SetImageIndex(uint index);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate uint GetImageCount();
+    public delegate bool SetImageIndex(uint index);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate uint GetImageCount();
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
-    internal delegate bool ReplaceImage(uint index, nint gameInfo);
+    public delegate bool ReplaceImage(uint index, nint gameInfo);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
-    internal delegate bool AddImage();
+    public delegate bool AddImage();
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
-    internal delegate bool GetImagePath(uint index, nint path, nuint length);
+    public delegate bool GetImagePath(uint index, nint path, nuint length);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
-    internal delegate bool GetImageLabel(uint index, nint label, nuint length);
+    public delegate bool GetImageLabel(uint index, nint label, nuint length);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    internal delegate void KeyboardEvent([MarshalAs(UnmanagedType.I1)] bool down, uint keyCode, uint character, ushort modifiers);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetLedState(int led, int state);
+    public delegate void KeyboardEvent([MarshalAs(UnmanagedType.I1)] bool down, uint keyCode, uint character, ushort modifiers);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate void SetLedState(int led, int state);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
-    internal delegate bool SetRumbleState(uint port, uint effect, ushort strength);
+    public delegate bool SetRumbleState(uint port, uint effect, ushort strength);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
-    internal delegate bool SetSensorState(uint port, uint action, uint rate);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate float GetSensorInput(uint port, uint id);
+    public delegate bool SetSensorState(uint port, uint action, uint rate);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float GetSensorInput(uint port, uint id);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
-    internal delegate bool UpdateCoreOptionsDisplay();
+    public delegate bool UpdateCoreOptionsDisplay();
 
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetEnvironment(EnvironmentCallback callback);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetVideo(VideoCallback callback);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetAudioSample(AudioSampleCallback callback);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetAudioBatch(AudioBatchCallback callback);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetInputPoll(InputPollCallback callback);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetInputState(InputStateCallback callback);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetControllerPortDevice(uint port, uint device);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void VoidCall();
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void GetSystemInfo(out SystemInfo info);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate uint GetApiVersion();
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate uint GetRegion();
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate nint GetMemoryData(uint id);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate nuint GetMemorySize(uint id);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void GetSystemAvInfo(out SystemAvInfo info);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate void SetEnvironment(EnvironmentCallback callback);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate void HardwareContextReset();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate nint HardwareGetCurrentFramebuffer();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate nint HardwareGetProcAddress(nint symbol);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate void SetVideo(VideoCallback callback);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate void SetAudioSample(AudioSampleCallback callback);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate void SetAudioBatch(AudioBatchCallback callback);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate void SetInputPoll(InputPollCallback callback);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate void SetInputState(InputStateCallback callback);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate void SetControllerPortDevice(uint port, uint device);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate void VoidCall();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate void GetSystemInfo(out SystemInfo info);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate uint GetApiVersion();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate uint GetRegion();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate nint GetMemoryData(uint id);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate nuint GetMemorySize(uint id);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate void GetSystemAvInfo(out SystemAvInfo info);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     [return: MarshalAs(UnmanagedType.I1)]
-    internal delegate bool LoadGame(nint gameInfo);
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate nuint GetSerializedSize();
+    public delegate bool LoadGame(nint gameInfo);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    [return: MarshalAs(UnmanagedType.I1)]
+    public delegate bool LoadGameSpecial(uint subsystemId, nint gameInfos, nuint count);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate nuint GetSerializedSize();
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
-    internal delegate bool Serialize(nint data, nuint size);
+    public delegate bool Serialize(nint data, nuint size);
 
+    /// <summary>Métadonnées natives du cœur ; les chaînes UTF-8 sont empruntées à la bibliothèque.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct SystemInfo
+    public struct SystemInfo
     {
-        internal nint LibraryName;
-        internal nint LibraryVersion;
-        internal nint ValidExtensions;
-        [MarshalAs(UnmanagedType.I1)] internal bool NeedFullPath;
-        [MarshalAs(UnmanagedType.I1)] internal bool BlockExtract;
+        public nint LibraryName;
+        public nint LibraryVersion;
+        public nint ValidExtensions;
+        [MarshalAs(UnmanagedType.I1)] public bool NeedFullPath;
+        [MarshalAs(UnmanagedType.I1)] public bool BlockExtract;
     }
 
+    /// <summary>Contenu transmis au cœur ; les pointeurs et octets restent valides pendant leur utilisation native.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct GameInfo
+    public struct GameInfo
     {
-        internal nint Path;
-        internal nint Data;
-        internal nuint Size;
-        internal nint Metadata;
+        public nint Path;
+        public nint Data;
+        public nuint Size;
+        public nint Metadata;
     }
 
+    /// <summary>Dimensions et rapport de forme de la sortie vidéo native.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct Geometry
+    public struct Geometry
     {
-        internal uint BaseWidth;
-        internal uint BaseHeight;
-        internal uint MaximumWidth;
-        internal uint MaximumHeight;
-        internal float AspectRatio;
+        public uint BaseWidth;
+        public uint BaseHeight;
+        public uint MaximumWidth;
+        public uint MaximumHeight;
+        public float AspectRatio;
     }
 
+    /// <summary>Cadence vidéo et fréquence audio annoncées par le cœur.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct Timing
+    public struct Timing
     {
-        internal double FramesPerSecond;
-        internal double SampleRate;
+        public double FramesPerSecond;
+        public double SampleRate;
     }
 
+    /// <summary>Géométrie et temporisations regroupées selon la disposition ABI.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct SystemAvInfo
+    public struct SystemAvInfo
     {
-        internal Geometry Geometry;
-        internal Timing Timing;
+        public Geometry Geometry;
+        public Timing Timing;
     }
 
+    /// <summary>Description native du rendu matériel et des callbacks de contexte possédés par leur fournisseur.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct Variable
+    public struct HardwareRenderCallback
     {
-        internal nint Key;
-        internal nint Value;
+        public int ContextType;
+        public nint ContextReset;
+        public nint GetCurrentFramebuffer;
+        public nint GetProcAddress;
+        [MarshalAs(UnmanagedType.I1)] public bool Depth;
+        [MarshalAs(UnmanagedType.I1)] public bool Stencil;
+        [MarshalAs(UnmanagedType.I1)] public bool BottomLeftOrigin;
+        public uint VersionMajor;
+        public uint VersionMinor;
+        [MarshalAs(UnmanagedType.I1)] public bool CacheContext;
+        public nint ContextDestroy;
+        [MarshalAs(UnmanagedType.I1)] public bool DebugContext;
     }
 
+    /// <summary>Paire de pointeurs UTF-8 pour une option native.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct CoreOptionDisplay
+    public struct Variable
     {
-        internal nint Key;
-        [MarshalAs(UnmanagedType.I1)] internal bool Visible;
+        public nint Key;
+        public nint Value;
     }
 
+    /// <summary>Visibilité native d’une option identifiée par sa clé UTF-8.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct CoreOptionsUpdateDisplayCallback
+    public struct CoreOptionDisplay
     {
-        internal nint Callback;
+        public nint Key;
+        [MarshalAs(UnmanagedType.I1)] public bool Visible;
     }
 
+    /// <summary>Pointeur vers le callback natif de mise à jour des options.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct LogInterface
+    public struct CoreOptionsUpdateDisplayCallback
     {
-        internal nint Log;
+        public nint Callback;
     }
 
+    /// <summary>Pointeur vers le callback de journalisation conservé par son fournisseur.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct VfsInterfaceInfo
+    public struct LogInterface
     {
-        internal uint RequiredInterfaceVersion;
-        internal nint Interface;
+        public nint Log;
     }
 
+    /// <summary>Version demandée et pointeur emprunté vers la table du système de fichiers virtuel.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct VfsInterface
+    public struct VfsInterfaceInfo
     {
-        internal nint GetPath;
-        internal nint Open;
-        internal nint Close;
-        internal nint Size;
-        internal nint Tell;
-        internal nint Seek;
-        internal nint Read;
-        internal nint Write;
-        internal nint Flush;
-        internal nint Remove;
-        internal nint Rename;
-        internal nint Truncate;
-        internal nint Stat;
-        internal nint MakeDirectory;
-        internal nint OpenDirectory;
-        internal nint ReadDirectory;
-        internal nint DirectoryEntryName;
-        internal nint DirectoryEntryIsDirectory;
-        internal nint CloseDirectory;
+        public uint RequiredInterfaceVersion;
+        public nint Interface;
     }
 
+    /// <summary>Table ABI des opérations de fichiers et de dossiers ; chaque fournisseur possède ses handles.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct DiskControl
+    public struct VfsInterface
     {
-        internal nint SetEjectState;
-        internal nint GetEjectState;
-        internal nint GetImageIndex;
-        internal nint SetImageIndex;
-        internal nint GetImageCount;
-        internal nint ReplaceImage;
-        internal nint AddImage;
+        public nint GetPath;
+        public nint Open;
+        public nint Close;
+        public nint Size;
+        public nint Tell;
+        public nint Seek;
+        public nint Read;
+        public nint Write;
+        public nint Flush;
+        public nint Remove;
+        public nint Rename;
+        public nint Truncate;
+        public nint Stat;
+        public nint MakeDirectory;
+        public nint OpenDirectory;
+        public nint ReadDirectory;
+        public nint DirectoryEntryName;
+        public nint DirectoryEntryIsDirectory;
+        public nint CloseDirectory;
     }
 
+    /// <summary>Table native des opérations de sélection et de remplacement des disques.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct DiskControlExtended
+    public struct DiskControl
     {
-        internal DiskControl Basic;
-        internal nint SetInitialImage;
-        internal nint GetImagePath;
-        internal nint GetImageLabel;
+        public nint SetEjectState;
+        public nint GetEjectState;
+        public nint GetImageIndex;
+        public nint SetImageIndex;
+        public nint GetImageCount;
+        public nint ReplaceImage;
+        public nint AddImage;
     }
 
+    /// <summary>Extension de la table de disques avec image initiale, chemins et libellés.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct KeyboardCallback
+    public struct DiskControlExtended
     {
-        internal nint Callback;
+        public DiskControl Basic;
+        public nint SetInitialImage;
+        public nint GetImagePath;
+        public nint GetImageLabel;
     }
 
+    /// <summary>Pointeur emprunté vers le callback clavier du cœur.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct ControllerDescription
+    public struct KeyboardCallback
     {
-        internal nint Description;
-        internal uint Id;
+        public nint Callback;
     }
 
+    /// <summary>Description UTF-8 empruntée et identifiant natif d’un périphérique.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct ControllerInfo
+    public struct ControllerDescription
     {
-        internal nint Types;
-        internal uint Count;
+        public nint Description;
+        public uint Id;
     }
 
+    /// <summary>Tableau natif de périphériques compatibles et nombre de ses éléments.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct Message
+    public struct ControllerInfo
     {
-        internal nint Text;
-        internal uint Frames;
+        public nint Types;
+        public uint Count;
     }
 
+    /// <summary>Message UTF-8 emprunté avec durée exprimée en frames.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct MessageExtended
+    public struct Message
     {
-        internal nint Text;
-        internal uint DurationMilliseconds;
-        internal uint Priority;
-        internal uint Level;
-        internal uint Target;
-        internal uint Type;
-        internal sbyte Progress;
+        public nint Text;
+        public uint Frames;
     }
 
+    /// <summary>Message natif étendu avec durée, priorité, destination et progression.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct LedInterface
+    public struct MessageExtended
     {
-        internal nint SetLedState;
+        public nint Text;
+        public uint DurationMilliseconds;
+        public uint Priority;
+        public uint Level;
+        public uint Target;
+        public uint Type;
+        public sbyte Progress;
     }
 
+    /// <summary>Pointeur vers le callback d’activité des lecteurs.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct InputDescriptor
+    public struct LedInterface
     {
-        internal uint Port;
-        internal uint Device;
-        internal uint Index;
-        internal uint Id;
-        internal nint Description;
+        public nint SetLedState;
     }
 
+    /// <summary>Description native d’une entrée par port, périphérique, index et identifiant.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct MemoryDescriptor
+    public struct InputDescriptor
     {
-        internal ulong Flags;
-        internal nint Pointer;
-        internal nuint Offset;
-        internal nuint Start;
-        internal nuint Select;
-        internal nuint Disconnect;
-        internal nuint Length;
-        internal nint AddressSpace;
+        public uint Port;
+        public uint Device;
+        public uint Index;
+        public uint Id;
+        public nint Description;
     }
 
+    /// <summary>Description d’une plage mémoire native possédée par le cœur.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct MemoryMap
+    public struct MemoryDescriptor
     {
-        internal nint Descriptors;
-        internal uint Count;
+        public ulong Flags;
+        public nint Pointer;
+        public nuint Offset;
+        public nuint Start;
+        public nuint Select;
+        public nuint Disconnect;
+        public nuint Length;
+        public nint AddressSpace;
     }
 
+    /// <summary>Pointeur emprunté vers les descripteurs mémoire et nombre de leurs éléments.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct RumbleInterface
+    public struct MemoryMap
     {
-        internal nint SetState;
+        public nint Descriptors;
+        public uint Count;
     }
 
+    /// <summary>Pointeur vers le callback de vibration fourni par l’hôte.</summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct SensorInterface
+    public struct RumbleInterface
     {
-        internal nint SetState;
-        internal nint GetInput;
+        public nint SetState;
     }
+
+    /// <summary>Pointeurs vers les callbacks de configuration et de lecture des capteurs.</summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct SensorInterface
+    {
+        public nint SetState;
+        public nint GetInput;
+    }
+    /// <summary>Notification native du remplissage de la sortie audio, empruntée au cœur.</summary>
+    /// <param name="active">Indique que la sortie audio accepte des échantillons.</param>
+    /// <param name="occupancy">Pourcentage de remplissage borné entre zéro et cent.</param>
+    /// <param name="underrunLikely">Indique que moins d’une frame d’émulation reste disponible.</param>
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    public delegate void AudioBufferStatusCallback([MarshalAs(UnmanagedType.I1)] bool active, uint occupancy, [MarshalAs(UnmanagedType.I1)] bool underrunLikely);
 }

@@ -19,11 +19,7 @@ public sealed class TerminalPanelController
     private readonly Func<AppSettings> settings;
     private int selectedTab;
 
-    public TerminalPanelController(
-        TerminalSection terminal,
-        RowDefinition terminalRow,
-        GridSplitter splitter,
-        Func<AppSettings> settings)
+    public TerminalPanelController(TerminalSection terminal, RowDefinition terminalRow, GridSplitter splitter, Func<AppSettings> settings)
     {
         this.terminal = terminal;
         this.terminalRow = terminalRow;
@@ -34,8 +30,7 @@ public sealed class TerminalPanelController
     public bool IsVisible => terminal.Visibility == Visibility.Visible;
     public double ActualHeight => terminalRow.ActualHeight;
 
-    public string GetCompleteText() =>
-        terminal.CommandTextBox.Text + Environment.NewLine + Environment.NewLine + terminal.OutputText;
+    public string GetCompleteText() => terminal.CommandTextBox.Text + Environment.NewLine + Environment.NewLine + terminal.OutputText;
 
     public void CopyToClipboard()
     {
@@ -44,7 +39,11 @@ public sealed class TerminalPanelController
 
     public Task ExportAsync(string path) => File.WriteAllTextAsync(path, GetCompleteText());
 
-    public void AppendError(string entry)
+    public void AppendError(string entry) => AppendEntry(entry, Brushes.IndianRed);
+
+    public void AppendWarning(string entry) => AppendEntry(entry, Brushes.DarkOrange);
+
+    private void AppendEntry(string entry, Brush foreground)
     {
         if (!string.IsNullOrEmpty(terminal.OutputText)
             && !terminal.OutputText.EndsWith(Environment.NewLine, StringComparison.Ordinal))
@@ -54,7 +53,7 @@ public sealed class TerminalPanelController
             paragraph = new Paragraph { Margin = new Thickness(0) };
             terminal.OutputTextBox.Document.Blocks.Add(paragraph);
         }
-        paragraph.Inlines.Add(new Run(entry) { Foreground = Brushes.IndianRed });
+        paragraph.Inlines.Add(new Run(entry) { Foreground = foreground });
         terminal.OutputTextBox.ScrollToEnd();
         SetVisibility(true);
     }
@@ -71,9 +70,7 @@ public sealed class TerminalPanelController
 
         terminal.Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
         splitter.Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
-        terminalRow.Height = visible
-            ? new GridLength(Math.Max(100, state.Height))
-            : new GridLength(0);
+        terminalRow.Height = visible ? new GridLength(Math.Max(100, state.Height)) : new GridLength(0);
     }
 
     public void SelectTab(int tabIndex)
@@ -84,9 +81,7 @@ public sealed class TerminalPanelController
         var state = CurrentState();
         terminal.Visibility = state.Expanded ? Visibility.Visible : Visibility.Collapsed;
         splitter.Visibility = state.Expanded ? Visibility.Visible : Visibility.Collapsed;
-        terminalRow.Height = state.Expanded
-            ? new GridLength(Math.Max(100, state.Height))
-            : new GridLength(0);
+        terminalRow.Height = state.Expanded ? new GridLength(Math.Max(100, state.Height)) : new GridLength(0);
     }
 
     public void CaptureCurrent()
@@ -112,7 +107,5 @@ public sealed class TerminalPanelController
         return state;
     }
 
-    private double DisplayedHeight() => terminalRow.ActualHeight >= 100
-        ? terminalRow.ActualHeight
-        : terminalRow.Height.IsAbsolute ? terminalRow.Height.Value : 0;
+    private double DisplayedHeight() => terminalRow.ActualHeight >= 100 ? terminalRow.ActualHeight : terminalRow.Height.IsAbsolute ? terminalRow.Height.Value : 0;
 }

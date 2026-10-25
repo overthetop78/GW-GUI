@@ -5,14 +5,7 @@ namespace GWGUI.MediaEngine.Functions;
 /// <summary>Provides phase-independent two-frequency FSK classification and configurable UART frame decoding.</summary>
 public static class FskSerialFunctions
 {
-    public static void AppendPcmCarrier(
-        List<short> samples,
-        ref short level,
-        int sampleRate,
-        int baudRate,
-        int zeroFrequency,
-        int oneFrequency,
-        double durationSeconds)
+    public static void AppendPcmCarrier(List<short> samples, ref short level, int sampleRate, int baudRate, int zeroFrequency, int oneFrequency, double durationSeconds)
     {
         ArgumentNullException.ThrowIfNull(samples);
         if (!double.IsFinite(durationSeconds) || durationSeconds < 0)
@@ -22,37 +15,19 @@ public static class FskSerialFunctions
             AppendPcmBit(samples, ref level, sampleRate, baudRate, zeroFrequency, oneFrequency, true);
     }
 
-    public static void AppendPcmFrame(
-        List<short> samples,
-        ref short level,
-        int sampleRate,
-        int baudRate,
-        int zeroFrequency,
-        int oneFrequency,
-        int dataBits,
-        int stopBits,
-        byte value)
+    public static void AppendPcmFrame(List<short> samples, ref short level, int sampleRate, int baudRate, int zeroFrequency, int oneFrequency, int dataBits, int stopBits, byte value)
     {
         ArgumentNullException.ThrowIfNull(samples);
         if (dataBits is < 1 or > 8) throw new ArgumentOutOfRangeException(nameof(dataBits));
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(stopBits);
         AppendPcmBit(samples, ref level, sampleRate, baudRate, zeroFrequency, oneFrequency, false);
         for (var bit = 0; bit < dataBits; bit++)
-            AppendPcmBit(samples, ref level, sampleRate, baudRate, zeroFrequency, oneFrequency,
-                (value & 1 << bit) != 0);
+            AppendPcmBit(samples, ref level, sampleRate, baudRate, zeroFrequency, oneFrequency, (value & 1 << bit) != 0);
         for (var stop = 0; stop < stopBits; stop++)
             AppendPcmBit(samples, ref level, sampleRate, baudRate, zeroFrequency, oneFrequency, true);
     }
 
-    public static FskSerialDecodeResult Decode(
-        IReadOnlyList<int> samples,
-        int sampleRate,
-        int baudRate,
-        int zeroFrequency,
-        int oneFrequency,
-        int dataBits,
-        int stopBits,
-        int minimumSamplesPerBit)
+    public static FskSerialDecodeResult Decode(IReadOnlyList<int> samples, int sampleRate, int baudRate, int zeroFrequency, int oneFrequency, int dataBits, int stopBits, int minimumSamplesPerBit)
     {
         ArgumentNullException.ThrowIfNull(samples);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(sampleRate);
@@ -70,8 +45,7 @@ public static class FskSerialFunctions
         {
             var bits = new List<bool>();
             for (var start = phase; start + samplesPerBit <= samples.Count; start = (int)Math.Round(start + samplesPerBit))
-                bits.Add(ClassifyTone(samples, start, Math.Min(samples.Count, (int)Math.Round(start + samplesPerBit)), sampleRate,
-                    zeroFrequency, oneFrequency));
+                bits.Add(ClassifyTone(samples, start, Math.Min(samples.Count, (int)Math.Round(start + samplesPerBit)), sampleRate, zeroFrequency, oneFrequency));
             var candidate = DecodeFrames(bits, dataBits, stopBits);
             if (candidate.ValidFrames > best.ValidFrames
                 || candidate.ValidFrames == best.ValidFrames && candidate.Bytes.Count > best.Bytes.Count)
@@ -80,13 +54,7 @@ public static class FskSerialFunctions
         return best;
     }
 
-    private static bool ClassifyTone(
-        IReadOnlyList<int> samples,
-        int start,
-        int end,
-        int sampleRate,
-        int zeroFrequency,
-        int oneFrequency)
+    private static bool ClassifyTone(IReadOnlyList<int> samples, int start, int end, int sampleRate, int zeroFrequency, int oneFrequency)
     {
         var crossings = 0;
         var previous = samples[start];
@@ -101,14 +69,7 @@ public static class FskSerialFunctions
         return Math.Abs(frequency - oneFrequency) < Math.Abs(frequency - zeroFrequency);
     }
 
-    private static void AppendPcmBit(
-        List<short> samples,
-        ref short level,
-        int sampleRate,
-        int baudRate,
-        int zeroFrequency,
-        int oneFrequency,
-        bool value)
+    private static void AppendPcmBit(List<short> samples, ref short level, int sampleRate, int baudRate, int zeroFrequency, int oneFrequency, bool value)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(sampleRate);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(baudRate);

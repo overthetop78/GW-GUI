@@ -1,6 +1,11 @@
 using GWGUI.MediaEngine.Images.Formats;
+using GWGUI.MediaEngine.Images.Formats.Floppy.AcornAtom;
+using GWGUI.MediaEngine.Images.Formats.Floppy.Apridisk;
+using GWGUI.MediaEngine.Images.Reading.Reconstruction;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradCpr;
 using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradRom;
+using GWGUI.MediaEngine.Images.Formats.Cartridge.Console;
+using GWGUI.MediaEngine.Images.Formats.Floppy.FamicomFds;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Images.Conversion;
@@ -33,7 +38,10 @@ using GWGUI.MediaEngine.Images.Formats.HardDisk.Vhd;
 using GWGUI.MediaEngine.Images.Formats.HardDisk.Vhdx;
 using GWGUI.MediaEngine.Images.Formats.HardDisk.Vmdk;
 using GWGUI.MediaEngine.Images.Formats.Optical.BinCue;
+using GWGUI.MediaEngine.Images.Formats.Optical.Gdi;
 using GWGUI.MediaEngine.Images.Formats.Optical.Iso;
+using GWGUI.MediaEngine.Images.Formats.Optical.Xdvdfs;
+using GWGUI.MediaEngine.Images.Formats.Optical.WiiU;
 using GWGUI.MediaEngine.Images.Formats.Tape.AtariCas;
 using GWGUI.MediaEngine.Images.Formats.Tape.CommodoreTap;
 using GWGUI.MediaEngine.Images.Formats.Tape.MsxCas;
@@ -73,6 +81,8 @@ public sealed class MediaWritingComposition
         var acornAdf = new AcornAdfWriter();
         var amstradCpr = new AmstradCprWriter();
         var amstradRom = new AmstradRomWriter();
+        var consoleCartridge = new ConsoleCartridgeWriter();
+        var nintendoFamicomDisk = new FamicomFdsWriter();
         var amigaAdf = new AmigaAdfWriter();
         var bbcDfs = new BbcDfsImageWriter();
         var ibmRaw = new IbmRawImageWriter();
@@ -93,6 +103,8 @@ public sealed class MediaWritingComposition
         var imd = new ImdWriter();
         var decRx02 = new DecRx02Writer();
         var linear = new LinearSectorImageWriter();
+        var apridisk = new ApridiskWriter();
+        var definedRaw = new DefinedRawImageWriter();
         var td0 = new Td0Writer();
         var scp = new ScpWriter();
         var hfe = new HfeWriter();
@@ -105,6 +117,9 @@ public sealed class MediaWritingComposition
         var hardDiskChd = new ChdHardDiskWriter();
         var opticalIso = new IsoWriter();
         var opticalBinCue = new BinCueWriter();
+        var opticalGdi = new GdiWriter();
+        var opticalXboxXdvdfs = new XdvdfsWriter();
+        var nintendoWiiU = new WiiUWriter();
         var tapeWav = new WavTapeWriter();
         var tapeVoc = new VocWriter();
         var tapeAtariCas = new AtariCasWriter();
@@ -117,18 +132,31 @@ public sealed class MediaWritingComposition
 
         IMediaImageWriter[] writers =
         [
+            new SectorMediaImageWriterAdapter("defined-img", DiskDefsFormatReader.RawDefinitions.Keys, [".img"],
+                (image, _, format, _) => image.FormatId.Equals(format, StringComparison.OrdinalIgnoreCase),
+                async (image, _, path, format, token) =>
+                {
+                    await definedRaw.WriteAsync(image, path, format, token).ConfigureAwait(false);
+                    return [path];
+                }),
             amstradCpr,
             amstradRom,
-            Sector(MediaImageWriterIds.AcornAdf, [DiskImageFileExtensions.Adf], AcornAdfConversionService.CanCreate,
-                (image, _, path, _, token) => WriteSingleAsync(acornAdf.WriteAsync(image, path, token), path)),
-            Sector(MediaImageWriterIds.AmigaAdf, [DiskImageFileExtensions.Adf], AmigaAdfConversionService.CanCreate,
-                (image, _, path, _, token) => WriteSingleAsync(amigaAdf.WriteAsync(image, path, token), path)),
+            consoleCartridge,
+            nintendoFamicomDisk,
+            Sector(MediaImageWriterIds.AcornAtomDsk, [DiskImageFileExtensions.Dsk],
+                (format, extension) => format.Equals(DiskImageFormatIds.AcornAtomDos, StringComparison.OrdinalIgnoreCase) && extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase),
+                (image, _, path, _, token) => WriteSingleAsync(linear.WriteAsync(image.WithFormatId(DiskImageFormatIds.AcornAtomDos), path,
+                    new RegularSectorGeometry(DiskImageFormatIds.AcornAtomDos, AcornAtomDskReader.BlockSize, AcornAtomDskReader.Cylinders, AcornAtomDskReader.Heads, AcornAtomDskReader.SectorsPerTrack), token), path)),
+            Sector(MediaImageWriterIds.Apridisk, [DiskImageFileExtensions.Dsk],
+                (format, extension) => format.Equals(DiskImageFormatIds.ApricotPcXi315, StringComparison.OrdinalIgnoreCase) && extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase),
+                (image, _, path, _, token) => WriteSingleAsync(apridisk.WriteAsync(image.WithFormatId(DiskImageFormatIds.ApricotPcXi315), path, token), path)),
+            Sector(MediaImageWriterIds.AcornAdf, [DiskImageFileExtensions.Adf], AcornAdfConversionService.CanCreate, (image, _, path, _, token) => WriteSingleAsync(acornAdf.WriteAsync(image, path, token), path)),
+            Sector(MediaImageWriterIds.AmigaAdf, [DiskImageFileExtensions.Adf], AmigaAdfConversionService.CanCreate, (image, _, path, _, token) => WriteSingleAsync(amigaAdf.WriteAsync(image, path, token), path)),
             Sector(MediaImageWriterIds.BbcDfs, [DiskImageFileExtensions.Ssd, DiskImageFileExtensions.Dsd], BbcDfsConversionService.CanCreate,
                 (image, _, path, formatId, token) => WriteSingleAsync(bbcDfs.WriteAsync(image, path, formatId, token), path)),
             Sector(MediaImageWriterIds.IbmRaw, [DiskImageFileExtensions.Ima, DiskImageFileExtensions.Img], IbmRawConversionService.CanCreate,
                 (image, _, path, formatId, token) => WriteSingleAsync(ibmRaw.WriteAsync(image, path, formatId, token), path)),
-            Sector(MediaImageWriterIds.MsxRaw, [DiskImageFileExtensions.Dsk], MsxRawConversionService.CanCreate,
-                (image, _, path, formatId, token) => WriteSingleAsync(msxRaw.WriteAsync(image, path, formatId, token), path)),
+            Sector(MediaImageWriterIds.MsxRaw, [DiskImageFileExtensions.Dsk], MsxRawConversionService.CanCreate, (image, _, path, formatId, token) => WriteSingleAsync(msxRaw.WriteAsync(image, path, formatId, token), path)),
             Sector(MediaImageWriterIds.AppleSector, [DiskImageFileExtensions.TwoMg, DiskImageFileExtensions.D13, DiskImageFileExtensions.Do, DiskImageFileExtensions.Dsk, DiskImageFileExtensions.Po], AppleSectorConversionService.CanCreate,
                 (image, _, path, formatId, token) => WriteAppleSectorAsync(appleRaw, twoImg, image, path, formatId, token)),
             Sector(MediaImageWriterIds.AppleNibble, [DiskImageFileExtensions.Nib, DiskImageFileExtensions.Woz], AppleNibbleConversionService.CanCreate,
@@ -139,26 +167,19 @@ public sealed class MediaWritingComposition
                 (image, document, path, _, token) => WriteSingleAsync(diskCopy.WriteAsync(image, path, DiskCopyMetadataFunctions.Restore(image, document.Metadata), token), path)),
             Sector(MediaImageWriterIds.AtariSt, [DiskImageFileExtensions.St, DiskImageFileExtensions.Msa], AtariStConversionService.CanCreate,
                 (image, document, path, formatId, token) => WriteAtariStAsync(atariSt, msa, image, document, path, formatId, token)),
-            Sector(MediaImageWriterIds.AtariAtr, [DiskImageFileExtensions.Atr], AtrConversionService.CanCreate,
-                (image, _, path, formatId, token) => WriteSingleAsync(atr.WriteAsync(image, path, formatId, token), path)),
-            Sector(MediaImageWriterIds.CommodoreD81, [DiskImageFileExtensions.D81], D81ConversionService.CanCreate,
-                (image, _, path, _, token) => WriteSingleAsync(d81.WriteAsync(image, path, token), path)),
+            Sector(MediaImageWriterIds.AtariAtr, [DiskImageFileExtensions.Atr], AtrConversionService.CanCreate, (image, _, path, formatId, token) => WriteSingleAsync(atr.WriteAsync(image, path, formatId, token), path)),
+            Sector(MediaImageWriterIds.CommodoreD81, [DiskImageFileExtensions.D81], D81ConversionService.CanCreate, (image, _, path, _, token) => WriteSingleAsync(d81.WriteAsync(image, path, token), path)),
             Sector(MediaImageWriterIds.CommodoreDos, [DiskImageFileExtensions.D64, DiskImageFileExtensions.D71], CommodoreDosConversionService.CanCreate,
                 (image, _, path, formatId, token) => WriteCommodoreDosAsync(commodoreDos, image, path, formatId, token)),
             Sector(MediaImageWriterIds.CoherentRaw, [DiskImageFileExtensions.Bin, DiskImageFileExtensions.Img], CoherentConversionService.CanCreate,
                 (image, _, path, _, token) => WriteSingleAsync(coherent.WriteAsync(image, path, token), path)),
-            Sector(MediaImageWriterIds.AmstradDsk, [DiskImageFileExtensions.Dsk, DiskImageFileExtensions.Edsk], AmstradDskConversionService.CanCreate,
-                (image, _, path, _, token) => WriteAmstradAsync(amstrad, image, path, token)),
+            Sector(MediaImageWriterIds.AmstradDsk, [DiskImageFileExtensions.Dsk, DiskImageFileExtensions.Edsk], AmstradDskConversionService.CanCreate, (image, _, path, _, token) => WriteAmstradAsync(amstrad, image, path, token)),
             Sector(MediaImageWriterIds.EpsonQx10, [DiskImageFileExtensions.Img, DiskImageFileExtensions.Imd], EpsonQx10ConversionService.CanCreate,
                 (image, document, path, formatId, token) => WriteEpsonAsync(epsonRaw, imd, image, document, path, formatId, token)),
-            Sector(MediaImageWriterIds.DecRx02, [DiskImageFileExtensions.Img], DecRx02ConversionService.CanCreate,
-                (image, _, path, _, token) => WriteSingleAsync(decRx02.WriteAsync(image, path, token), path)),
-            Sector(MediaImageWriterIds.Ucsd, [DiskImageFileExtensions.Img, DiskImageFileExtensions.Td0], UcsdImgConversionService.CanCreate,
-                (image, _, path, _, token) => WriteUcsdAsync(linear, td0, image, path, token)),
-            Flux(MediaImageWriterIds.Scp, DiskImageFormatIds.RawScp, DiskImageFileExtensions.Scp,
-                (image, metadata, path, token) => WriteSingleAsync(scp.WriteAsync(path, ProtectedTrackScpImageAdapter.Create(image, metadata), token), path)),
-            Flux(MediaImageWriterIds.Hfe, DiskImageFormatIds.RawHfe, DiskImageFileExtensions.Hfe,
-                (image, metadata, path, token) => WriteSingleAsync(hfe.WriteAsync(ProtectedTrackHfeImageAdapter.Create(image, metadata), path, token), path)),
+            Sector(MediaImageWriterIds.DecRx02, [DiskImageFileExtensions.Img], DecRx02ConversionService.CanCreate, (image, _, path, _, token) => WriteSingleAsync(decRx02.WriteAsync(image, path, token), path)),
+            Sector(MediaImageWriterIds.Ucsd, [DiskImageFileExtensions.Img, DiskImageFileExtensions.Td0], UcsdImgConversionService.CanCreate, (image, _, path, _, token) => WriteUcsdAsync(linear, td0, image, path, token)),
+            Flux(MediaImageWriterIds.Scp, DiskImageFormatIds.RawScp, DiskImageFileExtensions.Scp, (image, metadata, path, token) => WriteSingleAsync(scp.WriteAsync(path, ProtectedTrackScpImageAdapter.Create(image, metadata), token), path)),
+            Flux(MediaImageWriterIds.Hfe, DiskImageFormatIds.RawHfe, DiskImageFileExtensions.Hfe, (image, metadata, path, token) => WriteSingleAsync(hfe.WriteAsync(ProtectedTrackHfeImageAdapter.Create(image, metadata), path, token), path)),
             hardDiskRaw,
             hardDiskQcow2,
             hardDiskVhd,
@@ -168,6 +189,9 @@ public sealed class MediaWritingComposition
             hardDiskChd,
             opticalIso,
             opticalBinCue,
+            opticalGdi,
+            opticalXboxXdvdfs,
+            nintendoWiiU,
             tapeWav,
             tapeVoc,
             tapeAtariCas,
@@ -186,35 +210,25 @@ public sealed class MediaWritingComposition
         IReadOnlyList<string> extensions,
         Func<string, string, bool> supports,
         Func<SectorImage, MediaImageDocument, string, string, CancellationToken, Task<IReadOnlyList<string>>> write)
-        => new(
-            id,
-            FormatIds(supports, extensions),
-            extensions,
-            (_, _, formatId, extension) => supports(formatId, extension),
-            write);
+        => new(id, FormatIds(supports, extensions), extensions, (_, _, formatId, extension) => supports(formatId, extension), write);
 
-    private static FluxMediaImageWriterAdapter Flux(
-        string id,
-        string formatId,
-        string extension,
-        Func<ProtectedTrackImage, IReadOnlyDictionary<string, string>, string, CancellationToken, Task<IReadOnlyList<string>>> write)
-        => new(
+    private static FluxMediaImageWriterAdapter Flux(string id, string formatId, string extension, Func<ProtectedTrackImage, IReadOnlyDictionary<string, string>, string, CancellationToken, Task<IReadOnlyList<string>>> write)
+    {
+        var formatIds = DiskDefsFormatReader.Definitions.Values
+            .Where(definition => definition.Tracks.All(track => track.Codec == "bitcell"))
+            .Select(definition => definition.Id).Append(formatId).ToHashSet(StringComparer.OrdinalIgnoreCase);
+        return new(
             id,
-            [formatId],
+            formatIds,
             [extension],
-            (_, targetFormatId, targetExtension) =>
-                targetFormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase) &&
+            (image, targetFormatId, targetExtension) =>
+                formatIds.Contains(targetFormatId) &&
+                (extension != DiskImageFileExtensions.Hfe || ProtectedTrackHfeImageAdapter.CanRepresentExactly(image)) &&
                 targetExtension.Equals(extension, StringComparison.OrdinalIgnoreCase),
             (image, metadata, path, _, token) => write(image, metadata, path, token));
+    }
 
-    private static IReadOnlyList<string> FormatIds(
-        Func<string, string, bool> supports,
-        IReadOnlyList<string> extensions)
-        => Formats.Formats
-            .Where(format => extensions.Any(extension => supports(format.Id, extension)))
-            .Select(format => format.Id)
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToArray();
+    private static IReadOnlyList<string> FormatIds(Func<string, string, bool> supports, IReadOnlyList<string> extensions) => Formats.Formats.Where(format => extensions.Any(extension => supports(format.Id, extension))).Select(format => format.Id).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
 
     private static async Task<IReadOnlyList<string>> WriteSingleAsync(Task write, string outputPath)
     {
@@ -222,84 +236,39 @@ public sealed class MediaWritingComposition
         return [outputPath];
     }
 
-    private static Task<IReadOnlyList<string>> WriteAppleSectorAsync(
-        AppleRawImageWriter raw,
-        TwoImgWriter twoImg,
-        SectorImage image,
-        string path,
-        string formatId,
-        CancellationToken cancellationToken)
+    private static Task<IReadOnlyList<string>> WriteAppleSectorAsync(AppleRawImageWriter raw, TwoImgWriter twoImg, SectorImage image, string path, string formatId, CancellationToken cancellationToken)
     {
         AppleSectorConversionValidationFunctions.Validate(image, formatId);
-        return Path.GetExtension(path).Equals(DiskImageFileExtensions.TwoMg, StringComparison.OrdinalIgnoreCase)
-            ? WriteSingleAsync(twoImg.WriteAsync(image, path, formatId, cancellationToken), path)
-            : WriteSingleAsync(raw.WriteAsync(image, path, formatId, cancellationToken), path);
+        return Path.GetExtension(path).Equals(DiskImageFileExtensions.TwoMg, StringComparison.OrdinalIgnoreCase) ? WriteSingleAsync(twoImg.WriteAsync(image, path, formatId, cancellationToken), path) : WriteSingleAsync(raw.WriteAsync(image, path, formatId, cancellationToken), path);
     }
 
-    private static Task<IReadOnlyList<string>> WriteMacintoshAsync(
-        MacintoshRawImageWriter raw,
-        DiskCopyWriter diskCopy,
-        SectorImage image,
-        MediaImageDocument document,
-        string path,
-        CancellationToken cancellationToken)
+    private static Task<IReadOnlyList<string>> WriteMacintoshAsync(MacintoshRawImageWriter raw, DiskCopyWriter diskCopy, SectorImage image, MediaImageDocument document, string path, CancellationToken cancellationToken)
         => Path.GetExtension(path).Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase)
             ? WriteSingleAsync(raw.WriteAsync(image, path, cancellationToken), path)
             : WriteSingleAsync(diskCopy.WriteAsync(image, path, DiskCopyMetadataFunctions.Restore(image, document.Metadata), cancellationToken), path);
 
-    private static Task<IReadOnlyList<string>> WriteAtariStAsync(
-        AtariStWriter st,
-        MsaWriter msa,
-        SectorImage image,
-        MediaImageDocument document,
-        string path,
-        string formatId,
-        CancellationToken cancellationToken)
+    private static Task<IReadOnlyList<string>> WriteAtariStAsync(AtariStWriter st, MsaWriter msa, SectorImage image, MediaImageDocument document, string path, string formatId, CancellationToken cancellationToken)
     {
-        var sourceIsScp = Path.GetExtension(document.Source.PrimaryPath)
-            .Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase);
+        var sourceIsScp = Path.GetExtension(document.Source.PrimaryPath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase);
         var transformed = AtariStGeometryTransformer.Transform(image, formatId, sourceIsScp);
-        return Path.GetExtension(path).Equals(DiskImageFileExtensions.Msa, StringComparison.OrdinalIgnoreCase)
-            ? WriteSingleAsync(msa.WriteAsync(transformed, path, cancellationToken), path)
-            : WriteSingleAsync(st.WriteAsync(transformed, path, cancellationToken), path);
+        return Path.GetExtension(path).Equals(DiskImageFileExtensions.Msa, StringComparison.OrdinalIgnoreCase) ? WriteSingleAsync(msa.WriteAsync(transformed, path, cancellationToken), path) : WriteSingleAsync(st.WriteAsync(transformed, path, cancellationToken), path);
     }
 
-    private static Task<IReadOnlyList<string>> WriteCommodoreDosAsync(
-        CommodoreDosContainerWriter writer,
-        SectorImage image,
-        string path,
-        string formatId,
-        CancellationToken cancellationToken)
+    private static Task<IReadOnlyList<string>> WriteCommodoreDosAsync(CommodoreDosContainerWriter writer, SectorImage image, string path, string formatId, CancellationToken cancellationToken)
     {
         if (!image.FormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase))
-            throw new InvalidDataException(
-                $"Commodore source format '{image.FormatId}' cannot be written as '{formatId}' without a geometry transformation.");
-        var errorMapMode = image.AvailableBlocks.All(block => block.DiagnosticCode.HasValue)
-            ? CommodoreDosErrorMapMode.Preserve
-            : CommodoreDosErrorMapMode.None;
+            throw new InvalidDataException($"Commodore source format '{image.FormatId}' cannot be written as '{formatId}' without a geometry transformation.");
+        var errorMapMode = image.AvailableBlocks.All(block => block.DiagnosticCode.HasValue) ? CommodoreDosErrorMapMode.Preserve : CommodoreDosErrorMapMode.None;
         return WriteSingleAsync(writer.WriteAsync(image, path, errorMapMode, cancellationToken), path);
     }
 
-    private static Task<IReadOnlyList<string>> WriteAmstradAsync(
-        CpcDskWriter writer,
-        SectorImage image,
-        string path,
-        CancellationToken cancellationToken)
+    private static Task<IReadOnlyList<string>> WriteAmstradAsync(CpcDskWriter writer, SectorImage image, string path, CancellationToken cancellationToken)
     {
-        var kind = Path.GetExtension(path).Equals(DiskImageFileExtensions.Edsk, StringComparison.OrdinalIgnoreCase)
-            ? CpcDskContainerKind.Extended
-            : CpcDskContainerKind.Standard;
+        var kind = Path.GetExtension(path).Equals(DiskImageFileExtensions.Edsk, StringComparison.OrdinalIgnoreCase) ? CpcDskContainerKind.Extended : CpcDskContainerKind.Standard;
         return WriteSingleAsync(writer.WriteAsync(CpcDskImageBuilder.Build(image, kind), path, cancellationToken), path);
     }
 
-    private static Task<IReadOnlyList<string>> WriteEpsonAsync(
-        EpsonQx10RawImageWriter raw,
-        ImdWriter imd,
-        SectorImage image,
-        MediaImageDocument document,
-        string path,
-        string formatId,
-        CancellationToken cancellationToken)
+    private static Task<IReadOnlyList<string>> WriteEpsonAsync(EpsonQx10RawImageWriter raw, ImdWriter imd, SectorImage image, MediaImageDocument document, string path, string formatId, CancellationToken cancellationToken)
     {
         if (!image.FormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase))
             throw new InvalidDataException($"Epson source format '{image.FormatId}' does not match '{formatId}'.");
@@ -308,16 +277,9 @@ public sealed class MediaWritingComposition
             : WriteSingleAsync(raw.WriteAsync(image, path, formatId, cancellationToken), path);
     }
 
-    private static Task<IReadOnlyList<string>> WriteUcsdAsync(
-        LinearSectorImageWriter linear,
-        Td0Writer td0,
-        SectorImage image,
-        string path,
-        CancellationToken cancellationToken)
+    private static Task<IReadOnlyList<string>> WriteUcsdAsync(LinearSectorImageWriter linear, Td0Writer td0, SectorImage image, string path, CancellationToken cancellationToken)
     {
         var source = image.WithFormatId(DiskImageFormatIds.UcsdIbmMfm);
-        return Path.GetExtension(path).Equals(DiskImageFileExtensions.Td0, StringComparison.OrdinalIgnoreCase)
-            ? WriteSingleAsync(td0.WriteAsync(source, path, cancellationToken), path)
-            : WriteSingleAsync(linear.WriteAsync(source, path, UcsdIbmMfmGeometry.SectorGeometry, cancellationToken), path);
+        return Path.GetExtension(path).Equals(DiskImageFileExtensions.Td0, StringComparison.OrdinalIgnoreCase) ? WriteSingleAsync(td0.WriteAsync(source, path, cancellationToken), path) : WriteSingleAsync(linear.WriteAsync(source, path, UcsdIbmMfmGeometry.SectorGeometry, cancellationToken), path);
     }
 }

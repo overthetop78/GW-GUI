@@ -8,7 +8,7 @@
   <data name="Migration.Title"><value>Migrazione dei file</value></data>
   <data name="Migration.Heading"><value>Migrare i file in un altro file system</value></data>
   <data name="Migration.Source"><value>Immagine sorgente</value></data>
-  <data name="Migration.NoSource"><value>Selezionare un&apos;immagine contenente un file system riconosciuto.</value></data>
+  <data name="Migration.NoSource"><value>Selezionare un'immagine contenente un file system riconosciuto.</value></data>
   <data name="Migration.Destination"><value>File di destinazione e formato</value></data>
   <data name="Migration.Output"><value>Immagine della destinazione</value></data>
   <data name="Migration.Compatibility"><value>Compatibilità e perdite</value></data>
@@ -22,7 +22,7 @@
   <data name="Migration.MetadataLoss"><value>Perdita di metadati</value></data>
   <data name="Migration.SourceSummary"><value>Volume: {0} — Sistema di file: {1} — Entrate di radice: {2}</value></data>
   <data name="Migration.SourceFailed"><value>Incapace di preparare la migrazione: {0}</value></data>
-  <data name="Migration.Completed"><value>L&apos;immagine di destinazione è stata creata: {0}</value></data>
+  <data name="Migration.Completed"><value>L'immagine di destinazione è stata creata: {0}</value></data>
   <data name="Migration.Failed"><value>Migrazione fallita: {0}</value></data>
   <data name="Migration.Incompatible"><value>Incompatibile: correggere le perdite di blocco prima della migrazione.</value></data>
   <data name="Migration.CompatibleWithLosses"><value>Compatibile dopo aver accettato le perdite di metadati elencate.</value></data>
@@ -37,6 +37,6 @@
   <data name="Migration.Loss.ModifiedDate"><value>La data di modifica non sarà conservata.</value></data>
   <data name="Migration.Loss.Comment"><value>Il commento non sarà conservato.</value></data>
   <data name="Migration.Loss.Attributes"><value>Gli attributi di origine non saranno conservati.</value></data>
-  <data name="Migration.OverwriteConfirm"><value>L&apos;immagine di destinazione esiste già. Sostituiscilo? {0}</value></data>
-  <data name="Migration.SourceDestinationSame"><value>L&apos;immagine di destinazione non può sostituire l&apos;immagine di origine.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>L'immagine di destinazione esiste già. Sostituiscilo? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>L'immagine di destinazione non può sostituire l'immagine di origine.</value></data>
 </root>

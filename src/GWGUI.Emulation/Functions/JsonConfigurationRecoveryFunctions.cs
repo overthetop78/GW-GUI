@@ -4,17 +4,15 @@ using System.Text.RegularExpressions;
 
 namespace GWGUI.Emulation.Functions;
 
-public static partial class JsonConfigurationRecoveryFunctions
+internal static partial class JsonConfigurationRecoveryFunctions
 {
-    public static T DeserializeRemovingInvalidProperties<T>(string json,
-        Func<JsonElement, T> deserialize, out string repairedJson)
+    public static T DeserializeRemovingInvalidProperties<T>(string json, Func<JsonElement, T> deserialize, out string repairedJson)
     {
         var root = JsonNode.Parse(json) ?? throw new JsonException("The JSON document is empty.");
         var changed = false;
         for (var attempt = 0; attempt < 32; attempt++)
         {
-            var candidate = changed
-                ? root.ToJsonString(new JsonSerializerOptions { WriteIndented = true }) : json;
+            var candidate = changed ? root.ToJsonString(new JsonSerializerOptions { WriteIndented = true }) : json;
             try
             {
                 using var document = JsonDocument.Parse(candidate);
@@ -31,8 +29,7 @@ public static partial class JsonConfigurationRecoveryFunctions
         throw new JsonException("Too many incompatible JSON properties.");
     }
 
-    public static async Task WriteAtomicallyAsync(string path, string json,
-        CancellationToken cancellationToken)
+    public static async Task WriteAtomicallyAsync(string path, string json, CancellationToken cancellationToken)
     {
         var temporary = path + "." + Guid.NewGuid().ToString("N") + ".tmp";
         try
@@ -58,8 +55,7 @@ public static partial class JsonConfigurationRecoveryFunctions
         var last = matches[^1];
         if (last.Groups[1].Success && parent is JsonObject objectParent)
         {
-            var actualName = objectParent.Select(property => property.Key).FirstOrDefault(name =>
-                string.Equals(name, last.Groups[1].Value, StringComparison.OrdinalIgnoreCase));
+            var actualName = objectParent.Select(property => property.Key).FirstOrDefault(name => string.Equals(name, last.Groups[1].Value, StringComparison.OrdinalIgnoreCase));
             return actualName is not null && objectParent.Remove(actualName);
         }
         if (last.Groups[2].Success && parent is JsonArray arrayParent
@@ -76,13 +72,10 @@ public static partial class JsonConfigurationRecoveryFunctions
     {
         if (match.Groups[1].Success && parent is JsonObject objectParent)
         {
-            var name = objectParent.Select(property => property.Key).FirstOrDefault(candidate =>
-                string.Equals(candidate, match.Groups[1].Value, StringComparison.OrdinalIgnoreCase));
+            var name = objectParent.Select(property => property.Key).FirstOrDefault(candidate => string.Equals(candidate, match.Groups[1].Value, StringComparison.OrdinalIgnoreCase));
             return name is null ? null : objectParent[name];
         }
-        return match.Groups[2].Success && parent is JsonArray arrayParent
-            && int.TryParse(match.Groups[2].Value, out var index)
-            && index >= 0 && index < arrayParent.Count ? arrayParent[index] : null;
+        return match.Groups[2].Success && parent is JsonArray arrayParent && int.TryParse(match.Groups[2].Value, out var index) && index >= 0 && index < arrayParent.Count ? arrayParent[index] : null;
     }
 
     [GeneratedRegex(@"\.([^\.\[\]]+)|\[(\d+)\]")]

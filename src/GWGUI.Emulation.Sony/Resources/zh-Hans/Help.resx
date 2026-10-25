@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>在所选的Sony相机中显示处理器的标称时钟频率.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>原始处理器时钟频率.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>显示所选的Sony机提供的处理器模型.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>处理器仿制了此机器 。</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>显示所选机器和模拟器的系统ROM状态。</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>系统ROM.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>识别用于运行此机器配置的模拟器执行 。</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>为此机器所选择的模拟器 。</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>确定正在编辑其硬件配置的Sony型号.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony机型正在配置中.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>显示选中的Sony机器提供的RAM.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>可供模拟机器使用的金额为RAM美元。</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>应用所选时钟百分比后模拟的 CPU 的频率 。</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>标称控制台频率乘以所选百分比. 这改变了被模拟的处理器,而不是主机处理器. 更高的值可以减少减速,但可能打破游戏时间. 自动使用模拟器默认值 。</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>所选机型的原始图形硬件。</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>显示所选机型的原始图形硬件。模拟器的渲染设置会改变生成的图像，随后再应用GW GUI的滤镜。</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>所选机型的原始音频硬件。</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>显示所选机型的原始音频硬件。音频输出和延迟设置控制计算机上的声音播放。</value></data>
+</root>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Atari 조이스틱</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>숫자 키패드</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed"><value>패들 운동 속도</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton"><value>불 단추가 내려지는 동안</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways"><value>지원하다</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility"><value>관제사 겸용성</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity"><value>디지털 감도</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity"><value>아날로그 감도</value></data>
+  <data name="Emulation.Atari.Controller.DualStick"><value>함께 사용되는 두 개의 조이스틱</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts"><value>Swap 포트</value></data>
+</root>

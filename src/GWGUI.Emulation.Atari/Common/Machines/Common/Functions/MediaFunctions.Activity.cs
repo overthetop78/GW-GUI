@@ -28,13 +28,11 @@ internal static class EmulationMediaActivityFunctions
         [0x00, 0x02, 0x06, 0x0a, 0x0e, 0x02, 0x00]
     ];
 
-    internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromRuntimeStatus(
-        RuntimeStatus status) => status.MediaActivity;
+    internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromRuntimeStatus(RuntimeStatus status) => status.MediaActivity;
 
-    internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStates(Emulator emulator,
-        IReadOnlyDictionary<int, bool> ledStates) => emulator switch
+    internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStates(Emulator emulator, IReadOnlyDictionary<int, bool> ledStates) => emulator switch
     {
-        Emulator.Hatari => new Dictionary<EmulationMediaSlot, bool>
+        Emulator.Hatari or Emulator.Hatari2014 => new Dictionary<EmulationMediaSlot, bool>
         {
             [EmulationMediaSlot.Floppy0] = ledStates.GetValueOrDefault(FloppyALed),
             [EmulationMediaSlot.Floppy1] = ledStates.GetValueOrDefault(FloppyBLed),
@@ -55,8 +53,7 @@ internal static class EmulationMediaActivityFunctions
         _ => new Dictionary<EmulationMediaSlot, bool>()
     };
 
-    internal static bool CaptureHatariOverlay(ReadOnlySpan<byte> pixels, int width, int height, int pitch,
-        EmulationPixelFormat pixelFormat, IDictionary<int, bool> ledStates)
+    internal static bool CaptureHatariOverlay(ReadOnlySpan<byte> pixels, int width, int height, int pitch, EmulationPixelFormat pixelFormat, IDictionary<int, bool> ledStates)
     {
         if (pixelFormat != EmulationPixelFormat.Rgb565 || width < 48 || height <= HatariLedCenterY + SampleRadius
             || pitch < width * sizeof(ushort) || pixels.Length < pitch * height)
@@ -68,8 +65,7 @@ internal static class EmulationMediaActivityFunctions
         return true;
     }
 
-    internal static bool CaptureAtari800Overlay(ReadOnlySpan<byte> pixels, int width, int height, int pitch,
-        EmulationPixelFormat pixelFormat, IDictionary<int, bool> ledStates)
+    internal static bool CaptureAtari800Overlay(ReadOnlySpan<byte> pixels, int width, int height, int pitch, EmulationPixelFormat pixelFormat, IDictionary<int, bool> ledStates)
     {
         var bytesPerPixel = pixelFormat == EmulationPixelFormat.Xrgb8888 ? 4 : 2;
         if (width <= 0 || height <= 0 || pitch < width * bytesPerPixel || pixels.Length < pitch * height)
@@ -97,13 +93,11 @@ internal static class EmulationMediaActivityFunctions
                     ledStates[drive] = true;
                     break;
                 }
-        ledStates[4] = MatchesGlyph(pixels, diskVisible ? cassetteWithDiskX : cassetteWithoutDiskX,
-            y, pitch, pixelFormat, Atari800CassetteGlyph);
+        ledStates[4] = MatchesGlyph(pixels, diskVisible ? cassetteWithDiskX : cassetteWithoutDiskX, y, pitch, pixelFormat, Atari800CassetteGlyph);
         return true;
     }
 
-    private static bool MatchesGlyph(ReadOnlySpan<byte> pixels, int x, int y, int pitch,
-        EmulationPixelFormat pixelFormat, ReadOnlySpan<byte> rows)
+    private static bool MatchesGlyph(ReadOnlySpan<byte> pixels, int x, int y, int pitch, EmulationPixelFormat pixelFormat, ReadOnlySpan<byte> rows)
     {
         const int glyphWidth = 5;
         if (x < 0 || y < 0 || x + glyphWidth > pitch / (pixelFormat == EmulationPixelFormat.Xrgb8888 ? 4 : 2)
@@ -128,9 +122,7 @@ internal static class EmulationMediaActivityFunctions
     private static uint Pixel(ReadOnlySpan<byte> pixels, int x, int y, int pitch, EmulationPixelFormat format)
     {
         var offset = y * pitch + x * (format == EmulationPixelFormat.Xrgb8888 ? 4 : 2);
-        return format == EmulationPixelFormat.Xrgb8888
-            ? (uint)(pixels[offset] | pixels[offset + 1] << 8 | pixels[offset + 2] << 16 | pixels[offset + 3] << 24)
-            : (uint)(pixels[offset] | pixels[offset + 1] << 8);
+        return format == EmulationPixelFormat.Xrgb8888 ? (uint)(pixels[offset] | pixels[offset + 1] << 8 | pixels[offset + 2] << 16 | pixels[offset + 3] << 24) : (uint)(pixels[offset] | pixels[offset + 1] << 8);
     }
 
     private static bool IsActive(ReadOnlySpan<byte> pixels, int centerX, int pitch)

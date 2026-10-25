@@ -16,16 +16,10 @@ namespace Hst.Amiga.FileSystems.FastFileSystem.Blocks
             var bitmapBlocks = (blockBytes.Length - SizeOf.ULong) / SizeOf.ULong;
             for (var i = 0; i < bitmapBlocks; i++)
             {
-                BigEndianConverter.ConvertUInt32ToBytes(
-                    i < bitmapExtensionBlock.BitmapBlockOffsets.Length
-                        ? bitmapExtensionBlock.BitmapBlockOffsets[i]
-                        : 0,
-                    blockBytes,
-                    i * SizeOf.ULong);
+                BigEndianConverter.ConvertUInt32ToBytes(i < bitmapExtensionBlock.BitmapBlockOffsets.Length ? bitmapExtensionBlock.BitmapBlockOffsets[i] : 0, blockBytes, i * SizeOf.ULong);
             }
 
-            BigEndianConverter.ConvertUInt32ToBytes(bitmapExtensionBlock.NextBitmapExtensionBlockPointer, blockBytes,
-                blockBytes.Length - SizeOf.ULong);
+            BigEndianConverter.ConvertUInt32ToBytes(bitmapExtensionBlock.NextBitmapExtensionBlockPointer, blockBytes, blockBytes.Length - SizeOf.ULong);
 
             return blockBytes;
         }

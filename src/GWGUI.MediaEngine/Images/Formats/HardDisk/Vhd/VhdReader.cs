@@ -14,14 +14,10 @@ namespace GWGUI.MediaEngine.Images.Formats.HardDisk.Vhd;
 /// <summary>Reads autonomous fixed and dynamic VHD images and exposes their logical block ranges.</summary>
 public sealed class VhdReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { HardDiskImageFormatIds.Vhd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.HardDisk }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
-    private static readonly IReadOnlyList<ReadOnlyMemory<byte>> SupportedSignatures =
-        [VhdFormat.FooterSignature];
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { HardDiskImageFormatIds.Vhd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.HardDisk }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlyList<ReadOnlyMemory<byte>> SupportedSignatures = [VhdFormat.FooterSignature];
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
 
@@ -37,9 +33,7 @@ public sealed class VhdReader : IMediaImageReader
 
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId))
             return false;
@@ -47,8 +41,7 @@ public sealed class VhdReader : IMediaImageReader
         {
             var footer = await ReadFooterAsync(context, cancellationToken).ConfigureAwait(false);
             if (footer.DiskType == HardDiskFormatConstants.VhdDifferencingDiskType) return false;
-            return footer.DiskType is HardDiskFormatConstants.VhdFixedDiskType
-                or HardDiskFormatConstants.VhdDynamicDiskType;
+            return footer.DiskType is HardDiskFormatConstants.VhdFixedDiskType or HardDiskFormatConstants.VhdDynamicDiskType;
         }
         catch (InvalidDataException)
         {
@@ -56,9 +49,7 @@ public sealed class VhdReader : IMediaImageReader
         }
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var footer = await ReadFooterAsync(context, cancellationToken).ConfigureAwait(false);
         var source = new FileRandomAccessData(context.Source.PrimaryPath);
@@ -86,11 +77,7 @@ public sealed class VhdReader : IMediaImageReader
         }
 
         var geometry = TryCreateGeometry(footer);
-        var representation = new BlockMediaImageRepresentation(
-            footer.CurrentSize,
-            HardDiskFormatConstants.LegacyLogicalSectorSize,
-            ranges,
-            geometry);
+        var representation = new BlockMediaImageRepresentation(footer.CurrentSize, HardDiskFormatConstants.LegacyLogicalSectorSize, ranges, geometry);
         return new MediaImageDocument(
             context.Source,
             HardDiskImageFormatIds.Vhd,
@@ -105,16 +92,11 @@ public sealed class VhdReader : IMediaImageReader
             });
     }
 
-    private static async ValueTask<VhdFooter> ReadFooterAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    private static async ValueTask<VhdFooter> ReadFooterAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.Length < HardDiskFormatConstants.VhdFooterSize)
             throw new InvalidDataException("The file is too short to contain a VHD footer.");
-        var memory = await context.ReadAsync(
-            context.Length - HardDiskFormatConstants.VhdFooterSize,
-            HardDiskFormatConstants.VhdFooterSize,
-            cancellationToken).ConfigureAwait(false);
+        var memory = await context.ReadAsync(context.Length - HardDiskFormatConstants.VhdFooterSize, HardDiskFormatConstants.VhdFooterSize, cancellationToken).ConfigureAwait(false);
         var footer = memory.Span;
         if (!footer[..8].SequenceEqual(VhdFormat.FooterSignature.Span))
             throw new InvalidDataException("The VHD footer cookie is missing.");
@@ -140,18 +122,11 @@ public sealed class VhdReader : IMediaImageReader
             new Guid(footer[68..84], bigEndian: true));
     }
 
-    private static async Task<IReadOnlyList<MediaDataRange>> ReadDynamicRangesAsync(
-        MediaRecognitionContext context,
-        FileRandomAccessData source,
-        VhdFooter footer,
-        CancellationToken cancellationToken)
+    private static async Task<IReadOnlyList<MediaDataRange>> ReadDynamicRangesAsync(MediaRecognitionContext context, FileRandomAccessData source, VhdFooter footer, CancellationToken cancellationToken)
     {
         if (footer.DataOffset > (ulong)(context.Length - HardDiskFormatConstants.VhdDynamicHeaderSize))
             throw new InvalidDataException("The VHD dynamic header offset is outside the file.");
-        var headerMemory = await context.ReadAsync(
-            (long)footer.DataOffset,
-            HardDiskFormatConstants.VhdDynamicHeaderSize,
-            cancellationToken).ConfigureAwait(false);
+        var headerMemory = await context.ReadAsync((long)footer.DataOffset, HardDiskFormatConstants.VhdDynamicHeaderSize, cancellationToken).ConfigureAwait(false);
         var header = headerMemory.Span;
         if (!header[..8].SequenceEqual(VhdFormat.DynamicHeaderSignature.Span))
             throw new InvalidDataException("The VHD dynamic header cookie is missing.");
@@ -185,7 +160,7 @@ public sealed class VhdReader : IMediaImageReader
             var batEntry = BinaryPrimitives.ReadUInt32BigEndian(bat.Span.Slice(blockIndex * sizeof(uint), sizeof(uint)));
             if (batEntry == HardDiskFormatConstants.VhdUnusedBatEntry)
             {
-                AddRange(ranges, logicalBlockStart, logicalBlockLength, MediaDataRangeKind.Unallocated);
+                BlockMediaImageRepresentation.AddRange(ranges, logicalBlockStart, logicalBlockLength, MediaDataRangeKind.Unallocated, checkedLength: true);
                 continue;
             }
 
@@ -194,23 +169,20 @@ public sealed class VhdReader : IMediaImageReader
             if (storedBlockStart < 0 || dataStart > context.Length - logicalBlockLength)
                 throw new InvalidDataException($"VHD BAT entry {blockIndex} points outside the file.");
             var bitmap = await context.ReadAsync(storedBlockStart, bitmapByteLength, cancellationToken).ConfigureAwait(false);
-            var sectorCount = checked((int)((logicalBlockLength + HardDiskFormatConstants.LegacyLogicalSectorSize - 1)
-                / HardDiskFormatConstants.LegacyLogicalSectorSize));
+            var sectorCount = checked((int)((logicalBlockLength + HardDiskFormatConstants.LegacyLogicalSectorSize - 1) / HardDiskFormatConstants.LegacyLogicalSectorSize));
             for (var sectorIndex = 0; sectorIndex < sectorCount; sectorIndex++)
             {
                 var logicalAddress = checked(logicalBlockStart + sectorIndex * (long)HardDiskFormatConstants.LegacyLogicalSectorSize);
-                var length = Math.Min(
-                    HardDiskFormatConstants.LegacyLogicalSectorSize,
-                    footer.CurrentSize - logicalAddress);
+                var length = Math.Min(HardDiskFormatConstants.LegacyLogicalSectorSize, footer.CurrentSize - logicalAddress);
                 var allocated = (bitmap.Span[sectorIndex / 8] & (0x80 >> (sectorIndex % 8))) != 0;
                 if (allocated)
                 {
                     var sourceOffset = checked(dataStart + sectorIndex * (long)HardDiskFormatConstants.LegacyLogicalSectorSize);
-                    AddRange(ranges, logicalAddress, length, MediaDataRangeKind.Stored, source, sourceOffset);
+                    BlockMediaImageRepresentation.AddRange(ranges, logicalAddress, length, MediaDataRangeKind.Stored, source, sourceOffset, checkedLength: true);
                 }
                 else
                 {
-                    AddRange(ranges, logicalAddress, length, MediaDataRangeKind.Zero);
+                    BlockMediaImageRepresentation.AddRange(ranges, logicalAddress, length, MediaDataRangeKind.Zero, checkedLength: true);
                 }
             }
         }
@@ -221,11 +193,7 @@ public sealed class VhdReader : IMediaImageReader
     private static HardDiskGeometry? TryCreateGeometry(VhdFooter footer)
     {
         if (footer.Cylinders == 0 || footer.Heads == 0 || footer.SectorsPerTrack == 0) return null;
-        var geometry = new HardDiskGeometry(
-            footer.Cylinders,
-            footer.Heads,
-            footer.SectorsPerTrack,
-            HardDiskFormatConstants.LegacyLogicalSectorSize);
+        var geometry = new HardDiskGeometry(footer.Cylinders, footer.Heads, footer.SectorsPerTrack, HardDiskFormatConstants.LegacyLogicalSectorSize);
         return geometry.Capacity <= footer.CurrentSize ? geometry : null;
     }
 
@@ -242,40 +210,5 @@ public sealed class VhdReader : IMediaImageReader
 
     private static int Align(int value, int alignment) => checked((value + alignment - 1) / alignment * alignment);
 
-    private static void AddRange(
-        List<MediaDataRange> ranges,
-        long address,
-        long length,
-        MediaDataRangeKind kind,
-        FileRandomAccessData? source = null,
-        long sourceOffset = 0)
-    {
-        if (ranges.Count > 0)
-        {
-            var previous = ranges[^1];
-            var sourcesContinue = kind != MediaDataRangeKind.Stored
-                || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
-            if (previous.Kind == kind && previous.Address + previous.Length == address && sourcesContinue)
-            {
-                ranges[^1] = new MediaDataRange(
-                    previous.Address,
-                    checked(previous.Length + length),
-                    kind,
-                    previous.Source,
-                    previous.SourceOffset);
-                return;
-            }
-        }
-
-        ranges.Add(new MediaDataRange(address, length, kind, source, sourceOffset));
-    }
-
-    private sealed record VhdFooter(
-        ulong DataOffset,
-        long CurrentSize,
-        ushort Cylinders,
-        byte Heads,
-        byte SectorsPerTrack,
-        uint DiskType,
-        Guid UniqueId);
+    private sealed record VhdFooter(ulong DataOffset, long CurrentSize, ushort Cylinders, byte Heads, byte SectorsPerTrack, uint DiskType, Guid UniqueId);
 }

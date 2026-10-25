@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>Poziția solicitată nu este valabilă pentru acest obiect al sistemului de fișiere.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Operaţiunea de alocare-nod a eşuat.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Bloc de indici bitmap pentru media de alocare {0}/{1} nu putea fi citit.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>Capul de conducere nu este la cilindrul solicitat ({0}) Recalibrați unitatea înainte de citire.</value></data>
 </root>

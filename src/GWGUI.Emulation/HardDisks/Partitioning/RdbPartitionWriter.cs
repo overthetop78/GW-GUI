@@ -5,12 +5,9 @@ namespace GWGUI.Emulation.HardDisks.Partitioning;
 
 public static class RdbPartitionWriter
 {
-    public static void Validate(long capacity, IReadOnlyList<DiskVolumePlan> volumes)
-        => Validate(capacity, volumes, new RdbGeometry());
+    public static void Validate(long capacity, IReadOnlyList<DiskVolumePlan> volumes) => Validate(capacity, volumes, new RdbGeometry());
 
-    public static DiskFormatRegistry.PartitionTable Describe(string id, RdbGeometry geometry)
-        => new(id, (capacity, volumes) => Validate(capacity, volumes, geometry),
-            (disk, volumes) => Write(disk, volumes, geometry));
+    public static DiskFormatRegistry.PartitionTable Describe(string id, RdbGeometry geometry) => new(id, (capacity, volumes) => Validate(capacity, volumes, geometry), (disk, volumes) => Write(disk, volumes, geometry));
 
     public static void Validate(long capacity, IReadOnlyList<DiskVolumePlan> volumes, RdbGeometry geometry)
     {
@@ -31,8 +28,7 @@ public static class RdbPartitionWriter
             end = volume.OffsetBytes + volume.LengthBytes;
         }
     }
-    public static void Write(Stream disk, IReadOnlyList<DiskVolumePlan> volumes)
-        => Write(disk, volumes, new RdbGeometry());
+    public static void Write(Stream disk, IReadOnlyList<DiskVolumePlan> volumes) => Write(disk, volumes, new RdbGeometry());
 
     public static void Write(Stream disk, IReadOnlyList<DiskVolumePlan> volumes, RdbGeometry geometry)
     {
@@ -68,8 +64,7 @@ public static class RdbPartitionWriter
         disk.Flush();
     }
     private static void Set(byte[] bytes, int offset, uint value) => BinaryPrimitives.WriteUInt32BigEndian(bytes.AsSpan(offset), value);
-    private static long ReservedCylinders(int partitions, long cylinderBytes)
-        => Math.Max(1, ((partitions + 1L) * 512 + cylinderBytes - 1) / cylinderBytes);
+    private static long ReservedCylinders(int partitions, long cylinderBytes) => Math.Max(1, ((partitions + 1L) * 512 + cylinderBytes - 1) / cylinderBytes);
     private static uint? DosType(string id)=>id.ToLowerInvariant() switch
     {
         "ofs"=>0x444f5300u, "none" or "ffs"=>0x444f5301u,

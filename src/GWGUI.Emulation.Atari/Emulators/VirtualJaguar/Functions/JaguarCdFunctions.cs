@@ -7,14 +7,8 @@ namespace GWGUI.Emulation.Atari.Emulators.VirtualJaguar.Functions;
 
 internal static class JaguarCdFunctions
 {
-    internal static bool IsSupported(IReadOnlySet<string> reportedExtensions) =>
-        JaguarCdConstants.CompleteDiscExtensions.Any(reportedExtensions.Contains);
 
-    internal static PreparedJaguarCd Prepare(
-        MachineConfiguration machine,
-        MediaConfiguration media,
-        bool needsFullPath,
-        IReadOnlySet<string> reportedExtensions)
+    internal static PreparedJaguarCd Prepare(MachineConfiguration machine, MediaConfiguration media, bool needsFullPath, IReadOnlySet<string> reportedExtensions)
     {
         if (machine.Model != MachineModel.JaguarCd)
             throw new ArgumentException(JaguarCdErrors.ModelRequired, nameof(machine));
@@ -30,21 +24,16 @@ internal static class JaguarCdFunctions
         var activityPaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { Path.GetFullPath(path) };
         if (extension.Equals(JaguarCdConstants.CueExtension, StringComparison.OrdinalIgnoreCase))
             foreach (var track in ValidateCueTracks(path)) activityPaths.Add(track);
-        return new PreparedJaguarCd(media, path,
-            needsFullPath || JaguarCdConstants.RequiresFullPath, activityPaths);
+        return new PreparedJaguarCd(media, path, needsFullPath || JaguarCdConstants.RequiresFullPath, activityPaths);
     }
 
-    internal static void RejectForStandardJaguar(
-        MachineModel model,
-        MediaConfiguration media)
+    internal static void RejectForStandardJaguar(MachineModel model, MediaConfiguration media)
     {
         if (model != MachineModel.JaguarCd && media.Category == MediaCategory.CompactDisc)
             throw new ArgumentException(JaguarCdErrors.ModelRequired, nameof(media));
     }
 
-    internal static EmulationException Unsupported(string message) =>
-        new(ErrorCategory.Content, ErrorCode.ContentUnsupported,
-            message);
+    internal static EmulationException Unsupported(string message) => new(ErrorCategory.Content, ErrorCode.ContentUnsupported, message);
 
     private static IReadOnlyList<string> ValidateCueTracks(string cuePath)
     {
@@ -53,8 +42,7 @@ internal static class JaguarCdFunctions
         foreach (var line in File.ReadLines(cuePath))
         {
             var trimmed = line.Trim();
-            if (!trimmed.StartsWith(JaguarCdConstants.CueFileDirective,
-                    StringComparison.OrdinalIgnoreCase)) continue;
+            if (!trimmed.StartsWith(JaguarCdConstants.CueFileDirective, StringComparison.OrdinalIgnoreCase)) continue;
             var firstQuote = trimmed.IndexOf(JaguarCdConstants.CueQuotedPathDelimiter);
             var lastQuote = trimmed.LastIndexOf(JaguarCdConstants.CueQuotedPathDelimiter);
             if (firstQuote == JaguarCdConstants.MissingCueDelimiterIndex || lastQuote <= firstQuote) continue;
@@ -76,9 +64,7 @@ internal static class JaguarCdFunctions
         }
         catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
         {
-            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentNotFound,
-                JaguarCdErrors.FileUnreadable,
-                new Dictionary<string, string> { [ErrorContextConstants.Path] = path }, exception);
+            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentNotFound, JaguarCdErrors.FileUnreadable, new Dictionary<string, string> { [ErrorContextConstants.Path] = path }, exception);
         }
     }
 }

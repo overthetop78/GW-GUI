@@ -1,7 +1,7 @@
-using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
-using IMediaImageDocument = global::GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
-using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
-using IMediaSectorRepresentation = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorRepresentation;
+using MediaVolumeDescriptor = GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
+using IMediaImageDocument = GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
+using IMediaSectorImage = GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
+using IMediaSectorRepresentation = GWGUI.MediaFileSystems.Interfaces.IMediaSectorRepresentation;
 using GWGUI.MediaFileSystems.Interfaces.Exploration;
 
 namespace GWGUI.MediaFileSystems;
@@ -27,10 +27,7 @@ public interface IFileSystemReader : IMediaFileSystemReader
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(volume);
-        return document.Representation is IMediaSectorRepresentation sectors &&
-               volume.Start == 0 &&
-               volume.Length == sectors.Image.Capacity &&
-               CanRead(sectors.Image);
+        return document.Representation is IMediaSectorRepresentation sectors && volume.Start == 0 && volume.Length == sectors.Image.Capacity && CanRead(sectors.Image);
     }
 
     FileSystemVolume IMediaFileSystemReader.Read(IMediaImageDocument document, MediaVolumeDescriptor volume)

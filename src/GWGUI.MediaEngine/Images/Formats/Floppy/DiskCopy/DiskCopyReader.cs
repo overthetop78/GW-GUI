@@ -151,9 +151,7 @@ internal static class DiskCopyReader
     /// <summary>Indique si un contenu possède l'en-tête minimal et le mot magique DiskCopy 4.2.</summary>
     /// <param name="container">Contenu complet ou partiel à examiner.</param>
     /// <returns><see langword="true"/> lorsque le mot magique est présent à son offset ; sinon <see langword="false"/>.</returns>
-    public static bool HasPrivateWord(ReadOnlySpan<byte> container) =>
-        container.Length >= DiskCopyLayout.HeaderSize &&
-        BinaryPrimitives.ReadUInt16BigEndian(container[DiskCopyLayout.PrivateWordOffset..]) == DiskCopyFormat.PrivateWord;
+    public static bool HasPrivateWord(ReadOnlySpan<byte> container) => container.Length >= DiskCopyLayout.HeaderSize && BinaryPrimitives.ReadUInt16BigEndian(container[DiskCopyLayout.PrivateWordOffset..]) == DiskCopyFormat.PrivateWord;
 
     /// <summary>
     /// Compare les checksums non nuls de l’en-tête avec ceux des données et des tags extraits.
@@ -166,9 +164,7 @@ internal static class DiskCopyReader
     private static (bool? Data, bool? Tags) InspectChecksums(ReadOnlySpan<byte> container, ReadOnlySpan<byte> payload, ReadOnlySpan<byte> tags)
     {
         var storedDataChecksum = BinaryPrimitives.ReadUInt32BigEndian(container.Slice(DiskCopyLayout.DataChecksumOffset));
-        var dataValid = storedDataChecksum == DiskCopyFormat.MissingChecksum
-            ? (bool?)null
-            : storedDataChecksum == CalculateChecksum(payload);
+        var dataValid = storedDataChecksum == DiskCopyFormat.MissingChecksum ? (bool?)null : storedDataChecksum == CalculateChecksum(payload);
 
         var storedTagChecksum = BinaryPrimitives.ReadUInt32BigEndian(container.Slice(DiskCopyLayout.TagChecksumOffset));
         if (storedTagChecksum == DiskCopyFormat.MissingChecksum)

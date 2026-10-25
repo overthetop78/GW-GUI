@@ -1,4 +1,4 @@
-using IMediaRandomAccessData = global::GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData;
+using IMediaRandomAccessData = GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData;
 
 namespace GWGUI.MediaEngine.Images.Reading.Sources;
 
@@ -16,23 +16,14 @@ public sealed class FileRandomAccessData : IMediaRandomAccessData
 
     public long Length { get; }
 
-    public async ValueTask ReadExactlyAsync(
-        long offset,
-        Memory<byte> destination,
-        CancellationToken cancellationToken = default)
+    public async ValueTask ReadExactlyAsync(long offset, Memory<byte> destination, CancellationToken cancellationToken = default)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(offset);
         if (offset > Length || destination.Length > Length - offset)
             throw new ArgumentOutOfRangeException(nameof(destination), "The requested range exceeds the file data source.");
         if (destination.IsEmpty) return;
 
-        await using var stream = new FileStream(
-            Path,
-            FileMode.Open,
-            FileAccess.Read,
-            FileShare.Read,
-            64 * 1024,
-            FileOptions.Asynchronous | FileOptions.RandomAccess);
+        await using var stream = new FileStream(Path, FileMode.Open, FileAccess.Read, FileShare.Read, 64 * 1024, FileOptions.Asynchronous | FileOptions.RandomAccess);
         stream.Seek(offset, SeekOrigin.Begin);
 
         var totalRead = 0;

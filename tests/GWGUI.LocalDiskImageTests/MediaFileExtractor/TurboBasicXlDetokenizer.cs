@@ -148,10 +148,7 @@ internal static class TurboBasicXlDetokenizer
         return true;
     }
 
-    private static IReadOnlyList<string> ReadVariableNames(
-        IReadOnlyList<byte> data,
-        int variableNameStart,
-        int variableValueStart)
+    private static IReadOnlyList<string> ReadVariableNames(IReadOnlyList<byte> data, int variableNameStart, int variableValueStart)
     {
         var names = new List<string>();
         var name = new StringBuilder();
@@ -186,11 +183,7 @@ internal static class TurboBasicXlDetokenizer
         output.Append(index < names.Count ? names[index] : $"[VAR ${index:X2}]");
     }
 
-    private static void AppendNumber(
-        StringBuilder output,
-        IReadOnlyList<byte> data,
-        int position,
-        bool hexadecimal)
+    private static void AppendNumber(StringBuilder output, IReadOnlyList<byte> data, int position, bool hexadecimal)
     {
         var value = DecodeBcdNumber(data, position);
         if (hexadecimal)
@@ -226,8 +219,7 @@ internal static class TurboBasicXlDetokenizer
             output.Append($"\\x{value:X2}");
     }
 
-    private static ushort ReadUInt16(IReadOnlyList<byte> data, int position) =>
-        (ushort)(data[position] | data[position + 1] << 8);
+    private static ushort ReadUInt16(IReadOnlyList<byte> data, int position) => (ushort)(data[position] | data[position + 1] << 8);
 
     private static string?[] BuildCommands()
     {
@@ -290,9 +282,5 @@ internal static class TurboBasicXlDetokenizer
         return values;
     }
 
-    private readonly record struct Layout(
-        int VariableNameStart,
-        int VariableValueStart,
-        int CodeStart,
-        int CodeEnd);
+    private readonly record struct Layout(int VariableNameStart, int VariableValueStart, int CodeStart, int CodeEnd);
 }

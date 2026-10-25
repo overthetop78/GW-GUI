@@ -1,16 +1,14 @@
-using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
-using MediaSectorAddress = global::GWGUI.MediaFileSystems.Contracts.MediaSectorAddress;
-using MediaSectorWriteBlock = global::GWGUI.MediaFileSystems.Contracts.MediaSectorWriteBlock;
-using MediaSectorWritePlan = global::GWGUI.MediaFileSystems.Contracts.MediaSectorWritePlan;
+using MediaImageFormatIds = GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
+using MediaSectorAddress = GWGUI.MediaFileSystems.Contracts.MediaSectorAddress;
+using MediaSectorWriteBlock = GWGUI.MediaFileSystems.Contracts.MediaSectorWriteBlock;
+using MediaSectorWritePlan = GWGUI.MediaFileSystems.Contracts.MediaSectorWritePlan;
 using System.IO;
 using System.Buffers.Binary;
 using GWGUI.MediaFileSystems;
 using GWGUI.MediaFileSystems.Definitions;
 using GWGUI.MediaFileSystems.Migration;
 
-
 namespace GWGUI.MediaFileSystems.FileSystems.Apple.Dos;
-
 /// <summary>Crée des volumes Apple DOS 3.2 ou 3.3 complets à partir d'un plan de migration validé.</summary>
 public sealed class AppleDosVolumeWriter
 {
@@ -19,8 +17,10 @@ public sealed class AppleDosVolumeWriter
     {
         ArgumentNullException.ThrowIfNull(plan);
         var sectorsPerTrack = ResolveSectorsPerTrack(formatId);
-        if (!AppleDosVolumeNamePolicy.TryParse(plan.VolumeName, out var volumeNumber)) throw new InvalidDataException($"The Apple DOS volume name '{plan.VolumeName}' must use DOS-nnn.");
-        if (plan.Entries.Any(entry => entry.Kind != FileSystemEntryKind.File || entry.Children.Count != 0 || entry.Content is null)) throw new InvalidDataException("Apple DOS supports only files with available content in the root catalog.");
+        if (!AppleDosVolumeNamePolicy.TryParse(plan.VolumeName, out var volumeNumber))
+            throw new InvalidDataException($"The Apple DOS volume name '{plan.VolumeName}' must use DOS-nnn.");
+        if (plan.Entries.Any(entry => entry.Kind != FileSystemEntryKind.File || entry.Children.Count != 0 || entry.Content is null))
+            throw new InvalidDataException("Apple DOS supports only files with available content in the root catalog.");
         var capacity = checked(AppleDosFileSystemLayout.TrackCount * sectorsPerTrack);
         var sectors = Enumerable.Range(0, capacity).Select(_ => new byte[AppleDosFileSystemLayout.SectorSize]).ToArray();
         var free = Enumerable.Repeat(true, capacity).ToArray();
@@ -35,14 +35,17 @@ public sealed class AppleDosVolumeWriter
 
     private static int ResolveSectorsPerTrack(string formatId)
     {
-        if (formatId.Equals(MediaImageFormatIds.AppleIIDos32, StringComparison.OrdinalIgnoreCase) || formatId.Equals(MediaImageFormatIds.AppleIIAppleDos113, StringComparison.OrdinalIgnoreCase)) return AppleDosFileSystemLayout.Dos32SectorsPerTrack;
-        if (formatId.Equals(MediaImageFormatIds.AppleIIDos33, StringComparison.OrdinalIgnoreCase) || formatId.Equals(MediaImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase)) return AppleDosFileSystemLayout.Dos33SectorsPerTrack;
+        if (formatId.Equals(MediaImageFormatIds.AppleIIDos32, StringComparison.OrdinalIgnoreCase) || formatId.Equals(MediaImageFormatIds.AppleIIAppleDos113, StringComparison.OrdinalIgnoreCase))
+            return AppleDosFileSystemLayout.Dos32SectorsPerTrack;
+        if (formatId.Equals(MediaImageFormatIds.AppleIIDos33, StringComparison.OrdinalIgnoreCase) || formatId.Equals(MediaImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase))
+            return AppleDosFileSystemLayout.Dos33SectorsPerTrack;
         throw AppleDosVolumeWriterExceptions.UnsupportedFormat(formatId);
     }
 
     private static void ReserveTrack(bool[] free, int sectorsPerTrack, int track)
     {
-        for (var sector = 0; sector < sectorsPerTrack; sector++) free[track * sectorsPerTrack + sector] = false;
+        for (var sector = 0; sector < sectorsPerTrack; sector++)
+            free[track * sectorsPerTrack + sector] = false;
     }
 
     private static void WriteCatalogChain(byte[][] sectors, int sectorsPerTrack)
@@ -59,7 +62,8 @@ public sealed class AppleDosVolumeWriter
     {
         var entries = plan.Entries;
         var maximumEntries = (sectorsPerTrack - 1) * AppleDosFileSystemLayout.CatalogEntriesPerSector;
-        if (entries.Count > maximumEntries) throw AppleDosVolumeWriterExceptions.DiskFull();
+        if (entries.Count > maximumEntries)
+            throw AppleDosVolumeWriterExceptions.DiskFull();
         for (var index = 0; index < entries.Count; index++)
         {
             var entry = entries[index];
@@ -78,15 +82,20 @@ public sealed class AppleDosVolumeWriter
 
     private static int[] Allocate(bool[] free, int count, int sectorsPerTrack)
     {
-        var candidates = Enumerable.Range(0, AppleDosFileSystemLayout.TrackCount).OrderBy(track => Math.Abs(track - (AppleDosFileSystemLayout.VtocTrack - 1))).ThenBy(track => track).SelectMany(track => Enumerable.Range(0, sectorsPerTrack).Select(sector => track * sectorsPerTrack + sector)).Where(logical => free[logical]).Take(count).ToArray();
-        if (candidates.Length != count) throw AppleDosVolumeWriterExceptions.DiskFull();
-        foreach (var logical in candidates) free[logical] = false;
+        var candidates = Enumerable.Range(0,
+            AppleDosFileSystemLayout.TrackCount).OrderBy(track => Math.Abs(track - (AppleDosFileSystemLayout.VtocTrack - 1))).ThenBy(track => track).SelectMany(track => Enumerable.Range(0,
+            sectorsPerTrack).Select(sector => track * sectorsPerTrack + sector)).Where(logical => free[logical]).Take(count).ToArray();
+        if (candidates.Length != count)
+            throw AppleDosVolumeWriterExceptions.DiskFull();
+        foreach (var logical in candidates)
+            free[logical] = false;
         return candidates;
     }
 
     private static void WriteData(byte[] content, IReadOnlyList<int> dataSectors, byte[][] sectors)
     {
-        for (var index = 0; index < dataSectors.Count; index++) content.AsSpan(index * AppleDosFileSystemLayout.SectorSize, Math.Min(AppleDosFileSystemLayout.SectorSize, Math.Max(0, content.Length - index * AppleDosFileSystemLayout.SectorSize))).CopyTo(sectors[dataSectors[index]]);
+        for (var index = 0; index < dataSectors.Count; index++)
+            content.AsSpan(index * AppleDosFileSystemLayout.SectorSize, Math.Min(AppleDosFileSystemLayout.SectorSize, Math.Max(0, content.Length - index * AppleDosFileSystemLayout.SectorSize))).CopyTo(sectors[dataSectors[index]]);
     }
 
     private static void WriteLists(IReadOnlyList<int> lists, IReadOnlyList<int> dataSectors, byte[][] sectors, int sectorsPerTrack)
@@ -94,11 +103,13 @@ public sealed class AppleDosVolumeWriter
         for (var listIndex = 0; listIndex < lists.Count; listIndex++)
         {
             var list = sectors[lists[listIndex]];
-            if (listIndex + 1 < lists.Count) WriteAddress(list, AppleDosFileSystemLayout.NextTrackOffset, lists[listIndex + 1], sectorsPerTrack);
+            if (listIndex + 1 < lists.Count)
+                WriteAddress(list, AppleDosFileSystemLayout.NextTrackOffset, lists[listIndex + 1], sectorsPerTrack);
             BinaryPrimitives.WriteUInt16LittleEndian(list.AsSpan(AppleDosFileSystemLayout.TrackSectorListOffsetOffset), checked((ushort)(listIndex * AppleDosFileSystemLayout.TrackSectorPairCount)));
             var first = listIndex * AppleDosFileSystemLayout.TrackSectorPairCount;
             var count = Math.Min(AppleDosFileSystemLayout.TrackSectorPairCount, dataSectors.Count - first);
-            for (var pair = 0; pair < count; pair++) WriteAddress(list, AppleDosFileSystemLayout.TrackSectorPairsOffset + pair * AppleDosFileSystemLayout.TrackSectorPairSize, dataSectors[first + pair], sectorsPerTrack);
+            for (var pair = 0; pair < count; pair++)
+                WriteAddress(list, AppleDosFileSystemLayout.TrackSectorPairsOffset + pair * AppleDosFileSystemLayout.TrackSectorPairSize, dataSectors[first + pair], sectorsPerTrack);
         }
     }
 
@@ -114,10 +125,10 @@ public sealed class AppleDosVolumeWriter
     }
 
     private static byte AppleDosFileTypeValue(MigrationEntry entry, string sourceFileSystemId) => sourceFileSystemId.Equals(FileSystemIds.AppleDos, StringComparison.OrdinalIgnoreCase) ? (byte)entry.RawAttributes : (byte)AppleDosFileType.Binary;
-
     private static byte[] EncodeContent(MigrationEntry entry, byte rawType)
     {
-        if ((AppleDosFileType)(rawType & AppleDosFileSystemLayout.ValueMask) != AppleDosFileType.Binary) return entry.Content!.ToArray();
+        if ((AppleDosFileType)(rawType & AppleDosFileSystemLayout.ValueMask) != AppleDosFileType.Binary)
+            return entry.Content!.ToArray();
         var loadAddress = checked((ushort)(entry.RawAttributes >> AppleDosFileSystemLayout.BinaryLoadAddressAttributeShift));
         return AppleDosBinaryFileCodec.Encode(entry.Content!, loadAddress);
     }
@@ -126,7 +137,8 @@ public sealed class AppleDosVolumeWriter
     {
         var output = Enumerable.Repeat((byte)0xa0, AppleDosFileSystemLayout.EntryNameLength).ToArray();
         var encoded = System.Text.Encoding.ASCII.GetBytes(name);
-        for (var index = 0; index < encoded.Length; index++) output[index] = (byte)(encoded[index] | 0x80);
+        for (var index = 0; index < encoded.Length; index++)
+            output[index] = (byte)(encoded[index] | 0x80);
         return output;
     }
 
@@ -152,7 +164,9 @@ public sealed class AppleDosVolumeWriter
         for (var track = 0; track < AppleDosFileSystemLayout.TrackCount; track++)
         {
             uint bits = 0;
-            for (var sector = 0; sector < sectorsPerTrack; sector++) if (free[track * sectorsPerTrack + sector]) bits |= 1u << (sizeof(uint) * 8 - sectorsPerTrack + sector);
+            for (var sector = 0; sector < sectorsPerTrack; sector++)
+                if (free[track * sectorsPerTrack + sector])
+                    bits |= 1u << (sizeof(uint) * 8 - sectorsPerTrack + sector);
             BinaryPrimitives.WriteUInt32BigEndian(vtoc.AsSpan(AppleDosFileSystemLayout.VtocFreeBitmapOffset + track * AppleDosFileSystemLayout.VtocTrackBitmapSize), bits);
         }
     }

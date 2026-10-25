@@ -10,7 +10,7 @@
   <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>Відкрита сесія: {0}</value></data>
   <data name="Emulation.Hdd.Link" xml:space="preserve"><value>Вимкнення за посиланнями не допускається. Виберіть оригінальний файл.</value></data>
   <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>Виберіть розширення, що підтримується цим пристроєм та інтерфейсом.</value></data>
-  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>Цей файл вже існує. Виберіть ще одне ім&apos;я.</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>Цей файл вже існує. Виберіть ще одне ім'я.</value></data>
   <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>Місткість: 512 байтів {0}, в декількох рядах 512. Зберігаючі обмеження для підтримуючої системи.</value></data>
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Створює порожній сирий диск без операційної системи. Приготуйте та відформатуйте його за допомогою дискових інструментів всередині емульгованої машини.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Підготовка диска</value></data>

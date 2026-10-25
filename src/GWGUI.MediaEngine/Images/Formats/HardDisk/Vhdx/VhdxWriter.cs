@@ -17,10 +17,8 @@ public sealed class VhdxWriter : IMediaImageWriter
 {
     private const long MetadataRegionOffset = HardDiskFormatConstants.VhdxOneMebibyte;
     private const long BatRegionOffset = 2L * HardDiskFormatConstants.VhdxOneMebibyte;
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { HardDiskImageFormatIds.Vhdx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { HardDiskImageFormatIds.Vhdx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
     public VhdxWriter(IAtomicImageFileWriter? files = null)
@@ -43,14 +41,10 @@ public sealed class VhdxWriter : IMediaImageWriter
             && document.Representation is BlockMediaImageRepresentation blocks
             && blocks.Capacity > 0
             && VhdxFormat.LogicalSectorSizes.Contains(blocks.LogicalBlockSize)
-            && HasCompleteReadableCoverage(blocks);
+            && blocks.HasCompleteReadableCoverage();
     }
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!CanWrite(document, targetFormatId, extension)
@@ -58,18 +52,11 @@ public sealed class VhdxWriter : IMediaImageWriter
             throw new InvalidDataException("The media document cannot be written as a complete VHDX image.");
 
         var fixedImage = SelectVariant(document, blocks) == HardDiskImageVariant.Fixed;
-        await files.WriteAsync(
-            outputPath,
-            (output, token) => WriteContainerAsync(blocks, fixedImage, output, token),
-            cancellationToken).ConfigureAwait(false);
+        await files.WriteAsync(outputPath, (output, token) => WriteContainerAsync(blocks, fixedImage, output, token), cancellationToken).ConfigureAwait(false);
         return [outputPath];
     }
 
-    private static async Task WriteContainerAsync(
-        BlockMediaImageRepresentation blocks,
-        bool fixedImage,
-        Stream output,
-        CancellationToken cancellationToken)
+    private static async Task WriteContainerAsync(BlockMediaImageRepresentation blocks, bool fixedImage, Stream output, CancellationToken cancellationToken)
     {
         var blockSize = SelectBlockSize(blocks.Capacity);
         var payloadBlockCount = checked((blocks.Capacity + blockSize - 1) / blockSize);
@@ -85,15 +72,12 @@ public sealed class VhdxWriter : IMediaImageWriter
         await WriteAtAsync(output, 0, CreateFileIdentifier(), cancellationToken).ConfigureAwait(false);
         var fileWriteGuid = Guid.NewGuid();
         var dataWriteGuid = Guid.NewGuid();
-        await WriteAtAsync(output, HardDiskFormatConstants.VhdxHeader1Offset,
-            CreateHeader(1, fileWriteGuid, dataWriteGuid, logOffset), cancellationToken).ConfigureAwait(false);
-        await WriteAtAsync(output, HardDiskFormatConstants.VhdxHeader2Offset,
-            CreateHeader(2, fileWriteGuid, dataWriteGuid, logOffset), cancellationToken).ConfigureAwait(false);
+        await WriteAtAsync(output, HardDiskFormatConstants.VhdxHeader1Offset, CreateHeader(1, fileWriteGuid, dataWriteGuid, logOffset), cancellationToken).ConfigureAwait(false);
+        await WriteAtAsync(output, HardDiskFormatConstants.VhdxHeader2Offset, CreateHeader(2, fileWriteGuid, dataWriteGuid, logOffset), cancellationToken).ConfigureAwait(false);
         var regionTable = CreateRegionTable((uint)batRegionLength);
         await WriteAtAsync(output, HardDiskFormatConstants.VhdxRegionTable1Offset, regionTable, cancellationToken).ConfigureAwait(false);
         await WriteAtAsync(output, HardDiskFormatConstants.VhdxRegionTable2Offset, regionTable, cancellationToken).ConfigureAwait(false);
-        await WriteAtAsync(output, MetadataRegionOffset,
-            CreateMetadata(blocks, blockSize, fixedImage), cancellationToken).ConfigureAwait(false);
+        await WriteAtAsync(output, MetadataRegionOffset, CreateMetadata(blocks, blockSize, fixedImage), cancellationToken).ConfigureAwait(false);
 
         var bat = new byte[(int)batByteLength];
         var data = new byte[blockSize];
@@ -103,18 +87,12 @@ public sealed class VhdxWriter : IMediaImageWriter
             data.AsSpan().Clear();
             var address = checked(payloadIndex * blockSize);
             var logicalLength = (int)Math.Min(blockSize, blocks.Capacity - address);
-            await BlockMediaDataReader.ReadExactlyAsync(
-                blocks,
-                address,
-                data.AsMemory(0, logicalLength),
-                cancellationToken).ConfigureAwait(false);
+            await BlockMediaDataReader.ReadExactlyAsync(blocks, address, data.AsMemory(0, logicalLength), cancellationToken).ConfigureAwait(false);
             var writePayload = fixedImage || data.AsSpan(0, logicalLength).IndexOfAnyExcept((byte)0) >= 0;
             var batIndex = checked(payloadIndex + payloadIndex / chunkRatio);
             if (!writePayload)
             {
-                BinaryPrimitives.WriteUInt64LittleEndian(
-                    bat.AsSpan(checked((int)(batIndex * 8)), 8),
-                    HardDiskFormatConstants.VhdxBatZero);
+                BinaryPrimitives.WriteUInt64LittleEndian(bat.AsSpan(checked((int)(batIndex * 8)), 8), HardDiskFormatConstants.VhdxBatZero);
                 continue;
             }
 
@@ -157,8 +135,7 @@ public sealed class VhdxWriter : IMediaImageWriter
         VhdxFormat.RegionTableSignature.Span.CopyTo(table);
         BinaryPrimitives.WriteUInt32LittleEndian(table.AsSpan(8, 4), 2);
         WriteRegionEntry(table.AsSpan(16, 32), HardDiskFormatConstants.VhdxBatRegionGuid, BatRegionOffset, batRegionLength, true);
-        WriteRegionEntry(table.AsSpan(48, 32), HardDiskFormatConstants.VhdxMetadataRegionGuid,
-            MetadataRegionOffset, HardDiskFormatConstants.VhdxOneMebibyte, true);
+        WriteRegionEntry(table.AsSpan(48, 32), HardDiskFormatConstants.VhdxMetadataRegionGuid, MetadataRegionOffset, HardDiskFormatConstants.VhdxOneMebibyte, true);
         WriteCrc(table, 4);
         return table;
     }
@@ -172,8 +149,7 @@ public sealed class VhdxWriter : IMediaImageWriter
         var cursor = valueOffset;
         WriteMetadataEntry(metadata.AsSpan(32, 32), HardDiskFormatConstants.VhdxFileParametersGuid, cursor, 8, 4);
         BinaryPrimitives.WriteUInt32LittleEndian(metadata.AsSpan(cursor, 4), (uint)blockSize);
-        BinaryPrimitives.WriteUInt32LittleEndian(metadata.AsSpan(cursor + 4, 4),
-            fixedImage ? HardDiskFormatConstants.VhdxFileParametersLeaveBlocksAllocated : 0);
+        BinaryPrimitives.WriteUInt32LittleEndian(metadata.AsSpan(cursor + 4, 4), fixedImage ? HardDiskFormatConstants.VhdxFileParametersLeaveBlocksAllocated : 0);
         cursor += 8;
         WriteMetadataEntry(metadata.AsSpan(64, 32), HardDiskFormatConstants.VhdxVirtualDiskSizeGuid, cursor, 8, 6);
         BinaryPrimitives.WriteUInt64LittleEndian(metadata.AsSpan(cursor, 8), (ulong)blocks.Capacity);
@@ -211,11 +187,7 @@ public sealed class VhdxWriter : IMediaImageWriter
         BinaryPrimitives.WriteUInt32LittleEndian(structure.Slice(checksumOffset, 4), Crc32CFunctions.Compute(structure));
     }
 
-    private static async Task WriteAtAsync(
-        Stream output,
-        long offset,
-        ReadOnlyMemory<byte> data,
-        CancellationToken cancellationToken)
+    private static async Task WriteAtAsync(Stream output, long offset, ReadOnlyMemory<byte> data, CancellationToken cancellationToken)
     {
         output.Position = offset;
         await output.WriteAsync(data, cancellationToken).ConfigureAwait(false);
@@ -228,9 +200,7 @@ public sealed class VhdxWriter : IMediaImageWriter
             && Enum.TryParse<HardDiskImageVariant>(value, true, out var variant)
             && variant is HardDiskImageVariant.Fixed or HardDiskImageVariant.Dynamic)
             return variant;
-        return blocks.Ranges.Any(range => range.Kind is MediaDataRangeKind.Zero or MediaDataRangeKind.Unallocated)
-            ? HardDiskImageVariant.Dynamic
-            : HardDiskImageVariant.Fixed;
+        return blocks.Ranges.Any(range => range.Kind is MediaDataRangeKind.Zero or MediaDataRangeKind.Unallocated) ? HardDiskImageVariant.Dynamic : HardDiskImageVariant.Fixed;
     }
 
     private static int SelectBlockSize(long capacity)
@@ -239,17 +209,6 @@ public sealed class VhdxWriter : IMediaImageWriter
         while (capacity > (long)blockSize * uint.MaxValue && blockSize < 256 * HardDiskFormatConstants.VhdxOneMebibyte)
             blockSize *= 2;
         return blockSize;
-    }
-
-    private static bool HasCompleteReadableCoverage(BlockMediaImageRepresentation blocks)
-    {
-        long cursor = 0;
-        foreach (var range in blocks.Ranges)
-        {
-            if (range.Address != cursor || range.Kind == MediaDataRangeKind.Unavailable) return false;
-            cursor = checked(cursor + range.Length);
-        }
-        return cursor == blocks.Capacity;
     }
 
     private static long Align(long value, int alignment) => checked((value + alignment - 1) / alignment * alignment);

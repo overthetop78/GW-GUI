@@ -14,10 +14,8 @@ namespace GWGUI.MediaEngine.Images.Formats.HardDisk.Qcow2;
 /// <summary>Writes autonomous QCOW2 version 2 and 3 images without compression or parents.</summary>
 public sealed class Qcow2Writer : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { HardDiskImageFormatIds.Qcow2 }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { HardDiskImageFormatIds.Qcow2 }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
     public Qcow2Writer(IAtomicImageFileWriter? files = null)
@@ -40,32 +38,21 @@ public sealed class Qcow2Writer : IMediaImageWriter
             && document.Representation is BlockMediaImageRepresentation blocks
             && blocks.Capacity > 0
             && blocks.LogicalBlockSize == HardDiskFormatConstants.LegacyLogicalSectorSize
-            && HasCompleteReadableCoverage(blocks);
+            && blocks.HasCompleteReadableCoverage();
     }
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!CanWrite(document, targetFormatId, extension)
             || document.Representation is not BlockMediaImageRepresentation blocks)
             throw new InvalidDataException("The media document cannot be written as a supported QCOW2 image.");
         var version = SelectVersion(document);
-        await files.WriteAsync(
-            outputPath,
-            (output, token) => WriteContainerAsync(blocks, version, output, token),
-            cancellationToken).ConfigureAwait(false);
+        await files.WriteAsync(outputPath, (output, token) => WriteContainerAsync(blocks, version, output, token), cancellationToken).ConfigureAwait(false);
         return [outputPath];
     }
 
-    private static async Task WriteContainerAsync(
-        BlockMediaImageRepresentation blocks,
-        uint version,
-        Stream output,
-        CancellationToken cancellationToken)
+    private static async Task WriteContainerAsync(BlockMediaImageRepresentation blocks, uint version, Stream output, CancellationToken cancellationToken)
     {
         var clusterBits = HardDiskFormatConstants.Qcow2DefaultClusterBits;
         var clusterSize = 1 << clusterBits;
@@ -103,9 +90,7 @@ public sealed class Qcow2Writer : IMediaImageWriter
         for (long tableIndex = 0; tableIndex < l2TableCount; tableIndex++)
         {
             var tableOffset = checked((l2Cluster + tableIndex) * clusterSize);
-            BinaryPrimitives.WriteUInt64BigEndian(
-                l1.AsSpan(checked((int)tableIndex * 8), 8),
-                (ulong)tableOffset | HardDiskFormatConstants.Qcow2CopiedFlag);
+            BinaryPrimitives.WriteUInt64BigEndian(l1.AsSpan(checked((int)tableIndex * 8), 8), (ulong)tableOffset | HardDiskFormatConstants.Qcow2CopiedFlag);
         }
         await WriteAtAsync(output, checked(l1Cluster * clusterSize), l1, cancellationToken).ConfigureAwait(false);
 
@@ -121,11 +106,7 @@ public sealed class Qcow2Writer : IMediaImageWriter
                 data.AsSpan().Clear();
                 var address = checked(virtualCluster * clusterSize);
                 var logicalLength = (int)Math.Min(clusterSize, blocks.Capacity - address);
-                await BlockMediaDataReader.ReadExactlyAsync(
-                    blocks,
-                    address,
-                    data.AsMemory(0, logicalLength),
-                    cancellationToken).ConfigureAwait(false);
+                await BlockMediaDataReader.ReadExactlyAsync(blocks, address, data.AsMemory(0, logicalLength), cancellationToken).ConfigureAwait(false);
                 ulong entry;
                 if (data.AsSpan(0, logicalLength).IndexOfAnyExcept((byte)0) < 0)
                 {
@@ -150,38 +131,20 @@ public sealed class Qcow2Writer : IMediaImageWriter
         for (long blockIndex = 0; blockIndex < refcountBlockCount; blockIndex++)
         {
             var blockOffset = checked((refcountBlocksCluster + blockIndex) * clusterSize);
-            BinaryPrimitives.WriteUInt64BigEndian(
-                refcountTable.AsSpan(checked((int)blockIndex * 8), 8),
-                (ulong)blockOffset);
+            BinaryPrimitives.WriteUInt64BigEndian(refcountTable.AsSpan(checked((int)blockIndex * 8), 8), (ulong)blockOffset);
         }
         for (long clusterIndex = 0; clusterIndex < usedClusterCount; clusterIndex++)
             BinaryPrimitives.WriteUInt16BigEndian(refcountBlocks.AsSpan(checked((int)clusterIndex * 2), 2), 1);
         await WriteAtAsync(output, checked(refcountTableCluster * clusterSize), refcountTable, cancellationToken).ConfigureAwait(false);
         await WriteAtAsync(output, checked(refcountBlocksCluster * clusterSize), refcountBlocks, cancellationToken).ConfigureAwait(false);
 
-        var header = CreateHeader(
-            version,
-            clusterBits,
-            blocks.Capacity,
-            l1Size,
-            checked(l1Cluster * clusterSize),
-            checked(refcountTableCluster * clusterSize),
-            checked((uint)refcountTableClusters));
+        var header = CreateHeader(version, clusterBits, blocks.Capacity, l1Size, checked(l1Cluster * clusterSize), checked(refcountTableCluster * clusterSize), checked((uint)refcountTableClusters));
         await WriteAtAsync(output, 0, header, cancellationToken).ConfigureAwait(false);
     }
 
-    private static byte[] CreateHeader(
-        uint version,
-        int clusterBits,
-        long virtualSize,
-        uint l1Size,
-        long l1Offset,
-        long refcountTableOffset,
-        uint refcountTableClusters)
+    private static byte[] CreateHeader(uint version, int clusterBits, long virtualSize, uint l1Size, long l1Offset, long refcountTableOffset, uint refcountTableClusters)
     {
-        var headerSize = version == HardDiskFormatConstants.Qcow2Version3
-            ? HardDiskFormatConstants.Qcow2Version3HeaderSize
-            : HardDiskFormatConstants.Qcow2Version2HeaderSize;
+        var headerSize = version == HardDiskFormatConstants.Qcow2Version3 ? HardDiskFormatConstants.Qcow2Version3HeaderSize : HardDiskFormatConstants.Qcow2Version2HeaderSize;
         var header = new byte[headerSize];
         BinaryPrimitives.WriteUInt32BigEndian(header.AsSpan(0, 4), HardDiskFormatConstants.Qcow2Magic);
         BinaryPrimitives.WriteUInt32BigEndian(header.AsSpan(4, 4), version);
@@ -209,24 +172,9 @@ public sealed class Qcow2Writer : IMediaImageWriter
         return HardDiskFormatConstants.Qcow2Version3;
     }
 
-    private static async Task WriteAtAsync(
-        Stream output,
-        long offset,
-        ReadOnlyMemory<byte> data,
-        CancellationToken cancellationToken)
+    private static async Task WriteAtAsync(Stream output, long offset, ReadOnlyMemory<byte> data, CancellationToken cancellationToken)
     {
         output.Position = offset;
         await output.WriteAsync(data, cancellationToken).ConfigureAwait(false);
-    }
-
-    private static bool HasCompleteReadableCoverage(BlockMediaImageRepresentation blocks)
-    {
-        long cursor = 0;
-        foreach (var range in blocks.Ranges)
-        {
-            if (range.Address != cursor || range.Kind == MediaDataRangeKind.Unavailable) return false;
-            cursor = checked(cursor + range.Length);
-        }
-        return cursor == blocks.Capacity;
     }
 }

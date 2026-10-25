@@ -24,4 +24,5 @@
   <data name="Emulation.Core.Install"><value>Asenna</value></data>
   <data name="Emulation.Core.InstalledBadge"><value>Asennetut</value></data>
   <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Keskeiset vaihtoehdot</value></data>
+  <data name="Emulation.Core.NameNoEmulatorAvailable"><value>Valitse emulaattori ennen tämän koneen luomista.</value></data>
 </root>

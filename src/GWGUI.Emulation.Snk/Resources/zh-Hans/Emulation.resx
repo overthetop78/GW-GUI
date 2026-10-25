@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Content.Initial" xml:space="preserve"><value>游戏媒体</value></data>
+  <data name="Emulation.Snk.Memory.Display" xml:space="preserve"><value>视频内存</value></data>
+  <data name="Emulation.Snk.Audio.Native" xml:space="preserve"><value>音频硬件</value></data>
+  <data name="Emulation.Snk.Video.Native" xml:space="preserve"><value>视频硬件</value></data>
+  <data name="Emulation.Snk.Controls.Native" xml:space="preserve"><value>控制器设置</value></data>
+  <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>系统设置</value></data>
+  <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>系统 BIOS</value></data>
+  <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>辅助 BIOS</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>模拟 Neo Geo CD 和 Neo Geo CDZ。</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>模拟使用游戏卡带和 CD 的 Neo Geo 系统。</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>模拟兼容的 SNK 系统。</value></data>
+  <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>语言</value></data>
+  <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>日语</value></data>
+  <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>英语</value></data>
+  <data name="Emulation.Snk.Help.DarkFilterLevel" xml:space="preserve"><value>启用以发光为主的亮度降低。 在玩有白色背景的游戏时, 可能用于避免光泽/ 眼花质 。</value></data>
+  <data name="Emulation.Snk.Value.Manual" xml:space="preserve"><value>手动</value></data>
+  <data name="Emulation.Snk.Setting.RealTimeClock" xml:space="preserve"><value>实时时钟</value></data>
+  <data name="Emulation.Snk.Help.RealTimeClock" xml:space="preserve"><value>选择模拟实时时钟的推进方式。“ 决定性” 计数从固定基数模拟帧, 所以 RTC 读取可复制且安全用于网玩,倒带并运行前端。“真实时间”直接读取主机时钟(一个活时钟,但非定时性)。</value></data>
+  <data name="Emulation.Snk.Value.Deterministic" xml:space="preserve"><value>定 义</value></data>
+  <data name="Emulation.Snk.Value.RealTime" xml:space="preserve"><value>实时</value></data>
+  <data name="Emulation.Snk.Setting.AudioQuality" xml:space="preserve"><value>音频质量</value></data>
+  <data name="Emulation.Snk.Setting.AudioSampleRate" xml:space="preserve"><value>音频样本率</value></data>
+  <data name="Emulation.Snk.Value.Game" xml:space="preserve"><value>游戏</value></data>
+  <data name="Emulation.Snk.Value.System" xml:space="preserve"><value>系统</value></data>
+  <data name="Emulation.Snk.Setting.MainProcessorSpeed" xml:space="preserve"><value>主处理器速度 (%)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderMethod" xml:space="preserve"><value>替代渲染方法</value></data>
+  <data name="Emulation.Snk.Setting.VideoApproach1Enabled" xml:space="preserve"><value>视频方法 1 已启用</value></data>
+  <data name="Emulation.Snk.Setting.HideGameInfoScreen" xml:space="preserve"><value>隐藏游戏信息屏幕</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningScreen" xml:space="preserve"><value>隐藏警告屏幕</value></data>
+  <data name="Emulation.Snk.Setting.EnableMultithreading" xml:space="preserve"><value>启用多条读取</value></data>
+  <data name="Emulation.Snk.Setting.SetBrightness" xml:space="preserve"><value>设置亮度</value></data>
+  <data name="Emulation.Snk.Setting.SetContrast" xml:space="preserve"><value>设定对比</value></data>
+  <data name="Emulation.Snk.Setting.SetGamma" xml:space="preserve"><value>设定伽马</value></data>
+  <data name="Emulation.Snk.Setting.SkipDisclaimer" xml:space="preserve"><value>跳过免责声明</value></data>
+  <data name="Emulation.Snk.Setting.SkipWarnings" xml:space="preserve"><value>跳过警告</value></data>
+  <data name="Emulation.Snk.Help.DisplayMAMEMenu" xml:space="preserve"><value>切换内部可见度 MAME 菜单。</value></data>
+  <data name="Emulation.Snk.Setting.Brightness" xml:space="preserve"><value>亮度( L)</value></data>
+  <data name="Emulation.Snk.Help.Brightness" xml:space="preserve"><value>修改使用的亮度级别。</value></data>
+  <data name="Emulation.Snk.Setting.GammaCorrection" xml:space="preserve"><value>伽玛校正</value></data>
+  <data name="Emulation.Snk.Help.GammaCorrection" xml:space="preserve"><value>修改使用的伽马度。</value></data>
+  <data name="Emulation.Snk.Help.DisplayArtwork" xml:space="preserve"><value>曾经在有自定义的作品时显示 。</value></data>
+  <data name="Emulation.Snk.Help.ArtworkResolutionMultiplier" xml:space="preserve"><value>将艺术分辨率增加选定的乘数值。</value></data>
+  <data name="Emulation.Snk.Setting.SpecifyNeoGeoBIOS" xml:space="preserve"><value>指定新地理 BIOS</value></data>
+  <data name="Emulation.Snk.Help.SpecifyNeoGeoBIOS" xml:space="preserve"><value>选择替代的生物文件 。</value></data>
+  <data name="Emulation.Snk.Value.Asia" xml:space="preserve"><value>阿西亚</value></data>
+  <data name="Emulation.Snk.Value.Japan" xml:space="preserve"><value>日本语Name</value></data>
+  <data name="Emulation.Snk.Setting.UseSamples" xml:space="preserve"><value>使用样本</value></data>
+  <data name="Emulation.Snk.Help.UseSamples" xml:space="preserve"><value>允许在样本目录中提供音频样本文件时被加载.</value></data>
+  <data name="Emulation.Snk.Help.AutosaveHiscore" xml:space="preserve"><value>建议使用默认值, 关闭内容时会保存他的核。 递归性地在游戏播放中重复保存整个时间。 禁用会绕过使用 hiscore.dat 完全文件,请检查文件</value></data>
+  <data name="Emulation.Snk.Help.CPUClockScale" xml:space="preserve"><value>用于模拟时钟下或超时钟 CPU 以规定的百分比表示。</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningsScreen" xml:space="preserve"><value>隐藏警告屏幕</value></data>
+  <data name="Emulation.Snk.Setting.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>可用时使用 32 位颜色深度</value></data>
+  <data name="Emulation.Snk.Help.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>更改像素格式, 有些游戏需要此功能才能正确渲染, 它可能会影响一些平台上的性能</value></data>
+  <data name="Emulation.Snk.Setting.VerticalMode" xml:space="preserve"><value>垂直模式</value></data>
+  <data name="Emulation.Snk.Help.VerticalMode" xml:space="preserve"><value>旋转垂直屏幕显示</value></data>
+  <data name="Emulation.Snk.Value.Alternate" xml:space="preserve"><value>备选</value></data>
+  <data name="Emulation.Snk.Value.TATEAlternate" xml:space="preserve"><value>TATE 备选</value></data>
+  <data name="Emulation.Snk.Setting.UseA60HzRefreshRate" xml:space="preserve"><value>使用 60 Hz 刷新率</value></data>
+  <data name="Emulation.Snk.Help.UseA60HzRefreshRate" xml:space="preserve"><value>使用60Hz来代替原来的刷新速率,这可以改变游戏速度并造成不均匀的动画.</value></data>
+  <data name="Emulation.Snk.Setting.Resolution" xml:space="preserve"><value>决议</value></data>
+  <data name="Emulation.Snk.Help.Resolution" xml:space="preserve"><value>在某些游戏中设定解析度( 节奏)</value></data>
+  <data name="Emulation.Snk.Help.FixedFrameskip" xml:space="preserve"><value>当“ Frameskip” 设置为“ Fixed ” 时, 或者如果前端不支持替代“ Frameskip” 模式, 则以 X 帧的固定速率跳出 X+1</value></data>
+  <data name="Emulation.Snk.Value.NoSkipping" xml:space="preserve"><value>不跳过</value></data>
+  <data name="Emulation.Snk.Setting.CPUClock" xml:space="preserve"><value>CPU 时钟</value></data>
+  <data name="Emulation.Snk.Help.CPUClock" xml:space="preserve"><value>改变模拟的cpu频率用于各种系统,通过增加一些游戏中可以修正本地减速,通过降低可以帮助在低端设备上实现性能</value></data>
+  <data name="Emulation.Snk.Setting.DiagnosticInput" xml:space="preserve"><value>诊断输入</value></data>
+  <data name="Emulation.Snk.Help.DiagnosticInput" xml:space="preserve"><value>配置按钮组合以输入 Control 服务菜单</value></data>
+  <data name="Emulation.Snk.Help.Hiscores" xml:space="preserve"><value>启用高分数支持, 您也需要文件 hiscore.dat 系统/ fbneo/ 文件夹中</value></data>
+  <data name="Emulation.Snk.Help.AllowPatchedRomsets" xml:space="preserve"><value>允许您系统/ fbneo/ pathed/ 文件夹中的romset 覆盖您的romset, crcs 将被忽略,但大小和名称必须仍然匹配,此外这也是是否的主切换器 IPS 补丁和RomData是否执行, 您需要关闭内容以生效此设置</value></data>
+  <data name="Emulation.Snk.Setting.SampleInterpolation" xml:space="preserve"><value>样本内插</value></data>
+  <data name="Emulation.Snk.Help.SampleInterpolation" xml:space="preserve"><value>配置样本插值, 可能影响性能</value></data>
+  <data name="Emulation.Snk.Setting.FMInterpolation" xml:space="preserve"><value>FM 内插</value></data>
+  <data name="Emulation.Snk.Help.FMInterpolation" xml:space="preserve"><value>配置 FM 插入,它可能影响性能</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilter" xml:space="preserve"><value>低压过滤器</value></data>
+  <data name="Emulation.Snk.Help.LowPassFilter" xml:space="preserve"><value>启用低压过滤器</value></data>
+  <data name="Emulation.Snk.Setting.AnalogSpeed" xml:space="preserve"><value>模拟速度</value></data>
+  <data name="Emulation.Snk.Help.AnalogSpeed" xml:space="preserve"><value>减速模拟控制速度, 有些游戏可能需要低值才能玩</value></data>
+  <data name="Emulation.Snk.Setting.SOCDMode" xml:space="preserve"><value>SOCD 模式</value></data>
+  <data name="Emulation.Snk.Help.SOCDMode" xml:space="preserve"><value>变动 ULDR 优先处理</value></data>
+  <data name="Emulation.Snk.Value.Disabled" xml:space="preserve"><value>已禁用</value></data>
+  <data name="Emulation.Snk.Value.SimultaneousNeutral" xml:space="preserve"><value>同时中立</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority4Way" xml:space="preserve"><value>最后一个输入优先( 4 方式)</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority8Way" xml:space="preserve"><value>最后输入优先级( 8 道)</value></data>
+  <data name="Emulation.Snk.Value.FirstInputPriority" xml:space="preserve"><value>第一个输入优先级</value></data>
+  <data name="Emulation.Snk.Setting.CrosshairEmulation" xml:space="preserve"><value>十字相机模拟</value></data>
+  <data name="Emulation.Snk.Value.HideWithLightgunDevice" xml:space="preserve"><value>以轻型枪设备隐藏</value></data>
+  <data name="Emulation.Snk.Value.AlwaysHide" xml:space="preserve"><value>总是隐藏</value></data>
+  <data name="Emulation.Snk.Value.AlwaysShow" xml:space="preserve"><value>总是显示</value></data>
+  <data name="Emulation.Snk.Setting.NeoGeoMode" xml:space="preserve"><value>新吉奥模式</value></data>
+  <data name="Emulation.Snk.Help.NeoGeoMode" xml:space="preserve"><value>根据您选择的装入合适的生物, 条件是这样的生物与运行中的游戏兼容</value></data>
+  <data name="Emulation.Snk.Value.MVSEuropeAsiaEnglish" xml:space="preserve"><value>MVS 欧洲/亚洲(英文)</value></data>
+  <data name="Emulation.Snk.Value.MVSUSAEnglishCensored" xml:space="preserve"><value>MVS USA (英文-被检讨).</value></data>
+  <data name="Emulation.Snk.Value.MVSJapanJapanese" xml:space="preserve"><value>MVS 日本 (日语).</value></data>
+  <data name="Emulation.Snk.Value.AESEuropeAsiaEnglish" xml:space="preserve"><value>AES 欧洲/亚洲(英文)</value></data>
+  <data name="Emulation.Snk.Value.AESJapanJapanese" xml:space="preserve"><value>AES 日本 (日语).</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardMode" xml:space="preserve"><value>内存卡模式</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardMode" xml:space="preserve"><value>更改内存卡的行为</value></data>
+  <data name="Emulation.Snk.Value.Shared" xml:space="preserve"><value>共享</value></data>
+  <data name="Emulation.Snk.Value.PerGame" xml:space="preserve"><value>每场比赛</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip11" xml:space="preserve"><value>调试 Dip 1  1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip11" xml:space="preserve"><value>启用调试 Dip 1  1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip12" xml:space="preserve"><value>调试 Dip 1 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip12" xml:space="preserve"><value>启用调试 Dip 1  2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip13" xml:space="preserve"><value>调试 Dip 1 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip13" xml:space="preserve"><value>启用调试 Dip 1  3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip14" xml:space="preserve"><value>调试 Dip 1 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip14" xml:space="preserve"><value>启用调试 Dip 1  4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip15" xml:space="preserve"><value>调试 Dip 1 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip15" xml:space="preserve"><value>启用调试 Dip 1  5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip16" xml:space="preserve"><value>调试 Dip 1 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip16" xml:space="preserve"><value>启用调试 Dip 1  6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip17" xml:space="preserve"><value>调试 Dip 1  7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip17" xml:space="preserve"><value>启用调试 Dip 1  7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip18" xml:space="preserve"><value>调试 Dip 1 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip18" xml:space="preserve"><value>启用调试 Dip 1  8</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip21" xml:space="preserve"><value>除错 Dip 2 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip21" xml:space="preserve"><value>启用调试 Dip 2  1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip22" xml:space="preserve"><value>调试 Dip 2  2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip22" xml:space="preserve"><value>启用调试 Dip 2  2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip23" xml:space="preserve"><value>调试 Dip 2 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip23" xml:space="preserve"><value>启用调试 Dip 2  3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip24" xml:space="preserve"><value>调试 Dip 2 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip24" xml:space="preserve"><value>启用调试 Dip 2  4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip25" xml:space="preserve"><value>调试 Dip 2 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip25" xml:space="preserve"><value>启用调试 Dip 2  5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip26" xml:space="preserve"><value>调试 Dip 2 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip26" xml:space="preserve"><value>启用调试 Dip 2  6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip27" xml:space="preserve"><value>除错 Dip 2 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip27" xml:space="preserve"><value>启用调试 Dip 2 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip28" xml:space="preserve"><value>调试 Dip 2 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip28" xml:space="preserve"><value>启用调试 Dip 2 8</value></data>
+  <data name="Emulation.Snk.Setting.Layer1" xml:space="preserve"><value>第一层</value></data>
+  <data name="Emulation.Snk.Help.Layer1" xml:space="preserve"><value>用于调试</value></data>
+  <data name="Emulation.Snk.Setting.Layer2" xml:space="preserve"><value>第2层</value></data>
+  <data name="Emulation.Snk.Setting.Layer3" xml:space="preserve"><value>第3层</value></data>
+  <data name="Emulation.Snk.Setting.Layer4" xml:space="preserve"><value>第4层</value></data>
+  <data name="Emulation.Snk.Setting.Sprite1" xml:space="preserve"><value>彩虹一号</value></data>
+  <data name="Emulation.Snk.Setting.Sprite2" xml:space="preserve"><value>斯匹丽特2</value></data>
+  <data name="Emulation.Snk.Setting.Sprite3" xml:space="preserve"><value>彩虹3号</value></data>
+  <data name="Emulation.Snk.Setting.Sprite4" xml:space="preserve"><value>斯匹丽特4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite5" xml:space="preserve"><value>斯匹丽特5型</value></data>
+  <data name="Emulation.Snk.Setting.Sprite6" xml:space="preserve"><value>斯匹特6号</value></data>
+  <data name="Emulation.Snk.Setting.Sprite7" xml:space="preserve"><value>斯匹特7号</value></data>
+  <data name="Emulation.Snk.Setting.Sprite8" xml:space="preserve"><value>斯匹特8号</value></data>
+  <data name="Emulation.Snk.Setting.ThreadMode" xml:space="preserve"><value>线索模式</value></data>
+  <data name="Emulation.Snk.Setting.Cheats" xml:space="preserve"><value>骗局</value></data>
+  <data name="Emulation.Snk.Setting.Throttle" xml:space="preserve"><value>发声</value></data>
+  <data name="Emulation.Snk.Setting.BootToBIOS" xml:space="preserve"><value>启动到 BIOS</value></data>
+  <data name="Emulation.Snk.Setting.BootToOSD" xml:space="preserve"><value>启动到 OSD</value></data>
+  <data name="Emulation.Snk.Setting.ReadConfiguration" xml:space="preserve"><value>读取配置</value></data>
+  <data name="Emulation.Snk.Setting.WriteConfiguration" xml:space="preserve"><value>写入配置</value></data>
+  <data name="Emulation.Snk.Setting.MAMEINIPaths" xml:space="preserve"><value>MAME INI 路径</value></data>
+  <data name="Emulation.Snk.Setting.Softlists" xml:space="preserve"><value>软列表</value></data>
+  <data name="Emulation.Snk.Setting.MediaType" xml:space="preserve"><value>媒体类型</value></data>
+  <data name="Emulation.Snk.Value.Cart" xml:space="preserve"><value>推车</value></data>
+  <data name="Emulation.Snk.Value.Cass" xml:space="preserve"><value>鸡巴</value></data>
+  <data name="Emulation.Snk.Value.Cdrm" xml:space="preserve"><value>调和</value></data>
+  <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>调头</value></data>
+  <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>难</value></data>
+  <data name="Emulation.Snk.Value.Prin" xml:space="preserve"><value>普林语Name</value></data>
+  <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>塞尔维亚</value></data>
+  <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS 已启用</value></data>
+  <data name="Emulation.Snk.Setting.JoystickDeadzone" xml:space="preserve"><value>欢乐棒死区</value></data>
+  <data name="Emulation.Snk.Setting.JoystickSaturation" xml:space="preserve"><value>欢乐棒饱和度</value></data>
+  <data name="Emulation.Snk.Setting.JoystickThreshold" xml:space="preserve"><value>欢乐棒门槛</value></data>
+  <data name="Emulation.Snk.Setting.Joystick4WaySimulation" xml:space="preserve"><value>欢乐棒 四向模拟</value></data>
+  <data name="Emulation.Snk.Value.4way" xml:space="preserve"><value>4号线</value></data>
+  <data name="Emulation.Snk.Value.Strict" xml:space="preserve"><value>严格</value></data>
+  <data name="Emulation.Snk.Value.Qbert" xml:space="preserve"><value>克伯特 克伯特 克伯特 克伯特</value></data>
+  <data name="Emulation.Snk.Setting.ProfileButtonsPerGame" xml:space="preserve"><value>配置按钮/ 每局</value></data>
+  <data name="Emulation.Snk.Setting.Mouse" xml:space="preserve"><value>鼠标</value></data>
+  <data name="Emulation.Snk.Setting.LightgunMode" xml:space="preserve"><value>灯枪模式</value></data>
+  <data name="Emulation.Snk.Value.Lightgun" xml:space="preserve"><value>轻炮</value></data>
+  <data name="Emulation.Snk.Value.Touchscreen" xml:space="preserve"><value>触摸屏</value></data>
+  <data name="Emulation.Snk.Setting.LightgunOffscreenPosition" xml:space="preserve"><value>灯光外屏位置</value></data>
+  <data name="Emulation.Snk.Value.Free" xml:space="preserve"><value>免费</value></data>
+  <data name="Emulation.Snk.Value.FixedTopLeft" xml:space="preserve"><value>固定( 左侧)</value></data>
+  <data name="Emulation.Snk.Value.FixedBottomRight" xml:space="preserve"><value>固定( 右侧)</value></data>
+  <data name="Emulation.Snk.Setting.ScreenRotationMode" xml:space="preserve"><value>屏幕旋转模式</value></data>
+  <data name="Emulation.Snk.Value.Internal" xml:space="preserve"><value>内部</value></data>
+  <data name="Emulation.Snk.Setting.AudioProcessorSpeed" xml:space="preserve"><value>音频处理速度 (%)</value></data>
+  <data name="Emulation.Snk.Help.AutomaticLoadFastForward" xml:space="preserve"><value>实验特性,在试验期间自动快速前进 CD 访问。&#xA;工作单位:&#xA;- 通用的 SCSI&#xA;- 世嘉 - 世嘉 - Sega, I'm supposed. CD 和 Neo Geo 数据 CD</value></data>
+  <data name="Emulation.Snk.Setting.CoinLimit" xml:space="preserve"><value>铜限制</value></data>
+  <data name="Emulation.Snk.Setting.SampleRate" xml:space="preserve"><value>抽样率</value></data>
+  <data name="Emulation.Snk.Help.SampleRate" xml:space="preserve"><value>每秒取取的音频样本数量,较高的频率提供了更好的音频质量.</value></data>
+  <data name="Emulation.Snk.Value.Threshold" xml:space="preserve"><value>阈值</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipInterval" xml:space="preserve"><value>框架斯基普间距</value></data>
+  <data name="Emulation.Snk.Help.FrameskipInterval" xml:space="preserve"><value>最大可跳过的相继帧数。 当主机超载时, 下限值会让图像更新更加平滑, 并牺牲更多音频滴入 。</value></data>
+  <data name="Emulation.Snk.Setting.ShowGameInformation" xml:space="preserve"><value>显示游戏信息</value></data>
+  <data name="Emulation.Snk.Help.ShowGameInformation" xml:space="preserve"><value>显示 MAME游戏开始运行前的启动时的驱动程序状态和游戏信息屏幕.</value></data>
+  <data name="Emulation.Snk.Setting.Stereo" xml:space="preserve"><value>立体声</value></data>
+  <data name="Emulation.Snk.Help.Stereo" xml:space="preserve"><value>输出立体声。 稍低一点就禁用 CPU 游戏中不使用立体声混合。</value></data>
+  <data name="Emulation.Snk.Setting.SystemType" xml:space="preserve"><value>系统类型</value></data>
+  <data name="Emulation.Snk.Help.SystemType" xml:space="preserve"><value>指定系统类型 : AES, , , , , , , , MVS,或宇宙 BIOS 系统</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoAESHomeConsole" xml:space="preserve"><value>新地理学 AES (家主会所.</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoMVSArcade" xml:space="preserve"><value>新地理学 MVS (拱门)</value></data>
+  <data name="Emulation.Snk.Value.UniverseBIOSCommunityEnhancedBIOS" xml:space="preserve"><value>宇宙 BIOS (社区加强) BIOS) , (中文(简体) ).</value></data>
+  <data name="Emulation.Snk.Setting.CDSystemType" xml:space="preserve"><value>CD 系统类型</value></data>
+  <data name="Emulation.Snk.Help.CDSystemType" xml:space="preserve"><value>指定 CD 装入 Neo Geo 时的系统类型 CD 盘片图像</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDFrontLoader" xml:space="preserve"><value>新地理学 CD (前线装入器)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDTopLoader" xml:space="preserve"><value>新地理学 CD (Top 装载器)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDZUniverseBIOS" xml:space="preserve"><value>新地理学 CDZ (反向) BIOS) , (中文(简体) ).</value></data>
+  <data name="Emulation.Snk.Setting.Region" xml:space="preserve"><value>地区</value></data>
+  <data name="Emulation.Snk.Help.Region" xml:space="preserve"><value>指定区域: USA日本、亚洲、欧洲</value></data>
+  <data name="Emulation.Snk.Value.Europe" xml:space="preserve"><value>欧洲</value></data>
+  <data name="Emulation.Snk.Help.MemoryCard" xml:space="preserve"><value>启用或禁用内存卡</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardWriteProtect" xml:space="preserve"><value>防止内存卡的更改.</value></data>
+  <data name="Emulation.Snk.Setting.SettingMode" xml:space="preserve"><value>设置模式</value></data>
+  <data name="Emulation.Snk.Help.SettingMode" xml:space="preserve"><value>提起系统 ROM 市场系统启动时菜单</value></data>
+  <data name="Emulation.Snk.Help.FourPlayerMode" xml:space="preserve"><value>设置四个玩家( 双 MVS 亚洲/日本的“柜子”模式 MVS 系统</value></data>
+  <data name="Emulation.Snk.Help.Freeplay" xml:space="preserve"><value>播放( L) MVS 不需要插入硬币的游戏</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanTop" xml:space="preserve"><value>将像素遮住, 隐藏在原始 CRT( 上) 上的贝子或边框</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanBottom" xml:space="preserve"><value>将像素遮住, 隐藏在原始 CRT 上的贝子或边框上( 下方)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanLeft" xml:space="preserve"><value>将像素遮住由贝子或边框隐藏在原始 CRT 上的像素( 左)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanRight" xml:space="preserve"><value>将像素遮住, 隐藏在原始 CRT 上的贝子或边框( 右)</value></data>
+  <data name="Emulation.Snk.Setting.Palette" xml:space="preserve"><value>调色板</value></data>
+  <data name="Emulation.Snk.Help.Palette" xml:space="preserve"><value>设置调色板</value></data>
+  <data name="Emulation.Snk.Setting.AspectRatio" xml:space="preserve"><value>侧面比例</value></data>
+  <data name="Emulation.Snk.Help.AspectRatio" xml:space="preserve"><value>设置相向比</value></data>
+  <data name="Emulation.Snk.Value.PerfectlySquarePixels11PAR" xml:space="preserve"><value>完全平方像素(1:1) PAR) , (中文(简体) ).</value></data>
+  <data name="Emulation.Snk.Value.OstensiblyAccurateNTSCAspectRatio4544PAR" xml:space="preserve"><value>直径精确 NTSC 侧面比率(45:44) PAR) , (中文(简体) ).</value></data>
+  <data name="Emulation.Snk.Value.VeryTraditionalNTSCAspectRatio43DAR" xml:space="preserve"><value>非常传统 NTSC 外观比率( 4: 3) DAR) , (中文(简体) ).</value></data>
+  <data name="Emulation.Snk.Setting.SpritesPerLineLimit" xml:space="preserve"><value>逐行的种子限制</value></data>
+  <data name="Emulation.Snk.Help.SpritesPerLineLimit" xml:space="preserve"><value>设置图示- 每行限制 - 增加一些游戏中的出错</value></data>
+  <data name="Emulation.Snk.Setting.ProcessorSpeed" xml:space="preserve"><value>处理速度</value></data>
+  <data name="Emulation.Snk.Help.ProcessorSpeed" xml:space="preserve"><value>运行处理器于 24 MHz。 此速度会在游戏中产生错误 。</value></data>
+  <data name="Emulation.Snk.Setting.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>禁用 ADPCM 累积器围棋</value></data>
+  <data name="Emulation.Snk.Help.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>更改 ADPCM 累积行为来纠正一些游戏中的音效错误。 将此设置保留到其它游戏中 。</value></data>
+  <data name="Emulation.Snk.Help.CDSpeedHack" xml:space="preserve"><value>补丁 BIOS 忙等循环以减少加载时间( 对宇宙不起作用) BIOS) , (中文(简体) ).</value></data>
+  <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>更正 BIOS 上传指针当一个 CD 缓冲 DMA 大于一个区, 修复了“ 战斗艺术” 奖赏舞台上损坏的声音。 这是一个黑客, 而真正的硬件行为是未经证实的 。</value></data>
+  <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>快速前进通过 CD 装入屏幕</value></data>
+  <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>三等插值( 4分)</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>模拟 Neo Geo Pocket 和 Neo Geo Pocket Color。</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>模拟 Neo Geo Pocket 和 Neo Geo Pocket Color。</value></data>
+  <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>选择兼容游戏所使用的语言。</value></data>
+  <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>视频帧跳过</value></data>
+  <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>当性能不足时跳过一些视频帧,以减少音频输出中断.</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipThreshold" xml:space="preserve"><value>音频缓冲阈值(%)</value></data>
+  <data name="Emulation.Snk.Help.FrameskipThreshold" xml:space="preserve"><value>当音频缓冲器包含的数据少于其容量的这个百分比时跳过视频帧.</value></data>
+  <data name="Emulation.Snk.Help.AudioQuality" xml:space="preserve"><value>选择更快的音效合成和更准确的音效合成.</value></data>
+  <data name="Emulation.Snk.Help.AudioSampleRate" xml:space="preserve"><value>选择输出音频采样频率,更高的频率可以提高声音质量并需要更多的处理功率.</value></data>
+  <data name="Emulation.Snk.Setting.AutoSaveLoadStates" xml:space="preserve"><value>自动保存并恢复状态</value></data>
+  <data name="Emulation.Snk.Help.SkipDisclaimer" xml:space="preserve"><value>游戏开始时隐藏合法通知 。</value></data>
+  <data name="Emulation.Snk.Help.SkipWarnings" xml:space="preserve"><value>隐藏游戏开始时已知问题的警告 。</value></data>
+  <data name="Emulation.Snk.Help.SampleRateHint" xml:space="preserve"><value>选择输出音频采样频率。 自动模式使用首选输出频率 。</value></data>
+  <data name="Emulation.Snk.Value.UpPriorityUpOverrideDown" xml:space="preserve"><value>优先向上方向前进</value></data>
+  <data name="Emulation.Snk.Value.DownPriorityLeftRightLastInputPriority" xml:space="preserve"><value>优先向下方向; 使用最新的水平输入</value></data>
+  <data name="Emulation.Snk.Help.CrosshairEmulation" xml:space="preserve"><value>选择是否显示瞄准标记。 当使用轻炮或触摸屏时, 自动模式会隐藏它 。</value></data>
+  <data name="Emulation.Snk.Value.UseBiosSetInBIOSDipswitch" xml:space="preserve"><value>使用该 BIOS 由硬件交换机选择</value></data>
+  <data name="Emulation.Snk.Setting.SoftlistAutomaticMediaType" xml:space="preserve"><value>自动检测介质类型</value></data>
+  <data name="Emulation.Snk.Help.VFSEnabled" xml:space="preserve"><value>使用应用程序提供的虚拟文件系统。需要版本4或稍后。</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkHardcodedOverlayOpacity" xml:space="preserve"><value>内置的不透明</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardWriteProtect" xml:space="preserve"><value>保护内存卡免受更改</value></data>
+  <data name="Emulation.Snk.Setting.DarkFilterLevel" xml:space="preserve"><value>屏幕变暗(%)</value></data>
+  <data name="Emulation.Snk.Value.Fast" xml:space="preserve"><value>快速音效合成</value></data>
+  <data name="Emulation.Snk.Value.AccurateBandLimited" xml:space="preserve"><value>准确的音效合成</value></data>
+  <data name="Emulation.Snk.Setting.SaveStateNaming" xml:space="preserve"><value>保存的状态文件名</value></data>
+  <data name="Emulation.Snk.Setting.EnableCheats" xml:space="preserve"><value>启用作弊代码</value></data>
+  <data name="Emulation.Snk.Setting.HideNagScreen" xml:space="preserve"><value>隐藏法律通知屏幕</value></data>
+  <data name="Emulation.Snk.Setting.CoreProvidedAspectRatio" xml:space="preserve"><value>显示由模拟器提供的宽比</value></data>
+  <data name="Emulation.Snk.Setting.SetFrameskip" xml:space="preserve"><value>要跳过的视频帧</value></data>
+  <data name="Emulation.Snk.Setting.SampleRateHint" xml:space="preserve"><value>首选音频采样频率</value></data>
+  <data name="Emulation.Snk.Setting.UseExternalHiscoreDat" xml:space="preserve"><value>使用外部高分数文件 hiscore.dat</value></data>
+  <data name="Emulation.Snk.Setting.DisplayMAMEMenu" xml:space="preserve"><value>显示 MAME 菜单</value></data>
+  <data name="Emulation.Snk.Setting.DisplayArtwork" xml:space="preserve"><value>显示装饰艺术</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkResolutionMultiplier" xml:space="preserve"><value>装饰艺术分辨率乘以</value></data>
+  <data name="Emulation.Snk.Value.AutoAggressive" xml:space="preserve"><value>主动自动模式</value></data>
+  <data name="Emulation.Snk.Value.AutoMax" xml:space="preserve"><value>最大自动模式</value></data>
+  <data name="Emulation.Snk.Setting.AutosaveHiscore" xml:space="preserve"><value>自动保存高分</value></data>
+  <data name="Emulation.Snk.Value.Recursively" xml:space="preserve"><value>搜索子文件夹</value></data>
+  <data name="Emulation.Snk.Setting.BypassTimingSkew" xml:space="preserve"><value>绕过时间 顺道</value></data>
+  <data name="Emulation.Snk.Setting.CPUClockScale" xml:space="preserve"><value>处理器速度乘数</value></data>
+  <data name="Emulation.Snk.Setting.FixedFrameskip" xml:space="preserve"><value>要跳过的固定视频帧数</value></data>
+  <data name="Emulation.Snk.Value.Fixed" xml:space="preserve"><value>固定数字</value></data>
+  <data name="Emulation.Snk.Setting.Hiscores" xml:space="preserve"><value>高分数</value></data>
+  <data name="Emulation.Snk.Setting.AllowPatchedRomsets" xml:space="preserve"><value>允许修改后的游戏存档</value></data>
+  <data name="Emulation.Snk.Value.2Point1stOrder" xml:space="preserve"><value>第一阶插值(2分)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderer" xml:space="preserve"><value>替代渲染方法</value></data>
+  <data name="Emulation.Snk.Value.Cropped" xml:space="preserve"><value>已剪切图像</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRendererResolution" xml:space="preserve"><value>替代性解析</value></data>
+  <data name="Emulation.Snk.Setting.AutomaticLoadFastForward" xml:space="preserve"><value>自动加速装入盘片</value></data>
+  <data name="Emulation.Snk.Setting.FourPlayerMode" xml:space="preserve"><value>四玩家模式</value></data>
+  <data name="Emulation.Snk.Setting.Freeplay" xml:space="preserve"><value>不插入硬币播放</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanTop" xml:space="preserve"><value>沿上屏幕边缘隐藏像素</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanBottom" xml:space="preserve"><value>沿下屏幕边缘隐藏像素</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanLeft" xml:space="preserve"><value>沿左屏幕边缘隐藏像素</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanRight" xml:space="preserve"><value>沿右屏幕边缘隐藏像素</value></data>
+  <data name="Emulation.Snk.Value.ResistorNetwork" xml:space="preserve"><value>抗电网颜色模拟</value></data>
+  <data name="Emulation.Snk.Value.Raw" xml:space="preserve"><value>未修改的颜色</value></data>
+  <data name="Emulation.Snk.Value.HardwareAccurate96" xml:space="preserve"><value>原硬件限制(96)</value></data>
+  <data name="Emulation.Snk.Value.Double192" xml:space="preserve"><value>将原来的限制(192)增加一倍</value></data>
+  <data name="Emulation.Snk.Value.Triple288" xml:space="preserve"><value>将原来的限制(288)三分之一</value></data>
+  <data name="Emulation.Snk.Setting.CDSpeedHack" xml:space="preserve"><value>减少盘片加载延迟</value></data>
+  <data name="Emulation.Snk.Setting.CDDMALengthLimit" xml:space="preserve"><value>限制光碟数据传输的大小</value></data>
+  <data name="Emulation.Snk.Setting.SkipCDLoading" xml:space="preserve"><value>跳过磁盘加载动画</value></data>
+  <data name="Emulation.Snk.Setting.HorizontalOverscan"><value>沿左右屏幕边缘隐藏像素</value></data>
+  <data name="Emulation.Snk.Setting.PerGameSaves"><value>将每个游戏分开保存</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilterLevel"><value>音频过滤级别(%)</value></data>
+</root>

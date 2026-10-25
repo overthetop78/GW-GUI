@@ -1,8 +1,15 @@
-﻿namespace GWGUI.MediaEngine.Functions;
+namespace GWGUI.MediaEngine.Functions;
 
 /// <summary>Calcule des CRC 16 bits non réfléchis à partir d'un polynôme et d'une valeur initiale configurables.</summary>
 internal static class Crc16Calculator
 {
+    internal static ushort ComputeSpan(ReadOnlySpan<byte> values, ushort polynomial, ushort initial)
+    {
+        var crc = initial;
+        foreach (var value in values) crc = Update(crc, value, polynomial);
+        return crc;
+    }
+
     /// <summary>Polynôme <c>0x1021</c> utilisé par la variante CRC-16/CCITT.</summary>
     public const ushort CcittPolynomial = 0x1021;
     /// <summary>Polynôme <c>0x8005</c> utilisé par la variante CRC-16/IBM non réfléchie.</summary>

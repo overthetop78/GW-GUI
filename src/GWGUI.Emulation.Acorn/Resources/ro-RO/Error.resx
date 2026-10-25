@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Acorn.Error.ContentNotFound" xml:space="preserve"><value>Configurat ACORN Nu s-a găsit media.</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported" xml:space="preserve"><value>Această mașină nu suportă media selectată.</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound" xml:space="preserve"><value>Cerinţele ACORN Miezul nu a fost găsit.</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected" xml:space="preserve"><value>Alegeți ACORN Miezul nu a putut fi încărcat.</value></data>
+  <data name="Emulation.Acorn.Error.Details" xml:space="preserve"><value>Detalii: {0}</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid" xml:space="preserve"><value>An ACORN Firmware-ul este invalid sau incompatibil.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing" xml:space="preserve"><value>O nevoie ACORN Firmware lipseşte.</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing" xml:space="preserve"><value>Calea spre ACORN programul gazda nu este disponibil.</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure" xml:space="preserve"><value>Comunicarea cu ACORN gazda a eşuat.</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid" xml:space="preserve"><value>An ACORN opțiunea are o valoare invalidă.</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible" xml:space="preserve"><value>, ACORN Starea salvată este incompatibilă cu maşina curentă.</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>, ACORN Starea salvată nu este validă.</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>Un neasteptat ACORN a apărut o eroare de emulare.</value></data>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Comandă de mediu necunoscută: {0}</value></data>
+</root>

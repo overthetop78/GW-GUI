@@ -15,4 +15,5 @@
   <data name="Emulation.Configuration" xml:space="preserve"><value>Cấu hình</value></data>
   <data name="Emulation.Configurations" xml:space="preserve"><value>Cấu hình</value></data>
   <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Xoá cấu hình Amiga này không?</value></data>
+  <data name="Emulation.Configuration.Selector"><value>Thương hiệu và máy</value></data>
 </root>

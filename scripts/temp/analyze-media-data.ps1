@@ -1,4 +1,4 @@
-﻿[CmdletBinding()]
+[CmdletBinding()]
 param(
     [string]$Root = 'F:\Retro',
     [string]$OutputRoot,
@@ -41,51 +41,7 @@ function Get-PathIdentifier {
     return ([BitConverter]::ToString($hash) -replace '-', '').Substring(0, 16).ToLowerInvariant()
 }
 
-function Invoke-DotNetProcess {
-    param([Parameter(Mandatory)][string[]]$Arguments)
-
-    $startInfo = [System.Diagnostics.ProcessStartInfo]::new()
-    $startInfo.FileName = (Get-Command dotnet -CommandType Application).Source
-    $startInfo.UseShellExecute = $false
-    $startInfo.CreateNoWindow = $true
-    $startInfo.RedirectStandardOutput = $true
-    $startInfo.RedirectStandardError = $true
-    foreach ($argument in $Arguments) {
-        [void]$startInfo.ArgumentList.Add($argument)
-    }
-
-    $process = [System.Diagnostics.Process]::new()
-    $process.StartInfo = $startInfo
-    $started = $false
-    try {
-        if (-not $process.Start()) {
-            throw "Le processus dotnet n'a pas pu démarrer."
-        }
-        $started = $true
-        $standardOutput = $process.StandardOutput.ReadToEndAsync()
-        $standardError = $process.StandardError.ReadToEndAsync()
-        $process.WaitForExitAsync().GetAwaiter().GetResult()
-        $output = $standardOutput.GetAwaiter().GetResult()
-        $errorOutput = $standardError.GetAwaiter().GetResult()
-        [pscustomobject]@{
-            ExitCode = $process.ExitCode
-            Output = $output
-            Error = $errorOutput
-        }
-    } finally {
-        if ($started) {
-            try {
-                if (-not $process.HasExited) {
-                    $process.Kill($true)
-                    $process.WaitForExit()
-                }
-            } catch [System.InvalidOperationException] {
-                # Le processus s'est terminé entre le contrôle et la libération.
-            }
-        }
-        $process.Dispose()
-    }
-}
+. (Join-Path $PSScriptRoot 'common/DotNetProcess.ps1')
 
 function Invoke-MediaValidator {
     param(
@@ -97,7 +53,7 @@ function Invoke-MediaValidator {
         Remove-Item -LiteralPath $Destination -Recurse -Force
     }
     New-Item -ItemType Directory -Path $Destination | Out-Null
-    $result = Invoke-DotNetProcess -Arguments @($auditAssembly, '--image', $Path, '--output', $Destination)
+    $result = Invoke-DotNetProcess -StartFailureMessage "Le processus dotnet n'a pas pu démarrer." -Arguments @($auditAssembly, '--image', $Path, '--output', $Destination)
     $message = (@($result.Output, $result.Error) | Where-Object { -not [string]::IsNullOrWhiteSpace($_) }) -join [Environment]::NewLine
     $message = $message.Trim()
     if ($result.ExitCode -ne 0) {
@@ -110,7 +66,7 @@ function Invoke-MediaValidator {
 
 New-Item -ItemType Directory -Path $OutputRoot -Force | Out-Null
 
-$buildResult = Invoke-DotNetProcess -Arguments @(
+$buildResult = Invoke-DotNetProcess -StartFailureMessage "Le processus dotnet n'a pas pu démarrer." -Arguments @(
     'build', $auditProject, '--configuration', 'Debug', '--no-restore', '--disable-build-servers',
     '-p:UseSharedCompilation=false', '-nodeReuse:false'
 )
@@ -127,7 +83,7 @@ if ($ImagePath) {
 }
 
 $resolvedRoot = (Resolve-Path -LiteralPath $Root).Path
-$candidateResult = Invoke-DotNetProcess -Arguments @($auditAssembly, '--list-images', $resolvedRoot)
+$candidateResult = Invoke-DotNetProcess -StartFailureMessage "Le processus dotnet n'a pas pu démarrer." -Arguments @($auditAssembly, '--list-images', $resolvedRoot)
 if ($candidateResult.ExitCode -ne 0) {
     throw "L'énumération des images du corpus a échoué."
 }

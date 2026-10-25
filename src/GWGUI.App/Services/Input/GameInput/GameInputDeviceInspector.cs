@@ -4,13 +4,7 @@ namespace GWGUI.App.Services.Input.GameInput;
 
 internal static class GameInputDeviceInspector
 {
-    private static readonly GameInputKind[] StandardKinds =
-    [
-        GameInputKind.ArcadeStick,
-        GameInputKind.FlightStick,
-        GameInputKind.Gamepad,
-        GameInputKind.RacingWheel
-    ];
+    private static readonly GameInputKind[] StandardKinds = [GameInputKind.ArcadeStick, GameInputKind.FlightStick, GameInputKind.Gamepad, GameInputKind.RacingWheel];
 
     internal static GameInputDeviceDescriptor? Describe(IGameInputDevice device)
     {
@@ -22,10 +16,8 @@ internal static class GameInputDeviceInspector
         var identityChain = WindowsDeviceNameResolver.GetCandidates(pnpPath);
         var windowsName = WindowsDeviceNameResolver.ResolveProductName(pnpPath);
         var databaseName = GameControllerNameDatabase.Find(info.VendorId, info.ProductId);
-        var productName = GameInputDeviceModelCatalog.ResolveProductName(
-            info.VendorId, info.ProductId, windowsName, databaseName, gameInputName);
-        var visual = GameInputDeviceModelCatalog.ResolveVisualModel(
-            info.VendorId, info.ProductId, productName, info.SupportedInput);
+        var productName = GameInputDeviceModelCatalog.ResolveProductName(info.VendorId, info.ProductId, windowsName, databaseName, gameInputName);
+        var visual = GameInputDeviceModelCatalog.ResolveVisualModel(info.VendorId, info.ProductId, productName, info.SupportedInput);
 
         var controls = ReadControls(info.ControllerInfo);
         var gamepadInfo = ReadOptional<GameInputGamepadInfo>(info.GamepadInfo);
@@ -96,8 +88,7 @@ internal static class GameInputDeviceInspector
         if (pointer == IntPtr.Zero) return [];
         var info = Marshal.PtrToStructure<GameInputControllerInfo>(pointer);
         if (info.AxisCount > 1024 || info.ButtonCount > 1024 || info.SwitchCount > 1024) return [];
-        var controls = new List<GameInputControlDescriptor>(
-            checked((int)(info.AxisCount + info.ButtonCount + info.SwitchCount)));
+        var controls = new List<GameInputControlDescriptor>(checked((int)(info.AxisCount + info.ButtonCount + info.SwitchCount)));
         foreach (var item in ReadLabels(info.AxisLabels, info.AxisCount).Select((label, index) => (label, index)))
             controls.Add(new GameInputControlDescriptor(GameInputControlType.Axis, item.index, item.label));
         foreach (var item in ReadLabels(info.ButtonLabels, info.ButtonCount).Select((label, index) => (label, index)))
@@ -107,14 +98,8 @@ internal static class GameInputDeviceInspector
         var stride = Marshal.SizeOf<GameInputControllerSwitchInfo>();
         for (var index = 0; index < info.SwitchCount; index++)
         {
-            var switchInfo = Marshal.PtrToStructure<GameInputControllerSwitchInfo>(
-                IntPtr.Add(info.SwitchInfo, checked((int)index * stride)));
-            controls.Add(new GameInputControlDescriptor(
-                GameInputControlType.Switch,
-                checked((int)index),
-                GameInputLabel.None,
-                switchInfo.Kind,
-                ReadSwitchLabels(switchInfo)));
+            var switchInfo = Marshal.PtrToStructure<GameInputControllerSwitchInfo>(IntPtr.Add(info.SwitchInfo, checked((int)index * stride)));
+            controls.Add(new GameInputControlDescriptor(GameInputControlType.Switch, checked((int)index), GameInputLabel.None, switchInfo.Kind, ReadSwitchLabels(switchInfo)));
         }
         return controls;
     }
@@ -136,32 +121,25 @@ internal static class GameInputDeviceInspector
         return result;
     }
 
-    private static T? ReadOptional<T>(IntPtr pointer) where T : struct =>
-        pointer == IntPtr.Zero ? null : Marshal.PtrToStructure<T>(pointer);
+    private static T? ReadOptional<T>(IntPtr pointer) where T : struct => pointer == IntPtr.Zero ? null : Marshal.PtrToStructure<T>(pointer);
 
-    private static unsafe IReadOnlyList<byte> ReadExtraIndexes(
-        IGameInputDevice device, GameInputKind kind, bool axes)
+    private static unsafe IReadOnlyList<byte> ReadExtraIndexes(IGameInputDevice device, GameInputKind kind, bool axes)
     {
         try
         {
-            var countResult = axes
-                ? device.GetExtraAxisCount(kind, out var count)
-                : device.GetExtraButtonCount(kind, out count);
+            var countResult = axes ? device.GetExtraAxisCount(kind, out var count) : device.GetExtraButtonCount(kind, out count);
             if (countResult < 0 || count == 0 || count > 1024) return [];
             var result = new byte[count];
             fixed (byte* pointer = result)
             {
-                var indexesResult = axes
-                    ? device.GetExtraAxisIndexes(kind, count, (IntPtr)pointer)
-                    : device.GetExtraButtonIndexes(kind, count, (IntPtr)pointer);
+                var indexesResult = axes ? device.GetExtraAxisIndexes(kind, count, (IntPtr)pointer) : device.GetExtraButtonIndexes(kind, count, (IntPtr)pointer);
                 return indexesResult < 0 ? [] : result;
             }
         }
         catch (COMException) { return []; }
     }
 
-    private static IReadOnlyList<GameInputForceFeedbackMotorDescriptor> ReadForceFeedbackMotors(
-        IGameInputDevice device, GameInputDeviceInfo info)
+    private static IReadOnlyList<GameInputForceFeedbackMotorDescriptor> ReadForceFeedbackMotors(IGameInputDevice device, GameInputDeviceInfo info)
     {
         if (info.ForceFeedbackMotorInfo == IntPtr.Zero ||
             info.ForceFeedbackMotorCount == 0 || info.ForceFeedbackMotorCount > 64) return [];
@@ -169,8 +147,7 @@ internal static class GameInputDeviceInspector
         var stride = Marshal.SizeOf<GameInputForceFeedbackMotorInfo>();
         for (var index = 0; index < info.ForceFeedbackMotorCount; index++)
         {
-            var motor = Marshal.PtrToStructure<GameInputForceFeedbackMotorInfo>(
-                IntPtr.Add(info.ForceFeedbackMotorInfo, checked((int)index * stride)));
+            var motor = Marshal.PtrToStructure<GameInputForceFeedbackMotorInfo>(IntPtr.Add(info.ForceFeedbackMotorInfo, checked((int)index * stride)));
             var effects = new List<GameInputForceFeedbackEffectKind>();
             Add(effects, motor.IsConstantEffectSupported, GameInputForceFeedbackEffectKind.Constant);
             Add(effects, motor.IsRampEffectSupported, GameInputForceFeedbackEffectKind.Ramp);
@@ -186,16 +163,12 @@ internal static class GameInputDeviceInspector
             var poweredOn = false;
             try { poweredOn = device.IsForceFeedbackMotorPoweredOn((uint)index); }
             catch (COMException) { }
-            result.Add(new GameInputForceFeedbackMotorDescriptor(
-                checked((int)index), motor.SupportedAxes, effects, poweredOn));
+            result.Add(new GameInputForceFeedbackMotorDescriptor(checked((int)index), motor.SupportedAxes, effects, poweredOn));
         }
         return result;
     }
 
-    private static void Add(
-        ICollection<GameInputForceFeedbackEffectKind> effects,
-        bool supported,
-        GameInputForceFeedbackEffectKind effect)
+    private static void Add(ICollection<GameInputForceFeedbackEffectKind> effects, bool supported, GameInputForceFeedbackEffectKind effect)
     {
         if (supported) effects.Add(effect);
     }
@@ -207,8 +180,7 @@ internal static class GameInputDeviceInspector
         var stride = Marshal.SizeOf<GameInputRawDeviceReportInfo>();
         for (var index = 0; index < count; index++)
         {
-            var report = Marshal.PtrToStructure<GameInputRawDeviceReportInfo>(
-                IntPtr.Add(pointer, checked((int)index * stride)));
+            var report = Marshal.PtrToStructure<GameInputRawDeviceReportInfo>(IntPtr.Add(pointer, checked((int)index * stride)));
             result.Add(new GameInputRawReportDescriptor(report.Kind, report.Id, report.Size));
         }
         return result;
@@ -217,8 +189,7 @@ internal static class GameInputDeviceInspector
     private static string ReadManufacturer(IReadOnlyList<string> identityChain)
     {
         const string marker = ":Manufacturer=";
-        var item = identityChain.FirstOrDefault(value =>
-            value.Contains(marker, StringComparison.OrdinalIgnoreCase));
+        var item = identityChain.FirstOrDefault(value => value.Contains(marker, StringComparison.OrdinalIgnoreCase));
         if (item is null) return string.Empty;
         var position = item.IndexOf(marker, StringComparison.OrdinalIgnoreCase);
         return item[(position + marker.Length)..].Trim();

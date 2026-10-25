@@ -37,8 +37,7 @@ internal static class CommodoreGcrCodec
 
     /// <summary>Décode un octet depuis deux symboles GCR consécutifs.</summary>
     /// <param name="bits">Bits source.</param><param name="offset">Position du premier symbole.</param><param name="value">Octet décodé.</param><returns><see langword="true"/> si les deux symboles sont valides.</returns>
-    public static bool TryDecodeByte(IReadOnlyList<bool> bits, int offset, out byte value)
-        => TryDecodeByte(bits, offset, 1, out value);
+    public static bool TryDecodeByte(IReadOnlyList<bool> bits, int offset, out byte value) => TryDecodeByte(bits, offset, 1, out value);
 
     /// <summary>Décode un octet depuis deux symboles GCR séparés par le pas indiqué.</summary>
     public static bool TryDecodeByte(IReadOnlyList<bool> bits, int offset, int stride, out byte value)
@@ -51,8 +50,7 @@ internal static class CommodoreGcrCodec
 
     /// <summary>Décode une suite d'octets GCR consécutifs.</summary>
     /// <param name="bits">Bits source.</param><param name="offset">Position de départ.</param><param name="count">Nombre d'octets attendu.</param><returns>Octets décodés, ou <see langword="null"/> si un symbole est invalide ou tronqué.</returns>
-    public static byte[]? TryDecodeBytes(IReadOnlyList<bool> bits, int offset, int count)
-        => TryDecodeBytes(bits, offset, count, 1, out _);
+    public static byte[]? TryDecodeBytes(IReadOnlyList<bool> bits, int offset, int count) => TryDecodeBytes(bits, offset, count, 1, out _);
 
     /// <summary>Décode des octets GCR en utilisant le pas de cellules indiqué.</summary>
     public static byte[]? TryDecodeBytes(IReadOnlyList<bool> bits, int offset, int count, int stride, out int endOffset)

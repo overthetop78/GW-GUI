@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.applewin.Description"><value>يحاكي حواسيب Apple II باستخدام AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>يحاكي حواسيب Macintosh II باستخدام Mini vMac.</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>متغيرات الآلات</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>إعدادات الفيديو لنواة المحاكاة</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>بطاقات التوسع</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>الذاكرة التي تستخدمها القاع</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>ملفات ROM للنظام مضمنة في AppleWin.</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>اللب المتاح لا يدعم هذا النموذج الآلة</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>الملاعب المغلقة</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>فارغ</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>Card in Slot 3</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>بطاقة الفأر</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>Card in Slot 4</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>Card in Slot 5</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>المراقب المالي عن الأقراص الصلبة</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>Card in Slot 7</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>اللون (الكولور)RGB Card/Monitor)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>كولور (معالجة مفترضة)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>كولور (مراقبة مركبة)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>كولور TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>مونوكروم (آذار/مارس)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>مونوشروم (غرين)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>مونوكروم (وايت)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>فيديو مودي</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>نصف شبائك</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>طراز Video Style</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>معدل إعادة التأهيل</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>أولا</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>ما قبل</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>الكاتبة الكاتبة: ابدأوا</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>استخدما كلا القرصان المزروعان</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>مركز المحامين</value></data>
+</root>

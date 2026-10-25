@@ -8,6 +8,5 @@ public sealed class ModuleFactory : IEmulationModuleFactory
 {
     public string Id => "example";
 
-    public IEmulationModule Create(EmulationModuleContext context) =>
-        throw new NotImplementedException("Replace this line with your module implementation.");
+    public IEmulationModule Create(EmulationModuleContext context) => throw new NotImplementedException("Replace this line with your module implementation.");
 }

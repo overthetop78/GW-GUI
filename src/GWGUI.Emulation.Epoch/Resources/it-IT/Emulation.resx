@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.emuscv.Description" xml:space="preserve"><value>Emulates SUPER CASSETTE VISION Console.</value></data>
+  <data name="Emulation.Emulator.pd777.Description" xml:space="preserve"><value>Emulates CASSETTE VISION Console.</value></data>
+  <data name="Emulation.Epoch.Memory.Display" xml:space="preserve"><value>Video memoria</value></data>
+  <data name="Emulation.Epoch.Video.Native" xml:space="preserve"><value>Console video</value></data>
+  <data name="Emulation.Epoch.Controls.Native" xml:space="preserve"><value>Comandi di console</value></data>
+  <data name="Emulation.Epoch.Setting.DisplayArea" xml:space="preserve"><value>Area di visualizzazione</value></data>
+  <data name="Emulation.Epoch.Setting.PixelAspect" xml:space="preserve"><value>Forma del pixel</value></data>
+  <data name="Emulation.Epoch.Setting.ColorPalette" xml:space="preserve"><value>Colori tavolozza</value></data>
+  <data name="Emulation.Epoch.Setting.RefreshRate" xml:space="preserve"><value>Tasso di rifrazione</value></data>
+  <data name="Emulation.Epoch.Setting.ShowVideoMemory" xml:space="preserve"><value>Visualizza la memoria video completa</value></data>
+  <data name="Emulation.Epoch.Setting.ShowInputs" xml:space="preserve"><value>Stato del controller di visualizzazione</value></data>
+  <data name="Emulation.Epoch.Setting.ValidateFirmware" xml:space="preserve"><value>Verifica BIOS checksum</value></data>
+  <data name="Emulation.Epoch.Setting.ShowKeypadAtStart" xml:space="preserve"><value>Visualizzare la tastiera all'avvio</value></data>
+  <data name="Emulation.Epoch.Setting.AnnounceCourseSwitch" xml:space="preserve"><value>Selezione dei corsi di visualizzazione</value></data>
+  <data name="Emulation.Epoch.Value.Rectangular" xml:space="preserve"><value>Rettangolare</value></data>
+  <data name="Emulation.Epoch.Value.Low" xml:space="preserve"><value>Basso</value></data>
+  <data name="Emulation.Epoch.Value.High" xml:space="preserve"><value>Alto</value></data>
+</root>

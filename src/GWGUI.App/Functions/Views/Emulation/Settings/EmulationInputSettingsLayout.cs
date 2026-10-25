@@ -3,8 +3,10 @@ using GWGUI.App.Constants.Emulation;
 using GWGUI.App.Contracts.Emulation.Settings;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Views.Controls.Emulation.Input;
+using GWGUI.App.Views.Controls.Options;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 
 namespace GWGUI.App.Functions.Views.Emulation.Settings;
@@ -32,8 +34,7 @@ internal static partial class EmulationSettingsLayout
         return card;
     }
 
-    internal static Grid KeyboardSettingsPage(InputBindingEditor editor, string? hint = null,
-        Border? unavailable = null)
+    internal static Grid KeyboardSettingsPage(InputBindingEditor editor, string? hint = null, Border? unavailable = null, ImageSource? keyboardArtwork = null)
     {
         var page = new Grid { Margin = new Thickness(12) };
         page.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -43,8 +44,15 @@ internal static partial class EmulationSettingsLayout
             unavailable.Margin = new Thickness(0, 0, 0, 10);
             page.Children.Add(unavailable);
         }
+        if (keyboardArtwork is not null)
+        {
+            page.RowDefinitions.Insert(1, new RowDefinition { Height = GridLength.Auto });
+            var artwork = new Image { Source = keyboardArtwork, MaxHeight = 170, Stretch = Stretch.Uniform, Margin = new Thickness(8, 0, 8, 12) };
+            Grid.SetRow(artwork, 1);
+            page.Children.Add(artwork);
+        }
         var bindings = InputBindings(editor, LocExtension.Get("Emulation.Input.Actions"), hint);
-        Grid.SetRow(bindings, 1);
+        Grid.SetRow(bindings, keyboardArtwork is null ? 1 : 2);
         page.Children.Add(bindings);
         return page;
     }
@@ -53,7 +61,8 @@ internal static partial class EmulationSettingsLayout
         IReadOnlyList<EmulationSettingsControlField> mouseFields,
         IReadOnlyList<EmulationSettingsControlField>? analogFields,
         InputBindingEditor editor,
-        Border? unavailable = null)
+        Border? unavailable = null,
+        ControllerVisualizer? visualizer = null)
     {
         var settings = new Grid { Margin = new Thickness(12) };
         settings.ColumnDefinitions.Add(new ColumnDefinition());
@@ -61,13 +70,11 @@ internal static partial class EmulationSettingsLayout
         settings.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         settings.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
-        var mouse = IconCard(SettingsFields(1, mouseFields.ToArray()),
-            LocExtension.Get("Emulation.Tab.Mouse"), EmulationInputSettingsConstants.MouseIcon);
+        var mouse = IconCard(SettingsFields(1, mouseFields.ToArray()), LocExtension.Get("Emulation.Tab.Mouse"), EmulationInputSettingsConstants.MouseIcon);
         mouse.Margin = new Thickness(0, 0, 5, 0);
         if (analogFields is not null && analogFields.Count > 0)
         {
-            var analog = IconCard(SettingsFields(1, analogFields.ToArray()),
-                LocExtension.Get("Emulation.Mouse.Analog"), EmulationInputSettingsConstants.ControllerIcon);
+            var analog = IconCard(SettingsFields(1, analogFields.ToArray()), LocExtension.Get("Emulation.Mouse.Analog"), EmulationInputSettingsConstants.ControllerIcon);
             analog.Margin = new Thickness(5, 0, 0, 0);
             Grid.SetColumn(analog, 1);
             settings.Children.Add(analog);
@@ -78,12 +85,24 @@ internal static partial class EmulationSettingsLayout
         }
         settings.Children.Add(mouse);
 
-        var bindings = InputBindings(editor, LocExtension.Get("Emulation.Mouse.Actions"),
-            LocExtension.Get("Emulation.Input.Capture.Hint"));
-        bindings.Margin = new Thickness(0, 10, 0, 0);
-        Grid.SetRow(bindings, 1);
-        Grid.SetColumnSpan(bindings, 2);
-        settings.Children.Add(bindings);
+        var bindings = InputBindings(editor, LocExtension.Get("Emulation.Mouse.Actions"), LocExtension.Get("Emulation.Input.Capture.Hint"));
+        var mapping = new Grid { Margin = new Thickness(0, 10, 0, 0) };
+        mapping.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(3, GridUnitType.Star) });
+        mapping.Children.Add(bindings);
+        if (visualizer is not null)
+        {
+            mapping.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
+            visualizer.MinWidth = 0;
+            visualizer.HorizontalAlignment = HorizontalAlignment.Stretch;
+            visualizer.VerticalAlignment = VerticalAlignment.Stretch;
+            visualizer.Margin = new Thickness(8, 4, 10, 8);
+            visualizer.ClipToBounds = true;
+            Grid.SetColumn(visualizer, 1);
+            mapping.Children.Add(visualizer);
+        }
+        Grid.SetRow(mapping, 1);
+        Grid.SetColumnSpan(mapping, 2);
+        settings.Children.Add(mapping);
 
         if (unavailable is null)
             return ScrollPage(settings);

@@ -5,10 +5,7 @@ namespace GWGUI.MediaEngine.Contracts;
 /// <summary>Contains an encoded sequential target and all diagnostics or losses known before writing it.</summary>
 public sealed class SequentialMediaConversionPlan
 {
-    public SequentialMediaConversionPlan(
-        MediaImageDocument targetDocument,
-        IReadOnlyList<string> diagnostics,
-        IReadOnlyList<string> losses)
+    public SequentialMediaConversionPlan(MediaImageDocument targetDocument, IReadOnlyList<string> diagnostics, IReadOnlyList<string> losses)
     {
         ArgumentNullException.ThrowIfNull(targetDocument);
         ArgumentNullException.ThrowIfNull(diagnostics);

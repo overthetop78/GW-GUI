@@ -9,18 +9,16 @@ public static class ControllerCatalog
                 PeripheralCategory.DrivingController, PeripheralCategory.BoosterGrip,
                 PeripheralCategory.GenesisController, PeripheralCategory.Joy2BPlus,
                 PeripheralCategory.None];
-        if (CompatibilityCatalog.Get(model).Core == Emulator.Hatari)
+        if (ConfigurationFunctions.GetFamily(model) == MachineFamily.St)
             return [PeripheralCategory.Joystick, PeripheralCategory.None];
-        return HardwareModelCatalog.Get(model).Ports
-            .Where(port => port.Capability != HardwarePortCapability.Keyboard)
+        return HardwareModelCatalog.Get(model).Ports.Where(port => port.Capability != HardwarePortCapability.Keyboard)
             .Select(port => port.Capability switch
             {
                 HardwarePortCapability.AnalogJoystick => PeripheralCategory.AnalogJoystick,
                 HardwarePortCapability.Paddle => PeripheralCategory.Paddle,
                 HardwarePortCapability.DrivingController => PeripheralCategory.DrivingController,
                 HardwarePortCapability.LightGun => PeripheralCategory.LightGun,
-                HardwarePortCapability.NumericKeypad => model == MachineModel.Atari5200
-                    ? PeripheralCategory.AnalogJoystick : PeripheralCategory.NumericKeypad,
+                HardwarePortCapability.NumericKeypad => model == MachineModel.Atari5200 ? PeripheralCategory.AnalogJoystick : PeripheralCategory.NumericKeypad,
                 HardwarePortCapability.ProLineController => PeripheralCategory.ProLineController,
                 HardwarePortCapability.EnhancedController => PeripheralCategory.EnhancedController,
                 _ => PeripheralCategory.Joystick

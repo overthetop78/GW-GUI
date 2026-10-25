@@ -16,7 +16,7 @@
   <data name="Conversion.CommonFormats"><value>Formati comuni</value></data>
   <data name="Conversion.ShowRare"><value>Mostra i formati usati raramente</value></data>
   <data name="Conversion.LimitTracks"><value>Limita le tracce</value></data>
-  <data name="Conversion.SourceRequired"><value>Scegli un&apos;immagine sorgente esistente.</value></data>
+  <data name="Conversion.SourceRequired"><value>Scegli un'immagine sorgente esistente.</value></data>
   <data name="Conversion.NameRequired"><value>Immettere i nomi dei file di output.</value></data>
   <data name="Conversion.CheckOutput"><value>Controlla almeno un formato di output.</value></data>
   <data name="Conversion.More"><value>(+ {0} conversione/i)</value></data>

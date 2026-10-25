@@ -4,8 +4,16 @@ public enum Emulator
 {
     Hatari,
     Atari800,
-    Stella,
+    Stella2023,
     ProSystem,
     BeetleLynx,
-    VirtualJaguar
+    VirtualJaguar,
+    Stella,
+    Stella2014,
+    A5200,
+    HatariB,
+    Hatari2014,
+    GearLynx,
+    Handy,
+    Holani
 }

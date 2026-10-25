@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>Швидке завантаження</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>СПИСАТИ BIOS Запуск екрана і починається гру безпосередньо. Вимкніть це, щоб відкрити налаштування консолі або менеджера карт пам'яті.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Автоматичний</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU Ядра</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Швидка пам'ять</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Увімкнути прискорений доступ до пам’яті. Це може спричинити нестабільну роботу деяких ігор.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Доступ до пам'яті Ignore</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>Синхронізація доступу до накопичувача</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>Головний комп’ютер</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>Затримки читання дисків UMD</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>Синхронізувати з годинником реального часу</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>Синхронізує емуляцію з годинником реального часу для зменшення затримки введення. Це може знизити продуктивність.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>Locked CPU Швидкість</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>Cache Повний ISO в RAM</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>Внутрішня підтримка Коди</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Label"><value>Ігрова мова</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Help"><value>«Автоматичний» буде використовувати передню мову.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>Китайський традиційний</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>Китайський спрощений</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>PSP Модель</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>Програмне забезпечення Рендеринг</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Використовуйте програмний рендеринг для підвищення точності ціною більшого обчислювального навантаження.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>Постанова Рендерингу</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>Виберіть внутрішню роздільну здатність рендерингу.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA Антиалії</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Застосуйте згладжування MSAA за допомогою Vulkan.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>до 16х9</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>Обрізати верхню та нижню частини зображення для відображення у форматі 16:9.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>Карсип</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Label"><value>Тип каркаса</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.0"><value>Кількість відеокадрів</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>Відсоток від частоти відеокадрів</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>Авто Рамкип</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>Рендерна трубка до 60 Hz</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>Дублює відеокадри для плавнішого руху в іграх із низькою частотою кадрів.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Виявляти зміни частоти відеокадрів</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Повідомляти застосунку про зміни частоти відеокадрів у грі.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Буферизація графічних команд</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>Зменшити буферизацію графічних команд, щоб знизити затримку введення. Це може знизити продуктивність. Лише OpenGL і Vulkan.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Без додаткової буферизації графіки</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Буферизувати щонайбільше один відеокадр</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Підтвердження кнопки</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Компенсація круглого та квадратного діапазону аналогового стіка</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Аналог Дедзон</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Застосовувати додаткову мертву зону аналогового стіка після обробки введення застосунком.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Аналогова axis масштаб</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Help"><value>Додатково налаштовувати чутливість аналогового стіка після обробки введення застосунком.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Label"><value>Пропустити Buffer Effects</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Пропускати ефекти кадрового буфера для підвищення продуктивності. У деяких іграх зображення може зникнути.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Пропустити читання GPU</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Пропускати копіювання графічних даних із GPU до CPU. Деяким іграм ці копії потрібні для правильного відображення.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Відкладене кешування текстур (прискорення)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Швидше за все, але може викликати текстові проблеми в декількох іграх.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>Spline/bezier кривих якість</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Тільки використовують деякі ігри, контролює гладкість кривих.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Label"><value>Низька роздільна здатність для ефектів</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Help"><value>Знизити роздільну здатність деяких візуальних ефектів, щоб уникнути помилок відтворення.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Value.2"><value>Збалансований</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_gpu_hardware_transform.Label"><value>Апаратні трансформатори</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Label"><value>Програмне забезпечення Skinning</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Help"><value>Обробляти й об’єднувати операції малювання анімованих 3D-моделей на CPU. Це підвищує продуктивність у більшості ігор.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Label"><value>Апаратна техніка</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Help"><value>Використовувати GPU для відтворення плавних кривих.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Label"><value>Текстура Upscale Тип</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Value.3"><value>Гібрид + Бікубик</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Label"><value>Текстура Upscaling Level</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Help"><value>Збільшення текстур підвищує навантаження на CPU. Деякі текстури збільшуються пізніше, щоб уникнути ривків.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Label"><value>Текстура депостеризація</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Help"><value>Зменшити видимі кольорові смуги на збільшених текстурах.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_replacement.Label"><value>Заміна тексту</value></data>
+  </root>

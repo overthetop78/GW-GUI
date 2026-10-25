@@ -11,4 +11,5 @@
   <data name="Emulation.Firmware.PartiallyCompatible"><value>Sebagian kompatibel</value></data>
   <data name="Emulation.Firmware.Official"><value>Resmi</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Tidak kompatibel</value></data>
+  <data name="Emulation.Firmware.VoiceSamples"><value>Sampel suara</value></data>
 </root>

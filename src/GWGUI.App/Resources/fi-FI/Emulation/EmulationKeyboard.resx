@@ -12,4 +12,5 @@
   <data name="Emulation.Keyboard.Priority.Description"><value>GW GUI:n ja Windowsin pikanäppäimet pysyvät käytössä, eikä kone kaappaa niitä.</value></data>
   <data name="Emulation.Keyboard.EmulatedKey"><value>Koneen näppäin</value></data>
   <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Kirjaimet, numerot ja tavalliset muuntonäppäimet välitetään suoraan. Vain Amigan toiminto- ja erikoisnäppäimet määritetään tässä.</value></data>
+  <data name="Emulation.Keyboard.Modifier.Shift"><value>Vaihto</value></data>
 </root>

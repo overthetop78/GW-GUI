@@ -1,24 +1,26 @@
 using System.Collections.Frozen;
 using GWGUI.MediaFileSystems.Definitions;
 using GWGUI.MediaFileSystems.Constants;
-
 using GWGUI.MediaFileSystems.Interfaces;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Apple.Macintosh.Hfs;
-
 /// <summary>Lit un volume Macintosh HFS et reconstruit son catalogue ainsi que les forks de ses fichiers.</summary>
 public sealed class MacHfsFileSystemReader : IFileSystemReader
 {
-    /// <inheritdoc />
+    /// <inheritdoc/>
     public string Id => FileSystemIds.MacHfs;
+    /// <inheritdoc/>
+    public IReadOnlySet<string> CatalogFormatIds { get; } = new[]
+    {
+        MediaImageFormatIds.AppleMacHfs,
+        MediaImageFormatIds.Mac400,
+        MediaImageFormatIds.Mac800,
+        MediaImageFormatIds.Mac1440
+    }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
-    /// <inheritdoc />
-    public IReadOnlySet<string> CatalogFormatIds { get; } = new[] { MediaImageFormatIds.AppleMacHfs, MediaImageFormatIds.Mac400, MediaImageFormatIds.Mac800, MediaImageFormatIds.Mac1440 }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-
-    /// <inheritdoc />
+    /// <inheritdoc/>
     public bool CanRead(IMediaSectorImage image) => TryReadMdb(image, out var mdb) && MacFileSystemPrimitives.ReadUInt16(mdb, 0) == MacHfsFileSystemLayout.Signature;
-
-    /// <inheritdoc />
+    /// <inheritdoc/>
     public FileSystemVolume Read(IMediaSectorImage image)
     {
         if (!TryReadMdb(image, out var mdb) || MacFileSystemPrimitives.ReadUInt16(mdb, 0) != MacHfsFileSystemLayout.Signature)
@@ -26,9 +28,11 @@ public sealed class MacHfsFileSystemReader : IFileSystemReader
             var signature = mdb.Length >= sizeof(ushort) ? MacFileSystemPrimitives.ReadUInt16(mdb, 0) : (ushort)0;
             throw MacFileSystemExceptions.InvalidVolume(MacHfsFileSystemLayout.SystemName, signature);
         }
+
         var allocationCount = MacFileSystemPrimitives.ReadUInt16(mdb, MacHfsFileSystemLayout.AllocationCountOffset);
         var allocationSize = MacFileSystemPrimitives.ReadUInt32(mdb, MacHfsFileSystemLayout.AllocationSizeOffset);
-        if (allocationSize == 0 || allocationSize % MacHfsFileSystemLayout.SectorSize != 0) throw MacFileSystemExceptions.InvalidAllocationSize(MacHfsFileSystemLayout.SystemName, allocationSize, MacHfsFileSystemLayout.SectorSize);
+        if (allocationSize == 0 || allocationSize % MacHfsFileSystemLayout.SectorSize != 0)
+            throw MacFileSystemExceptions.InvalidAllocationSize(MacHfsFileSystemLayout.SystemName, allocationSize, MacHfsFileSystemLayout.SectorSize);
         var allocationStart = MacFileSystemPrimitives.ReadUInt16(mdb, MacHfsFileSystemLayout.AllocationStartOffset);
         var freeAllocationCount = MacFileSystemPrimitives.ReadUInt16(mdb, MacHfsFileSystemLayout.FreeAllocationCountOffset);
         var volumeName = MacFileSystemPrimitives.ReadPascalString(mdb, MacHfsFileSystemLayout.VolumeNameOffset, MacHfsFileSystemLayout.MaximumVolumeNameLength);
@@ -36,14 +40,26 @@ public sealed class MacHfsFileSystemReader : IFileSystemReader
         var warnings = new List<string>();
         var catalogExtents = mdb.AsSpan(MacHfsFileSystemLayout.CatalogExtentsOffset, MacHfsFileSystemLayout.EmbeddedExtentsLength);
         var catalogContent = MacHfsExtentReader.Read(image, catalogExtents, allocationStart, allocationSize, catalogLength);
-        foreach (var block in catalogContent.MissingBlocks) warnings.Add(MacFileSystemExceptions.MissingBlock(MacHfsFileSystemLayout.CatalogName, MacHfsFileSystemLayout.DataForkName, block));
-        if (catalogContent.RemainingLength > 0) warnings.Add(MacFileSystemExceptions.IncompleteData(MacHfsFileSystemLayout.CatalogName, MacHfsFileSystemLayout.DataForkName, catalogLength - catalogContent.RemainingLength, catalogLength));
+        foreach (var block in catalogContent.MissingBlocks)
+            warnings.Add(MacFileSystemExceptions.MissingBlock(MacHfsFileSystemLayout.CatalogName, MacHfsFileSystemLayout.DataForkName, block));
+        if (catalogContent.RemainingLength > 0)
+            warnings.Add(MacFileSystemExceptions.IncompleteData(MacHfsFileSystemLayout.CatalogName, MacHfsFileSystemLayout.DataForkName, catalogLength - catalogContent.RemainingLength, catalogLength));
         var records = MacHfsCatalogReader.Read(catalogContent.Content, image, allocationStart, allocationSize, warnings);
         var entries = MacHfsDirectoryBuilder.Build(records, warnings);
         var capacity = (long)allocationCount * allocationSize;
         var freeBytes = freeAllocationCount <= allocationCount ? (long)freeAllocationCount * allocationSize : 0;
-        if (freeAllocationCount > allocationCount) warnings.Add(MacFileSystemExceptions.InvalidFreeAllocationCount(MacHfsFileSystemLayout.SystemName, freeAllocationCount, allocationCount));
-        return new(volumeName, FileSystemIds.MacHfs, capacity, freeBytes, MacFileSystemTime.FromSeconds(MacFileSystemPrimitives.ReadUInt32(mdb, MacHfsFileSystemLayout.CreatedOffset)), MacFileSystemTime.FromSeconds(MacFileSystemPrimitives.ReadUInt32(mdb, MacHfsFileSystemLayout.ModifiedOffset)), entries, warnings);
+        if (freeAllocationCount > allocationCount)
+            warnings.Add(MacFileSystemExceptions.InvalidFreeAllocationCount(MacHfsFileSystemLayout.SystemName, freeAllocationCount, allocationCount));
+        return new(
+            volumeName,
+            FileSystemIds.MacHfs,
+            capacity,
+            freeBytes,
+            MacFileSystemTime.FromSeconds(MacFileSystemPrimitives.ReadUInt32(mdb, MacHfsFileSystemLayout.CreatedOffset)),
+            MacFileSystemTime.FromSeconds(MacFileSystemPrimitives.ReadUInt32(mdb, MacHfsFileSystemLayout.ModifiedOffset)),
+            entries,
+            warnings
+        );
     }
 
     /// <summary>Tente d'obtenir un MDB HFS de taille suffisante.</summary>
@@ -54,6 +70,7 @@ public sealed class MacHfsFileSystemReader : IFileSystemReader
             mdb = block.Data.ToArray();
             return true;
         }
+
         mdb = [];
         return false;
     }

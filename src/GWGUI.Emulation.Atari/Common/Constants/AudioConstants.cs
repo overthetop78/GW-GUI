@@ -2,12 +2,16 @@ namespace GWGUI.Emulation.Atari.Common.Constants;
 
 internal static class AudioConstants
 {
-    internal const int StereoChannelCount = 2;
+    /// <summary>Latence de base du modèle audio local, en millisecondes.</summary>
+    internal const int DefaultLatencyMilliseconds = 50;
+    /// <summary>Séparation stéréo complète en pourcentage, conservée lorsque ce réglage est applicable au cœur.</summary>
+    internal const int FullStereoSeparation = 100;
+    /// <summary>Choix de latence déjà proposés par les réglages du module, en millisecondes.</summary>
+    internal static IReadOnlyList<int> LatencyChoicesMilliseconds { get; } = Array.AsReadOnly<int>([20, 35, 50, 75, 100, 150, 250]);
+
     internal const int LeftChannelIndex = 0;
     internal const int RightChannelIndex = 1;
     internal const int SingleFrameCount = 1;
-    internal const int BufferDurationDivisor = 5;
-    internal const int MinimumBufferedFrameCount = 1;
     internal const int MaximumFramesPerBatch = 64 * 1024;
     internal const float MinimumVolume = 0f;
     internal const float MaximumVolume = 1f;

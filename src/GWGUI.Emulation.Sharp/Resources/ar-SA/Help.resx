@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Help.AdpcmVolume" xml:space="preserve"><value>تعديل حجم ADPCM قناة صوتية</value></data>
+  <data name="Emulation.Sharp.Help.AudioDesynchronization" xml:space="preserve"><value>اسحبوا عينات صوتية زائدة لتقليل أخطاء التزامن الصوتية</value></data>
+  <data name="Emulation.Sharp.Help.AudioSampleRate" xml:space="preserve"><value>اختر تردد أخذ العينات الصوتية</value></data>
+  <data name="Emulation.Sharp.Help.ButtonOrder" xml:space="preserve"><value>اختر ترتيب أزرار المتحكم</value></data>
+  <data name="Emulation.Sharp.Help.CpuSpeed" xml:space="preserve"><value>اختر تواتر المعالج</value></data>
+  <data name="Emulation.Sharp.Help.DiskSeekSound" xml:space="preserve"><value>شغل صوت حركة الرأس</value></data>
+  <data name="Emulation.Sharp.Help.FmBoard" xml:space="preserve"><value>تمكين FM لوحة صوتية</value></data>
+  <data name="Emulation.Sharp.Help.FmVolume" xml:space="preserve"><value>تعديل حجم FM قناة صوتية</value></data>
+  <data name="Emulation.Sharp.Help.FrameRate" xml:space="preserve"><value>اختر عدد اطر الفيديو في الثانية</value></data>
+  <data name="Emulation.Sharp.Help.FrameRateAdjustment" xml:space="preserve"><value>فقط توقيت الفيديو للعرض الحديث لتقليل التلقيح الصوتي</value></data>
+  <data name="Emulation.Sharp.Help.FrameSkip" xml:space="preserve"><value>اختر جزء من صور الفيديو لتهرب، وأعطي صورة واحدة من ثلاثة تخطى اثنين من ثلاثة.</value></data>
+  <data name="Emulation.Sharp.Help.HideGraphics" xml:space="preserve"><value>اخفي الطبقة التصويرية من صور الفيديو</value></data>
+  <data name="Emulation.Sharp.Help.HideSprites" xml:space="preserve"><value>إخفاء المقاطع وطبقات المعلومات الأساسية من صورة الفيديو</value></data>
+  <data name="Emulation.Sharp.Help.HideText" xml:space="preserve"><value>اخفي الطبقة النصية من صور الفيديو</value></data>
+  <data name="Emulation.Sharp.Help.MemorySize" xml:space="preserve"><value>اختيار كمية التعبئة RAM.</value></data>
+  <data name="Emulation.Sharp.Help.RapidFire" xml:space="preserve"><value>أضغط زر التحكم مرة أخرى تلقائياً</value></data>
+  <data name="Emulation.Sharp.Help.Raster" xml:space="preserve"><value>تأثيرات مُمكنة في صورة الفيديو المُحتَرَضة</value></data>
+  <data name="Emulation.Sharp.Help.Resolution" xml:space="preserve"><value>اختر قرار الناتج المنخفض أو العالي.</value></data>
+  <data name="Emulation.Sharp.Help.ReverseJoystick" xml:space="preserve"><value>عكسوا مدخل المتحكم كما هو مقدم من المرشد</value></data>
+  <data name="Emulation.Sharp.Help.UnlimitedSpeed" xml:space="preserve"><value>تشغيل الآلة بأسرع ما يمكن، قد يصبح الصوت غير متزامن.</value></data>
+  <data name="Emulation.Sharp.Help.VerticalSync" xml:space="preserve"><value>تزامن العرض المُحتَزَم الرأسي.</value></data>
+  <data name="Emulation.Sharp.Help.VideoBeforeAudio" xml:space="preserve"><value>خفض معدل تواتر الفيديو قبل البطء الصوتي</value></data>
+</root>

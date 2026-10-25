@@ -1,0 +1,40 @@
+namespace GWGUI.Emulation.Bandai.Common.Machines.Common.Constants;
+
+internal static class SettingsConstants
+{
+    internal const string Firmware = "bandai_firmware";
+    internal const string AudioEnabled = "bandai_audio_enabled";
+    internal const string AudioOutput = "gwgui_bandai_audio_output";
+    internal const string AudioLatency = "gwgui_bandai_audio_latency";
+    internal const string SharedFolder = "bandai_shared_folder";
+    internal const string CartridgeFolder = "bandai_cartridge_folder";
+    internal const string CompactDiscFolder = "bandai_cd_folder";
+    internal const string SaveFolder = "bandai_save_folder";
+    internal const string StateFolder = "bandai_state_folder";
+    internal const string CaptureFolder = "bandai_capture_folder";
+    internal const string DefaultOutput = "default";
+    internal const string ResourceControllerNone = "Emulation.Controller.None";
+    internal const string ResourceControllerPrefix = "Emulation.Bandai.Controller.";
+    internal const string ResourceActionPrefix = "Emulation.Bandai.Action.";
+    internal const string ResourceDisplayMemory = "Emulation.Bandai.Memory.Display";
+    internal const string ResourcePlaydiaHle = "Emulation.Bandai.Playdia.Hle";
+    internal const string ResourceEmulator = "Emulation.Tab.General";
+    internal const string PlaydiaHle = "bandai_playdia_hle";
+    internal const double HertzPerKilohertz = 1_000;
+    internal const string KilohertzUnit = "kHz";
+    internal const string ResourceFirmware = "Emulation.Firmware.Rom.System";
+    internal const string ResourceNativeVideo = "Emulation.Bandai.Video.Native";
+    internal const string ResourceNativeAudio = "Emulation.Bandai.Audio.Native";
+    internal const string ResourceNativeControls = "Emulation.Bandai.Controls.Native";
+    internal const string ResourceOwner = "Emulation.Bandai.Owner";
+    internal const string ResourceAudio = "Emulation.Audio";
+    internal const string ResourceAudioEnabled = "Emulation.Audio.Enabled";
+    internal const string ResourceAudioOutput = "Emulation.Audio.Output";
+    internal const string ResourceAudioLatency = "Emulation.Audio.Latency";
+    internal const string ResourceAudioVolume = "Explorer.Volume";
+    internal const string ResourceDefaultOutput = "Emulation.Audio.DefaultOutput";
+    internal const string MillisecondsUnit = "ms";
+    internal const string PercentUnit = "%";
+    internal static readonly IReadOnlyList<string> CartridgeExtensions = [".ws", ".wsc", ".pc2", ".bin"];
+    internal static readonly IReadOnlyList<string> CompactDiscExtensions = [".cue", ".zip", ".iso", ".bin"];
+}

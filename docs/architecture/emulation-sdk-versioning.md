@@ -11,7 +11,9 @@ présentation du SDK avec son rôle, son installation et le point de départ d'u
 
 | Paquet SDK | API hôte | Schéma du manifeste |
 |---|---|---|
-| `1.0.1` | `1.0` | `2` |
+| `1.2.0` | `1.2` | `2` |
+
+L API 1.2 ajoute le contrat facultatif IEmulationVideoSettingsManager et EmulationGraphicsApi. Le module traduit la préférence vidéo de l application vers ses capacités natives, sans exposer un moteur concret au SDK. Les modules utilisant ce contrat exigent au minimum l API 1.2 ; les autres conservent leur minimum et déclarent leur maximum validé.
 
 La version du paquet suit SemVer avec trois nombres. La version d’API hôte possède deux nombres et
 représente la compatibilité binaire et comportementale des contrats consommés par un module. Le

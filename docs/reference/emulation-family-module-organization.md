@@ -1,7 +1,7 @@
 # Organisation interne d’un module de famille d’émulation
 
 Ce document fixe l’organisation cible de `GWGUI.Emulation.Atari`,
-`GWGUI.Emulation.Amiga` et des futurs modules comme `GWGUI.Emulation.Amstrad`.
+`GWGUI.Emulation.Commodore` et des futurs modules comme `GWGUI.Emulation.Amstrad`.
 
 ## Frontière avec Emulation
 

@@ -43,20 +43,10 @@ internal static class ExplorerFailureScenarios
         var source = ExplorerDocumentScenarios.Document(name);
         var scp = new GWGUI.MediaEngine.Images.Formats.Floppy.Scp.ScpImage(
             source.ScpImage!.Header,
-            [new GWGUI.MediaEngine.Images.Formats.Floppy.Scp.ScpTrack(0, 0, 0,
-                [new GWGUI.MediaEngine.Images.Formats.Floppy.Scp.ScpRevolution(8_000_000, 3, [80, 120, 160])])],
+            [new GWGUI.MediaEngine.Images.Formats.Floppy.Scp.ScpTrack(0, 0, 0, [new GWGUI.MediaEngine.Images.Formats.Floppy.Scp.ScpRevolution(8_000_000, 3, [80, 120, 160])])],
             source.ScpImage.ChecksumValid,
             source.ScpImage.FileSize);
-        return new GWGUI.MediaEngine.Contracts.Explorer.ExploredDiskImage(
-            source.SourcePath,
-            source.Image,
-            source.Volume,
-            source.Metadata,
-            source.FileSystemRecognized,
-            source.DetectedFileSystems,
-            source.DetectedSectorImages,
-            source.PrimaryFormatId,
-            scp);
+        return new GWGUI.MediaEngine.Contracts.Explorer.ExploredDiskImage( source.SourcePath, source.Image, source.Volume, source.Metadata, source.FileSystemRecognized, source.DetectedFileSystems, source.DetectedSectorImages, source.PrimaryFormatId, scp);
     }
 
     public static void Clear()
@@ -86,32 +76,25 @@ internal static class ExplorerFailureScenarios
 
     public static void ManualFormatFailureUsesInformationalDialog()
     {
-        Assert.Equal("Explorer.SelectedFormatUnsupported",
-            GWGUI.App.Services.DiskImages.DiskImageWorkspaceController.LoadFailureMessageKey(false, "atari.90"));
-        Assert.Equal("Explorer.LoadFailed",
-            GWGUI.App.Services.DiskImages.DiskImageWorkspaceController.LoadFailureMessageKey(true, "atari.90"));
-        Assert.Equal("Explorer.LoadFailed",
-            GWGUI.App.Services.DiskImages.DiskImageWorkspaceController.LoadFailureMessageKey(false, null));
+        Assert.Equal("Explorer.SelectedFormatUnsupported", GWGUI.App.Services.DiskImages.DiskImageWorkspaceController.LoadFailureMessageKey(false, "atari.90"));
+        Assert.Equal("Explorer.LoadFailed", GWGUI.App.Services.DiskImages.DiskImageWorkspaceController.LoadFailureMessageKey(true, "atari.90"));
+        Assert.Equal("Explorer.LoadFailed", GWGUI.App.Services.DiskImages.DiskImageWorkspaceController.LoadFailureMessageKey(false, null));
 
         var localization = GWGUI.App.Localization.Sources.LocalizationSource.Instance;
         var previousCultures = (localization.Culture, localization.UiCulture);
         try
         {
-            localization.SetCultures(
-                GWGUI.App.Functions.Localization.UiLanguageResolver.GetCulture("en-US"),
-                GWGUI.App.Functions.Localization.UiLanguageResolver.GetUiCulture("en-US"));
+            localization.SetCultures(GWGUI.App.Functions.Localization.UiLanguageResolver.GetCulture("en-US"), GWGUI.App.Functions.Localization.UiLanguageResolver.GetUiCulture("en-US"));
             Assert.Equal(
                 "Unable to interpret “disk.atr” using the “Atari 8-bit — 90 KiB” format.\nSelect another format to continue.",
-                GWGUI.App.Localization.Extensions.LocExtension.Get(
-                    "Explorer.SelectedFormatUnsupported", "Atari 8-bit — 90 KiB", "disk.atr"));
+                GWGUI.App.Localization.Extensions.LocExtension.Get("Explorer.SelectedFormatUnsupported", "Atari 8-bit — 90 KiB", "disk.atr"));
         }
         finally
         {
             localization.SetCultures(previousCultures.Culture, previousCultures.UiCulture);
         }
 
-        var dialog = new CommonErrorDialog(new CommonErrorDialogContent(
-            "Explorateur", "Format incompatible", CommonErrorDialog.InformationIcon, Brushes.SteelBlue));
+        var dialog = new CommonErrorDialog(new CommonErrorDialogContent("Explorateur", "Format incompatible", CommonErrorDialog.InformationIcon, Brushes.SteelBlue));
         Assert.Equal(WindowStyle.None, dialog.WindowStyle);
         Assert.True(dialog.AllowsTransparency);
         Assert.False(dialog.ShowInTaskbar);

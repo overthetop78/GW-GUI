@@ -41,16 +41,17 @@ public sealed class AppleScpSectorImageReader
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture et la reconstruction.</param>
     /// <returns>L'image sectorielle Apple explicitement demandée ou la reconstruction automatique la plus complète.</returns>
     /// <exception cref="InvalidDataException">Le format demandé ne peut pas être reconstruit, ou les trois reconstructeurs automatiques ont rejeté la capture.</exception>
-    public async Task<SectorImage> ReadAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
-        => await ReadAsync(path, formatId, null, cancellationToken).ConfigureAwait(false);
+    public async Task<SectorImage> ReadAsync(string path, string? formatId = null, CancellationToken cancellationToken = default) => await ReadAsync(path, formatId, null, cancellationToken).ConfigureAwait(false);
 
-    public async Task<SectorImage> ReadAsync(
-        string path,
-        string? formatId,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken = default)
+    public async Task<SectorImage> ReadAsync(string path, string? formatId, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken = default)
     {
         var scp = await _scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
+        return Read(scp, formatId, progress, cancellationToken);
+    }
+
+    internal SectorImage Read(ScpImage scp, string? formatId, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(scp);
         if (formatId?.StartsWith(DiskImageFormatIds.AppleIIRwts18, StringComparison.OrdinalIgnoreCase) == true)
             return _rwts18.Decode(scp, cancellationToken, progress);
         if (formatId?.StartsWith(DiskImageFormatIds.AppleIIAppleDosPrefix, StringComparison.OrdinalIgnoreCase) == true ||
@@ -69,13 +70,10 @@ public sealed class AppleScpSectorImageReader
             return _macintosh.Decode(scp, formatId, cancellationToken, progress);
 
         return DetectAutomatically(scp, progress, cancellationToken);
-    }
+        }
 
     /// <summary>Reconstruit l'ordre ProDOS et n'accepte le profil SOS que si son marqueur d'amorçage est présent.</summary>
-    private SectorImage ReadSos(
-        ScpImage scp,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+    private SectorImage ReadSos(ScpImage scp, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         var image = _appleII.Decode(scp, true, cancellationToken, progress);
         var payload = Enumerable.Range(0, image.BlockCount).SelectMany(logicalBlock => image.GetBlock(logicalBlock).ToArray()).ToArray();
@@ -88,10 +86,7 @@ public sealed class AppleScpSectorImageReader
     /// <param name="cancellationToken">Jeton permettant d'annuler les tentatives de reconstruction.</param>
     /// <returns>La reconstruction réussie possédant la meilleure proportion de blocs disponibles.</returns>
     /// <exception cref="InvalidDataException">Les reconstructeurs Macintosh/Lisa, Apple II et RWTS18 ont tous rejeté la capture.</exception>
-    private SectorImage DetectAutomatically(
-        ScpImage scp,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+    private SectorImage DetectAutomatically(ScpImage scp, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         var candidates = new List<SectorImage>(3);
         var rejections = new List<(string Identity, InvalidDataException Error)>(3);

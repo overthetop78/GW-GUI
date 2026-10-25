@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.81" xml:space="preserve"><value>81</value></data>
+  <data name="Emulation.Emulator.81.Description"><value>Emulates Sinclair ZX81.</value></data>
+  <data name="Emulation.Emulator.fuse" xml:space="preserve"><value>Fuse</value></data>
+  <data name="Emulation.Emulator.fuse.Description"><value>Emulates compatible ZX Spectrum systems.</value></data>
+  <data name="Emulation.Family.Sinclair" xml:space="preserve"><value>Sinclair</value></data>
+  <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>Audio hardware</value></data>
+  <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>Initial content</value></data>
+  <data name="Emulation.Sinclair.Firmware.Gluck" xml:space="preserve"><value>Gluk ROM</value></data>
+  <data name="Emulation.Sinclair.Firmware.Pentagon0" xml:space="preserve"><value>Pentagon ROM 0</value></data>
+  <data name="Emulation.Sinclair.Firmware.Pentagon1" xml:space="preserve"><value>Pentagon ROM 1</value></data>
+  <data name="Emulation.Sinclair.Firmware.Scorpion0" xml:space="preserve"><value>Scorpion ROM 0</value></data>
+  <data name="Emulation.Sinclair.Firmware.Scorpion1" xml:space="preserve"><value>Scorpion ROM 1</value></data>
+  <data name="Emulation.Sinclair.Firmware.Scorpion2" xml:space="preserve"><value>Scorpion ROM 2</value></data>
+  <data name="Emulation.Sinclair.Firmware.Scorpion3" xml:space="preserve"><value>Scorpion ROM 3</value></data>
+  <data name="Emulation.Sinclair.Firmware.Sp0256" xml:space="preserve"><value>SP0256 ROM</value></data>
+  <data name="Emulation.Sinclair.Firmware.TrDos" xml:space="preserve"><value>TR-DOS ROM</value></data>
+  <data name="Emulation.Sinclair.Firmware.USpeech" xml:space="preserve"><value>Currah uSpeech ROM</value></data>
+  <data name="Emulation.Sinclair.Keyboard.Native" xml:space="preserve"><value>Machine keyboard</value></data>
+  <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>Video memory</value></data>
+  <data name="Emulation.Sinclair.Setting.AyStereoSeparation" xml:space="preserve"><value>AY stereo channel order</value></data>
+  <data name="Emulation.Sinclair.Setting.AyVolume" xml:space="preserve"><value>AY volume</value></data>
+  <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>Built-in sound volume</value></data>
+  <data name="Emulation.Sinclair.Setting.BorderSize" xml:space="preserve"><value>Screen border size</value></data>
+  <data name="Emulation.Sinclair.Setting.Chroma81" xml:space="preserve"><value>Chroma 81</value></data>
+  <data name="Emulation.Sinclair.Setting.EmulationSpeed" xml:space="preserve"><value>Emulation speed</value></data>
+  <data name="Emulation.Sinclair.Setting.FullerBox" xml:space="preserve"><value>Fuller Box</value></data>
+  <data name="Emulation.Sinclair.Setting.HighResolution" xml:space="preserve"><value>High-resolution graphics</value></data>
+  <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>Revision 2 keyboard</value></data>
+  <data name="Emulation.Sinclair.Setting.Melodik" xml:space="preserve"><value>Melodik</value></data>
+  <data name="Emulation.Sinclair.Setting.MemoryBankContent" xml:space="preserve"><value>8–16 KiB memory bank</value></data>
+  <data name="Emulation.Sinclair.Setting.MouseSwapButtons" xml:space="preserve"><value>Swap mouse buttons</value></data>
+  <data name="Emulation.Sinclair.Setting.Palette" xml:space="preserve"><value>Colour palette</value></data>
+  <data name="Emulation.Sinclair.Setting.SoundHardware" xml:space="preserve"><value>Sound hardware</value></data>
+  <data name="Emulation.Sinclair.Setting.SpeakerType" xml:space="preserve"><value>Speaker type</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeAutoLoad" xml:space="preserve"><value>Automatic cassette loading</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeFastLoad" xml:space="preserve"><value>Fast cassette loading</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeLoadSound" xml:space="preserve"><value>Cassette loading sound</value></data>
+  <data name="Emulation.Sinclair.Setting.TurboSound" xml:space="preserve"><value>TurboSound</value></data>
+  <data name="Emulation.Sinclair.Setting.USpeech" xml:space="preserve"><value>Currah uSpeech</value></data>
+  <data name="Emulation.Sinclair.Setting.VideoPreset" xml:space="preserve"><value>Video preset</value></data>
+  <data name="Emulation.Sinclair.Value.AmberMonochrome" xml:space="preserve"><value>Amber monochrome</value></data>
+  <data name="Emulation.Sinclair.Value.Beeper" xml:space="preserve"><value>Built-in sound generator</value></data>
+  <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>Clear image</value></data>
+  <data name="Emulation.Sinclair.Value.Full" xml:space="preserve"><value>Full screen border</value></data>
+  <data name="Emulation.Sinclair.Value.GreenMonochrome" xml:space="preserve"><value>Green monochrome</value></data>
+  <data name="Emulation.Sinclair.Value.InvertedColours" xml:space="preserve"><value>Inverted colours</value></data>
+  <data name="Emulation.Sinclair.Value.Monochrome" xml:space="preserve"><value>Black and white</value></data>
+  <data name="Emulation.Sinclair.Value.Noisy" xml:space="preserve"><value>Image with noise</value></data>
+  <data name="Emulation.Sinclair.Value.None" xml:space="preserve"><value>None</value></data>
+  <data name="Emulation.Sinclair.Value.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Emulation.Sinclair.Value.RomShadow" xml:space="preserve"><value>ROM mirror</value></data>
+  <data name="Emulation.Sinclair.Value.Television" xml:space="preserve"><value>Television</value></data>
+  <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>Television loudspeaker</value></data>
+  <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>Unfiltered</value></data>
+  <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>Video display</value></data>
+</root>

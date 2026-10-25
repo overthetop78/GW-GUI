@@ -16,7 +16,11 @@
                     <CheckBox IsChecked="{Binding Conversion.HardSectors.Enabled}" Content="{l:Loc Advanced.HardSectors}" Margin="18,0" Checked="Input_Changed" Unchecked="Input_Changed" ToolTip="{l:Loc Advanced.HardSectorsTip}"/>
                     <CheckBox IsChecked="{Binding Conversion.Reverse.Enabled}" Content="{l:Loc Advanced.Reverse}" Margin="8,0" Checked="Input_Changed" Unchecked="Input_Changed" ToolTip="{l:Loc Advanced.ReverseTip}"/>
                 </WrapPanel>
-                <DockPanel Margin="0,0,0,12" ToolTip="{l:Loc Advanced.DiskDefsTip}"><Button x:Name="BrowseDiskDefs" DockPanel.Dock="Right" Content="{l:Loc Common.Browse}"/><CheckBox x:Name="DiskDefsEnabled" IsChecked="{Binding Conversion.DiskDefs.Enabled}" Content="{l:Loc Advanced.DiskDefs}" VerticalAlignment="Center" Checked="Input_Changed" Unchecked="Input_Changed"/><TextBox x:Name="DiskDefsValue" Margin="10,0" IsReadOnly="True" Text="{Binding Conversion.DiskDefs.Value, Mode=TwoWay}" TextChanged="Input_Changed"/></DockPanel>
+                <DockPanel Margin="0,0,0,12" ToolTip="{l:Loc Advanced.DiskDefsTip}">
+                    <Button x:Name="BrowseDiskDefs" DockPanel.Dock="Right" Content="{l:Loc Common.Browse}"/>
+                    <CheckBox x:Name="DiskDefsEnabled" IsChecked="{Binding Conversion.DiskDefs.Enabled}" Content="{l:Loc Advanced.DiskDefs}" VerticalAlignment="Center" Checked="Input_Changed" Unchecked="Input_Changed"/>
+                    <TextBox x:Name="DiskDefsValue" Margin="10,0" IsReadOnly="True" Text="{Binding Conversion.DiskDefs.Value, Mode=TwoWay}" TextChanged="Input_Changed"/>
+                </DockPanel>
                 <TextBlock Text="{l:Loc Common.ExpertArguments}"/>
                 <TextBox Margin="0,6,0,0" Text="{Binding Conversion.ExpertArguments, UpdateSourceTrigger=PropertyChanged}" TextChanged="Input_Changed" ToolTip="{l:Loc Common.ExpertArgumentsTip}"/>
             </StackPanel>

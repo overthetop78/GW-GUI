@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>오디오 트랙의 재생 볼륨을 emulated 컴팩트 디스크 드라이브에서 읽습니다.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>마우스 운동 속도 설정</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>호스트 마우스 운동이 에뮬레이션 기계에보고 된 운동으로 변환되는 방법을 조정합니다.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>hard-disk 이미지에 대한 폴더를 선택하십시오.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>하드 디스크 이미지를 선택할 때 초기 폴더를 엽니다. 폴더 자체는 디스크로 장착되지 않습니다.</value></data>
 </root>

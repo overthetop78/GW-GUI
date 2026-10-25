@@ -29,11 +29,34 @@
   <data name="Emulation.Controller.Action.Fire2"><value>Buton de foc 2</value></data>
   <data name="Emulation.Controller.AnalogJoystick"><value>Joystick analogic</value></data>
   <data name="Emulation.Controller.Automatic"><value>Automat</value></data>
-  <data name="Emulation.Controller.None"><value>Niciuna</value></data>
+  <data name="Emulation.Controller.None"><value>Niciunul</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Schimbă joystick/șoarece</value></data>
   <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput nu a putut fi inițializat. Instalați sau reparați runtime-ul GameInput inclus.</value></data>
   <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (în mâna stângă)</value></data>
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (mâna dreaptă)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Aspect</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Controlor {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Dispozitiv de indicare</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Simularea zborului</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Simulare de curse</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Simulare dans</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Simulare cântare</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Alte periferice de simulare</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>Vibrație puternică</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>Vibrație slabă</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>Reîncarcă</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Culoarea reticulului</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Covoraș de dans</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Configurează tastatura din tastatura tastatură.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Configurați mouse-ul în fila mouse-ului.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Tip dispozitiv</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>Controlor utilizat pentru vibraţii</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>Atribuții pe stick și axe</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>Stick {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>Tastatură sau misiuni personalizate</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>Stick-ul stâng</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>Băţul drept.</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>Axă {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>Axe {0} / {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>Misiune salvată</value></data>
 </root>

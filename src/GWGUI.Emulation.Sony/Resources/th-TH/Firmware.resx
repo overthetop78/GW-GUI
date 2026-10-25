@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Firmware.Integrated"><value>ROM ของระบบ</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (ญี่ปุ่น) พ.ศ.</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (อเมริกาที่ 2) พ.ศ.</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (ยุโรป) พ.ศ.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>ROM สำหรับเครื่องเล่น DVD ของ PS2 ซึ่งไม่จำเป็นต้องระบุ</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>เลือกไฟล์ดัมป์ ROM1 ที่ตรงกับ BIOS ที่เลือก โดยปกติเป็นไฟล์ .rom1 หรือ rom1.bin ไฟล์นี้มีโมดูลเครื่องเล่น DVD และข้อมูลระบุรุ่น หากไม่มีไฟล์ดัมป์ ROM1 ของเครื่อง ให้เว้นช่องนี้ว่างไว้ เลือก BIOS หลักในช่อง BIOS</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>ROM เสริมของ PS2 ที่มีแบบอักษรภาษาจีน</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>เลือกไฟล์ดัมป์ ROM2 จากเครื่อง SCPH-50009 รุ่นจีนที่ตรงกับ BIOS ที่เลือก โดยปกติเป็นไฟล์ .rom2 หรือ rom2.bin สำหรับเครื่องที่ไม่มี ROM2 ให้เว้นช่องนี้ว่างไว้ ไฟล์นี้ใช้แทน BIOS หลักไม่ได้</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>การตั้งค่าของเครื่องที่บันทึกไว้</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>เลือกไฟล์ .nvm ขนาด 1024 ไบต์ที่ตรงกับ BIOS ที่เลือก ไฟล์นี้มีการตั้งค่าของเครื่อง ไม่จำเป็นต้องระบุไฟล์นี้: เว้นช่องว่างไว้เพื่อใช้การตั้งค่าที่บันทึกไว้ หรือให้ตัวจำลองสร้างค่าเริ่มต้น</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>เวอร์ชันของตัวควบคุมกลไก</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>เลือกไฟล์ .mec ขนาด 4 ไบต์ที่ตรงกับ BIOS ที่เลือก ไฟล์นี้มีหมายเลขเวอร์ชันของตัวควบคุมกลไก ไม่ใช่เฟิร์มแวร์ทั้งหมด ไม่จำเป็นต้องระบุไฟล์นี้: เว้นช่องว่างไว้เพื่อใช้ข้อมูลที่บันทึกไว้ หรือให้ตัวจำลองสร้างไฟล์เริ่มต้น</value></data>
+</root>

@@ -7,8 +7,7 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.AtariCas;
 internal static class AtariCasFormat
 {
     public static string FormatId => TapeImageFormatIds.AtariCas;
-    public static readonly IReadOnlySet<string> Extensions =
-        new[] { DiskImageFileExtensions.Cas }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    public static readonly IReadOnlySet<string> Extensions = new[] { DiskImageFileExtensions.Cas }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     public static readonly IReadOnlySet<string> UnderstoodChunks =
         new[]
         {

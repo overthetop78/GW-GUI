@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Legt die Wiedergabelautstärke von Audiospuren fest, die vom emulierten Compact-Disc-Laufwerk gelesen werden.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>Einstellung der Mausbewegungsgeschwindigkeit</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Passt an, wie die Bewegung der Host-Maus in die Bewegung umgewandelt wird, die der emulierten Maschine gemeldet wird.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Wählen Sie den Ordner für Festplattenbilder</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Setzt den Ordner, der beim Auswählen eines Festplattenbildes ursprünglich geöffnet wurde. Der Ordner selbst ist nicht als Diskette montiert.</value></data>
 </root>

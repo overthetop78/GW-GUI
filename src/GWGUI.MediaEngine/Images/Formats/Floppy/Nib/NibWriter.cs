@@ -9,11 +9,9 @@ internal static class NibWriter
     /// <param name="tracks">Pistes binaires à sérialiser.</param>
     /// <param name="path">Chemin du fichier de destination.</param>
     /// <param name="cancellationToken">Jeton d'annulation.</param>
-    public static Task WriteAsync(IReadOnlyList<IReadOnlyList<bool>> tracks, string path, CancellationToken cancellationToken = default) =>
-        WriteAsync(tracks, path, cancellationToken, File.WriteAllBytesAsync);
+    public static Task WriteAsync(IReadOnlyList<IReadOnlyList<bool>> tracks, string path, CancellationToken cancellationToken = default) => WriteAsync(tracks, path, cancellationToken, File.WriteAllBytesAsync);
 
-    internal static async Task WriteAsync(IReadOnlyList<IReadOnlyList<bool>> tracks, string path, CancellationToken cancellationToken,
-        Func<string, byte[], CancellationToken, Task> writeBytes)
+    internal static async Task WriteAsync(IReadOnlyList<IReadOnlyList<bool>> tracks, string path, CancellationToken cancellationToken, Func<string, byte[], CancellationToken, Task> writeBytes)
     {
         if (tracks.Count == 0) throw NibExceptions.InvalidTrackCount(tracks.Count);
         for (var track = 0; track < tracks.Count; track++) if (tracks[track].Count > NibLayout.MaximumTrackBitCount) throw NibExceptions.TrackTooLong(track, tracks[track].Count, NibLayout.MaximumTrackBitCount);

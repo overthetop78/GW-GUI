@@ -7,7 +7,7 @@
   <data name="Emulation.Video.Summary"><value>مجموعة شرائح الفيديو: {0}</value></data>
   <data name="Emulation.Video.Standard"><value>معيار الفيديو</value></data>
   <data name="Emulation.Video.Resolution"><value>القرار</value></data>
-  <data name="Emulation.Video.AspectRatio"><value>نسبة المشتبه فيهم</value></data>
+  <data name="Emulation.Video.AspectRatio"><value>نسبة العرض إلى الارتفاع</value></data>
   <data name="Emulation.Video.Crop"><value>حدود المحاصيل</value></data>
   <data name="Emulation.Video.FlickerFixer"><value>معالجات لطائرات</value></data>
   <data name="Emulation.Video.Resolution.AutoLow"><value>القرار المنخفض آليا</value></data>
@@ -44,7 +44,7 @@
   <data name="Emulation.Video.Crt.Color.White"><value>مونيكروم أبيض</value></data>
   <data name="Emulation.Video.Crt.Color.Gray"><value>مونوكروم رمادي</value></data>
   <data name="Emulation.Video.Crt.Color.Custom"><value>الاحتكار العرفي</value></data>
-  <data name="Emulation.Video.Crt.Mask.None"><value>لا</value></data>
+  <data name="Emulation.Video.Crt.Mask.None"><value>بلا</value></data>
   <data name="Emulation.Video.Crt.Mask.ApertureGrille"><value>مدفعية من طراز Aperture</value></data>
   <data name="Emulation.Video.Crt.Mask.ShadowMask"><value>قناع الظلال</value></data>
   <data name="Emulation.Video.Crt.Mask.SlotMask"><value>قناع الطيار</value></data>
@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>تخفيض الحظر</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>استرداد التفاصيل</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>إزالة التداخل</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>قبالة</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>المعوقين</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>(بوب) حتى الخطوط</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>(بوب) خطوط غريبة</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>الخلل الرأسي</value></data>
@@ -232,7 +232,7 @@
   <data name="Emulation.Video.Tab.Signal"><value>الإشارة</value></data>
   <data name="Emulation.Video.Tab.Effects"><value>الآثار</value></data>
   <data name="Emulation.Video.Parameter.FineDetails"><value>التفاصيل الدقيقة</value></data>
-  <data name="Emulation.Video.Restoration.Level.None"><value>بدون</value></data>
+  <data name="Emulation.Video.Restoration.Level.None"><value>بلا</value></data>
   <data name="Emulation.Video.Restoration.Level.Light"><value>خفيف</value></data>
   <data name="Emulation.Video.Restoration.Level.Medium"><value>متوسط</value></data>
   <data name="Emulation.Video.Restoration.Level.Strong"><value>قوي</value></data>
@@ -242,8 +242,8 @@
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>تدهور السلوك</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>معيار الكول</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>كثافة التأثيرات القياسية</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>الآلية</value></data>
-  <data name="Emulation.Video.Signal.Connection.None"><value>لا</value></data>
+  <data name="Emulation.Video.Signal.Standard.Automatic"><value>تلقائي</value></data>
+  <data name="Emulation.Video.Signal.Connection.None"><value>بلا</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>الاختناق الأفقي</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>التمزق الرأسي</value></data>
   <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>تريبزويد</value></data>
@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>ظالمة</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>الأفيون والضوء</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>شاشة الإسقاط</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>التصيير باستخدام العتاد</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>وضع التصيير</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>يستخدم التصيير العتادي واجهة الرسوميات (API) المحددة للتطبيق إذا كان المحاكي يدعمها.</value></data>
 </root>

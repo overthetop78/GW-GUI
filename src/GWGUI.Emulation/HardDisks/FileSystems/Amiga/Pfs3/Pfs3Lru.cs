@@ -40,8 +40,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             g.uip = false;
             g.locknr = 1;
 
-            g.glob_lrudata.LRUarray = g.glob_lrudata.useLruArray ? Enumerable.Range(1, (int)g.glob_lrudata.poolsize)
-                    .Select(_ => new Pfs3LruCachedBlock(new Pfs3CachedBlock())).ToArray() : Array.Empty<Pfs3LruCachedBlock>();
+            g.glob_lrudata.LRUarray = g.glob_lrudata.useLruArray ? Enumerable.Range(1, (int)g.glob_lrudata.poolsize).Select(_ => new Pfs3LruCachedBlock(new Pfs3CachedBlock())).ToArray() : Array.Empty<Pfs3LruCachedBlock>();
         }
 
         /// <summary>
@@ -158,8 +157,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
                         //DB(Trace(1, "AllocLRU", "ResToBeFreed %lx\n", &lrunode->cblk));
                         ResToBeFreed(lrunode.Value.cblk.oldblocknr, g);
                         Pfs3Update.UpdateDatestamp(lrunode.Value.cblk, g);
-                        if (!(await Pfs3Disk.RawWrite(g.stream, lrunode.Value.cblk.blk, g.currentvolume.rescluster,
-                                lrunode.Value.cblk.blocknr, g)))
+                        if (!(await Pfs3Disk.RawWrite(g.stream, lrunode.Value.cblk.blk, g.currentvolume.rescluster, lrunode.Value.cblk.blocknr, g)))
                         {
                             // ULONG args[2];
                             // args[0] = lrunode->cblk.blocknr;
@@ -237,8 +235,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             for (j = 0; j < NEW_LRU_ENTRIES; j++, g.glob_lrudata.poolsize++)
             {
                 //MinAddHead(&g->glob_lrudata.LRUpool, g.glob_lrudata.LRUarray[g.glob_lrudata.poolsize]);
-                Pfs3Macro.MinAddHead(g.glob_lrudata.LRUpool,
-                    g.glob_lrudata.LRUarray[(int)g.glob_lrudata.poolsize]);
+                Pfs3Macro.MinAddHead(g.glob_lrudata.LRUpool, g.glob_lrudata.LRUarray[(int)g.glob_lrudata.poolsize]);
             }
 
             g.NumBuffers = g.glob_lrudata.poolsize;

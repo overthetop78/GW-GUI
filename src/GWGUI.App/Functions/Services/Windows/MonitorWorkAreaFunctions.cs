@@ -17,8 +17,7 @@ internal static class MonitorWorkAreaFunctions
 
         var topLeft = window.PointFromScreen(new Point(info.Work.Left, info.Work.Top));
         var bottomRight = window.PointFromScreen(new Point(info.Work.Right, info.Work.Bottom));
-        return new Rect(window.Left + topLeft.X, window.Top + topLeft.Y,
-            bottomRight.X - topLeft.X, bottomRight.Y - topLeft.Y);
+        return new Rect(window.Left + topLeft.X, window.Top + topLeft.Y, bottomRight.X - topLeft.X, bottomRight.Y - topLeft.Y);
     }
 
     [StructLayout(LayoutKind.Sequential)]

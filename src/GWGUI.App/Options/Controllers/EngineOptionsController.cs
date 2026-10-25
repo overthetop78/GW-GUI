@@ -11,11 +11,7 @@ internal sealed class EngineOptionsController
     private readonly Func<bool> _isInitializing;
     private readonly Func<Task> _persistSettings;
 
-    public EngineOptionsController(
-        OptionsEnginesSection section,
-        EngineSettings settings,
-        Func<bool> isInitializing,
-        Func<Task> persistSettings)
+    public EngineOptionsController(OptionsEnginesSection section, EngineSettings settings, Func<bool> isInitializing, Func<Task> persistSettings)
     {
         _section = section;
         _isInitializing = isInitializing;
@@ -42,6 +38,5 @@ internal sealed class EngineOptionsController
 
     private static int Index(OperationEngine engine) => engine == OperationEngine.Internal ? 0 : 1;
 
-    private static OperationEngine Engine(int index) =>
-        index == 0 ? OperationEngine.Internal : OperationEngine.GreaseweazleHostTools;
+    private static OperationEngine Engine(int index) => index == 0 ? OperationEngine.Internal : OperationEngine.GreaseweazleHostTools;
 }

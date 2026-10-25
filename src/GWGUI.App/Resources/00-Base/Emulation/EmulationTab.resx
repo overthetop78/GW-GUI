@@ -18,4 +18,6 @@
   <data name="Emulation.Tab.Advanced"><value>Advanced</value></data>
   <data name="Emulation.Tab.Shortcuts"><value>Shortcuts</value></data>
   <data name="Emulation.Tab.Audio"><value>Audio</value></data>
+  <data name="Emulation.Tab.Cheats"><value>Cheats</value></data>
+  <data name="Emulation.Tab.Ethernet"><value>Ethernet</value></data>
 </root>

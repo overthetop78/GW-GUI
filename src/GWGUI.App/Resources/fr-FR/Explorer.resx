@@ -60,7 +60,7 @@
   <data name="Explorer.FirstSector"><value>Premier secteur</value></data>
   <data name="Explorer.SectorCount"><value>Nombre de secteurs</value></data>
   <data name="Explorer.StoredSectorSize"><value>Taille du secteur stocké</value></data>
-  <data name="Explorer.UserDataSize"><value>Taille des données de l&apos;utilisateur</value></data>
+  <data name="Explorer.UserDataSize"><value>Taille des données de l'utilisateur</value></data>
   <data name="Explorer.Subchannels"><value>Sous-canaux</value></data>
   <data name="Explorer.AudioTracks"><value>Pistes audio</value></data>
   <data name="Explorer.LoadingRecognition"><value>Reconnaître le format des médias</value></data>

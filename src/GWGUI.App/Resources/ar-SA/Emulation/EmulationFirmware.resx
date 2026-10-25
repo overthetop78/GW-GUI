@@ -11,4 +11,5 @@
   <data name="Emulation.Firmware.PartiallyCompatible"><value>متوافقة جزئيًا</value></data>
   <data name="Emulation.Firmware.Official"><value>رسمي</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>غير متوافق</value></data>
+  <data name="Emulation.Firmware.VoiceSamples"><value>عينات من الأصوات</value></data>
 </root>

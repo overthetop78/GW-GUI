@@ -1,4 +1,4 @@
-using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
+using MediaVolumeDescriptor = GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
 using System.Collections.ObjectModel;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Contracts.Explorer;
@@ -8,11 +8,7 @@ namespace GWGUI.MediaEngine.Contracts.Explorer;
 /// <summary>Associates one media volume with its recognized file system and candidate diagnostics.</summary>
 public sealed class ExploredMediaVolume
 {
-    public ExploredMediaVolume(
-        MediaVolumeDescriptor descriptor,
-        string? readerId,
-        FileSystemVolume? fileSystem,
-        IReadOnlyList<string> diagnostics)
+    public ExploredMediaVolume(MediaVolumeDescriptor descriptor, string? readerId, FileSystemVolume? fileSystem, IReadOnlyList<string> diagnostics)
     {
         ArgumentNullException.ThrowIfNull(descriptor);
         ArgumentNullException.ThrowIfNull(diagnostics);

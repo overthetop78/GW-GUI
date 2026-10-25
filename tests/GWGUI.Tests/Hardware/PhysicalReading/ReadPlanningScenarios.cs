@@ -17,7 +17,7 @@ internal static class ReadPlanningScenarios
         Assert.Equal("virtual-port",plan.PortName); Assert.Equal(4,plan.Revolutions); Assert.Equal(2,plan.Tracks.Count);
         Assert.Equal(1,plan.DriveUnit);
         if(variant==0) { context.Hardware=null; context.ValidationKey="Hardware.NotConfigured"; }
-        if(variant==1) context.ValidationKey="Read.InternalRawScpOnly";
+        if(variant==1) { context.View.ImageBlock.FormatCombo.SelectedItem=null; context.ValidationKey="Read.InternalInvalidOptions"; }
         if(variant==2)
         {
             context.View.ImageBlock.RawScpRadio.IsChecked=true; context.View.ImageBlock.KnownFormatRadio.IsChecked=false;
@@ -43,10 +43,7 @@ internal static class ReadPlanningScenarios
         };
         var device = new ReadAcquisitionScenarios.Device();
         var provider = new GreaseweazleMediaAcquisitionProvider(() => device);
-        var acquire = () => provider.AcquireAsync(
-                MediaKind.Floppy,
-                options.PortName,
-                ReadAcquisitionScenarios.CreateProviderOptions(options));
+        var acquire = () => provider.AcquireAsync(MediaKind.Floppy, options.PortName, ReadAcquisitionScenarios.CreateProviderOptions(options));
         if (variant == 0) await Assert.ThrowsAsync<NotSupportedException>(acquire);
         else await Assert.ThrowsAnyAsync<ArgumentException>(acquire);
         Assert.Empty(device.Calls);

@@ -12,13 +12,11 @@ internal static class ProfileSelectionScenarios
         {
             case 0:
                 using (var read = new GWGUI.Tests.Interface.ReadViews.ReadOperationScenarios.Context())
-                    Verify(read.View.ProfileBlock, OperationKind.Read, read.Controller.ProfileChanged, read.Controller.ResetProfile,
-                        read.Model.Read.Tracks, value => read.Model.Read.ExpertArguments = value, () => read.Model.Read.ExpertArguments);
+                    Verify(read.View.ProfileBlock, OperationKind.Read, read.Controller.ProfileChanged, read.Controller.ResetProfile, read.Model.Read.Tracks, value => read.Model.Read.ExpertArguments = value, () => read.Model.Read.ExpertArguments);
                 break;
             case 1:
                 var write = new GWGUI.Tests.Interface.WriteViews.WriteOperationScenarios.Context();
-                Verify(write.View.ProfileBlock, OperationKind.Write, write.Controller.ProfileChanged, write.Controller.ResetProfile,
-                    write.Model.Write.Tracks, value => write.Model.Write.ExpertArguments = value, () => write.Model.Write.ExpertArguments);
+                Verify(write.View.ProfileBlock, OperationKind.Write, write.Controller.ProfileChanged, write.Controller.ResetProfile, write.Model.Write.Tracks, value => write.Model.Write.ExpertArguments = value, () => write.Model.Write.ExpertArguments);
                 break;
             default:
                 var convert = new GWGUI.Tests.Interface.ConversionViews.ConversionOperationScenarios.Context();
@@ -28,8 +26,7 @@ internal static class ProfileSelectionScenarios
         }
     }
 
-    private static void Verify(ProfileSection section, OperationKind kind, Action change, Action reset,
-        ValueOptionViewModel tracks, Action<string> editExpert, Func<string> expert)
+    private static void Verify(ProfileSection section, OperationKind kind, Action change, Action reset, ValueOptionViewModel tracks, Action<string> editExpert, Func<string> expert)
     {
         var first = new OperationProfile("first", kind, "first", new Dictionary<string, string> { ["tracks"] = "c=2-4:h=1", ["expert"] = "--raw" }, new HashSet<string> { "tracks" });
         var second = new OperationProfile("second", kind, "second", new Dictionary<string, string> { ["tracks"] = "c=1-1:h=0" }, new HashSet<string> { "tracks" });

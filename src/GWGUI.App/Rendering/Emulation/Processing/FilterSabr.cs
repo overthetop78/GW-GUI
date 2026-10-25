@@ -3,8 +3,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 // Original MIT-compatible diagonal reconstruction; no GPL SABR source code is used.
 internal static class FilterSabr
 {
-    public static void Sample(float[] source, int width, int height,
-        float positionX, float positionY, Span<float> result)
+    public static void Sample(float[] source, int width, int height, float positionX, float positionY, Span<float> result)
     {
         var x = Math.Clamp((int)MathF.Floor(positionX), 0, width - 1);
         var y = Math.Clamp((int)MathF.Floor(positionY), 0, height - 1);
@@ -53,27 +52,14 @@ internal static class FilterSabr
             sourceX = Math.Clamp(sourceX, 0, width - 1);
             sourceY = Math.Clamp(sourceY, 0, height - 1);
             var offset = (sourceY * width + sourceX) * 3;
-            return new Color(
-                SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset]),
-                SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 1]),
-                SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 2]));
+            return new Color( SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset]), SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 1]), SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 2]));
         }
     }
 
-    private static Color Mix(Color first, Color second, float weight) => new(
-        first.Red + (second.Red - first.Red) * weight,
-        first.Green + (second.Green - first.Green) * weight,
-        first.Blue + (second.Blue - first.Blue) * weight);
+    private static Color Mix(Color first, Color second, float weight) => new(first.Red + (second.Red - first.Red) * weight, first.Green + (second.Green - first.Green) * weight, first.Blue + (second.Blue - first.Blue) * weight);
 
     private static float Distance(Color first, Color second)
-    {
-        var redMean = 0.5f * (first.Red + second.Red);
-        var red = first.Red - second.Red;
-        var green = first.Green - second.Green;
-        var blue = first.Blue - second.Blue;
-        return MathF.Sqrt((2f + redMean) * red * red + 4f * green * green
-            + (3f - redMean) * blue * blue) / 3f;
-    }
+        => FilterSampling.Distance(first.Red, first.Green, first.Blue, second.Red, second.Green, second.Blue);
 
     private readonly record struct Color(float Red, float Green, float Blue);
     private readonly record struct Candidate(Color Color, float Strength);

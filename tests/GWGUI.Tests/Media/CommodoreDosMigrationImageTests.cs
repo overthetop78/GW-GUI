@@ -15,9 +15,7 @@ public sealed class CommodoreDosMigrationImageTests
     [InlineData(DiskImageFormatIds.Commodore1581)]
     public void MigratedFileCanBeReadFromCommodoreDosImage(string formatId)
     {
-        var source = new FileSystemVolume("VOLUME", FileSystemIds.Fat12, 0, 0, null, null,
-            [new FileSystemEntry("HELLO", FileSystemEntryKind.File, 3, null, string.Empty,
-                0, 0, true, [], new byte[] { 1, 2, 3 })], []);
+        var source = new FileSystemVolume("VOLUME", FileSystemIds.Fat12, 0, 0, null, null, [new FileSystemEntry("HELLO", FileSystemEntryKind.File, 3, null, string.Empty, 0, 0, true, [], new byte[] { 1, 2, 3 })], []);
         var result = new FileSystemMigrationService().CreateImage(source, formatId);
         Assert.True(result.Report.CanExecute);
         var image = result.Image;

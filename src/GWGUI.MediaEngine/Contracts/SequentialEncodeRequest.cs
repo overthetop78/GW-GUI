@@ -20,8 +20,7 @@ public sealed class SequentialEncodeRequest
         MachineId = machineId;
         Blocks = new ReadOnlyCollection<SequentialDecodedBlock>(blocks.ToArray());
         RetainedSegments = new ReadOnlyCollection<SequentialMediaSegment>((retainedSegments ?? []).ToArray());
-        Parameters = new ReadOnlyDictionary<string, string>(
-            new Dictionary<string, string>(parameters ?? new Dictionary<string, string>(), StringComparer.Ordinal));
+        Parameters = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>(parameters ?? new Dictionary<string, string>(), StringComparer.Ordinal));
     }
 
     public string TargetFormatId { get; }

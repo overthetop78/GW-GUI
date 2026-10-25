@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Thomson.Error.AlreadyInitialized" xml:space="preserve"><value>The emulation host is already initialized.</value></data>
+  <data name="Emulation.Thomson.Error.CommunicationFailed" xml:space="preserve"><value>The emulation host communication failed.</value></data>
+  <data name="Emulation.Thomson.Error.ContentFileMissing" xml:space="preserve"><value>The configured medium could not be found.</value></data>
+  <data name="Emulation.Thomson.Error.DynamicMediaUnsupported" xml:space="preserve"><value>The emulation session cannot exchange this medium.</value></data>
+  <data name="Emulation.Thomson.Error.ExecutableMissing" xml:space="preserve"><value>The emulation host executable is missing.</value></data>
+  <data name="Emulation.Thomson.Error.InstalledLibraryLockedFormat" xml:space="preserve"><value>The installed library cannot be replaced: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidArchitecture" xml:space="preserve"><value>The downloaded core is not Windows x64.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidConfiguration" xml:space="preserve"><value>The emulation configuration is invalid.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidResponseLengthFormat" xml:space="preserve"><value>Invalid emulation host response length: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.MachineInvalidState" xml:space="preserve"><value>The emulation session is not in the required state.</value></data>
+  <data name="Emulation.Thomson.Error.MachineStopped" xml:space="preserve"><value>The emulation session has stopped.</value></data>
+  <data name="Emulation.Thomson.Error.MissingExpectedLibraryFormat" xml:space="preserve"><value>The downloaded archive does not contain {0}.</value></data>
+  <data name="Emulation.Thomson.Error.MissingPublishedDate" xml:space="preserve"><value>The official response does not identify its publication date.</value></data>
+  <data name="Emulation.Thomson.Error.NotInitialized" xml:space="preserve"><value>The emulation host is not initialized.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessExitSuffixFormat" xml:space="preserve"><value> Exit code: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessNotInitialized" xml:space="preserve"><value>The emulation host process is not initialized.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessStartFailed" xml:space="preserve"><value>The emulation host process could not start.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessUnavailable" xml:space="preserve"><value>The emulation host process is unavailable.</value></data>
+  <data name="Emulation.Thomson.Error.ProtocolVersionMismatchFormat" xml:space="preserve"><value>Protocol version {0} does not match {1}.</value></data>
+  <data name="Emulation.Thomson.Error.RequestCancelled" xml:space="preserve"><value>The emulation host request was cancelled.</value></data>
+  <data name="Emulation.Thomson.Error.ResponseTimeout" xml:space="preserve"><value>The emulation host response timed out.</value></data>
+  <data name="Emulation.Thomson.Error.ResponseUnavailable" xml:space="preserve"><value>The emulation host response is unavailable.</value></data>
+  <data name="Emulation.Thomson.Error.SharedVideoUnavailable" xml:space="preserve"><value>The shared video transport is unavailable.</value></data>
+  <data name="Emulation.Thomson.Error.StateIncompatible" xml:space="preserve"><value>The saved state is incompatible with the current machine.</value></data>
+  <data name="Emulation.Thomson.Error.StateInvalid" xml:space="preserve"><value>The saved state is invalid.</value></data>
+  <data name="Emulation.Thomson.Error.StateUnavailable" xml:space="preserve"><value>The emulator does not support saved states.</value></data>
+  <data name="Emulation.Thomson.Error.UnknownCommandFormat" xml:space="preserve"><value>Unknown emulation host command: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.UnsupportedControllerDevice" xml:space="preserve"><value>The controller device is not supported.</value></data>
+</root>

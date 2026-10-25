@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
@@ -28,9 +28,9 @@
     <ProjectReference Include="..\..\src\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.App\GWGUI.App.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation\GWGUI.Emulation.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Amiga\GWGUI.Emulation.Amiga.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Amstrad\GWGUI.Emulation.Amstrad.csproj" />
-    <ProjectReference Include="..\..\src\GWGUI.Emulation.Atari\GWGUI.Emulation.Atari.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="..\GWGUI.LocalEmulationTests\Emulation\Video\VideoProcessingScenarios.cs" Link="Shared\VideoProcessingScenarios.cs" />
+  </ItemGroup>
 </Project>

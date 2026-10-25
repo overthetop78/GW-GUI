@@ -75,26 +75,21 @@ public partial class MainWindow : Window
         UpdateProfileStatus();
     }
 
-    private void RefreshWriteProfiles(string? selectedId = null)
-        => _writeTab.RefreshProfiles(selectedId);
+    private void RefreshWriteProfiles(string? selectedId = null) => _writeTab.RefreshProfiles(selectedId);
 
-    private void RefreshConvertProfiles(string? selectedId = null)
-        => _conversionTab.RefreshProfiles(selectedId);
+    private void RefreshConvertProfiles(string? selectedId = null) => _conversionTab.RefreshProfiles(selectedId);
 
     private void WriteInput_Changed(object sender, RoutedEventArgs e) => _writeTab.UpdateCommand();
 
     private void UpdateWriteCommand() => _writeTab.UpdateCommand();
 
-    private async void ExecuteWrite_Click(object sender, RoutedEventArgs e)
-        => await _writeTab.ExecuteAsync();
+    private async void ExecuteWrite_Click(object sender, RoutedEventArgs e) => await _writeTab.ExecuteAsync();
 
-    private void BuildConversionFormats(string? sourceExtension, DetectedImageFormat? detection = null)
-        => _conversionTab.BuildFormats(sourceExtension, detection);
+    private void BuildConversionFormats(string? sourceExtension, DetectedImageFormat? detection = null) => _conversionTab.BuildFormats(sourceExtension, detection);
 
     private void UpdateConvertCommand() => _conversionTab.UpdateCommand();
 
-    private async void ExecuteConvert_Click(object sender, RoutedEventArgs e)
-        => await _conversionTab.ExecuteAsync();
+    private async void ExecuteConvert_Click(object sender, RoutedEventArgs e) => await _conversionTab.ExecuteAsync();
 
     private void CaptureConversionSettings() => _conversionTab.CaptureSettings();
 
@@ -106,6 +101,7 @@ public partial class MainWindow : Window
         if (!e.Cancel)
         {
             ErrorLog.EntryWritten -= AppendErrorToConsole;
+            ErrorLog.WarningWritten -= AppendWarningToConsole;
             _scpInspectorController.Dispose();
         }
     }
@@ -120,8 +116,17 @@ public partial class MainWindow : Window
         _terminalPanel.AppendError(entry);
     }
 
-    private void RefreshReadProfiles(string? selectedId = null)
-        => _readTab.RefreshProfiles(selectedId);
+    private void AppendWarningToConsole(string entry)
+    {
+        if (!Dispatcher.CheckAccess())
+        {
+            _ = Dispatcher.InvokeAsync(() => AppendWarningToConsole(entry));
+            return;
+        }
+        _terminalPanel.AppendWarning(entry);
+    }
+
+    private void RefreshReadProfiles(string? selectedId = null) => _readTab.RefreshProfiles(selectedId);
 
     private void CaptureProfiles()
     {
@@ -170,9 +175,7 @@ public partial class MainWindow : Window
     {
         var selectedReadId = (ReadFormatCombo.SelectedItem as DiskFormat)?.Id;
         var selectedFamily = (ReadFormatCombo.SelectedItem as DiskFormat)?.Family ?? ReadFamilyCombo.SelectedItem as string;
-        var readableFormats = _formatCatalog.Formats.Where(format =>
-            format.Family != MainWindowConstants.RawFormatFamily
-            && format.SupportsPhysicalRead).ToArray();
+        var readableFormats = _formatCatalog.Formats.Where(format => format.Family != MainWindowConstants.RawFormatFamily && format.SupportsPhysicalRead).ToArray();
         var families = readableFormats.Select(format => format.Family).Distinct().Order().ToArray();
         ReadFamilyCombo.ItemsSource = families;
         ReadFamilyCombo.SelectedItem = selectedFamily is not null && families.Contains(selectedFamily) ? selectedFamily : families.FirstOrDefault();
@@ -182,9 +185,7 @@ public partial class MainWindow : Window
         if (WriteFormatCombo.ItemsSource is not null)
         {
             var selectedWriteId = (WriteFormatCombo.SelectedItem as DiskFormat)?.Id;
-        var writableFormats = _formatCatalog.Formats.Where(format =>
-            format.Family != MainWindowConstants.RawFormatFamily
-            && format.SupportsPhysicalWrite).ToArray();
+        var writableFormats = _formatCatalog.Formats.Where(format => format.Family != MainWindowConstants.RawFormatFamily && format.SupportsPhysicalWrite).ToArray();
             WriteFormatCombo.ItemsSource = writableFormats;
             WriteFormatCombo.SelectedItem = writableFormats.FirstOrDefault(format => format.Id == selectedWriteId);
         }
@@ -195,8 +196,7 @@ public partial class MainWindow : Window
         BuildConversionFormats(sourceExtension, detection);
     }
 
-    private async void ExecuteRead_Click(object sender, RoutedEventArgs e)
-        => await _readTab.ExecuteAsync();
+    private async void ExecuteRead_Click(object sender, RoutedEventArgs e) => await _readTab.ExecuteAsync();
 
     private void AppendAnalysisFailure(Exception exception, string context)
     {
@@ -226,14 +226,11 @@ public partial class MainWindow : Window
 
     private void CaptureReadSettings() => _readTab.CaptureSettings();
 
-    private void RestoreWriteSettings()
-        => _writeTab.RestoreSettings();
+    private void RestoreWriteSettings() => _writeTab.RestoreSettings();
 
-    private void CaptureWriteSettings()
-        => _writeTab.CaptureSettings();
+    private void CaptureWriteSettings() => _writeTab.CaptureSettings();
 
-    private async void Preferences_Click(object sender, RoutedEventArgs e)
-        => await _lifecycle.ShowPreferencesAsync();
+    private async void Preferences_Click(object sender, RoutedEventArgs e) => await _lifecycle.ShowPreferencesAsync();
 
     internal void RefreshLocalizedContent()
     {
@@ -273,11 +270,7 @@ public partial class MainWindow : Window
             var unsupported = exception as DiskImageWorkspaceController.SelectedFormatUnsupportedException;
             var formatName = unsupported?.FormatName ?? LocExtension.Get("Explorer.Unknown");
             var fileName = unsupported?.FileName ?? LocExtension.Get("Explorer.Unknown");
-            CommonErrorDialog.Show(this, new CommonErrorDialogContent(
-                LocExtension.Get(titleKey),
-                LocExtension.Get(messageKey, formatName, fileName),
-                CommonErrorDialog.InformationIcon,
-                (Brush)FindResource("AccentBrush")));
+            CommonErrorDialog.Show(this, new CommonErrorDialogContent(LocExtension.Get(titleKey), LocExtension.Get(messageKey, formatName, fileName), CommonErrorDialog.InformationIcon, (Brush)FindResource("AccentBrush")));
             return;
         }
         var detail = ExceptionDescriptionFunctions.Describe(exception);
@@ -287,11 +280,7 @@ public partial class MainWindow : Window
     private void CaptureWindowSettings()
     {
         _terminalPanel.CaptureCurrent();
-        _windowPlacement.Capture(
-            this,
-            _settings,
-            _terminalPanel.IsVisible,
-            _terminalPanel.ActualHeight);
+        _windowPlacement.Capture(this, _settings, _terminalPanel.IsVisible, _terminalPanel.ActualHeight);
     }
 
     private void RestoreWindowPlacement() => _windowPlacement.Restore(this, _settings.Window);

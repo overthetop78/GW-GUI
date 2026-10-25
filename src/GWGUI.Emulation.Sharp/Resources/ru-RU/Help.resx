@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Help.AdpcmVolume" xml:space="preserve"><value>Установить объем ADPCM звуковой канал.</value></data>
+  <data name="Emulation.Sharp.Help.AudioDesynchronization" xml:space="preserve"><value>Откажитесь от избыточных аудио-образцов, чтобы уменьшить ошибки синхронизации звука.</value></data>
+  <data name="Emulation.Sharp.Help.AudioSampleRate" xml:space="preserve"><value>Выберите частоту звукопоглощения.</value></data>
+  <data name="Emulation.Sharp.Help.ButtonOrder" xml:space="preserve"><value>Выберите порядок кнопок контроллера.</value></data>
+  <data name="Emulation.Sharp.Help.CpuSpeed" xml:space="preserve"><value>Выберите частоту процессора.</value></data>
+  <data name="Emulation.Sharp.Help.DiskSeekSound" xml:space="preserve"><value>Играйте звук движения головки дискеты.</value></data>
+  <data name="Emulation.Sharp.Help.FmBoard" xml:space="preserve"><value>Позволить FM звуковая доска.</value></data>
+  <data name="Emulation.Sharp.Help.FmVolume" xml:space="preserve"><value>Установить объем FM звуковой канал.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRate" xml:space="preserve"><value>Выберите количество видеокадров в секунду.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRateAdjustment" xml:space="preserve"><value>Настройка видео синхронизации для современных дисплеев, чтобы уменьшить заикание звука.</value></data>
+  <data name="Emulation.Sharp.Help.FrameSkip" xml:space="preserve"><value>Выберите долю видеоизображений, чтобы пропустить. Отображение одного изображения из трех пропускает два из трех.</value></data>
+  <data name="Emulation.Sharp.Help.HideGraphics" xml:space="preserve"><value>Скрыть графический слой видеоизображения.</value></data>
+  <data name="Emulation.Sharp.Help.HideSprites" xml:space="preserve"><value>Спрячьте спрайт и фоновые слои видеоизображения.</value></data>
+  <data name="Emulation.Sharp.Help.HideText" xml:space="preserve"><value>Спрячьте текстовый слой видеоизображения.</value></data>
+  <data name="Emulation.Sharp.Help.MemorySize" xml:space="preserve"><value>Выберите количество эмулированных RAM.</value></data>
+  <data name="Emulation.Sharp.Help.RapidFire" xml:space="preserve"><value>Повторяйте нажатие кнопки контроллера автоматически.</value></data>
+  <data name="Emulation.Sharp.Help.Raster" xml:space="preserve"><value>Включите растровые эффекты в эмулируемом видеоизображении.</value></data>
+  <data name="Emulation.Sharp.Help.Resolution" xml:space="preserve"><value>Выберите низкое или высокое разрешение.</value></data>
+  <data name="Emulation.Sharp.Help.ReverseJoystick" xml:space="preserve"><value>Обратный ввод контроллера, как предусмотрено эмулятором.</value></data>
+  <data name="Emulation.Sharp.Help.UnlimitedSpeed" xml:space="preserve"><value>Запускайте машину как можно быстрее. Звук может стать несинхронизированным.</value></data>
+  <data name="Emulation.Sharp.Help.VerticalSync" xml:space="preserve"><value>Синхронизируйте эмулируемый дисплей вертикально.</value></data>
+  <data name="Emulation.Sharp.Help.VideoBeforeAudio" xml:space="preserve"><value>Уменьшите задержку видео перед задержкой аудио.</value></data>
+</root>

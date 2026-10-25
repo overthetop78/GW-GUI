@@ -46,7 +46,7 @@ internal static partial class SettingsDescriptionFunctionsConstants
     internal const string ResourceVideoCrop = "Emulation.Video.Crop";
     internal const string ResourceVideoFrameSkip = "Emulation.Video.FrameSkip";
     internal const string ControllerOptions = "controller-options";
-    internal const string ResourceControllerTab = "Emulation.Controller.Tab";
+    internal const string ResourceControllerTab = "Emulation.Tab.Controller";
     internal const string Value8 = "\uE7FC";
     internal const string ResourceAtariControllerPaddleSpeed = "Emulation.Atari.Controller.PaddleSpeed";
     internal const string ResourceAtariControllerAutofire = "Emulation.Atari.Controller.Autofire";

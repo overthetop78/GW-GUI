@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Error.CoreNotFound"><value>Den krævede Atari-kerne blev ikke fundet.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected"><value>Den valgte Atari-kerne kunne ikke indlæses.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing"><value>En krævet Atari firmware mangler.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid"><value>En Atari firmware er ugyldig eller inkompatibel.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound"><value>De konfigurerede Atari medier blev ikke fundet.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported"><value>De konfigurerede medier understøttes ikke af denne Atari maskine.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid"><value>En Atari-indstilling har en ugyldig værdi.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure"><value>Kommunikation med Atari-værten mislykkedes.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid"><value>Atari gemt tilstand er ugyldig.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible"><value>Atari gemt tilstand er uforenelig med den nuværende maskine.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected"><value>En uventet Atari emulering fejl opstod.</value></data>
+  <data name="Emulation.Atari.Error.Details"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration"><value>Den aktive Atari-konfiguration kan ikke ændres eller slettes.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>Krævet Atari firmware er ikke konfigureret. Firmware: {0}. Maskine: {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing"><value>Den konfigurerede Atari firmware fil blev ikke fundet. Firmware: {0}. Fil: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing"><value>Configured Atari media blev ikke fundet: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing"><value>Atari-værtens kørbare sti er ikke tilgængelig.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled"><value>Atari-emuleringskernen er ikke installeret. Hovednet: {0}</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Den valgte Atari emulator bruger ikke den delte cylindercontroller.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Den valgte Atari maskine kræver patronmedier.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Cylinderforlængelsen understøttes ikke af den valgte Atari emulator.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Atari cylinderampullen kan ikke åbnes til aflæsning.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Atari emulatoren afviste patronen.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Atari emulatoren afviste både udskiftningen og den tidligere cylinderampul.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Denne Atari emulator kan ikke forblive tændt uden en cylinderampul.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Den valgte Atari-emulator afslører ikke valg af patronområde.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Denne Atari emulator kan ikke bruge patronen timing mode kaldet SECAM.</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel"><value>Denne værdi bestemmes af den valgte model.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>Der findes ingen kompatibel FPU til denne model.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory"><value>Der er ingen alternativ hukommelse til denne model.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware"><value>Denne model har ingen konfigurerbar firmware.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard"><value>Denne model har ikke noget tastatur.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse"><value>Denne model har ingen mus.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage"><value>Denne model har ingen lagringsmedier.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>For at bruge compact disc media, skal du vælge denne model: Jaguar CD.</value></data>
+</root>

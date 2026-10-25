@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Đặt âm lượng phát lại của các bản ghi âm được đọc từ ổ đĩa co dãn mô phỏng.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>Đặt tốc độ di chuyển của chuột</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Điều chỉnh cách chuyển động của máy con chuột được chuyển đổi sang chuyển động được báo cáo tới máy tính mô phỏng.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Chọn thư mục cho ảnh khó gỡ</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Đặt thư mục lúc đầu mở khi chọn ảnh khó gỡ. Thư mục này không được gắn như đĩa.</value></data>
 </root>

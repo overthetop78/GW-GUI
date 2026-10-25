@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.beetle_pcfx_fast.Description"><value>Emuluje systémy NEC PC-FX.</value></data>
+  <data name="Emulation.Nec.Language"><value>Jazyk systému NEC</value></data>
+  <data name="Emulation.Nec.Language.English"><value>Anglický jazyk</value></data>
+  <data name="Emulation.Nec.Language.French"><value>Francouzština</value></data>
+  <data name="Emulation.Nec.Language.Spanish"><value>Španělština</value></data>
+  <data name="Emulation.Nec.Firmware.Integrated"><value>ROM zabudovaný do emulátoru</value></data>
+  <data name="Emulation.Emulator.beetle_pce_fast.Description"><value>Emuláty PC Engine, CoreGrafx, TurboGrafx-16, PC Engine Duo a TurboExpress systémy.</value></data>
+  <data name="Emulation.Nec.Firmware.NotRequired"><value>Není nutný externí BIOS</value></data>
+  <data name="Emulation.Nec.Audio.CdVolume"><value>Hlasitost zvuku CD</value></data>
+  <data name="Emulation.Nec.Audio.SoundQuality"><value>Kvalita zvuku</value></data>
+  <data name="Emulation.Nec.Mouse.Sensitivity"><value>Citlivost na myši</value></data>
+  <data name="Emulation.Nec.Memory.CdRam"><value>Práce CD RAM</value></data>
+  <data name="Emulation.Nec.Audio.AdpcmVolume"><value>Objem CD ADPCM</value></data>
+  <data name="Emulation.Nec.Audio.CdPsgVolume"><value>Objem PSG CD</value></data>
+  <data name="Emulation.Nec.Audio.AdpcmLowPass"><value>CD ADPCM low-pass filtr</value></data>
+  <data name="Emulation.Nec.Audio.SuppressClicks"><value>Resetovat cvakání kanálu</value></data>
+  <data name="Emulation.Nec.Audio.BuggyCodec"><value>Emulát buggy ADPCM kodek</value></data>
+  <data name="Emulation.Nec.Storage.CdImageCache"><value>Načíst obraz CD do paměti</value></data>
+  <data name="Emulation.Nec.Storage.CdIgnoreErrors"><value>Ignorovat chyby korekce CD</value></data>
+  <data name="Emulation.Emulator.beetle_sgx.Description"><value>Emuluje PC Engine SuperGrafx hry, HuCards a CD-ROM ² média.</value></data>
+  <data name="Emulation.Emulator.geargrafx.Description"><value>Emuluje PC Engine, SuperGrafx a NEC LaserActive systémy.</value></data>
+  <data name="Emulation.Nec.Cpu.Region"><value>Konzolová oblast</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Auto"><value>Automatický</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Japan"><value>Japonsko</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Usa"><value>Spojené státy americké</value></data>
+</root>

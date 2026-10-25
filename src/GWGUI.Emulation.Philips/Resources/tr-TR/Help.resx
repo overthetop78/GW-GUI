@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Help.AlternateRenderer" xml:space="preserve"><value>Uygulama yönteminin telif hakkı için kullanılan alternatif uygulama yöntemi kullanın.</value></data>
+  <data name="Emulation.Philips.Help.AudioVolume" xml:space="preserve"><value>Konsol tarafından üretilen seslerin hacmini ayarlayın, bir yüzdesi olarak.</value></data>
+  <data name="Emulation.Philips.Help.AutoSave" xml:space="preserve"><value>Aynı içerik tekrar başladığında makine durumunu kurtar ve geri yükleme.</value></data>
+  <data name="Emulation.Philips.Help.Cheats" xml:space="preserve"><value>Enable hile kodları, emülatör tarafından sağlanan.</value></data>
+  <data name="Emulation.Philips.Help.CpuOverclock" xml:space="preserve"><value>İntegra işlemci hızı orijinal frekansının bir yüzdesi olarak.</value></data>
+  <data name="Emulation.Philips.Help.CropOverscan" xml:space="preserve"><value>Video görüntüsünden dış sınırı çıkarın.</value></data>
+  <data name="Emulation.Philips.Help.KeyboardMapping" xml:space="preserve"><value>Ev sahibi klavye anahtarlarının basılı karakterleri veya fiziksel pozisyonları takip edip takip edip etmeyeceğini seçin.</value></data>
+  <data name="Emulation.Philips.Help.LowPassFilter" xml:space="preserve"><value>Konsoldaki yüksek frekansları azaltır.</value></data>
+  <data name="Emulation.Philips.Help.LowPassRange" xml:space="preserve"><value>Düşük geçiş filtresini ses örnekleme frekansının bir yüzdesi olarak ayarlayın.</value></data>
+  <data name="Emulation.Philips.Help.MixFrames" xml:space="preserve"><value>İkinci video çerçevelerini karıştırın. Basit ağırlıkları kullanır; önceki görüntünün ne kadar görünür olduğunu bir yüzdesi kontrol eder.</value></data>
+  <data name="Emulation.Philips.Help.NvramPerGame" xml:space="preserve"><value>Her oyun için kalıcı hafıza ayrı.</value></data>
+  <data name="Emulation.Philips.Help.Resolution" xml:space="preserve"><value>Video çıktı çözünürlüğünü seçin.</value></data>
+  <data name="Emulation.Philips.Help.StateNaming" xml:space="preserve"><value>Mağaza her oyun için ayrı ayrı ülkeleri kurtardı veya tüm sistem için onları paylaşıyordu.</value></data>
+  <data name="Emulation.Philips.Help.Throttle" xml:space="preserve"><value>Orijinal makine hızına geçiş.</value></data>
+  <data name="Emulation.Philips.Help.VideoStandard" xml:space="preserve"><value>Emated makine tarafından kullanılan televizyon standardı seçin.</value></data>
+  <data name="Emulation.Philips.Help.VoiceVolume" xml:space="preserve"><value>Konuşma hacmini yüzde olarak ayarlama.</value></data>
+</root>

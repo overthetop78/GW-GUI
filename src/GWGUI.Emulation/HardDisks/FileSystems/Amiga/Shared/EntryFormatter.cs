@@ -12,8 +12,7 @@
 
         public static string FormatProtectionBits(ProtectionBits protectionBits)
         {
-            return new string(ProtectionBitsOrder.Select(x => protectionBits.HasFlag(x) ? x.ToString()[0] : '-')
-                .ToArray());
+            return new string(ProtectionBitsOrder.Select(x => protectionBits.HasFlag(x) ? x.ToString()[0] : '-').ToArray());
         }
     }
 }

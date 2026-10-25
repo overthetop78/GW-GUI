@@ -39,15 +39,9 @@ internal sealed class ControllerVisualInput
     internal float ArcadeX => State.ArcadeX;
     internal float ArcadeY => State.ArcadeY;
 
-    internal bool RacingButton(GameInputRacingWheelButtons button, int fallbackIndex) =>
-        State.HasRacingWheelState
-            ? State.IsStandardActive(RacingControl(button))
-            : RawButton(fallbackIndex);
+    internal bool RacingButton(GameInputRacingWheelButtons button, int fallbackIndex) => State.HasRacingWheelState ? State.IsStandardActive(RacingControl(button)) : RawButton(fallbackIndex);
 
-    internal bool FlightButton(GameInputFlightStickButtons button, int fallbackIndex) =>
-        State.HasFlightStickState
-            ? State.IsStandardActive(FlightControl(button))
-            : RawButton(fallbackIndex);
+    internal bool FlightButton(GameInputFlightStickButtons button, int fallbackIndex) => State.HasFlightStickState ? State.IsStandardActive(FlightControl(button)) : RawButton(fallbackIndex);
 
     internal bool FlightHat(GameInputSwitchPosition position)
     {
@@ -61,10 +55,7 @@ internal sealed class ControllerVisualInput
         return MatchesAxes(position, horizontal, vertical);
     }
 
-    internal bool ArcadeButton(GameInputArcadeStickButtons button, int fallbackIndex) =>
-        State.HasArcadeStickState
-            ? State.IsStandardActive(ArcadeControl(button))
-            : RawButton(fallbackIndex);
+    internal bool ArcadeButton(GameInputArcadeStickButtons button, int fallbackIndex) => State.HasArcadeStickState ? State.IsStandardActive(ArcadeControl(button)) : RawButton(fallbackIndex);
 
     internal bool Button(GameInputGamepadButtons button, int fallbackIndex)
     {
@@ -74,11 +65,7 @@ internal sealed class ControllerVisualInput
         return RawButton(fallbackIndex);
     }
 
-    internal bool TriggerPressed(bool left) =>
-        (left ? LeftTrigger : RightTrigger) > TriggerPressedThreshold ||
-        Button(
-            left ? GameInputGamepadButtons.LeftTriggerButton : GameInputGamepadButtons.RightTriggerButton,
-            left ? LeftTriggerButtonIndex : RightTriggerButtonIndex);
+    internal bool TriggerPressed(bool left) => (left ? LeftTrigger : RightTrigger) > TriggerPressedThreshold || Button(left ? GameInputGamepadButtons.LeftTriggerButton : GameInputGamepadButtons.RightTriggerButton, left ? LeftTriggerButtonIndex : RightTriggerButtonIndex);
 
     internal bool SystemButton(GameInputSystemButtons button)
     {
@@ -95,18 +82,9 @@ internal sealed class ControllerVisualInput
 
     internal bool RawButton(int index) => State.IsRawButtonActive(index);
 
-    internal bool Direction(
-        GameInputSwitchPosition position,
-        GameInputGamepadButtons button,
-        int fallbackIndex) =>
-        Direction(position, button, fallbackIndex, GamepadLeftHorizontalAxisIndex, GamepadLeftVerticalAxisIndex);
+    internal bool Direction(GameInputSwitchPosition position, GameInputGamepadButtons button, int fallbackIndex) => Direction(position, button, fallbackIndex, GamepadLeftHorizontalAxisIndex, GamepadLeftVerticalAxisIndex);
 
-    internal bool Direction(
-        GameInputSwitchPosition position,
-        GameInputGamepadButtons button,
-        int fallbackIndex,
-        int horizontalAxis,
-        int verticalAxis)
+    internal bool Direction(GameInputSwitchPosition position, GameInputGamepadButtons button, int fallbackIndex, int horizontalAxis, int verticalAxis)
     {
         var control = GamepadControl(button);
         if (State.HasGamepadState)
@@ -116,8 +94,7 @@ internal sealed class ControllerVisualInput
         return MatchesAxes(position, RawAxisSigned(horizontalAxis), RawAxisSigned(verticalAxis));
     }
 
-    internal float RawAxisUnsigned(int index, float defaultValue = 0f) =>
-        State.RawAxisUnsigned(index, defaultValue);
+    internal float RawAxisUnsigned(int index, float defaultValue = 0f) => State.RawAxisUnsigned(index, defaultValue);
 
     internal float RawAxisSigned(int index) => State.RawAxisSigned(index);
 
@@ -127,10 +104,7 @@ internal sealed class ControllerVisualInput
         return control is not null && State.PrimarySwitchDirections.Contains(control.Value);
     }
 
-    private static bool MatchesAxes(
-        GameInputSwitchPosition position,
-        float horizontal,
-        float vertical) =>
+    private static bool MatchesAxes(GameInputSwitchPosition position, float horizontal, float vertical) =>
         position switch
         {
             GameInputSwitchPosition.Up => vertical < -DirectionPressedThreshold,

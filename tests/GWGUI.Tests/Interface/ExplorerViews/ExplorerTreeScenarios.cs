@@ -29,8 +29,7 @@ internal static class ExplorerTreeScenarios
         Assert.Equal("virtual/VOLUME.scp", ExplorerDocumentScenarios.Find<TextBox>(section, "PathText").Text);
         var empty = new GWGUI.MediaEngine.Contracts.Explorer.FileSystemEntry("EMPTY", GWGUI.MediaEngine.Enums.FileSystemEntryKind.Directory, 0, null, "", 0, 0, true, []);
         var source = ExplorerDocumentScenarios.Document("EMPTY-VOLUME", false);
-        var document = new GWGUI.MediaEngine.Contracts.Explorer.ExploredDiskImage(source.SourcePath, source.Image,
-            new("EMPTY-VOLUME", "synthetic", 512, 256, null, null, [empty], []), source.Metadata, scpImage: source.ScpImage);
+        var document = new GWGUI.MediaEngine.Contracts.Explorer.ExploredDiskImage(source.SourcePath, source.Image, new("EMPTY-VOLUME", "synthetic", 512, 256, null, null, [empty], []), source.Metadata, scpImage: source.ScpImage);
         section.Clear(); section.Display(document);
         folders.SelectedIndex = 1;
         Assert.Empty(contents.Items); Assert.Null(contents.SelectedItem); Assert.True(details.IsShowingDisk);
@@ -41,8 +40,7 @@ internal static class ExplorerTreeScenarios
     private static string DetailValue(ExplorerDetailsPanel details, string resourceKey)
     {
         var expectedLabel = LocExtension.Get(resourceKey);
-        var index = Enumerable.Range(1, 12).Single(value =>
-            Assert.IsType<TextBlock>(details.FindName($"DetailLabel{value}")).Text == expectedLabel);
+        var index = Enumerable.Range(1, 12).Single(value => Assert.IsType<TextBlock>(details.FindName($"DetailLabel{value}")).Text == expectedLabel);
         return Assert.IsType<TextBlock>(details.FindName($"DetailValue{index}")).Text;
     }
 }

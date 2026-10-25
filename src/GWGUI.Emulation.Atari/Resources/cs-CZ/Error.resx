@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Error.CoreNotFound"><value>Požadované jádro Atari nebylo nalezeno.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected"><value>Vybrané jádro Atari nebylo možné načíst.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing"><value>Chybí požadovaný firmware Atari.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid"><value>Atari firmware je neplatný nebo nekompatibilní.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound"><value>Nakonfigurovaná média Atari nebyla nalezena.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported"><value>Nakonfigurovaná média nejsou podporována tímto zařízením Atari.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid"><value>Možnost Atari má neplatnou hodnotu.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure"><value>Komunikace s hostitelem Atari selhala.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid"><value>Uložený stav Atari je neplatný.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible"><value>Uložený stav Atari je neslučitelný se stávajícím strojem.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected"><value>Nastala neočekávaná chyba emulace Atari.</value></data>
+  <data name="Emulation.Atari.Error.Details"><value>Podrobnosti: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration"><value>Aktivní konfiguraci Atari nelze změnit nebo smazat.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>Požadovaný firmware Atari není nakonfigurován. Firmware: {0} Stroj: {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing"><value>Nakonfigurovaný soubor Atari firmware nebyl nalezen. Firmware: {0} Soubor: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing"><value>Konfigurovaná média Atari nebyla nalezena: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing"><value>Spustitelná stezka Atari je nedostupná.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled"><value>Emulační jádro Atari není instalováno. Jádro: {0}</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Vybraný emulátor Atari nepoužívá sdílený regulátor zásobní vložky.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Vybraný stroj Atari vyžaduje nábojová média.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Prodloužení zásobní vložky není podporováno zvoleným emulátorem Atari.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Zásobní vložku Atari nelze otevřít pro čtení.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Emulátor Atari náhradní zásobní vložku odmítl.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Emulátor Atari odmítl jak náhradní, tak i předchozí zásobní vložku.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Tento emulátor Atari nemůže zůstat zapnut bez zásobní vložky.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Zvolený emulátor Atari neodhaluje výběr oblasti náplně.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Tento emulátor Atari nemůže použít režim načasování náplně s názvem SECAM.</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel"><value>Tato hodnota je určena zvoleným modelem.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>Pro tento model není k dispozici kompatibilní FPU.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory"><value>Pro tento model není k dispozici žádná alternativní paměť.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware"><value>Tento model nemá konfigurovatelný firmware.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard"><value>Tento model nemá klávesnici.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse"><value>Tento model nemá myš.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage"><value>Tento model nemá žádná paměťová média.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Pro použití kompaktních diskových médií vyberte tento model: Jaguar CD.</value></data>
+</root>

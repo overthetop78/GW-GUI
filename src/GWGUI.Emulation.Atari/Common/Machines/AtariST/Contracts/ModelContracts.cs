@@ -29,5 +29,4 @@ public sealed record StModelDefinition(
     public StRegion DefaultRegion => StModelFunctions.Region(CultureInfo.CurrentUICulture);
 }
 
-internal sealed record TosHeader(string Version, StRegion Region, TosVariant Variant,
-    long ImageSize);
+internal sealed record TosHeader(string Version, StRegion Region, TosVariant Variant, long ImageSize);

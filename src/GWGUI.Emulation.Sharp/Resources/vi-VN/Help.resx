@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Help.AdpcmVolume" xml:space="preserve"><value>Điều chỉnh âm lượng của âm lượng ADPCM kênh âm.</value></data>
+  <data name="Emulation.Sharp.Help.AudioDesynchronization" xml:space="preserve"><value>Bỏ các mẫu âm thanh thừa để giảm lỗi đồng bộ âm thanh.</value></data>
+  <data name="Emulation.Sharp.Help.AudioSampleRate" xml:space="preserve"><value>Chọn tần số lấy mẫu âm thanh.</value></data>
+  <data name="Emulation.Sharp.Help.ButtonOrder" xml:space="preserve"><value>Chọn thứ tự các nút điều khiển.</value></data>
+  <data name="Emulation.Sharp.Help.CpuSpeed" xml:space="preserve"><value>Chọn tần số xử lý.</value></data>
+  <data name="Emulation.Sharp.Help.DiskSeekSound" xml:space="preserve"><value>Chơi âm thanh của sự chuyển động đầu đĩa mềm.</value></data>
+  <data name="Emulation.Sharp.Help.FmBoard" xml:space="preserve"><value>Bật FM bảng âm thanh.</value></data>
+  <data name="Emulation.Sharp.Help.FmVolume" xml:space="preserve"><value>Điều chỉnh âm lượng của âm lượng FM kênh âm.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRate" xml:space="preserve"><value>Chọn số khung hình ảnh trên giây</value></data>
+  <data name="Emulation.Sharp.Help.FrameRateAdjustment" xml:space="preserve"><value>Điều chỉnh giờ video cho các màn hình hiện đại giảm âm thanh lắp ráp.</value></data>
+  <data name="Emulation.Sharp.Help.FrameSkip" xml:space="preserve"><value>Chọn phân số của ảnh phim ảnh cần bỏ qua. Vẽ một ảnh trong ba lần nhảy hai trên ba lần.</value></data>
+  <data name="Emulation.Sharp.Help.HideGraphics" xml:space="preserve"><value>Ẩn lớp đồ họa của ảnh động</value></data>
+  <data name="Emulation.Sharp.Help.HideSprites" xml:space="preserve"><value>Ẩn lớp hình cây và nền của ảnh điện ảnh.</value></data>
+  <data name="Emulation.Sharp.Help.HideText" xml:space="preserve"><value>Ẩn lớp văn bản của ảnh động.</value></data>
+  <data name="Emulation.Sharp.Help.MemorySize" xml:space="preserve"><value>Chọn số lượng bắt chước RAM.</value></data>
+  <data name="Emulation.Sharp.Help.RapidFire" xml:space="preserve"><value>Tự động in lại nút điều khiển lặp lại.</value></data>
+  <data name="Emulation.Sharp.Help.Raster" xml:space="preserve"><value>Kích hoạt hiệu ứng Raster trong ảnh mô phỏng.</value></data>
+  <data name="Emulation.Sharp.Help.Resolution" xml:space="preserve"><value>Chọn độ phân giải kết xuất thấp hay cao.</value></data>
+  <data name="Emulation.Sharp.Help.ReverseJoystick" xml:space="preserve"><value>Đảo ngược dữ liệu điều khiển như được cung cấp bởi trình giả lập.</value></data>
+  <data name="Emulation.Sharp.Help.UnlimitedSpeed" xml:space="preserve"><value>Âm thanh có thể trở nên không có tính chuyên môn.</value></data>
+  <data name="Emulation.Sharp.Help.VerticalSync" xml:space="preserve"><value>Đồng bộ hoá bộ trình bày mô phỏng theo chiều dọc.</value></data>
+  <data name="Emulation.Sharp.Help.VideoBeforeAudio" xml:space="preserve"><value>Giảm độ trễ của video trước khi âm thanh hoạt động.</value></data>
+</root>

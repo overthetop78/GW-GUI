@@ -15,9 +15,7 @@ public partial class FileEntryIcon : UserControl
         nameof(Category), typeof(ExplorerIconCategory), typeof(FileEntryIcon),
         new PropertyMetadata(ExplorerIconCategory.File, (owner, _) => ((FileEntryIcon)owner).Refresh()));
 
-    public static readonly DependencyProperty ToneProperty = DependencyProperty.Register(
-        nameof(Tone), typeof(ExplorerEntryTone), typeof(FileEntryIcon),
-        new PropertyMetadata(ExplorerEntryTone.Default, (owner, _) => ((FileEntryIcon)owner).Refresh()));
+    public static readonly DependencyProperty ToneProperty = DependencyProperty.Register( nameof(Tone), typeof(ExplorerEntryTone), typeof(FileEntryIcon), new PropertyMetadata(ExplorerEntryTone.Default, (owner, _) => ((FileEntryIcon)owner).Refresh()));
 
     public FileEntryIcon()
     {
@@ -45,9 +43,7 @@ public partial class FileEntryIcon : UserControl
         NativeIcon.Source = source;
         NativeIcon.Visibility = Tone == ExplorerEntryTone.Default ? Visibility.Visible : Visibility.Collapsed;
         TintedIcon.Visibility = Tone == ExplorerEntryTone.Default ? Visibility.Collapsed : Visibility.Visible;
-        TintedIcon.Fill = Tone == ExplorerEntryTone.Executable
-            ? new SolidColorBrush(Color.FromRgb(24, 134, 75))
-            : TryFindResource("MutedTextBrush") as Brush ?? SystemColors.GrayTextBrush;
+        TintedIcon.Fill = Tone == ExplorerEntryTone.Executable ? new SolidColorBrush(Color.FromRgb(24, 134, 75)) : TryFindResource("MutedTextBrush") as Brush ?? SystemColors.GrayTextBrush;
         TintedIcon.OpacityMask = new ImageBrush(source) { Stretch = Stretch.Uniform };
     }
 
@@ -61,10 +57,7 @@ public partial class FileEntryIcon : UserControl
             var info = Application.GetResourceStream(uri) ?? throw new FileNotFoundException(uri.ToString());
             using var stream = info.Stream;
             var decoder = new IconBitmapDecoder(stream, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
-            var frame = decoder.Frames
-                .OrderBy(candidate => Math.Abs(candidate.PixelWidth - cacheSize))
-                .ThenByDescending(candidate => candidate.PixelWidth)
-                .First();
+            var frame = decoder.Frames.OrderBy(candidate => Math.Abs(candidate.PixelWidth - cacheSize)).ThenByDescending(candidate => candidate.PixelWidth).First();
             frame.Freeze();
             Cache[(fileName, cacheSize)] = frame;
             return frame;

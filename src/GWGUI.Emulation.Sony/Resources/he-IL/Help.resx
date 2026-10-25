@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>מציג את תדירות השעון הדומינלי של המעבד במכונת Sony שנבחרה.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>תדירות שעון המעבד המקורי</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>מציג את מודל המעבד המסופק על ידי מכונת Sony שנבחרה.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>מעבד חיקוי למכונה זו.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>מציג את מצב המערכת ROM עבור המכונה שנבחרה וחיקוי.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>מערכת ROM</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Identifing היישום של החיקוי המשמש להפעיל את תצורת מכונה זו.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>אדמירטור נבחר למכונה זו.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Identifies דגם Sony שתצורת החומרה שלו נערכת.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>דגם Sony מוגדר.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>מציג את ה- RAM המסופק על ידי מכונת Sony שנבחרה.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>כמות ה- RAM זמינה למכונה הנחשקת.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>תדירות ה- CPU הממוחזר לאחר יישום אחוז השעון שנבחר.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>תדירות הקונסולה נומינלית מוכפלת באחוז הנבחר. זה משנה את המעבד המוטבע, לא את מעבד המארח. ערכים גבוהים יותר יכולים להפחית את ההאטה אך עשויים לשבור את תזמון המשחק. שימושים אוטומטיים כברירת החיקוי.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>החומרה הגרפית המקורית של המכשיר שנבחר.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>מציג את החומרה הגרפית המקורית של המכשיר שנבחר. הגדרות העיבוד הגרפי של האמולטור משנות את התמונה שנוצרת. המסננים של GW GUI מופעלים לאחר מכן.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>חומרת הצליל המקורית של המכשיר שנבחר.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>מציג את חומרת הצליל המקורית של המכשיר שנבחר. הגדרות פלט השמע וזמן ההשהיה קובעות את אופן ההשמעה במחשב שלך.</value></data>
+</root>

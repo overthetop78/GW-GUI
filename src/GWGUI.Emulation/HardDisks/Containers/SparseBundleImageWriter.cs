@@ -18,8 +18,7 @@ public static class SparseBundleImageWriter
     }
 
     /// <summary>The callback must consume each stream synchronously; its ownership stays here.</summary>
-    public static void Write(long capacity, Action<string, Stream> emit, Action<Stream>? initialize = null,
-        int bandBytes = DefaultBandBytes)
+    public static void Write(long capacity, Action<string, Stream> emit, Action<Stream>? initialize = null, int bandBytes = DefaultBandBytes)
     {
         ArgumentNullException.ThrowIfNull(emit);
         Validate(capacity, bandBytes);

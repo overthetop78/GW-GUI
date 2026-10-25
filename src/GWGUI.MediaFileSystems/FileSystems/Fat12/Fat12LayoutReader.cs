@@ -1,8 +1,7 @@
-using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
+using MediaImageFormatIds = GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
 using System.Buffers.Binary;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Fat12;
-
 /// <summary>Valide un BPB FAT12 ou une disposition IBM historique.</summary>
 public static class Fat12LayoutReader
 {
@@ -21,17 +20,22 @@ public static class Fat12LayoutReader
         if (totalSectors == 0)
         {
             var totalSectors32 = BinaryPrimitives.ReadUInt32LittleEndian(boot[FatBootSectorLayout.TotalSectors32Offset..]);
-            if (totalSectors32 > ushort.MaxValue) return false;
+            if (totalSectors32 > ushort.MaxValue)
+                return false;
             totalSectors = (ushort)totalSectors32;
         }
+
         var sectorsPerFat = BinaryPrimitives.ReadUInt16LittleEndian(boot[FatBootSectorLayout.SectorsPerFatOffset..]);
-        if (bytesPerSector != FatBootSectorLayout.SectorSize || sectorsPerCluster == 0 || reservedSectors == 0 || fatCount == 0 || rootEntries == 0 || totalSectors == 0 || totalSectors > availableSectors || sectorsPerFat == 0) return Fat12LegacyLayoutCatalog.TryCreateLayout(formatId, availableSectors, boot, out layout);
+        if (bytesPerSector != FatBootSectorLayout.SectorSize || sectorsPerCluster == 0 || reservedSectors == 0 || fatCount == 0 || rootEntries == 0 || totalSectors == 0 || totalSectors > availableSectors || sectorsPerFat == 0)
+            return Fat12LegacyLayoutCatalog.TryCreateLayout(formatId, availableSectors, boot, out layout);
         var rootSectors = FatBootSectorLayout.RootDirectorySectorCount(rootEntries);
         var rootStart = reservedSectors + fatCount * sectorsPerFat;
         var dataStart = rootStart + rootSectors;
-        if (dataStart >= totalSectors) return false;
+        if (dataStart >= totalSectors)
+            return false;
         var clusterCount = (totalSectors - dataStart) / sectorsPerCluster;
-        if (clusterCount is <= 0 or >= Fat12Layout.MaximumClusterCount) return false;
+        if (clusterCount is <= 0 or >= Fat12Layout.MaximumClusterCount)
+            return false;
         layout = new(reservedSectors, sectorsPerFat, rootStart, rootSectors, dataStart, sectorsPerCluster, clusterCount, fatCount);
         return true;
     }

@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>Posisi yang diminta tidak valid bagi objek sistem berkas ini.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Operasi allocation- node gagal.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Allocation- node bitmap indeks block {0}/{1} tidak bisa dibaca.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>Kepala drive tidak ada di silinder yang diminta ({0}Mengkalibrasi ulang drive sebelum membaca.</value></data>
 </root>

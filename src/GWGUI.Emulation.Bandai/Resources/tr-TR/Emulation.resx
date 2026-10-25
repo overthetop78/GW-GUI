@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Konsol video</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Konsol sesi</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Konsol kontrolleri</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>WonderSwan sistemini emüle eder.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>PlaydiaEmu kullanarak Playdia disklerini oynatır.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>TamaLIBretro kullanarak Tamagotchi P1 sistemini emüle eder.</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Bu temel, işlemcileri taklit etmeden diskler oynar.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Ekran hafıza</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Ekran yönlendirmesi</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>Kontrol yönelimi</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Monokrot paleti</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>Kare atlama tetikleme eşiği</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60 Hz mode</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>Ses örnekleme oranı</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>Ses filtresi</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>Swap düğmeleri A ve B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>Manual Manual</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>Yatay</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>Dikey</value></data>
+</root>

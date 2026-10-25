@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Help.AyStereoSeparation" xml:space="preserve"><value>Виберіть порядок замовлення AY звукові канали в стереовиході.</value></data>
+  <data name="Emulation.Sinclair.Help.AyVolume" xml:space="preserve"><value>Регулювання обсягу AY звуковий чіп.</value></data>
+  <data name="Emulation.Sinclair.Help.BeeperVolume" xml:space="preserve"><value>Регулювання обсягу вбудованого звукового генератора.</value></data>
+  <data name="Emulation.Sinclair.Help.BorderSize" xml:space="preserve"><value>Виберіть скільки екрана буде показано кордон.</value></data>
+  <data name="Emulation.Sinclair.Help.Chroma81" xml:space="preserve"><value>Налаштуйте розширення кольорової графіки Chroma 81.</value></data>
+  <data name="Emulation.Sinclair.Help.EmulationSpeed" xml:space="preserve"><value>Виберіть швидкість емульсії як відсоток початкової швидкості.</value></data>
+  <data name="Emulation.Sinclair.Help.FullerBox" xml:space="preserve"><value>Наповнювати повнотупну коробку звуку і джойстику.</value></data>
+  <data name="Emulation.Sinclair.Help.HighResolution" xml:space="preserve"><value>Виберіть розширення графіки високої роздільної здатності.</value></data>
+  <data name="Emulation.Sinclair.Help.Issue2Keyboard" xml:space="preserve"><value>Встановити клавіатуру поведінкою випуску 2 апаратних засобів.</value></data>
+  <data name="Emulation.Sinclair.Help.MemoryBankContent" xml:space="preserve"><value>Виберіть вміст банку пам'яті від 8 до 16 КБ.</value></data>
+  <data name="Emulation.Sinclair.Help.MouseSwapButtons" xml:space="preserve"><value>Заміна лівої та правої кнопки емульованої миші.</value></data>
+  <data name="Emulation.Sinclair.Help.Palette" xml:space="preserve"><value>Виберіть палітру, яка використовується для вихідного кольору.</value></data>
+  <data name="Emulation.Sinclair.Help.SoundHardware" xml:space="preserve"><value>Виберіть емульований звукотехнічний апарат.</value></data>
+  <data name="Emulation.Sinclair.Help.SpeakerType" xml:space="preserve"><value>Виберіть фільтр, який використовується для емульгованої гучності.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeAutoLoad" xml:space="preserve"><value>Завантажити касет автоматично.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeFastLoad" xml:space="preserve"><value>Навантаження даних касету швидше.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeLoadSound" xml:space="preserve"><value>Грати звук, що виробляється при завантаженні касетних даних.</value></data>
+  <data name="Emulation.Sinclair.Help.TurboSound" xml:space="preserve"><value>Наповнення розширення звуку TurboSound з двома AY чіпси.</value></data>
+  <data name="Emulation.Sinclair.Help.USpeech" xml:space="preserve"><value>Встановити розширення мови у форматі Currah uSpeech. Обидва необхідні файли прошивок повинні бути присутніми.</value></data>
+  <data name="Emulation.Sinclair.Help.VideoPreset" xml:space="preserve"><value>Виберіть зовнішній вигляд емульованої відеосигналу.</value></data>
+  <data name="Emulation.Sinclair.Help.Melodik" xml:space="preserve"><value>Наповнення MELODIK розширення звуку.</value></data>
+</root>

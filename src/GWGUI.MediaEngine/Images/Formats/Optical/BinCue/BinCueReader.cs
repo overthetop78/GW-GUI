@@ -1,5 +1,5 @@
 using System.Collections.Frozen;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
@@ -8,18 +8,16 @@ using GWGUI.MediaEngine.Interfaces.Reading;
 using GWGUI.MediaEngine.Images.Reading.Sources;
 using GWGUI.MediaEngine.Images.Reading.Recognition;
 using GWGUI.MediaEngine.Images.Models.Optical;
+using IMediaRandomAccessData = GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData;
 
 namespace GWGUI.MediaEngine.Images.Formats.Optical.BinCue;
 
 /// <summary>Resolves a CUE sheet and its binary track files into one optical media document.</summary>
 public sealed class BinCueReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { OpticalImageFormatIds.BinCue }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.Optical }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { OpticalImageFormatIds.BinCue }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Optical }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
     private readonly CueSheetReader cueSheets;
 
     public BinCueReader(CueSheetReader? cueSheets = null)
@@ -36,9 +34,7 @@ public sealed class BinCueReader : IMediaImageReader
 
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId))
             return false;
@@ -46,21 +42,30 @@ public sealed class BinCueReader : IMediaImageReader
         try
         {
             var sheet = await cueSheets.ReadAsync(context.Source.PrimaryPath, cancellationToken).ConfigureAwait(false);
-            return sheet.Files.All(file => file.Kind == CueFileKind.Binary);
+            var cueDirectory = Path.GetDirectoryName(Path.GetFullPath(context.Source.PrimaryPath)) ?? Directory.GetCurrentDirectory();
+            foreach (var file in sheet.Files)
+            {
+                var path = ResolveAssociatedPath(cueDirectory, file.DeclaredPath);
+                if (!File.Exists(path)) return false;
+                if (file.Kind == CueFileKind.WavePcm)
+                {
+                    if (file.Tracks.Any(track => track.Mode != OpticalTrackMode.Audio)) return false;
+                    _ = WavePcmRandomAccessData.Open(path);
+                }
+            }
+            return true;
         }
-        catch (Exception exception) when (exception is IOException or InvalidDataException or UnauthorizedAccessException)
+        catch (Exception exception) when (exception is IOException or InvalidDataException
+            or UnauthorizedAccessException or NotSupportedException)
         {
             return false;
         }
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var sheet = await cueSheets.ReadAsync(context.Source.PrimaryPath, cancellationToken).ConfigureAwait(false);
-        var cueDirectory = Path.GetDirectoryName(Path.GetFullPath(context.Source.PrimaryPath))
-            ?? Directory.GetCurrentDirectory();
+        var cueDirectory = Path.GetDirectoryName(Path.GetFullPath(context.Source.PrimaryPath)) ?? Directory.GetCurrentDirectory();
         var associatedPaths = new List<string>();
         var tracks = new List<OpticalTrackDescriptor>();
         long firstSector = 0;
@@ -68,14 +73,20 @@ public sealed class BinCueReader : IMediaImageReader
         foreach (var file in sheet.Files)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            if (file.Kind != CueFileKind.Binary)
-                throw new NotSupportedException("WAVE CUE tracks require the separate PCM audio adapter, which is not registered yet.");
             var path = ResolveAssociatedPath(cueDirectory, file.DeclaredPath);
             if (!File.Exists(path)) throw new InvalidDataException($"CUE track file '{file.DeclaredPath}' is missing.");
             if (path.Equals(Path.GetFullPath(context.Source.PrimaryPath), StringComparison.OrdinalIgnoreCase))
                 throw new InvalidDataException("A CUE sheet cannot use itself as track data.");
 
-            var source = new FileRandomAccessData(path);
+            IMediaRandomAccessData source = file.Kind switch
+            {
+                CueFileKind.Binary => new FileRandomAccessData(path),
+                CueFileKind.WavePcm => WavePcmRandomAccessData.Open(path),
+                _ => throw new NotSupportedException($"Unsupported CUE source kind '{file.Kind}'.")
+            };
+            if (file.Kind == CueFileKind.WavePcm
+                && file.Tracks.Any(track => track.Mode != OpticalTrackMode.Audio))
+                throw new InvalidDataException("WAVE CUE files can contain only AUDIO tracks.");
             var sectorSizes = file.Tracks.Select(track => GetStoredSectorSize(track.Mode)).Distinct().ToArray();
             if (sectorSizes.Length != 1)
                 throw new NotSupportedException("Tracks with different stored sector sizes must use separate CUE files in the initial profile.");
@@ -114,24 +125,15 @@ public sealed class BinCueReader : IMediaImageReader
                     sheet.CatalogNumber,
                     declaration.Isrc,
                     storedPregapSectors: storedPregap,
-                    storedPregapSourceOffset: storedPregap > 0
-                        ? checked((start - storedPregap) * sectorSize)
-                        : null));
+                    storedPregapSourceOffset: storedPregap > 0 ? checked((start - storedPregap) * sectorSize) : null));
                 firstSector = checked(firstSector + end - start);
             }
 
             associatedPaths.Add(path);
         }
 
-        var sourceDescriptor = new MediaSourceDescriptor(
-            context.Source.PrimaryPath,
-            associatedPaths,
-            context.Source.KnownLength,
-            context.Source.RequestedFormatId);
-        var representation = new OpticalMediaImageRepresentation(
-            tracks.Sum(track => checked(track.SectorCount * track.UserDataLength)),
-            tracks,
-            associatedFiles: [context.Source.PrimaryPath, .. associatedPaths]);
+        var sourceDescriptor = new MediaSourceDescriptor(context.Source.PrimaryPath, associatedPaths, context.Source.KnownLength, context.Source.RequestedFormatId);
+        var representation = new OpticalMediaImageRepresentation(tracks.Sum(track => checked(track.SectorCount * track.UserDataLength)), tracks, associatedFiles: [context.Source.PrimaryPath, .. associatedPaths]);
         return new MediaImageDocument(
             sourceDescriptor,
             OpticalImageFormatIds.BinCue,
@@ -153,9 +155,7 @@ public sealed class BinCueReader : IMediaImageReader
         return Path.GetFullPath(Path.Combine(cueDirectory, declaredPath));
     }
 
-    private static long GetIndexOnePosition(CueTrackDeclaration track) =>
-        track.Indexes.SingleOrDefault(index => index.Number == 1)?.RelativeSector
-        ?? throw new InvalidDataException($"CUE track {track.Number} does not contain INDEX 01.");
+    private static long GetIndexOnePosition(CueTrackDeclaration track) => track.Indexes.SingleOrDefault(index => index.Number == 1)?.RelativeSector ?? throw new InvalidDataException($"CUE track {track.Number} does not contain INDEX 01.");
 
     private static long GetStoredPregap(CueTrackDeclaration track, long indexOne)
     {

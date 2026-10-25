@@ -1,7 +1,6 @@
 namespace GWGUI.Emulation.Contracts;
 
-public readonly record struct EmulationMediaSlot(EmulationMediaCategory Category, int Index)
-    : IComparable<EmulationMediaSlot>
+public readonly record struct EmulationMediaSlot(EmulationMediaCategory Category, int Index) : IComparable<EmulationMediaSlot>
 {
     public static EmulationMediaSlot Floppy0 { get; } = new(EmulationMediaCategory.FloppyDrive, EmulationMediaSlotConstants.FirstIndex);
     public static EmulationMediaSlot Floppy1 { get; } = new(EmulationMediaCategory.FloppyDrive, EmulationMediaSlotConstants.SecondIndex);
@@ -10,17 +9,20 @@ public readonly record struct EmulationMediaSlot(EmulationMediaCategory Category
     public static EmulationMediaSlot HardDisk0 { get; } = new(EmulationMediaCategory.HardDisk, EmulationMediaSlotConstants.FirstIndex);
     public static EmulationMediaSlot Cd0 { get; } = new(EmulationMediaCategory.CompactDiscDrive, EmulationMediaSlotConstants.FirstIndex);
     public static EmulationMediaSlot Cartridge0 { get; } = new(EmulationMediaCategory.CartridgeSlot, EmulationMediaSlotConstants.FirstIndex);
+    public static EmulationMediaSlot Cartridge1 { get; } = new(EmulationMediaCategory.CartridgeSlot, EmulationMediaSlotConstants.SecondIndex);
     public static EmulationMediaSlot Cassette0 { get; } = new(EmulationMediaCategory.CassetteDrive, EmulationMediaSlotConstants.FirstIndex);
+    public static EmulationMediaSlot MemoryCard0 { get; } = new(EmulationMediaCategory.MemoryCard, EmulationMediaSlotConstants.FirstIndex);
 
     public int ProtocolValue => Category switch
     {
-        EmulationMediaCategory.FloppyDrive when Index is >= EmulationMediaSlotConstants.FirstIndex
-            and <= EmulationMediaSlotConstants.FourthIndex => Index,
+        EmulationMediaCategory.FloppyDrive when Index is >= EmulationMediaSlotConstants.FirstIndex and <= EmulationMediaSlotConstants.FourthIndex => Index,
         EmulationMediaCategory.HardDisk when Index == EmulationMediaSlotConstants.FirstIndex => EmulationMediaSlotConstants.HardDiskProtocolValue,
         EmulationMediaCategory.CompactDiscDrive when Index == EmulationMediaSlotConstants.FirstIndex => EmulationMediaSlotConstants.CompactDiscProtocolValue,
         EmulationMediaCategory.CartridgeSlot when Index == EmulationMediaSlotConstants.FirstIndex => EmulationMediaSlotConstants.CartridgeProtocolValue,
+        EmulationMediaCategory.CartridgeSlot when Index == EmulationMediaSlotConstants.SecondIndex => EmulationMediaSlotConstants.SecondCartridgeProtocolValue,
         EmulationMediaCategory.CassetteDrive when Index == EmulationMediaSlotConstants.FirstIndex => EmulationMediaSlotConstants.CassetteProtocolValue,
-        _ => throw new InvalidOperationException(EmulationMediaSlotConstants.MissingProtocolValueMessage)
+        EmulationMediaCategory.MemoryCard when Index == EmulationMediaSlotConstants.FirstIndex => EmulationMediaSlotConstants.MemoryCardProtocolValue,
+        _ => throw new InvalidOperationException()
     };
 
     public static EmulationMediaSlot FromProtocolValue(int value) => value switch
@@ -32,7 +34,9 @@ public readonly record struct EmulationMediaSlot(EmulationMediaCategory Category
         EmulationMediaSlotConstants.HardDiskProtocolValue => HardDisk0,
         EmulationMediaSlotConstants.CompactDiscProtocolValue => Cd0,
         EmulationMediaSlotConstants.CartridgeProtocolValue => Cartridge0,
+        EmulationMediaSlotConstants.SecondCartridgeProtocolValue => Cartridge1,
         EmulationMediaSlotConstants.CassetteProtocolValue => Cassette0,
+        EmulationMediaSlotConstants.MemoryCardProtocolValue => MemoryCard0,
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null)
     };
 
@@ -63,6 +67,7 @@ public readonly record struct EmulationMediaSlot(EmulationMediaCategory Category
         EmulationMediaCategory.CompactDiscDrive => $"{EmulationMediaSlotConstants.CompactDiscPrefix}{Index}",
         EmulationMediaCategory.CartridgeSlot => $"{EmulationMediaSlotConstants.CartridgePrefix}{Index}",
         EmulationMediaCategory.CassetteDrive => $"{EmulationMediaSlotConstants.CassettePrefix}{Index}",
+        EmulationMediaCategory.MemoryCard => $"{EmulationMediaSlotConstants.MemoryCardPrefix}{Index}",
         _ => $"{Category}{Index}"
     };
 }

@@ -1,0 +1,159 @@
+using GWGUI.Emulation;
+namespace GWGUI.Emulation.Nintendo.Common.Machines.Common.Functions;
+
+internal static class InputSnapshotFunctions
+{
+    /// <summary>Projette les entrées de session par le contrat Common et applique la bascule du pointeur.</summary>
+    /// <param name="snapshot">Instantané physique emprunté, dont les collections restent inchangées.</param>
+    /// <param name="configuration">Configuration complète et courante : modèle, cœur, options et associations.</param>
+    /// <param name="mapper">Adaptateur emprunté chargé de traduire les commandes ; null utilise la projection de repli du module.</param>
+    /// <param name="controllerPointerSwitchPressed">Impulsion de session ajoutant Contrôle droit aux touches projetées.</param>
+    /// <returns>Instantané adapté au cœur ; sans impulsion, le résultat du projecteur est conservé tel quel.</returns>
+    /// <remarks>La bascule est appliquée après la projection, comme pour les cœurs qui la prennent déjà en charge.
+    /// Elle copie l'ensemble des touches avant ajout, conserve les autres entrées et ne modifie ni la source
+    /// ni la configuration. Cette opération ne crée aucun cœur et ne possède aucune ressource native.</remarks>
+    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, MachineConfiguration configuration, IEmulatorInputMapper? mapper = null, bool controllerPointerSwitchPressed = false)
+    {
+        var mapped = mapper?.MapInput(snapshot, configuration) ?? InputSnapshotFunctions.Apply(snapshot, configuration.Model, configuration.Input, false);
+        return controllerPointerSwitchPressed ? mapped with { Keys = new HashSet<EmulationKey>(mapped.Keys) { EmulationKey.RightControl } } : mapped;
+    }
+
+
+    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, string modelId, InputConfiguration? configuration, bool controllerPointerSwitchPressed)
+    {
+        configuration ??= new InputConfiguration();
+        var hostKeys = snapshot.Keys;
+        var physicalMouse = PhysicalMouse(snapshot.Pointer);
+        var mappedKeys = EmulationSdk.InputProcessing.MapKeyboard(snapshot, configuration.KeyboardBindings ?? configuration.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal));
+        if (controllerPointerSwitchPressed)
+            mappedKeys = new HashSet<EmulationKey>(mappedKeys) { EmulationKey.RightControl };
+        return snapshot with
+        {
+            Keys = mappedKeys,
+            Pointer = MapPointer(snapshot.Pointer, snapshot.Controllers, hostKeys, physicalMouse, configuration.MouseButtonMappings),
+            Controllers = MapControllers(snapshot.Controllers, hostKeys, physicalMouse, configuration.Controllers, modelId is ModelConstants.Nes or ModelConstants.FamicomDisk)
+        };
+    }
+
+    private static EmulationPointerState MapPointer(EmulationPointerState pointer,
+        IReadOnlyList<EmulationControllerState> controllers, IReadOnlySet<EmulationKey> keys,
+        IReadOnlyDictionary<string, bool> physicalMouse,
+        IReadOnlyDictionary<string, MouseAction>? mappings)
+    {
+        mappings ??= InputSnapshotDictionary.DefaultMouseMappings;
+        var fallbackController = controllers.FirstOrDefault() ?? EmulationControllerState.Empty;
+        return pointer with
+        {
+            Left = IsMouseActionPressed(MouseAction.LeftButton, mappings, controllers, keys, physicalMouse, fallbackController),
+            Right = IsMouseActionPressed(MouseAction.RightButton, mappings, controllers, keys, physicalMouse, fallbackController),
+            Middle = IsMouseActionPressed(MouseAction.MiddleButton, mappings, controllers, keys, physicalMouse, fallbackController)
+        };
+    }
+
+    private static bool IsMouseActionPressed(MouseAction action,
+        IReadOnlyDictionary<string, MouseAction> mappings,
+        IReadOnlyList<EmulationControllerState> controllers, IReadOnlySet<EmulationKey> keys,
+        IReadOnlyDictionary<string, bool> physicalMouse,
+        EmulationControllerState fallbackController) => mappings.Any(mapping => mapping.Value == action && IsSourcePressed(mapping.Key, ControllerForSource(mapping.Key, controllers, fallbackController), keys, physicalMouse));
+
+    private static IReadOnlyList<EmulationControllerState> MapControllers(
+        IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys,
+        IReadOnlyDictionary<string, bool> physicalMouse,
+        IReadOnlyList<ControllerBinding>? bindings, bool nesController)
+    {
+        var result = new EmulationControllerState[4];
+        for (var port = 0; port < result.Length; port++)
+        {
+            var binding = bindings?.FirstOrDefault(item => item.Port == port);
+            if (binding is { DeadZonePercent: < 0 or > 100 }) throw new ArgumentOutOfRangeException(nameof(bindings), nameof(ControllerBinding.DeadZonePercent));
+            var source = EmulationSdk.InputProcessing.ResolveController(binding?.DeviceId, physical, port);
+            if (binding?.Mappings is not { Count: > 0 }
+                || !binding.Mappings.Any(mapping => !string.IsNullOrWhiteSpace(mapping.Key) && !string.IsNullOrWhiteSpace(mapping.Value)))
+            {
+                result[port] = EmulationControllerState.Empty;
+                continue;
+            }
+            uint buttons = 0;
+            foreach (var mapping in binding.Mappings)
+            {
+                var targetInKey = InputSnapshotDictionary.Nintendo64ButtonIndexes.TryGetValue(mapping.Key, out var keyTarget)
+                    || InputSnapshotDictionary.GameCubeButtonIndexes.TryGetValue(mapping.Key, out keyTarget)
+                    || (nesController && InputSnapshotDictionary.NesButtonIndexes.TryGetValue(mapping.Key, out keyTarget))
+                    || InputSnapshotDictionary.ButtonIndexes.TryGetValue(mapping.Key, out keyTarget);
+                var target = targetInKey ? keyTarget : InputSnapshotDictionary.ButtonIndexes.GetValueOrDefault(mapping.Value, -1);
+                var sourceName = targetInKey ? mapping.Value : mapping.Key;
+                var mappingSource = EmulationSdk.InputProcessing.ResolveSourceController(sourceName, physical, source);
+                if (target >= 0 && IsSourcePressed(sourceName, mappingSource, keys, physicalMouse))
+                    buttons |= 1u << target;
+            }
+            result[port] = EmulationSdk.InputProcessing.ApplyDeadZones(source, binding.DeadZonePercent) with
+            {
+                Buttons = buttons,
+                LeftTrigger = (short)Math.Max(
+                    EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, InputSettingsFunctionsConstants.GameCubeL, source, physical, keys, physicalMouse, binding.DeadZonePercent),
+                    Math.Round(EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, InputSettingsFunctionsConstants.GameCubeLHalf, source, physical, keys, physicalMouse, binding.DeadZonePercent) / 2f)),
+                RightTrigger = (short)Math.Max(
+                    EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, InputSettingsFunctionsConstants.GameCubeR, source, physical, keys, physicalMouse, binding.DeadZonePercent),
+                    Math.Round(EmulationSdk.InputProcessing.MapControllerPressure(binding.Mappings, InputSettingsFunctionsConstants.GameCubeRHalf, source, physical, keys, physicalMouse, binding.DeadZonePercent) / 2f)),
+                LeftX = MappedAxis(binding.Mappings,
+                    InputSettingsFunctionsConstants.GameCubeStickRight,
+                    InputSettingsFunctionsConstants.GameCubeStickLeft,
+                    MappedAxis(binding.Mappings, InputSettingsFunctionsConstants.Nintendo64StickRight, InputSettingsFunctionsConstants.Nintendo64StickLeft, 0, source, physical, keys, physicalMouse, binding.DeadZonePercent),
+                    source, physical, keys, physicalMouse, binding.DeadZonePercent),
+                LeftY = MappedAxis(binding.Mappings,
+                    InputSettingsFunctionsConstants.GameCubeStickDown,
+                    InputSettingsFunctionsConstants.GameCubeStickUp,
+                    MappedAxis(binding.Mappings, InputSettingsFunctionsConstants.Nintendo64StickDown, InputSettingsFunctionsConstants.Nintendo64StickUp, 0, source, physical, keys, physicalMouse, binding.DeadZonePercent),
+                    source, physical, keys, physicalMouse, binding.DeadZonePercent),
+                RightX = MappedAxis(binding.Mappings,
+                    InputSettingsFunctionsConstants.GameCubeCRight,
+                    InputSettingsFunctionsConstants.GameCubeCLeft,
+                    MappedAxis(binding.Mappings, InputSettingsFunctionsConstants.Nintendo64CLeft, InputSettingsFunctionsConstants.Nintendo64CRight, 0, source, physical, keys, physicalMouse, binding.DeadZonePercent),
+                    source, physical, keys, physicalMouse, binding.DeadZonePercent),
+                RightY = MappedAxis(binding.Mappings,
+                    InputSettingsFunctionsConstants.GameCubeCDown,
+                    InputSettingsFunctionsConstants.GameCubeCUp,
+                    MappedAxis(binding.Mappings, InputSettingsFunctionsConstants.Nintendo64CDown, InputSettingsFunctionsConstants.Nintendo64CUp, 0, source, physical, keys, physicalMouse, binding.DeadZonePercent),
+                    source, physical, keys, physicalMouse, binding.DeadZonePercent)
+            };
+        }
+        return result;
+    }
+
+    private static short MappedAxis(IReadOnlyDictionary<string, string> mappings,
+        string positiveCommand, string negativeCommand, short fallbackValue,
+        EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical,
+        IReadOnlySet<EmulationKey> keys,
+        IReadOnlyDictionary<string, bool> mouse, int deadZone = 0)
+    {
+        var hasPositive = mappings.TryGetValue(positiveCommand, out var positiveSource) && !string.IsNullOrWhiteSpace(positiveSource);
+        var hasNegative = mappings.TryGetValue(negativeCommand, out var negativeSource) && !string.IsNullOrWhiteSpace(negativeSource);
+        if (!hasPositive && !hasNegative) return fallbackValue;
+
+        return EmulationSdk.InputProcessing.MapControllerAxis(mappings, positiveCommand, negativeCommand, controller, physical, keys, mouse, deadZone);
+    }
+
+    private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) => EmulationSdk.InputProcessing.PhysicalMouse(pointer);
+
+    private static bool IsSourcePressed(string sourceName, EmulationControllerState controller, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)
+    {
+        if (sourceName.Contains('+' ) && !sourceName.EndsWith('+')) return EmulationSdk.InputProcessing.InputSourcePressure(sourceName, controller, [controller], keys, mouse) > .5f;
+        if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Controller, out var controllerSource))
+        {
+            var value = EmulationSdk.InputProcessing.ControllerSourceValue(controllerSource, controller);
+            return EmulationSdk.InputProcessing.IsControllerSourcePressed(controllerSource, controller, value);
+        }
+        if (InputSnapshotDictionary.ButtonIndexes.TryGetValue(sourceName, out var legacyIndex))
+            return (controller.Buttons & (1u << legacyIndex)) != 0;
+        if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Keyboard, out var keyboardSource)
+            && Enum.TryParse<EmulationKey>(keyboardSource, true, out var key))
+            return keys.Contains(key);
+        return TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Mouse, out var mouseSource) && mouse.GetValueOrDefault(mouseSource);
+    }
+
+    private static EmulationControllerState ControllerForSource(string source, IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback)
+    => EmulationSdk.InputProcessing.ResolveSourceController(source, controllers, fallback, fallbackWhenMissing: true);
+
+    private static bool TryRemovePrefix(string? value, string prefix, out string source)
+    => EmulationSdk.InputProcessing.TryRemovePrefix(value, prefix, out source);
+}

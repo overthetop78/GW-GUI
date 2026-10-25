@@ -7,14 +7,8 @@ public sealed class DiskClassificationCatalog
     public DiskClassificationCatalog(IEnumerable<DiskFormat> formats)
     {
         Formats = formats.Where(format => format.Id != "raw.scp").ToArray();
-        Machines = Formats.Select(format => format.Family).Distinct(StringComparer.OrdinalIgnoreCase)
-            .Order(StringComparer.CurrentCultureIgnoreCase).ToArray();
-        Protections =
-        [
-            new DiskProtection("apple2.rwts18", "Apple II",
-                new HashSet<string>(["apple2.appledos.140"], StringComparer.OrdinalIgnoreCase),
-                "Brøderbund RWTS18")
-        ];
+        Machines = Formats.Select(format => format.Family).Distinct(StringComparer.OrdinalIgnoreCase).Order(StringComparer.CurrentCultureIgnoreCase).ToArray();
+        Protections = [new DiskProtection("apple2.rwts18", "Apple II", new HashSet<string>(["apple2.appledos.140"], StringComparer.OrdinalIgnoreCase), "Brøderbund RWTS18")];
     }
 
     public IReadOnlyList<DiskFormat> Formats { get; }
@@ -38,10 +32,7 @@ public sealed class DiskClassificationCatalog
         return alias is null ? null : Formats.FirstOrDefault(format => format.Id.Equals(alias, StringComparison.OrdinalIgnoreCase));
     }
 
-    public IReadOnlyList<DiskFormat> FormatsFor(string? machine) => Formats
-        .Where(format => format.Family.Equals(machine, StringComparison.OrdinalIgnoreCase)).ToArray();
+    public IReadOnlyList<DiskFormat> FormatsFor(string? machine) => Formats.Where(format => format.Family.Equals(machine, StringComparison.OrdinalIgnoreCase)).ToArray();
 
-    public IReadOnlyList<DiskProtection> ProtectionsFor(string? machine, string? formatId) => Protections
-        .Where(protection => protection.Machine.Equals(machine, StringComparison.OrdinalIgnoreCase)
-            && formatId is not null && protection.FormatIds.Contains(formatId)).ToArray();
+    public IReadOnlyList<DiskProtection> ProtectionsFor(string? machine, string? formatId) => Protections.Where(protection => protection.Machine.Equals(machine, StringComparison.OrdinalIgnoreCase) && formatId is not null && protection.FormatIds.Contains(formatId)).ToArray();
 }

@@ -1,6 +1,6 @@
-using MediaPhysicalWriteProgress = global::GWGUI.MediaEngine.Contracts.MediaPhysicalWriteProgress;
-using MediaPhysicalWriteResult = global::GWGUI.MediaEngine.Contracts.MediaPhysicalWriteResult;
-using MediaWritePlan = global::GWGUI.MediaEngine.Contracts.MediaWritePlan;
+using MediaPhysicalWriteProgress = GWGUI.MediaEngine.Contracts.MediaPhysicalWriteProgress;
+using MediaPhysicalWriteResult = GWGUI.MediaEngine.Contracts.MediaPhysicalWriteResult;
+using MediaWritePlan = GWGUI.MediaEngine.Contracts.MediaWritePlan;
 using GWGUI.MediaEngine.Enums;
 
 namespace GWGUI.MediaEngine.Interfaces;
@@ -14,10 +14,5 @@ public interface IMediaPhysicalWriter
 
     bool CanWrite(MediaWritePlan plan, string deviceId);
 
-    Task<MediaPhysicalWriteResult> WriteAsync(
-        MediaWritePlan plan,
-        string deviceId,
-        IReadOnlyDictionary<string, string> options,
-        IProgress<MediaPhysicalWriteProgress>? progress = null,
-        CancellationToken cancellationToken = default);
+    Task<MediaPhysicalWriteResult> WriteAsync(MediaWritePlan plan, string deviceId, IReadOnlyDictionary<string, string> options, IProgress<MediaPhysicalWriteProgress>? progress = null, CancellationToken cancellationToken = default);
 }

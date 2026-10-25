@@ -4,7 +4,7 @@ namespace GWGUI.MediaFileSystems.FileSystems.Apple.Macintosh.Hfs;
 internal static class MacHfsFileSystemLayout
 {
     /// <summary>Nom technique affichable du système.</summary>
-    public const string SystemName = global::GWGUI.MediaFileSystems.Definitions.FileSystemDisplayNames.MacHfs;
+    public const string SystemName = GWGUI.MediaFileSystems.Definitions.FileSystemDisplayNames.MacHfs;
     /// <summary>Nom technique du fichier catalogue.</summary>
     public const string CatalogName = "catalogue";
     /// <summary>Nom technique du fork de données.</summary>

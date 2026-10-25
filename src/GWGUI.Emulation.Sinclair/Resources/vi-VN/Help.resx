@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Help.AyStereoSeparation" xml:space="preserve"><value>Chọn thứ tự AY kênh âm thanh trong kết xuất âm thanh.</value></data>
+  <data name="Emulation.Sinclair.Help.AyVolume" xml:space="preserve"><value>Điều chỉnh âm lượng của âm lượng AY chip âm thanh.</value></data>
+  <data name="Emulation.Sinclair.Help.BeeperVolume" xml:space="preserve"><value>Điều chỉnh âm lượng của máy phát âm thanh đã lắp.</value></data>
+  <data name="Emulation.Sinclair.Help.BorderSize" xml:space="preserve"><value>Chọn bao nhiêu của viền màn hình được hiển thị.</value></data>
+  <data name="Emulation.Sinclair.Help.Chroma81" xml:space="preserve"><value>Kết hợp phần mở rộng đồ họa màu Chrom 81.</value></data>
+  <data name="Emulation.Sinclair.Help.EmulationSpeed" xml:space="preserve"><value>Chọn tốc độ mô phỏng theo tỷ lệ phần trăm tốc độ ban đầu.</value></data>
+  <data name="Emulation.Sinclair.Help.FullerBox" xml:space="preserve"><value>Kết hợp âm thanh của hộp Fuller và cần điều khiển.</value></data>
+  <data name="Emulation.Sinclair.Help.HighResolution" xml:space="preserve"><value>Chọn phần mở rộng đồ hoạ độ phân giải cao.</value></data>
+  <data name="Emulation.Sinclair.Help.Issue2Keyboard" xml:space="preserve"><value>Đang phân tích hành vi bàn phím của phần cứng số 2.</value></data>
+  <data name="Emulation.Sinclair.Help.MemoryBankContent" xml:space="preserve"><value>Chọn nội dung của ngân hàng bộ nhớ từ 8 đến 16 KiB.</value></data>
+  <data name="Emulation.Sinclair.Help.MouseSwapButtons" xml:space="preserve"><value>Đổi nút trái và phải của con chuột đã mô phỏng.</value></data>
+  <data name="Emulation.Sinclair.Help.Palette" xml:space="preserve"><value>Chọn bảng màu dùng cho màu đã hiển thị.</value></data>
+  <data name="Emulation.Sinclair.Help.SoundHardware" xml:space="preserve"><value>Chọn phần cứng âm thanh mô phỏng.</value></data>
+  <data name="Emulation.Sinclair.Help.SpeakerType" xml:space="preserve"><value>Chọn bộ lọc dùng cho loa đã mô phỏng.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeAutoLoad" xml:space="preserve"><value>Tự động nạp băng cát-sét.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeFastLoad" xml:space="preserve"><value>Nạp dữ liệu băng cát-sét nhanh hơn.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeLoadSound" xml:space="preserve"><value>Chơi âm thanh tạo ra trong khi tải dữ liệu băng cassette.</value></data>
+  <data name="Emulation.Sinclair.Help.TurboSound" xml:space="preserve"><value>Kết hợp âm thanh của TurboSund với hai AY khoai tây chiên.</value></data>
+  <data name="Emulation.Sinclair.Help.USpeech" xml:space="preserve"><value>Cả hai đều cần có tập tin phần mềm cố định.</value></data>
+  <data name="Emulation.Sinclair.Help.VideoPreset" xml:space="preserve"><value>Chọn sự xuất hiện của tín hiệu video mô phỏng.</value></data>
+  <data name="Emulation.Sinclair.Help.Melodik" xml:space="preserve"><value>Hãy phân tích MELODIK Phần mở rộng âm thanh.</value></data>
+</root>

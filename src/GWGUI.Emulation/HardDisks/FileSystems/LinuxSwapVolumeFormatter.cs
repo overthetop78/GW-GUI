@@ -18,8 +18,7 @@ public static class LinuxSwapVolumeFormatter
             throw new ArgumentException("Invalid or duplicate swap bad-page index.", nameof(badPages));
     }
 
-    public static void Format(Stream volume, string label, int pageBytes = 4096, bool bigEndian = false,
-        Guid? uuid = null, IReadOnlyList<uint>? badPages = null)
+    public static void Format(Stream volume, string label, int pageBytes = 4096, bool bigEndian = false, Guid? uuid = null, IReadOnlyList<uint>? badPages = null)
     {
         var pages = badPages?.ToArray() ?? [];
         Validate(volume.Length, label, pageBytes, pages);
@@ -38,7 +37,5 @@ public static class LinuxSwapVolumeFormatter
         }
     }
 
-    internal static bool IsProfile(string id) => id is "linux-swap-4k" or "linux-swap-8k" or "linux-swap-16k" or
-        "linux-swap-32k" or "linux-swap-64k" or "linux-swap-4k-be" or "linux-swap-8k-be" or
-        "linux-swap-16k-be" or "linux-swap-32k-be" or "linux-swap-64k-be";
+    internal static bool IsProfile(string id) => id is "linux-swap-4k" or "linux-swap-8k" or "linux-swap-16k" or "linux-swap-32k" or "linux-swap-64k" or "linux-swap-4k-be" or "linux-swap-8k-be" or "linux-swap-16k-be" or "linux-swap-32k-be" or "linux-swap-64k-be";
 }

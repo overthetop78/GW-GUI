@@ -98,7 +98,9 @@ internal static class ComponentAcquisitionScenarios
         public bool FileExists(string? path) => path is not null && Files.ContainsKey(path);
         public bool DirectoryExists(string path) => Directories.Contains(path);
         public IEnumerable<string> EnumerateDirectories(string path) => Directories.Where(item => Path.GetDirectoryName(item) == path).ToArray();
-        public IEnumerable<string> EnumerateFiles(string path, string pattern, SearchOption option) => Files.Keys.Where(item => item.StartsWith(path + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase) && Path.GetFileName(item) == pattern && (option == SearchOption.AllDirectories || Path.GetDirectoryName(item) == path)).ToArray();
+        public IEnumerable<string> EnumerateFiles(string path,
+            string pattern,
+            SearchOption option) => Files.Keys.Where(item => item.StartsWith(path + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase) && Path.GetFileName(item) == pattern && (option == SearchOption.AllDirectories || Path.GetDirectoryName(item) == path)).ToArray();
         public IEnumerable<string> EnumerateEntries(string path) => Files.Keys.Concat(Directories).Where(item => Path.GetDirectoryName(item) == path).ToArray();
         public void CreateDirectory(string path) { Directories.Add(path); var parent = Path.GetDirectoryName(path); if (parent is not null && parent != path) CreateDirectory(parent); }
         public Stream CreateFile(string path) => new CommitStream(bytes => Files[path] = bytes);

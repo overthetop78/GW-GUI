@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft" xml:space="preserve"><value>زر الجانب الأيسر</value></data>
+  <data name="Emulation.Epoch.Input.FireRight" xml:space="preserve"><value>الزر الجانبي</value></data>
+  <data name="Emulation.Epoch.Input.Power" xml:space="preserve"><value>زر الطاقة</value></data>
+  <data name="Emulation.Epoch.Input.Reset" xml:space="preserve"><value>الزر المعادي</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft" xml:space="preserve"><value>حركوا الرافعة إلى اليسار</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight" xml:space="preserve"><value>حركوا الرافعة إلى اليمين</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease" xml:space="preserve"><value>اختيار مسار اللعبة المقبل</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease" xml:space="preserve"><value>اختيار دورة اللعبة السابقة</value></data>
+  <data name="Emulation.Epoch.Input.GunFire" xml:space="preserve"><value>مدفع خفيفة</value></data>
+  <data name="Emulation.Epoch.Input.GunReload" xml:space="preserve"><value>اعادة تحميل سلاح الخفي</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease" xml:space="preserve"><value>المضرب 1: يتحول عكس الساعة</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase" xml:space="preserve"><value>المضرب 1:</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease" xml:space="preserve"><value>المضرب 2:</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase" xml:space="preserve"><value>المضرب 2:</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease" xml:space="preserve"><value>المضرب 3:</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase" xml:space="preserve"><value>المضرب 3:</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease" xml:space="preserve"><value>المضرب 4:</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase" xml:space="preserve"><value>المضرب 4:</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease" xml:space="preserve"><value>صوب المسدس اليسار</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease" xml:space="preserve"><value>صوب المسدس يميناً</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease" xml:space="preserve"><value>صوب المسدس للأعلى</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease" xml:space="preserve"><value>صوب السلاح للأسفل</value></data>
+</root>

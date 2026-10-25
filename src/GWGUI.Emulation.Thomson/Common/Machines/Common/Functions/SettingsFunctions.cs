@@ -1,0 +1,87 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Thomson.Common.Functions.CoreHostFunctions;
+using System.Globalization;
+
+namespace GWGUI.Emulation.Thomson.Common.Machines.Common.Functions;
+internal static class SettingsDescriptionFunctions
+{
+    internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration)
+    {
+        var hardware = HardwareModelCatalog.Get(configuration.Model);
+        var memoryKib = new Engine().SelectedAdapter(configuration) is { } memoryAdapter ? memoryAdapter.GetMemoryKib(configuration) : hardware.MainMemoryBytes / 1024m;
+        var blocks = new List<EmulationSettingsBlock>();
+        if (configuration.Core != Emulator.None && new Engine().Adapter(configuration)is { } settings)
+            blocks.AddRange(settings.GetMachineSettingsBlocks(configuration));
+        blocks.Add(new(
+                SettingsConstants.ResourceCpuProcessor,
+                EmulationMachineTab.Cpu,
+                SettingsConstants.ResourceCpuProcessor,
+                [
+                    Information(SettingsConstants.CpuModel, EmulationMachineTab.Cpu, SettingsConstants.ResourceCpuProcessor, SettingsConstants.ResourceCpuModel, hardware.CpuName),
+                    Information(
+                        SettingsConstants.CpuFrequency,
+                        EmulationMachineTab.Cpu,
+                        SettingsConstants.ResourceCpuProcessor,
+                        SettingsConstants.ResourceCpuSpeedOriginal,
+                        CommonCoreHostFunctions.HardwareSettings.FormatFrequency(hardware.CpuFrequencyHz)
+                    )
+                ],
+                IsCompact: true
+            ));
+        blocks.Add(new(
+                SettingsConstants.ResourceMemoryMain,
+                EmulationMachineTab.Ram,
+                SettingsConstants.ResourceMemoryMain,
+                [Information(
+                        SettingsConstants.MainMemory,
+                        EmulationMachineTab.Ram,
+                        SettingsConstants.ResourceMemoryMain,
+                        SettingsConstants.ResourceMemoryMain,
+                        $"{memoryKib} {SettingsConstants.KibibyteUnit}"
+                    )],
+                IsCompact: true
+            ));
+        blocks.Add(Audio(configuration));
+        var speeds = Enumerable.Range(
+            InputMappingConstants.MinimumMouseSpeedPercent / SettingsConstants.MouseSpeedStepPercent,
+            (InputMappingConstants.MaximumMouseSpeedPercent - InputMappingConstants.MinimumMouseSpeedPercent) / SettingsConstants.MouseSpeedStepPercent + 1
+        ).Select(step => step * SettingsConstants.MouseSpeedStepPercent).Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture), string.Empty, $"{value} {SettingsConstants.PercentUnit}")).ToArray();
+        blocks.Add(new(
+                SettingsConstants.ResourceLightPen,
+                EmulationMachineTab.Mouse,
+                SettingsConstants.ResourceLightPen,
+                [new(
+                        SettingsConstants.LightPenEnabled,
+                        EmulationMachineTab.Mouse,
+                        SettingsConstants.ResourceLightPen,
+                        SettingsConstants.ResourceLightPen,
+                        EmulationSettingsEditor.Toggle,
+                        configuration.Options.GetValueOrDefault(SettingsConstants.LightPenEnabled, EmulationSettingConstants.Enabled)
+                    ), new(
+                        SettingsConstants.MouseSpeed,
+                        EmulationMachineTab.Mouse,
+                        SettingsConstants.ResourceLightPen,
+                        SettingsConstants.ResourceMouseSpeed,
+                        EmulationSettingsEditor.Selection,
+                        configuration.Input.MouseSpeedPercent.ToString(CultureInfo.InvariantCulture),
+                        speeds
+                    )],
+                IsCompact: true
+            ));
+        return blocks;
+    }
+
+    private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
+    private static EmulationSettingsBlock Audio(MachineConfiguration configuration) => new(
+        SettingsConstants.ResourceAudio,
+        EmulationMachineTab.Audio,
+        SettingsConstants.ResourceAudio,
+        [
+            CommonCoreHostFunctions.HardwareSettings.Toggle(SettingsConstants.AudioEnabled, EmulationMachineTab.Audio, SettingsConstants.ResourceAudio, SettingsConstants.ResourceAudioEnabled, configuration.AudioEnabled, null, null),
+            CommonCoreHostFunctions.HardwareSettings.AudioOutput(SettingsConstants.AudioOutput, SettingsConstants.ResourceAudio, SettingsConstants.ResourceAudioOutput, configuration.Options.GetValueOrDefault(SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput), [new(SettingsConstants.DefaultOutput, SettingsConstants.ResourceDefaultOutput)], null, null),
+            AudioSelection(configuration, SettingsConstants.AudioLatency, SettingsConstants.ResourceAudioLatency, EmulationSettingConstants.DefaultAudioLatencyMilliseconds, EmulationSettingConstants.AudioLatencyMillisecondsChoices, SettingsConstants.MillisecondsUnit),
+            AudioSelection(configuration, VideoAudioSettingsConstants.AudioVolumeOption, SettingsConstants.ResourceAudioVolume, EmulationSettingConstants.DefaultAudioVolumePercent, EmulationSettingConstants.AudioVolumePercentChoices, SettingsConstants.PercentUnit)
+        ],
+        IsCompact: true
+    );
+    private static EmulationSettingsField AudioSelection(MachineConfiguration configuration, string id, string resource, int fallback, IReadOnlyList<int> values, string unit) => CommonCoreHostFunctions.HardwareSettings.AudioSelection(configuration.Options, id, SettingsConstants.ResourceAudio, resource, fallback, values, unit, CultureInfo.InvariantCulture);
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Thomson.Error.AlreadyInitialized"><value>Host emulasi sudah diinisialisasi.</value></data>
+  <data name="Emulation.Thomson.Error.CommunicationFailed"><value>Komunikasi emulasi host gagal.</value></data>
+  <data name="Emulation.Thomson.Error.ContentFileMissing"><value>Medium yang dikonfigurasi tidak dapat ditemukan.</value></data>
+  <data name="Emulation.Thomson.Error.DynamicMediaUnsupported"><value>Sesi emulasi tidak dapat bertukar medium ini.</value></data>
+  <data name="Emulation.Thomson.Error.ExecutableMissing"><value>Host emulasi yang dapat dieksekusi hilang.</value></data>
+  <data name="Emulation.Thomson.Error.InstalledLibraryLockedFormat"><value>Pustaka yang terpasang tidak dapat diganti: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidArchitecture"><value>Inti yang diunduh bukan Windows x64.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidConfiguration"><value>Konfigurasi emulasi tidak valid.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidResponseLengthFormat"><value>Panjang respon host emulasi tidak valid: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.MachineInvalidState"><value>Sesi emulasi tidak dalam keadaan yang diperlukan.</value></data>
+  <data name="Emulation.Thomson.Error.MachineStopped"><value>Sesi emulasi telah berhenti.</value></data>
+  <data name="Emulation.Thomson.Error.MissingExpectedLibraryFormat"><value>Arsip yang diunduh tidak memuat {0}.</value></data>
+  <data name="Emulation.Thomson.Error.MissingPublishedDate"><value>Respon resmi tidak mengidentifikasi tanggal penerbitannya.</value></data>
+  <data name="Emulation.Thomson.Error.NotInitialized"><value>Host emulasi tidak diinisialisasi.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessExitSuffixFormat"><value> Kode keluar: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessNotInitialized"><value>Proses host emulasi tidak diinisialisasi.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessStartFailed"><value>Proses pengubahan host tidak dapat dimulai.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessUnavailable"><value>Proses host emulasi tidak tersedia.</value></data>
+  <data name="Emulation.Thomson.Error.ProtocolVersionMismatchFormat"><value>Versi protokol {0} tidak cocok {1}.</value></data>
+  <data name="Emulation.Thomson.Error.RequestCancelled"><value>Permintaan host emulasi dibatalkan.</value></data>
+  <data name="Emulation.Thomson.Error.ResponseTimeout"><value>Respon host emulasi timeout.</value></data>
+  <data name="Emulation.Thomson.Error.ResponseUnavailable"><value>Respon host emulasi tidak tersedia.</value></data>
+  <data name="Emulation.Thomson.Error.SharedVideoUnavailable"><value>Transport video yang dibagikan tidak tersedia.</value></data>
+  <data name="Emulation.Thomson.Error.StateIncompatible"><value>Keadaan tersimpan tidak kompatibel dengan mesin saat ini.</value></data>
+  <data name="Emulation.Thomson.Error.StateInvalid"><value>Keadaan tersimpan tidak valid.</value></data>
+  <data name="Emulation.Thomson.Error.StateUnavailable"><value>Emulator tidak mendukung negara-negara yang disimpan.</value></data>
+  <data name="Emulation.Thomson.Error.UnknownCommandFormat"><value>Perintah host emulasi tidak dikenal: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.UnsupportedControllerDevice"><value>Perangkat pengontrol tidak didukung.</value></data>
+</root>

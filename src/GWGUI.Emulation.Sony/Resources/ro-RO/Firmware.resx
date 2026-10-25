@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Firmware.Integrated"><value>Sistemul ROM</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (Japonia)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (America de Nord)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (Europa)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>ROM opțional pentru playerul DVD al consolei PS2.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>Alegeți copia ROM1 corespunzătoare BIOS-ului selectat, de obicei un fișier .rom1 sau rom1.bin. Aceasta conține module pentru playerul DVD și date de identificare. Lăsați câmpul gol dacă nu aveți o copie ROM1 a consolei. BIOS-ul principal se selectează în câmpul BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>ROM opțional pentru PS2 care conține fonturi chinezești.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>Alegeți copia ROM2 a consolei chinezești SCPH-50009 corespunzătoare BIOS-ului selectat, de obicei un fișier .rom2 sau rom2.bin. Lăsați câmpul gol pentru consolele fără ROM2. Acest fișier nu înlocuiește BIOS-ul principal.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>Setările salvate ale consolei.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>Selectați un fișier .nvm de 1024 de octeți corespunzător BIOS-ului ales. Conține setările consolei. Fișierul este opțional: lăsați câmpul gol pentru a reutiliza setările salvate sau pentru a permite emulatorului să creeze valorile implicite.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>Versiunea controlerului mecanic.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>Selectați un fișier .mec de 4 octeți corespunzător BIOS-ului ales. Conține numărul de versiune al controlerului mecanic, nu firmware-ul complet. Fișierul este opțional: lăsați câmpul gol pentru a reutiliza datele salvate sau pentru a permite emulatorului să creeze un fișier implicit.</value></data>
+</root>

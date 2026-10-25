@@ -1,0 +1,244 @@
+using ControllerFunctions = GWGUI.Emulation.Sony.Common.Functions.ControllerFunctions;
+using GWGUI.Emulation.Constants;
+using GWGUI.Emulation.Contracts;
+using GWGUI.Emulation.Enums;
+using GWGUI.Emulation.Sony.Common.Machines.Common.Constants;
+using GWGUI.Emulation.Sony.Common.Machines.Common.Contracts;
+using GWGUI.Emulation.Sony.Common.Machines.Common.Enums;
+using GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
+using Ps3Hardware = GWGUI.Emulation.Sony.Common.Machines.PlayStation3.Constants.HardwareConstants;
+using Rpcs3Core = GWGUI.Emulation.Sony.Emulators.Rpcs3.Constants.CoreConstants;
+using SwanCore = GWGUI.Emulation.Sony.Emulators.SwanStation.Constants.CoreConstants;
+using Pcsx2Core = GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants.Pcsx2Constants;
+using PlayCore = GWGUI.Emulation.Sony.Emulators.Play.Constants.CoreConstants;
+using PortCounts = GWGUI.Emulation.Sony.Common.Constants.ControllerPortConstants;
+using SwanOptions = GWGUI.Emulation.Sony.Emulators.SwanStation.Constants.OptionConstants;
+using RearmedCore = GWGUI.Emulation.Sony.Emulators.PcsxRearmed.Constants.CoreConstants;
+using RearmedOptions = GWGUI.Emulation.Sony.Emulators.PcsxRearmed.Constants.OptionConstants;
+using PceeCore = GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.CoreConstants;
+using PceeOptions = GWGUI.Emulation.Sony.Emulators.Pcee2.Constants.OptionConstants;
+using BeetleCore = GWGUI.Emulation.Sony.Emulators.BeetlePsx.Constants.CoreConstants;
+using BeetleOptions = GWGUI.Emulation.Sony.Emulators.BeetlePsx.Constants.OptionConstants;
+using BeetleHwCore = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Constants.CoreConstants;
+using BeetleHwOptions = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Constants.OptionConstants;
+using Toggle = GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants.ToggleValueConstants;
+using PspCore = GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants.PpssppConstants;
+
+namespace GWGUI.Tests.Emulation.Sony;
+
+public sealed class ControllerConfigurationTests
+{
+    [Fact]
+    public void PspBuiltInControllerCannotBeDisconnected()
+    {
+        var configuration = new MachineConfiguration(ModelConstants.Psp, PspCore.Id);
+        var port = Assert.Single(InputSettingsFunctions.Describe(configuration).ControllerPorts);
+        Assert.Equal(nameof(PeripheralCategory.Joystick), Assert.Single(port.ControllerChoices).Id);
+        Assert.Equal(nameof(PeripheralCategory.Joystick), port.SelectedControllerId);
+        Assert.Empty(port.Bindings.Values);
+        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerFunctions.WithControllerType(configuration, FirstPort, PeripheralCategory.None));
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void PspPreviouslyDisconnectedControllerCanBeOpened(bool usesBindings)
+    {
+        var configuration = new MachineConfiguration(ModelConstants.Psp, PspCore.Id,
+            Controllers: usesBindings ? null : [PeripheralCategory.None],
+            Input: usesBindings ? new InputConfiguration(Controllers: [new ControllerBinding(FirstPort, PeripheralCategory.None)]) : null);
+        var port = Assert.Single(InputSettingsFunctions.Describe(configuration).ControllerPorts);
+        Assert.Equal(nameof(PeripheralCategory.Joystick), port.SelectedControllerId);
+        Assert.DoesNotContain(port.ControllerChoices, choice => choice.Id == nameof(PeripheralCategory.None));
+        Assert.Empty(port.Bindings.Values);
+        Assert.Equal(PeripheralCategory.Joystick, ControllerFunctions.Resolve(configuration, FirstPort));
+    }
+
+    private const int FirstPort = 0;
+    private const string KeyboardA = "Keyboard:A";
+    private const string PhysicalDevice = "controller-test";
+    private const string Axis = "TestAxis";
+    private const string PositiveAxisSource = "Controller:controller-test:TestAxisPositive";
+    private const float PartialPressure = .25f;
+
+    [Theory]
+    [InlineData(ModelConstants.PlayStation2, PlayCore.Id, PortCounts.OneControllerPort, PortCounts.TwoControllerPorts)]
+    [InlineData(ModelConstants.PlayStation2, Pcsx2Core.Id, PortCounts.TwoControllerPorts, PortCounts.TwoControllerPorts)]
+    [InlineData(ModelConstants.PlayStation3, Rpcs3Core.Id, PortCounts.OneControllerPort, 0)]
+    public void ControllerSettingsRespectTheEmulatorPortCapacity(string model, string emulator, int count, int usbPorts)
+    {
+        AssertPortCapacity(new MachineConfiguration(model, emulator), count, usbPorts);
+    }
+
+    [Theory]
+    [InlineData(SwanCore.Id, SwanOptions.ControllerPortsMultitapModeKey,
+        SwanOptions.ControllerPortsMultitapModePort1Only, PortCounts.SingleMultitapControllerCount)]
+    [InlineData(SwanCore.Id, SwanOptions.ControllerPortsMultitapModeKey,
+        SwanOptions.ControllerPortsMultitapModePort2Only, PortCounts.SingleMultitapControllerCount)]
+    [InlineData(SwanCore.Id, SwanOptions.ControllerPortsMultitapModeKey,
+        SwanOptions.ControllerPortsMultitapModeBothPorts, PortCounts.MaximumGamepadPortCount)]
+    [InlineData(RearmedCore.Id, RearmedOptions.MultitapKey,
+        RearmedOptions.MultitapPort1, PortCounts.SingleMultitapControllerCount)]
+    [InlineData(RearmedCore.Id, RearmedOptions.MultitapKey,
+        RearmedOptions.MultitapPort2, PortCounts.SingleMultitapControllerCount)]
+    [InlineData(RearmedCore.Id, RearmedOptions.MultitapKey,
+        RearmedOptions.MultitapPorts1And2, PortCounts.MaximumGamepadPortCount)]
+    [InlineData(PceeCore.Id, PceeOptions.MultitapKey,
+        PceeOptions.MultitapPort1, 7)]
+    [InlineData(PceeCore.Id, PceeOptions.MultitapKey,
+        PceeOptions.MultitapPort2, 7)]
+    [InlineData(PceeCore.Id, PceeOptions.MultitapKey,
+        PceeOptions.MultitapBoth, 10)]
+    public void MultitapMakesAllConfiguredPlayersAvailable(string emulator, string key, string value, int count)
+    {
+        var model = emulator == PceeCore.Id ? ModelConstants.PlayStation2 : ModelConstants.PlayStation;
+        AssertPortCapacity(new MachineConfiguration(model, emulator, Options: new Dictionary<string, string> { [key] = value }), count);
+    }
+
+    [Theory]
+    [InlineData(BeetleCore.Id, BeetleOptions.EnableMultitapPort1Key, BeetleOptions.EnableMultitapPort2Key)]
+    [InlineData(BeetleHwCore.Id, BeetleHwOptions.EnableMultitapPort1Key, BeetleHwOptions.EnableMultitapPort2Key)]
+    public void IndependentMultitapsExposeEveryPlayer(string emulator, string firstKey, string secondKey)
+    {
+        foreach (var firstEnabled in new[] { false, true })
+        foreach (var secondEnabled in new[] { false, true })
+        {
+            var count = firstEnabled && secondEnabled ? PortCounts.MaximumGamepadPortCount : firstEnabled || secondEnabled ? PortCounts.SingleMultitapControllerCount : PortCounts.TwoControllerPorts;
+            AssertPortCapacity(new MachineConfiguration(ModelConstants.PlayStation, emulator,
+                Options: new Dictionary<string, string>
+                {
+                    [firstKey] = firstEnabled ? Toggle.Enabled : Toggle.Disabled,
+                    [secondKey] = secondEnabled ? Toggle.Enabled : Toggle.Disabled
+                }), count);
+        }
+    }
+
+    private static void AssertPortCapacity(MachineConfiguration configuration, int count, int usbPorts = 0)
+    {
+        var settings = InputSettingsFunctions.Describe(configuration);
+        Assert.Equal(count + usbPorts, settings.ControllerPorts.Count);
+        if (usbPorts > 0) Assert.Equal(usbPorts, settings.ControllerPorts.Count(port => port.IsUsb));
+        Assert.Equal(count, ControllerFunctions.PortCount(configuration));
+        ControllerFunctions.ValidatePort(configuration, count - PortCounts.OneControllerPort);
+        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerFunctions.ValidatePort(configuration, count));
+    }
+
+    [Fact]
+    public void SwanMultitapChoicesMatchTheDevicesAdvertisedForEachPort()
+    {
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation, SwanCore.Id,
+            Options: new Dictionary<string, string>
+            {
+                [SwanOptions.ControllerPortsMultitapModeKey] = SwanOptions.ControllerPortsMultitapModeBothPorts
+            });
+        var settings = InputSettingsFunctions.Describe(configuration);
+        foreach (var port in Enumerable.Range(PortCounts.MinimumControllerPort, settings.ControllerPorts.Count))
+        {
+            var choices = settings.ControllerPorts[port].ControllerChoices.Select(choice => choice.Id).ToHashSet();
+            Assert.Equal(port < SwanCore.LightGunPortCount, choices.Contains(nameof(PeripheralCategory.GunCon)));
+            Assert.Equal(port < SwanCore.SteeringControllerPortCount, choices.Contains(nameof(PeripheralCategory.NeGcon)));
+            Assert.Contains(nameof(PeripheralCategory.DualShock), choices);
+            Assert.Contains(nameof(PeripheralCategory.None), choices);
+        }
+        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerFunctions.WithControllerType(configuration, SwanCore.LightGunPortCount, PeripheralCategory.GunCon));
+        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerFunctions.WithControllerType(configuration, SwanCore.SteeringControllerPortCount, PeripheralCategory.NeGcon));
+    }
+
+    [Fact]
+    public void Ps3CanExposeSevenControllersWithCompleteButtonsAndBothSticks()
+    {
+        var settings = InputSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.PlayStation3, Rpcs3Core.Id,
+            Options: new Dictionary<string, string> { ["input.controllerCount"] = "7" }));
+        Assert.Equal(Ps3Hardware.ControllerPortCount, settings.ControllerPorts.Count);
+        Assert.All(settings.ControllerPorts, port =>
+        {
+            var ids = port.Bindings.Definitions.Select(definition => definition.Id).ToHashSet();
+            Assert.Contains(EmulationControllerCommandIds.X, ids);
+            Assert.Contains(EmulationControllerCommandIds.Y, ids);
+            Assert.Contains(EmulationControllerCommandIds.L2, ids);
+            Assert.Contains(EmulationControllerCommandIds.R2, ids);
+            Assert.Contains(EmulationControllerCommandIds.L3, ids);
+            Assert.Contains(EmulationControllerCommandIds.R3, ids);
+            Assert.Contains(InputSettingsFunctionsConstants.LeftStickLeft, ids);
+            Assert.Contains(InputSettingsFunctionsConstants.RightStickRight, ids);
+            Assert.DoesNotContain(port.ControllerChoices, choice => choice.CompatibleVisualIds?.Contains(EmulationControllerVisualIds.QuickShot) == true);
+        });
+    }
+
+    [Fact]
+    public void DisabledPortSuppressesPhysicalAndMappedInput()
+    {
+        var snapshot = EmulationInputSnapshot.Empty with
+        {
+            Keys = new HashSet<EmulationKey> { EmulationKey.A },
+            Controllers = [EmulationControllerState.Empty with
+                { Buttons = uint.MaxValue, LeftX = short.MaxValue, RightY = short.MinValue }]
+        };
+        var input = new InputConfiguration(Controllers: [new ControllerBinding(FirstPort, PeripheralCategory.None, Mappings: new Dictionary<string, string> { [EmulationControllerCommandIds.B] = KeyboardA })]);
+        var mapped = InputSnapshotFunctions.Apply(snapshot, input, false, Ps3Hardware.ControllerPortCount);
+        Assert.Equal(Ps3Hardware.ControllerPortCount, mapped.Controllers.Count);
+        Assert.Equal(EmulationControllerState.Empty, mapped.Controllers[FirstPort]);
+    }
+
+    [Fact]
+    public void RightStickMappingKeepsPartialPressureAndNeutralizesUnmappedAxes()
+    {
+        var controller = EmulationControllerState.Empty with
+        {
+            DeviceId = PhysicalDevice, LeftX = short.MaxValue, LeftY = short.MinValue,
+            RightY = short.MinValue,
+            Controls = new EmulationControllerControls(new Dictionary<string, float> { [Axis] = PartialPressure })
+        };
+        var snapshot = EmulationInputSnapshot.Empty with { Controllers = [controller] };
+        var input = new InputConfiguration(Controllers:
+        [new ControllerBinding(FirstPort, PeripheralCategory.DualShock, PhysicalDevice, new Dictionary<string, string> { [InputSettingsFunctionsConstants.RightStickRight] = PositiveAxisSource })]);
+        var mapped = InputSnapshotFunctions.Apply(snapshot, input, false).Controllers[FirstPort];
+        Assert.Equal((short)0, mapped.LeftX);
+        Assert.Equal((short)0, mapped.LeftY);
+        Assert.Equal((short)0, mapped.RightY);
+        Assert.Equal((short)Math.Round(PartialPressure * short.MaxValue), mapped.RightX);
+    }
+
+    [Fact]
+    public void ControllerChangePreservesMappingsPhysicalDeviceAndVisual()
+    {
+        var mappings = new Dictionary<string, string> { [EmulationControllerCommandIds.B] = KeyboardA };
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation, SwanCore.Id,
+            Input: new InputConfiguration(Controllers: [new ControllerBinding(FirstPort, PeripheralCategory.Joystick, PhysicalDevice, mappings, EmulationControllerVisualIds.SonyPlayStationController)]));
+        var updated = ControllerFunctions.WithControllerType(configuration, FirstPort, PeripheralCategory.DualShock);
+        var binding = Assert.Single(updated.Input!.Controllers!);
+        Assert.Equal(PeripheralCategory.DualShock, binding.Peripheral);
+        Assert.Equal(PhysicalDevice, binding.DeviceId);
+        Assert.Same(mappings, binding.Mappings);
+        Assert.Equal(EmulationControllerVisualIds.SonyPlayStationController, binding.VisualId);
+        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerFunctions.WithControllerType(configuration, FirstPort, PeripheralCategory.Keyboard));
+    }
+
+    [Fact]
+    public void UsbPcKeyboardExposesNoForeignSpecialKeysAndPreservesExistingBindings()
+    {
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, Pcsx2Core.Id, Input: new InputConfiguration(
+            KeyboardBindings: new Dictionary<string, string> { [nameof(EmulationKey.A)] = nameof(EmulationKey.F10) },
+            UsbBindings: [new ControllerBinding(FirstPort, PeripheralCategory.Keyboard)]));
+        var settings = InputSettingsFunctions.Describe(configuration);
+        Assert.NotNull(settings.Keyboard);
+        Assert.NotEmpty(settings.Keyboard.Definitions);
+        Assert.All(settings.Keyboard.Definitions, definition => Assert.True(Enum.TryParse<EmulationKey>(definition.Id, out _)));
+        Assert.Equal(nameof(EmulationKey.F10), settings.Keyboard.Values[nameof(EmulationKey.A)]);
+        Assert.Equal(PeripheralCategory.Keyboard.ToString(), settings.ControllerPorts.First(port => port.IsUsb).SelectedControllerId);
+        Assert.All(settings.ControllerPorts.Where(port => port.IsUsb), port => Assert.Contains(port.ControllerChoices, choice => choice.Id == PeripheralCategory.Keyboard.ToString()));
+        Assert.All(settings.ControllerPorts.Where(port => !port.IsUsb), port => Assert.DoesNotContain(port.ControllerChoices, choice => choice.Id == PeripheralCategory.Keyboard.ToString()));
+        var restored = InputSettingsFunctions.Describe(InputSettingsFunctions.Apply(configuration, settings));
+        Assert.Equal(nameof(EmulationKey.F10), restored.Keyboard!.Values[nameof(EmulationKey.A)]);
+        Assert.Equal(PeripheralCategory.Keyboard.ToString(), restored.ControllerPorts.First(port => port.IsUsb).SelectedControllerId);
+    }
+
+    [Fact]
+    public void MouseMappingsReachPerPortControls()
+    {
+        var snapshot = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.A } };
+        var input = new InputConfiguration(Controllers: [new ControllerBinding(FirstPort, PeripheralCategory.Mouse, Mappings: new Dictionary<string, string> { [nameof(MouseAction.LeftButton)] = KeyboardA })]);
+        var mapped = InputSnapshotFunctions.Apply(snapshot, input, false).Controllers[FirstPort];
+        Assert.Equal(InputSnapshotFunctionsConstants.FullPressure, mapped.Controls[nameof(MouseAction.LeftButton)]);
+    }
+}

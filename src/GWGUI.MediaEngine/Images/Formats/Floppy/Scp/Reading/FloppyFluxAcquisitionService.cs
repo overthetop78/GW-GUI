@@ -1,8 +1,12 @@
+using GWGUI.MediaFileSystems.Functions;
 using System.Globalization;
-using MediaPhysicalEncodingIds = global::GWGUI.MediaEngine.Constants.MediaPhysicalEncodingIds;
-using MediaPhysicalMetadataKeys = global::GWGUI.MediaEngine.Constants.MediaPhysicalMetadataKeys;
-using MediaAcquisitionResult = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
-using MediaPhysicalDataUnit = global::GWGUI.MediaEngine.Contracts.MediaPhysicalDataUnit;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Contracts;
+using GWGUI.MediaEngine.Images.Reading;
+using MediaPhysicalEncodingIds = GWGUI.MediaEngine.Constants.MediaPhysicalEncodingIds;
+using MediaPhysicalMetadataKeys = GWGUI.MediaEngine.Constants.MediaPhysicalMetadataKeys;
+using MediaAcquisitionResult = GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
+using MediaPhysicalDataUnit = GWGUI.MediaEngine.Contracts.MediaPhysicalDataUnit;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Functions;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
@@ -12,6 +16,13 @@ namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reading;
 /// <summary>Reconstructs MediaEngine SCP data from neutral physical floppy flux units.</summary>
 public sealed class FloppyFluxAcquisitionService
 {
+    public MediaImageDocument CreateDocument(string sourcePath, ScpImage image)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(sourcePath);
+        return MediaImageDocumentFactory.CreateFloppyFlux(new MediaSourceDescriptor(sourcePath, []),
+            DiskImageFormatIds.RawScp, ScpProtectedTrackImageAdapter.Create(image), ScpMetadataFunctions.Create(image));
+    }
+
     public ScpImage CreateScpImage(MediaAcquisitionResult acquisition)
     {
         ArgumentNullException.ThrowIfNull(acquisition);
@@ -51,8 +62,7 @@ public sealed class FloppyFluxAcquisitionService
         var cylinder = ReadInt(unit.Metadata, MediaPhysicalMetadataKeys.Cylinder);
         var head = ReadInt(unit.Metadata, MediaPhysicalMetadataKeys.Head);
         var trackData = MediaFluxTrackDataFunctions.Deserialize(unit.Data.Span);
-        var resolutionNanoseconds = ScpFormatConstants.ResolutionStepNanoseconds
-            * (ScpFormatConstants.InternalCaptureResolution + ScpFormatConstants.ResolutionIndexOffset);
+        var resolutionNanoseconds = ScpFormatConstants.ResolutionStepNanoseconds * (ScpFormatConstants.InternalCaptureResolution + ScpFormatConstants.ResolutionIndexOffset);
         var revolutions = trackData.Revolutions.Select(revolution =>
         {
             var intervals = ConvertNanoseconds(revolution.FluxIntervalsNanoseconds, resolutionNanoseconds);
@@ -62,9 +72,7 @@ public sealed class FloppyFluxAcquisitionService
         return new ScpTrack(ScpFormatConstants.ToTrackNumber(cylinder, head), cylinder, head, revolutions);
     }
 
-    private static IReadOnlyList<uint> ConvertNanoseconds(
-        IReadOnlyList<uint> intervalsNanoseconds,
-        int resolutionNanoseconds)
+    private static IReadOnlyList<uint> ConvertNanoseconds(IReadOnlyList<uint> intervalsNanoseconds, int resolutionNanoseconds)
     {
         var result = new uint[intervalsNanoseconds.Count];
         ulong sourceElapsed = 0;
@@ -81,14 +89,10 @@ public sealed class FloppyFluxAcquisitionService
         return result;
     }
 
-    private static uint ConvertNanoseconds(uint nanoseconds, int resolutionNanoseconds) =>
-        checked((uint)Math.Max(1, Math.Round(nanoseconds / (double)resolutionNanoseconds)));
+    private static uint ConvertNanoseconds(uint nanoseconds, int resolutionNanoseconds) => checked((uint)Math.Max(1, Math.Round(nanoseconds / (double)resolutionNanoseconds)));
 
     private static int ReadInt(IReadOnlyDictionary<string, string> metadata, string key) =>
-        metadata.TryGetValue(key, out var value)
-        && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed)
-            ? parsed
-            : throw new InvalidDataException($"Physical acquisition metadata '{key}' is missing or invalid.");
+        MediaMetadataFunctions.TryReadInt(metadata, key, NumberStyles.Integer, out var parsed) ? parsed : throw new InvalidDataException($"Physical acquisition metadata '{key}' is missing or invalid.");
 
     private static ScpDiskType ReadDiskType(IReadOnlyDictionary<string, string> metadata)
     {

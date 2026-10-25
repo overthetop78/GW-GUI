@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.81.Description"><value>Emuliert Sinclair ZX81.</value></data>
+  <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>Audio-Hardware</value></data>
+  <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>Ursprünglicher Inhalt</value></data>
+  <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>Videospeicher</value></data>
+  <data name="Emulation.Sinclair.Setting.AyStereoSeparation" xml:space="preserve"><value>AY Stereokanal-Order</value></data>
+  <data name="Emulation.Sinclair.Setting.AyVolume" xml:space="preserve"><value>AY Volumen</value></data>
+  <data name="Emulation.Sinclair.Setting.BorderSize" xml:space="preserve"><value>Bildschirmrandgröße</value></data>
+  <data name="Emulation.Sinclair.Setting.EmulationSpeed" xml:space="preserve"><value>Emulgiergeschwindigkeit</value></data>
+  <data name="Emulation.Sinclair.Setting.HighResolution" xml:space="preserve"><value>Hochauflösende Grafiken</value></data>
+  <data name="Emulation.Sinclair.Setting.MemoryBankContent" xml:space="preserve"><value>8-16 KiB Speicherbank</value></data>
+  <data name="Emulation.Sinclair.Setting.MouseSwapButtons" xml:space="preserve"><value>Maustasten austauschen</value></data>
+  <data name="Emulation.Sinclair.Setting.Palette" xml:space="preserve"><value>Farbpalette</value></data>
+  <data name="Emulation.Sinclair.Setting.SoundHardware" xml:space="preserve"><value>Sound Hardware</value></data>
+  <data name="Emulation.Sinclair.Setting.SpeakerType" xml:space="preserve"><value>Lautsprechertyp</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeAutoLoad" xml:space="preserve"><value>Automatisches Kassettenladen</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeFastLoad" xml:space="preserve"><value>Schnelles Kassettenladen</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeLoadSound" xml:space="preserve"><value>Kassettenladegeräusch</value></data>
+  <data name="Emulation.Sinclair.Setting.VideoPreset" xml:space="preserve"><value>Video Preset</value></data>
+  <data name="Emulation.Sinclair.Value.AmberMonochrome" xml:space="preserve"><value>Bernsteinmonochrom</value></data>
+  <data name="Emulation.Sinclair.Value.Beeper" xml:space="preserve"><value>Eingebauter Schallerzeuger</value></data>
+  <data name="Emulation.Sinclair.Value.GreenMonochrome" xml:space="preserve"><value>Grün monochrom</value></data>
+  <data name="Emulation.Sinclair.Value.InvertedColours" xml:space="preserve"><value>Invertierte Farben</value></data>
+  <data name="Emulation.Sinclair.Value.Monochrome" xml:space="preserve"><value>Schwarz und Weiß</value></data>
+  <data name="Emulation.Sinclair.Value.None" xml:space="preserve"><value>Keine</value></data>
+  <data name="Emulation.Sinclair.Value.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Emulation.Sinclair.Value.RomShadow" xml:space="preserve"><value>ROM Spiegel</value></data>
+  <data name="Emulation.Sinclair.Value.Television" xml:space="preserve"><value>Fernsehen</value></data>
+  <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>Fernsehlautsprecher</value></data>
+  <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>Unfiltriert</value></data>
+  <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>Videoanzeige</value></data>
+  <data name="Emulation.Emulator.fuse.Description"><value>Emuliert kompatible ZX Spectrum-Systeme.</value></data>
+  <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>Eingebautes Soundvolumen</value></data>
+  <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>Revision 2 Tastatur</value></data>
+  <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>Klares Bild</value></data>
+  <data name="Emulation.Sinclair.Value.Full" xml:space="preserve"><value>Vollbild-Grenze</value></data>
+  <data name="Emulation.Sinclair.Value.Noisy" xml:space="preserve"><value>Bild mit Rauschen</value></data>
+</root>

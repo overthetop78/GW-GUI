@@ -5,11 +5,48 @@ using System.Runtime.InteropServices;
 
 namespace GWGUI.Emulation.Functions;
 
-public static class EmulationChildProcessLifetime
+internal static class EmulationChildProcessLifetime
 {
     private static readonly EmulationChildProcessJob Job = new();
 
-    public static void Attach(Process process) => Job.Attach(process);
+    internal static void Attach(Process process) => Job.Attach(process);
+
+    internal static Process Start(ProcessStartInfo startInfo, Func<Exception> startFailed)
+    {
+        var process = Process.Start(startInfo) ?? throw startFailed();
+        var transferred = false;
+        try
+        {
+            Attach(process);
+            transferred = true;
+            return process;
+        }
+        finally
+        {
+            if (!transferred)
+            {
+                try
+                {
+                    WaitForExit(process, graceful: false, gracefulTimeoutMilliseconds: 0);
+                }
+                finally { process.Dispose(); }
+            }
+        }
+    }
+
+    internal static void WaitForExit(Process process, bool graceful, int gracefulTimeoutMilliseconds)
+    {
+        try
+        {
+            if (graceful && process.WaitForExit(gracefulTimeoutMilliseconds)) return;
+            if (!process.HasExited)
+            {
+                try { process.Kill(entireProcessTree: true); }
+                catch (InvalidOperationException) when (process.HasExited) { }
+            }
+        }
+        finally { process.WaitForExit(); }
+    }
 }
 
 internal sealed class EmulationChildProcessJob : IDisposable
@@ -22,8 +59,7 @@ internal sealed class EmulationChildProcessJob : IDisposable
         ArgumentNullException.ThrowIfNull(process);
         if (process.HasExited) return;
         if (!AssignProcessToJobObject(_job, process.Handle))
-            throw new Win32Exception(Marshal.GetLastWin32Error(),
-                "The emulator host process could not be attached to GW GUI's lifetime.");
+            throw new Win32Exception(Marshal.GetLastWin32Error(), "The emulator host process could not be attached to GW GUI's lifetime.");
     }
 
     public void Dispose() => _job.Dispose();
@@ -97,8 +133,7 @@ internal sealed class EmulationChildProcessJob : IDisposable
 
     [DllImport("kernel32.dll", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    private static extern bool SetInformationJobObject(SafeFileHandle job, int informationClass,
-        IntPtr information, uint informationLength);
+    private static extern bool SetInformationJobObject(SafeFileHandle job, int informationClass, IntPtr information, uint informationLength);
 
     [DllImport("kernel32.dll", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]

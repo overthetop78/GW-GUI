@@ -15,38 +15,20 @@ internal static class CassetteTransportPresentationScenarios
     {
         Assert.Equal(6, Enum.GetValues<EmulationCassetteCommand>().Length);
 
-        Assert.False(Enabled(powered: true, supported: false,
-            EmulationCassetteState.Stopped, null, EmulationCassetteCommand.Play));
-        Assert.False(Enabled(powered: true, supported: true,
-            EmulationCassetteState.Empty, null, EmulationCassetteCommand.Play));
-        Assert.False(Enabled(powered: false, supported: true,
-            EmulationCassetteState.Stopped, null, EmulationCassetteCommand.Play));
-        Assert.True(Enabled(powered: true, supported: true,
-            EmulationCassetteState.Stopped, null, EmulationCassetteCommand.Play));
+        Assert.False(Enabled(powered: true, supported: false, EmulationCassetteState.Stopped, null, EmulationCassetteCommand.Play));
+        Assert.False(Enabled(powered: true, supported: true, EmulationCassetteState.Empty, null, EmulationCassetteCommand.Play));
+        Assert.False(Enabled(powered: false, supported: true, EmulationCassetteState.Stopped, null, EmulationCassetteCommand.Play));
+        Assert.True(Enabled(powered: true, supported: true, EmulationCassetteState.Stopped, null, EmulationCassetteCommand.Play));
 
-        Assert.True(CassetteTransportPresentationFunctions.IsActive(
-            EmulationCassetteState.Playing, EmulationCassetteCommand.Play,
-            EmulationCassetteCommand.Play));
-        Assert.False(Enabled(powered: true, supported: true,
-            EmulationCassetteState.Playing, EmulationCassetteCommand.Play,
-            EmulationCassetteCommand.Play));
+        Assert.True(CassetteTransportPresentationFunctions.IsActive(EmulationCassetteState.Playing, EmulationCassetteCommand.Play, EmulationCassetteCommand.Play));
+        Assert.False(Enabled(powered: true, supported: true, EmulationCassetteState.Playing, EmulationCassetteCommand.Play, EmulationCassetteCommand.Play));
 
-        Assert.True(CassetteTransportPresentationFunctions.IsActive(
-            EmulationCassetteState.Recording, EmulationCassetteCommand.Record,
-            EmulationCassetteCommand.Record));
-        Assert.False(Enabled(powered: true, supported: true,
-            EmulationCassetteState.Recording, EmulationCassetteCommand.Record,
-            EmulationCassetteCommand.Record));
+        Assert.True(CassetteTransportPresentationFunctions.IsActive(EmulationCassetteState.Recording, EmulationCassetteCommand.Record, EmulationCassetteCommand.Record));
+        Assert.False(Enabled(powered: true, supported: true, EmulationCassetteState.Recording, EmulationCassetteCommand.Record, EmulationCassetteCommand.Record));
 
-        Assert.True(CassetteTransportPresentationFunctions.IsBlinking(
-            EmulationCassetteState.Paused, EmulationCassetteCommand.Play,
-            EmulationCassetteCommand.Play));
-        Assert.True(CassetteTransportPresentationFunctions.IsBlinking(
-            EmulationCassetteState.Paused, EmulationCassetteCommand.Record,
-            EmulationCassetteCommand.Record));
-        Assert.False(CassetteTransportPresentationFunctions.IsBlinking(
-            EmulationCassetteState.Paused, EmulationCassetteCommand.Play,
-            EmulationCassetteCommand.Record));
+        Assert.True(CassetteTransportPresentationFunctions.IsBlinking(EmulationCassetteState.Paused, EmulationCassetteCommand.Play, EmulationCassetteCommand.Play));
+        Assert.True(CassetteTransportPresentationFunctions.IsBlinking(EmulationCassetteState.Paused, EmulationCassetteCommand.Record, EmulationCassetteCommand.Record));
+        Assert.False(CassetteTransportPresentationFunctions.IsBlinking(EmulationCassetteState.Paused, EmulationCassetteCommand.Play, EmulationCassetteCommand.Record));
     }
 
     internal static void PanelContainsASeparateRowWithEveryCommand()
@@ -69,8 +51,7 @@ internal static class CassetteTransportPresentationScenarios
             .ToArray();
         var view = new MachineView();
         view.SetDevices(
-            [new MachineViewDevice("Cassette0", "TAPE0:", "T", true, true,
-                () => Task.CompletedTask, () => Task.CompletedTask, "Stopped", commands)],
+            [new MachineViewDevice("Cassette0", "TAPE0:", "T", true, true, () => Task.CompletedTask, () => Task.CompletedTask, "Stopped", commands)],
             _ => { }, () => { });
 
         var deviceBorder = Assert.IsType<Border>(Assert.Single(view.DeviceStrip.Children));
@@ -83,31 +64,19 @@ internal static class CassetteTransportPresentationScenarios
         Assert.Equal(Orientation.Horizontal, commandRow.Orientation);
         var buttons = commandRow.Children.Cast<Button>().ToArray();
         Assert.Equal(6, buttons.Length);
-        Assert.Equal(MachineController.CassetteCommandOrder,
-            buttons.Select(button => Enum.Parse<EmulationCassetteCommand>((string)button.ToolTip)).ToArray());
-        Assert.True(buttons.Single(button => Equals(button.ToolTip,
-            EmulationCassetteCommand.Play.ToString())).IsEnabled);
-        Assert.True(buttons.Single(button => Equals(button.ToolTip,
-            EmulationCassetteCommand.Record.ToString())).IsEnabled);
-        Assert.All(buttons.Where(button => !Equals(button.ToolTip,
-            EmulationCassetteCommand.Play.ToString()) && !Equals(button.ToolTip,
-            EmulationCassetteCommand.Record.ToString())), button => Assert.False(button.IsEnabled));
-        var play = buttons.Single(button => Equals(button.ToolTip,
-            EmulationCassetteCommand.Play.ToString()));
-        var record = buttons.Single(button => Equals(button.ToolTip,
-            EmulationCassetteCommand.Record.ToString()));
+        Assert.Equal(MachineController.CassetteCommandOrder, buttons.Select(button => Enum.Parse<EmulationCassetteCommand>((string)button.ToolTip)).ToArray());
+        Assert.True(buttons.Single(button => Equals(button.ToolTip, EmulationCassetteCommand.Play.ToString())).IsEnabled);
+        Assert.True(buttons.Single(button => Equals(button.ToolTip, EmulationCassetteCommand.Record.ToString())).IsEnabled);
+        Assert.All(buttons.Where(button => !Equals(button.ToolTip, EmulationCassetteCommand.Play.ToString()) && !Equals(button.ToolTip, EmulationCassetteCommand.Record.ToString())), button => Assert.False(button.IsEnabled));
+        var play = buttons.Single(button => Equals(button.ToolTip, EmulationCassetteCommand.Play.ToString()));
+        var record = buttons.Single(button => Equals(button.ToolTip, EmulationCassetteCommand.Record.ToString()));
         Assert.Equal(Color.FromRgb(22, 130, 59), ((SolidColorBrush)play.Foreground).Color);
         Assert.Equal(Color.FromRgb(180, 35, 24), ((SolidColorBrush)record.Foreground).Color);
-        Assert.Equal(play.Foreground, Assert.IsType<TextBlock>(
-            Assert.IsType<Border>(play.Content).Child).Foreground);
-        Assert.Equal(record.Foreground, Assert.IsType<TextBlock>(
-            Assert.IsType<Border>(record.Content).Child).Foreground);
-        Assert.Equal(Brushes.Gray, buttons.Single(button => Equals(button.ToolTip,
-            EmulationCassetteCommand.Stop.ToString())).Foreground);
+        Assert.Equal(play.Foreground, Assert.IsType<TextBlock>(Assert.IsType<Border>(play.Content).Child).Foreground);
+        Assert.Equal(record.Foreground, Assert.IsType<TextBlock>(Assert.IsType<Border>(record.Content).Child).Foreground);
+        Assert.Equal(Brushes.Gray, buttons.Single(button => Equals(button.ToolTip, EmulationCassetteCommand.Stop.ToString())).Foreground);
 
-        view.SetCassetteTransport("Cassette0", EmulationCassetteState.Playing,
-            EmulationCassetteCommand.Play,
-            new HashSet<EmulationCassetteCommand> { EmulationCassetteCommand.Play }, powered: true);
+        view.SetCassetteTransport("Cassette0", EmulationCassetteState.Playing, EmulationCassetteCommand.Play, new HashSet<EmulationCassetteCommand> { EmulationCassetteCommand.Play }, powered: true);
         Assert.Equal(Color.FromRgb(0, 200, 83), ((SolidColorBrush)play.Foreground).Color);
         Assert.False(play.IsEnabled);
         Assert.Equal(new Thickness(2), Assert.IsType<Border>(play.Content).BorderThickness);
@@ -117,8 +86,7 @@ internal static class CassetteTransportPresentationScenarios
     {
         var view = new MachineView();
         view.SetDevices(
-            [new MachineViewDevice("Cartridge0", "CART0:", "C", true, false,
-                () => Task.CompletedTask, null)], _ => { }, () => { });
+            [new MachineViewDevice("Cartridge0", "CART0:", "C", true, false, () => Task.CompletedTask, null)], _ => { }, () => { });
 
         var deviceBorder = Assert.IsType<Border>(Assert.Single(view.DeviceStrip.Children));
         var rows = Assert.IsType<StackPanel>(deviceBorder.Child);
@@ -135,8 +103,5 @@ internal static class CassetteTransportPresentationScenarios
         Assert.False(eject.IsEnabled);
     }
 
-    private static bool Enabled(bool powered, bool supported, EmulationCassetteState state,
-        EmulationCassetteCommand? activeOperation, EmulationCassetteCommand command) =>
-        CassetteTransportPresentationFunctions.IsEnabled(
-            powered, supported, state, activeOperation, command);
+    private static bool Enabled(bool powered, bool supported, EmulationCassetteState state, EmulationCassetteCommand? activeOperation, EmulationCassetteCommand command) => CassetteTransportPresentationFunctions.IsEnabled(powered, supported, state, activeOperation, command);
 }

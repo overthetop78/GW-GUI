@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft" xml:space="preserve"><value>Bal oldali gomb</value></data>
+  <data name="Emulation.Epoch.Input.FireRight" xml:space="preserve"><value>Jobb oldali gomb</value></data>
+  <data name="Emulation.Epoch.Input.Power" xml:space="preserve"><value>Nyomógomb</value></data>
+  <data name="Emulation.Epoch.Input.Reset" xml:space="preserve"><value>Gombbal</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft" xml:space="preserve"><value>Mozgassa a kart balra.</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight" xml:space="preserve"><value>Mozgassa a kart jobbra.</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease" xml:space="preserve"><value>Válassza ki a következő játékkurzust</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease" xml:space="preserve"><value>Válassza ki az előző játékkurzust</value></data>
+  <data name="Emulation.Epoch.Input.GunFire" xml:space="preserve"><value>Könnyű fegyver kioldó</value></data>
+  <data name="Emulation.Epoch.Input.GunReload" xml:space="preserve"><value>Könnyű fegyver újratöltése</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease" xml:space="preserve"><value>Evezz 1: forgás ellentétes irányban</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase" xml:space="preserve"><value>1. evezés: az óramutató járásával megegyező irányba forduljunk</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease" xml:space="preserve"><value>2. evezés: forduljunk az óramutató járásával ellentétes irányba</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase" xml:space="preserve"><value>2. evezés: az óramutató járásával megegyező irányba forduljunk</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease" xml:space="preserve"><value>3. evezés: az óramutató járásával ellentétes irányba forduljunk</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase" xml:space="preserve"><value>3. evezés: az óramutató járásával megegyező irányba forduljunk</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease" xml:space="preserve"><value>Evezz 4: forgás ellentétes irányban az óramutató járásával</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase" xml:space="preserve"><value>Evező 4: forgás az óramutató járásával megegyező irányba</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease" xml:space="preserve"><value>Célozz balra.</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease" xml:space="preserve"><value>Célozz a fegyverrel.</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease" xml:space="preserve"><value>Célozz felfelé!</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease" xml:space="preserve"><value>Célozz lefelé!</value></data>
+</root>

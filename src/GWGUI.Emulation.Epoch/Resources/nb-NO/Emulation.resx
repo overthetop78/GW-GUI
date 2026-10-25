@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.emuscv.Description" xml:space="preserve"><value>emulgerer SUPER CASSETTE VISION konsoller.</value></data>
+  <data name="Emulation.Emulator.pd777.Description" xml:space="preserve"><value>emulgerer CASSETTE VISION konsoller.</value></data>
+  <data name="Emulation.Epoch.Memory.Display" xml:space="preserve"><value>Videominne</value></data>
+  <data name="Emulation.Epoch.Video.Native" xml:space="preserve"><value>Konsollvideo</value></data>
+  <data name="Emulation.Epoch.Controls.Native" xml:space="preserve"><value>Konsollkontroller</value></data>
+  <data name="Emulation.Epoch.Setting.DisplayArea" xml:space="preserve"><value>Visningsområde</value></data>
+  <data name="Emulation.Epoch.Setting.PixelAspect" xml:space="preserve"><value>Pixelform</value></data>
+  <data name="Emulation.Epoch.Setting.ColorPalette" xml:space="preserve"><value>Fargepalett</value></data>
+  <data name="Emulation.Epoch.Setting.RefreshRate" xml:space="preserve"><value>Oppfriskingsrate</value></data>
+  <data name="Emulation.Epoch.Setting.ShowVideoMemory" xml:space="preserve"><value>Vis full videominne</value></data>
+  <data name="Emulation.Epoch.Setting.ShowInputs" xml:space="preserve"><value>Vis kontrolltilstand</value></data>
+  <data name="Emulation.Epoch.Setting.ValidateFirmware" xml:space="preserve"><value>Bekreft BIOS kontrollsum</value></data>
+  <data name="Emulation.Epoch.Setting.ShowKeypadAtStart" xml:space="preserve"><value>Vis tastatur ved oppstart</value></data>
+  <data name="Emulation.Epoch.Setting.AnnounceCourseSwitch" xml:space="preserve"><value>Vis kursvalg</value></data>
+  <data name="Emulation.Epoch.Value.Rectangular" xml:space="preserve"><value>Rektangulær</value></data>
+  <data name="Emulation.Epoch.Value.Low" xml:space="preserve"><value>Lav</value></data>
+  <data name="Emulation.Epoch.Value.High" xml:space="preserve"><value>Høy</value></data>
+</root>

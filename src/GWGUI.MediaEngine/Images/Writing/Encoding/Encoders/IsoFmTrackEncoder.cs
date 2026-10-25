@@ -1,4 +1,4 @@
-﻿using GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
+using GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
 using GWGUI.MediaEngine.Functions;
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
@@ -17,19 +17,7 @@ public sealed class IsoFmTrackEncoder : TrackEncoderBase
     /// <returns>Cellules FM de la piste dans leur ordre d'émission.</returns>
     /// <exception cref="ArgumentOutOfRangeException">La taille d'un secteur ne correspond à aucun code ISO pris en charge.</exception>
     protected override IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request)
-    {
-        var bits = TrackBitEncoding.Bits();
-        ValidateAddress(nameof(request.Cylinder), request.Cylinder);
-        ValidateAddress(nameof(request.Head), request.Head);
-        foreach (var sector in request.Sectors)
-        {
-            ValidateAddress(nameof(sector.Number), sector.Number);
-            var sizeCode = ResolveSizeCode(sector);
-            WriteAddress(bits, request, sector.Number, sizeCode);
-            WriteData(bits, sector);
-        }
-        return bits;
-    }
+    => EncodeIsoBits(request, ValidateAddress, ResolveSizeCode, WriteAddress, WriteData);
 
     /// <summary>Calcule ou valide le code de taille associé aux données du secteur.</summary>
     private static byte ResolveSizeCode(TrackSector sector)

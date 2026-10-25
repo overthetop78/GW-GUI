@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Fairchild.Error.StateIncompatible" xml:space="preserve"><value>ولاية فيرتشايلد المنقذة لا تتوافق مع الآلة الحالية</value></data>
+  <data name="Emulation.Fairchild.Error.Unexpected" xml:space="preserve"><value>حدث خطأ غير متوقع في عملية حرق (فيرتشايلد)</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareMissing" xml:space="preserve"><value>شركة (فايرتشايلد) مطلوبة مفقودة</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareInvalid" xml:space="preserve"><value>النظام ROM غير صحيح أو غير متوافق</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound" xml:space="preserve"><value>لم يتم العثور على وسائل الإعلام المُشكلة فيرتشايلد.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentUnsupported" xml:space="preserve"><value>هذه الآلة لا تدعم وسائل الإعلام المختارة</value></data>
+  <data name="Emulation.Fairchild.Error.OptionInvalid" xml:space="preserve"><value>خيار (فيرتشايلد) له قيمة غير صحيحة</value></data>
+  <data name="Emulation.Fairchild.Error.CoreNotFound" xml:space="preserve"><value>لم يتم العثور على الجوهر المطلوب في فيرتشايلد.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreRejected" xml:space="preserve"><value>لا يمكن تحميل نواة (فيرتشايلد) المختارة</value></data>
+  <data name="Emulation.Fairchild.Error.StateInvalid" xml:space="preserve"><value>ولاية فيرتشايلد المنقذة غير صحيحة</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>مسار برنامج الحفز غير متاح</value></data>
+  <data name="Emulation.Fairchild.Error.Details" xml:space="preserve"><value>التفاصيل: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>وفشل الاتصال باستضافة فيرتشايلد.</value></data>
+  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>قيادة بيئة غير معروفة: {0}</value></data>
+</root>

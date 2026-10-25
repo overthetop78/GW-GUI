@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound"><value>המדיום הקבוע לא נמצא.</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported"><value>המכונה אינה תומכת במדיום שנבחר.</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound"><value>הליבה הנדרשת לא נמצאה.</value></data>
+  <data name="Emulation.Example.Error.CoreRejected"><value>הליבה של החיקוי שנבחר לא יכול להיות טעון.</value></data>
+  <data name="Emulation.Example.Error.Details"><value>פרטים: {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid"><value>קושחה היא לא חוקית או לא מתאימה.</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing"><value>קושחה נדרשת חסרה.</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing"><value>הדרך לתוכנית המארחת של חיקוי אינה זמינה.</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure"><value>התקשורת עם המארחת נכשלה.</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid"><value>לאופציה יש ערך לא חוקי.</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible"><value>המדינה הנושחת אינה עולה בקנה אחד עם המכונה הנוכחית.</value></data>
+  <data name="Emulation.Example.Error.StateInvalid"><value>המדינה הנושחת היא בלתי חוקית.</value></data>
+  <data name="Emulation.Example.Error.Unexpected"><value>טעות של חיקוי בלתי צפויה התרחשה.</value></data>
+</root>

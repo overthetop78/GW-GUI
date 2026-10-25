@@ -16,8 +16,8 @@
   <data name="Options.Theme.Light" xml:space="preserve"><value>Leggero</value></data>
   <data name="Options.Theme.Dark" xml:space="preserve"><value>Buio</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>Percorso verso gw.exe</value></data>
-  <data name="Options.ToolsHelp" xml:space="preserve"><value>Se mancano gli strumenti, l&apos;assistente offrirà di scaricarli o di scegliere un&apos;installazione esistente. Gli aggiornamenti vengono solo annunciati.</value></data>
-  <data name="Options.HardwarePersistence" xml:space="preserve"><value>Le impostazioni hardware rimangono memorizzate quando un&apos;unità viene disconnessa.</value></data>
+  <data name="Options.ToolsHelp" xml:space="preserve"><value>Se mancano gli strumenti, l'assistente offrirà di scaricarli o di scegliere un'installazione esistente. Gli aggiornamenti vengono solo annunciati.</value></data>
+  <data name="Options.HardwarePersistence" xml:space="preserve"><value>Le impostazioni hardware rimangono memorizzate quando un'unità viene disconnessa.</value></data>
   <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|eseguibile (*.exe)|*.exe</value></data>
   <data name="Options.RemoveHardware"><value>Rimuovere questo controller memorizzato e tutte le relative unità?</value></data>
   <data name="Options.HardwareTitle"><value>Hardware</value></data>

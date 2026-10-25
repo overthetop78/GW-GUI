@@ -9,9 +9,7 @@ internal static class VisualizationCursors
 
     private static Cursor LoadGrabbingCursor()
     {
-        var resource = Application.GetResourceStream(new Uri(
-            "/gwgui.app;component/Assets/Cursors/grabbing.cur",
-            UriKind.Relative));
+        var resource = Application.GetResourceStream(new Uri("/gwgui.app;component/Assets/Cursors/grabbing.cur", UriKind.Relative));
         if (resource is null) return Cursors.SizeAll;
         using (resource.Stream) return new Cursor(resource.Stream);
     }

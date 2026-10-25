@@ -6,10 +6,7 @@ internal static class FluxTimingConversionFunctions
 {
     private const ulong NanosecondsPerSecond = 1_000_000_000;
 
-    public static uint[] ToDeviceTicks(
-        IReadOnlyList<uint> source,
-        uint sourceTickNanoseconds,
-        uint deviceSampleFrequency)
+    public static uint[] ToDeviceTicks(IReadOnlyList<uint> source, uint sourceTickNanoseconds, uint deviceSampleFrequency)
     {
         ArgumentNullException.ThrowIfNull(source);
         if (sourceTickNanoseconds == 0) throw new ArgumentOutOfRangeException(nameof(sourceTickNanoseconds));

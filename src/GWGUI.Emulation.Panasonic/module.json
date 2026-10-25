@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 2,
+  "id": "panasonic",
+  "entryAssembly": "gwgui.emulation.panasonic.dll",
+  "moduleVersion": "1.0.0",
+  "hostApiMinimum": "1.2",
+  "hostApiMaximum": "1.2",
+  "updateCatalogUrl": "https://github.com/overthetop78/GW-GUI/releases/download/module-panasonic-catalog/update-catalog.json"
+}

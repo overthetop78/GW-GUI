@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.opera.Description"><value>يحاكي 3DO.</value></data>
+  <data name="Emulation.Panasonic.Memory.Capacity" xml:space="preserve"><value>القدرة على الذاكرة</value></data>
+  <data name="Emulation.Panasonic.Video.Mode" xml:space="preserve"><value>طريقة الفيديو</value></data>
+  <data name="Emulation.Panasonic.Video.PixelFormat" xml:space="preserve"><value>شكل لون اليكسيل</value></data>
+  <data name="Emulation.Panasonic.Video.BypassClut" xml:space="preserve"><value>تجاهل طاولة اللون</value></data>
+  <data name="Emulation.Panasonic.Video.HighResolution" xml:space="preserve"><value>قرار رفيع المستوى</value></data>
+  <data name="Emulation.Panasonic.Audio.Processing" xml:space="preserve"><value>تجهيز المواد السمعية</value></data>
+  <data name="Emulation.Panasonic.Audio.Parallel" xml:space="preserve"><value>تجهيزات صوتية موازية</value></data>
+  <data name="Emulation.Panasonic.Storage.SaveMode" xml:space="preserve"><value>طريقة تخزين البيانات المحتفظ بها</value></data>
+  <data name="Emulation.Panasonic.Storage.Version" xml:space="preserve"><value>مصرف الذاكرة للبيانات المحتفظ بها</value></data>
+  <data name="Emulation.Panasonic.Storage.CdSpeed" xml:space="preserve"><value>سرعة القراءة CD-ROM</value></data>
+  <data name="Emulation.Panasonic.System" xml:space="preserve"><value>النظام</value></data>
+  <data name="Emulation.Panasonic.System.RandomSeed" xml:space="preserve"><value>القيمة الأولية للمولد العشوائي</value></data>
+  <data name="Emulation.Panasonic.System.Diagnostics" xml:space="preserve"><value>رسائل تشخيصية</value></data>
+  <data name="Emulation.Panasonic.Value.Hardware" xml:space="preserve"><value>البرمجيات الصلبة</value></data>
+  <data name="Emulation.Panasonic.Value.Software" xml:space="preserve"><value>برامجيات</value></data>
+  <data name="Emulation.Panasonic.Value.PerGame" xml:space="preserve"><value>لعبة</value></data>
+  <data name="Emulation.Panasonic.Value.Shared" xml:space="preserve"><value>متقاسمة بين الألعاب</value></data>
+  <data name="Emulation.Panasonic.Value.Unlimited" xml:space="preserve"><value>غير محدود</value></data>
+  <data name="Emulation.Panasonic.Value.Random" xml:space="preserve"><value>راندون</value></data>
+</root>

@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Nastaví hlasitost přehrávání zvukových stop čtených z emulovaného kompaktního disku.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>Nastavit rychlost pohybu myši</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Nastavuje, jak se pohyb hostitele myši převádí na pohyb hlášený emulovanému stroji.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Zvolte složku pro obrázky na pevném disku</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Nastaví složku, která byla původně otevřena při výběru obrazu na pevném disku. Samotná složka není namontována jako disk.</value></data>
 </root>

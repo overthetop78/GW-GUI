@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>콘솔 비디오</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>콘솔 사운드</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>콘솔 컨트롤</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>WonderSwan 시스템을 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>PlaydiaEmu로 Playdia 디스크를 재생합니다.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>TamaLIBretro로 Tamagotchi P1 기기를 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>이 핵심은 가공업자를 유화 없이 원판을 합니다.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>전시 기억</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>전시 방향</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>제어 방향</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Monochrome 팔레트</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>프레임 건너뛰기 시작 임계값</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60 Hz 모드</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>오디오 샘플링 속도</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>오디오 필터</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>스왑 버튼 A 및 B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>의 특징</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>가로</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>세로</value></data>
+</root>

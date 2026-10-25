@@ -10,8 +10,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 
     public static partial class Pfs3Directory
     {
-        public static async Task ChangeDirEntry(Pfs3ObjectInfo from, Pfs3DirEntry to, Pfs3ObjectInfo destdir, Pfs3FileInfo result,
-            Pfs3GlobalData g)
+        public static async Task ChangeDirEntry(Pfs3ObjectInfo from, Pfs3DirEntry to, Pfs3ObjectInfo destdir, Pfs3FileInfo result, Pfs3GlobalData g)
         {
             uint destanodenr = Pfs3Macro.IsRoot(destdir) ? Pfs3Constants.ANODE_ROOTDIR : Pfs3Macro.FIANODENR(destdir.file);
 
@@ -241,8 +240,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             var existingDirEntry = dirBlock.DirEntries.FirstOrDefault(x => x.Name == from.file.direntry.Name);
             if (existingDirEntry == null)
             {
-                throw new IOException(
-                    $"Dir entry '{from.file.direntry.Name}' not found in dir block '{from.file.dirblock.blocknr}'");
+                throw new IOException($"Dir entry '{from.file.direntry.Name}' not found in dir block '{from.file.dirblock.blocknr}'");
             }
             dirBlock.DirEntries.Remove(existingDirEntry);
             dirBlock.DirEntries.Add(to);
@@ -264,8 +262,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
  * Move a file from one dir to another
  * NULL = delete allowed
  */
-        public static async Task RenameAcrossDirs(Pfs3ObjectInfo from, Pfs3DirEntry to, Pfs3ObjectInfo destdir, Pfs3FileInfo result,
-            Pfs3GlobalData g)
+        public static async Task RenameAcrossDirs(Pfs3ObjectInfo from, Pfs3DirEntry to, Pfs3ObjectInfo destdir, Pfs3FileInfo result, Pfs3GlobalData g)
         {
             ushort removedlen;
 

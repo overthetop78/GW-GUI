@@ -1,0 +1,220 @@
+using CommonControllerFunctions = GWGUI.Emulation.Acorn.Common.Functions.ControllerFunctions;
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Acorn.Common.Functions.CoreHostFunctions;
+using System.IO;
+using System.Buffers.Binary;
+using System.Collections.Concurrent;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO.MemoryMappedFiles;
+using System.IO.Pipes;
+using System.Text;
+using System.Text.Json;
+using System.Runtime.Versioning;
+using GWGUI.Emulation;
+using GWGUI.Emulation.Functions;
+
+namespace GWGUI.Emulation.Acorn.Common.Services;
+
+[SupportedOSPlatform(CoreHostConstants.Windows)]
+internal sealed partial class ProcessCore : IEmulatorCore
+{
+    /// <summary>Configuration empruntée pour résoudre les règles du transport de cette session.</summary>
+    private MachineConfiguration? _policyConfiguration;
+    /// <summary>Adaptation Common empruntée, résolue une seule fois après réception de la configuration.</summary>
+    private IEmulatorRuntimePolicy? _runtimePolicy;
+    /// <summary>Indique que la présence ou absence de politique a déjà été consultée.</summary>
+    private bool _runtimePolicyResolved;
+    /// <summary>Consulte la politique sans recréer le catalogue à chaque commande ni posséder de cœur supplémentaire.</summary>
+    private IEmulatorRuntimePolicy? RuntimePolicy
+    {
+        get
+        {
+            if (!_runtimePolicyResolved && _policyConfiguration is not null)
+            {
+                _runtimePolicy = new Engine().SelectedAdapter(_policyConfiguration) as IEmulatorRuntimePolicy;
+                _runtimePolicyResolved = true;
+            }
+            return _runtimePolicy;
+        }
+    }
+
+    /// <inheritdoc/>
+    public int DiskCount => GetDiskStatus().ImageCount;
+    /// <inheritdoc/>
+    public int CurrentDiskIndex => GetDiskStatus().CurrentIndex;
+    /// <inheritdoc/>
+    public bool SupportsPointerCapture => true;
+
+    /// <inheritdoc/>
+    public void SoftReset() => Request(HostCommand.SoftReset);
+
+    /// <inheritdoc/>
+    public bool ShutdownRequested { get; private set; }
+
+    /// <summary>Dernier instantané des effets validés reçus du processus du cœur.</summary>
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback { get; private set; } = [];
+
+    private readonly string _hostExecutablePath;
+    private readonly string _hostCommand;
+    private readonly string _corePath;
+    private readonly Emulator _emulator;
+    private readonly TimeSpan _responseTimeout;
+    private readonly TimeSpan _connectionTimeout;
+    private readonly CancellationToken _cancellationToken;
+    private readonly ConcurrentQueue<AudioChunk> _audio = new();
+    private readonly IEmulationInputAccumulator _input = CommonControllerFunctions.CreateInputAccumulator();
+    private readonly SemaphoreSlim _requestGate = new(CoreHostConstants.MaximumPipeInstances, CoreHostConstants.MaximumPipeInstances);
+    private NamedPipeServerStream? _pipe;
+    private BinaryWriter? _writer;
+    private Process? _process;
+    private MemoryMappedFile? _videoMemory;
+    private MemoryMappedViewAccessor? _videoMap;
+    private bool _initialized;
+    private bool _connectionFailed;
+    private bool _disposed;
+    private int? _hostProcessId;
+    private string? _pipeName;
+    private string? _videoMapName;
+    private string? _activeVideoMapName;
+
+    internal ProcessCore(string hostExecutablePath, string corePath, Emulator emulator,
+        TimeSpan? responseTimeout = null, CancellationToken cancellationToken = default,
+        TimeSpan? connectionTimeout = null, string hostCommand = CoreHostConstants.CommandLineArgument)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(hostExecutablePath);
+        ArgumentException.ThrowIfNullOrWhiteSpace(corePath);
+        _hostExecutablePath = Path.GetFullPath(hostExecutablePath);
+        _corePath = Path.GetFullPath(corePath);
+        _emulator = emulator;
+        ArgumentException.ThrowIfNullOrWhiteSpace(hostCommand);
+        _hostCommand = hostCommand;
+        _responseTimeout = responseTimeout ?? TimeSpan.FromSeconds(CoreHostConstants.ResponseTimeoutSeconds);
+        _cancellationToken = cancellationToken;
+        _connectionTimeout = connectionTimeout ?? TimeSpan.FromMilliseconds(CoreHostConstants.ConnectionTimeoutMilliseconds);
+    }
+
+    public Emulator Emulator => _emulator;
+    public VideoFrame? LatestVideoFrame { get; private set; }
+    public AudioChunk? LatestAudioChunk { get; private set; }
+    public IReadOnlyList<CoreOption> Options { get; private set; } = [];
+    public IReadOnlyList<string> Diagnostics { get; private set; } = [];
+    public IReadOnlyDictionary<int, bool> LedStates { get; private set; } = new Dictionary<int, bool>();
+    public string CoreName { get; private set; } = string.Empty;
+    public string CoreVersion { get; private set; } = string.Empty;
+    public string CoreSha256 { get; private set; } = string.Empty;
+    public IReadOnlySet<string> SupportedContentExtensions { get; private set; } =
+        new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+    public bool SupportsSaveStates { get; private set; }
+    public double FramesPerSecond { get; private set; }
+    public int SampleRate { get; private set; }
+    public EmulationVideoStandard? Region { get; private set; }
+    public int BufferedAudioFrames { get; private set; }
+    public long AudioOverrunCount { get; private set; }
+    public long AudioUnderrunCount { get; private set; }
+    public HostProcessState HostProcessState => CommonCoreHostFunctions.Protocol.GetProcessState(_process, _hostProcessFaulted || _connectionFailed, _disposed, _hostProcessId);
+    public int? HostProcessId => _hostProcessId;
+    internal string? PipeName => _pipeName;
+    internal string? VideoMapName => _activeVideoMapName ?? _videoMapName;
+
+    public bool TryDequeueAudio(out AudioChunk? chunk)
+    => _audio.TryDequeue(out chunk);
+
+    public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
+    {
+        _policyConfiguration = configuration;
+        ObjectDisposedException.ThrowIf(_disposed, this);
+        if (_initialized) throw new InvalidOperationException(CoreHostErrors.AlreadyInitialized);
+        if (!File.Exists(_hostExecutablePath))
+            throw new FileNotFoundException(CoreHostErrors.ExecutableMissing, _hostExecutablePath);
+
+        var pipeName = CoreHostFunctions.CreatePipeName();
+        var videoMapName = CoreHostFunctions.CreateVideoMapName();
+        _pipeName = pipeName;
+        _videoMapName = videoMapName;
+        try
+        {
+            _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut,
+                CoreHostConstants.MaximumPipeInstances, PipeTransmissionMode.Byte,
+                PipeOptions.Asynchronous | PipeOptions.CurrentUserOnly,
+                CoreHostConstants.PipeBufferSize, CoreHostConstants.PipeBufferSize);
+            _process = StartHostProcess(pipeName, videoMapName);
+            _hostProcessId = _process.Id;
+            _hostProcessFaulted = false;
+            CommonCoreHostFunctions.Protocol.WaitForConnection(_pipe, _connectionTimeout, _cancellationToken);
+            _writer = new BinaryWriter(_pipe, Encoding.UTF8, leaveOpen: true);
+            Request(HostCommand.Initialize, writer => CommonCoreHostFunctions.Protocol.WriteInitializationRequest(writer, _corePath, (int)_emulator,
+                sessionDirectory, saveDirectory, configuration, CoreHostFunctions.JsonOptions), ReadInitialization, allowUninitialized: true);
+            Options = RuntimePolicy?.NormalizeRuntimeOptions(configuration, Options) ?? Options;
+            _initialized = true;
+        }
+        finally
+        {
+            if (!_initialized) { _hostProcessFaulted = true; Dispose(); }
+        }
+    }
+
+    public void RunFrame() => Request(HostCommand.RunFrame, writer =>
+    {
+        CoreHostFunctions.WriteInput(writer, _input.Consume());
+        CommonCoreHostFunctions.Protocol.WriteAudioBufferStatus(writer, OutputAudioStatus);
+    }, ReadFrame);
+
+    public void HardReset() => Request(HostCommand.HardReset);
+    public void Stop()
+    {
+        if (_initialized && !_disposed && !_connectionFailed) Request(HostCommand.Stop);
+    }
+    public void SetInput(EmulationInputSnapshot snapshot) => _input.Update(snapshot);
+    public void SetControllerPortDevice(int port, PeripheralCategory peripheral) =>
+        Request(HostCommand.SetControllerPortDevice, writer =>
+        {
+            writer.Write(port);
+            writer.Write((int)peripheral);
+        });
+    public void InsertMedia(MediaConfiguration media) => Request(HostCommand.InsertMedia, writer => writer.Write(JsonSerializer.Serialize(media, CoreHostFunctions.JsonOptions)));
+    public void EjectMedia(EmulationMediaSlot slot) => Request(HostCommand.EjectMedia, writer => CommonCoreHostFunctions.Protocol.WriteMediaSlot(writer, slot));
+    public void SelectDisk(int index) => Request(HostCommand.SelectDisk, writer => writer.Write(index));
+    public void SaveMediaChanges(EmulationMediaSlot slot) => Request(HostCommand.SaveMediaChanges, writer => CommonCoreHostFunctions.Protocol.WriteMediaSlot(writer, slot));
+    public DiskStatus GetDiskStatus()
+    {
+        DiskStatus? status = null;
+        Request(HostCommand.GetDiskStatus, read: reader => status = CoreHostFunctions.ReadDiskStatus(reader));
+        return status ?? throw new InvalidDataException(CoreHostErrors.CommunicationFailed);
+    }
+    public bool HasUnsavedMediaChanges(EmulationMediaSlot slot)
+    {
+        var hasChanges = false;
+        Request(HostCommand.HasUnsavedMediaChanges, writer => CommonCoreHostFunctions.Protocol.WriteMediaSlot(writer, slot), reader => hasChanges = reader.ReadBoolean());
+        return hasChanges;
+    }
+    public byte[] SaveState()
+    {
+        byte[]? state = null;
+        Request(HostCommand.SaveState, read: reader => state = CoreHostFunctions.ReadBytes(reader));
+        return state ?? throw new InvalidDataException(CoreHostErrors.CommunicationFailed);
+    }
+    public void LoadState(ReadOnlySpan<byte> state)
+    {
+        var copy = state.ToArray();
+        Request(HostCommand.LoadState, writer => CoreHostFunctions.WriteBytes(writer, copy));
+    }
+    public void SetOption(string key, string value) => Request(HostCommand.SetOption, writer =>
+    {
+        writer.Write(key);
+        writer.Write(value);
+    });
+    /// <inheritdoc/>
+    public int MinimumAudioLatencyMilliseconds { get; private set; }
+    /// <summary>Valeurs de la sortie empruntée, copiées dans chaque requête de frame.</summary>
+    private AudioOutputBufferStatus? OutputAudioStatus { get; set; }
+    /// <inheritdoc/>
+    public void SetAudioBufferStatus(AudioOutputBufferStatus? status) => OutputAudioStatus = status;
+    /// <summary>Échec du démarrage conservé après la fermeture des ressources du transport.</summary>
+    private bool _hostProcessFaulted;
+    /// <summary>Résout le délai de cette commande par le contrat runtime Common.</summary>
+    /// <param name="command">Commande dont le transport attend la réponse.</param>
+    /// <param name="fallback">Délai du transport utilisé lorsque le profil ne définit aucune adaptation.</param>
+    /// <returns>Délai de cette attente ; la consultation ne lance ni ne détruit de ressource.</returns>
+    private TimeSpan RequestTimeoutFor(HostCommand command, TimeSpan fallback) => _policyConfiguration is null ? fallback : RuntimePolicy?.GetHostCommandTimeout(_policyConfiguration, (byte)command, fallback) ?? fallback;
+}

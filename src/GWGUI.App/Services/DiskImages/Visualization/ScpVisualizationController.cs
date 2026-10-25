@@ -6,7 +6,7 @@ using GWGUI.App.Services.Visualization;
 using GWGUI.App.ViewModels.Main;
 using GWGUI.App.Views.Controls.Visualization;
 using GWGUI.MediaEngine.Enums;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
@@ -74,25 +74,15 @@ internal sealed class ScpVisualizationController
     internal string? Summary { get; private set; }
     internal IReadOnlyList<(int Head, int Cylinder)> TrackPresentationOrder => _trackPresentationOrder;
 
-    internal Task LoadAsync(string path, string? displayFileName = null, bool preserveProgress = false) =>
-        LoadCoreAsync(path, null, displayFileName, preserveProgress);
+    internal Task LoadAsync(string path, string? displayFileName = null, bool preserveProgress = false) => LoadCoreAsync(path, null, displayFileName, preserveProgress);
 
-    internal Task LoadAsync(
-        string path,
-        ScpImage image,
-        string? displayFileName = null,
-        bool preserveProgress = false) =>
-        LoadCoreAsync(path, image, displayFileName, preserveProgress);
+    internal Task LoadAsync(string path, ScpImage image, string? displayFileName = null, bool preserveProgress = false) => LoadCoreAsync(path, image, displayFileName, preserveProgress);
 
     internal async Task RestoreFluxRepresentationAsync(CancellationToken cancellationToken)
     {
         if (Image is null || string.IsNullOrWhiteSpace(SourcePath)) return;
         ShowFluxDocument(SourcePath, Image);
-        await DisplayAsync(
-            Image,
-            DisplayName ?? Path.GetFileName(SourcePath),
-            Summary ?? string.Empty,
-            cancellationToken);
+        await DisplayAsync(Image, DisplayName ?? Path.GetFileName(SourcePath), Summary ?? string.Empty, cancellationToken);
     }
 
     internal void ResetForNonScp()
@@ -153,11 +143,7 @@ internal sealed class ScpVisualizationController
 
     internal Task PrepareViewsAsync(CancellationToken cancellationToken) => PrepareTracksAsync(cancellationToken);
 
-    private async Task LoadCoreAsync(
-        string path,
-        ScpImage? image,
-        string? displayFileName,
-        bool preserveProgress)
+    private async Task LoadCoreAsync(string path, ScpImage? image, string? displayFileName, bool preserveProgress)
     {
         var cancellation = _cancellation.BeginScp();
         var cancellationToken = cancellation.Token;
@@ -166,9 +152,7 @@ internal sealed class ScpVisualizationController
             DisplayName = displayFileName ?? Path.GetFileName(path);
             ShowProgress(_localize(DiskImageResourceKeys.VisualLoading, []), 0, true);
             _visualizer.Header.SummaryText.Text = _localize(DiskImageResourceKeys.VisualLoading, []);
-            var document = image is null
-                ? await _loader.LoadAsync(path, cancellationToken)
-                : _loader.CreateModel(path, image);
+            var document = image is null ? await _loader.LoadAsync(path, cancellationToken) : _loader.CreateModel(path, image);
             SourcePath = path;
             DisplayName = displayFileName ?? document.FileName;
             Summary = document.Summary;
@@ -181,11 +165,7 @@ internal sealed class ScpVisualizationController
             if (!_cancellation.IsCurrentScp(cancellation) || cancellationToken.IsCancellationRequested) return;
             Image = null;
             _visualizer.Header.SummaryText.Text = _localize(DiskImageResourceKeys.VisualInvalid, []);
-            _showError(
-                exception,
-                $"Opening disk image in Visualizer: {path}",
-                DiskImageResourceKeys.VisualTitle,
-                DiskImageResourceKeys.ErrorUnexpected);
+            _showError(exception, $"Opening disk image in Visualizer: {path}", DiskImageResourceKeys.VisualTitle, DiskImageResourceKeys.ErrorUnexpected);
         }
         finally
         {
@@ -207,11 +187,7 @@ internal sealed class ScpVisualizationController
         _visualizer.ShowDocument(document, descriptor);
     }
 
-    private async Task DisplayAsync(
-        ScpImage image,
-        string fileName,
-        string summary,
-        CancellationToken cancellationToken)
+    private async Task DisplayAsync(ScpImage image, string fileName, string summary, CancellationToken cancellationToken)
     {
         if (cancellationToken.IsCancellationRequested) return;
         Image = image;
@@ -222,31 +198,20 @@ internal sealed class ScpVisualizationController
         _visualizer.Header.SummaryText.Text = summary;
         _visualizer.FirstSide.SetImage(image, DiskHeadConstants.Head0);
         _visualizer.SecondSide.SetImage(image, DiskHeadConstants.Head1);
-        _visualizer.Header.ConfigureRevolutions(image.Tracks.Count == 0
-            ? 0
-            : image.Tracks.Max(track => track.Revolutions.Count));
+        _visualizer.Header.ConfigureRevolutions(image.Tracks.Count == 0 ? 0 : image.Tracks.Max(track => track.Revolutions.Count));
         _inspector.SetImage(image);
         _visualizer.FirstSide.Visibility = heads.Contains(DiskHeadConstants.Head0) ? Visibility.Visible : Visibility.Collapsed;
         _visualizer.SecondSide.Visibility = heads.Contains(DiskHeadConstants.Head1) ? Visibility.Visible : Visibility.Collapsed;
         Grid.SetColumn(_visualizer.FirstSide, MediaVisualizationLayoutConstants.FaceOneColumn);
         Grid.SetColumnSpan(
             _visualizer.FirstSide,
-            heads.Count == MediaVisualizationLayoutConstants.SingleVisibleFaceCount
-            && heads.Contains(DiskHeadConstants.Head0)
-                ? MediaVisualizationLayoutConstants.SingleFaceColumnSpan
-                : MediaVisualizationLayoutConstants.TwoFaceColumnSpan);
+            heads.Count == MediaVisualizationLayoutConstants.SingleVisibleFaceCount && heads.Contains(DiskHeadConstants.Head0) ? MediaVisualizationLayoutConstants.SingleFaceColumnSpan : MediaVisualizationLayoutConstants.TwoFaceColumnSpan);
         Grid.SetColumn(
             _visualizer.SecondSide,
-            heads.Count == MediaVisualizationLayoutConstants.SingleVisibleFaceCount
-            && heads.Contains(DiskHeadConstants.Head1)
-                ? MediaVisualizationLayoutConstants.FaceOneColumn
-                : MediaVisualizationLayoutConstants.FaceTwoColumn);
+            heads.Count == MediaVisualizationLayoutConstants.SingleVisibleFaceCount && heads.Contains(DiskHeadConstants.Head1) ? MediaVisualizationLayoutConstants.FaceOneColumn : MediaVisualizationLayoutConstants.FaceTwoColumn);
         Grid.SetColumnSpan(
             _visualizer.SecondSide,
-            heads.Count == MediaVisualizationLayoutConstants.SingleVisibleFaceCount
-            && heads.Contains(DiskHeadConstants.Head1)
-                ? MediaVisualizationLayoutConstants.SingleFaceColumnSpan
-                : MediaVisualizationLayoutConstants.TwoFaceColumnSpan);
+            heads.Count == MediaVisualizationLayoutConstants.SingleVisibleFaceCount && heads.Contains(DiskHeadConstants.Head1) ? MediaVisualizationLayoutConstants.SingleFaceColumnSpan : MediaVisualizationLayoutConstants.TwoFaceColumnSpan);
         await PrepareTracksAsync(cancellationToken);
     }
 
@@ -255,28 +220,14 @@ internal sealed class ScpVisualizationController
         var image = Image;
         if (image is null) return;
         var heads = image.Tracks.Select(track => track.Head).Distinct().OrderBy(head => head).ToArray();
-        var cylindersByHead = image.Tracks
-            .GroupBy(track => track.Head)
-            .ToDictionary(
-                group => group.Key,
-                group => (IReadOnlyList<int>)group.OrderBy(track => track.Cylinder).Select(track => track.Cylinder).ToArray());
-        _face0Progress.Configure(
-            DiskHeadConstants.Head0,
-            cylindersByHead.GetValueOrDefault(DiskHeadConstants.Head0) ?? [],
-            _localize(DiskImageResourceKeys.VisualSide, [DiskHeadConstants.Head0]));
-        _face1Progress.Configure(
-            DiskHeadConstants.Head1,
-            cylindersByHead.GetValueOrDefault(DiskHeadConstants.Head1) ?? [],
-            _localize(DiskImageResourceKeys.VisualSide, [DiskHeadConstants.Head1]));
+        var cylindersByHead = image.Tracks.GroupBy(track => track.Head).ToDictionary(group => group.Key, group => (IReadOnlyList<int>)group.OrderBy(track => track.Cylinder).Select(track => track.Cylinder).ToArray());
+        _face0Progress.Configure(DiskHeadConstants.Head0, cylindersByHead.GetValueOrDefault(DiskHeadConstants.Head0) ?? [], _localize(DiskImageResourceKeys.VisualSide, [DiskHeadConstants.Head0]));
+        _face1Progress.Configure(DiskHeadConstants.Head1, cylindersByHead.GetValueOrDefault(DiskHeadConstants.Head1) ?? [], _localize(DiskImageResourceKeys.VisualSide, [DiskHeadConstants.Head1]));
         _viewModel.ProgressVisibility = Visibility.Visible;
         _viewModel.Face0ProgressVisibility = heads.Contains(DiskHeadConstants.Head0) ? Visibility.Visible : Visibility.Collapsed;
         _viewModel.Face1ProgressVisibility = heads.Contains(DiskHeadConstants.Head1) ? Visibility.Visible : Visibility.Collapsed;
         _visualizer.Overview.Configure(cylindersByHead);
-        var presentationOrder = image.Tracks
-            .OrderBy(track => track.Cylinder)
-            .ThenBy(track => track.Head)
-            .Select(track => (track.Head, track.Cylinder))
-            .ToArray();
+        var presentationOrder = image.Tracks.OrderBy(track => track.Cylinder).ThenBy(track => track.Head).Select(track => (track.Head, track.Cylinder)).ToArray();
         var presentationQueue = Channel.CreateUnbounded<ScpTrackPreparation>(new UnboundedChannelOptions
         {
             SingleReader = true,

@@ -10,10 +10,7 @@ internal static class FilterFixedPixelResponse
         }
         """;
 
-    internal static float BlendFactor(int responseMilliseconds, double elapsedMilliseconds) =>
-        responseMilliseconds <= 0 ? 1f : (float)(1d -
-            Math.Exp(-Math.Max(0.001, elapsedMilliseconds) / responseMilliseconds));
+    internal static float BlendFactor(int responseMilliseconds, double elapsedMilliseconds) => responseMilliseconds <= 0 ? 1f : (float)(1d - Math.Exp(-Math.Max(0.001, elapsedMilliseconds) / responseMilliseconds));
 
-    internal static float Apply(float previous, float current, float blendFactor) =>
-        previous + (current - previous) * blendFactor;
+    internal static float Apply(float previous, float current, float blendFactor) => previous + (current - previous) * blendFactor;
 }

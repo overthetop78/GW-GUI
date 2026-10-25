@@ -4,8 +4,7 @@ namespace GWGUI.Emulation.HardDisks.FileSystems;
 
 internal static class ClassicMacLabel
 {
-    private static readonly Encoding Encoding=CodePagesEncodingProvider.Instance.GetEncoding(10000,
-        EncoderFallback.ExceptionFallback,DecoderFallback.ExceptionFallback)!;
+    private static readonly Encoding Encoding=CodePagesEncodingProvider.Instance.GetEncoding(10000, EncoderFallback.ExceptionFallback,DecoderFallback.ExceptionFallback)!;
     internal static byte[] Encode(string label)
     {
         ArgumentNullException.ThrowIfNull(label);

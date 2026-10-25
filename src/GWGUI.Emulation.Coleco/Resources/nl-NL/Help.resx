@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Selecteer automatische timing of de videostandaard.</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Selecteer de geëmulgeerde videochip.</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Selecteer de afbeeldings-aspectverhouding. Automatische selectie maakt gebruik van het spelgebied.</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>Selecteer de zichtbare schermranden.</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>Verwijder de limiet op sprites per schermregel. Dit kan grafische fouten veroorzaken.</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>Laat tegenoverliggende richtingen samengedrukt worden.</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>Pas de gevoeligheid van de roterende controller aan.</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>Selecteer het kleurenpalet.</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>Verberg de bovenste schermrand.</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>Verberg de onderkant van het scherm.</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>Verberg de linker schermrand.</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Verberg de rechter schermrand.</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Beeldpunten verbergen aan de randen van de afbeelding.</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Sla de opstartvertraging over.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>Geheugencircuit van de cartridge. Automatisch behouden, tenzij de ROM verkeerd wordt herkend.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Standaard: maximaal 32 KiB. MegaCart en Activision: verschillende circuits om ROM-banken te schakelen. OCM: bankschakeling en EEPROM-opslag. Activision duidt een circuit aan, niet de uitgever van het spel. Een verkeerd type kan het opstarten verhinderen of fouten veroorzaken.</value></data>
+</root>

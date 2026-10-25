@@ -15,4 +15,5 @@
   <data name="Emulation.Configuration" xml:space="preserve"><value>תצורה</value></data>
   <data name="Emulation.Configurations" xml:space="preserve"><value>סודיות</value></data>
   <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>למחוק את התצורה של עמיגה?</value></data>
+  <data name="Emulation.Configuration.Selector"><value>מותגים ומכונות</value></data>
 </root>

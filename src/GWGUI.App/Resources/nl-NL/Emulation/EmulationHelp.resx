@@ -33,7 +33,7 @@
   <data name="Emulation.Help.Controller.DigitalSensitivity.Short" xml:space="preserve"><value>Digitale ingangsgevoeligheid instellen</value></data>
   <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed" xml:space="preserve"><value>Stelt in hoe snel een digitale richting volledige beweging bereikt. Een hogere waarde zorgt ervoor dat richtingsveranderingen sneller hun maximum bereiken.</value></data>
   <data name="Emulation.Help.Controller.Autofire.Short" xml:space="preserve"><value>Selecteer de autobrandmodus</value></data>
-  <data name="Emulation.Help.Controller.Autofire.Detailed" xml:space="preserve"><value>Gehandicapten zetten autobrand uit. Op de knop herhaalt brand terwijl de toegewezen knop wordt vastgehouden. Herhaalt altijd continu vuur.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed" xml:space="preserve"><value>Uitgeschakeld zetten autobrand uit. Op de knop herhaalt brand terwijl de toegewezen knop wordt vastgehouden. Herhaalt altijd continu vuur.</value></data>
   <data name="Emulation.Help.Controller.PaddleSpeed.Short" xml:space="preserve"><value>Paddle-bewegingssnelheid instellen</value></data>
   <data name="Emulation.Help.Controller.PaddleSpeed.Detailed" xml:space="preserve"><value>Stelt in hoe snel digitale invoer een geëmulgeerde paddle beweegt. Een lagere waarde beweegt het langzamer. Een hogere waarde beweegt het sneller.</value></data>
   <data name="Emulation.Help.Cpu.FpuModel.Short" xml:space="preserve"><value>Selecteer de FPU</value></data>
@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Stelt het afspeelvolume in van audiotracks die gelezen worden vanaf de emuleerde compactdisc drive.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>Stel muisbewegingssnelheid in</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Past aan hoe de muisbeweging van de gastheer wordt omgezet in beweging die aan de emuleerde machine wordt gemeld.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Kies de map voor harde schijfafbeeldingen</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Stelt de map in die aanvankelijk geopend werd bij het selecteren van een harde schijfafbeelding. De map zelf is niet als schijf gemount.</value></data>
 </root>

@@ -24,4 +24,5 @@
   <data name="Emulation.Core.Install"><value>Installera</value></data>
   <data name="Emulation.Core.InstalledBadge"><value>Installerad</value></data>
   <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Kärnalternativ</value></data>
+  <data name="Emulation.Core.NameNoEmulatorAvailable"><value>Välj en emulator innan du skapar den här maskinen.</value></data>
 </root>

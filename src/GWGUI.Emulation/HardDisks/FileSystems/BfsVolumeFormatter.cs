@@ -59,6 +59,5 @@ public static class BfsVolumeFormatter
             throw new ArgumentException("BFS labels contain at most six printable ASCII bytes.");
     }
 
-    private static void Put32(Span<byte> bytes, int offset, uint value) =>
-        BinaryPrimitives.WriteUInt32LittleEndian(bytes[offset..], value);
+    private static void Put32(Span<byte> bytes, int offset, uint value) => BinaryPrimitives.WriteUInt32LittleEndian(bytes[offset..], value);
 }

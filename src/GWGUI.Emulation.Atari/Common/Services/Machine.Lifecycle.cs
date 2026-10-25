@@ -1,3 +1,4 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Globalization;
@@ -9,7 +10,21 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime,
     IEmulationCassetteTransport
 {
-public async ValueTask StartAsync(CancellationToken cancellationToken = default)
+    /// <summary>Consulte le jeu de disques courant par la file de commandes du cœur.</summary>
+    /// <param name="cancellationToken">Annulation de la commande en attente.</param>
+    /// <returns>Instantané partagé du nombre et de la sélection des images, de leur éjection, de leurs chemins et libellés.</returns>
+    /// <remarks>La consultation suit les mêmes règles de session active que les autres commandes.
+    /// Elle ne monte ni ne retire de média. Les données retournées sont des valeurs gérées
+    /// et ne transfèrent aucune ressource native du cœur au consommateur.</remarks>
+    public async ValueTask<DiskStatus> GetDiskStatusAsync(CancellationToken cancellationToken = default)
+    {
+        DiskStatus? status = null;
+        await QueueCommand(() => status = _core.GetDiskStatus(), cancellationToken).ConfigureAwait(false);
+        // La file ne termine avec succès que lorsque la consultation a effectivement renseigné le résultat.
+        return status!;
+    }
+
+    public async ValueTask StartAsync(CancellationToken cancellationToken = default)
     {
         Task started;
         lock (_gate)
@@ -18,23 +33,22 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
             if (State != EmulationMachineState.Created)
                 throw new InvalidOperationException(ErrorMessages.MachineInvalidState);
             State = EmulationMachineState.Starting;
-            _stopSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-            _started = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-            var completed = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-            var thread = new Thread(() =>
+            var threadStarted = false;
+            try
             {
-                try { Run(_stopSource.Token); }
-                finally { completed.TrySetResult(); }
-            })
+                CommonCoreHostFunctions.MachineExecution.StartThread(
+                    Run, MachineFunctions.ThreadName(Id, Configuration.Core), cancellationToken,
+                    ref _stopSource, out _started, out _runLoop, ref _thread);
+                threadStarted = true;
+                started = _started.Task;
+            }
+            finally
             {
-                IsBackground = true,
-                Name = MachineFunctions.ThreadName(Id, Configuration.Core)
-            };
-            _runLoop = completed.Task;
-            thread.Start();
-            started = _started.Task;
+                if (!threadStarted) State = EmulationMachineState.Faulted;
+            }
         }
-        await started.WaitAsync(cancellationToken).ConfigureAwait(false);
+        await CommonCoreHostFunctions.MachineExecution.WaitForStartOrStopAsync(
+            started, cancellationToken, () => StopAsync()).ConfigureAwait(false);
     }
 
     public ValueTask PauseAsync(CancellationToken cancellationToken = default)
@@ -64,40 +78,49 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
         return ValueTask.CompletedTask;
     }
 
-    public ValueTask SoftResetAsync(CancellationToken cancellationToken = default) =>
-        QueueCommand(() => ResetCore(MachineValues.Value0), cancellationToken);
+    public ValueTask SoftResetAsync(CancellationToken cancellationToken = default) => QueueCommand(() => ResetCore(MachineValues.Value0), cancellationToken);
 
-    public ValueTask HardResetAsync(CancellationToken cancellationToken = default) =>
-        QueueCommand(() => ResetCore(MachineValues.Value1), cancellationToken);
+    public ValueTask HardResetAsync(CancellationToken cancellationToken = default) => QueueCommand(() => ResetCore(MachineValues.Value1), cancellationToken);
 
     public async ValueTask StopAsync(CancellationToken cancellationToken = default)
     {
-        Task? loop;
-        lock (_gate)
+        Task? loop = null;
+        try
         {
-            if (State is EmulationMachineState.Created or EmulationMachineState.Stopped) return;
-            loop = _runLoop;
-            if (State != EmulationMachineState.Faulted)
+            lock (_gate)
             {
-                State = EmulationMachineState.Stopping;
-                _stopSource?.Cancel();
-                _pauseRequested = false;
-                Monitor.PulseAll(_gate);
+                if (State == EmulationMachineState.Created) return;
+                loop = _runLoop;
+                if (State is not EmulationMachineState.Faulted and not EmulationMachineState.Stopped)
+                {
+                    State = EmulationMachineState.Stopping;
+                    try { _stopSource?.Cancel(); }
+                    finally
+                    {
+                        _pauseRequested = false;
+                        Monitor.PulseAll(_gate);
+                    }
+                }
             }
+            if (loop is not null) await loop.WaitAsync(cancellationToken).ConfigureAwait(false);
         }
-        if (loop is not null) await loop.WaitAsync(cancellationToken).ConfigureAwait(false);
+        finally
+        {
+            await CommonCoreHostFunctions.MachineExecution.WaitForThreadAsync(loop, _thread).ConfigureAwait(false);
+        }
     }
 
-    public void SetInput(EmulationInputSnapshot snapshot) =>
-        _cassetteInput.SetPhysicalInput(InputSnapshotFunctions.Apply(snapshot, Configuration.Input,
-            Configuration.Model));
+    public void SetInput(EmulationInputSnapshot snapshot) => _cassetteInput.SetPhysicalInput(MapInput(snapshot));
 
-    public void SetControllerPortDevice(int port, PeripheralCategory peripheral) =>
-        QueueCommand(() => _core.SetControllerPortDevice(port, peripheral), CancellationToken.None)
-            .AsTask().GetAwaiter().GetResult();
+    public void SetControllerPortDevice(int port, PeripheralCategory peripheral) => QueueCommand(() =>
+    {
+        _core.SetControllerPortDevice(port, peripheral);
+        var previous = _inputConfiguration.Input.Controllers?.FirstOrDefault(binding => binding.Port == port);
+        var binding = previous is null ? new ControllerBinding(port, peripheral) : previous with { Peripheral = peripheral };
+        _inputConfiguration = _inputConfiguration with { Input = _inputConfiguration.Input with { Controllers = (_inputConfiguration.Input.Controllers ?? []).Where(item => item.Port != port).Append(binding).ToArray() } };
+    }, CancellationToken.None).AsTask().GetAwaiter().GetResult();
 
-    ValueTask<bool> IEmulationInput.SwitchControllerPointerAsync(CancellationToken cancellationToken) =>
-        ValueTask.FromResult(false);
+    ValueTask<bool> IEmulationInput.SwitchControllerPointerAsync(CancellationToken cancellationToken) => ValueTask.FromResult(false);
 
     public void SetAudioMuted(bool muted)
     {
@@ -123,39 +146,46 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
             _mountedMedia.RemoveAll(item => item.Slot == slot);
         }, cancellationToken);
 
-    public ValueTask SelectDiskAsync(int index, CancellationToken cancellationToken = default) =>
-        QueueCommand(() => _core.SelectDisk(index), cancellationToken);
+    public ValueTask SelectDiskAsync(int index, CancellationToken cancellationToken = default) => QueueCommand(() => _core.SelectDisk(index), cancellationToken);
 
     public ValueTask SaveStateAsync(string path, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>
         {
             if (!_core.SupportsSaveStates)
-                throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid,
-                    ErrorMessages.StateUnavailable);
+                throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid, ErrorMessages.StateUnavailable);
             var state = _core.SaveState();
             var header = SavedStateFunctions.CreateHeader(CurrentConfiguration(), _core, state);
-            StateFileFunctions.Write(path, header, state);
+            StateStore.Write(path, header, state);
         }, cancellationToken);
 
     public ValueTask LoadStateAsync(string path, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>
         {
             if (!_core.SupportsSaveStates)
-                throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid,
-                    ErrorMessages.StateUnavailable);
-            var saved = StateFileFunctions.Read(path);
+                throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid, ErrorMessages.StateUnavailable);
+            var saved = StateStore.Read(path);
             SavedStateFunctions.Validate(saved.Header, CurrentConfiguration(), _core);
             _core.LoadState(saved.State);
         }, cancellationToken);
 
-    public ValueTask SetOptionAsync(string key, string value, CancellationToken cancellationToken = default) =>
-        QueueCommand(() => _core.SetOption(key, value), cancellationToken);
+    public ValueTask SetOptionAsync(string key, string value, CancellationToken cancellationToken = default) => QueueCommand(() => _core.SetOption(key, value), cancellationToken);
 
-    ValueTask IEmulationCassetteTransport.ExecuteAsync(EmulationCassetteCommand command,
-        CancellationToken cancellationToken) => QueueCommand(() =>
+    ValueTask IEmulationCassetteTransport.ExecuteAsync(EmulationCassetteCommand command, CancellationToken cancellationToken) => QueueCommand(() =>
         {
-            if (command != EmulationCassetteCommand.Play)
-                throw new NotSupportedException(command.ToString());
-            _cassetteInput.Play();
+            _cassetteInput.Execute(command);
         }, cancellationToken);
+    /// <inheritdoc/>
+    /// <remarks>La commande rejoint la file du cœur ; les politiques de copie, de protection et de
+    /// sauvegarde automatique restent celles du backend. Aucun autre lecteur n’est sélectionné.</remarks>
+    public ValueTask SaveChangesAsync(EmulationMediaSlot slot, CancellationToken cancellationToken = default) => QueueCommand(() => _core.SaveMediaChanges(slot), cancellationToken);
+
+    /// <inheritdoc/>
+    /// <remarks>Le résultat est capturé sur le même thread que les frames et les changements de médias.
+    /// La consultation ne publie aucun fichier et ne modifie aucun montage.</remarks>
+    public async ValueTask<bool> HasUnsavedChangesAsync(EmulationMediaSlot slot, CancellationToken cancellationToken = default)
+    {
+        var hasChanges = false;
+        await QueueCommand(() => hasChanges = _core.HasUnsavedMediaChanges(slot), cancellationToken).ConfigureAwait(false);
+        return hasChanges;
+    }
 }

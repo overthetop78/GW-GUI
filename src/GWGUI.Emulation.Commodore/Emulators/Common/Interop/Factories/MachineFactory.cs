@@ -1,0 +1,163 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreHostFunctions;
+using CoreReleaseFunctions = GWGUI.Emulation.Commodore.Common.Functions.CoreReleaseFunctions;
+using System.IO;
+using System.Security.Cryptography;
+
+using GWGUI.Emulation;
+
+namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Factories;
+
+internal abstract class MachineFactory : IEmulatorAdapter, IEmulatorRuntimePolicy, IEmulatorFirmwareAdapter
+{
+    /// <inheritdoc/>
+    public virtual MachineConfiguration SelectConfiguration(MachineConfiguration configuration)
+    {
+        var selected = configuration with { Options = null };
+        var slots = GetFirmwareSlots(selected).Select(slot => slot.FieldId).ToHashSet(StringComparer.Ordinal);
+        return selected with
+        {
+            FirmwarePaths = configuration.FirmwarePaths?.Where(pair => slots.Contains(pair.Key)).ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal)
+        };
+    }
+
+    /// <inheritdoc/>
+    public virtual bool SupportsPointer(MachineConfiguration configuration) => true;
+    /// <inheritdoc/>
+    public virtual bool SupportsPointerCapture(MachineConfiguration configuration) => SupportsPointer(configuration);
+
+    /// <inheritdoc/>
+    public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>());
+
+    private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
+
+    public abstract EmulatorCatalogEntry CatalogEntry { get; }
+    internal abstract CoreDefinition CoreDefinition { get; }
+    internal virtual MachineConfiguration PrepareConfiguration(MachineConfiguration configuration) => configuration;
+    internal abstract IReadOnlyDictionary<string, string> NativeOptions(MachineConfiguration configuration, IReadOnlyList<MediaConfiguration> media);
+    internal virtual string? FirmwareOverrideOption => null;
+    public abstract void PrepareFirmware(MachineConfiguration configuration, string systemDirectory);
+    internal abstract string? PrepareContent(MachineConfiguration configuration, string session, IReadOnlyList<MediaConfiguration> media);
+    internal virtual string ConvertMediaPath(string path, string conversionDirectory) => path;
+    internal virtual int ControllerPortCount(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).ControllerPortCount;
+    internal virtual uint ControllerDevice(IReadOnlyList<IReadOnlyList<ControllerDevice>> ports, int port, PeripheralCategory type) => ExternalCore.ControllerDevice(ports, port, type);
+    internal virtual MediaCategory InferMediaCategory(MachineConfiguration configuration, string path)
+    {
+        var extension = Path.GetExtension(path);
+        var device = DescribeMediaDevices(configuration).FirstOrDefault(device => device.AcceptedExtensions.Contains(extension, StringComparer.OrdinalIgnoreCase));
+        return device?.MediaType switch
+        {
+            EmulationMediaType.Floppy => MediaCategory.Floppy,
+            EmulationMediaType.HardDisk => MediaCategory.HardDrive,
+            EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
+            EmulationMediaType.Cartridge => MediaCategory.Cartridge,
+            EmulationMediaType.Cassette => MediaCategory.Cassette,
+            _ => throw new InvalidDataException(ErrorMessages.UnsupportedContentExtension(extension))
+        };
+    }
+    public abstract IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration);
+    public virtual ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(MachineConfiguration configuration, string directory, CancellationToken cancellationToken)
+    {
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(Directory.EnumerateFiles(directory, MachineSettingsConstants.AllFirmwareFiles, SearchOption.AllDirectories)
+            .SelectMany(path => ScanFirmwareFileAsync(configuration, path, cancellationToken).GetAwaiter().GetResult()).ToArray());
+    }
+
+    /// <inheritdoc/>
+    public virtual ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareFileAsync(MachineConfiguration configuration, string path, CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        var slots = GetFirmwareSlots(configuration);
+        using var stream = File.OpenRead(path);
+        var sha256 = CommonCoreHostFunctions.StateFiles.HashStream(stream);
+        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(slots.Select(slot => new EmulationFirmwareCandidate(sha256 + MachineSettingsConstants.CandidateRoleSeparator + slot.FieldId, path, Path.GetFileName(path), null, EmulationFirmwareCompatibility.PartiallyCompatible, slot.FieldId)).ToArray());
+    }
+    public virtual ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory) => ValueTask.FromResult(media);
+    public virtual Task<MachineConfiguration> PrepareRuntimeConfigurationAsync(MachineConfiguration configuration, string conversionDirectory) => Task.FromResult(configuration);
+    public abstract IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration);
+    public virtual IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => SettingsDescriptionFunctions.CreateBasic(ModelCatalog.Get(configuration.Model), configuration);
+    public virtual EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => StorageSettingsFunctions.DescribeBasic(configuration);
+    public virtual MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => StorageSettingsFunctions.ApplyBasic(configuration, settings);
+    public virtual MachineConfiguration ApplySettings(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values) => configuration;
+    public virtual EmulationConfigurationSummary Summarize(MachineConfiguration configuration) => ConfigurationSummaryFunctions.CreateBasic(configuration);
+    public virtual void ValidateConfiguration(MachineConfiguration configuration) { }
+    public virtual IReadOnlyList<InputBindingDefinition> GetKeyboardDefinitions(MachineConfiguration configuration) => InputSettingsFunctions.GenericKeyboardDefinitions();
+    public int GetControllerPortCount(MachineConfiguration configuration) => ControllerPortCount(configuration);
+    public virtual MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration) => configuration;
+    internal virtual IReadOnlyDictionary<uint, EmulationKey?> KeyboardOverrides(MachineConfiguration configuration) => new Dictionary<uint, EmulationKey?>();
+    internal virtual IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>> KeyboardExpansions(MachineConfiguration configuration) => new Dictionary<EmulationKey, IReadOnlyList<EmulationKey>>();
+    internal virtual IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>> KeyboardToggleExpansions(MachineConfiguration configuration) => new Dictionary<EmulationKey, IReadOnlyList<EmulationKey>>();
+    public virtual IReadOnlySet<EmulationKey> SoftResetKeys { get; } = new HashSet<EmulationKey>();
+    public Emulator Emulator => CatalogEntry.Emulator;
+    public string EmulatorId => CatalogEntry.Definition.Id;
+    public string EmulatorKey => Emulator.ToString();
+    public EmulationEmulatorDefinition Definition => CatalogEntry.Definition;
+
+    public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
+    {
+        exitCode = CoreHostConstants.SuccessfulExitCode;
+        if (arguments is not [CoreHostConstants.CommandLineArgument, var pipeName, var videoMapName])
+            return false;
+        if (!OperatingSystem.IsWindows()) throw new PlatformNotSupportedException();
+        CoreHost.Run(pipeName, videoMapName, static (configuration, corePath) => new ExternalCore(corePath));
+        return true;
+    }
+
+    public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
+    {
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, Emulator, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease).GetActiveInstallationAsync(Emulator, cancellationToken).ConfigureAwait(false);
+        return new EmulationEmulatorInstallation(Definition, installation?.InstalledVersion);
+    }
+
+    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
+    {
+        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, Emulator, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease).GetAvailableAsync(Emulator, cancellationToken).ConfigureAwait(false);
+        _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
+        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName ?? item.DeclaredVersion, item.DeclaredVersion, item.IsRequired)).ToArray();
+    }
+
+    public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
+    {
+        var selected = CoreReleaseFunctions.Releases.SelectRelease(_availableReleases, release, selected => selected.Emulator == Emulator);
+        var adapter = CoreReleaseFunctions.Releases.CreateInstallProgress<CoreInstallProgress>(progress, static value => value.Fraction);
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, Emulator, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease).InstallAsync(selected, adapter, cancellationToken).ConfigureAwait(false);
+        return installation.LibraryPath;
+    }
+
+    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) =>
+        await new CoreProvider(new CoreReleaseService(context.HttpClient, context.CoreDirectory, Emulator, CoreDefinition.LibraryFile, CoreDefinition.DownloadUrl, CoreDefinition.RequiredRelease), CoreReleaseService.VerifyWindowsX64Library).FindInstalledPathAsync(Emulator, cancellationToken).ConfigureAwait(false);
+
+    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(ExternalCore.ResolveConfiguredMedia(configuration));
+
+    public virtual IReadOnlyDictionary<EmulationMediaSlot, bool> MediaActivity(MachineConfiguration configuration, IReadOnlyDictionary<int, bool> ledStates) => new Dictionary<EmulationMediaSlot, bool>();
+
+    public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
+    {
+        var machineId = Guid.NewGuid();
+        var configured = PrepareConfiguration(configuration.EnsureId());
+        var saveDirectory = context.SaveDirectoryResolver?.Invoke(configured);
+        if (saveDirectory is not null) ((IEmulatorPersistentStorage)this).EnsurePersistentStorage(configured, saveDirectory);
+        var core = new ProcessCore(context.HostExecutablePath, context.CorePath);
+        var ownershipTransferred = false;
+        try
+        {
+            var machine = new Machine(machineId, configured, core,
+                ExternalCore.ResolveConfiguredMedia(configured),
+                Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
+                null, saveDirectory,
+                startErrorTranslator: error => CommonCoreHostFunctions.Messages.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, new EmulationMachineMessageContext(configured.Model)), inputMapper: this, audioOutputFactory: context.AudioOutputFactory, runtimePolicy: this);
+            ownershipTransferred = true;
+            return machine;
+        }
+        finally
+        {
+            if (!ownershipTransferred)
+            {
+                core.Dispose();
+            }
+        }
+    }
+
+    /// <summary>Conserve les formats de cartouche déjà décrits par le modèle Common.</summary>
+    /// <param name="configuration">Configuration empruntée du modèle et du backend.</param>
+    /// <returns>Null en l'absence de restriction supplémentaire ; les fabriques dérivées peuvent préciser leurs contraintes.</returns>
+    public virtual IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration) => null;
+}

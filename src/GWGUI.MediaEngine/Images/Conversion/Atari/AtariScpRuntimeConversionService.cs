@@ -7,13 +7,9 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.St;
 namespace GWGUI.MediaEngine.Images.Conversion.Atari;
 
 /// <summary>Reconstruit une capture SCP Atari dans le format sectoriel attendu par l'émulateur.</summary>
-public sealed class AtariScpRuntimeConversionService(
-    AtariScpSectorImageReader reader,
-    AtrWriter atrWriter,
-    AtariStWriter stWriter)
+public sealed class AtariScpRuntimeConversionService(AtariScpSectorImageReader reader, AtrWriter atrWriter, AtariStWriter stWriter)
 {
-    public async Task ConvertToAtrAsync(string sourcePath, string outputPath,
-        CancellationToken cancellationToken = default)
+    public async Task ConvertToAtrAsync(string sourcePath, string outputPath, CancellationToken cancellationToken = default)
     {
         var image = await reader.ReadAsync(sourcePath, null, cancellationToken).ConfigureAwait(false);
         if (!image.FormatId.StartsWith(DiskImageFormatIds.AtariPrefix, StringComparison.OrdinalIgnoreCase))
@@ -21,8 +17,7 @@ public sealed class AtariScpRuntimeConversionService(
         await atrWriter.WriteAsync(image, outputPath, image.FormatId, cancellationToken).ConfigureAwait(false);
     }
 
-    public async Task ConvertToStAsync(string sourcePath, string outputPath,
-        CancellationToken cancellationToken = default)
+    public async Task ConvertToStAsync(string sourcePath, string outputPath, CancellationToken cancellationToken = default)
     {
         var image = await reader.ReadAsync(sourcePath, null, cancellationToken).ConfigureAwait(false);
         if (!image.FormatId.StartsWith(DiskImageFormatIds.AtariStPrefix, StringComparison.OrdinalIgnoreCase))

@@ -16,8 +16,7 @@ internal sealed class VideoProfileFiles : IVideoProfileFiles
     public void WriteAtomically(string path, Action<Stream> write)
     {
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
-        var temporary = path + Guid.NewGuid().ToString(VideoPresentationStorageConstants.IdentifierFormat)
-            + VideoPresentationStorageConstants.TemporaryExtension;
+        var temporary = path + Guid.NewGuid().ToString(VideoPresentationStorageConstants.IdentifierFormat) + VideoPresentationStorageConstants.TemporaryExtension;
         try
         {
             using (var stream = new FileStream(temporary, FileMode.CreateNew, FileAccess.Write, FileShare.None))

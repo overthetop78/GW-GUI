@@ -10,8 +10,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 
     public static partial class Pfs3Directory
     {
-        public static async Task<bool> RenameAndMove(Pfs3ObjectInfo sourcedi, Pfs3ObjectInfo srcinfo, Pfs3ObjectInfo destdi,
-            string destname, Pfs3GlobalData g)
+        public static async Task<bool> RenameAndMove(Pfs3ObjectInfo sourcedi, Pfs3ObjectInfo srcinfo, Pfs3ObjectInfo destdi, string destname, Pfs3GlobalData g)
         {
             Pfs3DirEntry srcdirentry, destentry;
             // var entrybuffer = new byte[Macro.MAX_ENTRYSIZE];
@@ -83,8 +82,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             /* Make destination  */
             //destentry = (struct Pfs3DirEntry *)&entrybuffer;
             //destentry = srcdirentry;
-            destentry = new Pfs3DirEntry(0, srcdirentry.type, srcdirentry.anode, srcdirentry.fsize, srcdirentry.protection,
-                srcdirentry.CreationDate, destname, srcdirentry.comment, srcdirentry.ExtraFields, g);
+            destentry = new Pfs3DirEntry(0, srcdirentry.type, srcdirentry.anode, srcdirentry.fsize, srcdirentry.protection, srcdirentry.CreationDate, destname, srcdirentry.comment, srcdirentry.ExtraFields, g);
 
             /* copy header */
             //memcpy(destentry, srcdirentry, offsetof(struct Pfs3DirEntry, nlength));
@@ -262,8 +260,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             // destentry = (struct Pfs3DirEntry *)entrybuffer;
             sourceentry = info.file.direntry;
 
-            destentry = new Pfs3DirEntry(0, sourceentry.type, sourceentry.anode, sourceentry.fsize, sourceentry.protection,
-                sourceentry.CreationDate, sourceentry.Name, comment, sourceentry.ExtraFields, g);
+            destentry = new Pfs3DirEntry(0, sourceentry.type, sourceentry.anode, sourceentry.fsize, sourceentry.protection, sourceentry.CreationDate, sourceentry.Name, comment, sourceentry.ExtraFields, g);
 
             // destentry = new direntry(sourceentry)
             // {
@@ -329,8 +326,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
         /// <param name="newlink">Newlink created.</param>
         /// <param name="g">Globaldata</param>
         /// <exception cref="IOException">Exception thrown.</exception>
-        public static async Task CreateLink(Pfs3ObjectInfo linkdir, string linkname, Pfs3ObjectInfo obj,
-				        Pfs3ObjectInfo newlink, Pfs3GlobalData g)
+        public static async Task CreateLink(Pfs3ObjectInfo linkdir, string linkname, Pfs3ObjectInfo obj, Pfs3ObjectInfo newlink, Pfs3GlobalData g)
         {
 	        var info = new Pfs3ObjectInfo();
             var odi = new Pfs3ObjectInfo();

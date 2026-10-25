@@ -37,6 +37,30 @@ public abstract class TrackEncoderBase : ITrackEncoder
     /// <returns>Cellules binaires dans leur ordre d'émission.</returns>
     protected abstract IReadOnlyList<bool> EncodeBits(TrackEncodeRequest request);
 
+    /// <summary>Parcourt les secteurs ISO en conservant les opérations propres au format FM ou MFM.</summary>
+    /// <param name="request">Piste déjà validée par les règles communes.</param>
+    /// <param name="validateAddress">Validation des champs d'adresse du format.</param>
+    /// <param name="resolveSizeCode">Calcul et validation de la taille sectorielle.</param>
+    /// <param name="writeAddress">Écriture de l'adresse et de son CRC.</param>
+    /// <param name="writeData">Écriture des données, de leur CRC et du gap.</param>
+    /// <returns>Cellules binaires dans l'ordre des secteurs fournis.</returns>
+    protected static IReadOnlyList<bool> EncodeIsoBits(TrackEncodeRequest request,
+        Action<string, int> validateAddress, Func<TrackSector, byte> resolveSizeCode,
+        Action<List<bool>, TrackEncodeRequest, int, byte> writeAddress, Action<List<bool>, TrackSector> writeData)
+    {
+        var bits = TrackBitEncoding.Bits();
+        validateAddress(nameof(request.Cylinder), request.Cylinder);
+        validateAddress(nameof(request.Head), request.Head);
+        foreach (var sector in request.Sectors)
+        {
+            validateAddress(nameof(sector.Number), sector.Number);
+            var sizeCode = resolveSizeCode(sector);
+            writeAddress(bits, request, sector.Number, sizeCode);
+            writeData(bits, sector);
+        }
+        return bits;
+    }
+
     /// <summary>Lit un attribut de piste ou retourne sa valeur de repli.</summary>
     /// <param name="request">Requête portant les attributs.</param>
     /// <param name="key">Clé technique définie par le format.</param>

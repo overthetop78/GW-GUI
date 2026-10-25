@@ -22,7 +22,5 @@ public static class FileSystemMigrationTargetCatalog
         new(DiskImageFormatIds.Commodore1581, FileSystemIds.CommodoreDos, DiskImageFileExtensions.D81)
     ];
 
-    public static FileSystemMigrationTarget Get(string formatId) =>
-        All.FirstOrDefault(target => target.FormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase))
-        ?? throw new InvalidDataException($"The migration target '{formatId}' is unsupported.");
+    public static FileSystemMigrationTarget Get(string formatId) => All.FirstOrDefault(target => target.FormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase)) ?? throw new InvalidDataException($"The migration target '{formatId}' is unsupported.");
 }

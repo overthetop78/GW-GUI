@@ -1,3 +1,4 @@
+using CommonControllerFunctions = GWGUI.Emulation.Atari.Common.Functions.ControllerFunctions;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari.Common.Machines.Common.Constants;
 using GWGUI.Emulation.Enums;
@@ -14,16 +15,10 @@ internal static partial class InputSettingsFunctions
     {
         var compatibility = CompatibilityCatalog.Get(configuration.Model);
         var input = configuration.Input ?? new InputConfiguration();
-        var keyboard = compatibility.VisibleTabs.Contains(SettingsTab.Keyboard)
-            ? new EmulationInputBindingSet(KeyboardDefinitions(configuration.Model),
-                ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard) : null;
-        var mouse = compatibility.VisibleTabs.Contains(SettingsTab.Mouse)
-            ? new EmulationInputBindingSet(MouseDefinitions(), MouseValues(configuration.Options),
-                EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller,
-                true)
-            : null;
+        var keyboard = compatibility.VisibleTabs.Contains(SettingsTab.Keyboard) ? new EmulationInputBindingSet((new Engine().SelectedAdapter(configuration)?.GetKeyboardDefinitions(configuration) ?? KeyboardDefinitions(configuration.Model)), input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
+        var mouse = compatibility.VisibleTabs.Contains(SettingsTab.Mouse) ? new EmulationInputBindingSet(MouseDefinitions(), MouseValues(configuration.Options), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
         var configured = input.Controllers ?? [];
-        var ports = Enumerable.Range(0, compatibility.ControllerPortCount).Select(index =>
+        var ports = Enumerable.Range(0, CommonControllerFunctions.PortCount(configuration)).Select(index =>
         {
             var number = index + 1;
             var current = configured.FirstOrDefault(item => item.Port == index);
@@ -35,47 +30,34 @@ internal static partial class InputSettingsFunctions
                     current?.Mappings ?? new Dictionary<string, string>(),
                     EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
                 current?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent,
-                current?.VisualId);
+                current?.VisualId) { OutputBindings = current?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
         }).ToArray();
         return new EmulationInputSettings(keyboard, mouse, ports);
     }
 
-    internal static MachineConfiguration Apply(MachineConfiguration configuration,
-        EmulationInputSettings settings)
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
         var current = configuration.Input ?? new InputConfiguration();
-        var keyboard = settings.Keyboard?.Values
-            .Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _))
-            .ToDictionary(item => item.Key, item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal)
-            ?? current.KeyboardMappings;
+        var keyboard = settings.Keyboard?.Values is { } keyboardValues ? EmulationSdk.InputProcessing.ToKeys(keyboardValues) : current.KeyboardMappings;
         var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(port.Number - 1,
-            Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var peripheral)
-                ? peripheral : PeripheralCategory.None, port.PhysicalDeviceId, port.Bindings.Values,
-            port.DeadZonePercent, port.VisualId)).ToArray();
-        var options = configuration.Options
-            .Where(item => !item.Key.StartsWith(MouseSettingsConstants.MappingOptionPrefix,
-                StringComparison.Ordinal))
-            .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal);
+            Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var peripheral) ? peripheral : PeripheralCategory.None, port.PhysicalDeviceId, port.Bindings.Values,
+            port.DeadZonePercent, port.VisualId, OutputBindings: port.OutputBindings)).ToArray();
+        var options = configuration.Options.Where(item => !item.Key.StartsWith(MouseSettingsConstants.MappingOptionPrefix, StringComparison.Ordinal)).ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal);
         if (settings.Mouse is not null)
             foreach (var binding in settings.Mouse.Values)
                 options[MouseSettingsConstants.MappingOptionPrefix + binding.Key] = binding.Value;
-        var input = current with { KeyboardMappings = keyboard, Controllers = controllers };
-        return configuration with { Options = options, Input = input };
+        var input = current with { KeyboardMappings = keyboard, KeyboardBindings = settings.Keyboard?.Values ?? current.KeyboardBindings, Controllers = controllers };
+        var adjustedConfiguration = configuration with { Options = options, Input = input };
+        return new Engine().SelectedAdapter(adjustedConfiguration)?.ApplyInputConfiguration(adjustedConfiguration) ?? adjustedConfiguration;
     }
 
     private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineModel model)
     {
         var emulator = CompatibilityCatalog.Get(model).Core;
-        IEnumerable<EmulationKey> keys = emulator == Emulator.Atari800
-            ? Atari8BitKeyboard.SpecialKeys
-            : AtariStKeyboard.SpecialKeys;
+        IEnumerable<EmulationKey> keys = emulator == Emulator.Atari800 ? Atari8BitKeyboard.SpecialKeys : AtariStKeyboard.SpecialKeys;
         if (model == MachineModel.Atari400) keys = keys.Where(key => key != EmulationKey.Help);
-        var defaults = emulator == Emulator.Atari800
-            ? Atari8BitKeyboardDictionary.DefaultHostKeys
-            : AtariStKeyboardDictionary.DefaultHostKeys;
-        return keys.Distinct().Select(key => Definition(key.ToString(), KeyResource(key), DefaultKey(key, defaults),
-            key is EmulationKey.AtariOption or EmulationKey.AtariSelect or EmulationKey.AtariStart
-                ? key.ToString()[5..] : null)).ToArray();
+        var defaults = emulator == Emulator.Atari800 ? Atari8BitKeyboardDictionary.DefaultHostKeys : AtariStKeyboardDictionary.DefaultHostKeys;
+        return keys.Distinct().Select(key => Definition(key.ToString(), KeyResource(key), DefaultKey(key, defaults), key is EmulationKey.AtariOption or EmulationKey.AtariSelect or EmulationKey.AtariStart ? key.ToString()[5..] : null)).ToArray();
     }
 
     private static IReadOnlyList<InputBindingDefinition> MouseDefinitions() =>
@@ -84,30 +66,36 @@ internal static partial class InputSettingsFunctions
         Definition(InputSettingsFunctionsConstants.Right, InputSettingsFunctionsConstants.ResourceMouseButtonRight, InputSettingsFunctionsConstants.MouseRight)
     ];
 
-    private static IReadOnlyDictionary<string, string> MouseValues(
-        IReadOnlyDictionary<string, string> options) => MouseSettingsConstants.Actions.ToDictionary(
+    private static IReadOnlyDictionary<string, string> MouseValues(IReadOnlyDictionary<string, string> options) => MouseSettingsConstants.Actions.ToDictionary(
         action => action,
-        action => options.GetValueOrDefault(MouseSettingsConstants.MappingOptionPrefix + action,
-            $"Mouse:{action}"), StringComparer.Ordinal);
+        action => options.GetValueOrDefault(MouseSettingsConstants.MappingOptionPrefix + action, $"Mouse:{action}"), StringComparer.Ordinal);
 
-    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(MachineModel model,
-        PeripheralCategory peripheral)
+    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(MachineModel model, PeripheralCategory peripheral)
     {
         var actions = ControllerActions(model, peripheral);
-        return actions.Select(action => Definition(action, ActionResourceKey(action),
-            string.Empty, ActionInvariantValue(action))).ToArray();
+        return actions.Select(action => Definition(action, ActionResourceKey(action), string.Empty, ActionInvariantValue(action)) with
+        {
+            OppositeDirectionId = peripheral is PeripheralCategory.AnalogJoystick or PeripheralCategory.Paddle ? action switch
+            {
+                EmulationControllerCommandIds.Left => EmulationControllerCommandIds.Right,
+                EmulationControllerCommandIds.Right => EmulationControllerCommandIds.Left,
+                EmulationControllerCommandIds.Up when peripheral == PeripheralCategory.AnalogJoystick => EmulationControllerCommandIds.Down,
+                EmulationControllerCommandIds.Down when peripheral == PeripheralCategory.AnalogJoystick => EmulationControllerCommandIds.Up,
+                _ => null
+            } : null
+        }).ToArray();
     }
 
-    private static IEnumerable<string> ControllerActions(MachineModel model,
-        PeripheralCategory peripheral)
+    private static IEnumerable<string> ControllerActions(MachineModel model, PeripheralCategory peripheral)
     {
         if (peripheral == PeripheralCategory.None) return [];
         if (model == MachineModel.Atari5200 && peripheral is PeripheralCategory.AnalogJoystick
             or PeripheralCategory.NumericKeypad)
-            return ControllerActionConstants.DirectionActions.Concat(ControllerActionConstants.DualFireActions)
-                .Concat(ControllerActionConstants.KeypadActions).Distinct(StringComparer.Ordinal);
+            return ControllerActionConstants.DirectionActions.Concat(ControllerActionConstants.DualFireActions).Concat(ControllerActionConstants.KeypadActions).Distinct(StringComparer.Ordinal);
         if (peripheral == PeripheralCategory.NumericKeypad) return ControllerActionConstants.KeypadActions;
-        if (peripheral is PeripheralCategory.Paddle or PeripheralCategory.DrivingController
+        if (peripheral == PeripheralCategory.Paddle)
+            return ControllerActionConstants.SingleFireActions.Concat([EmulationControllerCommandIds.Left, EmulationControllerCommandIds.Right]);
+        if (peripheral is PeripheralCategory.DrivingController
             or PeripheralCategory.LightGun) return ControllerActionConstants.SingleFireActions;
         if (peripheral == PeripheralCategory.BoosterGrip)
             return ControllerActionConstants.DirectionActions.Concat([InputSettingsFunctionsConstants.Fire1, InputSettingsFunctionsConstants.Fire2, InputSettingsFunctionsConstants.Turbo]);
@@ -121,7 +109,7 @@ internal static partial class InputSettingsFunctions
             return ControllerActionConstants.DirectionActions.Concat(ControllerActionConstants.LynxActions);
         if (model is MachineModel.Atari5200 or MachineModel.Atari7800)
             return ControllerActionConstants.DirectionActions.Concat(ControllerActionConstants.DualFireActions);
-        if (CompatibilityCatalog.Get(model).Core == Emulator.Hatari)
+        if (ConfigurationFunctions.GetFamily(model) == MachineFamily.St)
             return ControllerActionConstants.DirectionActions.Concat(ControllerActionConstants.HatariFireActions);
         return ControllerActionConstants.DirectionActions.Concat(ControllerActionConstants.SingleFireActions);
     }
@@ -135,9 +123,7 @@ internal static partial class InputSettingsFunctions
         _ => PeripheralCategory.Joystick
     };
 
-    private static EmulationControllerChoice Choice(
-        MachineModel model,
-        PeripheralCategory category) => new(category.ToString(), category switch
+    private static EmulationControllerChoice Choice(MachineModel model, PeripheralCategory category) => new(category.ToString(), category switch
     {
         PeripheralCategory.None => InputSettingsFunctionsConstants.ResourceControllerNone,
         PeripheralCategory.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
@@ -164,5 +150,23 @@ internal static partial class InputSettingsFunctions
         BindingDefinitions: ControllerDefinitions(model, category),
         CompatibleVisualIds: CompatibleVisualIds(model, category),
         DefaultVisualId: DefaultVisualId(model, category),
-        VisualCommandIds: VisualCommandIds(model, category));
+        VisualCommandIds: VisualCommandIds(model, category))
+    {
+        Category = category switch
+        {
+            PeripheralCategory.None => EmulationControllerCategory.None,
+            PeripheralCategory.Automatic => EmulationControllerCategory.Unspecified,
+            PeripheralCategory.Mouse or PeripheralCategory.LightGun => EmulationControllerCategory.PointingDevice,
+            PeripheralCategory.DrivingController => EmulationControllerCategory.RacingSimulation,
+            PeripheralCategory.GenesisController or PeripheralCategory.EnhancedController => EmulationControllerCategory.Gamepad,
+            PeripheralCategory.Keyboard => EmulationControllerCategory.OtherSimulation,
+            PeripheralCategory.NumericKeypad when model != MachineModel.Atari5200 => EmulationControllerCategory.OtherSimulation,
+            _ => EmulationControllerCategory.Joystick
+        }
+    };
+
+    /// <summary>Décrit les touches du clavier principal selon les règles matérielles déjà utilisées.</summary>
+    /// <param name="configuration">Profil et associations empruntés à consulter.</param>
+    /// <returns>Définitions de clavier du profil ; liste vide sans clavier pris en charge.</returns>
+    internal static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration) { return CompatibilityCatalog.Get(configuration.Model).VisibleTabs.Contains(SettingsTab.Keyboard) ? KeyboardDefinitions(configuration.Model) : []; }
 }

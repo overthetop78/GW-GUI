@@ -1,7 +1,14 @@
+#if GWGUI_MEDIA_ENGINE_EXPLORER
+using GWGUI.MediaFileSystems.Interfaces.Exploration;
+
+namespace GWGUI.MediaEngine.Contracts.Explorer;
+
+#else
 using GWGUI.MediaFileSystems.Interfaces.Exploration;
 
 namespace GWGUI.MediaFileSystems;
 
+#endif
 /// <summary>Décrit un volume et les entrées décodées de son système de fichiers.</summary>
 public sealed record FileSystemVolume : IFileSystemVolumeView
 {
@@ -58,6 +65,9 @@ public sealed record FileSystemVolume : IFileSystemVolumeView
     public DateTimeOffset? Modified { get; }
     /// <summary>Copie non modifiable des entrées racines.</summary>
     public IReadOnlyList<FileSystemEntry> Entries { get; }
+#if GWGUI_MEDIA_ENGINE_EXPLORER
+    IReadOnlyList<IFileSystemEntryView> IFileSystemVolumeView.Entries => Entries;
+#endif
     /// <summary>Copie non modifiable des avertissements techniques.</summary>
     public IReadOnlyList<string> Warnings { get; }
     /// <summary>Attributs interprétés du volume.</summary>
@@ -70,6 +80,8 @@ public sealed record FileSystemVolume : IFileSystemVolumeView
     public int? DiskCount { get; }
     /// <summary>Origine technique de la numérotation du support.</summary>
     public string? DiskNumberOrigin { get; }
+#if !GWGUI_MEDIA_ENGINE_EXPLORER
 
     IReadOnlyList<IFileSystemEntryView> IFileSystemVolumeView.Entries => Entries;
+#endif
 }

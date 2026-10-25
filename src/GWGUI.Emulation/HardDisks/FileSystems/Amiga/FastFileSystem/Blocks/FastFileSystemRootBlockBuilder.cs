@@ -42,8 +42,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem.Blocks
 
             for (var i = 0; i < FastFileSystemConstants.BM_SIZE; i++)
             {
-                BigEndianConverter.ConvertUInt32ToBytes(i < rootBlock.BitmapBlockOffsets.Length ? rootBlock.BitmapBlockOffsets[i] : 0,
-                    blockBytes, blockBytes.Length - 0xc4 + (i * SizeOf.ULong));
+                BigEndianConverter.ConvertUInt32ToBytes(i < rootBlock.BitmapBlockOffsets.Length ? rootBlock.BitmapBlockOffsets[i] : 0, blockBytes, blockBytes.Length - 0xc4 + (i * SizeOf.ULong));
             }
 
             // write first bitmap extension block pointer

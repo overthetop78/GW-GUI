@@ -19,13 +19,9 @@ public static class HardwareModelCatalog
         ..AtariJaguarModels.All
     ];
 
-    private static readonly IReadOnlyDictionary<MachineModel, HardwareModelDefinition> ByModel =
-        HardwareModelFunctions.Index(Definitions);
+    private static readonly IReadOnlyDictionary<MachineModel, HardwareModelDefinition> ByModel = HardwareModelFunctions.Index(Definitions);
 
     public static IReadOnlyList<HardwareModelDefinition> All => Definitions;
 
-    public static HardwareModelDefinition Get(MachineModel model) =>
-        ByModel.TryGetValue(model, out var definition)
-            ? definition
-            : throw new ArgumentOutOfRangeException(nameof(model), model, ErrorMessages.UnknownHardwareModel);
+    public static HardwareModelDefinition Get(MachineModel model) => ByModel.TryGetValue(model, out var definition) ? definition : throw new ArgumentOutOfRangeException(nameof(model), model, ErrorMessages.UnknownHardwareModel);
 }

@@ -20,10 +20,7 @@ internal sealed class AppleRwts18ScpSectorReconstructor(AppleScpSectorDecoder de
     /// <param name="cancellationToken">Jeton permettant d'annuler le décodage des révolutions.</param>
     /// <returns>L'image Apple II RWTS18 reconstruite à partir des secteurs dont l'adresse est utilisable.</returns>
     /// <exception cref="InvalidDataException">Aucun secteur RWTS18 n'a été décodé ou aucun candidat ne respecte la géométrie acceptée.</exception>
-    public SectorImage Decode(
-        ScpImage scp,
-        CancellationToken cancellationToken,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress = null)
+    public SectorImage Decode(ScpImage scp, CancellationToken cancellationToken, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress = null)
     {
         var candidates = decoder.DecodeCandidates(scp, FluxCodecIds.AppleRwts18, AppleRwts18Format.SectorByteCount, cancellationToken, progress);
         if (candidates.Count == 0) throw ScpReconstructionExceptions.NoDecodedSectors(AppleRwts18Format.StructureDescriptionName);

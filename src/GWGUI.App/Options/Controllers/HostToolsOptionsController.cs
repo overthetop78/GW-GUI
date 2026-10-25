@@ -91,8 +91,7 @@ internal sealed class HostToolsOptionsController
         await WithBusyState(async () =>
         {
             var release = await _state.CheckLatestAsync();
-            if (MessageBox.Show(_owner, _localize("HostTools.DownloadConfirm", [release.Version]),
-                    _localize("HostTools.Title", []), MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes) return;
+            if (MessageBox.Show(_owner, _localize("HostTools.DownloadConfirm", [release.Version]), _localize("HostTools.Title", []), MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes) return;
 
             _section.DownloadProgress.Visibility = Visibility.Visible;
             var progress = new Progress<double>(value => _section.DownloadProgress.Value = value * 100);
@@ -135,7 +134,5 @@ internal sealed class HostToolsOptionsController
         }
     }
 
-    private void RefreshStatus() => _section.HostToolsState.Text = _exists(CurrentPath)
-        ? _localize("HostTools.Detected", [CurrentPath])
-        : _localize("HostTools.None", []);
+    private void RefreshStatus() => _section.HostToolsState.Text = _exists(CurrentPath) ? _localize("HostTools.Detected", [CurrentPath]) : _localize("HostTools.None", []);
 }

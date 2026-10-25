@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.pcsx2.Description"><value>Emulează sistemele PlayStation 2.</value></data>
+  <data name="Emulation.Emulator.ppsspp.Description"><value>Emulează sistemele PlayStation Portable.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Emulează sistemele Sony PlayStation / PS one.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>Emulează dispozitivul portabil Sony PocketStation cu un BIOS extern și imagini de carduri de memorie.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Emulează sistemele PlayStation cu randarea software Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Emulează sistemele PlayStation cu randarea hardware Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>Emulează sistemele PlayStation cu PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>Emulează sistemele PlayStation 2 cu PCEE2 și un BIOS extern.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Emulează sistemele PlayStation 2 cu Play! și emularea sa integrată a firmware-ului de sistem.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>Emulează sistemele PlayStation 3 cu RPCS3 și firmware de sistem extern.</value></data>
+</root>

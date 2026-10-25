@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Language"><value>שפת Nintendo</value></data>
+  <data name="Emulation.Nintendo.Language.English"><value>שפה אנגלית</value></data>
+  <data name="Emulation.Nintendo.Language.French"><value>צרפת צרפתית</value></data>
+  <data name="Emulation.Nintendo.Language.Spanish"><value>ספרדית</value></data>
+  <data name="Emulation.Nintendo.Firmware.Integrated"><value>מערכת ROM</value></data>
+  <data name="Emulation.Emulator.mesen.Description"><value>Nintendo Entertainment System ו-Famicom Disk System.</value></data>
+  <data name="Emulation.Emulator.gw.Description"><value>עקבו אחרי Nintendo Game &amp; Watch</value></data>
+  <data name="Emulation.Emulator.beetle_vb.Description"><value>עקבו אחרי Nintendo Virtual Boy</value></data>
+  <data name="Emulation.Emulator.mupen64plus-next.Description"><value>עקבו אחרי Nintendo 64 Systems</value></data>
+  <data name="Emulation.Emulator.melonds.Description"><value>עקבו אחרי Nintendo DS ו-DSi Systems.</value></data>
+  <data name="Emulation.Emulator.snes9x.Description"><value>מערכות Super Nintendo ו- Super Famicom</value></data>
+  <data name="Emulation.Emulator.gambatte.Description"><value>עקבו אחרי Nintendo Game Boy System כמו כן, מחקה את מערכת Game Boy Color.</value></data>
+  <data name="Emulation.Emulator.mgba.Description"><value>עקבו אחרי Nintendo Game Boy Advance Systems</value></data>
+  <data name="Emulation.Emulator.citra.Description"><value>מערכות Nintendo 3DS עם Citra</value></data>
+  <data name="Emulation.Emulator.dolphin.Description"><value>מדמה מערכות Nintendo GameCube ו-Wii באמצעות Dolphin.</value></data>
+</root>

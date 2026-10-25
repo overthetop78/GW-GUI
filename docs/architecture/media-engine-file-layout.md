@@ -940,7 +940,7 @@ machine. Aucun algorithme de format n’est recopié dans ces modules.
 
 La réorganisation physique décrite ici concerne uniquement `src/GWGUI.MediaEngine` et les contrats
 média communs explicitement placés dans `src/GWGUI.Domain`. Elle ne réorganise pas les arborescences
-de `src/GWGUI.Emulation`, `src/GWGUI.Emulation.Amiga`, `src/GWGUI.Emulation.Atari`,
+de `src/GWGUI.Emulation`, `src/GWGUI.Emulation.Commodore`, `src/GWGUI.Emulation.Atari`,
 `src/GWGUI.Infrastructure` ou `src/GWGUI.App`. Ces projets reçoivent seulement les changements de
 références et de points d’appel nécessaires pour consommer l’orchestration commune.
 

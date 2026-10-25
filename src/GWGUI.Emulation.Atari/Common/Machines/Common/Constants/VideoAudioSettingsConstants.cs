@@ -36,9 +36,6 @@ internal static class VideoAudioSettingsConstants
     internal const int MaximumVolumePercent = 100;
     internal const int VolumeStepPercent = 5;
     internal const string DefaultAudioOutput = "default";
-    internal const int DefaultAudioLatencyMilliseconds = 50;
     internal const int DefaultAudioVolumePercent = 100;
-
-    internal static readonly IReadOnlyList<int> AudioLatenciesMilliseconds = [20, 35, 50, 75, 100, 150, 250];
     internal static readonly IReadOnlyList<int> FloppySoundVolumesPercent = [25, 50, 75, 100];
 }

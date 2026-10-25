@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Family.Thomson" xml:space="preserve"><value>Thomson</value></data>
+  <data name="Emulation.Emulator.theodore.Description"><value>Emulates Thomson MO / TO.</value></data>
+  <data name="Emulation.Thomson.Start" xml:space="preserve"><value>Program startup</value></data>
+  <data name="Emulation.Thomson.Start.AutoRun" xml:space="preserve"><value>Start the loaded program automatically</value></data>
+  <data name="Emulation.Thomson.Start.UseGameHash" xml:space="preserve"><value>Identify the program by its checksum</value></data>
+  <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>Show instructions for starting the program</value></data>
+  <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Printer</value></data>
+  <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>Save printer output to a file</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>Light pen</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>Light pen contact</value></data>
+</root>

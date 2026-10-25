@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>CD32 ปุ่มสีแดง</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>CD32 ปุ่มสีน้ําเงิน</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>CD32 ปุ่มสีเขียว</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>CD32 ปุ่มสีเหลือง</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>Amiga แท่งควบคุม</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 จั่วเกม</value></data>
+  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>ตัวปรับแท่งควบคุมสี่เล่นด้านขนาน</value></data>
+</root>

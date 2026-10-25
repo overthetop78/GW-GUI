@@ -1,9 +1,20 @@
+using CommonCoreHostFunctions = GWGUI.Emulation.Amstrad.Common.Functions.CoreHostFunctions;
 using System.IO;
 
 namespace GWGUI.Emulation.Amstrad.Common.Machines.Common.Functions;
 
 internal static class EmulationMediaConversionFunctions
 {
+    /// <summary>Adapte le média reçu de la machine sans perdre son indice de lecteur ni sa protection.</summary>
+    /// <remarks>Cette description rejoint la file de commandes. Les conversions natives et le montage restent possédés par le cœur.</remarks>
+    internal static MediaConfiguration ToModule(EmulationMedia media) => new(media.Path, media.Type switch
+    {
+        EmulationMediaType.Floppy => MediaCategory.Floppy,
+        EmulationMediaType.Cassette => MediaCategory.Cassette,
+        EmulationMediaType.Cartridge => MediaCategory.Cartridge,
+        _ => throw new ArgumentOutOfRangeException(nameof(media))
+    }, IsReadOnly: media.IsReadOnly, IsInserted: media.IsInserted, MountOrder: media.Slot.Index);
+
     internal static IReadOnlyList<EmulationMedia> ToCommon(IEnumerable<MediaConfiguration> media)
     {
         var indexes = new Dictionary<EmulationMediaCategory, int>();
@@ -17,7 +28,7 @@ internal static class EmulationMediaConversionFunctions
                 _ => throw new ArgumentOutOfRangeException(nameof(media), item.Category, null)
             };
             var index = indexes.GetValueOrDefault(category);
-            indexes[category] = index + 1;
+            indexes[category] = index + BufferConstants.IndexIncrement;
             var type = item.Category switch
             {
                 MediaCategory.Floppy or MediaCategory.Snapshot => EmulationMediaType.Floppy,
@@ -25,19 +36,12 @@ internal static class EmulationMediaConversionFunctions
                 MediaCategory.Cartridge => EmulationMediaType.Cartridge,
                 _ => throw new ArgumentOutOfRangeException(nameof(media), item.Category, null)
             };
-            return new EmulationMedia(Path.GetFullPath(item.Path),
-                new EmulationMediaSlot(category, index), type, item.IsReadOnly, item.IsInserted);
+            return new EmulationMedia(Path.GetFullPath(item.Path), new EmulationMediaSlot(category, index), type, item.IsReadOnly, item.IsInserted);
         }).ToArray();
     }
 }
 
 internal static class EmulationMediaActivityFunctions
 {
-    internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStates(
-        IReadOnlyDictionary<int, bool> leds) => new Dictionary<EmulationMediaSlot, bool>
-    {
-        [EmulationMediaSlot.Floppy0] = leds.GetValueOrDefault(0),
-        [EmulationMediaSlot.Cassette0] = leds.GetValueOrDefault(1),
-        [EmulationMediaSlot.Cartridge0] = leds.GetValueOrDefault(2)
-    };
+    internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStates(IReadOnlyDictionary<int, bool> leds) => CommonCoreHostFunctions.MachineExecution.FromLedStates(leds);
 }

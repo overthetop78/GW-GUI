@@ -12,11 +12,7 @@ using GWGUI.MediaEngine.Interfaces;
 
 namespace GWGUI.App.Services.Operations;
 
-public sealed class OperationProgressController(
-    MainWindowViewModel viewModel,
-    TrackProgressStrip face0,
-    TrackProgressStrip face1,
-    Func<string, object[], string> localize)
+public sealed class OperationProgressController(MainWindowViewModel viewModel, TrackProgressStrip face0, TrackProgressStrip face1, Func<string, object[], string> localize)
 {
     private readonly GwProgressTracker _tracker = new();
     private readonly Dictionary<(int Cylinder, int Head), ExternalTrackReadState> _externalTrackStates = [];
@@ -170,18 +166,8 @@ public sealed class OperationProgressController(
             return;
         }
 
-        var face0Cylinders = tracks
-            .Where(track => track.Head == 0)
-            .Select(track => track.Cylinder)
-            .Distinct()
-            .Order()
-            .ToArray();
-        var face1Cylinders = tracks
-            .Where(track => track.Head == 1)
-            .Select(track => track.Cylinder)
-            .Distinct()
-            .Order()
-            .ToArray();
+        var face0Cylinders = tracks.Where(track => track.Head == 0).Select(track => track.Cylinder).Distinct().Order().ToArray();
+        var face1Cylinders = tracks.Where(track => track.Head == 1).Select(track => track.Cylinder).Distinct().Order().ToArray();
         viewModel.ProgressVisibility = Visibility.Visible;
         viewModel.Face0ProgressVisibility = face0Cylinders.Length == 0 ? Visibility.Collapsed : Visibility.Visible;
         viewModel.Face1ProgressVisibility = face1Cylinders.Length == 0 ? Visibility.Collapsed : Visibility.Visible;
@@ -237,26 +223,10 @@ public sealed class OperationProgressController(
 
             attempts = Math.Max(attempts, 1);
         }
-        _externalTrackStates[key] = new ExternalTrackReadState(
-            progress.Cylinder,
-            progress.Head,
-            TrackState(progress.State),
-            attempts);
-        var states = _externalTrackStates.Values
-            .OrderBy(state => state.Cylindre)
-            .ThenBy(state => state.Face)
-            .Cast<IEtatPisteLecture>()
-            .ToArray();
+        _externalTrackStates[key] = new ExternalTrackReadState(progress.Cylinder, progress.Head, TrackState(progress.State), attempts);
+        var states = _externalTrackStates.Values.OrderBy(state => state.Cylindre).ThenBy(state => state.Face).Cast<IEtatPisteLecture>().ToArray();
 
-        return new ExternalReadState(
-            "Acquiring",
-            progress.CompletedTracks,
-            progress.TotalTracks ?? 0,
-            progress.Cylinder,
-            progress.Head,
-            progress.State == GwTrackState.Retry ? 2 : 1,
-            states,
-            output);
+        return new ExternalReadState("Acquiring", progress.CompletedTracks, progress.TotalTracks ?? 0, progress.Cylinder, progress.Head, progress.State == GwTrackState.Retry ? 2 : 1, states, output);
     }
 
     private void EnsureExternalTrackStates(GwTrackProgress progress)
@@ -265,16 +235,12 @@ public sealed class OperationProgressController(
         {
             if (progress.Head0Expected)
             {
-                _externalTrackStates.TryAdd(
-                    (cylinder, 0),
-                    new ExternalTrackReadState(cylinder, 0, "pending", 0));
+                _externalTrackStates.TryAdd((cylinder, 0), new ExternalTrackReadState(cylinder, 0, "pending", 0));
             }
 
             if (progress.Head1Expected)
             {
-                _externalTrackStates.TryAdd(
-                    (cylinder, 1),
-                    new ExternalTrackReadState(cylinder, 1, "pending", 0));
+                _externalTrackStates.TryAdd((cylinder, 1), new ExternalTrackReadState(cylinder, 1, "pending", 0));
             }
         }
     }
@@ -295,15 +261,7 @@ public sealed class OperationProgressController(
         ReadStateChanged?.Invoke(this, state);
     }
 
-    private sealed record ExternalReadState(
-        string Etape,
-        int NombrePistesTerminees,
-        int NombrePistesTotal,
-        int? Cylindre,
-        int? Face,
-        int Tentative,
-        IReadOnlyList<IEtatPisteLecture> EtatsPistes,
-        string? MessageExterne) : IEtatLectureDisquette
+    private sealed record ExternalReadState(string Etape, int NombrePistesTerminees, int NombrePistesTotal, int? Cylindre, int? Face, int Tentative, IReadOnlyList<IEtatPisteLecture> EtatsPistes, string? MessageExterne) : IEtatLectureDisquette
     {
         public IPiste? PisteAcquise => null;
 
@@ -313,9 +271,5 @@ public sealed class OperationProgressController(
             new Dictionary<string, string>();
     }
 
-    private sealed record ExternalTrackReadState(
-        int Cylindre,
-        int Face,
-        string Etat,
-        int Tentatives) : IEtatPisteLecture;
+    private sealed record ExternalTrackReadState(int Cylindre, int Face, string Etat, int Tentatives) : IEtatPisteLecture;
 }

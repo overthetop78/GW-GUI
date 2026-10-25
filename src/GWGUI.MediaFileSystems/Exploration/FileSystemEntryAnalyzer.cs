@@ -27,16 +27,12 @@ public static class FileSystemEntryAnalyzer
             FileSystemEntryKind.Link => MediaEntryKind.Link,
             _ => MediaEntryKind.Unknown
         };
-        var type = Classifier.Classify(Path.GetExtension(entry.Name), kind, entry.NativeTypeId,
-            entry.Comment, entry.DataValid, entry.Content, entry.Metadata, family)
+        var type = Classifier.Classify(Path.GetExtension(entry.Name), kind, entry.NativeTypeId, entry.Comment, entry.DataValid, entry.Content, entry.Metadata, family)
             ?? throw new InvalidOperationException("The media content classifier did not return an entry type.");
         return entry with
         {
             Children = Array.AsReadOnly(entry.Children.Select(child => AnalyzeEntry(child, family)).ToArray()),
-            Analysis = new FileSystemEntryAnalysis(
-                type.Category.ToString(), type.IconId, type.TypeResourceKey, type.Extension,
-                type.ExecutionKind.ToString(), type.ContentFormat.ToString(),
-                type.TextEncoding.ToString(), type.PreviewKind.ToString())
+            Analysis = new FileSystemEntryAnalysis( type.Category.ToString(), type.IconId, type.TypeResourceKey, type.Extension, type.ExecutionKind.ToString(), type.ContentFormat.ToString(), type.TextEncoding.ToString(), type.PreviewKind.ToString())
         };
     }
 }

@@ -94,7 +94,6 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Sürtünme</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Sönümleyici</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Atalet</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Oyun çubuğu</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Çok eksenli denetleyici</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID kullanımı</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>eksenler</value></data>

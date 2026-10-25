@@ -1,20 +1,19 @@
 using GWGUI.MediaEngine.Images.Reading.Reconstruction.Iso;
 using GWGUI.MediaEngine.Constants;
-
 using GWGUI.MediaEngine.Images.Formats.Floppy.Raw;
-
 using GWGUI.MediaEngine.Images.Formats.Floppy.TeleDisk;
-
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Images.Conversion;
-
 /// <summary>Convertit les sources UCSD p-System en image IMG sectorielle brute.</summary>
 public sealed class UcsdImgConversionService(IsoScpSectorImageReader scpReader, UcsdRawImageReader rawReader, Td0Reader td0Reader, LinearSectorImageWriter writer, Td0Writer td0Writer)
 {
     /// <summary>Indique si la cible est une image UCSD IBM MFM brute.</summary>
-    public static bool CanCreate(string formatId, string extension) => formatId.Equals(DiskImageFormatIds.UcsdIbmMfm, StringComparison.OrdinalIgnoreCase) && (extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Td0, StringComparison.OrdinalIgnoreCase));
-
+    public static bool CanCreate(string formatId,
+        string extension) => formatId.Equals(DiskImageFormatIds.UcsdIbmMfm,
+        StringComparison.OrdinalIgnoreCase) && (extension.Equals(DiskImageFileExtensions.Img,
+        StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Td0,
+        StringComparison.OrdinalIgnoreCase));
     /// <summary>Reconstruit ou relit la source, puis écrit les secteurs selon la géométrie UCSD explicite.</summary>
     public async Task ConvertAsync(string sourcePath, string outputPath, CancellationToken cancellationToken = default)
     {
@@ -24,6 +23,7 @@ public sealed class UcsdImgConversionService(IsoScpSectorImageReader scpReader, 
             await td0Writer.WriteAsync(image.WithFormatId(DiskImageFormatIds.UcsdIbmMfm), outputPath, cancellationToken).ConfigureAwait(false);
             return;
         }
+
         await writer.WriteAsync(image.WithFormatId(DiskImageFormatIds.UcsdIbmMfm), outputPath, UcsdIbmMfmGeometry.SectorGeometry, cancellationToken).ConfigureAwait(false);
     }
 
@@ -31,8 +31,10 @@ public sealed class UcsdImgConversionService(IsoScpSectorImageReader scpReader, 
     private async Task<SectorImage> ReadSourceAsync(string sourcePath, CancellationToken cancellationToken)
     {
         var extension = Path.GetExtension(sourcePath);
-        if (extension.Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase)) return await scpReader.ReadAsync(sourcePath, DiskImageFormatIds.UcsdIbmMfm, cancellationToken).ConfigureAwait(false);
-        if (extension.Equals(DiskImageFileExtensions.Td0, StringComparison.OrdinalIgnoreCase)) return await td0Reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
+        if (extension.Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase))
+            return await scpReader.ReadAsync(sourcePath, DiskImageFormatIds.UcsdIbmMfm, cancellationToken).ConfigureAwait(false);
+        if (extension.Equals(DiskImageFileExtensions.Td0, StringComparison.OrdinalIgnoreCase))
+            return await td0Reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         return await rawReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
     }
 }
