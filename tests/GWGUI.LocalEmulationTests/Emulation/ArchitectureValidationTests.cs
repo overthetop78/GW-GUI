@@ -4834,7 +4834,7 @@ public sealed class ArchitectureValidationTests
     {
         var grants = typeof(EmulationSdk).Assembly.GetCustomAttributes<InternalsVisibleToAttribute>()
             .Select(attribute => new AssemblyName(attribute.AssemblyName).Name).ToArray();
-        var tests = new[] { "GWGUI.Tests", "GWGUI.LocalEmulationTests", "GWGUI.LocalDiskImageTests", "GWGUI.TemporaryLibretroMediaReader" };
+        var tests = new[] { "GWGUI.Tests", "GWGUI.LocalEmulationTests", "GWGUI.LocalDiskImageTests" };
         Assert.All(grants, name => Assert.Contains(name, tests));
         Assert.DoesNotContain(grants, name => name!.StartsWith("GWGUI.Emulation.", StringComparison.Ordinal));
     }
