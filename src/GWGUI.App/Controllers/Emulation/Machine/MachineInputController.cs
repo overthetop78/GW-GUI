@@ -356,7 +356,18 @@ internal sealed class MachineInputController : IDisposable
                 && !_globalShortcuts.Any(shortcut => shortcut.SourceBinding is { } source && InputBindingSyntax.Conflicts(source, binding.Value))
                 && EmulationSdk.InputProcessing.InputSourcePressure(binding.Value, EmulationControllerState.Empty, physicalSnapshot) > .5f)
                 keys.Add(target);
-        machine.Input.SetInput(new EmulationInputSnapshot(keys, pointer, physical.Controllers));
+        // La lecture physique peut encore contenir une touche déjà consommée par un raccourci.
+        // Retirer sa source avant de construire les caractères, sans retirer la commande cible.
+        foreach (var binding in _globalShortcuts.Where(binding => _activeShortcuts.Contains(binding.Action)))
+            foreach (var source in binding.Chord.Keys)
+                if (EmulationKeyMapper.TryMap(source, out var consumed)) keys.Remove(consumed);
+        foreach (var binding in _pressedShortcutKeys)
+            if (EmulationKeyMapper.TryMap(binding.Key, out var consumed) && consumed != binding.Value) keys.Remove(consumed);
+        var characters = EmulationKeyMapper.HostCharacters(keys).ToDictionary(item => item.Key, item => item.Value);
+        // Une affectation choisie par l'utilisateur désigne une commande, pas le caractère du clavier hôte.
+        foreach (var binding in machine.Input.KeyboardBindings)
+            if (Enum.TryParse<EmulationKey>(binding.Key, out var target)) characters.Remove(target);
+        machine.Input.SetInput(new EmulationInputSnapshot(keys, pointer, physical.Controllers) { HostCharacters = characters });
     }
 
     private static bool CanAcceptInput(IEmulatedMachine machine) => machine.State is EmulationMachineState.Running or EmulationMachineState.Paused;

@@ -1,0 +1,21 @@
+- Respecter l'architecture, les interfaces et les services déjà en place pour créer ou compléter un émulateur.
+  - Réserver les modifications d'App et d'Emulation aux cas d'extrême nécessité.
+    - Concevoir ces modifications pour toute catégorie d'émulateur : ordinateur, console, arcade, flipper ou autre électronique.
+    - Adapter tous les consommateurs concernés pour disposer d'un parcours cohérent et unique.
+  - Donner la priorité aux touches système et aux affectations existantes lors du traitement des entrées.
+- Séparer les modèles dans l'émulateur et réunir les traitements réellement communs.
+  - Découper les composants et leurs responsabilités dans des fichiers ciblés, même si cela nécessite beaucoup de fichiers.
+  - Organiser cette découpe pour pouvoir déplacer et réutiliser les fichiers dans les autres modèles, gammes ou marques concernés.
+- Rechercher sur Internet les informations techniques du modèle et étudier les sources des émulateurs existants pour comprendre et améliorer son émulation.
+  - Consigner les informations dans `docs/project/emulations/<marque>/<gamme>/<modèle>/`.
+  - Placer les informations communes à une gamme dans son dossier, et celles communes à une marque ou à ses émulateurs dans le dossier de la marque.
+  - Ajouter les sources consultées et les liens de téléchargement des BIOS et ROM trouvés, en précisant leurs modèles, versions et rôles.
+  - Conserver dans les documents les détails techniques utilisés, les fichiers sources et leurs révisions, pour retrouver les informations localement pendant le développement.
+- Utiliser les BIOS et ROM disponibles séparément comme fichiers de firmware externes, sélectionnés par l'utilisateur et chargés par les interfaces de firmware existantes.
+- Faire suivre à la saisie la disposition active du clavier hôte, AZERTY ou autre, pavé numérique compris, en adaptant les caractères aux touches de la machine émulée.
+- Documenter complètement le modèle et son émulation dans son document de référence.
+  - Expliquer chaque information technique utile et chaque fichier : chemin, contenu, rôle, fonctionnement, liaisons et échanges avec les autres éléments.
+  - Compléter cette documentation au fur et à mesure des recherches et de la création des fichiers.
+  - Expliquer également le code dans les fichiers sources avec les commentaires et la documentation C# nécessaires.
+- Fournir régulièrement un build Debug avec le module concerné pour permettre à l'utilisateur de tester les avancées et de diriger la suite.
+  - Tenir compte de ses retours dans le développement et compléter les directives et documents concernés.

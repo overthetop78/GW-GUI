@@ -135,7 +135,7 @@ internal static class EmulationInputMappingFunctions
     internal static EmulationInputSnapshot Freeze(EmulationInputSnapshot? snapshot)
     {
         snapshot ??= EmulationInputSnapshot.Empty;
-        return new EmulationInputSnapshot(new HashSet<EmulationKey>(snapshot.Keys), snapshot.Pointer with { }, snapshot.Controllers.ToArray());
+        return snapshot with { Keys = new HashSet<EmulationKey>(snapshot.Keys), Pointer = snapshot.Pointer with { }, Controllers = snapshot.Controllers.ToArray(), HostCharacters = snapshot.HostCharacters?.ToDictionary(item => item.Key, item => item.Value) };
     }
 
     internal static int SaturatingAdd(int left, int right) => (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);

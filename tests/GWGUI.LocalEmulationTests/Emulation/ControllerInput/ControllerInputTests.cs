@@ -2,6 +2,49 @@ namespace GWGUI.Tests.Emulation.ControllerInput;
 [Collection("WPF")]
 public class ControllerInputTests(GWGUI.Tests.Application.TestInfrastructure.StaExecutionScenarios sta)
 {
+    [Fact]
+    public Task HostCharactersRespectGlobalShortcutsAndExplicitKeyboardAssignments() => sta.Run(() =>
+    {
+        var snapshots = new List<GWGUI.Emulation.Contracts.EmulationInputSnapshot>();
+        var physicalKeys = new HashSet<GWGUI.Emulation.Enums.EmulationKey>();
+        var bindings = new Dictionary<string, string> { ["D3"] = "D4" };
+        var input = GWGUI.Tests.Application.TestInfrastructure.ControlledDependencies.Simulate<GWGUI.Emulation.Interfaces.IEmulationInput>((method, args) => method.Name switch
+        {
+            "get_KeyboardBindings" => bindings,
+            "get_SupportsPointerCapture" or "get_CapturePointerOnClick" => false,
+            "SetInput" => Record((GWGUI.Emulation.Contracts.EmulationInputSnapshot)args[0]!),
+            _ => throw new InvalidOperationException(method.Name)
+        });
+        object? Record(GWGUI.Emulation.Contracts.EmulationInputSnapshot snapshot) { snapshots.Add(snapshot); return null; }
+        var machine = GWGUI.Tests.Application.TestInfrastructure.ControlledDependencies.Simulate<GWGUI.Emulation.Interfaces.IEmulatedMachine>((method, _) => method.Name switch
+        {
+            "get_Input" => input,
+            "get_State" => GWGUI.Emulation.Enums.EmulationMachineState.Running,
+            _ => throw new InvalidOperationException(method.Name)
+        });
+        var actions = 0;
+        var shortcut = new GWGUI.App.Contracts.Input.GlobalShortcutBinding("action", new(System.Windows.Input.ModifierKeys.None, [System.Windows.Input.Key.D3]));
+        var view = new GWGUI.App.Views.Controls.Emulation.Machine.MachineView();
+        using var controller = new GWGUI.App.Controllers.Emulation.Machine.MachineInputController(view, new System.Windows.Controls.Border(), IntPtr.Zero, () => machine, [shortcut], _ => { actions++; return Task.CompletedTask; }, () => true,
+            readPhysicalInput: () => new(physicalKeys, new(0, 0, 0, false, false, false), []), focus: (_, _) => { }, automaticPolling: false);
+        controller.SetPowered(true);
+        physicalKeys.Add(GWGUI.Emulation.Enums.EmulationKey.D3);
+        controller.HandleKeyDown(System.Windows.Input.Key.D3, System.Windows.Input.ModifierKeys.None);
+        controller.Publish();
+        Assert.Equal(1, actions);
+        Assert.DoesNotContain(GWGUI.Emulation.Enums.EmulationKey.D3, snapshots[^1].Keys);
+        Assert.Empty(snapshots[^1].HostCharacters!);
+        physicalKeys.Clear();
+        controller.HandleKeyUp(System.Windows.Input.Key.D3, System.Windows.Input.ModifierKeys.None);
+        physicalKeys.Add(GWGUI.Emulation.Enums.EmulationKey.D4);
+        controller.HandleKeyDown(System.Windows.Input.Key.D4, System.Windows.Input.ModifierKeys.None);
+        Assert.Contains(GWGUI.Emulation.Enums.EmulationKey.D3, snapshots[^1].Keys);
+        Assert.DoesNotContain(GWGUI.Emulation.Enums.EmulationKey.D4, snapshots[^1].Keys);
+        Assert.False(snapshots[^1].HostCharacters!.ContainsKey(GWGUI.Emulation.Enums.EmulationKey.D3));
+        physicalKeys.Clear();
+        controller.HandleKeyUp(System.Windows.Input.Key.D4, System.Windows.Input.ModifierKeys.None);
+        Assert.Empty(snapshots[^1].Keys);
+    });
     [Fact] public void FallbackDeduplicationPreservesTwoIdenticalPhysicalPadsAndHandlesRemoval()=>DeviceClassificationScenarios.Duplicates();
     [Fact] public void InputMappingsResolveSelectedDeviceKeysAndAxisThresholds() => BindingsAndFeedbackScenarios.Mapping();
     [Theory] [InlineData(0)] [InlineData(1)] [InlineData(2)] [InlineData(3)] [InlineData(4)]

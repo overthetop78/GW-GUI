@@ -33,13 +33,13 @@ internal sealed class EmulationInputFrameStore : IEmulationInputFrames
     /// <summary>Snapshot figé au dernier Poll, stable jusqu’au Poll suivant.</summary>
     public EmulationInputSnapshot Polled => Volatile.Read(ref _polled);
     /// <summary>Conserve le dernier état absolu et additionne les quatre composantes relatives avec saturation.</summary>
-    private static EmulationInputSnapshot Accumulate(EmulationInputSnapshot current, EmulationInputSnapshot update) => new(new HashSet<EmulationKey>(update.Keys), update.Pointer with
+    private static EmulationInputSnapshot Accumulate(EmulationInputSnapshot current, EmulationInputSnapshot update) => update with { Keys = new HashSet<EmulationKey>(update.Keys), Pointer = update.Pointer with
     {
         DeltaX = EmulationInputMappingFunctions.SaturatingAdd(current.Pointer.DeltaX, update.Pointer.DeltaX),
         DeltaY = EmulationInputMappingFunctions.SaturatingAdd(current.Pointer.DeltaY, update.Pointer.DeltaY),
         Wheel = EmulationInputMappingFunctions.SaturatingAdd(current.Pointer.Wheel, update.Pointer.Wheel),
         HorizontalWheel = EmulationInputMappingFunctions.SaturatingAdd(current.Pointer.HorizontalWheel, update.Pointer.HorizontalWheel)
-    }, update.Controllers.ToArray());
+    }, Controllers = update.Controllers.ToArray() };
 
     /// <summary>Remet les quatre composantes relatives à zéro après leur consommation.</summary>
     private static EmulationInputSnapshot ConsumeRelativePointer(EmulationInputSnapshot snapshot) =>

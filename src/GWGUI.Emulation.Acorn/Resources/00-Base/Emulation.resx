@@ -11,4 +11,5 @@
   <data name="Emulation.Acorn.Video.Controller" xml:space="preserve"><value>Video timing controller</value></data>
   <data name="Emulation.Acorn.Video.Pixels" xml:space="preserve"><value>Pixel and colour generator</value></data>
   <data name="Emulation.Acorn.Video.Teletext" xml:space="preserve"><value>Teletext character generator</value></data>
+  <data name="Emulation.Emulator.acornemu.Description" xml:space="preserve"><value>AcornEmu</value></data>
 </root>

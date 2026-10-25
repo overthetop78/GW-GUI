@@ -122,11 +122,18 @@ internal static partial class EmulationHostProtocolFunctions
         return bytes;
     }
 
-    /// <summary>Écrit les touches, le pointeur et les manettes selon le protocole commun.</summary>
+    /// <summary>Écrit les touches, les caractères hôtes, le pointeur et les manettes selon le protocole commun.</summary>
     internal static void WriteInput(BinaryWriter writer, EmulationInputSnapshot input)
     {
         writer.Write(input.Keys.Count);
         foreach (var key in input.Keys) writer.Write((int)key);
+        writer.Write(input.HostCharacters?.Count ?? -1);
+        if (input.HostCharacters is not null)
+            foreach (var character in input.HostCharacters)
+            {
+                writer.Write((int)character.Key);
+                writer.Write((ushort)character.Value);
+            }
         writer.Write(input.Pointer.DeltaX); writer.Write(input.Pointer.DeltaY); writer.Write(input.Pointer.Wheel);
         writer.Write(input.Pointer.Left); writer.Write(input.Pointer.Right); writer.Write(input.Pointer.Middle);
         writer.Write(input.Pointer.ExtendedButton1); writer.Write(input.Pointer.ExtendedButton2);
@@ -155,6 +162,16 @@ internal static partial class EmulationHostProtocolFunctions
             throw new InvalidDataException(string.Format(EmulationHostProtocolConstants.InvalidKeyCountFormat, hostName));
         var keys = new HashSet<EmulationKey>();
         for (var index = 0; index < keyCount; index++) keys.Add((EmulationKey)reader.ReadInt32());
+        var characterCount = reader.ReadInt32();
+        if (characterCount is < -1 or > EmulationHostProtocolConstants.MaximumInputKeyCount)
+            throw new InvalidDataException(string.Format(EmulationHostProtocolConstants.InvalidKeyCountFormat, hostName));
+        Dictionary<EmulationKey, char>? characters = characterCount < 0 ? null : new(characterCount);
+        for (var index = 0; index < characterCount; index++)
+        {
+            var key = (EmulationKey)reader.ReadInt32();
+            var character = (char)reader.ReadUInt16();
+            if (!characters!.TryAdd(key, character)) throw new InvalidDataException(string.Format(EmulationHostProtocolConstants.InvalidKeyCountFormat, hostName));
+        }
         var pointer = new EmulationPointerState(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadBoolean(), reader.ReadBoolean(), reader.ReadBoolean(), reader.ReadBoolean(), reader.ReadBoolean(), reader.ReadInt32());
         var controllerCount = reader.ReadInt32();
         if (controllerCount is < 0 or > EmulationHostProtocolConstants.MaximumInputControllerCount)
@@ -172,7 +189,7 @@ internal static partial class EmulationHostProtocolFunctions
                 controls[reader.ReadString()] = reader.ReadSingle();
             controllers[index] = controlCount == 0 ? controller with { DeviceId = deviceId } : controller with { DeviceId = deviceId, Controls = new EmulationControllerControls(controls) };
         }
-        return new EmulationInputSnapshot(keys, pointer, controllers);
+        return new EmulationInputSnapshot(keys, pointer, controllers) { HostCharacters = characters };
     }
 
     /// <summary>Écrit une image facultative et ses métadonnées.</summary>

@@ -3,7 +3,7 @@ using GWGUI.Emulation;
 
 namespace GWGUI.App.Functions.Input.Keyboard;
 
-public static class EmulationKeyMapper
+public static partial class EmulationKeyMapper
 {
     private static readonly EmulationKey[] FunctionKeys =
     [
