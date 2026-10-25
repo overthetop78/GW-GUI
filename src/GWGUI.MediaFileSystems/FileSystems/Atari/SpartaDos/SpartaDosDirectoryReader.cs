@@ -1,17 +1,13 @@
+using GWGUI.MediaFileSystems.Primitives;
 using GWGUI.MediaFileSystems.Interfaces;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Atari.SpartaDos;
 
 internal static class SpartaDosDirectoryReader
 {
-    public static IReadOnlyList<FileSystemEntry> ReadRoot(IMediaSectorImage image, SpartaDosDiskHeader header, ICollection<string> warnings) =>
-        ReadDirectory(image, header.RootDirectoryMapSector, new HashSet<int>(), warnings).Children;
+    public static IReadOnlyList<FileSystemEntry> ReadRoot(IMediaSectorImage image, SpartaDosDiskHeader header, ICollection<string> warnings) => ReadDirectory(image, header.RootDirectoryMapSector, new HashSet<int>(), warnings).Children;
 
-    private static DirectoryData ReadDirectory(
-        IMediaSectorImage image,
-        int firstMapSector,
-        ISet<int> ancestors,
-        ICollection<string> warnings)
+    private static DirectoryData ReadDirectory(IMediaSectorImage image, int firstMapSector, ISet<int> ancestors, ICollection<string> warnings)
     {
         if (!ancestors.Add(firstMapSector)) throw SpartaDosFileSystemExceptions.DirectoryLoop(firstMapSector);
         try
@@ -75,10 +71,9 @@ internal static class SpartaDosDirectoryReader
         return attributes;
     }
 
-    private static int ReadUInt16(IReadOnlyList<byte> bytes, int offset) => bytes[offset] | bytes[offset + 1] << 8;
+    private static int ReadUInt16(IReadOnlyList<byte> bytes, int offset) => LittleEndianUInt16.ReadIndexed(bytes, offset);
 
-    private static int ReadLength(IReadOnlyList<byte> bytes, int offset) =>
-        bytes[offset] | bytes[offset + 1] << 8 | bytes[offset + 2] << 16;
+    private static int ReadLength(IReadOnlyList<byte> bytes, int offset) => LittleEndianUInt24.ReadIndexed(bytes, offset);
 
     private static bool TryReadTimestamp(ReadOnlySpan<byte> date, ReadOnlySpan<byte> time, out DateTimeOffset? timestamp)
     {

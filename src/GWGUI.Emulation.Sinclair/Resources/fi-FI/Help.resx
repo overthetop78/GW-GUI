@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Help.AyStereoSeparation" xml:space="preserve"><value>Valitse järjestys AY äänikanavia stereolähdössä.</value></data>
+  <data name="Emulation.Sinclair.Help.AyVolume" xml:space="preserve"><value>Säädä tilavuus AY Äänisiru.</value></data>
+  <data name="Emulation.Sinclair.Help.BeeperVolume" xml:space="preserve"><value>Säädä sisäänrakennetun äänigeneraattorin äänenvoimakkuutta.</value></data>
+  <data name="Emulation.Sinclair.Help.BorderSize" xml:space="preserve"><value>Valitse, kuinka paljon näytön raja on näkyvissä.</value></data>
+  <data name="Emulation.Sinclair.Help.Chroma81" xml:space="preserve"><value>Emulgoi Chroma 81 värigrafiikan laajennus.</value></data>
+  <data name="Emulation.Sinclair.Help.EmulationSpeed" xml:space="preserve"><value>Valitse emulointinopeus prosentteina alkuperäisestä nopeudesta.</value></data>
+  <data name="Emulation.Sinclair.Help.FullerBox" xml:space="preserve"><value>Emulgoi Fuller Boxin ääni ja joystick laajennus.</value></data>
+  <data name="Emulation.Sinclair.Help.HighResolution" xml:space="preserve"><value>Valitse korkean resoluution grafiikkalaajennus.</value></data>
+  <data name="Emulation.Sinclair.Help.Issue2Keyboard" xml:space="preserve"><value>Emulgoidaan Issue 2 -laitteen näppäimistön käyttäytymistä.</value></data>
+  <data name="Emulation.Sinclair.Help.MemoryBankContent" xml:space="preserve"><value>Valitse muistipankin sisältö 8-16 KiB.</value></data>
+  <data name="Emulation.Sinclair.Help.MouseSwapButtons" xml:space="preserve"><value>Vaihda hiiren vasemman ja oikean painikkeen välillä.</value></data>
+  <data name="Emulation.Sinclair.Help.Palette" xml:space="preserve"><value>Valitse näytetyille väreille käytetty paletti.</value></data>
+  <data name="Emulation.Sinclair.Help.SoundHardware" xml:space="preserve"><value>Valitse emulgoitu äänilaitteisto.</value></data>
+  <data name="Emulation.Sinclair.Help.SpeakerType" xml:space="preserve"><value>Valitse emulgoidussa kaiuttimessa käytettävä suodatin.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeAutoLoad" xml:space="preserve"><value>Lataa kasetti automaattisesti.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeFastLoad" xml:space="preserve"><value>Lataa kasettitiedot nopeammin.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeLoadSound" xml:space="preserve"><value>Soita ääni tuotettu ladattaessa kasetti tiedot.</value></data>
+  <data name="Emulation.Sinclair.Help.TurboSound" xml:space="preserve"><value>Emuloida TurboSound äänen laajennus kahdella AY -Hän on narttu.</value></data>
+  <data name="Emulation.Sinclair.Help.USpeech" xml:space="preserve"><value>Emuloi Currah uSpeech -puheen jatko. Molempien tarvittavien firmware-tiedostojen on oltava läsnä.</value></data>
+  <data name="Emulation.Sinclair.Help.VideoPreset" xml:space="preserve"><value>Valitse emulgoidun videosignaalin ulkonäkö.</value></data>
+  <data name="Emulation.Sinclair.Help.Melodik" xml:space="preserve"><value>Emuloidaan MELODIK äänilaajennuksen.</value></data>
+</root>

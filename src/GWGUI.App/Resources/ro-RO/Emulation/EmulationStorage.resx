@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>Hard disk</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>Interfață</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Prealocați fișierul</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>se introduc sau se înlocuiesc flopi și CD-uri de pe mașina de rulare.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Utilizați vizualizarea emulație pentru a introduce sau schimba mediile.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Eliminați suportul</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Imaginea de disc există deja: {0}\nDoriți să o înlocuiți?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Tipurile, modelele și identificatorii disponibili depind de mașina selectată.</value></data>
@@ -75,4 +75,13 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Slot pentru cartuș</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Montați primele patru discuri în DF0DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Disc {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Folosește cardul</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Fișierul selectat va fi atașat la acest dispozitiv de stocare virtuală.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Selectaţi un fişier card existent.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Dosarul cardului are o dimensiune invalidă.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Alegeți un format de fișier susținut de acest dispozitiv.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Nelimitat</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Golește la închiderea jocului</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Card de memorie</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>Nume card</value></data>
 </root>

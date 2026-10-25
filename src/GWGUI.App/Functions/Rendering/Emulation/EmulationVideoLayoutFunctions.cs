@@ -5,8 +5,7 @@ namespace GWGUI.App.Functions.Rendering.Emulation;
 
 internal static class EmulationVideoLayoutFunctions
 {
-    internal static Size FitFourThree(double availableWidth, double availableHeight) =>
-        Fit(availableWidth, availableHeight, EmulationVideoLayoutConstants.FourThreeAspectRatio);
+    internal static Size FitFourThree(double availableWidth, double availableHeight) => Fit(availableWidth, availableHeight, EmulationVideoLayoutConstants.FourThreeAspectRatio);
 
     internal static Size Fit(double availableWidth, double availableHeight, double aspectRatio)
     {

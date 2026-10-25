@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.caprice32.Description"><value>Tính Amstrad CPC, CPC Cộng với GX4000 Hệ thống.</value></data>
+  <data name="Emulation.Amstrad.Language"><value>CPC Ngôn ngữ hệ thống</value></data>
+  <data name="Emulation.Amstrad.Language.English"><value>Tiếng Anh</value></data>
+  <data name="Emulation.Amstrad.Language.French"><value>PhápName</value></data>
+  <data name="Emulation.Amstrad.Language.Spanish"><value>Tây Ban Nha</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor"><value>Kiểu màn hình</value></data>
+  <data name="Emulation.Amstrad.Video.Intensity"><value>Theo dõi cường độ</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Color"><value>Màu</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Green"><value>Đơn sắc xanh lá cây</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.White"><value>Đơn sắc trắng</value></data>
+  <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM đã xây dựng vào trình giả lập</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>Tính toán Amstrad CPC 6128 với sự hỗ trợ từ ROM và hỗ trợ cho hình ảnh trên đĩa và ảnh chụp.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Kiểu màn hình</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Khung ảnh</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Đang hack tốc độ</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Tự động</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>Overscan</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Đã bật</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Đã tắt</value></data>
+</root>

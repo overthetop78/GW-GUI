@@ -1,5 +1,5 @@
 using GWGUI.Infrastructure.Naming;
-using ConversionTagFormatter = global::GWGUI.MediaEngine.Images.Conversion.ConversionTagFormatter;
+using ConversionTagFormatter = GWGUI.MediaEngine.Images.Conversion.ConversionTagFormatter;
 using GWGUI.MediaEngine.Images.Formats;
 namespace GWGUI.Tests.Application.OutputNaming;
 internal static class SequenceAndTagsScenarios
@@ -21,8 +21,7 @@ internal static class SequenceAndTagsScenarios
     {
         var format=new DiskFormat("test.raw","test","synthetic",[],Tag:"TEST-RAW");
         var stamp=new DateTime(2026,9,6,12,34,56);
-        Assert.Equal("disk-TEST-RAW-SCP-20260906-123456",
-            ConversionTagFormatter.Format("{name}-{family}-{format}-{extension}-{DATE:YYYYMMDD}-{TIME:HHMMSS}",format,".scp","disk",stamp));
+        Assert.Equal("disk-TEST-RAW-SCP-20260906-123456", ConversionTagFormatter.Format("{name}-{family}-{format}-{extension}-{DATE:YYYYMMDD}-{TIME:HHMMSS}",format,".scp","disk",stamp));
         Assert.Throws<ArgumentException>(()=>ConversionTagFormatter.Format("literal",format,".scp","disk",stamp));
     }
 }

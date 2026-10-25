@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.pcsx2.Description"><value>PlayStation 2 sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.ppsspp.Description"><value>PlayStation Portable sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Sony PlayStation / PS one sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>Sony PocketStation el cihazını harici BIOS ve bellek kartı görüntüleriyle emüle eder.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>PlayStation sistemlerini Beetle PSX yazılım işleyicisiyle emüle eder.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>PlayStation sistemlerini Beetle PSX donanım işleyicisiyle emüle eder.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>PlayStation sistemlerini PCSX-ReARMed ile emüle eder.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>PlayStation 2 sistemlerini PCEE2 ve harici BIOS ile emüle eder.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>PlayStation 2 sistemlerini Play! ve yerleşik sistem üretici yazılımı öykünmesiyle emüle eder.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>PlayStation 3 sistemlerini RPCS3 ve harici sistem üretici yazılımıyla emüle eder.</value></data>
+</root>

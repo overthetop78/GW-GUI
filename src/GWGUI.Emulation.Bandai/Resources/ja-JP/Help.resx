@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Setting.DisplayRotation.Help" xml:space="preserve"><value>ランドスケープまたはポートレートのオリエンテーションを選択します。 手動モードは、割り当てられた回転ボタンを使用します。</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation.Help" xml:space="preserve"><value>自動モードは表示方向に続いています。他のモードは選択されたオリエンテーションの制御を保ちます。</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>モノクロゲームに使用する色を選択します。</value></data>
+  <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>出力色深度を選択します。24ビットモードでは、処理能力がより多い必要があります。</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>ビデオフレームをスキップして、オーディオのクラックを削減します。自動モードは、オーディオバッファに従います。手動モードは、選択したしきい値を使用します。</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help"><value>手動モードでは、音声バッファーの充填率が指定した値を下回ると映像フレームをスキップします。</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>毎秒5フレームをスキップして60Hzで表示します。これにより、動きの滑らかさが軽減されます。</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>より高く見本抽出率は少し可聴周波質を改善し、より多くの処理力を必要とします。</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>音を柔らかくするためにローパスフィルタを適用します。</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>ボタンAのアクションをスワッピングし、 B.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.DetailedHelp"><value>33%に設定すると、音声バッファーの充填率が33%未満になったときにフレームをスキップし、音のノイズを抑えます。値を高くすると、より早くスキップを開始します。音声の遅延とバッファーサイズは変わりません。</value></data>
+</root>

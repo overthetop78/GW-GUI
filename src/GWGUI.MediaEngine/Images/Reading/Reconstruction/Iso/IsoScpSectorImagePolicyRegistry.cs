@@ -9,6 +9,8 @@ internal static class IsoScpSectorImagePolicyRegistry
 {
     private static readonly IReadOnlyList<(Predicate<string> Matches, Func<string, IIsoScpSectorImagePolicy> Create)> Policies =
     [
+        (format => format.Equals(DiskImageFormatIds.AcornAtomDos, StringComparison.OrdinalIgnoreCase),
+            _ => new GenericIsoScpSectorImagePolicy()),
         (format => format.StartsWith(DiskImageFormatIds.AtariPrefix, StringComparison.OrdinalIgnoreCase),
             format => new Atari8BitIsoScpSectorImagePolicy(format)),
         (format => format.StartsWith(DiskImageFormatIds.AtariStPrefix, StringComparison.OrdinalIgnoreCase),

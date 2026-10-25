@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
-using MediaVolumeDetectionResult = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDetectionResult;
-using IMediaImageDocument = global::GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
+using MediaVolumeDetectionResult = GWGUI.MediaFileSystems.Contracts.MediaVolumeDetectionResult;
+using IMediaImageDocument = GWGUI.MediaFileSystems.Interfaces.IMediaImageDocument;
 using GWGUI.MediaFileSystems.Interfaces.Exploration;
 
 namespace GWGUI.MediaFileSystems.Exploration;
@@ -21,9 +21,7 @@ public sealed class MediaVolumeDetectorRegistry
 
     public IReadOnlyList<IMediaVolumeDetector> Detectors => detectors;
 
-    public async ValueTask<MediaVolumeDetectionResult> DetectAsync(
-        IMediaImageDocument document,
-        CancellationToken cancellationToken = default)
+    public async ValueTask<MediaVolumeDetectionResult> DetectAsync(IMediaImageDocument document, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
         if (document.Volumes.Count > 0)
@@ -35,8 +33,6 @@ public sealed class MediaVolumeDetectorRegistry
             var result = await detector.DetectAsync(document, cancellationToken).ConfigureAwait(false);
             if (result is not null) return result;
         }
-        return new MediaVolumeDetectionResult(
-            [],
-            ["No registered detector can describe the media volumes."]);
+        return new MediaVolumeDetectionResult([], ["No registered detector can describe the media volumes."]);
     }
 }

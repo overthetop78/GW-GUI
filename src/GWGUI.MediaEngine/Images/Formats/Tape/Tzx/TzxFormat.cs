@@ -7,9 +7,7 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.Tzx;
 internal static class TzxFormat
 {
     public static string FormatId => TapeImageFormatIds.Tzx;
-    public static readonly IReadOnlySet<string> Extensions =
-        new[] { DiskImageFileExtensions.Tzx, DiskImageFileExtensions.Cdt, DiskImageFileExtensions.Tsx }
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    public static readonly IReadOnlySet<string> Extensions = new[] { DiskImageFileExtensions.Tzx, DiskImageFileExtensions.Cdt, DiskImageFileExtensions.Tsx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     public static readonly IReadOnlySet<byte> SupportedBlockIds = new byte[]
     {
         TzxConstants.StandardSpeedData, TzxConstants.TurboSpeedData, TzxConstants.PureTone,

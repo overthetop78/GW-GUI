@@ -7,8 +7,7 @@ internal static class FilterLedMatrixBlackDepth
         {return vec3((1.0-clamp(depth,0.0,1.0))*.08);}
         """;
 
-    internal static void Compose(float[] output, LedMatrixCellMap cells,
-        int haloIntensity, int blackDepth)
+    internal static void Compose(float[] output, LedMatrixCellMap cells, int haloIntensity, int blackDepth)
     {
         var panel = (1f - Math.Clamp(blackDepth, 0, 100) / 100f) * .08f;
         var halo = FilterLedMatrixHalo.Intensity(haloIntensity);

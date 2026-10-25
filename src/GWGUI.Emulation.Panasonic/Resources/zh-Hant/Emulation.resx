@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.opera.Description"><value>模擬 3DO。</value></data>
+  <data name="Emulation.Panasonic.Memory.Capacity" xml:space="preserve"><value>模拟内存容量</value></data>
+  <data name="Emulation.Panasonic.Video.Mode" xml:space="preserve"><value>视频模式</value></data>
+  <data name="Emulation.Panasonic.Video.PixelFormat" xml:space="preserve"><value>像素颜色格式</value></data>
+  <data name="Emulation.Panasonic.Video.BypassClut" xml:space="preserve"><value>忽略颜色表</value></data>
+  <data name="Emulation.Panasonic.Video.HighResolution" xml:space="preserve"><value>高分辨率渲染</value></data>
+  <data name="Emulation.Panasonic.Audio.Processing" xml:space="preserve"><value>音频处理</value></data>
+  <data name="Emulation.Panasonic.Audio.Parallel" xml:space="preserve"><value>并行音频处理</value></data>
+  <data name="Emulation.Panasonic.Storage.SaveMode" xml:space="preserve"><value>保存数据的存储模式</value></data>
+  <data name="Emulation.Panasonic.Storage.Version" xml:space="preserve"><value>保存数据的存储库</value></data>
+  <data name="Emulation.Panasonic.Storage.CdSpeed" xml:space="preserve"><value>读取速度 CD-ROM</value></data>
+  <data name="Emulation.Panasonic.System" xml:space="preserve"><value>系统</value></data>
+  <data name="Emulation.Panasonic.System.RandomSeed" xml:space="preserve"><value>随机生成器的初始值</value></data>
+  <data name="Emulation.Panasonic.System.Diagnostics" xml:space="preserve"><value>诊断信息</value></data>
+  <data name="Emulation.Panasonic.Value.Hardware" xml:space="preserve"><value>硬件</value></data>
+  <data name="Emulation.Panasonic.Value.Software" xml:space="preserve"><value>软件</value></data>
+  <data name="Emulation.Panasonic.Value.PerGame" xml:space="preserve"><value>每场比赛</value></data>
+  <data name="Emulation.Panasonic.Value.Shared" xml:space="preserve"><value>游戏间共享</value></data>
+  <data name="Emulation.Panasonic.Value.Unlimited" xml:space="preserve"><value>无限制</value></data>
+  <data name="Emulation.Panasonic.Value.Random" xml:space="preserve"><value>随机</value></data>
+</root>

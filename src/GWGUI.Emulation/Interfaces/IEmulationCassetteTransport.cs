@@ -10,6 +10,5 @@ public interface IEmulationCassetteTransport
         _ => null
     };
     IReadOnlySet<EmulationCassetteCommand> AvailableCommands { get; }
-    ValueTask ExecuteAsync(EmulationCassetteCommand command,
-        CancellationToken cancellationToken = default);
+    ValueTask ExecuteAsync(EmulationCassetteCommand command, CancellationToken cancellationToken = default);
 }

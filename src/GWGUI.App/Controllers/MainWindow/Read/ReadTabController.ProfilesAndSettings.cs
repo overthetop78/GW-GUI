@@ -39,11 +39,15 @@ namespace GWGUI.App.Controllers.MainWindow;
 internal sealed partial class ReadTabController
 {
     internal void RefreshProfiles(string? selectedId = null)
-        => profileController.Refresh(ProfileCombo, OperationKind.Read, selectedId);
+    {
+        refreshingProfiles = true;
+        try { profileController.Refresh(ProfileCombo, OperationKind.Read, selectedId); }
+        finally { refreshingProfiles = false; }
+    }
 
     internal void ProfileChanged()
     {
-        if (ProfileCombo.SelectedItem is not OperationProfile profile || view.AdvancedBlock.RevsEnabledCheckBox is null)
+        if (refreshingProfiles || ProfileCombo.SelectedItem is not OperationProfile profile || view.AdvancedBlock.RevsEnabledCheckBox is null)
             return;
 
         ApplyProfile(profile);
@@ -60,16 +64,14 @@ internal sealed partial class ReadTabController
     {
         var enabled = viewModel.Read.CaptureEnabledOptions();
         var values = viewModel.Read.CaptureValues();
-        values[ReadTabConstants.ResultProfileKey] = RawScpRadio.IsChecked == true
-            ? ReadTabConstants.RawResultId : ReadTabConstants.KnownResultId;
+        values[ReadTabConstants.ResultProfileKey] = RawScpRadio.IsChecked == true ? ReadTabConstants.RawResultId : ReadTabConstants.KnownResultId;
         if (FormatCombo.SelectedItem is DiskFormat format) values[ReadTabConstants.FormatProfileKey] = format.Id;
         if (ExtensionCombo.SelectedItem is ImageExtension extension)
             values[ReadTabConstants.ExtensionProfileKey] = extension.Extension;
         if (!string.IsNullOrWhiteSpace(viewModel.Read.Folder))
             values[ReadTabConstants.FolderProfileKey] = viewModel.Read.Folder;
 
-        var profile = profileController.Save(OperationKind.Read, name =>
-            new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Read, name, values, enabled));
+        var profile = profileController.Save(OperationKind.Read, name => new OperationProfile(Guid.NewGuid().ToString("N"), OperationKind.Read, name, values, enabled));
         if (profile is not null)
             RefreshProfiles(profile.Id);
     }
@@ -78,9 +80,7 @@ internal sealed partial class ReadTabController
 
     internal void ModeChanged()
     {
-        KnownFormatPanel.Visibility = KnownFormatRadio.IsChecked == true
-            ? Visibility.Visible
-            : Visibility.Collapsed;
+        KnownFormatPanel.Visibility = KnownFormatRadio.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
         UpdateExtension();
         UpdateCommand();
     }
@@ -88,9 +88,7 @@ internal sealed partial class ReadTabController
     internal void FamilyChanged()
     {
         if (FormatCombo is null || FamilyCombo.SelectedItem is not string family) return;
-        FormatCombo.ItemsSource = formatCatalog().Formats
-            .Where(format => format.Family == family && format.SupportsPhysicalRead)
-            .ToArray();
+        FormatCombo.ItemsSource = formatCatalog().Formats.Where(format => format.Family == family && format.SupportsPhysicalRead).ToArray();
         FormatCombo.SelectedIndex = 0;
     }
 
@@ -99,9 +97,7 @@ internal sealed partial class ReadTabController
         if (ExtensionCombo is null) return;
         ExtensionCombo.ItemsSource = (FormatCombo.SelectedItem as DiskFormat)?.Extensions;
         var extensions = ExtensionCombo.ItemsSource as IReadOnlyList<ImageExtension>;
-        ExtensionCombo.SelectedIndex = extensions is null
-            ? -1
-            : Math.Max(0, extensions.ToList().FindIndex(x => x.IsDefault));
+        ExtensionCombo.SelectedIndex = extensions is null ? -1 : Math.Max(0, extensions.ToList().FindIndex(x => x.IsDefault));
         UpdateExtension();
         UpdateCommand();
     }
@@ -127,13 +123,19 @@ internal sealed partial class ReadTabController
         }
     }
 
-    internal string GetTarget(string extension)
-        => viewModel.Read.BuildTarget(extension, ReadTabConstants.ExampleFallbackName);
+    internal string GetTarget(string extension) => viewModel.Read.BuildTarget(extension, ReadTabConstants.ExampleFallbackName, GetOutputBaseName(extension));
 
-    internal string GetExtension()
-        => RawScpRadio.IsChecked == true
-            ? ReadTabConstants.ScpExtension
-            : (ExtensionCombo.SelectedItem as ImageExtension)?.Extension ?? string.Empty;
+    private string GetOutputBaseName(string extension)
+    {
+        var name = string.IsNullOrWhiteSpace(viewModel.Read.FileName) ? ReadTabConstants.ExampleFallbackName : viewModel.Read.FileName.Trim();
+        var naming = settings().Conversion;
+        var format = RawScpRadio.IsChecked == true ? formatCatalog().Formats.FirstOrDefault(item => item.Id == "raw.scp") : FormatCombo.SelectedItem as DiskFormat;
+        if (!naming.AddTags || format is null) return name;
+        var tag = GWGUI.MediaEngine.Images.Conversion.ConversionPlanner.FormatTag(naming.TagPattern, format, extension, name, DateTime.Now);
+        return naming.TagPattern.Contains("{NAME}", StringComparison.OrdinalIgnoreCase) ? tag : tag + name;
+    }
+
+    internal string GetExtension() => RawScpRadio.IsChecked == true ? ReadTabConstants.ScpExtension : (ExtensionCombo.SelectedItem as ImageExtension)?.Extension ?? string.Empty;
 
     internal GwCommand BuildCommand(string target)
     {
@@ -178,9 +180,7 @@ internal sealed partial class ReadTabController
         var targetKind = sequenceKind.SelectedIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;
         var sourceKind = targetKind == SequenceKind.Alphabetic ? SequenceKind.Numeric : SequenceKind.Alphabetic;
         if (SequenceFormatter.TryParse(sequenceValue.Text, sourceKind, out var value))
-            viewModel.Read.SequenceValue = targetKind == SequenceKind.Numeric
-                ? (value + 1).ToString()
-                : SequenceFormatter.Format(Math.Max(0, value - 1), targetKind, 1);
+            viewModel.Read.SequenceValue = targetKind == SequenceKind.Numeric ? (value + 1).ToString() : SequenceFormatter.Format(Math.Max(0, value - 1), targetKind, 1);
         UpdateCommand();
     }
 
@@ -205,27 +205,26 @@ internal sealed partial class ReadTabController
     internal void RestoreSettings()
     {
         var readSettings = settings().Read;
+        viewModel.Read.Folder = string.IsNullOrWhiteSpace(readSettings.Folder) ? settings().DefaultImagesFolder : readSettings.Folder;
         KnownFormatRadio.IsChecked = readSettings.UseKnownFormat;
         RawScpRadio.IsChecked = !readSettings.UseKnownFormat;
         SelectFormat(readSettings.FormatId, readSettings.ImageExtension);
         viewModel.Read.AutoNumber = readSettings.AutoNumber;
         viewModel.Read.SequenceKindIndex = readSettings.SequenceKind == ReadTabConstants.AlphabeticSequenceId ? 1 : 0;
         viewModel.Read.SequenceWidthIndex = Math.Clamp(readSettings.SequenceWidth - 1, 0, 2);
-        viewModel.Read.SequenceValue = readSettings.SequenceKind == ReadTabConstants.AlphabeticSequenceId
-            ? SequenceFormatter.Format(readSettings.NextSequence, SequenceKind.Alphabetic, 1)
-            : readSettings.NextSequence.ToString();
+        viewModel.Read.SequenceValue = readSettings.SequenceKind == ReadTabConstants.AlphabeticSequenceId ? SequenceFormatter.Format(readSettings.NextSequence, SequenceKind.Alphabetic, 1) : readSettings.NextSequence.ToString();
         viewModel.Read.ApplyOptions(readSettings.EnabledOptions, readSettings.OptionValues);
     }
 
     internal void CaptureSettings()
     {
         var readSettings = settings().Read;
+        readSettings.Folder = string.IsNullOrWhiteSpace(viewModel.Read.Folder) ? null : viewModel.Read.Folder;
         readSettings.UseKnownFormat = KnownFormatRadio.IsChecked == true;
         readSettings.FormatId = (FormatCombo.SelectedItem as DiskFormat)?.Id;
         readSettings.ImageExtension = (ExtensionCombo.SelectedItem as ImageExtension)?.Extension;
         readSettings.AutoNumber = viewModel.Read.AutoNumber;
-        readSettings.SequenceKind = viewModel.Read.SequenceKind == SequenceKind.Alphabetic
-            ? ReadTabConstants.AlphabeticSequenceId : ReadTabConstants.NumericSequenceId;
+        readSettings.SequenceKind = viewModel.Read.SequenceKind == SequenceKind.Alphabetic ? ReadTabConstants.AlphabeticSequenceId : ReadTabConstants.NumericSequenceId;
         readSettings.SequenceWidth = viewModel.Read.SequenceWidthIndex + 1;
         if (SequenceFormatter.TryParse(viewModel.Read.SequenceValue, viewModel.Read.SequenceKind, out var sequence))
             readSettings.NextSequence = sequence;
@@ -236,31 +235,16 @@ internal sealed partial class ReadTabController
     internal PhysicalDiskReadOptions CreateInternalOptions(HardwareChoice hardware)
     {
         var selection = GreaseweazleDriveSelectionFunctions.Resolve(hardware.Drive.Selection);
-        var tracks = PhysicalDiskTrackSelectionParser.Parse(
-            viewModel.Read.Tracks.Enabled ? viewModel.Read.Tracks.Value : ReadTabConstants.DefaultTrackSelection);
-        var revolutions = viewModel.Read.Revs.Enabled
-            ? int.Parse(viewModel.Read.Revs.Value)
-            : PhysicalDiskReadDefaults.Revolutions;
-        var retries = viewModel.Read.Retries.Enabled
-            ? int.Parse(viewModel.Read.Retries.Value)
-            : PhysicalDiskReadDefaults.FluxOverflowRetries;
-        var seekRetries = viewModel.Read.SeekRetries.Enabled
-            ? int.Parse(viewModel.Read.SeekRetries.Value)
-            : PhysicalDiskReadDefaults.SeekRetries;
-        TimeSpan? fakeIndex = viewModel.Read.FakeIndex.Enabled
-            ? PhysicalDiskIndexPeriodParser.Parse(viewModel.Read.FakeIndex.Value)
-            : null;
-        return new PhysicalDiskReadOptions(
-            hardware.Port,
-            selection.BusType,
-            selection.Unit,
-            tracks,
-            ScpCaptureDiskTypeFunctions.Resolve(hardware.Drive.Density),
-            revolutions,
-            retries,
-            seekRetries,
-            fakeIndex,
-            viewModel.Read.HardSectors.Enabled);
+        var defaultTracks = ReadTabConstants.DefaultTrackSelection;
+        if (RawScpRadio.IsChecked != true && FormatCombo.SelectedItem is DiskFormat format
+            && DiskDefsFormatReader.GetDimensions(format.Id) is { } dimensions)
+            defaultTracks = $"c=0-{dimensions.Cylinders - 1}:h=0-{dimensions.Heads - 1}";
+        var tracks = PhysicalDiskTrackSelectionParser.Parse(viewModel.Read.Tracks.Enabled ? viewModel.Read.Tracks.Value : defaultTracks);
+        var revolutions = viewModel.Read.Revs.Enabled ? int.Parse(viewModel.Read.Revs.Value) : PhysicalDiskReadDefaults.Revolutions;
+        var retries = viewModel.Read.Retries.Enabled ? int.Parse(viewModel.Read.Retries.Value) : PhysicalDiskReadDefaults.FluxOverflowRetries;
+        var seekRetries = viewModel.Read.SeekRetries.Enabled ? int.Parse(viewModel.Read.SeekRetries.Value) : PhysicalDiskReadDefaults.SeekRetries;
+        TimeSpan? fakeIndex = viewModel.Read.FakeIndex.Enabled ? PhysicalDiskIndexPeriodParser.Parse(viewModel.Read.FakeIndex.Value) : null;
+        return new PhysicalDiskReadOptions( hardware.Port, selection.BusType, selection.Unit, tracks, ScpCaptureDiskTypeFunctions.Resolve(hardware.Drive.Density), revolutions, retries, seekRetries, fakeIndex, viewModel.Read.HardSectors.Enabled);
     }
 
     internal bool HasUnsupportedInternalOptions() =>

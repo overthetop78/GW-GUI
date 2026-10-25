@@ -1,0 +1,10 @@
+namespace GWGUI.Emulation.Commodore.Common.Constants;
+
+internal static class CoreDirectoryConstants
+{
+    internal const string SystemDirectoryName = "System";
+    internal const string ContentDirectoryName = "Content";
+    internal const string SavesDirectoryName = "Saves";
+    internal const string ConfigurationsDirectoryName = "Configurations";
+    internal const string CoreDirectoryName = "Core";
+}

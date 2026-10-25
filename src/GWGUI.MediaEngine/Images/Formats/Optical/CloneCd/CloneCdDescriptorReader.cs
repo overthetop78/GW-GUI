@@ -8,9 +8,7 @@ namespace GWGUI.MediaEngine.Images.Formats.Optical.CloneCd;
 /// <summary>Parses the documented CloneCD INI sections used to describe sessions, TOC entries, and tracks.</summary>
 public sealed class CloneCdDescriptorReader
 {
-    public async Task<CloneCdDescriptor> ReadAsync(
-        string path,
-        CancellationToken cancellationToken = default)
+    public async Task<CloneCdDescriptor> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
         var lines = await File.ReadAllLinesAsync(path, cancellationToken).ConfigureAwait(false);
@@ -31,37 +29,25 @@ public sealed class CloneCdDescriptorReader
         if (sessionCount <= 0 || tocEntryCount <= 0)
             throw new InvalidDataException("CloneCD session and TOC entry counts must be positive.");
 
-        var sessionSections = sections
-            .Where(pair => pair.Key.StartsWith(CloneCdConstants.SessionSectionPrefix, StringComparison.OrdinalIgnoreCase))
+        var sessionSections = sections.Where(pair => pair.Key.StartsWith(CloneCdConstants.SessionSectionPrefix, StringComparison.OrdinalIgnoreCase))
             .ToDictionary(
                 pair => ParseSectionNumber(pair.Key, CloneCdConstants.SessionSectionPrefix),
-                pair => (IReadOnlyDictionary<string, int>)pair.Value.ToDictionary(
-                    property => property.Key,
-                    property => ParseInteger(property.Value),
-                    StringComparer.OrdinalIgnoreCase));
+                pair => (IReadOnlyDictionary<string, int>)pair.Value.ToDictionary(property => property.Key, property => ParseInteger(property.Value), StringComparer.OrdinalIgnoreCase));
         if (sessionSections.Count != sessionCount)
             throw new InvalidDataException("The number of CloneCD session sections does not match the Disc declaration.");
 
-        var entries = sections
-            .Where(pair => pair.Key.StartsWith(CloneCdConstants.EntrySectionPrefix, StringComparison.OrdinalIgnoreCase))
-            .Select(pair => ReadTocEntry(
-                ParseSectionNumber(pair.Key, CloneCdConstants.EntrySectionPrefix),
-                pair.Value))
+        var entries = sections.Where(pair => pair.Key.StartsWith(CloneCdConstants.EntrySectionPrefix, StringComparison.OrdinalIgnoreCase))
+            .Select(pair => ReadTocEntry(ParseSectionNumber(pair.Key, CloneCdConstants.EntrySectionPrefix), pair.Value))
             .OrderBy(entry => entry.EntryNumber)
             .ToArray();
         if (entries.Length != tocEntryCount)
             throw new InvalidDataException("The number of CloneCD TOC entry sections does not match the Disc declaration.");
 
-        var tracks = sections
-            .Where(pair => pair.Key.StartsWith(CloneCdConstants.TrackSectionPrefix, StringComparison.OrdinalIgnoreCase))
-            .Select(pair => ReadTrack(
-                ParseSectionNumber(pair.Key, CloneCdConstants.TrackSectionPrefix),
-                pair.Value))
+        var tracks = sections.Where(pair => pair.Key.StartsWith(CloneCdConstants.TrackSectionPrefix, StringComparison.OrdinalIgnoreCase))
+            .Select(pair => ReadTrack(ParseSectionNumber(pair.Key, CloneCdConstants.TrackSectionPrefix), pair.Value))
             .OrderBy(track => track.Number)
             .ToArray();
-        var catalog = disc.TryGetValue(CueSheetConstants.Catalog, out var catalogValue)
-            ? catalogValue
-            : null;
+        var catalog = disc.TryGetValue(CueSheetConstants.Catalog, out var catalogValue) ? catalogValue : null;
         return new CloneCdDescriptor(version, sessionCount, catalog, entries, tracks, sessionSections);
     }
 
@@ -123,31 +109,18 @@ public sealed class CloneCdDescriptorReader
             2 => OpticalTrackMode.Mode2Raw2352,
             _ => throw new NotSupportedException($"Unsupported CloneCD track mode {modeValue}.")
         };
-        var indexes = values
-            .Where(pair => pair.Key.StartsWith(CloneCdConstants.IndexKeyPrefix, StringComparison.OrdinalIgnoreCase))
-            .Select(pair => new OpticalTrackIndex(
-                ParseSectionNumber(pair.Key, CloneCdConstants.IndexKeyPrefix),
-                ParseInteger(pair.Value)))
+        var indexes = values.Where(pair => pair.Key.StartsWith(CloneCdConstants.IndexKeyPrefix, StringComparison.OrdinalIgnoreCase))
+            .Select(pair => new OpticalTrackIndex(ParseSectionNumber(pair.Key, CloneCdConstants.IndexKeyPrefix), ParseInteger(pair.Value)))
             .OrderBy(index => index.Number)
             .ToArray();
-        var flags = values.TryGetValue(CloneCdConstants.FlagsKey, out var flagsValue)
-            ? flagsValue.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-            : [];
+        var flags = values.TryGetValue(CloneCdConstants.FlagsKey, out var flagsValue) ? flagsValue.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) : [];
         values.TryGetValue(CloneCdConstants.IsrcKey, out var isrc);
         return new CueTrackDeclaration(trackNumber, mode, indexes, flags: flags, isrc: isrc);
     }
 
-    private static Dictionary<string, string> RequireSection(
-        IReadOnlyDictionary<string, Dictionary<string, string>> sections,
-        string name) =>
-        sections.TryGetValue(name, out var section)
-            ? section
-            : throw new InvalidDataException($"Required CCD section [{name}] is missing.");
+    private static Dictionary<string, string> RequireSection(IReadOnlyDictionary<string, Dictionary<string, string>> sections, string name) => sections.TryGetValue(name, out var section) ? section : throw new InvalidDataException($"Required CCD section [{name}] is missing.");
 
-    private static int ReadInteger(IReadOnlyDictionary<string, string> values, string key) =>
-        values.TryGetValue(key, out var value)
-            ? ParseInteger(value)
-            : throw new InvalidDataException($"Required CCD property '{key}' is missing.");
+    private static int ReadInteger(IReadOnlyDictionary<string, string> values, string key) => values.TryGetValue(key, out var value) ? ParseInteger(value) : throw new InvalidDataException($"Required CCD property '{key}' is missing.");
 
     private static int ParseInteger(string value)
     {
@@ -160,11 +133,7 @@ public sealed class CloneCdDescriptorReader
         }
         var hex = text.StartsWith("0x", StringComparison.OrdinalIgnoreCase);
         if (hex) text = text[2..];
-        if (!int.TryParse(
-                text,
-                hex ? NumberStyles.AllowHexSpecifier : NumberStyles.None,
-                CultureInfo.InvariantCulture,
-                out var number))
+        if (!int.TryParse(text, hex ? NumberStyles.AllowHexSpecifier : NumberStyles.None, CultureInfo.InvariantCulture, out var number))
             throw new InvalidDataException($"Invalid CCD integer '{value}'.");
         return checked(number * sign);
     }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Firmware.Integrated"><value>Rendszer ROM</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (Japán)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (Észak-Amerika)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (Európa)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>A PS2 DVD-lejátszójának opcionális ROM-ja.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>Válassza ki a kijelölt BIOS-hoz tartozó ROM1-mentést, általában egy .rom1 fájlt vagy a rom1.bin fájlt. DVD-lejátszó modulokat és azonosító adatokat tartalmaz. Hagyja üresen a mezőt, ha a konzoljához nincs ROM1-mentés. A fő BIOS-t a BIOS mezőben válassza ki.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>Kínai betűkészleteket tartalmazó opcionális PS2-ROM.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>Válassza ki a kínai SCPH-50009 konzol kijelölt BIOS-ához tartozó ROM2-mentést, általában egy .rom2 fájlt vagy a rom2.bin fájlt. ROM2 nélküli konzolok esetén hagyja üresen a mezőt. Ez a fájl nem helyettesíti a fő BIOS-t.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>A konzol mentett beállításai.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>Válassza ki a kijelölt BIOS-hoz tartozó, 1024 bájtos .nvm fájlt. A konzol beállításait tartalmazza. A fájl nem kötelező: hagyja üresen a mezőt a mentett beállítások használatához, vagy hogy az emulátor alapértelmezett értékeket hozzon létre.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>A mechanikus vezérlő verziója.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>Válassza ki a kijelölt BIOS-hoz tartozó, 4 bájtos .mec fájlt. A mechanikus vezérlő verziószámát tartalmazza, nem a teljes firmware-ét. A fájl nem kötelező: hagyja üresen a mezőt a mentett adatok használatához, vagy hogy az emulátor alapértelmezett fájlt hozzon létre.</value></data>
+</root>

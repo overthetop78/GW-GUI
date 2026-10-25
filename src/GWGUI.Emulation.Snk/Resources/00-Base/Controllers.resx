@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Controller.NeoGeoArcadeStick" xml:space="preserve"><value>Neo Geo Arcade Stick</value></data>
+  <data name="Emulation.Snk.Controller.NeoGeoCdPad" xml:space="preserve"><value>Neo Geo CD Controller</value></data>
+  <data name="Emulation.Snk.Controller.NeoGeoPocket" xml:space="preserve"><value>Neo Geo Pocket</value></data>
+  <data name="Emulation.Snk.Controller.NeoGeoPocketColor" xml:space="preserve"><value>Neo Geo Pocket Color</value></data>
+  <data name="Emulation.Snk.Input.A" xml:space="preserve"><value>A</value></data>
+  <data name="Emulation.Snk.Input.B" xml:space="preserve"><value>B</value></data>
+  <data name="Emulation.Snk.Input.C" xml:space="preserve"><value>C</value></data>
+  <data name="Emulation.Snk.Input.D" xml:space="preserve"><value>D</value></data>
+  <data name="Emulation.Snk.Input.Start" xml:space="preserve"><value>START</value></data>
+  <data name="Emulation.Snk.Input.Select" xml:space="preserve"><value>SELECT</value></data>
+  <data name="Emulation.Snk.Input.Option" xml:space="preserve"><value>OPTION</value></data>
+</root>

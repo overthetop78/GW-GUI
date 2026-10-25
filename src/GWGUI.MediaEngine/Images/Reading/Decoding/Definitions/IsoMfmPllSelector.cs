@@ -1,8 +1,6 @@
-
 using GWGUI.MediaEngine.Images.Models.Flux;
 
 namespace GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
-
 /// <summary>Sélectionne le meilleur résultat parmi les tentatives PLL ISO MFM.</summary>
 internal static class IsoMfmPllSelector
 {
@@ -14,15 +12,24 @@ internal static class IsoMfmPllSelector
         foreach (var factor in IsoMfmFormat.PllFactors)
         {
             var candidate = decode(FluxTransitionDecoder.DecodePll(revolution.FluxIntervals, centre * factor));
-            if (factor == 1d && candidate.Sectors.Count > 0 && candidate.Sectors.All(sector => sector.Data is not null && sector.IntegrityValid == true)) return candidate;
+            if (factor == 1d && candidate.Sectors.Count > 0 && candidate.Sectors.All(sector => sector.Data is not null && sector.IntegrityValid == true))
+                return candidate;
             var score = Score(candidate);
-            if (score <= bestScore) continue;
+            if (score <= bestScore)
+                continue;
             best = candidate;
             bestScore = score;
         }
+
         return best!;
     }
 
     /// <summary>Calcule le score pondéré d'un résultat.</summary>
-    public static int Score(FluxDecodeResult result) => result.Sectors.Count(sector => sector.IntegrityValid == true) * IsoMfmFormat.ValidSectorScoreWeight + result.Sectors.Count(sector => sector.Data is not null) * IsoMfmFormat.DataSectorScoreWeight + result.Sectors.Count * IsoMfmFormat.SectorScoreWeight;
+    public static int Score(FluxDecodeResult result) => result.Sectors.Count(sector => sector.IntegrityValid 
+        == true) 
+        * IsoMfmFormat.ValidSectorScoreWeight 
+        + result.Sectors.Count(sector => sector.Data is not null) 
+        * IsoMfmFormat.DataSectorScoreWeight 
+        + result.Sectors.Count 
+        * IsoMfmFormat.SectorScoreWeight;
 }

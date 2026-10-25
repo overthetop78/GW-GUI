@@ -11,6 +11,13 @@ $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
 $buildRoot = Join-Path $repository 'build'
 $applicationProject = Join-Path $repository 'src\GWGUI.App\GWGUI.App.csproj'
+$hostApiSource = Join-Path $repository 'src\GWGUI.Emulation\Constants\EmulationHostApi.cs'
+$hostApiDeclaration = [regex]::Match((Get-Content -LiteralPath $hostApiSource -Raw),
+    'CurrentVersion\s*\{[^}]+\}\s*=\s*new(?:\s+Version)?\s*\(\s*(?<major>\d+)\s*,\s*(?<minor>\d+)\s*\)')
+if (-not $hostApiDeclaration.Success) {
+    throw "Cannot read the host API version from '$hostApiSource'."
+}
+$hostApiVersion = [Version]::new([int]$hostApiDeclaration.Groups['major'].Value, [int]$hostApiDeclaration.Groups['minor'].Value)
 if ([string]::IsNullOrWhiteSpace($Version)) {
     [xml]$applicationProjectDocument = Get-Content -LiteralPath $applicationProject -Raw -Encoding UTF8
     $Version = [string]$applicationProjectDocument.Project.PropertyGroup.Version.'#text'
@@ -23,15 +30,16 @@ if ($Version -notmatch '^\d+\.\d+\.\d+$') {
 }
 $configurations = if ([string]::IsNullOrWhiteSpace($Configuration)) { @('Debug', 'Release') } else { @($Configuration) }
 . (Join-Path $repository 'scripts\release\update-catalog\emulation-modules\emulation-modules.ps1')
+. (Join-Path $repository 'scripts\release\package\organize_app\shared-component-files.ps1')
 
 $moduleWasSpecified = $PSBoundParameters.ContainsKey('Module')
 if ($AllModules -and $moduleWasSpecified) {
     throw 'Use either --AllModules or --Module, not both.'
 }
 
+$availableModules = @(Get-GwGuiEmulationModules -RepositoryRoot $repository)
 $selectedModules = @()
 if ($AllModules -or $moduleWasSpecified) {
-    $availableModules = @(Get-GwGuiEmulationModules -RepositoryRoot $repository)
     if ($AllModules) {
         $selectedModules = $availableModules
     }
@@ -52,6 +60,11 @@ if ($AllModules -or $moduleWasSpecified) {
         }
     }
 }
+
+# Example utilise le même manifeste et le même chargement que les autres modules.
+# Sa présence dans la distribution est systématique, même avec --modules=0.
+$exampleModule = Resolve-GwGuiEmulationModule -Modules $availableModules -Module 'example'
+$selectedModules = @(@($exampleModule) + $selectedModules | Sort-Object Id -Unique)
 
 function New-GwGuiBuild {
     param(
@@ -100,20 +113,12 @@ function New-GwGuiBuild {
 
     $moduleOutput = Join-Path $applicationPublish 'Modules'
     New-Item -ItemType Directory -Path $moduleOutput -Force | Out-Null
+    $applicationFiles = @(Get-ChildItem -LiteralPath $applicationPublish -Recurse -File | Where-Object {
+        -not $_.FullName.StartsWith($moduleOutput + [IO.Path]::DirectorySeparatorChar,
+            [StringComparison]::OrdinalIgnoreCase)
+    })
+    $applicationHashes = Get-GwGuiFileHashes -Files $applicationFiles
     if ($SelectedModules.Count -gt 0) {
-        $applicationFiles = @(Get-ChildItem -LiteralPath $applicationPublish -Recurse -File | Where-Object {
-            -not $_.FullName.StartsWith($moduleOutput + [IO.Path]::DirectorySeparatorChar,
-                [StringComparison]::OrdinalIgnoreCase)
-        })
-        $applicationHashes = @{}
-        foreach ($file in $applicationFiles) {
-            if (-not $applicationHashes.ContainsKey($file.Name)) {
-                $applicationHashes[$file.Name] = [Collections.Generic.HashSet[string]]::new(
-                    [StringComparer]::OrdinalIgnoreCase)
-            }
-            $null = $applicationHashes[$file.Name].Add((Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash)
-        }
-        $hostApiVersion = [Version]'1.0'
         foreach ($moduleDefinition in $SelectedModules) {
             $project = $moduleDefinition.ProjectPath
             $manifest = $moduleDefinition.Manifest
@@ -131,23 +136,9 @@ function New-GwGuiBuild {
             if (-not (Test-Path -LiteralPath $entryAssembly -PathType Leaf)) {
                 throw "Module entry assembly was not produced: $entryAssembly"
             }
-            foreach ($source in Get-ChildItem -LiteralPath $publish -Recurse -File) {
-                $isRequiredMetadata = $source.Name -ieq 'module.json' `
-                    -or $source.Name -ieq $moduleDefinition.EntryAssembly `
-                    -or $source.Name -ieq ($moduleDefinition.AssemblyName + '.pdb') `
-                    -or $source.Name -ieq ($moduleDefinition.AssemblyName + '.deps.json')
-                if (-not $isRequiredMetadata -and $applicationHashes.ContainsKey($source.Name)) {
-                    $sourceHash = (Get-FileHash -LiteralPath $source.FullName -Algorithm SHA256).Hash
-                    if ($applicationHashes[$source.Name].Contains($sourceHash)) { continue }
-                }
-                $relativePath = $source.FullName.Substring($publish.Length).TrimStart('\', '/')
-                $target = Join-Path $destination $relativePath
-                $targetDirectory = Split-Path -Parent $target
-                if (-not (Test-Path -LiteralPath $targetDirectory -PathType Container)) {
-                    New-Item -ItemType Directory -Path $targetDirectory -Force | Out-Null
-                }
-                Copy-Item -LiteralPath $source.FullName -Destination $target -Force
-            }
+            Copy-GwGuiComponentFiles -SourceDirectory $publish -DestinationDirectory $destination `
+                -SharedHashes $applicationHashes -RequiredFiles @('module.json', $moduleDefinition.EntryAssembly,
+                    ($moduleDefinition.AssemblyName + '.pdb'), ($moduleDefinition.AssemblyName + '.deps.json'))
         }
     }
 
@@ -164,15 +155,21 @@ function New-GwGuiBuild {
     if ($LASTEXITCODE -ne 0) { throw "$BuildConfiguration updater publish failed." }
     $updaterOutput = Join-Path $output 'Updater'
     New-Item -ItemType Directory -Path $updaterOutput -Force | Out-Null
-    Copy-Item -Path (Join-Path $updaterPublish '*') -Destination $updaterOutput -Recurse -Force
+    $sharedHashes = Get-GwGuiFileHashes -Files @(Get-ChildItem -LiteralPath (Join-Path $output 'lib') -Recurse -File)
+    Copy-GwGuiComponentFiles -SourceDirectory $updaterPublish -DestinationDirectory $updaterOutput `
+        -SharedHashes $sharedHashes -RequiredFiles @('gwgui.updater.exe', 'gwgui.updater.dll', 'gwgui.updater.pdb',
+            'gwgui.updater.deps.json', 'gwgui.updater.runtimeconfig.json')
     Remove-Item -LiteralPath $staging -Recurse -Force
 
     $executable = Join-Path $output 'gwgui.exe'
     if (-not (Test-Path -LiteralPath $executable -PathType Leaf)) {
         throw "$BuildConfiguration executable was not produced: $executable"
     }
-    $moduleSummary = if ($SelectedModules.Count -eq 0) {
-        'without emulation modules'
+    if (-not (Test-Path -LiteralPath (Join-Path $output 'Modules\example\gwgui.emulation.example.dll') -PathType Leaf)) {
+        throw "$BuildConfiguration Example module was not produced."
+    }
+    $moduleSummary = if ($SelectedModules.Count -eq 1 -and $SelectedModules[0].Id -eq "example") {
+        'with Example and without additional emulation modules'
     }
     else {
         "with emulation modules: $(@($SelectedModules.Id) -join ', ')"

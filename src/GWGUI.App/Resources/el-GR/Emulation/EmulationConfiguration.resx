@@ -15,4 +15,5 @@
   <data name="Emulation.Configuration" xml:space="preserve"><value>Διαμόρφωση</value></data>
   <data name="Emulation.Configurations" xml:space="preserve"><value>⁇</value></data>
   <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Διαγραφή της διαμόρφωσης της Amiga;</value></data>
+  <data name="Emulation.Configuration.Selector"><value>Μάρκες και μηχανήματα</value></data>
 </root>

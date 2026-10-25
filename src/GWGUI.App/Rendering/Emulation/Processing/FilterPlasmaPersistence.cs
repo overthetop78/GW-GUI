@@ -17,8 +17,7 @@ internal sealed class FilterPlasmaPersistence
 
     internal void Apply(float[] colors, int width, int height, long sequence, int setting)
     {
-        var compatible = setting > 0 && _history is not null
-            && _width == width && _height == height && sequence >= _sequence;
+        var compatible = setting > 0 && _history is not null && _width == width && _height == height && sequence >= _sequence;
         if (compatible)
         {
             var intensity = setting / 100f;

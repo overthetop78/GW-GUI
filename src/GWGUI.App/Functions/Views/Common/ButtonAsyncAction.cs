@@ -4,12 +4,7 @@ namespace GWGUI.App.Functions.Views.Common;
 
 internal static class ButtonAsyncAction
 {
-    internal static async Task RunAsync(
-        Button button,
-        Func<Task> action,
-        Action<Exception>? errorHandler = null,
-        Action? completed = null,
-        Func<bool>? restoreEnabled = null)
+    internal static async Task RunAsync(Button button, Func<Task> action, Action<Exception>? errorHandler = null, Action? completed = null, Func<bool>? restoreEnabled = null)
     {
         button.IsEnabled = false;
         try

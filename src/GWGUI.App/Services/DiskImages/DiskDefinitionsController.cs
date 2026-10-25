@@ -78,8 +78,7 @@ internal sealed class DiskDefinitionsController
         return false;
     }
 
-    public void ShowInvalid(string title) =>
-        _dialogs.Show(_localize("Advanced.Invalid", [_localize("Common.Unknown", [])]), title, icon: UserDialogIcon.Warning);
+    public void ShowInvalid(string title) => _dialogs.Show(_localize("Advanced.Invalid", [_localize("Common.Unknown", [])]), title, icon: UserDialogIcon.Warning);
 
     public void ShowInvalid(Exception _, string title) => ShowInvalid(title);
 

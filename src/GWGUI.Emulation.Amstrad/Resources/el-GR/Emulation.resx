@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.caprice32.Description"><value>Εξομοίωση Amstrad CPC, CPC Συν και GX4000 συστήματα.</value></data>
+  <data name="Emulation.Amstrad.Language"><value>CPC γλώσσα συστήματος</value></data>
+  <data name="Emulation.Amstrad.Language.English"><value>Αγγλική γλώσσα</value></data>
+  <data name="Emulation.Amstrad.Language.French"><value>Γαλλικά</value></data>
+  <data name="Emulation.Amstrad.Language.Spanish"><value>Ισπανικά</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor"><value>Τύπος παρακολούθησης</value></data>
+  <data name="Emulation.Amstrad.Video.Intensity"><value>Ένταση παρακολούθησης</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Color"><value>Χρώμα</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Green"><value>Πράσινο μονόχρωμο</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.White"><value>Λευκό μονόχρωμο</value></data>
+  <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM ενσωματωμένο στον εξομοιωτή</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>Προσομοιάζει το Amstrad CPC 6128 με ενσωματωμένο ROM και υποστήριξη για εικόνες και στιγμιότυπα δίσκων.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Τύπος παρακολούθησης</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Κορνίζα εικόνας</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Εμπλοκή ταχύτητας</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Αυτόματο</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>Υπερανίχνευση</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Ενεργοποιημένο</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Απενεργοποίηση</value></data>
+</root>

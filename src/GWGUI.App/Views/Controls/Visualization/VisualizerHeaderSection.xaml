@@ -11,18 +11,15 @@
                 <ComboBox x:Name="Decoder" Width="1" Height="1" Visibility="Collapsed" DisplayMemberPath="Name"/>
                 <ComboBox x:Name="RepresentationChoice" Width="220" Height="30" Margin="0,0,8,0" FontSize="11"
                           DisplayMemberPath="Name" Visibility="Collapsed" SelectionChanged="RepresentationChoice_SelectionChanged"/>
-                <Border x:Name="RevolutionControl" Width="220" Padding="2" Margin="0,0,8,0" Background="#FFFFFFFF"
-                        BorderBrush="#FFCAD4DB" BorderThickness="1" CornerRadius="6" Visibility="Collapsed">
+                <Border x:Name="RevolutionControl" Width="220" Padding="2" Margin="0,0,8,0" Background="#FFFFFFFF" BorderBrush="#FFCAD4DB" BorderThickness="1" CornerRadius="6" Visibility="Collapsed">
                     <Grid>
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                        <TextBlock Text="{l:Loc Visual.RevolutionLabel}" Margin="7,0,5,0" VerticalAlignment="Center"
-                                   Foreground="#FF52616D" FontSize="11" FontWeight="SemiBold"/>
+                        <TextBlock Text="{l:Loc Visual.RevolutionLabel}" Margin="7,0,5,0" VerticalAlignment="Center" Foreground="#FF52616D" FontSize="11" FontWeight="SemiBold"/>
                         <ComboBox x:Name="RevolutionChoice" Grid.Column="1" Height="26" Padding="7,2" FontSize="11"
                                   FontWeight="SemiBold" DisplayMemberPath="Label" SelectionChanged="RevolutionChoice_SelectionChanged"/>
                     </Grid>
                 </Border>
-                <CheckBox x:Name="LinkZoom" Content="{l:Loc Visual.LinkZoom}" IsChecked="True"
-                          VerticalAlignment="Center" Margin="0,0,8,0" FontSize="11"/>
+                <CheckBox x:Name="LinkZoom" Content="{l:Loc Visual.LinkZoom}" IsChecked="True" VerticalAlignment="Center" Margin="0,0,8,0" FontSize="11"/>
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
                 <Button x:Name="Reset" Margin="0,0,8,0" Padding="8,5" AutomationProperties.Name="{l:Loc Common.Reset}">
@@ -38,8 +35,7 @@
             </StackPanel>
             <Popup x:Name="ManualOptionsPopup" Placement="Custom" PlacementTarget="{Binding ElementName=ManualOptionsButton}"
                    CustomPopupPlacementCallback="ManualOptionsPopup_Place" AllowsTransparency="True" StaysOpen="False">
-                <Border Margin="0,8,0,12" Padding="14" Background="{DynamicResource CardBrush}"
-                        BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="8">
+                <Border Margin="0,8,0,12" Padding="14" Background="{DynamicResource CardBrush}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="8">
                     <Border.Effect><DropShadowEffect BlurRadius="18" ShadowDepth="4" Opacity="0.22"/></Border.Effect>
                     <common:DiskClassificationSelector x:Name="Classification" ShowAutomatic="False"/>
                 </Border>

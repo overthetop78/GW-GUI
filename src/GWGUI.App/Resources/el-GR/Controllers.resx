@@ -94,7 +94,6 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Τριβή</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Αποσβεστήρας</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Αδράνεια</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Μοχλός</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Ελεγκτής πολλαπλών αξόνων</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Χρήση HID</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>άξονες</value></data>

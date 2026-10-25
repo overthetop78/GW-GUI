@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 2,
+  "id": "epoch",
+  "entryAssembly": "gwgui.emulation.epoch.dll",
+  "moduleVersion": "1.0.0",
+  "hostApiMinimum": "1.2",
+  "hostApiMaximum": "1.2",
+  "updateCatalogUrl": "https://github.com/overthetop78/GW-GUI/releases/download/module-epoch-catalog/update-catalog.json"
+}

@@ -4,6 +4,7 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Reconstruction;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 using GWGUI.MediaEngine.Images.Models.Sectors;
+using GWGUI.MediaEngine.Images.Models.Flux;
 
 namespace GWGUI.MediaEngine.Images.Reading.Reconstruction.Iso;
 
@@ -14,21 +15,14 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
     private readonly Dictionary<string, CacheEntry> cache = new(StringComparer.Ordinal);
 
     /// <summary>Retourne les candidats décodés pour la capture et l'ensemble de codecs demandés.</summary>
-    public async Task<IsoSectorCandidateSet> DecodeAsync(string path, IReadOnlyList<string> decoderIds, CancellationToken cancellationToken)
-        => await DecodeAsync(path, decoderIds, null, cancellationToken).ConfigureAwait(false);
+    public async Task<IsoSectorCandidateSet> DecodeAsync(string path, IReadOnlyList<string> decoderIds, CancellationToken cancellationToken) => await DecodeAsync(path, decoderIds, null, cancellationToken).ConfigureAwait(false);
 
     /// <summary>Décode toutes les pistes et publie chaque piste réellement terminée.</summary>
-    public async Task<IsoSectorCandidateSet> DecodeAsync(
-        string path,
-        IReadOnlyList<string> decoderIds,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+    public async Task<IsoSectorCandidateSet> DecodeAsync(string path, IReadOnlyList<string> decoderIds, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         var fullPath = Path.GetFullPath(path);
         var file = new FileInfo(fullPath);
-        var fingerprint = file.Exists
-            ? new CaptureFingerprint(fullPath, file.Length, file.LastWriteTimeUtc)
-            : new CaptureFingerprint(fullPath, -1, DateTime.MinValue);
+        var fingerprint = file.Exists ? new CaptureFingerprint(fullPath, file.Length, file.LastWriteTimeUtc) : new CaptureFingerprint(fullPath, -1, DateTime.MinValue);
         var decoderKey = string.Join('\0', decoderIds);
         CacheEntry entry;
         lock (cacheGate)
@@ -52,6 +46,17 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
         }
     }
 
+    /// <summary>Décode une image de flux déjà reconnue sans relire son conteneur source.</summary>
+    public Task<IsoSectorCandidateSet> DecodeAsync(
+        ProtectedTrackImage image,
+        IReadOnlyList<string> decoderIds,
+        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(image);
+        return DecodeCoreAsync(image, decoderIds, progress, cancellationToken);
+    }
+
     private async Task<IsoSectorCandidateSet> DecodeCoreAsync(
         string path,
         IReadOnlyList<string> decoderIds,
@@ -59,12 +64,21 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
         CancellationToken cancellationToken)
     {
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
-        var trackCandidates = new TrackCandidateSet[scp.Tracks.Count];
+        return await DecodeCoreAsync(ScpProtectedTrackImageAdapter.Create(scp), decoderIds, progress, cancellationToken).ConfigureAwait(false);
+    }
+
+    private async Task<IsoSectorCandidateSet> DecodeCoreAsync(
+        ProtectedTrackImage image,
+        IReadOnlyList<string> decoderIds,
+        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
+        CancellationToken cancellationToken)
+    {
+        var trackCandidates = new TrackCandidateSet[image.Tracks.Count];
         var completed = 0;
         var completedRevolutions = 0;
-        var totalRevolutions = scp.Tracks.Sum(track => track.Revolutions.Count);
+        var totalRevolutions = image.Tracks.Sum(track => track.Revolutions.Count);
         await Parallel.ForEachAsync(
-            Enumerable.Range(0, scp.Tracks.Count),
+            Enumerable.Range(0, image.Tracks.Count),
             new ParallelOptions
             {
                 CancellationToken = cancellationToken,
@@ -72,7 +86,7 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
             },
             (trackIndex, token) =>
             {
-                var track = scp.Tracks[trackIndex];
+                var track = image.Tracks[trackIndex];
                 trackCandidates[trackIndex] = DecodeTrack(track, decoderIds, token, window =>
                 {
                     var revolutionCount = Interlocked.Increment(ref completedRevolutions);
@@ -80,14 +94,18 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
                         GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgressKind.RevolutionDecoded,
                         $"{track.Cylinder}:{track.Head} · {window.Revolution}/{track.Revolutions.Count}",
                         revolutionCount,
-                        totalRevolutions));
+                        totalRevolutions,
+                        Cylinder: track.Cylinder,
+                        Head: track.Head));
                 });
                 var count = Interlocked.Increment(ref completed);
                 progress?.Report(new(
                     GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgressKind.TrackDecoded,
-                    $"{scp.Tracks[trackIndex].Cylinder}:{scp.Tracks[trackIndex].Head}",
+                    $"{image.Tracks[trackIndex].Cylinder}:{image.Tracks[trackIndex].Head}",
                     count,
-                    scp.Tracks.Count));
+                    image.Tracks.Count,
+                    Cylinder: image.Tracks[trackIndex].Cylinder,
+                    Head: image.Tracks[trackIndex].Head));
                 return ValueTask.CompletedTask;
             }).ConfigureAwait(false);
 
@@ -102,19 +120,14 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
         return new(candidates, physicalCandidates);
     }
 
-    private TrackCandidateSet DecodeTrack(
-        ScpTrack track,
-        IReadOnlyList<string> decoderIds,
-        CancellationToken cancellationToken,
-        Action<ScpTrackDecodeWindow> revolutionDecoded)
+    private TrackCandidateSet DecodeTrack(ProtectedTrack track, IReadOnlyList<string> decoderIds, CancellationToken cancellationToken, Action<ScpTrackDecodeWindow> revolutionDecoded)
     {
         var candidates = new Dictionary<SectorAddress, List<IsoSectorCandidate>>();
         var physicalCandidates = new Dictionary<SectorAddress, List<IsoSectorCandidate>>();
         foreach (var window in ScpTrackDecodeWindowFactory.Create(track))
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var result = decoderIds.Select(decoder => decoders.Decode(decoder, window.Flux))
-                .OrderByDescending(Score).First();
+            var result = decoderIds.Select(decoder => decoders.Decode(decoder, window.Flux)).OrderByDescending(Score).First();
             foreach (var sector in result.Sectors)
             {
                 if (sector.Data is null || sector.Number < 0) continue;
@@ -140,9 +153,7 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
         list.Add(new(sector, revolution));
     }
 
-    private static void MergeCandidates(
-        Dictionary<SectorAddress, List<IsoSectorCandidate>> destination,
-        IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> source)
+    private static void MergeCandidates(Dictionary<SectorAddress, List<IsoSectorCandidate>> destination, IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> source)
     {
         foreach (var (address, sourceCandidates) in source)
         {
@@ -154,7 +165,5 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
 
     private sealed record CacheEntry(CaptureFingerprint Fingerprint, Lazy<Task<IsoSectorCandidateSet>> Operation);
     private readonly record struct CaptureFingerprint(string Path, long Length, DateTime LastWriteTimeUtc);
-    private sealed record TrackCandidateSet(
-        IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> Addressed,
-        IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> Physical);
+    private sealed record TrackCandidateSet(IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> Addressed, IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> Physical);
 }

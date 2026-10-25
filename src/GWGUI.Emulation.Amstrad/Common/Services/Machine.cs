@@ -1,0 +1,165 @@
+using CommonControllerFunctions = GWGUI.Emulation.Amstrad.Common.Functions.ControllerFunctions;
+using GWGUI.Emulation;
+using System.Collections.Concurrent;
+using System.IO;
+
+namespace GWGUI.Emulation.Amstrad.Common.Services;
+
+internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput,
+    IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime, IEmulationControllerFeedbackSource
+{
+    /// <summary>Standard vidéo annoncé par le cœur courant, ou null si inconnu.</summary>
+    public EmulationVideoStandard? Region => _core.Region;
+    /// <summary>Trames audio en attente selon le dernier statut du cœur.</summary>
+    public int BufferedAudioFrames => _core.BufferedAudioFrames;
+    /// <summary>Dépassements du tampon audio signalés par le cœur.</summary>
+    public long AudioOverrunCount => _core.AudioOverrunCount;
+    /// <summary>Manques de données audio réellement comptés par le cœur.</summary>
+    public long AudioUnderrunCount => _core.AudioUnderrunCount;
+    /// <summary>Capacité de sauvegarde du cœur sous les restrictions déjà déclarées par son profil.</summary>
+    public bool SupportsSaveStates => _core.SupportsSaveStates;
+
+    /// <summary>Entrées actuelles de session, empruntées au propriétaire de la configuration.</summary>
+    private InputConfiguration? CurrentInputConfiguration => Configuration.Input;
+    /// <summary>Autorise les retours uniquement pendant une exécution active, avant destruction et hors suspension média.</summary>
+    private bool CanPublishControllerOutputs => !_disposed && State == EmulationMachineState.Running;
+    /// <summary>Configuration de session courante utilisée par les services Common.</summary>
+    private MachineConfiguration CurrentConfiguration() => Configuration;
+
+    /// <summary>Politique de redémarrage du backend empruntée à la fabrique.</summary>
+    private readonly IEmulatorRuntimePolicy? _runtimePolicy;
+    private readonly object _gate = new();
+    private readonly IEmulatorCore _core;
+    private readonly IEmulatorInputMapper? _inputMapper;
+    /// <summary>Facette média empruntée à l'adaptateur déjà fourni, sans recréer ses fabriques lors des lectures de statut.</summary>
+    /// <remarks>La facette partage la durée de vie de l'adaptateur d'entrées ; la machine ne la détruit pas.
+    /// Son absence conserve la projection de repli du module, notamment pour une machine construite sans adaptateur.</remarks>
+    private readonly IEmulatorMediaCapabilities? _mediaCapabilities;
+    private readonly string _sessionDirectory;
+    private readonly string? _saveDirectory;
+    private readonly Action<string>? _deleteSession;
+    private readonly Func<Exception, Exception>? _startErrorTranslator;
+    private readonly AudioOutputController _audio;
+    private Thread? _thread;
+    private CancellationTokenSource? _stop;
+    private Task? _runLoop;
+    private bool _pauseRequested;
+    private bool _disposed;
+    private readonly ConcurrentQueue<PendingCommand> _commands = new();
+    private TaskCompletionSource? _started;
+    private string? _currentDiskPath;
+    private readonly List<string> _mediaPaths;
+    private readonly List<EmulationMedia> _mountedCommonMedia;
+    private readonly Dictionary<string, string> _currentOptions;
+    private EmulationInputSnapshot _lastPhysicalInput = EmulationInputSnapshot.Empty;
+    private bool _controllerPointerSwitchPressed;
+    private bool _controllerPointerMode;
+
+    internal Machine(Guid id, MachineConfiguration configuration,
+        IEmulatorCore core, IReadOnlyList<MediaConfiguration> resolvedMedia,
+        string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null,
+        Action<string>? deleteSession = null, Func<Exception, Exception>? startErrorTranslator = null, IEmulatorInputMapper? inputMapper = null, Func<IAudioOutput?>? audioOutputFactory = null, IEmulatorRuntimePolicy? runtimePolicy = null)
+    {
+        Id = id;
+        _runtimePolicy = runtimePolicy;
+        Configuration = configuration;
+        _core = core;
+        _inputMapper = inputMapper;
+        _mediaCapabilities = _inputMapper as IEmulatorMediaCapabilities;
+        _sessionDirectory = sessionDirectory;
+        _saveDirectory = saveDirectory;
+        _deleteSession = deleteSession;
+        _startErrorTranslator = startErrorTranslator;
+        _audio = new AudioOutputController(audioOutput, audioOutputFactory);
+        _audio.SetMuted(!configuration.AudioEnabled);
+        _mediaPaths = resolvedMedia.Select(item => Path.GetFullPath(item.Path)).ToList();
+        _mountedCommonMedia = EmulationMediaConversionFunctions.ToCommon(resolvedMedia).ToList();
+        _currentDiskPath = _mediaPaths.FirstOrDefault();
+        _currentOptions = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
+    }
+
+    /// <summary>Projette les entrées physiques puis ajoute la bascule de session sans modifier ses sources.</summary>
+    private EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot) => InputSnapshotFunctions.Apply(snapshot, Configuration, _inputMapper, _controllerPointerSwitchPressed);
+
+    public Guid Id { get; }
+    public MachineConfiguration Configuration { get; private set; }
+    public IEmulationLifecycle Lifecycle => this;
+    public IEmulationInput Input => this;
+    public IEmulationMedia Media => this;
+    public IEmulationVideo Video => this;
+    public IEmulationAudio Audio => this;
+    public IEmulationSavedStates SavedStates => this;
+    public IEmulationRuntime Runtime => this;
+    bool IEmulationInput.SupportsPointerCapture => _core.SupportsPointerCapture;
+    bool IEmulationInput.CapturePointerOnClick => Configuration.Input?.CaptureMouse ?? true;
+    IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings => Configuration.Input?.KeyboardBindings ?? new Dictionary<string, string>();
+    bool IEmulationInput.SupportsControllerPointerSwitch => _core.SupportsPointerCapture;
+    bool IEmulationInput.ControllerPointerMode => _controllerPointerMode;
+    public EmulationMachineState State { get; private set; } = EmulationMachineState.Created;
+    public VideoFrame? LatestVideoFrame => _core.LatestVideoFrame;
+    public AudioChunk? LatestAudioChunk => _core.LatestAudioChunk;
+    public IReadOnlyList<CoreOption> AvailableOptions => _core.Options;
+    public IReadOnlyDictionary<int, bool> LedStates => _core.LedStates;
+    public string CoreName => _core.CoreName;
+    public string CoreVersion => _core.CoreVersion;
+    public IReadOnlySet<string> SupportedContentExtensions => _core.SupportedContentExtensions;
+    public int DiskCount => _core.DiskCount;
+    public int CurrentDiskIndex => _core.CurrentDiskIndex;
+    public bool IsAudioMuted => _audio.IsMuted;
+    public event EventHandler<VideoFrame>? VideoFrameReady;
+    public event EventHandler<AudioChunk>? AudioChunkReady;
+    IReadOnlyList<EmulationMedia> IEmulationMedia.MountedMedia => _mountedCommonMedia.ToArray();
+    async ValueTask IEmulationMedia.InsertAsync(EmulationMedia media, CancellationToken cancellationToken)
+    {
+        await InsertMediaAsync(media, cancellationToken).ConfigureAwait(false);
+        var inserted = media with { IsInserted = true };
+        _mountedCommonMedia.RemoveAll(item => item.Slot == inserted.Slot);
+        _mountedCommonMedia.Add(inserted);
+    }
+    async ValueTask IEmulationMedia.EjectAsync(EmulationMediaSlot slot, CancellationToken cancellationToken)
+    {
+        await EjectMediaAsync(slot, cancellationToken).ConfigureAwait(false);
+        var mountedIndex = _mountedCommonMedia.FindIndex(item => item.Slot == slot);
+        if (mountedIndex >= BufferConstants.FirstCollectionIndex)
+            _mountedCommonMedia[mountedIndex] = _mountedCommonMedia[mountedIndex] with { IsInserted = false };
+    }
+    ValueTask IEmulationMedia.SelectDiskAsync(EmulationMediaSlot slot, int index, CancellationToken cancellationToken) => SelectDiskAsync(index, cancellationToken);
+    AudioChunk? IEmulationAudio.LatestChunk => LatestAudioChunk;
+    int IEmulationAudio.SampleRate => _core.SampleRate;
+    bool IEmulationAudio.IsMuted => IsAudioMuted;
+    float IEmulationAudio.Volume => _audio.Volume;
+    event EventHandler<AudioChunk>? IEmulationAudio.ChunkReady
+    {
+        add => AudioChunkReady += value;
+        remove => AudioChunkReady -= value;
+    }
+    void IEmulationAudio.SetMuted(bool muted) => SetAudioMuted(muted);
+    void IEmulationAudio.SetVolume(float volume) => _audio.SetVolume(volume);
+    void IEmulationAudio.SetOutputFactory(Func<IAudioOutput?>? factory) => _audio.ReplaceFactory(factory);
+    string IEmulationRuntime.EmulatorName => CoreName;
+    string IEmulationRuntime.EmulatorVersion => CoreVersion;
+    IReadOnlySet<string> IEmulationRuntime.SupportedContentExtensions => SupportedContentExtensions;
+    IReadOnlyDictionary<EmulationMediaSlot, bool> IEmulationRuntime.MediaActivity => _mediaCapabilities?.MediaActivity(Configuration, _core.LedStates) ?? EmulationMediaActivityFunctions.FromLedStates(_core.LedStates);
+    IReadOnlyList<EmulationOption> IEmulationRuntime.AvailableOptions => AvailableOptions
+        .Select(option => option with { CurrentValue = _currentOptions.GetValueOrDefault(option.Key, option.DefaultValue), Values = option.Values.ToArray(), RequiresRestart = _runtimePolicy?.RequiresOptionRestart(Configuration, option.Key) == true })
+        .ToArray();
+    VideoFrame? IEmulationVideo.LatestFrame => LatestVideoFrame;
+    double IEmulationVideo.FramesPerSecond => _core.FramesPerSecond;
+    event EventHandler<VideoFrame>? IEmulationVideo.FrameReady
+    {
+        add => VideoFrameReady += value;
+        remove => VideoFrameReady -= value;
+    }
+    // Capacité déclarée avant le démarrage ; le runtime expose séparément la capacité native mesurée.
+    bool IEmulationSavedStates.IsSupported => true;
+    ValueTask IEmulationSavedStates.SaveAsync(string path, CancellationToken cancellationToken) => SaveStateAsync(path, cancellationToken);
+    ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) => LoadStateAsync(path, cancellationToken);
+    /// <inheritdoc/>
+    /// <remarks>La conversion et la validation passent par Common ; la commande rejoint le thread du cœur.</remarks>
+    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, CommonControllerFunctions.FromCommon(peripheral, Configuration, port));
+    ValueTask<bool> IEmulationInput.SwitchControllerPointerAsync(CancellationToken cancellationToken) => SwitchControllerPointerAsync(cancellationToken);
+    /// <inheritdoc/>
+    public HostProcessState HostProcessState => _core.HostProcessState;
+    /// <inheritdoc/>
+    public int? HostProcessId => _core.HostProcessId;
+}

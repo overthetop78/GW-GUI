@@ -15,12 +15,9 @@ namespace GWGUI.MediaEngine.Images.Formats.HardDisk.Vhdx;
 /// <summary>Reads autonomous VHDX images after validating their active structures.</summary>
 public sealed class VhdxReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { HardDiskImageFormatIds.Vhdx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.HardDisk }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { HardDiskImageFormatIds.Vhdx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.HardDisk }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
     private static readonly IReadOnlyList<ReadOnlyMemory<byte>> SupportedSignatures = [VhdxFormat.FileSignature];
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
@@ -31,39 +28,18 @@ public sealed class VhdxReader : IMediaImageReader
     IReadOnlySet<MediaRepresentationKind> IMediaImageReader.RepresentationKinds => SupportedRepresentationKinds;
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
-    {
-        if (context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId)) return false;
-        try
-        {
-            await ReadStructuresAsync(context, cancellationToken).ConfigureAwait(false);
-            return true;
-        }
-        catch (InvalidDataException)
-        {
-            return false;
-        }
-        catch (NotSupportedException)
-        {
-            return false;
-        }
-    }
+    ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
+        => MediaRecognitionRegistry.CanReadAsync(context, SupportedFormatIds,
+            static (source, token) => new ValueTask<VhdxStructures>(ReadStructuresAsync(source, token)), cancellationToken);
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var structures = await ReadStructuresAsync(context, cancellationToken).ConfigureAwait(false);
         var source = new FileRandomAccessData(context.Source.PrimaryPath);
         if (source.Length != context.Length) throw new InvalidDataException("The VHDX length changed after recognition.");
         var ranges = await ReadBatRangesAsync(context, source, structures, cancellationToken).ConfigureAwait(false);
-        var representation = new BlockMediaImageRepresentation(
-            structures.VirtualDiskSize,
-            structures.LogicalSectorSize,
-            ranges);
-        var variant = (structures.FileParametersFlags & HardDiskFormatConstants.VhdxFileParametersLeaveBlocksAllocated) != 0
-            ? HardDiskImageVariant.Fixed
-            : HardDiskImageVariant.Dynamic;
+        var representation = new BlockMediaImageRepresentation(structures.VirtualDiskSize, structures.LogicalSectorSize, ranges);
+        var variant = (structures.FileParametersFlags & HardDiskFormatConstants.VhdxFileParametersLeaveBlocksAllocated) != 0 ? HardDiskImageVariant.Fixed : HardDiskImageVariant.Dynamic;
         return new MediaImageDocument(
             context.Source,
             HardDiskImageFormatIds.Vhdx,
@@ -79,9 +55,7 @@ public sealed class VhdxReader : IMediaImageReader
             });
     }
 
-    private static async Task<VhdxStructures> ReadStructuresAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    private static async Task<VhdxStructures> ReadStructuresAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.Length < HardDiskFormatConstants.VhdxRegionTable2Offset + HardDiskFormatConstants.VhdxRegionTableSize)
             throw new InvalidDataException("The file is too short to contain mandatory VHDX structures.");
@@ -105,29 +79,17 @@ public sealed class VhdxReader : IMediaImageReader
         var metadata = await ReadMetadataAsync(context, metadataRegion, cancellationToken).ConfigureAwait(false);
         if ((metadata.FileParametersFlags & HardDiskFormatConstants.VhdxFileParametersHasParent) != 0)
             throw new NotSupportedException("Differencing VHDX images require a parent resolver that is not registered.");
-        return new VhdxStructures(
-            batRegion,
-            metadata.BlockSize,
-            metadata.FileParametersFlags,
-            metadata.VirtualDiskSize,
-            metadata.LogicalSectorSize,
-            metadata.PhysicalSectorSize,
-            metadata.Page83Id);
+        return new VhdxStructures(batRegion, metadata.BlockSize, metadata.FileParametersFlags, metadata.VirtualDiskSize, metadata.LogicalSectorSize, metadata.PhysicalSectorSize, metadata.Page83Id);
     }
 
-    private static async ValueTask<VhdxHeader?> TryReadHeaderAsync(
-        MediaRecognitionContext context,
-        long offset,
-        CancellationToken cancellationToken)
+    private static async ValueTask<VhdxHeader?> TryReadHeaderAsync(MediaRecognitionContext context, long offset, CancellationToken cancellationToken)
     {
         var memory = await context.ReadAsync(offset, HardDiskFormatConstants.VhdxHeaderSize, cancellationToken).ConfigureAwait(false);
         var header = memory.Span;
         if (!header[..4].SequenceEqual(VhdxFormat.HeaderSignature.Span)) return null;
         if (!HasValidCrc(header, 4)) return null;
         if (BinaryPrimitives.ReadUInt16LittleEndian(header[66..68]) != 1) return null;
-        return new VhdxHeader(
-            BinaryPrimitives.ReadUInt64LittleEndian(header[8..16]),
-            new Guid(header[48..64]));
+        return new VhdxHeader(BinaryPrimitives.ReadUInt64LittleEndian(header[8..16]), new Guid(header[48..64]));
     }
 
     private static VhdxHeader SelectHeader(VhdxHeader? first, VhdxHeader? second)
@@ -138,10 +100,7 @@ public sealed class VhdxReader : IMediaImageReader
         return first.SequenceNumber >= second.SequenceNumber ? first : second;
     }
 
-    private static async ValueTask<Dictionary<Guid, VhdxRegion>> TryReadRegionTableAsync(
-        MediaRecognitionContext context,
-        long offset,
-        CancellationToken cancellationToken)
+    private static async ValueTask<Dictionary<Guid, VhdxRegion>> TryReadRegionTableAsync(MediaRecognitionContext context, long offset, CancellationToken cancellationToken)
     {
         var memory = await context.ReadAsync(offset, HardDiskFormatConstants.VhdxRegionTableSize, cancellationToken).ConfigureAwait(false);
         var table = memory.Span;
@@ -170,10 +129,7 @@ public sealed class VhdxReader : IMediaImageReader
         return regions;
     }
 
-    private static async Task<VhdxMetadata> ReadMetadataAsync(
-        MediaRecognitionContext context,
-        VhdxRegion region,
-        CancellationToken cancellationToken)
+    private static async Task<VhdxMetadata> ReadMetadataAsync(MediaRecognitionContext context, VhdxRegion region, CancellationToken cancellationToken)
     {
         var header = await context.ReadAsync(region.Offset, 64 * 1_024, cancellationToken).ConfigureAwait(false);
         if (!header.Span[..8].SequenceEqual(VhdxFormat.MetadataTableSignature.Span))
@@ -238,20 +194,10 @@ public sealed class VhdxReader : IMediaImageReader
             throw new InvalidDataException("The VHDX sector size is unsupported.");
         if (virtualSize == 0 || virtualSize > long.MaxValue || virtualSize % logicalSectorSize != 0)
             throw new InvalidDataException("The VHDX virtual disk size is invalid.");
-        return new VhdxMetadata(
-            checked((int)blockSize.Value),
-            fileFlags.Value,
-            (long)virtualSize.Value,
-            checked((int)logicalSectorSize.Value),
-            checked((int)physicalSectorSize.Value),
-            page83Id.Value);
+        return new VhdxMetadata(checked((int)blockSize.Value), fileFlags.Value, (long)virtualSize.Value, checked((int)logicalSectorSize.Value), checked((int)physicalSectorSize.Value), page83Id.Value);
     }
 
-    private static async Task<IReadOnlyList<MediaDataRange>> ReadBatRangesAsync(
-        MediaRecognitionContext context,
-        FileRandomAccessData source,
-        VhdxStructures structures,
-        CancellationToken cancellationToken)
+    private static async Task<IReadOnlyList<MediaDataRange>> ReadBatRangesAsync(MediaRecognitionContext context, FileRandomAccessData source, VhdxStructures structures, CancellationToken cancellationToken)
     {
         var payloadBlockCount = checked((structures.VirtualDiskSize + structures.BlockSize - 1) / structures.BlockSize);
         var chunkRatio = checked((1L << 23) * structures.LogicalSectorSize / structures.BlockSize);
@@ -272,18 +218,18 @@ public sealed class VhdxReader : IMediaImageReader
             switch (state)
             {
                 case HardDiskFormatConstants.VhdxBatZero:
-                    AddRange(ranges, address, length, MediaDataRangeKind.Zero);
+                    BlockMediaImageRepresentation.AddRange(ranges, address, length, MediaDataRangeKind.Zero);
                     break;
                 case HardDiskFormatConstants.VhdxBatNotPresent:
                 case HardDiskFormatConstants.VhdxBatUndefined:
                 case HardDiskFormatConstants.VhdxBatUnmapped:
-                    AddRange(ranges, address, length, MediaDataRangeKind.Unallocated);
+                    BlockMediaImageRepresentation.AddRange(ranges, address, length, MediaDataRangeKind.Unallocated);
                     break;
                 case HardDiskFormatConstants.VhdxBatFullyPresent:
                     var fileOffset = checked((long)(entry & HardDiskFormatConstants.VhdxBatFileOffsetMask));
                     if (fileOffset > context.Length - length)
                         throw new InvalidDataException($"VHDX BAT entry {batIndex} points outside the file.");
-                    AddRange(ranges, address, length, MediaDataRangeKind.Stored, source, fileOffset);
+                    BlockMediaImageRepresentation.AddRange(ranges, address, length, MediaDataRangeKind.Stored, source, fileOffset);
                     break;
                 case HardDiskFormatConstants.VhdxBatPartiallyPresent:
                     throw new NotSupportedException("Partially present VHDX payload blocks require sector bitmap resolution.");
@@ -304,43 +250,8 @@ public sealed class VhdxReader : IMediaImageReader
 
     private static bool IsPowerOfTwo(uint value) => value != 0 && (value & (value - 1)) == 0;
 
-    private static void AddRange(
-        List<MediaDataRange> ranges,
-        long address,
-        long length,
-        MediaDataRangeKind kind,
-        FileRandomAccessData? source = null,
-        long sourceOffset = 0)
-    {
-        if (ranges.Count > 0)
-        {
-            var previous = ranges[^1];
-            var sourceContinues = kind != MediaDataRangeKind.Stored
-                || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
-            if (previous.Kind == kind && previous.Address + previous.Length == address && sourceContinues)
-            {
-                ranges[^1] = new MediaDataRange(previous.Address, previous.Length + length, kind, previous.Source, previous.SourceOffset);
-                return;
-            }
-        }
-        ranges.Add(new MediaDataRange(address, length, kind, source, sourceOffset));
-    }
-
     private sealed record VhdxHeader(ulong SequenceNumber, Guid LogGuid);
     private sealed record VhdxRegion(long Offset, uint Length);
-    private sealed record VhdxMetadata(
-        int BlockSize,
-        uint FileParametersFlags,
-        long VirtualDiskSize,
-        int LogicalSectorSize,
-        int PhysicalSectorSize,
-        Guid Page83Id);
-    private sealed record VhdxStructures(
-        VhdxRegion BatRegion,
-        int BlockSize,
-        uint FileParametersFlags,
-        long VirtualDiskSize,
-        int LogicalSectorSize,
-        int PhysicalSectorSize,
-        Guid Page83Id);
+    private sealed record VhdxMetadata(int BlockSize, uint FileParametersFlags, long VirtualDiskSize, int LogicalSectorSize, int PhysicalSectorSize, Guid Page83Id);
+    private sealed record VhdxStructures(VhdxRegion BatRegion, int BlockSize, uint FileParametersFlags, long VirtualDiskSize, int LogicalSectorSize, int PhysicalSectorSize, Guid Page83Id);
 }

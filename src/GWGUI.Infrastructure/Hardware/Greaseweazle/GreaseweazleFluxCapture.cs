@@ -4,11 +4,7 @@ namespace GWGUI.Infrastructure.Hardware.Greaseweazle;
 
 public sealed record GreaseweazleFluxCapture
 {
-    public GreaseweazleFluxCapture(
-        IReadOnlyList<uint> fluxIntervals,
-        IReadOnlyList<uint> indexIntervals,
-        uint sampleFrequency,
-        IReadOnlyList<byte> rawStream)
+    public GreaseweazleFluxCapture(IReadOnlyList<uint> fluxIntervals, IReadOnlyList<uint> indexIntervals, uint sampleFrequency, IReadOnlyList<byte> rawStream)
     {
         ArgumentNullException.ThrowIfNull(fluxIntervals);
         ArgumentNullException.ThrowIfNull(indexIntervals);

@@ -29,11 +29,34 @@
   <data name="Emulation.Controller.Action.Fire2"><value>Botão de disparo 2</value></data>
   <data name="Emulation.Controller.AnalogJoystick"><value>Joystick analógico</value></data>
   <data name="Emulation.Controller.Automatic"><value>Automático</value></data>
-  <data name="Emulation.Controller.None"><value>Nenhuma</value></data>
+  <data name="Emulation.Controller.None"><value>Nenhum</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Mudar joystick/rato</value></data>
   <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Não foi possível inicializar o GameInput. Instale ou repare o runtime do GameInput incluído.</value></data>
   <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (esquerda)</value></data>
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (mão direita)</value></data>
-  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Visual</value></data>
+  <data name="Emulation.Controller.Visual"><value>Visual</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Controlador {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Dispositivo de indicação</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Simulação de voo</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Simulação de corrida</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Simulação de dança</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Simulação de canto</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Outros periféricos de simulação</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>Vibração forte</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>Vibração fraca</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>Recarregar</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Cor da mira</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Tapete de dança</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Configure o teclado na aba Teclado.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Configurar o rato na página do rato.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Tipo de dispositivo</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>Controlador utilizado para vibrações</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>Atribuições de varas e eixos</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>Vara {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>Teclado ou atribuições personalizadas</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>Vara esquerda</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>Vara direita</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>Eixo {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>Eixos {0} // {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>Atribuições salvas</value></data>
 </root>

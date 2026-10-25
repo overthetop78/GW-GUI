@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Help.AyStereoSeparation" xml:space="preserve"><value>选择顺序 AY 音道在立体输出中。</value></data>
+  <data name="Emulation.Sinclair.Help.AyVolume" xml:space="preserve"><value>调整 AY 声音芯片。</value></data>
+  <data name="Emulation.Sinclair.Help.BeeperVolume" xml:space="preserve"><value>调整内置声音生成器的音量 。</value></data>
+  <data name="Emulation.Sinclair.Help.BorderSize" xml:space="preserve"><value>选择显示屏幕边框的多长 。</value></data>
+  <data name="Emulation.Sinclair.Help.Chroma81" xml:space="preserve"><value>模拟克罗玛81色彩图形扩展.</value></data>
+  <data name="Emulation.Sinclair.Help.EmulationSpeed" xml:space="preserve"><value>选择模拟速度作为原速度的百分比。</value></data>
+  <data name="Emulation.Sinclair.Help.FullerBox" xml:space="preserve"><value>模拟 Fuller Box 声音和乐杆扩展名 。</value></data>
+  <data name="Emulation.Sinclair.Help.HighResolution" xml:space="preserve"><value>选择高分辨率图形扩展名 。</value></data>
+  <data name="Emulation.Sinclair.Help.Issue2Keyboard" xml:space="preserve"><value>模拟"问题2"硬件的键盘行为.</value></data>
+  <data name="Emulation.Sinclair.Help.MemoryBankContent" xml:space="preserve"><value>选择存储库的内容从 8 到 16 KiB 。</value></data>
+  <data name="Emulation.Sinclair.Help.MouseSwapButtons" xml:space="preserve"><value>交换模拟鼠标的左右按钮 。</value></data>
+  <data name="Emulation.Sinclair.Help.Palette" xml:space="preserve"><value>选择显示颜色所用的调色板 。</value></data>
+  <data name="Emulation.Sinclair.Help.SoundHardware" xml:space="preserve"><value>选择模拟的音效硬件 。</value></data>
+  <data name="Emulation.Sinclair.Help.SpeakerType" xml:space="preserve"><value>选择用于模拟扬声器的过滤器 。</value></data>
+  <data name="Emulation.Sinclair.Help.TapeAutoLoad" xml:space="preserve"><value>开始自动装入磁带。</value></data>
+  <data name="Emulation.Sinclair.Help.TapeFastLoad" xml:space="preserve"><value>更快地装入磁带数据 。</value></data>
+  <data name="Emulation.Sinclair.Help.TapeLoadSound" xml:space="preserve"><value>播放在装入磁带数据时产生的声音 。</value></data>
+  <data name="Emulation.Sinclair.Help.TurboSound" xml:space="preserve"><value>以两个模拟涡轮声波扩展 AY 筹码.</value></data>
+  <data name="Emulation.Sinclair.Help.USpeech" xml:space="preserve"><value>模拟 Currah uSpeech 语音扩展名。 需要的固件文件必须存在 。</value></data>
+  <data name="Emulation.Sinclair.Help.VideoPreset" xml:space="preserve"><value>选择模拟视频信号的外观 。</value></data>
+  <data name="Emulation.Sinclair.Help.Melodik" xml:space="preserve"><value>模拟 MELODIK 音效扩展名。</value></data>
+</root>

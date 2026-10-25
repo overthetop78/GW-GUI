@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Error.ContentNotFound" xml:space="preserve"><value>ไม่พบสื่อที่ปรับแต่งความคมชัด</value></data>
+  <data name="Emulation.Sharp.Error.ContentUnsupported" xml:space="preserve"><value>เครื่องนี้ไม่รองรับสื่อที่เลือก</value></data>
+  <data name="Emulation.Sharp.Error.CoreNotFound" xml:space="preserve"><value>ไม่พบแกนคมที่ต้องการ</value></data>
+  <data name="Emulation.Sharp.Error.CoreRejected" xml:space="preserve"><value>ไม่สามารถโหลดแกนหลักของ% 1 ได้</value></data>
+  <data name="Emulation.Sharp.Error.Details" xml:space="preserve"><value>รายละเอียด: {0}</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareInvalid" xml:space="preserve"><value>ระบบ ROM ไม่สมบูรณ์หรือเข้ากันไม่ได้</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareMissing" xml:space="preserve"><value>แผงควบคุมการคมชัดหายไป</value></data>
+  <data name="Emulation.Sharp.Error.HostExecutableMissing" xml:space="preserve"><value>ไม่สามารถประมวลผลพาธของโฮสต์ได้</value></data>
+  <data name="Emulation.Sharp.Error.HostProtocolFailure" xml:space="preserve"><value>การสื่อสารกับโฮสต์ที่คมชัดล้มเหลว</value></data>
+  <data name="Emulation.Sharp.Error.OptionInvalid" xml:space="preserve"><value>ตัวเลือกที่ใช้คมมีค่าที่ไม่ถูกต้อง</value></data>
+  <data name="Emulation.Sharp.Error.StateIncompatible" xml:space="preserve"><value>การบันทึกของรัฐคมชัดไม่ เข้ากันได้กับเครื่องปัจจุบัน</value></data>
+  <data name="Emulation.Sharp.Error.StateInvalid" xml:space="preserve"><value>รัฐที่รักษาคมชัดไม่ถูกต้อง</value></data>
+  <data name="Emulation.Sharp.Error.Unexpected" xml:space="preserve"><value>เกิดข้อผิดพลาดในการถอดความคมที่ไม่คาดคิด</value></data>
+  <data name="Emulation.Sharp.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>ไม่รู้จักคําสั่งสภาพแวดล้อม: {0}</value></data>
+</root>

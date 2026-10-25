@@ -1,8 +1,9 @@
-using PartitionTableIds = global::GWGUI.MediaEngine.Constants.PartitionTableIds;
+using PartitionTableIds = GWGUI.MediaEngine.Constants.PartitionTableIds;
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Contracts.Rendering.Blocks;
 using GWGUI.App.Contracts.ViewModels.Visualization;
 using GWGUI.App.Enums.Rendering.Blocks;
+using GWGUI.App.Functions.Storage;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Enums;
@@ -18,8 +19,8 @@ public sealed class BlockMediaInspectorPresenter(Func<string, object[], string> 
         ArgumentNullException.ThrowIfNull(document);
         if (document.Representation is not BlockMediaImageRepresentation blocks)
             throw new ArgumentException("A block media representation is required.", nameof(document));
-        var logicalLength = blocks.LogicalLength
-            ?? throw new InvalidDataException("A block media representation must declare its logical length.");
+        var logicalLength = blocks.LogicalLength ?? throw new InvalidDataException("A block media representation must declare its logical length.");
+        var cartridge = document.MediaKind == MediaKind.Cartridge;
 
         var boundaries = new SortedSet<long> { 0, logicalLength };
         foreach (var sourceRange in blocks.Ranges)
@@ -40,62 +41,66 @@ public sealed class BlockMediaInspectorPresenter(Func<string, object[], string> 
             var start = points[index];
             var end = points[index + 1];
             if (end <= start) continue;
-            var sourceRange = blocks.Ranges.FirstOrDefault(item =>
-                item.Address <= start && item.Address + item.Length >= end);
-            var volume = document.Volumes.FirstOrDefault(item =>
-                item.Start <= start && item.Start + item.Length >= end);
-            var state = sourceRange is null || sourceRange.Kind == MediaDataRangeKind.Unavailable
-                ? BlockMediaRangeState.Unknown
-                : volume?.PartitionTable is PartitionTableIds.Mbr or PartitionTableIds.Gpt
-                    ? BlockMediaRangeState.Allocated
-                    : BlockMediaRangeState.Available;
+            var sourceRange = blocks.Ranges.FirstOrDefault(item => item.Address <= start && item.Address + item.Length >= end);
+            var volume = document.Volumes.FirstOrDefault(item => item.Start <= start && item.Start + item.Length >= end);
+            var state = sourceRange is null || sourceRange.Kind == MediaDataRangeKind.Unavailable ? BlockMediaRangeState.Unknown : volume?.PartitionTable is PartitionTableIds.Mbr or PartitionTableIds.Gpt ? BlockMediaRangeState.Allocated : BlockMediaRangeState.Available;
             AddRange(ranges, new BlockMediaRange(
                 start / blocks.LogicalBlockSize,
                 (end - start) / blocks.LogicalBlockSize,
                 state,
                 volume?.PartitionTable,
                 volume?.PartitionNumber,
-                volume?.FileSystemId));
+                volume?.FileSystemId,
+                cartridge ? CartridgeBankLabel(document.Metadata, start) : null),
+                mergeAdjacent: !cartridge);
         }
 
-        var geometry = blocks.Geometry is null
-            ? null
-            : new BlockMediaGeometry(
-                blocks.Geometry.Cylinders,
-                blocks.Geometry.Heads,
-                blocks.Geometry.SectorsPerTrack);
-        return new(blocks.LogicalBlockCount, ranges, geometry);
+        var geometry = blocks.Geometry is null ? null : new BlockMediaGeometry(blocks.Geometry.Cylinders, blocks.Geometry.Heads, blocks.Geometry.SectorsPerTrack);
+        return new(blocks.LogicalBlockCount, ranges, geometry, cartridge ? BlockMediaShape.Cartridge : BlockMediaShape.Circular, blocks.LogicalBlockSize);
     }
 
     public MediaInspectorModel BuildInspectorModel(BlockMediaRenderModel model, BlockMediaRange? range, int? surface = null)
     {
         ArgumentNullException.ThrowIfNull(model);
-        var sections = new List<MediaInspectorSection>
-        {
-            new(Localize("Visual.SummaryTab"), ControlVisualConstants.InformationGlyph,
+        var cartridge = model.Shape == BlockMediaShape.Cartridge;
+        var capacityBytes = checked(model.LogicalLength * model.LogicalBlockSize);
+        var summaryEntries = cartridge
+            ? new MediaInspectorEntry[]
+            {
+                new(Localize("Visual.CapacityLabel"), StorageSizeFormatter.FormatBytes(capacityBytes))
+            }
+            :
             [
                 new(Localize("Visual.CapacityLabel"), model.LogicalLength.ToString("N0"), Localize("Visual.BlocksUnit")),
                 new(Localize("Visual.AddressingLabel"), "LBA")
-            ])
+            ];
+        var sections = new List<MediaInspectorSection>
+        {
+            new(Localize("Visual.SummaryTab"), ControlVisualConstants.InformationGlyph, summaryEntries)
         };
 
         if (range is not null)
         {
-            var entries = new List<MediaInspectorEntry>
+            var entries = cartridge
+                ? new List<MediaInspectorEntry>
+                {
+                    new(Localize("Visual.SizeLabel"), StorageSizeFormatter.FormatBytes(checked(range.Length * model.LogicalBlockSize))),
+                    new(Localize("Visual.StateLabel"), Localize("Visual.BlockState." + range.State))
+                }
+                :
+                [
+                    new(Localize("Visual.StartLabel"), range.Start.ToString("N0"), "LBA"),
+                    new(Localize("Visual.LengthLabel"), range.Length.ToString("N0"), Localize("Visual.BlocksUnit")),
+                    new(Localize("Visual.StateLabel"), Localize("Visual.BlockState." + range.State)),
+                    new(Localize("Visual.PartitionTableLabel"), string.IsNullOrWhiteSpace(range.PartitionTable) ? Localize("Visual.PartitionTable.None") : range.PartitionTable.ToUpperInvariant())
+                ];
+            if (!cartridge)
             {
-                new(Localize("Visual.StartLabel"), range.Start.ToString("N0"), "LBA"),
-                new(Localize("Visual.LengthLabel"), range.Length.ToString("N0"), Localize("Visual.BlocksUnit")),
-                new(Localize("Visual.StateLabel"), Localize("Visual.BlockState." + range.State))
-            };
-            entries.Add(new(
-                Localize("Visual.PartitionTableLabel"),
-                string.IsNullOrWhiteSpace(range.PartitionTable)
-                    ? Localize("Visual.PartitionTable.None")
-                    : range.PartitionTable.ToUpperInvariant()));
-            if (range.PartitionNumber is { } partitionNumber)
-                entries.Add(new(Localize("Visual.PartitionNumberLabel"), partitionNumber.ToString()));
-            if (!string.IsNullOrWhiteSpace(range.FileSystemId))
-                entries.Add(new(Localize("Visual.FileSystemLabel"), range.FileSystemId));
+                if (range.PartitionNumber is { } partitionNumber)
+                    entries.Add(new(Localize("Visual.PartitionNumberLabel"), partitionNumber.ToString()));
+                if (!string.IsNullOrWhiteSpace(range.FileSystemId))
+                    entries.Add(new(Localize("Visual.FileSystemLabel"), range.FileSystemId));
+            }
             sections.Add(new(Localize("Visual.RangeTitle"), ControlVisualConstants.InformationGlyph, entries));
         }
 
@@ -112,25 +117,34 @@ public sealed class BlockMediaInspectorPresenter(Func<string, object[], string> 
             sections.Add(new(Localize("Visual.ChsGeometryTitle"), ControlVisualConstants.InformationGlyph, entries));
         }
 
-        return new(
-            Localize("Visual.BlockInspectorTitle"),
-            range is null ? null : $"LBA {range.Start:N0} · {range.Length:N0}",
-            sections);
+        return new(Localize("Visual.BlockInspectorTitle"), range is null ? null : cartridge ? range.Label : range.Label ?? $"LBA {range.Start:N0} · {range.Length:N0}", sections);
+    }
+
+    private static string? CartridgeBankLabel(IReadOnlyDictionary<string, string> metadata, long address)
+    {
+        if (!metadata.TryGetValue("bankSize", out var bankSizeText)
+            || !long.TryParse(bankSizeText, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var bankSize)
+            || bankSize <= 0
+            || address % bankSize != 0)
+            return null;
+        var bank = address / bankSize;
+        return metadata.TryGetValue($"bank.{bank}.chunkId", out var chunkId) ? chunkId : $"bank{bank:D2}";
     }
 
     private string Localize(string key, params object[] arguments) => localize(key, arguments);
 
-    private static void AddRange(List<BlockMediaRange> ranges, BlockMediaRange range)
+    private static void AddRange(List<BlockMediaRange> ranges, BlockMediaRange range, bool mergeAdjacent)
     {
         if (range.Length <= 0) return;
-        if (ranges.Count > 0)
+        if (mergeAdjacent && ranges.Count > 0)
         {
             var previous = ranges[^1];
             if (previous.Start + previous.Length == range.Start
                 && previous.State == range.State
                 && previous.PartitionTable == range.PartitionTable
                 && previous.PartitionNumber == range.PartitionNumber
-                && previous.FileSystemId == range.FileSystemId)
+                && previous.FileSystemId == range.FileSystemId
+                && previous.Label == range.Label)
             {
                 ranges[^1] = previous with { Length = previous.Length + range.Length };
                 return;

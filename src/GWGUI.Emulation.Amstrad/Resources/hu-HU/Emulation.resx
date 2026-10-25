@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.caprice32.Description"><value>Emulátok Amstrad CPC, CPC Plusz és GX4000 rendszerek.</value></data>
+  <data name="Emulation.Amstrad.Language"><value>CPC rendszernyelv</value></data>
+  <data name="Emulation.Amstrad.Language.English"><value>Angol nyelv</value></data>
+  <data name="Emulation.Amstrad.Language.French"><value>Francia</value></data>
+  <data name="Emulation.Amstrad.Language.Spanish"><value>Spanyol</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor"><value>Monitor típusa</value></data>
+  <data name="Emulation.Amstrad.Video.Intensity"><value>Monitor intenzitás</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Color"><value>Szín</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Green"><value>Zöld monokróm</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.White"><value>Fehér monokróm</value></data>
+  <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM az emulátorba épített</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>Emulálja az Amstrad CPC 6128 építményét a ROM-ban, és támogatja a lemezképeket és pillanatfelvételeket.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Monitor típusa</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Képkeret</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Gyorshack</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Automatikus</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>Overscan</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Engedélyezett</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Letiltva</value></data>
+</root>

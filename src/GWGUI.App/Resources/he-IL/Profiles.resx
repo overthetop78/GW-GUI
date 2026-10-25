@@ -18,5 +18,5 @@
   <data name="Profile.SystemDelete"><value>פרופיל ברירת המחדל הוא קבוע ולא ניתן למחוק אותו.</value></data>
   <data name="Profile.DuplicateName"><value>לפרופיל בכרטיסייה זו כבר יש את השם הזה.</value></data>
   <data name="Profile.Replace"><value>הפרופיל הזה כבר קיים. להחליף אותו?</value></data>
-  <data name="Profile.DeleteConfirm"><value>למחוק את הפרופיל &quot;{0}&quot;?</value></data>
+  <data name="Profile.DeleteConfirm"><value>למחוק את הפרופיל "{0}"?</value></data>
 </root>

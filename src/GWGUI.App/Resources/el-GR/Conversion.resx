@@ -34,4 +34,6 @@
   <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Αποτυχία εσωτερικής μετατροπής για {0}: {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>Πιθανή απώλεια δεδομένων</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>Αυτή η μετατροπή δεν μπορεί να διατηρήσει όλες τις πληροφορίες πηγής:&#xA;&#xA;{0}&#xA;&#xA;Θέλεις να συνεχίσεις;</value></data>
+  <data name="Conversion.OutputCollision"><value>Αρκετές μετατροπές θα δημιουργήσουν το ίδιο αρχείο '{0}'. Αυτή η επιλογή δεν είναι δυνατή εκτός αν'{1}- Το έλεγξα.</value></data>
+  <data name="Conversion.Failed"><value>Αποτυχία μετατροπής για {0}: {1}</value></data>
 </root>

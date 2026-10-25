@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.theodore.Description"><value>模擬 Thomson MO / TO。</value></data>
+  <data name="Emulation.Thomson.Start" xml:space="preserve"><value>程序启动</value></data>
+  <data name="Emulation.Thomson.Start.AutoRun" xml:space="preserve"><value>自动启动已装入的程序</value></data>
+  <data name="Emulation.Thomson.Start.UseGameHash" xml:space="preserve"><value>以校验和识别程序</value></data>
+  <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>显示启动程序的指示</value></data>
+  <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>打印机</value></data>
+  <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>将打印机输出保存到文件</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>光筆</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>光筆接觸</value></data>
+</root>

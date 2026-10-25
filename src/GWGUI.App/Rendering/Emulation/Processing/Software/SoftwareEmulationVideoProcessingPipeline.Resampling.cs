@@ -8,8 +8,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 
 internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulationVideoProcessingPipeline
 {
-    private static float[] Resample(float[] source, int sourceWidth, int sourceHeight,
-        int outputWidth, int outputHeight, EmulationVideoSampling sampling)
+    private static float[] Resample(float[] source, int sourceWidth, int sourceHeight, int outputWidth, int outputHeight, EmulationVideoSampling sampling)
     {
         if (sourceWidth == outputWidth && sourceHeight == outputHeight) return source;
         var output = new float[checked(outputWidth * outputHeight * 3)];
@@ -23,92 +22,66 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
                 var sourceX = (x + 0.5f) / scaleX - 0.5f;
                 if (sampling == EmulationVideoSampling.Xbr)
                 {
-                    FilterXbr.Sample(source, sourceWidth, sourceHeight,
-                        sourceX + 0.5f, sourceY + 0.5f,
-                        output.AsSpan((y * outputWidth + x) * 3, 3));
+                    FilterXbr.Sample(source, sourceWidth, sourceHeight, sourceX + 0.5f, sourceY + 0.5f, output.AsSpan((y * outputWidth + x) * 3, 3));
                     continue;
                 }
                 if (sampling == EmulationVideoSampling.Xbrz)
                 {
-                    FilterXbrz.Sample(source, sourceWidth, sourceHeight,
-                        sourceX + 0.5f, sourceY + 0.5f,
-                        output.AsSpan((y * outputWidth + x) * 3, 3));
+                    FilterXbrz.Sample(source, sourceWidth, sourceHeight, sourceX + 0.5f, sourceY + 0.5f, output.AsSpan((y * outputWidth + x) * 3, 3));
                     continue;
                 }
                 if (sampling == EmulationVideoSampling.Hqx)
                 {
-                    FilterHqx.Sample(source, sourceWidth, sourceHeight,
-                        sourceX + 0.5f, sourceY + 0.5f,
-                        output.AsSpan((y * outputWidth + x) * 3, 3));
+                    FilterHqx.Sample(source, sourceWidth, sourceHeight, sourceX + 0.5f, sourceY + 0.5f, output.AsSpan((y * outputWidth + x) * 3, 3));
                     continue;
                 }
                 if (sampling == EmulationVideoSampling.Hq2x)
                 {
-                    FilterHq2x.Sample(source, sourceWidth, sourceHeight,
-                        sourceX + 0.5f, sourceY + 0.5f,
-                        output.AsSpan((y * outputWidth + x) * 3, 3));
+                    FilterHq2x.Sample(source, sourceWidth, sourceHeight, sourceX + 0.5f, sourceY + 0.5f, output.AsSpan((y * outputWidth + x) * 3, 3));
                     continue;
                 }
                 if (sampling == EmulationVideoSampling.Hq3x)
                 {
-                    FilterHq3x.Sample(source, sourceWidth, sourceHeight,
-                        sourceX + 0.5f, sourceY + 0.5f,
-                        output.AsSpan((y * outputWidth + x) * 3, 3));
+                    FilterHq3x.Sample(source, sourceWidth, sourceHeight, sourceX + 0.5f, sourceY + 0.5f, output.AsSpan((y * outputWidth + x) * 3, 3));
                     continue;
                 }
                 if (sampling == EmulationVideoSampling.Hq4x)
                 {
-                    FilterHq4x.Sample(source, sourceWidth, sourceHeight,
-                        sourceX + 0.5f, sourceY + 0.5f,
-                        output.AsSpan((y * outputWidth + x) * 3, 3));
+                    FilterHq4x.Sample(source, sourceWidth, sourceHeight, sourceX + 0.5f, sourceY + 0.5f, output.AsSpan((y * outputWidth + x) * 3, 3));
                     continue;
                 }
                 if (sampling == EmulationVideoSampling.TwoXSai)
                 {
-                    FilterTwoXSai.Sample(source, sourceWidth, sourceHeight,
-                        sourceX + 0.5f, sourceY + 0.5f,
-                        output.AsSpan((y * outputWidth + x) * 3, 3));
+                    FilterTwoXSai.Sample(source, sourceWidth, sourceHeight, sourceX + 0.5f, sourceY + 0.5f, output.AsSpan((y * outputWidth + x) * 3, 3));
                     continue;
                 }
                 if (sampling == EmulationVideoSampling.SuperTwoXSai)
                 {
-                    FilterSuperTwoXSai.Sample(source, sourceWidth, sourceHeight,
-                        sourceX + 0.5f, sourceY + 0.5f,
-                        output.AsSpan((y * outputWidth + x) * 3, 3));
+                    FilterSuperTwoXSai.Sample(source, sourceWidth, sourceHeight, sourceX + 0.5f, sourceY + 0.5f, output.AsSpan((y * outputWidth + x) * 3, 3));
                     continue;
                 }
                 if (sampling == EmulationVideoSampling.SuperEagle)
                 {
-                    FilterSuperEagle.Sample(source, sourceWidth, sourceHeight,
-                        sourceX + 0.5f, sourceY + 0.5f,
-                        output.AsSpan((y * outputWidth + x) * 3, 3));
+                    FilterSuperEagle.Sample(source, sourceWidth, sourceHeight, sourceX + 0.5f, sourceY + 0.5f, output.AsSpan((y * outputWidth + x) * 3, 3));
                     continue;
                 }
                 if (sampling == EmulationVideoSampling.EpxScale2x)
                 {
-                    FilterEpxScale2x.Sample(source, sourceWidth, sourceHeight,
-                        sourceX + 0.5f, sourceY + 0.5f,
-                        output.AsSpan((y * outputWidth + x) * 3, 3));
+                    FilterEpxScale2x.Sample(source, sourceWidth, sourceHeight, sourceX + 0.5f, sourceY + 0.5f, output.AsSpan((y * outputWidth + x) * 3, 3));
                     continue;
                 }                if (sampling == EmulationVideoSampling.ScaleFx)
                 {
-                    FilterScaleFx.Sample(source, sourceWidth, sourceHeight,
-                        sourceX + 0.5f, sourceY + 0.5f,
-                        output.AsSpan((y * outputWidth + x) * 3, 3));
+                    FilterScaleFx.Sample(source, sourceWidth, sourceHeight, sourceX + 0.5f, sourceY + 0.5f, output.AsSpan((y * outputWidth + x) * 3, 3));
                     continue;
                 }
                 if (sampling == EmulationVideoSampling.ScaleNx)
                 {
-                    FilterScaleNx.Sample(source, sourceWidth, sourceHeight,
-                        sourceX + 0.5f, sourceY + 0.5f, scaleX, scaleY,
-                        output.AsSpan((y * outputWidth + x) * 3, 3));
+                    FilterScaleNx.Sample(source, sourceWidth, sourceHeight, sourceX + 0.5f, sourceY + 0.5f, scaleX, scaleY, output.AsSpan((y * outputWidth + x) * 3, 3));
                     continue;
                 }
                 if (sampling == EmulationVideoSampling.Sabr)
                 {
-                    FilterSabr.Sample(source, sourceWidth, sourceHeight,
-                        sourceX + 0.5f, sourceY + 0.5f,
-                        output.AsSpan((y * outputWidth + x) * 3, 3));
+                    FilterSabr.Sample(source, sourceWidth, sourceHeight, sourceX + 0.5f, sourceY + 0.5f, output.AsSpan((y * outputWidth + x) * 3, 3));
                     continue;
                 }
                 for (var channel = 0; channel < 3; channel++)
@@ -116,23 +89,17 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
                     output[(y * outputWidth + x) * 3 + channel] = sampling switch
                     {
                         EmulationVideoSampling.Nearest =>
-                            FilterNormal.Sample(source, sourceWidth, sourceHeight,
-                                sourceX, sourceY, channel),
+                            FilterNormal.Sample(source, sourceWidth, sourceHeight, sourceX, sourceY, channel),
                         EmulationVideoSampling.Bilinear =>
-                            FilterBilinear.Sample(source, sourceWidth, sourceHeight,
-                                sourceX, sourceY, channel),
+                            FilterBilinear.Sample(source, sourceWidth, sourceHeight, sourceX, sourceY, channel),
                         EmulationVideoSampling.SharpBilinear =>
-                            FilterSharpBilinear.Sample(source, sourceWidth, sourceHeight,
-                                sourceX, sourceY, scaleX, scaleY, channel),
+                            FilterSharpBilinear.Sample(source, sourceWidth, sourceHeight, sourceX, sourceY, scaleX, scaleY, channel),
                         EmulationVideoSampling.Bicubic =>
-                            FilterBicubic.Sample(source, sourceWidth, sourceHeight,
-                                sourceX, sourceY, channel),
+                            FilterBicubic.Sample(source, sourceWidth, sourceHeight, sourceX, sourceY, channel),
                         EmulationVideoSampling.Jinc2 =>
-                            FilterJinc2.Sample(source, sourceWidth, sourceHeight,
-                                sourceX, sourceY, channel),
+                            FilterJinc2.Sample(source, sourceWidth, sourceHeight, sourceX, sourceY, channel),
                         EmulationVideoSampling.Lanczos =>
-                            FilterLanczos.Sample(source, sourceWidth, sourceHeight,
-                                sourceX, sourceY, channel),                        _ => throw new ArgumentOutOfRangeException(nameof(sampling), sampling, null)
+                            FilterLanczos.Sample(source, sourceWidth, sourceHeight, sourceX, sourceY, channel),                        _ => throw new ArgumentOutOfRangeException(nameof(sampling), sampling, null)
                     };
                 }
             }
@@ -140,17 +107,6 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
         return output;
     }
 
-
-
-    private static float Sample(float[] source, int width, int height,
-        int x, int y, int channel)
-    {
-        x = Math.Clamp(x, 0, width - 1);
-        y = Math.Clamp(y, 0, height - 1);
-        return source[(y * width + x) * 3 + channel];
-    }
-
-    private static float Lerp(float first, float second, float amount) =>
-        first + (second - first) * amount;
+    private static float Lerp(float first, float second, float amount) => first + (second - first) * amount;
 
 }

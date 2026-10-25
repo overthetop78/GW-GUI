@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Help.AyStereoSeparation" xml:space="preserve"><value>Velg rekkefølgen av AY lydkanaler i stereoutgang.</value></data>
+  <data name="Emulation.Sinclair.Help.AyVolume" xml:space="preserve"><value>Juster volumet til AY Høres ut som en sjikt.</value></data>
+  <data name="Emulation.Sinclair.Help.BeeperVolume" xml:space="preserve"><value>Juster volumet til den innebygde lydgeneratoren.</value></data>
+  <data name="Emulation.Sinclair.Help.BorderSize" xml:space="preserve"><value>Velg hvor mye skjermgrensen vises.</value></data>
+  <data name="Emulation.Sinclair.Help.Chroma81" xml:space="preserve"><value>Etterlikne Chroma 81-fargegrafikkutvidelsen.</value></data>
+  <data name="Emulation.Sinclair.Help.EmulationSpeed" xml:space="preserve"><value>Velg emuleringshastigheten som en prosentdel av den opprinnelige hastigheten.</value></data>
+  <data name="Emulation.Sinclair.Help.FullerBox" xml:space="preserve"><value>Etterlikn Fuller Box lyd og joystick forlengelse.</value></data>
+  <data name="Emulation.Sinclair.Help.HighResolution" xml:space="preserve"><value>Velg en høyoppløselig grafikk forlengelse.</value></data>
+  <data name="Emulation.Sinclair.Help.Issue2Keyboard" xml:space="preserve"><value>Etterlign tastaturadferden til problemet 2 maskinvaren.</value></data>
+  <data name="Emulation.Sinclair.Help.MemoryBankContent" xml:space="preserve"><value>Velg innholdet i minnebanken fra 8 til 16 KiB.</value></data>
+  <data name="Emulation.Sinclair.Help.MouseSwapButtons" xml:space="preserve"><value>Bytt venstre og høyre knapper av den emulerte musen.</value></data>
+  <data name="Emulation.Sinclair.Help.Palette" xml:space="preserve"><value>Velg paletten som brukes i de viste fargene.</value></data>
+  <data name="Emulation.Sinclair.Help.SoundHardware" xml:space="preserve"><value>Velg den emulerte lyd hardware.</value></data>
+  <data name="Emulation.Sinclair.Help.SpeakerType" xml:space="preserve"><value>Velg det filteret som brukes til den emulerte høyttaleren.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeAutoLoad" xml:space="preserve"><value>Start å laste en kassett automatisk.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeFastLoad" xml:space="preserve"><value>Last kassettdata raskere.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeLoadSound" xml:space="preserve"><value>Spill lyden som er produsert under lasting av kassettdata.</value></data>
+  <data name="Emulation.Sinclair.Help.TurboSound" xml:space="preserve"><value>Etterlikne TurboSound-lydutvidelsen med to AY -Chips.</value></data>
+  <data name="Emulation.Sinclair.Help.USpeech" xml:space="preserve"><value>Etterlikn Currah upreciserende taleutvidelse. Begge nødvendige firmware-filer må være til stede.</value></data>
+  <data name="Emulation.Sinclair.Help.VideoPreset" xml:space="preserve"><value>Velg utseendet på det emulerte videosignalet.</value></data>
+  <data name="Emulation.Sinclair.Help.Melodik" xml:space="preserve"><value>etterligne MELODIK Lydutvidelse.</value></data>
+</root>

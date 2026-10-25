@@ -2,13 +2,14 @@ namespace GWGUI.Emulation.HardDisks.Containers;
 
 public static class DiskContainerWriter
 {
-    public static void Write(Stream destination, long capacity, DiskContainerKind kind,
-        Action<Stream>? initialize = null, bool fixedSize = false)
+    public static void Write(Stream destination, long capacity, DiskContainerKind kind, Action<Stream>? initialize = null, bool fixedSize = false) => Write(destination, capacity, kind, initialize, fixedSize, 512);
+
+    public static void Write(Stream destination, long capacity, DiskContainerKind kind, Action<Stream>? initialize, bool fixedSize, int logicalSectorBytes)
     {
         switch (kind)
         {
             case DiskContainerKind.Raw:
-                RawHardDiskImageWriter.Write(destination, capacity, initialize); break;
+                RawHardDiskImageWriter.Write(destination, capacity, initialize, logicalSectorBytes); break;
             case DiskContainerKind.Gzip: GzipImageWriter.Write(destination, capacity, initialize); break;
             case DiskContainerKind.Vhd: VhdImageWriter.Write(destination, capacity, fixedSize, initialize); break;
             case DiskContainerKind.Vhdx: VhdxImageWriter.Write(destination, capacity, fixedSize, initialize); break;

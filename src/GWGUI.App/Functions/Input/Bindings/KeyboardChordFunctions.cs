@@ -1,4 +1,6 @@
 using GWGUI.App.Contracts.Input;
+using GWGUI.App.Functions.Input.Keyboard;
+using GWGUI.Emulation;
 using System.Windows.Input;
 
 namespace GWGUI.App.Functions.Input.Bindings;
@@ -20,37 +22,47 @@ public static class KeyboardChordFunctions
                 case "alt": modifiers |= ModifierKeys.Alt; continue;
                 case "win" or "windows": modifiers |= ModifierKeys.Windows; continue;
             }
-            if (!Enum.TryParse<Key>(part, true, out var key) || key == Key.None || IsModifierKey(key)) return false;
+            if (!Enum.TryParse<Key>(part, true, out var key) || key == Key.None)
+            {
+                if (!Enum.TryParse<EmulationKey>(part, true, out var emulated) || !EmulationKeyMapper.TryMap(emulated, out key)) return false;
+            }
+            modifiers |= ModifierForKey(key);
             if (!keys.Contains(key)) keys.Add(key);
         }
-        if (keys.Count == 0) return false;
+        if (keys.Count == 0 && modifiers == ModifierKeys.None) return false;
         chord = new KeyboardChord(modifiers, keys);
         return true;
     }
 
-    public static bool Matches(KeyboardChord chord, ModifierKeys modifiers, IReadOnlySet<Key> pressed) =>
-        modifiers == chord.Modifiers && chord.Keys.Count == pressed.Count && chord.Keys.All(pressed.Contains);
+    public static bool Matches(KeyboardChord chord, ModifierKeys modifiers, IReadOnlySet<Key> pressed) => modifiers == chord.Modifiers
+        && chord.Keys.Count(key => !IsModifierKey(key)) == pressed.Count(key => !IsModifierKey(key)) && chord.Keys.All(pressed.Contains);
+
+    public static ModifierKeys ModifierForKey(Key key) => key switch
+    {
+        Key.LeftCtrl or Key.RightCtrl => ModifierKeys.Control,
+        Key.LeftShift or Key.RightShift => ModifierKeys.Shift,
+        Key.LeftAlt or Key.RightAlt => ModifierKeys.Alt,
+        Key.LWin or Key.RWin => ModifierKeys.Windows,
+        _ => ModifierKeys.None
+    };
 
     public static bool Contains(KeyboardChord chord, Key key) => chord.Keys.Contains(key);
 
-    public static bool IsWindowsReserved(KeyboardChord chord) =>
-        chord.Modifiers.HasFlag(ModifierKeys.Windows) ||
-        chord.Modifiers.HasFlag(ModifierKeys.Alt) && chord.Keys.Any(key => key is Key.Tab or Key.Escape or Key.F4) ||
-        chord.Modifiers == ModifierKeys.Control && chord.Keys.Contains(Key.Escape) ||
-        chord.Modifiers == (ModifierKeys.Control | ModifierKeys.Shift) && chord.Keys.Contains(Key.Escape) ||
-        chord.Modifiers == (ModifierKeys.Control | ModifierKeys.Alt) && chord.Keys.Contains(Key.Delete);
+    public static bool IsWindowsReserved(KeyboardChord chord) => GWGUI.App.Dictionaries.Input.Bindings.ReservedKeyboardChordCatalog.Contains(chord);
 
     public static string Format(ModifierKeys modifiers, IEnumerable<Key> keys)
     {
         var parts = new List<string>();
-        if (modifiers.HasFlag(ModifierKeys.Control)) parts.Add("Ctrl");
-        if (modifiers.HasFlag(ModifierKeys.Shift)) parts.Add("Shift");
-        if (modifiers.HasFlag(ModifierKeys.Alt)) parts.Add("Alt");
-        if (modifiers.HasFlag(ModifierKeys.Windows)) parts.Add("Win");
-        parts.AddRange(keys.Select(key => key.ToString()));
+        var ordered = keys.Distinct().OrderBy(key => key).ToArray();
+        foreach (var (modifier, name) in new[] { (ModifierKeys.Control, "Ctrl"), (ModifierKeys.Alt, "Alt"), (ModifierKeys.Shift, "Shift"), (ModifierKeys.Windows, "Win") })
+        {
+            var explicitKeys = ordered.Where(key => ModifierForKey(key) == modifier).ToArray();
+            if (explicitKeys.Length > 0) parts.AddRange(explicitKeys.Select(key => key.ToString()));
+            else if (modifiers.HasFlag(modifier)) parts.Add(name);
+        }
+        parts.AddRange(ordered.Where(key => !IsModifierKey(key)).Select(key => key.ToString()));
         return string.Join("+", parts);
     }
 
-    public static bool IsModifierKey(Key key) => key is Key.LeftCtrl or Key.RightCtrl or Key.LeftShift or Key.RightShift
-        or Key.LeftAlt or Key.RightAlt or Key.LWin or Key.RWin;
+    public static bool IsModifierKey(Key key) => key is Key.LeftCtrl or Key.RightCtrl or Key.LeftShift or Key.RightShift or Key.LeftAlt or Key.RightAlt or Key.LWin or Key.RWin;
 }

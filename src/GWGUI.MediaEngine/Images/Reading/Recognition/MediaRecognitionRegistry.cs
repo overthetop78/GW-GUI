@@ -1,3 +1,4 @@
+using System.IO;
 using GWGUI.MediaEngine.Interfaces.Reading;
 
 namespace GWGUI.MediaEngine.Images.Reading.Recognition;
@@ -90,12 +91,7 @@ public sealed class MediaRecognitionRegistry
             registrationOrder++;
         }
 
-        return candidates
-            .OrderByDescending(item => item.Candidate.Confidence)
-            .ThenByDescending(item => item.EvidenceCount)
-            .ThenBy(item => item.RegistrationOrder)
-            .Select(item => item.Candidate)
-            .ToArray();
+        return candidates.OrderByDescending(item => item.Candidate.Confidence).ThenByDescending(item => item.EvidenceCount).ThenBy(item => item.RegistrationOrder).Select(item => item.Candidate).ToArray();
     }
 
     private static async ValueTask<bool> MatchesSignatureAsync(IMediaImageReader reader, MediaRecognitionContext context, CancellationToken cancellationToken)
@@ -104,5 +100,26 @@ public sealed class MediaRecognitionRegistry
         if (maximumLength == 0 || context.Length < maximumLength) return false;
         var header = await context.ReadHeaderAsync(maximumLength, cancellationToken).ConfigureAwait(false);
         return reader.Signatures.Any(signature => header.Span.StartsWith(signature.Span));
+    }
+
+    internal static async ValueTask<bool> CanReadAsync<T>(MediaRecognitionContext context,
+        IReadOnlySet<string> supportedFormats,
+        Func<MediaRecognitionContext, CancellationToken, ValueTask<T>> validate,
+        CancellationToken cancellationToken)
+    {
+        if (context.RequestedFormatId is not null && !supportedFormats.Contains(context.RequestedFormatId)) return false;
+        try
+        {
+            await validate(context, cancellationToken).ConfigureAwait(false);
+            return true;
+        }
+        catch (InvalidDataException)
+        {
+            return false;
+        }
+        catch (NotSupportedException)
+        {
+            return false;
+        }
     }
 }

@@ -15,6 +15,5 @@ internal static class FilterEPaperDithering
             return ((b+.5)/16.0-.5)*clamp(setting,0.0,1.0)/max(levels,1.0);
         }
         """;
-    internal static float Offset(int x, int y, int setting, int levels) =>
-        ((Bayer4[y & 3, x & 3] + .5f) / 16f - .5f) * Math.Clamp(setting, 0, 100) / 100f / Math.Max(1, levels);
+    internal static float Offset(int x, int y, int setting, int levels) => ((Bayer4[y & 3, x & 3] + .5f) / 16f - .5f) * Math.Clamp(setting, 0, 100) / 100f / Math.Max(1, levels);
 }

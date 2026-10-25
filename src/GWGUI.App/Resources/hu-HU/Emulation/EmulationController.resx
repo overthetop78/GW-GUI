@@ -36,4 +36,27 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (jobb kéz)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Megjelenés</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Vezérlő {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Mutatókészülék</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Repülési szimuláció</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Versenyszimuláció</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Táncszimuláció</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Éneklés szimulációja</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Egyéb szimuláció-perifériák</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>Erős rezgés</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>Gyenge rezgés</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>Újratöltés</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Célkereszt színe</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Táncszőnyeg</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>A billentyűzet beállítása a billentyűzet fülén.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Az egér beállítása az egér fülben.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>A készülék típusa</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>Rezgésre használt vezérlő</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>A tengelyek és a botok kijelölése</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>Foltos {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>Billentyűzet vagy egyéni feladatok</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>Bal pálca</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>Jobb oldali bot</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>Tengely {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>Fejsze {0} / {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>Mentett megbízás</value></data>
 </root>

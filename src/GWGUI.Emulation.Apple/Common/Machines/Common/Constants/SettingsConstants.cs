@@ -1,0 +1,45 @@
+namespace GWGUI.Emulation.Apple.Common.Machines.Common.Constants;
+
+internal static class SettingsConstants
+{
+    internal const string Cpu = "apple_cpu";
+    internal const string CpuFrequency = "apple_cpu_frequency";
+    internal const string MainMemory = "apple_main_memory";
+    internal const string Firmware = "apple_firmware";
+    internal const string Video = "apple_video";
+    internal const string AudioEnabled = "apple_audio_enabled";
+    internal const string AudioOutput = "gwgui_apple_audio_output";
+    internal const string AudioLatency = "gwgui_apple_audio_latency";
+    internal const string SharedFolder = "apple_shared_folder";
+    internal const string FloppyFolder = "apple_floppy_folder";
+    internal const string HardDiskFolder = "apple_hard_disk_folder";
+    internal const string ResourceHardDiskFolder = "Emulation.Storage.HardDisk.List";
+    internal const string ResourceNativeVideo = "Emulation.Apple.Video.Native";
+    internal const string ResourceExpansion = "Emulation.Apple.Expansion";
+    internal const string ResourceRuntimeMemory = "Emulation.Apple.Memory.Runtime";
+    internal const string NativeOptionResourcePrefix = "Emulation.Apple.Option.";
+    internal const string NativeChoiceResourceFormat = "{0}.Value{1}";
+    internal const string StateFolder = "apple_state_folder";
+    internal const string CaptureFolder = "apple_capture_folder";
+    internal const string DefaultOutput = "default";
+    internal const string ResourceNativeModel = "Emulation.Apple.Option.Model";
+    internal const string ResourceEmbeddedFirmware = "Emulation.Apple.Firmware.Embedded";
+    internal const string ResourceUnavailableModel = "Emulation.Apple.Runtime.Unavailable";
+    internal const string ResourceCpu = "Emulation.Cpu.Model";
+    internal const string ResourceFrequency = "Emulation.Cpu.SpeedOriginal";
+    internal const string ResourceMemory = "Emulation.Memory.Main";
+    internal const string ResourceVideo = "Emulation.Video.Settings.Display";
+    internal const string ResourceFirmware = "Emulation.Firmware.Rom.System";
+    internal const string ResourceGeneral = "Emulation.Tab.General";
+    internal const string ResourceAudio = "Emulation.Audio";
+    internal const string ResourceAudioEnabled = "Emulation.Audio.Enabled";
+    internal const string ResourceAudioOutput = "Emulation.Audio.Output";
+    internal const string ResourceAudioLatency = "Emulation.Audio.Latency";
+    internal const string ResourceAudioVolume = "Explorer.Volume";
+    internal const string ResourceDefaultOutput = "Emulation.Audio.DefaultOutput";
+    internal const string ResourceSharedFolder = "Emulation.Folder.Common";
+    internal const string ResourceFloppyFolder = "Emulation.Storage.Floppy.List";
+    internal const string ResourceStateFolder = "Emulation.Folder.State";
+    internal const string ResourceCaptureFolder = "Emulation.Folder.Capture";
+    internal const int Kibibyte = 1024;
+}

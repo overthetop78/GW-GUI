@@ -14,8 +14,7 @@ internal static class ProgressAndLogsScenarios
         };
         var expected = GWGUI.App.Localization.Extensions.LocExtension.Get(key);
         Assert.Equal(expected,GWGUI.App.Functions.Localization.ExceptionDescriptionFunctions.Describe(error));
-        Assert.Equal(expected,GWGUI.App.Functions.Localization.ExceptionDescriptionFunctions.Describe(
-            new System.Reflection.TargetInvocationException(new AggregateException(error))));
+        Assert.Equal(expected,GWGUI.App.Functions.Localization.ExceptionDescriptionFunctions.Describe(new System.Reflection.TargetInvocationException(new AggregateException(error))));
     }
     public static async Task Rotation(int maximumFiles)
     {
@@ -24,8 +23,7 @@ internal static class ProgressAndLogsScenarios
         var command = new GWGUI.Infrastructure.Commands.GwCommand("virtual tool","read",["virtual image"]);
         var writer = new GWGUI.Infrastructure.Processes.RotatingOperationLogWriter("logs",1,maximumFiles,files,() => time);
         for(var index=0;index<4;index++)
-            await writer.WriteAsync(command,new(index,false,TimeSpan.FromSeconds(2),
-                [new(time,GWGUI.Infrastructure.Commands.Execution.GwOutputStream.Error,"line-" + index)]));
+            await writer.WriteAsync(command,new(index,false,TimeSpan.FromSeconds(2), [new(time,GWGUI.Infrastructure.Commands.Execution.GwOutputStream.Error,"line-" + index)]));
         Assert.Equal(maximumFiles,files.Files.Count);
         var current = files.Files[Path.Combine("logs","operations.log")];
         Assert.Contains("2026-01-02T03:04:05.0000000+00:00 | exit=3",current);

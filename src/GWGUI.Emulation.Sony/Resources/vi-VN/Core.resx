@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.pcsx2.Description"><value>Mô phỏng hệ thống PlayStation 2.</value></data>
+  <data name="Emulation.Emulator.ppsspp.Description"><value>Mô phỏng hệ thống PlayStation Portable.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Mô phỏng hệ thống Sony PlayStation / PS one.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>Mô phỏng thiết bị cầm tay Sony PocketStation bằng BIOS bên ngoài và tệp ảnh thẻ nhớ.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Mô phỏng hệ thống PlayStation bằng trình kết xuất phần mềm của Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Mô phỏng hệ thống PlayStation bằng trình kết xuất phần cứng của Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>Mô phỏng hệ thống PlayStation bằng PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>Mô phỏng hệ thống PlayStation 2 bằng PCEE2 và BIOS bên ngoài.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Mô phỏng hệ thống PlayStation 2 bằng Play! và tính năng mô phỏng phần sụn hệ thống tích hợp.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>Mô phỏng hệ thống PlayStation 3 bằng RPCS3 và phần sụn hệ thống bên ngoài.</value></data>
+</root>

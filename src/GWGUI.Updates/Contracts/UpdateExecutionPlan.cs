@@ -12,12 +12,7 @@ public sealed record UpdateExecutionPlan(
     string ResultPath,
     IReadOnlyList<PreparedUpdateComponent> Components);
 
-public sealed record PreparedUpdateComponent(
-    string ComponentId,
-    UpdateComponentKind Kind,
-    UpdateComponentOperation Operation,
-    string Version,
-    string PreparedDirectory);
+public sealed record PreparedUpdateComponent(string ComponentId, UpdateComponentKind Kind, UpdateComponentOperation Operation, string Version, string PreparedDirectory);
 
 public enum UpdateComponentOperation
 {
@@ -33,8 +28,4 @@ public enum UpdateTransactionStatus
     Restored
 }
 
-public sealed record UpdateTransactionResult(
-    int SchemaVersion,
-    string TransactionId,
-    UpdateTransactionStatus Status,
-    string? Detail = null);
+public sealed record UpdateTransactionResult(int SchemaVersion, string TransactionId, UpdateTransactionStatus Status, string? Detail = null);

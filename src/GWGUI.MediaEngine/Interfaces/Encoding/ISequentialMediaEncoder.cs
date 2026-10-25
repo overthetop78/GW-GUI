@@ -12,7 +12,5 @@ public interface ISequentialMediaEncoder
 
     bool CanEncode(SequentialEncodeRequest request);
 
-    Task<SequentialMediaImageRepresentation> EncodeAsync(
-        SequentialEncodeRequest request,
-        CancellationToken cancellationToken = default);
+    Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default);
 }

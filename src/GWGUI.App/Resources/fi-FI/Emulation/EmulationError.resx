@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>Potkukäynnistyspolku on pakollinen.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>Tarvittava firmware-polku on tyhjä.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>Valittua tiedostoa ei ole olemassa.</value></data>
+  <data name="Emulation.Error.Title"><value>Emulgointivirhe</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>Tarvittavaa emulaattoria ei ole asennettu.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>Emulaattori hylkäsi operaation.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>Emulaattoria ei voi päivittää sen käytön aikana.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>Vaadittu laitteisto on kateissa.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>Valittu firmware on yhteensopimaton tämän koneen kanssa.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>Asetettua mediatiedostoa ei löytynyt.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>Tämä emulaattori ei tue valittua mediaa.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>Emulaattorin valinta on virheellinen.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>Emulaattorin kanssa kommunikointi epäonnistui.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>Emuloitua konetta ei voitu käynnistää.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>Mediaoperaatio epäonnistui.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>Tallennettu tila on virheellinen tai vahingoittunut.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>Tallennettu tila ei ole yhteensopiva tämän koneen konfiguraation kanssa.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>Pelastautumisvaltion operaatio epäonnistui.</value></data>
 </root>

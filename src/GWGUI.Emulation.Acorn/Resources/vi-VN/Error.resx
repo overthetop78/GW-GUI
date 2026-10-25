@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Acorn.Error.ContentNotFound" xml:space="preserve"><value>Cấu hình ACORN Không tìm thấy phương tiện truyền thông.</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported" xml:space="preserve"><value>Máy này không hỗ trợ phương tiện được chọn.</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound" xml:space="preserve"><value>Yêu cầu ACORN Không tìm thấy lõi.</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected" xml:space="preserve"><value>Phần chọn ACORN Không thể tải được lõi.</value></data>
+  <data name="Emulation.Acorn.Error.Details" xml:space="preserve"><value>Chi tiết: {0}</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid" xml:space="preserve"><value>An ACORN Phần mềm cứng không hợp lệ hoặc không tương thích.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing" xml:space="preserve"><value>Cần thiết ACORN Phần cứng bị mất.</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing" xml:space="preserve"><value>Con đường dẫn đến ACORN không có chương trình máy.</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure" xml:space="preserve"><value>Liên lạc với ACORN máy đã thất bại.</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid" xml:space="preserve"><value>An ACORN Tùy chọn có giá trị không hợp lệ.</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible" xml:space="preserve"><value>Hạt ACORN Tình trạng đã lưu không tương thích với máy hiện thời.</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>Hạt ACORN trạng thái đã lưu không hợp lệ.</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>Một điều không ngờ ACORN Lỗi mô phỏng đã xảy ra.</value></data>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Lệnh môi trường không rõ: {0}</value></data>
+</root>

@@ -48,9 +48,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
                     return -1;
             }
 
-            if ((newoffset > (delfile != null
-                    ? Pfs3Directory.GetDDFileSize(delfile, g)
-                    : Pfs3Directory.GetDEFileSize(file.le.info.file.direntry, g))) || (newoffset < 0))
+            if ((newoffset > (delfile != null ? Pfs3Directory.GetDDFileSize(delfile, g) : Pfs3Directory.GetDEFileSize(file.le.info.file.direntry, g))) || (newoffset < 0))
             {
                 return -1;
             }
@@ -136,10 +134,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             bytesleft = t & BLOCKSIZEMASK; /* # bytes in last incomplete block */
 
             /* check mask, both at start and end */
-            t = ((buffer.Length - blockoffset + BLOCKSIZE) & ~g.DosEnvec.de_Mask) != 0 ||
-                ((buffer.Length + size - bytesleft) & ~g.DosEnvec.de_Mask) != 0
-                ? 1U
-                : 0U;
+            t = ((buffer.Length - blockoffset + BLOCKSIZE) & ~g.DosEnvec.de_Mask) != 0 || ((buffer.Length + size - bytesleft) & ~g.DosEnvec.de_Mask) != 0 ? 1U : 0U;
             t = t != 0U ? 0U : 1U;
 
             /* read indirect if

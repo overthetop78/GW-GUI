@@ -34,4 +34,6 @@
   <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>内部转换失败 {0}: 调取 {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>潜在数据损失</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>此转换无法保存所有源信息 :&#xA;&#xA;{0}&#xA;&#xA;你想继续吗?</value></data>
+  <data name="Conversion.OutputCollision"><value>多个转换会创建相同的文件 '{0}'. 除非“ ” 否则不可能选择此选项 。{1}'被检查。</value></data>
+  <data name="Conversion.Failed"><value>转换失败 {0}: {1}</value></data>
 </root>

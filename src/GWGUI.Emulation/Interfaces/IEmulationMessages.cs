@@ -1,0 +1,55 @@
+using System.Reflection;
+
+namespace GWGUI.Emulation.Interfaces;
+
+/// <summary>Contextualisation des échecs et création des catalogues de textes des modules pour l’application hôte.</summary>
+/// <remarks>Les annulations et erreurs déjà contextualisées conservent leur identité ; le service ne possède aucune session.</remarks>
+public interface IEmulationMessages
+{
+    /// <summary>Crée un moniteur indépendant qui repère les signatures d’échec annoncées par le module.</summary>
+    /// <param name="startupFailureDiagnostics">Signatures empruntées et stables ; null ou vide ne déclare aucun échec.</param>
+    /// <param name="createFailure">Fabrique appelée uniquement par ThrowIfFailed après retour au code géré.</param>
+    /// <returns>Moniteur de session exposé uniquement par son interface publique.</returns>
+    /// <remarks>Le SDK ne connaît ni l’identité du module, ni les signatures de son cœur, ni ses ressources de texte.
+    /// Le moniteur conserve le premier message correspondant, même si plusieurs callbacks publient simultanément.</remarks>
+    IEmulationCoreDiagnosticMonitor CreateCoreDiagnosticMonitor(IReadOnlyList<string>? startupFailureDiagnostics, Func<string, Exception> createFailure);
+
+    /// <summary>Conserve les diagnostics collectés avant la libération d’un cœur dont le démarrage échoue.</summary>
+    /// <param name="error">Cause initiale empruntée, conservée comme exception interne si un ajout est nécessaire.</param>
+    /// <param name="diagnostics">Messages empruntés dans leur ordre de réception.</param>
+    /// <returns>Cause initiale si aucun ajout n’est nécessaire, sinon erreur contenant le bloc et la cause.</returns>
+    /// <remarks>Un bloc déjà présent n’est pas ajouté de nouveau. Aucun flux ou cœur n’est possédé par cet appel.</remarks>
+    Exception WithNativeDiagnostics(Exception error, IReadOnlyList<string> diagnostics);
+
+    /// <summary>Crée un catalogue indépendant pour les ressources embarquées du module.</summary>
+    /// <param name="assembly">Assembly emprunté contenant les catalogues ; le service ne le charge ni ne le décharge.</param>
+    /// <param name="resourcePrefix">Préfixe existant des ressources à rechercher dans cet assembly.</param>
+    /// <returns>Catalogue sous son contrat public ; ses lectures conservent le repli par culture parente, puis anglais et base commune.</returns>
+    /// <remarks>Chaque catalogue possède son cache de textes. La culture invariante consulte directement la base commune. Les flux et lecteurs ouverts pendant une recherche sont libérés avant son retour. Les chaînes, clés et règles de recherche restent celles des ressources du module.</remarks>
+    IEmulationModuleLocalization CreateLocalization(Assembly assembly, string resourcePrefix);
+
+    /// <summary>Construit l’erreur de cœur absent avec l’identité publique de l’émulateur concerné.</summary>
+    EmulationMessageException EmulatorNotInstalled(string emulatorId);
+    /// <summary>Construit une erreur destinée au dialogue de l’hôte avec sa catégorie, son code et sa cause facultative.</summary>
+    EmulationMessageException CreateError(EmulationMessageCategory category, EmulationMessageCode code, Exception? innerException);
+
+    /// <summary>Associe un diagnostic public à une cause qui n’en possède pas encore.</summary>
+    /// <param name="error">Cause conservée comme exception interne lorsque la contextualisation est nécessaire.</param>
+    /// <param name="fallbackCategory">Domaine fonctionnel employé pour une cause non contextualisée.</param>
+    /// <param name="fallbackCode">Code public permettant à l’hôte de choisir sa traduction.</param>
+    /// <param name="context">Identités et valeurs décrites par les interfaces de contexte communes.</param>
+    /// <returns>Erreur existante ou erreur contextualisée par le service commun.</returns>
+    Exception Translate(Exception error, EmulationMessageCategory fallbackCategory, EmulationMessageCode fallbackCode, IEmulationMessageContext? context = null);
+    /// <summary>Conserve un message déjà localisé par le module dans l’enveloppe publique.</summary>
+    /// <param name="error">Cause dont le texte a déjà été traduit.</param>
+    /// <param name="category">Domaine fonctionnel de cette cause.</param>
+    /// <param name="context">Contexte public de la machine ou du cœur.</param>
+    /// <returns>Erreur prête à être présentée sans retraduire son texte.</returns>
+    Exception TranslateLocalized(Exception error, EmulationMessageCategory category, IEmulationMessageContext? context = null);
+    /// <summary>Construit une demande de média avec les catégories attendues par la machine.</summary>
+    /// <param name="machineId">Identité stable du profil concerné.</param>
+    /// <param name="requiredMedia">Types d’emplacements pouvant satisfaire cette demande.</param>
+    /// <param name="innerException">Cause facultative de la demande de média.</param>
+    /// <returns>Exception publique dont le contexte permet à l’hôte de proposer les bons lecteurs.</returns>
+    Exception RequiredMediaMissing(string machineId, IReadOnlyList<EmulationMediaCategory> requiredMedia, Exception? innerException);
+}

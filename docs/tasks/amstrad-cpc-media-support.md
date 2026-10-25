@@ -1,0 +1,86 @@
+# Prise en charge des médias Amstrad CPC
+
+- [x] 1. Établir l’inventaire réel du corpus sans modifier les médias
+  - [x] 1.1 Préparer le suivi du travail
+    - [x] Créer `docs/tasks/amstrad-cpc-media-support.md` avec la liste hiérarchique des fichiers à créer, modifier ou supprimer et l’état de chaque action.
+  - [x] 1.2 Produire l’inventaire structurel temporaire
+    - [x] Créer `scripts/temp/audit-amstrad-cpc-media.ps1` pour énumérer les fichiers, tailles, extensions et signatures de début et de fin sans écrire dans le corpus.
+    - [x] Créer `artifacts/amstrad-cpc-media-audit/inventory.json` avec le résultat de l’audit en lecture seule de `F:\Retro\A Trier\Amstrad CPC`.
+  - [x] 1.3 Conserver les conclusions utiles
+    - [x] Créer `docs/project/amstrad-cpc-media-formats.md` avec les structures réellement observées, leurs variantes et les capacités attendues de lecture, conversion, exploration, visualisation et émulation.
+    - [x] Modifier `docs/tasks/amstrad-cpc-media-support.md` pour ajouter, avant leur exécution, les actions concrètes déterminées par l’inventaire pour chaque fichier source, test et traduction concerné.
+
+- [x] 2. Implémenter les formats démontrés par le corpus
+  - [x] 2.1 Déclarer les formats sans les attribuer à Caprice32
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/DiskImageFileExtensions.cs` pour ajouter les extensions HxC Stream, KryoFlux, CPR, ROM et les extensions audio décodables.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/DiskImageFormatIds.cs` pour ajouter les identifiants HxC Stream, KryoFlux, CPR et ROM CPC.
+    - [x] Modifier `src/GWGUI.MediaEngine/GWGUI.MediaEngine.csproj` pour référencer les bibliothèques de décodage LZ4 et audio nécessaires dans MediaEngine.
+  - [x] 2.2 Lire les flux multipistes HxC Stream et KryoFlux
+    - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Floppy/HxcStream/HxcStreamFormat.cs` avec les signatures, blocs, limites et conventions de noms observés dans l’implémentation HxC officielle.
+    - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Floppy/HxcStream/HxcStreamReader.cs` pour valider les chunks, CRC, LZ4, métadonnées et révolutions de tous les fichiers frères d’une image.
+    - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Floppy/KryoFlux/KryoFluxFormat.cs` avec les opcodes, blocs OOB, horloges et conventions multipistes du protocole KryoFlux.
+    - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Floppy/KryoFlux/KryoFluxReader.cs` pour valider et convertir toutes les pistes sœurs en représentation de flux commune.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaRecognitionComposition.cs` pour enregistrer les deux lecteurs de flux.
+  - [x] 2.3 Faire utiliser les flux génériques par la conversion et l’exploration existantes
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Reconstruction/ScpTrackDecodeWindowFactory.cs` pour construire les fenêtres depuis une piste de flux commune en conservant l’adaptateur SCP existant.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoScpCandidateDecoder.cs` pour décoder directement un `ProtectedTrackImage` déjà chargé, indépendamment de son conteneur.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/Reconstruction/Iso/IsoScpSectorImageReader.cs` pour accepter une représentation de flux en plus du chemin SCP historique.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Decoding/Sectors/ScpSectorImageCandidate.cs`, `ScpSectorImageReader.cs` et `../ScpSectorDecodingComposition.cs` pour relayer la représentation commune aux candidats ISO existants.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/Scp/Conversion/ScpFluxToSectorRepresentationConverter.cs` pour accepter tout document de flux et réutiliser son image déjà chargée.
+  - [x] 2.4 Lire et convertir les bandes audio CPC
+    - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Tape/Audio/AudioTapeReader.cs` pour décoder WAV, MP3, FLAC, AAC et les autres formats fournis par Media Foundation vers la représentation séquentielle PCM existante.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaRecognitionComposition.cs` pour enregistrer le lecteur audio commun à côté du lecteur WAV conservant sa structure RIFF.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/Audio/AudioTapeReader.cs` pour exposer son PCM en mémoire comme une source stockée compatible avec le writer WAV existant, sans modifier le writer.
+    - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Tape/Amstrad/AmstradCpcTapeConstants.cs` avec les marqueurs, positions de champs, temporisations et paramètres CRC documentés du format cassette CPC.
+    - [x] Créer `src/GWGUI.MediaEngine/Images/Reading/Decoding/Sequential/Amstrad/AmstradCpcTapeDecoder.cs` pour décoder les blocs CPC depuis CDT/TZX ou PCM et conserver leurs vrais noms et métadonnées.
+    - [x] Créer `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Amstrad/AmstradCpcTapeEncoder.cs` pour produire les signaux et blocs CPC destinés à CDT/TZX, WAV et VOC.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Tzx/TzxSignalEncoder.cs` pour laisser l’encodage CPC au codec CPC qui écrit les temporisations et contrôles propres à cette machine.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Tape/SequentialMediaComposition.cs` pour enregistrer le décodeur et l’encodeur CPC.
+    - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Tape/Voc/VocReader.cs` et `src/GWGUI.MediaEngine/Images/Formats/Tape/Voc/VocWriter.cs` pour le format audio VOC accepté par Caprice32.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/MediaWritingComposition.cs` pour enregistrer la sortie VOC.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaRecognitionComposition.cs` pour enregistrer le lecteur VOC commun.
+  - [x] 2.5 Lire les cartouches et ROM CPC
+    - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Cartridge/AmstradCpr/AmstradCprReader.cs` pour valider RIFF/AMS!, exposer les chunks `cbNN` et leurs plages réelles.
+    - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Cartridge/AmstradCpr/AmstradCprWriter.cs` pour écrire les banques CPR validées.
+    - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Cartridge/AmstradRom/AmstradRomReader.cs` pour reconnaître les ROM brutes de tailles démontrées sans les confondre avec un BIN optique ou Coherent.
+    - [x] Créer `src/GWGUI.MediaEngine/Images/Formats/Cartridge/AmstradRom/AmstradRomWriter.cs` pour écrire sans en-tête les banques ROM contiguës et refuser les plages manquantes.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaRecognitionComposition.cs` pour enregistrer CPR et ROM/BIN avec priorité sur les lecteurs génériques incompatibles.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/MediaWritingComposition.cs` pour enregistrer les conversions CPR et ROM compatibles.
+  - [x] 2.6 Exposer les structures réelles dans l’explorateur et le visualisateur
+    - [x] Modifier `src/GWGUI.MediaFileSystems/Constants/MediaImageFormatIds.cs` et `src/GWGUI.MediaFileSystems/Definitions/FileSystemIds.cs` pour partager les identifiants CPR, ROM et du lecteur de structures Amstrad.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/DiskImageFormatIds.cs` pour relayer ces identifiants partagés au lieu de dupliquer leurs valeurs littérales.
+    - [x] Créer `src/GWGUI.MediaFileSystems/FileSystems/Amstrad/Cartridge/AmstradCartridgeFileSystemReader.cs` pour présenter les banques réelles CPR/ROM sans inventer de fichiers.
+    - [x] Modifier `src/GWGUI.MediaFileSystems/Exploration/MediaExplorer.cs` pour enregistrer le lecteur bloc Amstrad dans le catalogue générique `IMediaFileSystemReader` existant.
+    - [x] Modifier `docs/project/amstrad-cpc-media-formats.md` pour consigner que les plages distinctes des banques CPR/ROM alimentent directement les limites déjà prises en charge par `BlockMediaVisualizationProvider`.
+  - [x] 2.7 Ajouter les noms de formats invariants
+    - [x] Modifier `src/GWGUI.App/Resources/00-Base/Formats.resx` pour ajouter uniquement les noms invariants HxC Stream, KryoFlux, CPR, ROM CPC, VOC et audio, sans duplication dans les langues.
+  - [x] 2.8 Finaliser les limites observées sans confondre les formats
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Writing/Encoding/Sequential/Amstrad/AmstradCpcTapeEncoder.cs` pour calculer les indicateurs premier/dernier bloc par fichier CPC et non sur toute la conversion.
+    - [x] Modifier `docs/project/amstrad-cpc-media-formats.md` pour distinguer explicitement le `.tap` Spectrum existant d’un éventuel format CPC non démontré par le corpus et consigner le relais automatique de l’analyse des entrées par `GWGUI.MediaAnalysis`.
+
+- [x] 3. Vérifier sans conserver d’artefacts temporaires
+  - [x] 3.1 Ajouter et exécuter les tests ciblés déterminés par les formats
+    - [x] Créer `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` avec des tests autonomes de l’aller-retour des blocs de bande CPC et des structures CPR/ROM avec leur exploration, en supprimant dans `finally` chaque fichier temporaire créé.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour couvrir l’enregistrement des lecteurs HxC Stream et KryoFlux dans la composition de reconnaissance commune.
+    - [x] Créer `tests/GWGUI.Tests/Media/TemporaryAmstradCorpusReaderTests.cs` pour lire sans modification un exemplaire réel de chaque famille du corpus avec la composition commune.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Formats/Floppy/KryoFlux/KryoFluxReader.cs` pour accepter le remplissage terminal `0x0D` observé après le dernier enregistrement des pistes réelles sans l’interpréter comme un OOB tronqué.
+    - [x] Supprimer `tests/GWGUI.Tests/Media/TemporaryAmstradCorpusReaderTests.cs` immédiatement après l’exécution du test de corpus.
+  - [x] 3.2 Supprimer les outils et sorties temporaires
+    - [x] Supprimer `scripts/temp/audit-amstrad-cpc-media.ps1` après exploitation complète de son inventaire.
+    - [x] Supprimer `artifacts/amstrad-cpc-media-audit/inventory.json` après transfert des conclusions vérifiées dans `docs/project/amstrad-cpc-media-formats.md`.
+
+- [x] 4. Retirer SNA de la bibliothèque de médias
+  - [x] 4.1 Supprimer le faux lecteur de média SNA
+    - [x] Supprimer `src/GWGUI.MediaEngine/Images/Formats/Snapshot/AmstradSna/AmstradSnaReader.cs` afin que les instantanés CPC restent la responsabilité de `GWGUI.Emulation.Amstrad`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Images/Reading/MediaRecognitionComposition.cs` pour désenregistrer `AmstradSnaReader`.
+    - [x] Modifier `src/GWGUI.MediaEngine/Constants/DiskImageFileExtensions.cs`, `src/GWGUI.MediaEngine/Constants/DiskImageFormatIds.cs` et `src/GWGUI.MediaFileSystems/Constants/MediaImageFormatIds.cs` pour retirer les déclarations SNA ajoutées au moteur de médias.
+  - [x] 4.2 Retirer l’exploration et l’affichage SNA ajoutés à tort
+    - [x] Modifier `src/GWGUI.MediaFileSystems/FileSystems/Amstrad/Cartridge/AmstradCartridgeFileSystemReader.cs` pour retirer SNA, ses sections d’en-tête/RAM et ne conserver que les banques CPR/ROM.
+    - [x] Modifier `src/GWGUI.App/Resources/00-Base/Formats.resx` pour retirer le nom de format média SNA ajouté.
+    - [x] Modifier `tests/GWGUI.Tests/Media/AmstradCpcMediaFormatTests.cs` pour retirer le scénario SNA et conserver les tests CPR/ROM.
+    - [x] Modifier `docs/project/amstrad-cpc-media-formats.md` pour classer SNA comme état d’émulation hors MediaEngine et retirer toute promesse d’exploration ou de visualisation média.
+  - [x] 4.3 Vérifier le retrait
+    - [x] Modifier `docs/tasks/amstrad-cpc-media-support.md` pour cocher le retrait après réussite du build MediaEngine/MediaFileSystems et des tests média ciblés.
+
+- [x] 5. Produire le build Debug demandé
+  - [x] Modifier `docs/tasks/amstrad-cpc-media-support.md` pour consigner la réussite de `scripts\local-building.cmd --building=debug --modules=0`, puis de la phase `--modules=A`, et la présence de `build\Debug\GW GUI\gwgui.exe` avec les modules d’émulation.

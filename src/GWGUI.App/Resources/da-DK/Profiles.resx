@@ -7,7 +7,7 @@
   <data name="Profiles.ByOperation" xml:space="preserve"><value>Profiler efter operation</value></data>
   <data name="Profiles.Tab" xml:space="preserve"><value>Faneblad</value></data>
   <data name="Profiles.Name" xml:space="preserve"><value>Navn</value></data>
-  <data name="Profiles.System" xml:space="preserve"><value>System</value></data>
+  <data name="Profiles.System"><value>System</value></data>
   <data name="Profiles.Rename" xml:space="preserve"><value>Omdøb...</value></data>
   <data name="Profile.SaveTitle"><value>Gem profil</value></data>
   <data name="Profile.Name"><value>Profilnavn</value></data>
@@ -18,5 +18,5 @@
   <data name="Profile.SystemDelete"><value>Standardprofilen er permanent og kan ikke slettes.</value></data>
   <data name="Profile.DuplicateName"><value>En profil på denne fane har allerede dette navn.</value></data>
   <data name="Profile.Replace"><value>Denne profil findes allerede. Vil du udskifte det?</value></data>
-  <data name="Profile.DeleteConfirm"><value>Slet profil &quot;{0}&quot;?</value></data>
+  <data name="Profile.DeleteConfirm"><value>Slet profil "{0}"?</value></data>
 </root>

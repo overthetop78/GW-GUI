@@ -1,13 +1,13 @@
+using GWGUI.Updates.Services;
 using System.IO;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using GWGUI.Updates.Contracts;
 
 namespace GWGUI.App.Services.Updates;
 
 internal sealed class UpdateStartupCoordinator
 {
-    private static readonly JsonSerializerOptions JsonOptions = CreateJsonOptions();
+    private static readonly JsonSerializerOptions JsonOptions = UpdateJsonOptions.Create();
     private readonly string? _signalPath;
     private readonly string _resultPath;
     private readonly string _workDirectory;
@@ -35,8 +35,7 @@ internal sealed class UpdateStartupCoordinator
         var expectedRoot = Path.GetFullPath(Path.Combine(Path.GetTempPath(), "GW GUI", "Updates"));
         var workDirectory = Path.GetFullPath(work).TrimEnd(Path.DirectorySeparatorChar);
         if (!workDirectory.StartsWith(expectedRoot + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase)) return null;
-        return new(signal is null ? null : EnsureInside(workDirectory, signal),
-            EnsureInside(workDirectory, result), workDirectory);
+        return new(signal is null ? null : EnsureInside(workDirectory, signal), EnsureInside(workDirectory, result), workDirectory);
     }
 
     internal async Task<UpdateTransactionResult?> CompleteStartupAsync(CancellationToken cancellationToken = default)
@@ -46,8 +45,7 @@ internal sealed class UpdateStartupCoordinator
         if (_signalPath is not null)
         {
             Directory.CreateDirectory(Path.GetDirectoryName(_signalPath)!);
-            await using var signal = new FileStream(_signalPath, FileMode.CreateNew, FileAccess.Write, FileShare.Read,
-                4096, FileOptions.Asynchronous);
+            await using var signal = new FileStream(_signalPath, FileMode.CreateNew, FileAccess.Write, FileShare.Read, 4096, FileOptions.Asynchronous);
             await using var writer = new StreamWriter(signal);
             await writer.WriteAsync("ready".AsMemory(), cancellationToken);
         }
@@ -55,8 +53,7 @@ internal sealed class UpdateStartupCoordinator
         while (!File.Exists(_resultPath) && DateTime.UtcNow < deadline)
             await Task.Delay(100, cancellationToken);
         if (!File.Exists(_resultPath)) return null;
-        var result = JsonSerializer.Deserialize<UpdateTransactionResult>(
-            await File.ReadAllTextAsync(_resultPath, cancellationToken), JsonOptions);
+        var result = JsonSerializer.Deserialize<UpdateTransactionResult>(await File.ReadAllTextAsync(_resultPath, cancellationToken), JsonOptions);
         _ = CleanupAsync();
         return result;
     }
@@ -81,12 +78,5 @@ internal sealed class UpdateStartupCoordinator
         if (!full.StartsWith(root + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase))
             throw new InvalidDataException("The update startup path is outside its work directory.");
         return full;
-    }
-
-    private static JsonSerializerOptions CreateJsonOptions()
-    {
-        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-        options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
-        return options;
     }
 }

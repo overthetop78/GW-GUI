@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.caprice32.Description"><value>⁇ Amstrad CPC, CPC פלוס GX4000 מערכות.</value></data>
+  <data name="Emulation.Amstrad.Language"><value>CPC שפה</value></data>
+  <data name="Emulation.Amstrad.Language.English"><value>שפה אנגלית</value></data>
+  <data name="Emulation.Amstrad.Language.French"><value>צרפתית צרפתית צרפתית</value></data>
+  <data name="Emulation.Amstrad.Language.Spanish"><value>ספרדית</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor"><value>עקבו אחרי type</value></data>
+  <data name="Emulation.Amstrad.Video.Intensity"><value>עקבו אחרי אינטנסיביות</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Color"><value>צבע צבע</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Green"><value>ירוק מונוכרום</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.White"><value>מונוכרום לבן</value></data>
+  <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM נבנה לתוך החיקוי</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>משערים את Amstrad CPC 6128 עם ROM מובנה ותמיכה בתמונות דיסק וצילומים.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>עקבו אחרי type</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>צילום: framing</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>מהירות ההאקר</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>אוֹטוֹמָטִי</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>Overscan</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>המונחים</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>מוגבלות</value></data>
+</root>

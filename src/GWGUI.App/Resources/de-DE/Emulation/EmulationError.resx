@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>Ein Kickstart-Pfad ist erforderlich.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>Ein erforderlicher Firmware-Pfad ist leer.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>Die ausgewählte Datei existiert nicht.</value></data>
+  <data name="Emulation.Error.Title"><value>Emulationsfehler</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>Der erforderliche Emulator ist nicht installiert.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>Der Emulator lehnte die angeforderte Operation ab.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>Der Emulator kann nicht aktualisiert werden, während er verwendet wird.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>Erforderliche Firmware fehlt.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>Die ausgewählte Firmware ist mit dieser Maschine nicht kompatibel.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>Die konfigurierte Mediendatei wurde nicht gefunden.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>Das ausgewählte Medium wird von diesem Emulator nicht unterstützt.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>Eine Emulator-Option ist ungültig.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>Die Kommunikation mit dem Emulatorprozess ist fehlgeschlagen.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>Die emulierte Maschine konnte nicht gestartet werden.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>Die Medienoperation ist gescheitert.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>Der gespeicherte Zustand ist ungültig oder beschädigt.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>Der gespeicherte Zustand ist mit dieser Maschinenkonfiguration nicht kompatibel.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>Die Save-State-Operation ist gescheitert.</value></data>
 </root>

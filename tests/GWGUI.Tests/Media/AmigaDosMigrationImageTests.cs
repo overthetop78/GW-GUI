@@ -13,9 +13,7 @@ public sealed class AmigaDosMigrationImageTests
     [Fact]
     public void InjectedFileCanBeReadFromTheCreatedAdfImage()
     {
-        var source = new FileSystemVolume("TEST", MediaFileSystemIds.Fat12, 0, 0, null, null,
-            [new FileSystemEntry("HELLO", FileSystemEntryKind.File, 3, null, string.Empty,
-                0, 0, true, [], new byte[] { 1, 2, 3 })], []);
+        var source = new FileSystemVolume("TEST", MediaFileSystemIds.Fat12, 0, 0, null, null, [new FileSystemEntry("HELLO", FileSystemEntryKind.File, 3, null, string.Empty, 0, 0, true, [], new byte[] { 1, 2, 3 })], []);
         var result = new FileSystemMigrationService().CreateImage(source, DiskImageFormatIds.AmigaDos);
         Assert.True(result.Report.CanExecute);
         var image = result.Image;

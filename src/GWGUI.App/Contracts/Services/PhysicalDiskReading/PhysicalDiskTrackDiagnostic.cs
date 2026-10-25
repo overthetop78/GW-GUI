@@ -5,11 +5,7 @@ namespace GWGUI.App.Contracts.Services.PhysicalDiskReading;
 
 public sealed record PhysicalDiskTrackDiagnostic
 {
-    public PhysicalDiskTrackDiagnostic(
-        int cylinder,
-        int head,
-        FluxDecodeSelection best,
-        IReadOnlyList<FluxDecodeSelection> decoderResults)
+    public PhysicalDiskTrackDiagnostic(int cylinder, int head, FluxDecodeSelection best, IReadOnlyList<FluxDecodeSelection> decoderResults)
     {
         ArgumentNullException.ThrowIfNull(best);
         ArgumentNullException.ThrowIfNull(decoderResults);

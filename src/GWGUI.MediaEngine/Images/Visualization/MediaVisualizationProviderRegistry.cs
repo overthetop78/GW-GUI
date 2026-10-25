@@ -18,16 +18,13 @@ public sealed class MediaVisualizationProviderRegistry
     public IMediaVisualizationProvider? Resolve(MediaImageDocument document)
     {
         ArgumentNullException.ThrowIfNull(document);
-        return providers.FirstOrDefault(provider =>
-            provider.RepresentationKinds.Contains(document.Representation.RepresentationKind) &&
-            provider.CanProvide(document));
+        return providers.FirstOrDefault(provider => provider.RepresentationKinds.Contains(document.Representation.RepresentationKind) && provider.CanProvide(document));
     }
 
     public MediaVisualizationDescriptor CreateDescriptor(MediaImageDocument document)
     {
         ArgumentNullException.ThrowIfNull(document);
-        var provider = Resolve(document) ?? throw new NotSupportedException(
-            $"No visualization provider supports representation '{document.Representation.RepresentationKind}' for format '{document.FormatId}'.");
+        var provider = Resolve(document) ?? throw new NotSupportedException($"No visualization provider supports representation '{document.Representation.RepresentationKind}' for format '{document.FormatId}'.");
         return provider.CreateDescriptor(document);
     }
 }

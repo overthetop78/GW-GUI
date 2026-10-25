@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Acorn.Option.AutoBoot" xml:space="preserve"><value>Starten Sie automatisch von der eingesetzten Festplatte</value></data>
+  <data name="Emulation.Emulator.b2.Description" xml:space="preserve"><value>Emulatoren BBC MICRO und BBC MASTER Computer.</value></data>
+  <data name="Emulation.Acorn.Storage.DiscController"><value>Diskettensteuerung</value></data>
+  <data name="Emulation.Acorn.Video.Controller"><value>Video-Timing-Controller</value></data>
+  <data name="Emulation.Acorn.Video.Pixels"><value>Pixel und Farbgenerator</value></data>
+  <data name="Emulation.Acorn.Video.Teletext"><value>Teletextzeichengenerator</value></data>
+</root>

@@ -39,8 +39,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         {
             get
             {
-                var freeBlocks = volume.BitmapTable.Sum(bitmapBlock =>
-                    bitmapBlock.Map.Sum(m => FastFileSystemMapBlockHelper.ConvertUInt32ToBlockFreeMap(m).Count(f => f)));
+                var freeBlocks = volume.BitmapTable.Sum(bitmapBlock => bitmapBlock.Map.Sum(m => FastFileSystemMapBlockHelper.ConvertUInt32ToBlockFreeMap(m).Count(f => f)));
 
                 return (long)freeBlocks * volume.BlockSize;
             }
@@ -48,8 +47,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
 
         public async Task<IEnumerable<FileSystems.Entry>> ListEntries()
         {
-            return (await FastFileSystemDirectory.ReadEntries(volume, currentDirectorySector)).Select(FastFileSystemEntryConverter.ToEntry)
-                .ToList();
+            return (await FastFileSystemDirectory.ReadEntries(volume, currentDirectorySector)).Select(FastFileSystemEntryConverter.ToEntry).ToList();
         }
 
         public async Task<IEnumerable<FastFileSystemEntry>> ListRawEntries()
@@ -133,8 +131,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <param name="ignoreProtectionBits"></param>
         public async Task CreateFile(string fileName, bool overwrite = false, bool ignoreProtectionBits = false)
         {
-            using (var _ = await FastFileSystemFile.Open(volume, currentDirectorySector, fileName, FileMode.Write, overwrite,
-                       ignoreProtectionBits))
+            using (var _ = await FastFileSystemFile.Open(volume, currentDirectorySector, fileName, FileMode.Write, overwrite, ignoreProtectionBits))
             {
             }
         }
@@ -146,8 +143,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <param name="name">Name of entry to create link to.</param>
         /// <param name="overwrite">Overwrite link, if it exists.</param>
         /// <param name="ignoreProtectionBits">Ignore protection bits, if link exists.</param>
-        public async Task CreateLink(string linkName, string name, bool overwrite = false,
-            bool ignoreProtectionBits = false)
+        public async Task CreateLink(string linkName, string name, bool overwrite = false, bool ignoreProtectionBits = false)
         {
             await FastFileSystemDirectory.CreateLink(volume, currentDirectorySector, linkName, name);
         }
@@ -203,8 +199,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
                 throw new PathNotFoundException($"Path '{partsNotFound[0]}' not found");
             }
 
-            await FastFileSystemDirectory.RenameEntry(volume, currentDirectorySector, srcEntryResult.Name, destEntryResult.Sector,
-                destEntryResult.Name);
+            await FastFileSystemDirectory.RenameEntry(volume, currentDirectorySector, srcEntryResult.Name, destEntryResult.Sector, destEntryResult.Name);
         }
 
         /// <summary>
@@ -224,8 +219,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <param name="protectionBits"></param>
         public async Task SetProtectionBits(string name, ProtectionBits protectionBits)
         {
-            await FastFileSystemDirectory.SetEntryAccess(volume, currentDirectorySector, name,
-                ProtectionBitsConverter.ToProtectionValue(protectionBits));
+            await FastFileSystemDirectory.SetEntryAccess(volume, currentDirectorySector, name, ProtectionBitsConverter.ToProtectionValue(protectionBits));
         }
 
         /// <summary>
@@ -259,14 +253,9 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <param name="partitionBlock"></param>
         /// <param name="resolveLinkPaths"></param>
         /// <returns></returns>
-        public static async Task<FastFileSystemVolume> MountPartition(Stream stream, PartitionBlock partitionBlock,
-            bool resolveLinkPaths = true)
+        public static async Task<FastFileSystemVolume> MountPartition(Stream stream, PartitionBlock partitionBlock, bool resolveLinkPaths = true)
         {
-            return await Mount(stream, partitionBlock.LowCyl, partitionBlock.HighCyl,
-                partitionBlock.Surfaces, partitionBlock.BlocksPerTrack, partitionBlock.Reserved,
-                partitionBlock.BlockSize,
-                partitionBlock.FileSystemBlockSize,
-                resolveLinkPaths);
+            return await Mount(stream, partitionBlock.LowCyl, partitionBlock.HighCyl, partitionBlock.Surfaces, partitionBlock.BlocksPerTrack, partitionBlock.Reserved, partitionBlock.BlockSize, partitionBlock.FileSystemBlockSize, resolveLinkPaths);
         }
 
         /// <summary>
@@ -296,13 +285,9 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <param name="fileSystemBlockSize"></param>
         /// <param name="resolveLinkPaths"></param>
         /// <returns></returns>
-        public static async Task<FastFileSystemVolume> Mount(Stream stream, uint lowCyl, uint highCyl,
-            uint surfaces, uint blocksPerTrack, uint reserved, uint blockSize, uint fileSystemBlockSize,
-            bool resolveLinkPaths = true)
+        public static async Task<FastFileSystemVolume> Mount(Stream stream, uint lowCyl, uint highCyl, uint surfaces, uint blocksPerTrack, uint reserved, uint blockSize, uint fileSystemBlockSize, bool resolveLinkPaths = true)
         {
-            var volume = await FastFileSystemHelper.Mount(stream, lowCyl, highCyl, surfaces, blocksPerTrack, reserved,
-                blockSize,
-                fileSystemBlockSize);
+            var volume = await FastFileSystemHelper.Mount(stream, lowCyl, highCyl, surfaces, blocksPerTrack, reserved, blockSize, fileSystemBlockSize);
             volume.ResolveLinkPaths = resolveLinkPaths;
 
             return new FastFileSystemVolume(volume, volume.RootBlockOffset);

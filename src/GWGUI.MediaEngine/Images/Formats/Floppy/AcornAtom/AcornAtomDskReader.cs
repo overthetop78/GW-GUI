@@ -28,8 +28,7 @@ public sealed class AcornAtomDskReader : IMediaImageReader
 
     public AcornAtomDskReader() : this(File.ReadAllBytesAsync) { }
 
-    internal AcornAtomDskReader(Func<string, CancellationToken, Task<byte[]>> readBytes) =>
-        this.readBytes = readBytes ?? throw new ArgumentNullException(nameof(readBytes));
+    internal AcornAtomDskReader(Func<string, CancellationToken, Task<byte[]>> readBytes) => this.readBytes = readBytes ?? throw new ArgumentNullException(nameof(readBytes));
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => SupportedExtensions;
@@ -64,8 +63,7 @@ public sealed class AcornAtomDskReader : IMediaImageReader
         if (catalog.Length < BlockSize * 2) return false;
         var metadata = catalog[BlockSize..];
         var entryBytes = metadata[BbcDfsFileSystemLayout.EntryCountOffset];
-        var totalSectors = ((metadata[BbcDfsFileSystemLayout.TotalSectorsHighOffset] & BbcDfsFileSystemLayout.TotalSectorsHighMask) << 8)
-            | metadata[BbcDfsFileSystemLayout.TotalSectorsLowOffset];
+        var totalSectors = ((metadata[BbcDfsFileSystemLayout.TotalSectorsHighOffset] & BbcDfsFileSystemLayout.TotalSectorsHighMask) << 8) | metadata[BbcDfsFileSystemLayout.TotalSectorsLowOffset];
         return entryBytes % BbcDfsFileSystemLayout.EntryPartSize == 0
             && entryBytes <= BbcDfsFileSystemLayout.MaximumEntryCount * BbcDfsFileSystemLayout.EntryPartSize
             && ((totalSectors == 0 && entryBytes > 0) || totalSectors == Cylinders * Heads * SectorsPerTrack);

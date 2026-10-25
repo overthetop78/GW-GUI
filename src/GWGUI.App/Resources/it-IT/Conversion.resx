@@ -16,7 +16,7 @@
   <data name="Conversion.CommonFormats"><value>Formati comuni</value></data>
   <data name="Conversion.ShowRare"><value>Mostra i formati usati raramente</value></data>
   <data name="Conversion.LimitTracks"><value>Limita le tracce</value></data>
-  <data name="Conversion.SourceRequired"><value>Scegli un&apos;immagine sorgente esistente.</value></data>
+  <data name="Conversion.SourceRequired"><value>Scegli un'immagine sorgente esistente.</value></data>
   <data name="Conversion.NameRequired"><value>Immettere i nomi dei file di output.</value></data>
   <data name="Conversion.CheckOutput"><value>Controlla almeno un formato di output.</value></data>
   <data name="Conversion.More"><value>(+ {0} conversione/i)</value></data>
@@ -34,4 +34,6 @@
   <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Conversione interna fallita {0}: {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>Potenziale perdita di dati</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>Questa conversione non può conservare tutte le informazioni di origine:&#xA;&#xA;{0}&#xA;&#xA;Vuoi continuare?</value></data>
+  <data name="Conversion.OutputCollision"><value>Diverse conversioni creerebbero lo stesso file '{0}'. Questa selezione non è possibile a meno che '{1}E' controllato.</value></data>
+  <data name="Conversion.Failed"><value>Conversione non riuscita per {0}: {1}</value></data>
 </root>

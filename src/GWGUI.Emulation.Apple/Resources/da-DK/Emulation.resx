@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.applewin.Description"><value>Emulerer Apple II-computere med AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Emulerer Macintosh II-computere med Mini vMac.</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Maskinvariant</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>Emulatorkernens videoindstillinger</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Udvidelseskort</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Hukommelse brugt af kernen</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>Systemets ROM-filer er inkluderet i AppleWin.</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>Den tilgængelige kerne understøtter ikke denne maskinmodel.</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Disk- spillelister</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Tom</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>Kort i Slot 3</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>Mouse Card</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>Kort i Slot 4</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>Kort i Slot 5</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>Harddisk controller</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>Kort i Slot 7</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>Farve (RGB Kort / monitor)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>Farve (kompositidoteret)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>Farve (kompositskærm)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>Farve TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>Monokrom (Amber)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>Monokrom (grøn)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>Monokrom (hvid)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>Videotilstand</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>Halvscannede linjer</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>Videostil</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>Videogenopfrisk sats</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>Første</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>Forrige</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>Spillelist- start- disk</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>Brug begge diskettedrev</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>Statuslinje</value></data>
+</root>

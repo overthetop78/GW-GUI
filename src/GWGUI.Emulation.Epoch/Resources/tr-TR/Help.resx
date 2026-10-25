@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Help.DisplayArea" xml:space="preserve"><value>konsol imajının görünür alanını seçin.</value></data>
+  <data name="Emulation.Epoch.Help.PixelAspect" xml:space="preserve"><value>dikdörtgen veya kare piksel seçin.</value></data>
+  <data name="Emulation.Epoch.Help.Resolution" xml:space="preserve"><value>İç işleme kararını seçin.</value></data>
+  <data name="Emulation.Epoch.Help.ColorPalette" xml:space="preserve"><value>Konsol rengi paletini seçin.</value></data>
+  <data name="Emulation.Epoch.Help.RefreshRate" xml:space="preserve"><value>Konsol yenileme oranını seçin.</value></data>
+  <data name="Emulation.Epoch.Help.ShowVideoMemory" xml:space="preserve"><value>Televizyon görüntüsünin ötesinde video hafızayı görüntülemek.</value></data>
+  <data name="Emulation.Epoch.Help.ShowInputs" xml:space="preserve"><value>Görüntü üzerinde mevcut kontrol durumunu görüntülemek.</value></data>
+  <data name="Emulation.Epoch.Help.Language" xml:space="preserve"><value>emülatör ekranlarının dilini seçin.</value></data>
+  <data name="Emulation.Epoch.Help.ValidateFirmware" xml:space="preserve"><value>Konsolu onaylayın BIOS Başlamadan önce checksum.</value></data>
+  <data name="Emulation.Epoch.Help.ShowKeypadAtStart" xml:space="preserve"><value>Emulation başladığında konsol klavyesini gösterin.</value></data>
+  <data name="Emulation.Epoch.Help.AnnounceCourseSwitch" xml:space="preserve"><value>Seçilmiş oyun kursunu değiştirirken.</value></data>
+</root>

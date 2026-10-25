@@ -2,8 +2,8 @@ using System.Collections.ObjectModel;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Interfaces;
-using IMediaOpticalRepresentation = global::GWGUI.MediaFileSystems.Interfaces.IMediaOpticalRepresentation;
-using IMediaOpticalTrack = global::GWGUI.MediaFileSystems.Interfaces.IMediaOpticalTrack;
+using IMediaOpticalRepresentation = GWGUI.MediaFileSystems.Interfaces.IMediaOpticalRepresentation;
+using IMediaOpticalTrack = GWGUI.MediaFileSystems.Interfaces.IMediaOpticalTrack;
 using GWGUI.MediaEngine.Images.Reading.Sources;
 
 namespace GWGUI.MediaEngine.Images.Models.Optical;
@@ -11,12 +11,7 @@ namespace GWGUI.MediaEngine.Images.Models.Optical;
 /// <summary>Describes optical sessions, tracks, sectors, layers, faces, and associated files only when supplied by the source.</summary>
 public sealed class OpticalMediaImageRepresentation : IMediaOpticalRepresentation, IMediaImageRepresentation
 {
-    public OpticalMediaImageRepresentation(
-        long? logicalLength,
-        IReadOnlyList<OpticalTrackDescriptor>? tracks = null,
-        int? layerCount = null,
-        int? faceCount = null,
-        IReadOnlyList<string>? associatedFiles = null)
+    public OpticalMediaImageRepresentation(long? logicalLength, IReadOnlyList<OpticalTrackDescriptor>? tracks = null, int? layerCount = null, int? faceCount = null, IReadOnlyList<string>? associatedFiles = null)
     {
         if (logicalLength is < 0) throw new ArgumentOutOfRangeException(nameof(logicalLength));
         if (layerCount is <= 0) throw new ArgumentOutOfRangeException(nameof(layerCount));
@@ -71,21 +66,10 @@ public sealed class OpticalMediaImageRepresentation : IMediaOpticalRepresentatio
 
     public IReadOnlyList<string>? AssociatedFiles { get; }
 
-    private static OpticalTrackDescriptor CreateCompatibilityTrack(
-        (int SessionNumber, int TrackNumber, long FirstSector, long SectorCount) track)
+    private static OpticalTrackDescriptor CreateCompatibilityTrack((int SessionNumber, int TrackNumber, long FirstSector, long SectorCount) track)
     {
         const int sectorSize = 2048;
         var length = checked(track.SectorCount * sectorSize);
-        return new OpticalTrackDescriptor(
-            track.SessionNumber,
-            track.TrackNumber,
-            OpticalTrackMode.Mode1Data2048,
-            track.FirstSector,
-            track.SectorCount,
-            sectorSize,
-            0,
-            sectorSize,
-            new UnavailableRandomAccessData(length),
-            0);
+        return new OpticalTrackDescriptor(track.SessionNumber, track.TrackNumber, OpticalTrackMode.Mode1Data2048, track.FirstSector, track.SectorCount, sectorSize, 0, sectorSize, new UnavailableRandomAccessData(length), 0);
     }
 }

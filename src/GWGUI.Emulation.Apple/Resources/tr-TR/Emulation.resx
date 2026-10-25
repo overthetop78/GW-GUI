@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.applewin.Description"><value>AppleWin kullanarak Apple II bilgisayarlarını emüle eder.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Mini vMac kullanarak Macintosh II bilgisayarlarını emüle eder.</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Machine variable</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>Emülasyon çekirdeğinin video ayarları</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Genişleme kartları</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Anahtarlama tarafından kullanılan bellek</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>Sistem ROM dosyaları AppleWin&apos;e dahildir.</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>Mevcut çekirdek bu makine modelini desteklemiyor.</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Disk listeleri</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Boş boş boş boş boş boş boş boş boş boş boş boş boş boş boş boş boş boş boş boş boş boş boş boş</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>Slot 3'te Kart</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>Mouse</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>Slot 4'te Kart</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>Slot 5'te Kart</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>Hard Disk Controller</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>Slot 7'de Kart</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>Renk ( Renk)RGB Card/Monitor)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>Renk (Composite İdealize)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>Renk (Composite Monitor)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>Renk Renk Renk Renk TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>Monokrom (Amber)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>Monokrom (Green)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>Monokro (Beyaz)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>Video Mode</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>Yarısı</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>Video Style</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>Video Yenileme Oranı</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk İlk</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki Önceki</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>Playlist Start Disk</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>Her iki diskpy sürücüsü de kullanın</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>Durum Bar</value></data>
+</root>

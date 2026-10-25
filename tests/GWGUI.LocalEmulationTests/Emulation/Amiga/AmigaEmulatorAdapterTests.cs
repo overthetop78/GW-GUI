@@ -1,0 +1,237 @@
+using System.Reflection;
+using System.IO;
+using System.Net.Http;
+using System.Text.Json;
+using System.Globalization;
+using GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts;
+using GWGUI.Emulation.Commodore.Common.Machines.Common.Enums;
+using GWGUI.Emulation.Commodore.Modules;
+using GWGUI.Emulation.Commodore.Common.Services;
+using GWGUI.Emulation.Commodore.Emulators.PUAE.Factories;
+using GWGUI.Emulation.Contracts;
+using GWGUI.Emulation.Enums;
+using GWGUI.Emulation.Exceptions;
+using GWGUI.App.Localization.Extensions;
+using EmulatorCreationContext = GWGUI.Emulation.Contracts.EmulatorCreationContext<GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts.MachineConfiguration>;
+
+namespace GWGUI.Tests.Emulation.Amiga;
+
+public sealed class AmigaEmulatorAdapterTests
+{
+    [Fact]
+    public void ObsoleteConfigurationAliasesAreNoLongerAccepted()
+    {
+        Assert.DoesNotContain("External", Enum.GetNames<Emulator>());
+        Assert.False(Enum.TryParse<Emulator>("External", out _));
+        foreach (var id in new[] { "A500OG", "A1200OG", "A2000OG", "A4030", "A4040", "CD32FR" })
+            Assert.Throws<ArgumentOutOfRangeException>(() => GWGUI.Emulation.Commodore.Common.Machines.Common.Dictionaries.ModelCatalog.Get(id));
+    }
+
+    [Fact]
+    public void MachineConfigurationCrossesTheCoreHostJsonBoundary()
+    {
+        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+        var original = new MachineConfiguration("A500", Emulator.PUAE, FirmwarePaths: new Dictionary<string,string> {{"configuration.kickstartPath","kickstart.rom"}});
+
+        var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(original, options), options);
+
+        Assert.NotNull(restored);
+        Assert.Equal(original.Id, restored.Id);
+        Assert.Equal(original.Model, restored.Model);
+        Assert.Equal(original.Core, restored.Core);
+        Assert.Equal(original.FirmwarePath("configuration.kickstartPath"), restored.FirmwarePath("configuration.kickstartPath"));
+    }
+
+    [Fact]
+    public void PuaeUsesItsPhysicalNamespaceAndTheCommonAdapter()
+    {
+        var assembly = typeof(CommodoreEmulationModule).Assembly;
+        var adapter = assembly.GetType("GWGUI.Emulation.Commodore.Emulators.PUAE.Factories.PuaeMachineFactory");
+        var common = assembly.GetType("GWGUI.Emulation.Commodore.Common.Interfaces.IEmulatorAdapter");
+        Assert.NotNull(adapter);
+        Assert.NotNull(common);
+        Assert.Contains(common!, adapter!.GetInterfaces());
+        var required = new[] { "Create", "FindInstalledCorePathAsync", "FindReleasesAsync",
+            "GetInstallationAsync", "InstallAsync", "ResolveConfiguredMedia", "TryHandleHostCommand" };
+        var methods = new[] { common! }.Concat(common!.GetInterfaces()).SelectMany(contract => contract.GetMethods()).ToArray();
+        Assert.All(required, name => Assert.Contains(methods, method => method.Name == name));
+    }
+
+    [Fact]
+    public void EngineRegistersAllProfilesThroughTheCommonAdapter()
+    {
+        var field = typeof(Engine).GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic);
+        var adapters = Assert.IsAssignableFrom<System.Collections.IEnumerable>(field!.GetValue(new Engine()));
+        var entries = adapters.Cast<object>().ToArray();
+        Assert.Equal(new[] { "amiberry", "puae", "puae2021", "frodo", "vice_x64", "vice_x64sc", "vice_x64dtv", "vice_xscpu64", "vice_x128", "vice_xcbm5x0", "vice_xcbm2", "vice_xpet", "vice_xplus4", "vice_xvic" }.Order(), entries.Select(entry =>
+            (string)entry.GetType().GetProperty("Key")!.GetValue(entry)!).Order());
+    }
+
+    [Theory]
+    [InlineData("puae", Emulator.PUAE)]
+    [InlineData("puae2021", Emulator.PUAE2021)]
+    [InlineData("amiberry", Emulator.Amiberry)]
+    public async Task AllAmigaMachinesOfferTheThreeProfilesAndTheirRomFields(string id, Emulator core)
+    {
+        using var httpClient = new HttpClient();
+        var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        foreach (var machine in module.Machines.Where(machine => new[] {"A500","A500PLUS","A600","A1000","A1200","A2000","A3000","A4000","CDTV","CD32"}.Contains(machine.Id)))
+        {
+            var original = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(machine.Id));
+            Assert.Equal(Emulator.PUAE, original.Core);
+            var selected = Assert.IsType<MachineConfiguration>(await module.UseEmulatorAsync(original, id));
+            Assert.Equal(core, selected.Core);
+            var installations = await module.GetEmulatorInstallationsAsync(selected);
+            Assert.Equal(new[] { "puae", "puae2021", "amiberry" }, installations.Select(item => item.EmulatorId));
+            Assert.Single(installations.Select(item => item.DescriptionResourceKey).Distinct());
+            Assert.Equal(id, (await module.GetEmulatorInstallationAsync(selected)).EmulatorId);
+            Assert.True(module.Describe(machine.Id, selected).Visibility.Tabs[EmulationMachineTab.Rom]);
+            var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(selected));
+            Assert.Equal(core, restored!.Core);
+        }
+    }
+
+    [Fact]
+    public async Task PuaeStartupFailureKeepsTechnicalDetailOutOfTheDialogMessage()
+    {
+        var machine = new PuaeMachineFactory().Create(
+            new MachineConfiguration("A600", Emulator.PUAE, FirmwarePaths: new Dictionary<string,string> {{"configuration.kickstartPath","kickstart.rom"}}),
+            new EmulatorCreationContext(Path.GetTempPath(), "virtual-core", "virtual-host", null, null));
+        try
+        {
+            var field = typeof(Machine).GetField("_startErrorTranslator", BindingFlags.Instance | BindingFlags.NonPublic);
+            var translate = Assert.IsType<Func<Exception, Exception>>(field!.GetValue(machine));
+            var technical = new InvalidDataException("Logical block 247 is missing.\n   at Technical.Stack.Trace()");
+
+            var translated = Assert.IsType<EmulationMessageException>(translate(technical));
+
+            Assert.Equal(EmulationMessageCode.MachineStartFailed, translated.MessageData.MessageCode);
+            Assert.Null(translated.MessageData.OriginalText);
+            Assert.Same(technical, translated.InnerException);
+        }
+        finally
+        {
+            await machine.DisposeAsync();
+        }
+    }
+
+    [Fact]
+    public async Task PuaeCoreAndFirmwareUseTheirMachineSubdirectories()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        var moduleDirectory = Path.Combine(directory, "Emulation", "Machines", "commodore");
+        var coreDirectory = Path.Combine(moduleDirectory, "Core", "puae");
+        Directory.CreateDirectory(coreDirectory);
+        try
+        {
+            await File.WriteAllBytesAsync(Path.Combine(coreDirectory, "puae_libretro.dll"), [0]);
+            await File.WriteAllTextAsync(Path.Combine(coreDirectory, "core.json"), "{\"version\":\"test-version\"}");
+            using var httpClient = new HttpClient();
+            var factory = new CommodoreEmulationModuleFactory();
+            var module = Assert.IsType<CommodoreEmulationModule>(factory.Create(new EmulationModuleContext(directory, moduleDirectory, httpClient)));
+
+            var installation = await module.GetEmulatorInstallationAsync("A500");
+
+            Assert.Equal("test-version", installation.InstalledVersion);
+            Assert.True(Directory.Exists(Path.Combine(moduleDirectory, "Firmware")));
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task ConfigurationCanBeCreatedBeforeSelectingKickstart()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(directory);
+        try
+        {
+            using var httpClient = new HttpClient();
+            var module = new CommodoreEmulationModule(directory, directory, httpClient, directory);
+            var configuration = module.CreateConfiguration("A600");
+
+            await module.SaveConfigurationAsync(configuration);
+
+            Assert.Single(await module.LoadConfigurationsAsync());
+            var error = await Assert.ThrowsAsync<EmulationMessageException>(() => module.CreateRuntimeAsync(configuration, null!).AsTask());
+            Assert.Equal(EmulationMessageCode.FirmwareMissing, error.MessageData.MessageCode);
+        }
+        finally
+        {
+            Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
+    public void PuaeDeclaresOnlyItsHardwareConfigurationDialogs()
+    {
+        using var httpClient = new HttpClient();
+        var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var storage = module.DescribeStorageSettings(module.CreateConfiguration("A1200"));
+
+        Assert.All(storage.AvailableDevices, device => Assert.Equal(
+            device.MediaType switch
+            {
+                EmulationMediaType.Floppy => EmulationStorageConfigurationKind.FloppyDrive,
+                EmulationMediaType.HardDisk => EmulationStorageConfigurationKind.HardDiskDrive,
+                _ => EmulationStorageConfigurationKind.None
+            }, device.ConfigurationKind));
+    }
+
+    [Fact]
+    public void AmigaKeyboardListsOnlyUniqueMachineKeysWithAutomaticHostBindings()
+    {
+        using var httpClient = new HttpClient();
+        var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var keyboard = Assert.IsType<EmulationInputBindingSet>(module.DescribeInputSettings(module.CreateConfiguration("A500")).Keyboard);
+
+        Assert.Equal([nameof(EmulationKey.Help), nameof(EmulationKey.LeftAmiga), nameof(EmulationKey.RightAmiga)], keyboard.Definitions.Select(key => key.Id));
+        Assert.Equal(nameof(EmulationKey.Insert), keyboard.Definitions.Single(key => key.Id == nameof(EmulationKey.Help)).DefaultBinding);
+        Assert.Equal(nameof(EmulationKey.PageUp), keyboard.Definitions.Single(key => key.Id == nameof(EmulationKey.LeftAmiga)).DefaultBinding);
+        Assert.Equal(nameof(EmulationKey.PageDown), keyboard.Definitions.Single(key => key.Id == nameof(EmulationKey.RightAmiga)).DefaultBinding);
+        Assert.All(keyboard.Definitions, definition =>
+        {
+            Assert.True(Enum.TryParse<EmulationKey>(definition.Id, out _));
+            Assert.True(Enum.TryParse<EmulationKey>(definition.DefaultBinding, out _));
+        });
+        Assert.Null(module.DescribeInputSettings(module.CreateConfiguration("CD32")).Keyboard);
+    }
+
+    [Fact]
+    public void AmigaConfigurationSummaryDoesNotDisplayAudioState()
+    {
+        using var httpClient = new HttpClient();
+        var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration("A600"));
+
+        Assert.Equal(module.SummarizeConfiguration(configuration with { AudioEnabled = true }).Details, module.SummarizeConfiguration(configuration with { AudioEnabled = false }).Details);
+    }
+
+    [Fact]
+    public void EveryAmigaMachineSettingDeclaresLocalizedHelp()
+    {
+        using var httpClient = new HttpClient();
+        var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+
+        var missing = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var machine in module.Machines.Where(machine => new[] {"A500","A500PLUS","A600","A1000","A1200","A2000","A3000","A4000","CDTV","CD32"}.Contains(machine.Id)))
+        foreach (var field in module.Describe(machine.Id, module.CreateConfiguration(machine.Id)).Blocks.SelectMany(block => block.Fields))
+        {
+            if (string.IsNullOrWhiteSpace(field.ExplanationResourceKey))
+                missing.Add($"{field.Id}:short-key");
+            else if (LocExtension.GetForModule(module, field.ExplanationResourceKey)
+                     is var shortHelp && (string.IsNullOrWhiteSpace(shortHelp)
+                         || shortHelp == $"[{field.ExplanationResourceKey}]"))
+                missing.Add($"{field.Id}:short-text");
+            if (string.IsNullOrWhiteSpace(field.DetailedExplanationResourceKey))
+                missing.Add($"{field.Id}:detailed-key");
+            else if (LocExtension.GetForModule(module, field.DetailedExplanationResourceKey)
+                     is var detailedHelp && (string.IsNullOrWhiteSpace(detailedHelp)
+                         || detailedHelp == $"[{field.DetailedExplanationResourceKey}]"))
+                missing.Add($"{field.Id}:detailed-text");
+        }
+        Assert.True(missing.Count == 0, string.Join(Environment.NewLine, missing));
+    }
+}

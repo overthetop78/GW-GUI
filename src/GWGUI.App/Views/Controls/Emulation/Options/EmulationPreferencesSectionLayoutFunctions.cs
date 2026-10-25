@@ -1,4 +1,4 @@
-﻿using GWGUI.App.Functions.Views.Emulation.Settings;
+using GWGUI.App.Functions.Views.Emulation.Settings;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Views.Controls.Common;
 using System.Windows;
@@ -25,34 +25,22 @@ public sealed partial class EmulationPreferencesSection
 
     private ScrollViewer BuildShortcutsTab()
     {
-        _shortcuts.ConfigurePresentation(LocExtension.Get("Emulation.Input.Actions"),
-            LocExtension.Get("Emulation.Input.Binding.Search"));
+        _shortcuts.ConfigurePresentation(LocExtension.Get("Emulation.Input.Actions"), LocExtension.Get("Emulation.Input.Binding.Search"));
         return EmulationSettingsLayout.ScrollPage(new StackPanel
         {
             Margin = new Thickness(12),
-            Children = { EmulationSettingsLayout.InputBindings(_shortcuts,
-                LocExtension.Get("Emulation.Shortcut.Global")) }
+            Children = { EmulationSettingsLayout.InputBindings(_shortcuts, LocExtension.Get("Emulation.Shortcut.Global")) }
         });
     }
 
     private Grid BuildConfigurationsTab()
     {
-        _configurationBrandLabel.Text = LocExtension.Get("Emulation.Configuration.Brand");
-        _configurationBrand.MinWidth = 300;
-
-        var filter = new Grid { Margin = new Thickness(0, 0, 0, 12) };
-        filter.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        filter.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(300) });
-        _configurationBrandLabel.VerticalAlignment = VerticalAlignment.Center;
-        _configurationBrandLabel.Margin = new Thickness(0, 0, 12, 0);
-        filter.Children.Add(_configurationBrandLabel);
-        Grid.SetColumn(_configurationBrand, 1);
-        filter.Children.Add(_configurationBrand);
+        _configurationSelector.Margin = new Thickness(0, 0, 0, 12);
 
         var content = new Grid { Margin = new Thickness(12) };
         content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         content.RowDefinitions.Add(new RowDefinition());
-        content.Children.Add(filter);
+        content.Children.Add(_configurationSelector);
         Grid.SetRow(_configurationTable, 1);
         content.Children.Add(_configurationTable);
         return content;
@@ -61,8 +49,7 @@ public sealed partial class EmulationPreferencesSection
     private Grid FolderControl(TextBox target)
     {
         var browse = new Button { MinWidth = 100 };
-        BindingOperations.SetBinding(browse, ContentControl.ContentProperty,
-            LocExtension.CreateBinding("Common.Browse"));
+        BindingOperations.SetBinding(browse, ContentControl.ContentProperty, LocExtension.CreateBinding("Common.Browse"));
         browse.Click += async (_, _) => await BrowseFolderAsync(target);
         return PathControl(target, browse);
     }
@@ -98,4 +85,3 @@ public sealed partial class EmulationPreferencesSection
         return tab;
     }
 }
-

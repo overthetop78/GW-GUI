@@ -14,12 +14,9 @@ namespace GWGUI.MediaEngine.Images.Formats.HardDisk.Vdi;
 /// <summary>Reads autonomous fixed and dynamic VDI 1.1 images.</summary>
 public sealed class VdiReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { HardDiskImageFormatIds.Vdi }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.HardDisk }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { HardDiskImageFormatIds.Vdi }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.HardDisk }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => VdiFormat.Extensions;
@@ -29,27 +26,11 @@ public sealed class VdiReader : IMediaImageReader
     IReadOnlySet<MediaRepresentationKind> IMediaImageReader.RepresentationKinds => SupportedRepresentationKinds;
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
-    {
-        if (context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId)) return false;
-        try
-        {
-            await ReadHeaderAsync(context, cancellationToken).ConfigureAwait(false);
-            return true;
-        }
-        catch (InvalidDataException)
-        {
-            return false;
-        }
-        catch (NotSupportedException)
-        {
-            return false;
-        }
-    }
+    ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
+        => MediaRecognitionRegistry.CanReadAsync(context, SupportedFormatIds,
+            ReadHeaderAsync, cancellationToken);
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var header = await ReadHeaderAsync(context, cancellationToken).ConfigureAwait(false);
         var source = new FileRandomAccessData(context.Source.PrimaryPath);
@@ -64,12 +45,12 @@ public sealed class VdiReader : IMediaImageReader
             var length = Math.Min((long)header.BlockSize, header.DiskSize - address);
             if (entry == HardDiskFormatConstants.VdiUnallocatedBlock)
             {
-                AddRange(ranges, address, length, MediaDataRangeKind.Unallocated);
+                BlockMediaImageRepresentation.AddRange(ranges, address, length, MediaDataRangeKind.Unallocated);
                 continue;
             }
             if (entry == HardDiskFormatConstants.VdiDiscardedBlock)
             {
-                AddRange(ranges, address, length, MediaDataRangeKind.Zero);
+                BlockMediaImageRepresentation.AddRange(ranges, address, length, MediaDataRangeKind.Zero);
                 continue;
             }
             if (entry >= header.BlocksAllocated || !seenAllocatedBlocks.Add(entry))
@@ -77,7 +58,7 @@ public sealed class VdiReader : IMediaImageReader
             var sourceOffset = checked((long)header.DataOffset + (long)entry * (header.BlockSize + header.BlockExtra) + header.BlockExtra);
             if (sourceOffset > context.Length - length)
                 throw new InvalidDataException($"VDI block map entry {logicalBlock} points outside the file.");
-            AddRange(ranges, address, length, MediaDataRangeKind.Stored, source, sourceOffset);
+            BlockMediaImageRepresentation.AddRange(ranges, address, length, MediaDataRangeKind.Stored, source, sourceOffset);
         }
 
         HardDiskGeometry? geometry = null;
@@ -87,9 +68,7 @@ public sealed class VdiReader : IMediaImageReader
             if (candidate.Capacity <= header.DiskSize) geometry = candidate;
         }
         var representation = new BlockMediaImageRepresentation(header.DiskSize, header.SectorSize, ranges, geometry);
-        var variant = header.ImageType == HardDiskFormatConstants.VdiFixedImageType
-            ? HardDiskImageVariant.Fixed
-            : HardDiskImageVariant.Dynamic;
+        var variant = header.ImageType == HardDiskFormatConstants.VdiFixedImageType ? HardDiskImageVariant.Fixed : HardDiskImageVariant.Dynamic;
         return new MediaImageDocument(
             context.Source,
             HardDiskImageFormatIds.Vdi,
@@ -104,9 +83,7 @@ public sealed class VdiReader : IMediaImageReader
             });
     }
 
-    private static async ValueTask<VdiHeader> ReadHeaderAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    private static async ValueTask<VdiHeader> ReadHeaderAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.Length < HardDiskFormatConstants.VdiHeaderSize)
             throw new InvalidDataException("The file is too short to contain a VDI header.");
@@ -159,28 +136,6 @@ public sealed class VdiReader : IMediaImageReader
             checked((int)blocksInImage),
             blocksAllocated,
             new Guid(header[0x188..0x198]));
-    }
-
-    private static void AddRange(
-        List<MediaDataRange> ranges,
-        long address,
-        long length,
-        MediaDataRangeKind kind,
-        FileRandomAccessData? source = null,
-        long sourceOffset = 0)
-    {
-        if (ranges.Count > 0)
-        {
-            var previous = ranges[^1];
-            var sourceContinues = kind != MediaDataRangeKind.Stored
-                || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
-            if (previous.Kind == kind && previous.Address + previous.Length == address && sourceContinues)
-            {
-                ranges[^1] = new MediaDataRange(previous.Address, previous.Length + length, kind, previous.Source, previous.SourceOffset);
-                return;
-            }
-        }
-        ranges.Add(new MediaDataRange(address, length, kind, source, sourceOffset));
     }
 
     private sealed record VdiHeader(

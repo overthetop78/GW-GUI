@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Controller.Standard" xml:space="preserve"><value>ColecoVision 관제사</value></data>
+  <data name="Emulation.Coleco.Controller.Paddle" xml:space="preserve"><value>팟캐스트</value></data>
+  <data name="Emulation.Coleco.Action.Purple" xml:space="preserve"><value>보라색 버튼</value></data>
+  <data name="Emulation.Coleco.Action.Blue" xml:space="preserve"><value>블루 버튼</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerLeft" xml:space="preserve"><value>Spinner 왼쪽</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerRight" xml:space="preserve"><value>Spinner 오른쪽</value></data>
+  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>왼쪽 버튼</value></data>
+  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>오른쪽 버튼</value></data>
+</root>

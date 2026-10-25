@@ -15,8 +15,7 @@
         <visualization:VisualizerHeaderSection x:Name="HeaderSection"/>
 
         <Grid x:Name="VisualizationArea" Grid.Row="1" Margin="0,10,0,8" MinWidth="0" MinHeight="240" ClipToBounds="True">
-            <Border x:Name="MediaSurface" Style="{StaticResource VisualizerSurface}" Padding="4"
-                    MinWidth="0" MinHeight="0" Visibility="Collapsed">
+            <Border x:Name="MediaSurface" Style="{StaticResource VisualizerSurface}" Padding="4" MinWidth="0" MinHeight="0" Visibility="Collapsed">
             <Grid x:Name="MediaViewHost" MinWidth="0" MinHeight="0" ClipToBounds="True">
                 <Grid x:Name="FluxViewHost">
                     <Grid.ColumnDefinitions>
@@ -32,8 +31,7 @@
             <Border x:Name="EmptyState" Style="{StaticResource VisualizerSurface}" Padding="32">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="430">
                     <Border Width="72" Height="72" CornerRadius="36" Background="#EAF2F7" HorizontalAlignment="Center">
-                <TextBlock Text="{l:Loc Icon.FloppyDisk}" FontFamily="{StaticResource IconFontFamily}" FontSize="32"
-                                   Foreground="#34566C" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="{l:Loc Icon.FloppyDisk}" FontFamily="{StaticResource IconFontFamily}" FontSize="32" Foreground="#34566C" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <TextBlock Text="{l:Loc Visual.NoFile}" FontSize="22" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,18,0,0"/>
                     <TextBlock Text="{l:Loc Visual.Waiting}" Foreground="{DynamicResource MutedTextBrush}" HorizontalAlignment="Center" Margin="0,6,0,18"/>
@@ -47,8 +45,7 @@
             </Border>
         </Grid>
 
-        <Border x:Name="InspectorBand" Grid.Row="2" Style="{StaticResource VisualizerSurface}"
-                Margin="0,0,0,4" Height="118" MinHeight="118" MaxHeight="118" Visibility="Collapsed">
+        <Border x:Name="InspectorBand" Grid.Row="2" Style="{StaticResource VisualizerSurface}" Margin="0,0,0,4" Height="118" MinHeight="118" MaxHeight="118" Visibility="Collapsed">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -61,21 +58,18 @@
             </Grid>
         </Border>
 
-        <Border x:Name="OverviewBar" Grid.Row="3" Style="{StaticResource VisualizerSurface}" Padding="5,2"
-                Height="32" MaxHeight="32" Visibility="Collapsed" ClipToBounds="True">
+        <Border x:Name="OverviewBar" Grid.Row="3" Style="{StaticResource VisualizerSurface}" Padding="5,2" Height="32" MaxHeight="32" Visibility="Collapsed" ClipToBounds="True">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" MaxWidth="540"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <visualization:VisualizerLegend x:Name="Legend" VerticalAlignment="Center"/>
-                <visualization:VisualizerTrackOverview x:Name="TrackOverview" Grid.Column="1" Margin="6,0,0,0"
-                                                          VerticalAlignment="Center"/>
+                <visualization:VisualizerTrackOverview x:Name="TrackOverview" Grid.Column="1" Margin="6,0,0,0" VerticalAlignment="Center"/>
             </Grid>
         </Border>
 
-        <Border x:Name="RecognitionOverlay" Grid.Row="1" Margin="0,20,0,0" Background="Transparent"
-                VerticalAlignment="Top" Panel.ZIndex="10" IsHitTestVisible="False" Visibility="Collapsed">
+        <Border x:Name="RecognitionOverlay" Grid.Row="1" Margin="0,20,0,0" Background="Transparent" VerticalAlignment="Top" Panel.ZIndex="10" IsHitTestVisible="False" Visibility="Collapsed">
             <common:MediaRecognitionProgressCard x:Name="RecognitionCard" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         </Border>
     </Grid>

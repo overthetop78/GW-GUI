@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>Boot Cepat</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Melewati BIOS Mulakan layar dan mulai permainan secara langsung. Nonaktifkan ini untuk membuka pengaturan konsol atau manajer kartu memori.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Otomatis</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>Inti CPU</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Memori Cepat</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Aktifkan akses memori yang lebih cepat. Hal ini dapat membuat beberapa game tidak stabil.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Abaikan Akses Memori Buruk</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>Pengaturan waktu akses penyimpanan</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>Komputer host</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>Jeda pembacaan cakram UMD</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>Sinkronkan dengan jam waktu nyata</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>Menyinkronkan emulasi dengan jam waktu nyata untuk mengurangi jeda input. Ini dapat menurunkan kinerja.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>Kecepatan CPU Terkunci</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>Singgahan ISO penuh dalam RAM</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>Dukungan Cheats Internal</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Label"><value>Bahasa Permainan</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Help"><value>'Otomatis' akan menggunakan bahasa antarmuka.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>Cina Tradisional</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>Cina Disederhanakan</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>Model PSP</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>Rendering Perangkat Lunak</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Gunakan perenderan perangkat lunak untuk meningkatkan akurasi dengan kebutuhan daya pemrosesan yang lebih tinggi.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>Resolusi Rendering</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>Pilih resolusi render internal.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>Antialias MSAA</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Terapkan penghalusan tepi MSAA dengan Vulkan.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>Potong ke 16x9</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>Pangkas bagian atas dan bawah gambar untuk menampilkan gambar dengan rasio 16:9.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>Frameskip</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Label"><value>Tipe Frameskip</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.0"><value>Jumlah bingkai video</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>Persentase laju bingkai video</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>Frameskip Otomatis</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>Render Duplikasi Frames ke 60 Hz</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>Menggandakan bingkai video agar gerakan lebih mulus dalam gim dengan laju bingkai rendah.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Deteksi perubahan laju bingkai video</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Laporkan perubahan laju bingkai video game ke aplikasi.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Penyanggaan perintah grafis</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>Kurangi penyanggaan perintah grafis untuk mengurangi jeda masukan. Hal ini dapat menurunkan kinerja. Hanya untuk OpenGL dan Vulkan.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Tanpa penyanggaan grafis tambahan</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Sangga hingga satu bingkai video</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Tombol Konfirmasi</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Kompensasi rentang gerak lingkaran dan persegi pada stik analog</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Deadzone Analog</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Terapkan zona mati tambahan pada stik analog setelah pemrosesan masukan oleh aplikasi.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Skala Sumbu Analog</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Help"><value>Terapkan pengaturan sensitivitas tambahan pada stik analog setelah pemrosesan masukan oleh aplikasi.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Label"><value>Efek Penyangga Lewati</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Lewati efek penyangga bingkai untuk meningkatkan kinerja. Beberapa game mungkin tidak menampilkan gambar.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Lewati Readbacks GPU</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Lewati penyalinan data grafis dari GPU ke CPU. Beberapa game memerlukan salinan ini agar tampil dengan benar.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Penyimpanan tekstur dalam cache secara tertunda (percepatan)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Lebih cepat, tapi bisa menyebabkan masalah teks dalam beberapa game.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>Kualitas Kurva Seram / Bezier</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Hanya digunakan oleh beberapa permainan, mengontrol kelembutan kurva.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Label"><value>Resolusi Rendah bagi Efek</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Help"><value>Kurangi resolusi beberapa efek visual untuk menghindari cacat tampilan.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Value.2"><value>Dibalanced</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_gpu_hardware_transform.Label"><value>Transform Perangkat Keras</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Label"><value>Perangkat Lunak Skinning</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Help"><value>Proses dan gabungkan operasi penggambaran model 3D animasi pada CPU. Hal ini meningkatkan kinerja pada sebagian besar game.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Label"><value>Hardware Tesselation</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Help"><value>Gunakan GPU untuk merender kurva halus.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Label"><value>Tipe Upskala Teks</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Value.3"><value>Hibrid + Bikubic</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Label"><value>Tingkat Upscaling Teks</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Help"><value>Memperbesar tekstur meningkatkan penggunaan CPU. Beberapa tekstur diperbesar belakangan untuk menghindari tampilan tersendat.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Label"><value>Penghentian Tekstur</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Help"><value>Kurangi pita warna yang terlihat pada tekstur yang diperbesar.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_replacement.Label"><value>Penggantian Teks</value></data>
+  </root>

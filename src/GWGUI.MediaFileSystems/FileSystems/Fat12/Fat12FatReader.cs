@@ -1,5 +1,5 @@
 
-using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
+using IMediaSectorImage = GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Fat12;
 
@@ -47,7 +47,5 @@ internal static class Fat12FatReader
     }
 
     /// <summary>Valide l'en-tête standard, ou exige des allocations réelles lorsque l'ancien en-tête nul est employé.</summary>
-    public static bool IsUsable(ReadOnlySpan<byte> fat, byte mediaDescriptor, int clusterCount) =>
-        Fat12Table.HasPlausibleHeader(fat) ||
-        mediaDescriptor == FatBootSectorLayout.UnknownMediaDescriptor && fat.Length >= 3 && fat[0] == 0 && fat[1] == 0 && fat[2] == 0 && Score(fat, clusterCount) > 0;
+    public static bool IsUsable(ReadOnlySpan<byte> fat, byte mediaDescriptor, int clusterCount) => Fat12Table.HasPlausibleHeader(fat) || mediaDescriptor == FatBootSectorLayout.UnknownMediaDescriptor && fat.Length >= 3 && fat[0] == 0 && fat[1] == 0 && fat[2] == 0 && Score(fat, clusterCount) > 0;
 }

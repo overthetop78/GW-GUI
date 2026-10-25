@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Afișează frecvența nominală a ceasului procesorului în mașina Sony selectată.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Frecvenţa originală a ceasului procesorului.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Afișează modelul procesorului furnizat de mașina Sony selectată.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>Procesor emulat pentru această mașină.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>Afișează starea sistemului ROM pentru mașina selectată și emulator.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>Sistemul ROM.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Identifică implementarea emulator folosit pentru a rula această configurație mașină.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>Emulator selectat pentru această mașină.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Identifică modelul Sony a cărui configurare hardware este în curs de editare.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony machine model fiind configurat.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Afișează RAM furnizat de mașina Sony selectată.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Cantitatea de RAM disponibilă pentru aparatul emulat.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Frecvenţa emulatei CPU după aplicarea procentajului de ceas selectat.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>Frecvenţa nominală a consolei este înmulţită cu procentul selectat. Acest lucru schimbă procesorul emulat, nu procesorul gazdă. Valori mai mari pot reduce încetinirile, dar poate rupe calendarul de joc. Utilizați automat emulatorul implicit.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Hardware-ul grafic original al mașinii selectate.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Afișează hardware-ul grafic original al mașinii selectate. Setările de randare ale emulatorului modifică imaginea generată. Filtrele GW GUI sunt aplicate ulterior.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Hardware-ul audio original al mașinii selectate.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Afișează hardware-ul audio original al mașinii selectate. Setările de ieșire audio și latență controlează redarea pe computer.</value></data>
+</root>

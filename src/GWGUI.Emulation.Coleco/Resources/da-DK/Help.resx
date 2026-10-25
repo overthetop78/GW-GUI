@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Vælg automatisk timing eller videostandarden.</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Vælg den emulerede videochip.</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Vælg billedaspektforholdet. Automatisk markering bruger spilregionen.</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>Vælg de synlige skærmkanter.</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>Fjern grænsen for spritter per skærmlinje. Dette kan forårsage grafiske fejl.</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>Lad modsat retninger trykkes sammen.</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>Juster følsomheden af rotationscontrolleren.</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>Vælg farvepalet.</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>Skjul den øverste skærmkant.</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>Skjul den nederste skærmkant.</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>Skjul venstre skærmkant.</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Skjul den højre skærmkant.</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Skjul pixels i kanterne af det viste billede.</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Spring støvleforsinkelsen over.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>Spilkassettens hukommelseskredsløb. Behold Automatisk, medmindre ROM-filen registreres forkert.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Standard: op til 32 KiB. MegaCart og Activision: forskellige kredsløb til skift mellem ROM-banker. OCM: bankskift og lagring i EEPROM. Activision betegner et kredsløb, ikke spillets udgiver. En forkert type kan forhindre opstart eller give fejl.</value></data>
+</root>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Help.DisplayArea" xml:space="preserve"><value>コンソールイメージの可視領域を選択します。</value></data>
+  <data name="Emulation.Epoch.Help.PixelAspect" xml:space="preserve"><value>長方形または正方形のピクセルを選択します。</value></data>
+  <data name="Emulation.Epoch.Help.Resolution" xml:space="preserve"><value>レンダリングの解像度を選択します。</value></data>
+  <data name="Emulation.Epoch.Help.ColorPalette" xml:space="preserve"><value>コンソールカラーパレットを選択します。</value></data>
+  <data name="Emulation.Epoch.Help.RefreshRate" xml:space="preserve"><value>コンソールのリフレッシュレートを選択します。</value></data>
+  <data name="Emulation.Epoch.Help.ShowVideoMemory" xml:space="preserve"><value>テレビ画像を超えてビデオメモリを表示します。</value></data>
+  <data name="Emulation.Epoch.Help.ShowInputs" xml:space="preserve"><value>現行のコントローラーの状態をイメージ上に表示します。</value></data>
+  <data name="Emulation.Epoch.Help.Language" xml:space="preserve"><value>エミュレータ画面の言語を選択します。</value></data>
+  <data name="Emulation.Epoch.Help.ValidateFirmware" xml:space="preserve"><value>コンソールを確認します BIOS 開始前のチェックサム。</value></data>
+  <data name="Emulation.Epoch.Help.ShowKeypadAtStart" xml:space="preserve"><value>エミュレータが始まるときコンソール キーパッドを表示します。</value></data>
+  <data name="Emulation.Epoch.Help.AnnounceCourseSwitch" xml:space="preserve"><value>変更時に選択したゲームコースを表示します。</value></data>
+</root>

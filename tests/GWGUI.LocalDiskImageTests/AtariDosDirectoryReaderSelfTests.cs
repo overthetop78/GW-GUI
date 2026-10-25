@@ -46,12 +46,8 @@ internal static class AtariDosDirectoryReaderSelfTests
     private static void VerifyOpenEntryIsIgnored()
     {
         var directory = new byte[TestSectorSize];
-        WriteDirectoryEntry(directory, OpenEntryNumber,
-            AtariDosDirectoryFlags.InUse | AtariDosDirectoryFlags.CreatedByDos2 | AtariDosDirectoryFlags.OpenForOutput,
-            sectorCount: 0, DataSectorNumber);
-        WriteDirectoryEntry(directory, FinalizedEntryNumber,
-            AtariDosDirectoryFlags.InUse | AtariDosDirectoryFlags.CreatedByDos2,
-            sectorCount: 1, DataSectorNumber);
+        WriteDirectoryEntry(directory, OpenEntryNumber, AtariDosDirectoryFlags.InUse | AtariDosDirectoryFlags.CreatedByDos2 | AtariDosDirectoryFlags.OpenForOutput, sectorCount: 0, DataSectorNumber);
+        WriteDirectoryEntry(directory, FinalizedEntryNumber, AtariDosDirectoryFlags.InUse | AtariDosDirectoryFlags.CreatedByDos2, sectorCount: 1, DataSectorNumber);
 
         var data = new byte[TestSectorSize];
         data[0] = 0x41;
@@ -74,23 +70,14 @@ internal static class AtariDosDirectoryReaderSelfTests
             ],
             logicalBlockCount: TestBlockCount);
         var warnings = new List<string>();
-        var entries = AtariDosDirectoryReader.Read(
-            image,
-            new AtariDosDirectoryLocation(
-                AtariDosFileSystemLayout.FirstDirectorySector,
-                SectorCount: 1,
-                AtariDosFileSystemLayout.DirectoryEntriesPerSector),
-            warnings);
+        var entries = AtariDosDirectoryReader.Read(image, new AtariDosDirectoryLocation(AtariDosFileSystemLayout.FirstDirectorySector, SectorCount: 1, AtariDosFileSystemLayout.DirectoryEntriesPerSector), warnings);
 
         if (entries.Count != 1)
             throw new InvalidOperationException("An unfinished Atari DOS directory entry must not duplicate its finalized file.");
         var entry = entries[0];
         if (entry.Name != $"{FileName}.{FileExtension}" || entry.Size != PayloadLength || entry.Content is null || !entry.Content.SequenceEqual(data.Take(PayloadLength)))
             throw new InvalidOperationException("The finalized Atari DOS directory entry must remain readable after its unfinished duplicate is ignored.");
-        var expectedWarning = AtariDosWarnings.OpenForOutputEntryIgnored(
-            $"{FileName}.{FileExtension}",
-            AtariDosFileSystemLayout.FirstDirectorySector,
-            OpenEntryNumber);
+        var expectedWarning = AtariDosWarnings.OpenForOutputEntryIgnored($"{FileName}.{FileExtension}", AtariDosFileSystemLayout.FirstDirectorySector, OpenEntryNumber);
         if (warnings.Count != 1 || warnings[0] != expectedWarning)
             throw new InvalidOperationException("An unfinished Atari DOS directory entry must produce one warning without traversing its data chain.");
     }
@@ -98,18 +85,10 @@ internal static class AtariDosDirectoryReaderSelfTests
     private static void VerifySharedAndBoundedSectorViews()
     {
         var directory = new byte[TestSectorSize];
-        WriteDirectoryEntry(directory, SharedParentEntryNumber,
-            AtariDosDirectoryFlags.InUse | AtariDosDirectoryFlags.CreatedByDos2,
-            sectorCount: 4, SharedParentFirstSector, SharedParentName, DataExtension);
-        WriteDirectoryEntry(directory, SharedViewEntryNumber,
-            AtariDosDirectoryFlags.InUse | AtariDosDirectoryFlags.CreatedByDos2,
-            sectorCount: 2, SharedViewFirstSector, SharedViewName, DataExtension);
-        WriteDirectoryEntry(directory, BoundedViewEntryNumber,
-            AtariDosDirectoryFlags.InUse | AtariDosDirectoryFlags.CreatedByDos2,
-            sectorCount: 1, BoundedViewFirstSector, BoundedViewName, DataExtension);
-        WriteDirectoryEntry(directory, InvalidOwnerEntryNumber,
-            AtariDosDirectoryFlags.InUse | AtariDosDirectoryFlags.CreatedByDos2,
-            sectorCount: 1, InvalidOwnerFirstSector, InvalidOwnerName, DataExtension);
+        WriteDirectoryEntry(directory, SharedParentEntryNumber, AtariDosDirectoryFlags.InUse | AtariDosDirectoryFlags.CreatedByDos2, sectorCount: 4, SharedParentFirstSector, SharedParentName, DataExtension);
+        WriteDirectoryEntry(directory, SharedViewEntryNumber, AtariDosDirectoryFlags.InUse | AtariDosDirectoryFlags.CreatedByDos2, sectorCount: 2, SharedViewFirstSector, SharedViewName, DataExtension);
+        WriteDirectoryEntry(directory, BoundedViewEntryNumber, AtariDosDirectoryFlags.InUse | AtariDosDirectoryFlags.CreatedByDos2, sectorCount: 1, BoundedViewFirstSector, BoundedViewName, DataExtension);
+        WriteDirectoryEntry(directory, InvalidOwnerEntryNumber, AtariDosDirectoryFlags.InUse | AtariDosDirectoryFlags.CreatedByDos2, sectorCount: 1, InvalidOwnerFirstSector, InvalidOwnerName, DataExtension);
 
         var image = new SectorImage(
             MediaImageFormatIds.Atari90,
@@ -128,13 +107,7 @@ internal static class AtariDosDirectoryReaderSelfTests
             ],
             logicalBlockCount: TestBlockCount);
         var warnings = new List<string>();
-        var entries = AtariDosDirectoryReader.Read(
-            image,
-            new AtariDosDirectoryLocation(
-                AtariDosFileSystemLayout.FirstDirectorySector,
-                SectorCount: 1,
-                AtariDosFileSystemLayout.DirectoryEntriesPerSector),
-            warnings);
+        var entries = AtariDosDirectoryReader.Read(image, new AtariDosDirectoryLocation(AtariDosFileSystemLayout.FirstDirectorySector, SectorCount: 1, AtariDosFileSystemLayout.DirectoryEntriesPerSector), warnings);
 
         var parent = entries.Single(entry => entry.Name == $"{SharedParentName}.{DataExtension}");
         var shared = entries.Single(entry => entry.Name == $"{SharedViewName}.{DataExtension}");
@@ -156,27 +129,14 @@ internal static class AtariDosDirectoryReaderSelfTests
             throw new InvalidOperationException("An unexplained Atari DOS sector owner mismatch must remain invalid.");
     }
 
-    private static void WriteDirectoryEntry(
-        byte[] directory,
-        int entryNumber,
-        AtariDosDirectoryFlags flags,
-        ushort sectorCount,
-        ushort firstSector,
-        string fileName = FileName,
-        string fileExtension = FileExtension)
+    private static void WriteDirectoryEntry(byte[] directory, int entryNumber, AtariDosDirectoryFlags flags, ushort sectorCount, ushort firstSector, string fileName = FileName, string fileExtension = FileExtension)
     {
         var offset = entryNumber * AtariDosFileSystemLayout.DirectoryEntrySize;
         directory[offset + AtariDosFileSystemLayout.FlagsOffset] = (byte)flags;
-        BinaryPrimitives.WriteUInt16LittleEndian(
-            directory.AsSpan(offset + AtariDosFileSystemLayout.SectorCountOffset, sizeof(ushort)),
-            sectorCount);
-        BinaryPrimitives.WriteUInt16LittleEndian(
-            directory.AsSpan(offset + AtariDosFileSystemLayout.FirstSectorOffset, sizeof(ushort)),
-            firstSector);
-        Encoding.ASCII.GetBytes(fileName.PadRight(AtariDosFileSystemLayout.NameLength)).CopyTo(
-            directory.AsSpan(offset + AtariDosFileSystemLayout.NameOffset, AtariDosFileSystemLayout.NameLength));
-        Encoding.ASCII.GetBytes(fileExtension.PadRight(AtariDosFileSystemLayout.ExtensionLength)).CopyTo(
-            directory.AsSpan(offset + AtariDosFileSystemLayout.NameOffset + AtariDosFileSystemLayout.NameLength, AtariDosFileSystemLayout.ExtensionLength));
+        BinaryPrimitives.WriteUInt16LittleEndian(directory.AsSpan(offset + AtariDosFileSystemLayout.SectorCountOffset, sizeof(ushort)), sectorCount);
+        BinaryPrimitives.WriteUInt16LittleEndian(directory.AsSpan(offset + AtariDosFileSystemLayout.FirstSectorOffset, sizeof(ushort)), firstSector);
+        Encoding.ASCII.GetBytes(fileName.PadRight(AtariDosFileSystemLayout.NameLength)).CopyTo(directory.AsSpan(offset + AtariDosFileSystemLayout.NameOffset, AtariDosFileSystemLayout.NameLength));
+        Encoding.ASCII.GetBytes(fileExtension.PadRight(AtariDosFileSystemLayout.ExtensionLength)).CopyTo( directory.AsSpan(offset + AtariDosFileSystemLayout.NameOffset + AtariDosFileSystemLayout.NameLength, AtariDosFileSystemLayout.ExtensionLength));
     }
 
     private static SectorBlock DataBlock(int sectorNumber, int ownerEntryNumber, int nextSector, byte payload)
@@ -184,13 +144,11 @@ internal static class AtariDosDirectoryReaderSelfTests
         var data = new byte[TestSectorSize];
         data[0] = payload;
         var linkOffset = data.Length - AtariDosFileSystemLayout.LinkByteCount;
-        data[linkOffset] = checked((byte)((ownerEntryNumber << AtariDosFileSystemLayout.FileOwnerShift)
-            | (nextSector >> BitConstants.BitsPerByte & AtariDosFileSystemLayout.NextSectorHighMask)));
+        data[linkOffset] = checked((byte)((ownerEntryNumber << AtariDosFileSystemLayout.FileOwnerShift) | (nextSector >> BitConstants.BitsPerByte & AtariDosFileSystemLayout.NextSectorHighMask)));
         data[linkOffset + 1] = checked((byte)nextSector);
         data[linkOffset + 2] = SharedPayloadLength;
         return Block(sectorNumber, data);
     }
 
-    private static SectorBlock Block(int sectorNumber, IReadOnlyList<byte> data) =>
-        new(sectorNumber - 1, new SectorAddress(0, 0, sectorNumber), data);
+    private static SectorBlock Block(int sectorNumber, IReadOnlyList<byte> data) => new(sectorNumber - 1, new SectorAddress(0, 0, sectorNumber), data);
 }

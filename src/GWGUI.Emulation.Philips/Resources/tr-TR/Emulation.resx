@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.m2000.Description" xml:space="preserve"><value>Emulates the the PHILIPS P2000T Bilgisayar.</value></data>
+  <data name="Emulation.Emulator.o2em.Description" xml:space="preserve"><value>Emulates MAGNAVOX ODYSSEY2 ve PHILIPS VIDEOPAC G7000 Konsollar.</value></data>
+  <data name="Emulation.Emulator.same_cdi.Description" xml:space="preserve"><value>Emulates PHILIPS CD-I Konsollar.</value></data>
+  <data name="Emulation.Philips.Audio.Native" xml:space="preserve"><value>Yapımcı Seslendirici Seslendirici Ses</value></data>
+  <data name="Emulation.Philips.Keyboard.Native" xml:space="preserve"><value>Klavye yorumu</value></data>
+  <data name="Emulation.Philips.Memory.Display" xml:space="preserve"><value>Video hafıza</value></data>
+  <data name="Emulation.Philips.Setting.AlternateRenderer" xml:space="preserve"><value>Alternatif video oluşturma</value></data>
+  <data name="Emulation.Philips.Setting.AudioVolume" xml:space="preserve"><value>Konsolun ses hacmi</value></data>
+  <data name="Emulation.Philips.Setting.AutoSave" xml:space="preserve"><value>Otomatik kurtarılan devletler</value></data>
+  <data name="Emulation.Philips.Setting.Cheats" xml:space="preserve"><value>Oyun hile kodları</value></data>
+  <data name="Emulation.Philips.Setting.CropOverscan" xml:space="preserve"><value>Video sınırı kaldır</value></data>
+  <data name="Emulation.Philips.Setting.KeyboardMapping" xml:space="preserve"><value>Klavye anahtar haritalama</value></data>
+  <data name="Emulation.Philips.Setting.LowPassFilter" xml:space="preserve"><value>Low-pass ses filtre</value></data>
+  <data name="Emulation.Philips.Setting.LowPassRange" xml:space="preserve"><value>Ses filtresi kesoff frekansı</value></data>
+  <data name="Emulation.Philips.Setting.MixFrames" xml:space="preserve"><value>Video çerçeveleri</value></data>
+  <data name="Emulation.Philips.Setting.NvramPerGame" xml:space="preserve"><value>Her oyun için ayrı kalıcı hafıza</value></data>
+  <data name="Emulation.Philips.Setting.StateNaming" xml:space="preserve"><value>Kaydetilen devlet dosyası</value></data>
+  <data name="Emulation.Philips.Setting.Throttle" xml:space="preserve"><value>Limit emulation speed</value></data>
+  <data name="Emulation.Philips.Setting.VoiceVolume" xml:space="preserve"><value>Ses hacimleri</value></data>
+  <data name="Emulation.Philips.System.Native" xml:space="preserve"><value>Emulator seçenekleri</value></data>
+  <data name="Emulation.Philips.Value.Game" xml:space="preserve"><value>Oyun</value></data>
+  <data name="Emulation.Philips.Value.Positional" xml:space="preserve"><value>Fiziksel anahtar pozisyonları</value></data>
+  <data name="Emulation.Philips.Value.Simple" xml:space="preserve"><value>Basit karıştırmak</value></data>
+  <data name="Emulation.Philips.Value.Symbolic" xml:space="preserve"><value>Baslı karakterler</value></data>
+  <data name="Emulation.Philips.Value.System" xml:space="preserve"><value>Per system</value></data>
+  <data name="Emulation.Philips.Video.Native" xml:space="preserve"><value>Emulator video</value></data>
+</root>

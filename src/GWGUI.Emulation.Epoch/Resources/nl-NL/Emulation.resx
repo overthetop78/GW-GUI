@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.emuscv.Description" xml:space="preserve"><value>Emuleert SUPER CASSETTE VISION consoles.</value></data>
+  <data name="Emulation.Emulator.pd777.Description" xml:space="preserve"><value>Emuleert CASSETTE VISION consoles.</value></data>
+  <data name="Emulation.Epoch.Memory.Display" xml:space="preserve"><value>Videogeheugen</value></data>
+  <data name="Emulation.Epoch.Video.Native" xml:space="preserve"><value>Console video</value></data>
+  <data name="Emulation.Epoch.Controls.Native" xml:space="preserve"><value>Console-besturing</value></data>
+  <data name="Emulation.Epoch.Setting.DisplayArea" xml:space="preserve"><value>Weergavegebied</value></data>
+  <data name="Emulation.Epoch.Setting.PixelAspect" xml:space="preserve"><value>Pixelvorm</value></data>
+  <data name="Emulation.Epoch.Setting.ColorPalette" xml:space="preserve"><value>Kleurpalet</value></data>
+  <data name="Emulation.Epoch.Setting.RefreshRate" xml:space="preserve"><value>Verversen</value></data>
+  <data name="Emulation.Epoch.Setting.ShowVideoMemory" xml:space="preserve"><value>Volledig videogeheugen tonen</value></data>
+  <data name="Emulation.Epoch.Setting.ShowInputs" xml:space="preserve"><value>Status van weergavecontroller</value></data>
+  <data name="Emulation.Epoch.Setting.ValidateFirmware" xml:space="preserve"><value>Verifiëren BIOS controlesom</value></data>
+  <data name="Emulation.Epoch.Setting.ShowKeypadAtStart" xml:space="preserve"><value>Toetsenbord tonen bij opstarten</value></data>
+  <data name="Emulation.Epoch.Setting.AnnounceCourseSwitch" xml:space="preserve"><value>Selectie van koers tonen</value></data>
+  <data name="Emulation.Epoch.Value.Rectangular" xml:space="preserve"><value>Rechthoekig</value></data>
+  <data name="Emulation.Epoch.Value.Low" xml:space="preserve"><value>Laag</value></data>
+  <data name="Emulation.Epoch.Value.High" xml:space="preserve"><value>Hoog</value></data>
+</root>

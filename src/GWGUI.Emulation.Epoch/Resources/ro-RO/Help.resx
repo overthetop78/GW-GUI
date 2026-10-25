@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Help.DisplayArea" xml:space="preserve"><value>Selectaţi zona vizibilă a imaginii consolei.</value></data>
+  <data name="Emulation.Epoch.Help.PixelAspect" xml:space="preserve"><value>Selectaţi pixeli dreptunghiulari sau pătrati.</value></data>
+  <data name="Emulation.Epoch.Help.Resolution" xml:space="preserve"><value>Selectaţi rezoluţia de redare internă.</value></data>
+  <data name="Emulation.Epoch.Help.ColorPalette" xml:space="preserve"><value>Selectaţi paleta de culori a consolei.</value></data>
+  <data name="Emulation.Epoch.Help.RefreshRate" xml:space="preserve"><value>Selectaţi rata de reîmprospătare a consolei.</value></data>
+  <data name="Emulation.Epoch.Help.ShowVideoMemory" xml:space="preserve"><value>Afișează memoria video dincolo de imaginea de la televizor.</value></data>
+  <data name="Emulation.Epoch.Help.ShowInputs" xml:space="preserve"><value>Afișează starea curentă a controlorului peste imagine.</value></data>
+  <data name="Emulation.Epoch.Help.Language" xml:space="preserve"><value>Selectaţi limba ecranelor emulator.</value></data>
+  <data name="Emulation.Epoch.Help.ValidateFirmware" xml:space="preserve"><value>Verifica consola BIOS Checkum înainte de a începe.</value></data>
+  <data name="Emulation.Epoch.Help.ShowKeypadAtStart" xml:space="preserve"><value>Afișează tastatura consolei atunci când începe emulația.</value></data>
+  <data name="Emulation.Epoch.Help.AnnounceCourseSwitch" xml:space="preserve"><value>Afișează cursul de joc selectat atunci când se schimbă.</value></data>
+</root>

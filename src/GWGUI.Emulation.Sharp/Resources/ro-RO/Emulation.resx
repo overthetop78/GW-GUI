@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Emulează SHARP X68000 calculatoare.</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Emulează SHARP X1 calculatoare.</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Automat audio</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Opțiuni controlor</value></data>
+  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>Caracter ROM</value></data>
+  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Memorie afișată</value></data>
+  <data name="Emulation.Sharp.Setting.AdpcmVolume" xml:space="preserve"><value>ADPCM volum</value></data>
+  <data name="Emulation.Sharp.Setting.AudioDesynchronization" xml:space="preserve"><value>Aruncaţi excesul de audio</value></data>
+  <data name="Emulation.Sharp.Setting.AudioSampleRate" xml:space="preserve"><value>Rata de eșantionare audio</value></data>
+  <data name="Emulation.Sharp.Setting.ButtonOrder" xml:space="preserve"><value>Ordine buton</value></data>
+  <data name="Emulation.Sharp.Setting.DiskSeekSound" xml:space="preserve"><value>Disk search sound</value></data>
+  <data name="Emulation.Sharp.Setting.FmBoard" xml:space="preserve"><value>FM placa de sunet</value></data>
+  <data name="Emulation.Sharp.Setting.FmVolume" xml:space="preserve"><value>FM volum</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRate" xml:space="preserve"><value>Rata de cadru video</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRateAdjustment" xml:space="preserve"><value>Ajustarea ratei cadrului</value></data>
+  <data name="Emulation.Sharp.Setting.FrameSkip" xml:space="preserve"><value>Rame video omise</value></data>
+  <data name="Emulation.Sharp.Setting.HideGraphics" xml:space="preserve"><value>Ascunde grafica</value></data>
+  <data name="Emulation.Sharp.Setting.HideSprites" xml:space="preserve"><value>Ascunde sprite și fundaluri</value></data>
+  <data name="Emulation.Sharp.Setting.HideText" xml:space="preserve"><value>Ascunde stratul de text</value></data>
+  <data name="Emulation.Sharp.Setting.MemorySize" xml:space="preserve"><value>RAM capacitate</value></data>
+  <data name="Emulation.Sharp.Setting.RapidFire" xml:space="preserve"><value>Foc rapid</value></data>
+  <data name="Emulation.Sharp.Setting.Raster" xml:space="preserve"><value>Efecte de raster</value></data>
+  <data name="Emulation.Sharp.Setting.ReverseJoystick" xml:space="preserve"><value>Intrare controler inversat</value></data>
+  <data name="Emulation.Sharp.Setting.UnlimitedSpeed" xml:space="preserve"><value>Viteza de emulare nelimitată</value></data>
+  <data name="Emulation.Sharp.Setting.VerticalSync" xml:space="preserve"><value>Sincronizare verticală</value></data>
+  <data name="Emulation.Sharp.Setting.VideoBeforeAudio" xml:space="preserve"><value>Prioritizează video</value></data>
+  <data name="Emulation.Sharp.Value.High" xml:space="preserve"><value>Ridicat</value></data>
+  <data name="Emulation.Sharp.Value.Low" xml:space="preserve"><value>Scăzut</value></data>
+  <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>Afișare mașini</value></data>
+</root>

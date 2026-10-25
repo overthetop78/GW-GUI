@@ -9,4 +9,10 @@ public sealed record EmulationControllerChoice(
     IReadOnlyList<InputBindingDefinition>? BindingDefinitions = null,
     IReadOnlyList<string>? CompatibleVisualIds = null,
     string? DefaultVisualId = null,
-    IReadOnlyDictionary<EmulationControllerVisualControl, string>? VisualCommandIds = null);
+    IReadOnlyDictionary<EmulationControllerVisualControl, string>? VisualCommandIds = null,
+    IReadOnlyDictionary<string, IReadOnlyList<InputBindingDefinition>>? VisualBindingDefinitions = null)
+{
+    public EmulationControllerCategory Category { get; init; }
+    public bool IsSupportedByEmulator { get; init; } = true;
+    public IReadOnlyDictionary<string, IReadOnlyList<EmulationControllerOutputDefinition>>? VisualOutputDefinitions { get; init; }
+}

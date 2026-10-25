@@ -3,11 +3,7 @@ namespace GWGUI.MediaEngine.Contracts;
 /// <summary>Reports neutral progress while physical media data units are written or verified.</summary>
 public sealed record MediaPhysicalWriteProgress
 {
-    public MediaPhysicalWriteProgress(
-        int completedUnits,
-        int totalUnits,
-        long position,
-        bool verifying)
+    public MediaPhysicalWriteProgress(int completedUnits, int totalUnits, long position, bool verifying)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(completedUnits);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(totalUnits);

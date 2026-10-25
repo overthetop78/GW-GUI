@@ -17,9 +17,7 @@ public static class VhdImageWriter
         ContainerValidation.Validate(destination, capacity);
         Validate(capacity);
         using var content = SparseImageContent.Create(capacity, initialize);
-        using var disk = fixedSize
-            ? DiscUtils.Vhd.Disk.InitializeFixed(destination, Ownership.None, capacity)
-            : DiscUtils.Vhd.Disk.InitializeDynamic(destination, Ownership.None, capacity);
+        using var disk = fixedSize ? DiscUtils.Vhd.Disk.InitializeFixed(destination, Ownership.None, capacity) : DiscUtils.Vhd.Disk.InitializeDynamic(destination, Ownership.None, capacity);
         SparseImageContent.CopyAllocated(content, disk.Content);
         disk.Content.Flush();
     }

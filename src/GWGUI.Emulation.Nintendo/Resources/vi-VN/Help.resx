@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Short"><value>Một núi RAM sẵn sàng cho máy mô phỏng.</value></data>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Detailed"><value>Hiển thị RAM được cung cấp bởi máy Nintendo đã chọn.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Short"><value>Hệ thống ROM.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Detailed"><value>Hiển thị trạng thái hệ thống ROM cho máy đã chọn và giả lập.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Short"><value>Mô hình máy Nintendo đã được cấu hình.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Short"><value>Mô phỏng được chọn cho chiếc máy này.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Detailed"><value>Nhận diện trình giả lập sử dụng để chạy cấu hình máy này.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Short"><value>Bộ xử lý đã mô phỏng cho chiếc máy này.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Detailed"><value>Hiện mô hình xử lý được cung cấp bởi máy Nintendo đã chọn.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Short"><value>Tần số đồng hồ xử lý gốc.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Detailed"><value>Hiển thị tần số đồng hồ trên danh nghĩa của bộ xử lý trong máy Nintendo đã chọn.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Short"><value>Kích hoạt hay tắt âm thanh đã mô phỏng.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Detailed"><value>Điều khiển cho dù GW GUI chơi các mẫu âm thanh được tạo ra bởi giả lập.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Short"><value>Kết xuất âm thanh được dùng bởi GW GUI.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Detailed"><value>Chọn kết xuất âm thanh Windows được dùng để phát ra âm thanh từ máy mô phỏng này.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Detailed"><value>Xác định mô hình Nintendo mà phần cứng đang được chỉnh sửa.</value></data>
+</root>

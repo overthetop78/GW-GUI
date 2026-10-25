@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Fairchild.Error.StateIncompatible" xml:space="preserve"><value>แฟร์ไชลด์ช่วยรักษาสถานะ ไม่ให้เข้ากับเครื่องปัจจุบัน</value></data>
+  <data name="Emulation.Fairchild.Error.Unexpected" xml:space="preserve"><value>เกิดข้อผิดพลาดในการจําลอง Fair Child</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareMissing" xml:space="preserve"><value>แผงควบคุมแฟร์ไชลด์หายไป</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareInvalid" xml:space="preserve"><value>ระบบ ROM ไม่สมบูรณ์หรือเข้ากันไม่ได้</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound" xml:space="preserve"><value>ไม่พบสื่อที่ปรับแต่ง Fiilde</value></data>
+  <data name="Emulation.Fairchild.Error.ContentUnsupported" xml:space="preserve"><value>เครื่องนี้ไม่รองรับสื่อที่เลือก</value></data>
+  <data name="Emulation.Fairchild.Error.OptionInvalid" xml:space="preserve"><value>ตัวเลือก Fairheild มีค่าที่ใช้ไม่ได้</value></data>
+  <data name="Emulation.Fairchild.Error.CoreNotFound" xml:space="preserve"><value>ไม่พบแกนหลักของ Fairheild</value></data>
+  <data name="Emulation.Fairchild.Error.CoreRejected" xml:space="preserve"><value>ไม่สามารถโหลดแกนของ Fairchild ได้</value></data>
+  <data name="Emulation.Fairchild.Error.StateInvalid" xml:space="preserve"><value>รัฐแฟร์ไชลด์เซฟ ใช้งานไม่ได้</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>ไม่มีพาธไปยังโปรแกรมจําลอง</value></data>
+  <data name="Emulation.Fairchild.Error.Details" xml:space="preserve"><value>รายละเอียด: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>การติดต่อกับเจ้าภาพแฟร์ไชลด์ล้มเหลว</value></data>
+  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>ไม่รู้จักคําสั่งสภาพแวดล้อม: {0}</value></data>
+</root>

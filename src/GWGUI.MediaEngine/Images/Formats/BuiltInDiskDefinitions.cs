@@ -1,5 +1,5 @@
 using System.IO;
-using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
+using EnabledOption = GWGUI.MediaEngine.Contracts.Options.EnabledOption;
 namespace GWGUI.MediaEngine.Images.Formats;
 
 public static class BuiltInDiskDefinitions
@@ -12,11 +12,9 @@ public static class BuiltInDiskDefinitions
         "ucsd.ibm.mfm"
     };
 
-    public static bool Supports(string? formatId) =>
-        !string.IsNullOrWhiteSpace(formatId) && DefinedFormats.Contains(formatId);
+    public static bool Supports(string? formatId) => !string.IsNullOrWhiteSpace(formatId) && DefinedFormats.Contains(formatId);
 
-    public static string FilePath =>
-        Path.Combine(AppContext.BaseDirectory, "Assets", "DiskDefinitions", "built-in.cfg");
+    public static string FilePath => Path.Combine(AppContext.BaseDirectory, "Assets", "DiskDefinitions", "built-in.cfg");
 
     public static void AddArgumentIfRequired(List<string> arguments, string? formatId, IReadOnlyList<EnabledOption>? options)
     {

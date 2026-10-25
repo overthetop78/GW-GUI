@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.pcsx2.Description"><value>จำลองระบบ PlayStation 2</value></data>
+  <data name="Emulation.Emulator.ppsspp.Description"><value>จำลองระบบ PlayStation Portable</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>จำลองระบบ Sony PlayStation / PS one</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>จำลองอุปกรณ์พกพา Sony PocketStation โดยใช้ BIOS ภายนอกและไฟล์อิมเมจการ์ดหน่วยความจำ</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>จำลองระบบ PlayStation ด้วยตัวเรนเดอร์แบบซอฟต์แวร์ของ Beetle PSX</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>จำลองระบบ PlayStation ด้วยตัวเรนเดอร์แบบฮาร์ดแวร์ของ Beetle PSX</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>จำลองระบบ PlayStation ด้วย PCSX-ReARMed</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>จำลองระบบ PlayStation 2 ด้วย PCEE2 และ BIOS ภายนอก</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>จำลองระบบ PlayStation 2 ด้วย Play! และการจำลองเฟิร์มแวร์ระบบที่มีอยู่ในตัว</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>จำลองระบบ PlayStation 3 ด้วย RPCS3 และเฟิร์มแวร์ระบบภายนอก</value></data>
+</root>

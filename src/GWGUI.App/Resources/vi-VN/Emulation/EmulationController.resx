@@ -29,11 +29,34 @@
   <data name="Emulation.Controller.Action.Fire2"><value>Nút bắn 2</value></data>
   <data name="Emulation.Controller.AnalogJoystick"><value>Cần điều khiển analog</value></data>
   <data name="Emulation.Controller.Automatic"><value>Tự động</value></data>
-  <data name="Emulation.Controller.None"><value>Không có</value></data>
+  <data name="Emulation.Controller.None"><value>Không</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Name</value></data>
   <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Không thể khởi tạo GameInput. Hãy cài đặt hoặc sửa chữa runtime GameInput đi kèm.</value></data>
   <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (bên trái)</value></data>
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Tốc độ Konix (tay phải)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Giao diện</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Điều khiển {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Thiết bị trỏ</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Trình mô phỏng bay</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Đang chạy mô phỏng</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Mô phỏng nhảy</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Trình mô phỏng ca hát</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Các ngoại biên mô phỏng khác</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>rung động mạnh</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>rung động yếu</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>Nạp lại đạn</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Màu tâm ngắm</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Thảm nhảy</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Cấu hình bàn phím trên thanh bàn phím.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Cấu hình chuột trong thẻ chuột.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Kiểu thiết bị</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>Điều khiển dùng cho rung động</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>Cột và Nhiệm vụ trục</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>Dính {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>Bàn phím hay bài tập riêng</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>Sang trái</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>Sang phải</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>Trục {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>Trục {0} / {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>Đã lưu tác vụ</value></data>
 </root>

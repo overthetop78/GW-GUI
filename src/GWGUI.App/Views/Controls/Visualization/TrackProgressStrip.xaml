@@ -8,12 +8,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="ProgressLabel"
-                   MinWidth="40"
-                   Margin="0,0,4,0"
-                   VerticalAlignment="Center"
-                   FontSize="9"
-                   TextTrimming="CharacterEllipsis"/>
+        <TextBlock x:Name="ProgressLabel" MinWidth="40" Margin="0,0,4,0" VerticalAlignment="Center" FontSize="9" TextTrimming="CharacterEllipsis"/>
         <ItemsControl x:Name="ProgressSegments"
                       Grid.Column="1"
                       MinHeight="0"

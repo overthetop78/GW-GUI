@@ -15,16 +15,10 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.CommodoreTap;
 /// <summary>Reads Commodore TAP timing records as pulses while preserving their exact source ranges.</summary>
 public sealed class CommodoreTapReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { TapeImageFormatIds.CommodoreTap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { TapeImageFormatIds.CommodoreTap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Tape }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
-    private static readonly IReadOnlyList<ReadOnlyMemory<byte>> Signatures =
-    [
-        System.Text.Encoding.ASCII.GetBytes(CommodoreTapConstants.C64Signature),
-        System.Text.Encoding.ASCII.GetBytes(CommodoreTapConstants.C16Signature)
-    ];
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlyList<ReadOnlyMemory<byte>> Signatures = [System.Text.Encoding.ASCII.GetBytes(CommodoreTapConstants.C64Signature), System.Text.Encoding.ASCII.GetBytes(CommodoreTapConstants.C16Signature)];
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => CommodoreTapFormat.Extensions;
@@ -52,8 +46,7 @@ public sealed class CommodoreTapReader : IMediaImageReader
     {
         var header = await ReadHeaderAsync(context.Source.PrimaryPath, cancellationToken).ConfigureAwait(false);
         var source = new FileRandomAccessData(context.Source.PrimaryPath);
-        await using var input = new FileStream(context.Source.PrimaryPath, FileMode.Open, FileAccess.Read, FileShare.Read,
-            64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
+        await using var input = new FileStream(context.Source.PrimaryPath, FileMode.Open, FileAccess.Read, FileShare.Read, 64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
         input.Position = CommodoreTapConstants.HeaderSize;
 
         var segments = new List<SequentialMediaSegment>();
@@ -114,28 +107,17 @@ public sealed class CommodoreTapReader : IMediaImageReader
             [CommodoreTapConstants.VideoStandardMetadataKey] = header.VideoStandard.ToString(CultureInfo.InvariantCulture),
             [CommodoreTapConstants.ClockRateMetadataKey] = header.ClockRate.ToString(CultureInfo.InvariantCulture)
         };
-        return new MediaImageDocument(
-            context.Source,
-            TapeImageFormatIds.CommodoreTap,
-            MediaKind.Tape,
-            new SequentialMediaImageRepresentation(context.Length, elapsed, segments),
-            [],
-            [],
-            metadata);
+        return new MediaImageDocument(context.Source, TapeImageFormatIds.CommodoreTap, MediaKind.Tape, new SequentialMediaImageRepresentation(context.Length, elapsed, segments), [], [], metadata);
     }
 
     private static async Task<Header> ReadHeaderAsync(string path, CancellationToken cancellationToken)
     {
-        await using var input = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read,
-            CommodoreTapConstants.HeaderSize, FileOptions.Asynchronous | FileOptions.SequentialScan);
+        await using var input = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, CommodoreTapConstants.HeaderSize, FileOptions.Asynchronous | FileOptions.SequentialScan);
         if (input.Length < CommodoreTapConstants.HeaderSize)
             throw new InvalidDataException("The Commodore TAP header is truncated.");
         var bytes = new byte[CommodoreTapConstants.HeaderSize];
         await input.ReadExactlyAsync(bytes, cancellationToken).ConfigureAwait(false);
-        var signature = System.Text.Encoding.ASCII.GetString(
-            bytes,
-            CommodoreTapConstants.SignatureOffset,
-            CommodoreTapConstants.SignatureLength);
+        var signature = System.Text.Encoding.ASCII.GetString(bytes, CommodoreTapConstants.SignatureOffset, CommodoreTapConstants.SignatureLength);
         if (!CommodoreTapFormat.Signatures.Contains(signature))
             throw new InvalidDataException("The Commodore TAP signature is invalid.");
         var version = bytes[CommodoreTapConstants.VersionOffset];
@@ -145,8 +127,7 @@ public sealed class CommodoreTapReader : IMediaImageReader
         var videoStandard = bytes[CommodoreTapConstants.VideoStandardOffset];
         if (!CommodoreTapConstants.TimerClockRates.TryGetValue((platform, videoStandard), out var clockRate))
             throw new InvalidDataException("The Commodore TAP platform and video standard combination is unsupported.");
-        var declaredDataLength = BinaryPrimitives.ReadUInt32LittleEndian(
-            bytes.AsSpan(CommodoreTapConstants.DataLengthOffset, CommodoreTapConstants.DataLengthSize));
+        var declaredDataLength = BinaryPrimitives.ReadUInt32LittleEndian(bytes.AsSpan(CommodoreTapConstants.DataLengthOffset, CommodoreTapConstants.DataLengthSize));
         if (declaredDataLength != input.Length - CommodoreTapConstants.HeaderSize)
             throw new InvalidDataException("The Commodore TAP data length does not match its header.");
         return new Header(signature, version, platform, videoStandard, clockRate);

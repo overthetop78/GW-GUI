@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.pcsx2.Description"><value>Емулює системи PlayStation 2.</value></data>
+  <data name="Emulation.Emulator.ppsspp.Description"><value>Емулює системи PlayStation Portable.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Емулює системи Sony PlayStation / PS one.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>Емулює портативний пристрій Sony PocketStation із зовнішнім BIOS та образами карт пам’яті.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Емулює системи PlayStation за допомогою програмного рендерера Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Емулює системи PlayStation за допомогою апаратного рендерера Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>Емулює системи PlayStation за допомогою PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>Емулює системи PlayStation 2 за допомогою PCEE2 і зовнішнього BIOS.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Емулює системи PlayStation 2 за допомогою Play! та вбудованої емуляції системної прошивки.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>Емулює системи PlayStation 3 за допомогою RPCS3 і зовнішньої системної прошивки.</value></data>
+</root>

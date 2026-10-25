@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>Se requiere un camino de Kickstart.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>Un camino de firmware requerido está vacío.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>El archivo seleccionado no existe.</value></data>
+  <data name="Emulation.Error.Title"><value>Error de emulación</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>El emulador requerido no está instalado.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>El emulador rechazó la operación solicitada.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>El emulador no puede ser actualizado mientras se utiliza.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>Falta firmware obligatorio.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>El firmware seleccionado es incompatible con esta máquina.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>No se encontró el archivo multimedia configurado.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>Este emulador no admite los medios seleccionados.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>Una opción emulador es inválida.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>La comunicación con el proceso emulador falló.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>La máquina emulada no podía ser iniciada.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>La operación de medios falló.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>El estado salvado es inválido o dañado.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>El estado guardado no es compatible con esta configuración de la máquina.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>La operación del estado salvado falló.</value></data>
 </root>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Language"><value>Nintendo Systemsprache</value></data>
+  <data name="Emulation.Nintendo.Language.English"><value>Englische Sprache</value></data>
+  <data name="Emulation.Nintendo.Language.French"><value>Französisch</value></data>
+  <data name="Emulation.Nintendo.Language.Spanish"><value>Spanisch</value></data>
+  <data name="Emulation.Nintendo.Firmware.Integrated"><value>System-ROM</value></data>
+  <data name="Emulation.Emulator.mesen.Description"><value>Emuliert Nintendo Entertainment System und Famicom Disk System.</value></data>
+  <data name="Emulation.Emulator.gw.Description"><value>Emuliert Nintendo Game &amp; Watch.</value></data>
+  <data name="Emulation.Emulator.beetle_vb.Description"><value>Emuliert den Nintendo Virtual Boy.</value></data>
+  <data name="Emulation.Emulator.mupen64plus-next.Description"><value>Emuliert Nintendo 64-Systeme.</value></data>
+  <data name="Emulation.Emulator.melonds.Description"><value>Emuliert Nintendo DS und DSi Systeme.</value></data>
+  <data name="Emulation.Emulator.snes9x.Description"><value>Emuliert Super Nintendo und Super Famicom Systeme.</value></data>
+  <data name="Emulation.Emulator.gambatte.Description"><value>Emuliert das Nintendo Game Boy System. Emuliert auch das Game Boy Color System.</value></data>
+  <data name="Emulation.Emulator.mgba.Description"><value>Emuliert Nintendo Game Boy Advance Systeme.</value></data>
+  <data name="Emulation.Emulator.citra.Description"><value>Emuliert Nintendo 3DS-Systeme mit Citra.</value></data>
+  <data name="Emulation.Emulator.dolphin.Description"><value>Emuliert Nintendo GameCube und Wii-Systeme mit Dolphin.</value></data>
+</root>

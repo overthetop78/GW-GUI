@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>Bandreducering</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>Detalj återhämtning</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>Deinterlacing</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>Off Off Off</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>Inaktiverad</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob - även linjer</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - udda linjer</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Vertikal blandning</value></data>
@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Edge mörkare</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Optik och ljus</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Projektionsskärm</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Hårdvarurendering</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Renderingsläge</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>Hårdvarurendering använder det grafik-API som valts för programmet, om emulatorn stöder det.</value></data>
 </root>

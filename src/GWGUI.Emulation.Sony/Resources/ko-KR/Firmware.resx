@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Firmware.Integrated"><value>시스템 ROM</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (일본)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (북미)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (유럽)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>PS2 DVD 플레이어용 ROM입니다. 선택 사항입니다.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>선택한 BIOS에 맞는 ROM1 덤프를 선택하세요. 일반적으로 .rom1 파일 또는 rom1.bin입니다. DVD 플레이어 모듈과 식별 데이터가 들어 있습니다. 본체의 ROM1 덤프가 없으면 비워 두세요. 기본 BIOS는 BIOS 항목에서 선택하세요.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>중국어 글꼴이 들어 있는 PS2 ROM입니다. 선택 사항입니다.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>선택한 BIOS에 맞는 중국용 SCPH-50009 본체의 ROM2 덤프를 선택하세요. 일반적으로 .rom2 파일 또는 rom2.bin입니다. ROM2가 없는 본체는 비워 두세요. 이 파일은 기본 BIOS를 대체하지 않습니다.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>저장된 본체 설정입니다.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>선택한 BIOS에 맞는 1024바이트 .nvm 파일을 선택하세요. 본체 설정이 들어 있습니다. 이 파일은 선택 사항입니다. 비워 두면 저장된 설정을 다시 사용하거나 에뮬레이터가 기본 설정을 만듭니다.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>기계식 컨트롤러의 버전입니다.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>선택한 BIOS에 맞는 4바이트 .mec 파일을 선택하세요. 기계식 컨트롤러의 버전 번호가 들어 있으며 전체 펌웨어가 아닙니다. 이 파일은 선택 사항입니다. 비워 두면 저장된 데이터를 다시 사용하거나 에뮬레이터가 기본 파일을 만듭니다.</value></data>
+</root>

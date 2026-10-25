@@ -1,9 +1,11 @@
 using GWGUI.App.Contracts.Rendering.Scp;
 using GWGUI.App.Contracts.Rendering.Sectors;
 using GWGUI.App.Contracts.Rendering.Sequential;
+using GWGUI.App.Enums.Rendering.Blocks;
 using GWGUI.App.Enums.Rendering.Sectors;
 using GWGUI.App.Enums.Rendering.Scp;
 using GWGUI.App.Localization.Extensions;
+using GWGUI.App.Rendering.Blocks;
 using GWGUI.App.Rendering.Scp;
 using GWGUI.App.Rendering.Sectors;
 using GWGUI.App.Rendering.Sequential;
@@ -31,15 +33,8 @@ public partial class VisualizerTrackOverview : UserControl
     {
         ArgumentNullException.ThrowIfNull(cylinders);
         var surfaces = cylinders.Keys.Order().ToArray();
-        var elements = cylinders
-            .SelectMany(pair => pair.Value.Select(cylinder => new MediaVisualizationElement(cylinder, pair.Key)))
-            .ToArray();
-        Configure(new MediaVisualizationDescriptor(
-            MediaRepresentationKind.Flux,
-            surfaces,
-            MediaVisualizationProgressUnit.Track,
-            MediaVisualizationDirection.Ascending,
-            elements));
+        var elements = cylinders.SelectMany(pair => pair.Value.Select(cylinder => new MediaVisualizationElement(cylinder, pair.Key))).ToArray();
+        Configure(new MediaVisualizationDescriptor(MediaRepresentationKind.Flux, surfaces, MediaVisualizationProgressUnit.Track, MediaVisualizationDirection.Ascending, elements));
     }
 
     public void Configure(MediaVisualizationDescriptor descriptor)
@@ -51,27 +46,15 @@ public partial class VisualizerTrackOverview : UserControl
         _sequentialLocations.Clear();
         _sequentialLayout = false;
 
-        var surfaces = descriptor.Surfaces.Count > 0
-            ? descriptor.Surfaces
-            : descriptor.Elements.Where(element => element.Surface.HasValue).Select(element => element.Surface!.Value).Distinct().Order().ToArray();
+        var surfaces = descriptor.Surfaces.Count > 0 ? descriptor.Surfaces : descriptor.Elements.Where(element => element.Surface.HasValue).Select(element => element.Surface!.Value).Distinct().Order().ToArray();
 
         foreach (var surface in surfaces)
         {
-            var positions = descriptor.Elements
-                .Where(element => element.Surface == surface)
-                .Select(element => element.Position)
-                .Distinct()
-                .Order()
-                .ToArray();
+            var positions = descriptor.Elements.Where(element => element.Surface == surface).Select(element => element.Position).Distinct().Order().ToArray();
             AddStrip(descriptor.ProgressUnit, surface, positions, SurfaceLabel(descriptor.RepresentationKind, surface));
         }
 
-        var unassignedPositions = descriptor.Elements
-            .Where(element => element.Surface is null)
-            .Select(element => element.Position)
-            .Distinct()
-            .Order()
-            .ToArray();
+        var unassignedPositions = descriptor.Elements.Where(element => element.Surface is null).Select(element => element.Position).Distinct().Order().ToArray();
         if (unassignedPositions.Length > 0)
         {
             var unassignedSurface = surfaces.DefaultIfEmpty(-1).Max() + 1;
@@ -128,7 +111,14 @@ public partial class VisualizerTrackOverview : UserControl
             strip.SetColor(track.Cylinder, SectorColor(track.Sectors));
     }
 
-    public void MarkSequential(SequentialMediaRenderModel model)
+    public void MarkBlockRange(int surface, long position, BlockMediaRangeState state)
+    {
+        if (!_strips.TryGetValue(surface, out var strip)) return;
+        var color = SkiaBlockMediaRenderer.ColorFor(state);
+        strip.SetColor(position, Color.FromRgb(color.Red, color.Green, color.Blue));
+    }
+
+    public void ConfigureSequential(SequentialMediaRenderModel model)
     {
         ArgumentNullException.ThrowIfNull(model);
         ProgressRows.Children.Clear();
@@ -145,11 +135,7 @@ public partial class VisualizerTrackOverview : UserControl
             var rowSegments = segments.Skip(row * rowSize).Take(rowSize).ToArray();
             if (rowSegments.Length == 0) continue;
             var positions = Enumerable.Range(0, rowSegments.Length).Select(index => (long)index).ToArray();
-            AddStrip(
-                MediaVisualizationProgressUnit.Segment,
-                row,
-                positions,
-                rowCount == 1 ? LocExtension.Get("Explorer.Cassette") : $"{LocExtension.Get("Explorer.Cassette")} {row + 1}/{rowCount}");
+            AddStrip(MediaVisualizationProgressUnit.Segment, row, positions, rowCount == 1 ? LocExtension.Get("Explorer.Cassette") : $"{LocExtension.Get("Explorer.Cassette")} {row + 1}/{rowCount}");
 
             var strip = _strips[row];
             for (var index = 0; index < rowSegments.Length; index++)
@@ -158,12 +144,20 @@ public partial class VisualizerTrackOverview : UserControl
                 var syntheticPosition = (long)index;
                 _sequentialTargets[(row, syntheticPosition)] = (segment.Lane, segment.Position);
                 _sequentialLocations.TryAdd((segment.Lane, segment.Position), (row, syntheticPosition));
-                var color = SkiaSequentialMediaRenderer.ColorFor(segment);
-                strip.SetColor(syntheticPosition, Color.FromRgb(color.Red, color.Green, color.Blue));
             }
         }
 
         Visibility = _strips.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    public void MarkSequentialSegment(SequentialMediaSegment segment)
+    {
+        ArgumentNullException.ThrowIfNull(segment);
+        if (!_sequentialLocations.TryGetValue((segment.Lane, segment.Position), out var location)
+            || !_strips.TryGetValue(location.Row, out var strip))
+            return;
+        var color = SkiaSequentialMediaRenderer.ColorFor(segment);
+        strip.SetColor(location.Position, Color.FromRgb(color.Red, color.Green, color.Blue));
     }
 
     private static Color SectorColor(IReadOnlyList<SectorMediaElement> sectors)
@@ -172,11 +166,7 @@ public partial class VisualizerTrackOverview : UserControl
             ? SectorMediaElementState.WithoutData
             : sectors.Any(sector => sector.State == SectorMediaElementState.Dead)
                 ? SectorMediaElementState.Dead
-                : sectors.Any(sector => sector.State == SectorMediaElementState.Degraded)
-                    ? SectorMediaElementState.Degraded
-                    : sectors.Any(sector => sector.State == SectorMediaElementState.WithData)
-                        ? SectorMediaElementState.WithData
-                        : SectorMediaElementState.WithoutData;
+                : sectors.Any(sector => sector.State == SectorMediaElementState.Degraded) ? SectorMediaElementState.Degraded : sectors.Any(sector => sector.State == SectorMediaElementState.WithData) ? SectorMediaElementState.WithData : SectorMediaElementState.WithoutData;
         var color = SkiaSectorMediaRenderer.ColorFor(state);
         return Color.FromRgb(color.Red, color.Green, color.Blue);
     }

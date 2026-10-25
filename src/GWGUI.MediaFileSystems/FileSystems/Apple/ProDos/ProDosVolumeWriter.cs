@@ -1,8 +1,8 @@
-using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
-using MediaSectorAddress = global::GWGUI.MediaFileSystems.Contracts.MediaSectorAddress;
-using MediaSectorGeometry = global::GWGUI.MediaFileSystems.Contracts.MediaSectorGeometry;
-using MediaSectorWriteBlock = global::GWGUI.MediaFileSystems.Contracts.MediaSectorWriteBlock;
-using MediaSectorWritePlan = global::GWGUI.MediaFileSystems.Contracts.MediaSectorWritePlan;
+using MediaImageFormatIds = GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
+using MediaSectorAddress = GWGUI.MediaFileSystems.Contracts.MediaSectorAddress;
+using MediaSectorGeometry = GWGUI.MediaFileSystems.Contracts.MediaSectorGeometry;
+using MediaSectorWriteBlock = GWGUI.MediaFileSystems.Contracts.MediaSectorWriteBlock;
+using MediaSectorWritePlan = GWGUI.MediaFileSystems.Contracts.MediaSectorWritePlan;
 using System.IO;
 using GWGUI.MediaFileSystems;
 using GWGUI.MediaFileSystems.Migration;

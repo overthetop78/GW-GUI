@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>يُظهر تواتر الساعة الاسمية للمعالج في آلة مختارة من طراز Sony.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>تواتر الساعة الأصلي.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>يُظهر نموذج المعالج الذي توفره آلة Sony المختارة.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>المُعالجة محاكاة لهذه الآلة.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>يُظهِرُ النظامَ ROM حالة للآلةِ المُختارةِ والشعارِ.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>ROM النظام.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>يُحدّد تنفيذ المرشد المستخدم لإدارة هذه التشكيلة الآلية.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>تم اختيار المرشد لهذه الآلة</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>يُحدد Sony النموذج الذي يجري تحرير تركيبة معداته.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony آلة تم تشكيلها</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>التلاعبات RAM مقدم من المختار Sony Machine.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>كمية RAM المتاحة للآلة المحاكاة.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>تواتر الطورائ CPU بعد تطبيق النسبة المئوية للساعة المختارة.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>وتضاعف تواتر الائتمان الاسمي بنسبة مئوية مختارة. هذا يغير المعالج المحوسب وليس المجهز المضيف القيم العليا يمكن أن تقلل من التباطؤ ولكن قد تكسر توقيت اللعبة. التلقائية تستخدم التخلف عن الدفع</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>عتاد الرسومات الأصلي للجهاز المحدد.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>يعرض عتاد الرسومات الأصلي للجهاز المحدد. تغيّر إعدادات التصيير في المحاكي الصورة الناتجة. تُطبَّق مرشحات GW GUI بعد ذلك.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>عتاد الصوت الأصلي للجهاز المحدد.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>يعرض عتاد الصوت الأصلي للجهاز المحدد. تتحكم إعدادات إخراج الصوت وزمن التأخير في تشغيل الصوت على حاسوبك.</value></data>
+</root>

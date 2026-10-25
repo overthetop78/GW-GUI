@@ -1,0 +1,136 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
+using AudioFunctions = GWGUI.Emulation.Atari.Common.Functions.AudioFunctions;
+using CommonControllerFunctions = GWGUI.Emulation.Atari.Common.Functions.ControllerFunctions;
+using System.IO;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using GWGUI.Emulation;
+using GWGUI.Emulation.Services;
+
+namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Services;
+
+internal sealed partial class ExternalHostCallbacks : IDisposable, IEmulationCoreCallbacks
+{
+    /// <summary>Effets des callbacks natifs conservés par Common pendant leur activation.</summary>
+    internal IEmulationControllerFeedbackAccumulator Feedback { get; } = CommonCoreHostFunctions.EnvironmentProcessing.CreateControllerFeedbackAccumulator();
+
+    private readonly CoreOptionHost _optionHost;
+    private readonly VideoBufferSet _videoBuffers = new();
+    private readonly IEmulationInputFrames _input = CommonControllerFunctions.CreateInputFrames();
+    private readonly KeyboardState _keyboard = new();
+    private readonly long _videoStartTimestamp = Stopwatch.GetTimestamp();
+    private readonly AudioBuffer _audio = AudioFunctions.CreateBuffer();
+    private readonly Emulator _emulator;
+    private readonly Dictionary<int, bool> _ledStates = [];
+    private readonly HashSet<uint> _unknownEnvironmentCommands = [];
+    private readonly HashSet<uint> _environmentCommands = [];
+    private readonly IEmulationNativeString _systemDirectory;
+    private readonly IEmulationNativeString _contentDirectory;
+    private readonly IEmulationNativeString _saveDirectory;
+    private readonly IEmulationNativeString _assetsDirectory;
+    private long _videoSequence;
+    private long _audioSequence;
+    private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Xrgb8888;
+    private bool _usesNativeLedInterface;
+    private bool _disposed;
+    private ExternalCoreApi.KeyboardEvent? _keyboardEvent;
+    private IReadOnlyList<ControllerBinding>? _controllerBindings;
+    private readonly DiskControl _diskControl = new();
+    private readonly IEmulationVirtualFileSystem _virtualFileSystem;
+    private readonly HashSet<string> _opticalActivityPaths = new(StringComparer.OrdinalIgnoreCase);
+
+    internal ExternalHostCallbacks(Emulator emulator, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, IReadOnlyDictionary<string, string> configuredOptions)
+    {
+        _emulator = emulator;
+        Directory.CreateDirectory(systemDirectory);
+        Directory.CreateDirectory(contentDirectory);
+        Directory.CreateDirectory(saveDirectory);
+        Directory.CreateDirectory(assetsDirectory);
+        _systemDirectory = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(systemDirectory));
+        _contentDirectory = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(contentDirectory));
+        _saveDirectory = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(saveDirectory));
+        _assetsDirectory = CommonCoreHostFunctions.NativeResources.CreateString(Path.GetFullPath(assetsDirectory));
+        _optionHost = new CoreOptionHost(configuredOptions);
+        _virtualFileSystem = CommonCoreHostFunctions.NativeResources.CreateVirtualFileSystem(OnFileRead);
+        Environment = OnEnvironment;
+        Video = OnVideo;
+        AudioSample = OnAudioSample;
+        AudioBatch = OnAudioBatch;
+        InputPoll = OnInputPoll;
+        InputState = OnInputState;
+        SetLedState = OnSetLedState;
+        SetRumbleState = OnSetRumbleState;
+        SetSensorState = OnSetSensorState;
+        GetSensorInput = OnGetSensorInput;
+        Log = OnLog;
+    }
+
+    public ExternalCoreApi.EnvironmentCallback Environment { get; }
+    public ExternalCoreApi.VideoCallback Video { get; }
+    public ExternalCoreApi.AudioSampleCallback AudioSample { get; }
+    public ExternalCoreApi.AudioBatchCallback AudioBatch { get; }
+    public ExternalCoreApi.InputPollCallback InputPoll { get; }
+    public ExternalCoreApi.InputStateCallback InputState { get; }
+    internal ExternalCoreApi.SetLedState SetLedState { get; }
+    internal ExternalCoreApi.SetRumbleState SetRumbleState { get; }
+    internal ExternalCoreApi.SetSensorState SetSensorState { get; }
+    internal ExternalCoreApi.GetSensorInput GetSensorInput { get; }
+    internal ExternalCoreApi.LogCallback Log { get; }
+    internal EmulationInputSnapshot Input
+    {
+        set => _input.Update(CommonControllerFunctions.ApplyDeadZones(value, _controllerBindings));
+    }
+    internal VideoFrame? LatestVideoFrame { get; private set; }
+    internal AudioChunk? LatestAudioChunk { get; private set; }
+    internal IReadOnlyList<CoreOption> Options => _optionHost.Catalog;
+    internal IReadOnlyList<CoreOptionCategory> OptionCategories => _optionHost.Categories;
+    internal IReadOnlyDictionary<string, string> OptionDocumentValues => _optionHost.DocumentValues;
+    internal List<string> Diagnostics { get; } = [];
+    internal IReadOnlyDictionary<int, bool> LedStates => _ledStates;
+    internal IReadOnlyList<InputDescriptor> InputDescriptors { get; private set; } = [];
+    internal IReadOnlyList<ControllerPort> ControllerPorts { get; private set; } = [];
+    internal IReadOnlyList<MemoryDescriptor> MemoryDescriptors { get; private set; } = [];
+    internal nint KeyboardCallbackPointer { get; private set; }
+    internal uint Rotation { get; private set; } = EnvironmentConstants.NoRotation;
+    internal bool SupportsAchievements { get; private set; }
+    internal uint PerformanceLevel { get; private set; }
+    internal ExternalCoreApi.Geometry Geometry { get; private set; }
+    internal ExternalCoreApi.SystemAvInfo SystemAvInfo { get; private set; }
+    internal List<EnvironmentMessage> Messages { get; } = [];
+    internal List<EnvironmentExtendedMessage> ExtendedMessages { get; } = [];
+    internal IReadOnlySet<uint> EnvironmentCommands => _environmentCommands;
+    internal bool SupportsNoGame { get; private set; }
+    internal double FramesPerSecond { get; private set; }
+    internal int SampleRate { get; private set; }
+    internal int BufferedAudioFrames => _audio.BufferedFrames;
+    internal long AudioOverrunCount => _audio.OverrunCount;
+    internal long AudioUnderrunCount => _audio.UnderrunCount;
+    internal float AspectRatio { get; private set; }
+    internal DiskControl DiskControl => _diskControl;
+
+    internal bool TryDequeueAudio(out AudioChunk? chunk) => _audio.TryDequeue(out chunk);
+
+    internal void ApplySystemAvInfo(ExternalCoreApi.SystemAvInfo info)
+    {
+        SystemAvInfo = info;
+        Geometry = info.Geometry;
+        FramesPerSecond = info.Timing.FramesPerSecond;
+        SampleRate = checked((int)Math.Round(info.Timing.SampleRate));
+        AspectRatio = info.Geometry.AspectRatio;
+    }
+
+    internal void SetOption(string key, string value) => _optionHost.SetValue(key, value);
+    internal void ConfigureInput(InputConfiguration input) => _controllerBindings = input.Controllers;
+    internal void ValidateConfiguredOptions() => _optionHost.ValidateConfiguredValues();
+    internal void TrackOpticalMedia(IEnumerable<string> paths)
+    {
+        _opticalActivityPaths.Clear();
+        foreach (var path in paths) _opticalActivityPaths.Add(Path.GetFullPath(path));
+    }
+
+    internal void BeginFrame()
+    {
+        if (_emulator == Emulator.VirtualJaguar) _ledStates[0] = false;
+    }
+}

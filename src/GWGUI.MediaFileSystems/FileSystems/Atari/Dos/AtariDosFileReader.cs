@@ -8,13 +8,7 @@ namespace GWGUI.MediaFileSystems.FileSystems.Atari.Dos;
 public static class AtariDosFileReader
 {
     /// <summary>Lit la portion de chaîne délimitée par le nombre de secteurs de l'entrée de répertoire.</summary>
-    public static AtariDosFileData Read(
-        IMediaSectorImage image,
-        int first,
-        int expectedSectors,
-        bool usesExtendedLinks,
-        ICollection<string> warnings,
-        string name)
+    public static AtariDosFileData Read(IMediaSectorImage image, int first, int expectedSectors, bool usesExtendedLinks, ICollection<string> warnings, string name)
     {
         var result = new List<byte>();
         var sectors = new List<int>();
@@ -59,9 +53,7 @@ public static class AtariDosFileReader
                 valid = false;
             }
             sectors.Add(current);
-            storedFileNumbers.Add(usesExtendedLinks
-                ? null
-                : sector[link] >> AtariDosFileSystemLayout.FileOwnerShift);
+            storedFileNumbers.Add(usesExtendedLinks ? null : sector[link] >> AtariDosFileSystemLayout.FileOwnerShift);
             result.AddRange(sector.AsSpan(0, used).ToArray());
             current = next;
         }
@@ -70,16 +62,7 @@ public static class AtariDosFileReader
             warnings.Add(AtariDosWarnings.UnexpectedDataForEmptyFile(name, current));
             valid = false;
         }
-        var chain = new AtariDosSectorChain(
-            Array.AsReadOnly(sectors.ToArray()),
-            Array.AsReadOnly(storedFileNumbers.ToArray()),
-            current,
-            sectors.Count == expectedSectors);
-        return new(
-            Array.AsReadOnly(result.ToArray()),
-            chain,
-            valid && chain.IsComplete,
-            [],
-            []);
+        var chain = new AtariDosSectorChain(Array.AsReadOnly(sectors.ToArray()), Array.AsReadOnly(storedFileNumbers.ToArray()), current, sectors.Count == expectedSectors);
+        return new(Array.AsReadOnly(result.ToArray()), chain, valid && chain.IsComplete, [], []);
     }
 }

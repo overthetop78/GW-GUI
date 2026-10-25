@@ -12,10 +12,8 @@ namespace GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Atari;
 /// <summary>Encodes validated Atari serial blocks as CAS data chunks while retaining unrelated source chunks.</summary>
 public sealed class AtariCassetteEncoder : ISequentialMediaEncoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.AtariCas }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedMachines =
-        new[] { DiskSystemIds.Atari8Bit }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.AtariCas }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Atari8Bit }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => AtariCasConstants.EncoderId;
     public IReadOnlySet<string> FormatIds => SupportedFormats;
@@ -24,15 +22,10 @@ public sealed class AtariCassetteEncoder : ISequentialMediaEncoder
     public bool CanEncode(SequentialEncodeRequest request)
     {
         ArgumentNullException.ThrowIfNull(request);
-        return SupportedFormats.Contains(request.TargetFormatId)
-            && SupportedMachines.Contains(request.MachineId)
-            && request.Blocks.Count > 0
-            && request.Blocks.All(block => block.IntegrityValid == true && block.Data.Length <= ushort.MaxValue);
+        return SupportedFormats.Contains(request.TargetFormatId) && SupportedMachines.Contains(request.MachineId) && request.Blocks.Count > 0 && request.Blocks.All(block => block.IntegrityValid == true && block.Data.Length <= ushort.MaxValue);
     }
 
-    public Task<SequentialMediaImageRepresentation> EncodeAsync(
-        SequentialEncodeRequest request,
-        CancellationToken cancellationToken = default)
+    public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)
     {
         if (!CanEncode(request))
             throw new InvalidDataException("Atari CAS encoding requires checksum-valid blocks no larger than 65535 bytes.");
@@ -45,21 +38,17 @@ public sealed class AtariCassetteEncoder : ISequentialMediaEncoder
         var marker = retained.FirstOrDefault(IsFileMarker);
         if (marker is not null)
         {
-            output.Add(Clone(marker, output.Count));
+            output.Add(marker.AtPosition(output.Count));
             retained.Remove(marker);
         }
         else
         {
-            output.Add(new SequentialMediaSegment(
-                output.Count,
-                SequentialSegmentKind.TapeMark,
-                metadata: ChunkMetadata(AtariCasConstants.FileMarkerChunk, 0)));
+            output.Add(new SequentialMediaSegment(output.Count, SequentialSegmentKind.TapeMark, metadata: ChunkMetadata(AtariCasConstants.FileMarkerChunk, 0)));
         }
 
         var pending = new List<OrderedItem>();
         pending.AddRange(retained.Select(segment => new OrderedItem(segment.Position, segment, null)));
-        pending.AddRange(request.Blocks.Select((block, index) =>
-            new OrderedItem(block.SourceSegmentPositions.Count == 0 ? long.MaxValue - request.Blocks.Count + index : block.SourceSegmentPositions.Min(), null, block)));
+        pending.AddRange(request.Blocks.Select((block, index) => new OrderedItem(block.SourceSegmentPositions.Count == 0 ? long.MaxValue - request.Blocks.Count + index : block.SourceSegmentPositions.Min(), null, block)));
         var elapsed = TimeSpan.Zero;
         var blockIndex = 0;
         foreach (var item in pending.OrderBy(item => item.Position).ThenBy(item => item.Block is null ? 0 : 1))
@@ -67,15 +56,12 @@ public sealed class AtariCassetteEncoder : ISequentialMediaEncoder
             cancellationToken.ThrowIfCancellationRequested();
             if (item.Segment is not null)
             {
-                output.Add(Clone(item.Segment, output.Count));
+                output.Add(item.Segment.AtPosition(output.Count));
                 continue;
             }
 
             var block = item.Block!;
-            output.Add(new SequentialMediaSegment(
-                output.Count,
-                SequentialSegmentKind.Carrier,
-                metadata: ChunkMetadata(AtariCasConstants.BaudRateChunk, AtariCasConstants.DefaultBaudRate)));
+            output.Add(new SequentialMediaSegment(output.Count, SequentialSegmentKind.Carrier, metadata: ChunkMetadata(AtariCasConstants.BaudRateChunk, AtariCasConstants.DefaultBaudRate)));
             var markMilliseconds = blockIndex++ == 0 ? initialMark : subsequentMark;
             var duration = TimeSpan.FromSeconds(block.Data.Length * AtariCasConstants.SerialFrameBitCount / (double)AtariCasConstants.DefaultBaudRate);
             var data = block.Data.ToArray();
@@ -96,23 +82,7 @@ public sealed class AtariCassetteEncoder : ISequentialMediaEncoder
         return Task.FromResult(new SequentialMediaImageRepresentation(logicalLength, elapsed == TimeSpan.Zero ? null : elapsed, output));
     }
 
-    private static bool IsFileMarker(SequentialMediaSegment segment) =>
-        segment.Metadata.TryGetValue(AtariCasConstants.ChunkIdMetadataKey, out var chunkId)
-        && chunkId == AtariCasConstants.FileMarkerChunk;
-
-    private static SequentialMediaSegment Clone(SequentialMediaSegment source, long position) =>
-        new(
-            position,
-            source.Kind,
-            source.Length,
-            source.Start,
-            source.Duration,
-            source.FaceNumber,
-            source.TrackNumber,
-            source.ChannelNumber,
-            source.Direction,
-            source.DataRange,
-            source.Metadata);
+    private static bool IsFileMarker(SequentialMediaSegment segment) => segment.Metadata.TryGetValue(AtariCasConstants.ChunkIdMetadataKey, out var chunkId) && chunkId == AtariCasConstants.FileMarkerChunk;
 
     private static IReadOnlyDictionary<string, string> ChunkMetadata(string chunkId, int auxiliary, int? baudRate = null)
     {

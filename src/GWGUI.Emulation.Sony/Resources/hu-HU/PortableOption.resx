@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>Fast Boot</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Kihagyja a BIOS indító képernyő és indítsa el a játékot közvetlenül. Ha nem szeretné megnyitni a konzol beállításokat vagy a memóriakártya kezelőjét, akkor ne nyissa meg.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Automatikus</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU-mag</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Gyors memória</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Gyorsabb memória-hozzáférés engedélyezése. Ez egyes játékokban instabilitást okozhat.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Rossz memóriakártyák figyelmen kívül hagyása</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>A tárolóelérés időzítése</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>Gazdaszámítógép</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>UMD-lemezek olvasási késleltetése</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>Szinkronizálás a valós idejű órával</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>A valós idejű órához szinkronizálja az emulációt a bemeneti késleltetés csökkentéséhez. Ez csökkentheti a teljesítményt.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>Zárolt CPU sebesség</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>A gyorsítótár teljes ISO RAM-ban</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>Belső csalások támogatása</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Label"><value>Játék nyelve</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Help"><value>Az "automata" a frontend nyelvet fogja használni.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>Kínai Hagyományos</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>Egyszerűsített kínai</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>PSP modell</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>Software Rendering</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Használjon szoftveres renderelést a nagyobb pontosság érdekében, nagyobb számítási igény mellett.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>Feloldás</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>Válassza ki a belső renderelés felbontását.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA antialiasing</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Alkalmazzon MSAA élsimítást a Vulkan használatával.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>Crop - 16x9</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>A kép tetejének és aljának levágása a 16:9 képarány eléréséhez.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>Frameszkip</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Label"><value>Frameskip típus</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.0"><value>Videóképkockák száma</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>A képkockasebesség százaléka</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>Automatikus Frameskip</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>kétszeres képkockáknak 60 Hz-re való leadása</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>Megkettőzi a videoképkockákat az alacsony képkockasebességű játékok mozgásának simításához.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>A képkockasebesség változásainak észlelése</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>A játék képkockasebességében bekövetkező változások jelzése az alkalmazásnak.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Grafikus parancsok pufferelése</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>A grafikus parancsok pufferelésének csökkentése a bemeneti késleltetés mérsékléséhez. Ez csökkentheti a teljesítményt. Csak OpenGL és Vulkan esetén.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Nincs további grafikus pufferelés</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Legfeljebb egy videóképkocka pufferelése</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Megerősítő gomb</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Az analóg kar kör és négyzet alakú mozgástartományának kompenzálása</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Analóg Deadzone</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>További holtzóna alkalmazása az analóg karra az alkalmazás bemenetfeldolgozása után.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Analóg tengelyskála</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Help"><value>Az analóg kar érzékenységének további módosítása az alkalmazás bemenetfeldolgozása után.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Label"><value>A puffereffektek kihagyása</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>A képkockapuffert használó effektusok kihagyása a teljesítmény javításához. Egyes játékokban eltűnhet a kép.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>A GPU visszajelzések kihagyása</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>A grafikus adatok GPU-ról CPU-ra másolásának kihagyása. Egyes játékoknak szükségük van ezekre a másolatokra a helyes megjelenítéshez.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Textúrák halasztott gyorsítótárazása (gyorsítás)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Gyorsabban, de okozhat szöveges problémákat néhány játék.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>Spline / Bezier görbék minősége</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Csak néhány játék által használt, szabályozza a görbék simaságát.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Label"><value>A hatásokra vonatkozó alsó felbontás</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Help"><value>Egyes vizuális effektusok felbontásának csökkentése a megjelenítési hibák elkerüléséhez.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Value.2"><value>Kiegyenlített</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_gpu_hardware_transform.Label"><value>Hardware Transform</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Label"><value>Szoftvernyúzás</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Help"><value>Az animált 3D modellek rajzolási műveleteinek feldolgozása és összevonása a CPU-n. Ez a legtöbb játékban javítja a teljesítményt.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Label"><value>Hardware Tesselation</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Help"><value>A GPU használata sima görbék megjelenítéséhez.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Label"><value>Textural upscale type</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Value.3"><value>Hibrid + Bicubic</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Label"><value>Textural upscaling szint</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Help"><value>A textúrák nagyítása növeli a CPU terhelését. Egyes textúrák nagyítására később kerül sor az akadozás elkerülése érdekében.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Label"><value>Textúra Betétkezelés</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Help"><value>A nagyított textúrákon látható színsávok csökkentése.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_replacement.Label"><value>Textúracsere</value></data>
+  </root>

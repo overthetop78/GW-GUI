@@ -20,7 +20,7 @@
   <data name="Migration.Execute"><value>Migrate файли</value></data>
   <data name="Migration.Blocking"><value>Блокування</value></data>
   <data name="Migration.MetadataLoss"><value>Збиток метаданих</value></data>
-  <data name="Migration.SourceSummary"><value>Об&apos;єм: {0} — файлова система: {1} — Записи кореневих: {2}</value></data>
+  <data name="Migration.SourceSummary"><value>Об'єм: {0} — файлова система: {1} — Записи кореневих: {2}</value></data>
   <data name="Migration.SourceFailed"><value>Не можна підготувати міграцію: {0}</value></data>
   <data name="Migration.Completed"><value>Створено зображення призначення: {0}</value></data>
   <data name="Migration.Failed"><value>Не вдалося переселення: {0}</value></data>

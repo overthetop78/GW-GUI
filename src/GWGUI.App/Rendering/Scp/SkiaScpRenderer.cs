@@ -43,9 +43,7 @@ public sealed partial class SkiaScpRenderer : IScpRenderer
             Parallel.ForEach(tracks, new ParallelOptions { CancellationToken = cancellationToken }, track =>
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                var preparedTrack = track.Revolutions.Any(revolution => revolution.FluxIntervals.Count > 0)
-                    ? PrepareTrack(track, decoderId, cancellationToken)
-                    : new PreparedScpTrack([], new PreparedScpRevolution([], 0), [], ScpTrackVisualState.Anomaly, 0, 0, 0, false);
+                var preparedTrack = track.Revolutions.Any(revolution => revolution.FluxIntervals.Count > 0) ? PrepareTrack(track, decoderId, cancellationToken) : new PreparedScpTrack([], new PreparedScpRevolution([], 0), [], ScpTrackVisualState.Anomaly, 0, 0, 0, false);
                 prepared[track] = preparedTrack;
                 progress?.Report(new ScpTrackPreparation(
                     track.Cylinder,
@@ -121,9 +119,7 @@ public sealed partial class SkiaScpRenderer : IScpRenderer
                 continue;
             }
             var trackRect = new SKRect(request.Center.X - radius, request.Center.Y - radius, request.Center.X + radius, request.Center.Y + radius);
-            var preparedRevolution = request.SelectedRevolutionIndex is int revolutionIndex
-                ? prepared.Revolutions.ElementAtOrDefault(revolutionIndex) ?? prepared.Synthesis
-                : prepared.Synthesis;
+            var preparedRevolution = request.SelectedRevolutionIndex is int revolutionIndex ? prepared.Revolutions.ElementAtOrDefault(revolutionIndex) ?? prepared.Synthesis : prepared.Synthesis;
             using var qualityPaint = new SKPaint
             {
                 Color = QualityColor(preparedRevolution.Quality),

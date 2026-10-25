@@ -18,20 +18,15 @@ internal static class EmulationVideoPixelFunctions
             {
                 sourceRow[..Math.Min(sourceRow.Length, pitch)].CopyTo(destinationRow);
                 for (var x = 0; x < frame.Width; x++)
-                    destinationRow[x * EmulationVideoPixelConstants.BytesPerBgraPixel +
-                        EmulationVideoPixelConstants.AlphaByteOffset] = EmulationVideoPixelConstants.OpaqueAlpha;
+                    destinationRow[x * EmulationVideoPixelConstants.BytesPerBgraPixel + EmulationVideoPixelConstants.AlphaByteOffset] = EmulationVideoPixelConstants.OpaqueAlpha;
                 continue;
             }
             for (var x = 0; x < frame.Width; x++)
             {
                 var sourceOffset = x * EmulationVideoPixelConstants.BytesPerPackedPixel;
-                var value = sourceRow[sourceOffset] |
-                    sourceRow[sourceOffset + EmulationVideoPixelConstants.SecondPackedByteOffset] <<
-                    EmulationVideoPixelConstants.HighByteBitShift;
+                var value = sourceRow[sourceOffset] | sourceRow[sourceOffset + EmulationVideoPixelConstants.SecondPackedByteOffset] << EmulationVideoPixelConstants.HighByteBitShift;
                 var offset = x * EmulationVideoPixelConstants.BytesPerBgraPixel;
-                destinationRow[offset + EmulationVideoPixelConstants.BlueByteOffset] = (byte)(
-                    (value & EmulationVideoPixelConstants.FiveBitMask) * EmulationVideoPixelConstants.OpaqueAlpha /
-                    EmulationVideoPixelConstants.FiveBitMaximum);
+                destinationRow[offset + EmulationVideoPixelConstants.BlueByteOffset] = (byte)((value & EmulationVideoPixelConstants.FiveBitMask) * EmulationVideoPixelConstants.OpaqueAlpha / EmulationVideoPixelConstants.FiveBitMaximum);
                 if (frame.PixelFormat == EmulationPixelFormat.Rgb1555)
                 {
                     destinationRow[offset + EmulationVideoPixelConstants.GreenByteOffset] = (byte)(
@@ -54,8 +49,7 @@ internal static class EmulationVideoPixelFunctions
                          EmulationVideoPixelConstants.FiveBitMask) * EmulationVideoPixelConstants.OpaqueAlpha /
                         EmulationVideoPixelConstants.FiveBitMaximum);
                 }
-                destinationRow[offset + EmulationVideoPixelConstants.AlphaByteOffset] =
-                    EmulationVideoPixelConstants.OpaqueAlpha;
+                destinationRow[offset + EmulationVideoPixelConstants.AlphaByteOffset] = EmulationVideoPixelConstants.OpaqueAlpha;
             }
         }
         return destination;

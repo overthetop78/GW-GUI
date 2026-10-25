@@ -26,7 +26,7 @@
   <data name="Error.Description.InvalidArgument"><value>Однією з поданих значень є недійсним. Перегляньте налаштування та спробуйте знову.</value></data>
   <data name="Error.Description.InvalidOperation"><value>Операція не може бути завершена в поточному стані.</value></data>
   <data name="Error.Description.NotSupported"><value>Ця операція не підтримується вибраним файлом, пристроєм або платформою.</value></data>
-  <data name="Error.Description.OutOfMemory"><value>Для завершення операції не вистачає пам&apos;яті.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Для завершення операції не вистачає пам'яті.</value></data>
   <data name="Error.Description.Unexpected"><value>GW GUI зіткнувся з несподіваною проблемою під час виконання цієї дії.</value></data>
   <data name="Error.Description.GameInputWorkerStopTimeout"><value>Нітка GameInput не зупинилася.</value></data>
   <data name="Error.GameInput.NoMapping"><value>Ні картографування</value></data>
@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>За запитом, позиція недійсна для цього об'єкта файлової системи.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Не вдалося відведення.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Блок індексу бітової карти вузла розподілу {0}/{1} не вдалося прочитати.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>Голова диска не за запитом циліндра ({0}). Перевірити диск перед читанням.</value></data>
 </root>

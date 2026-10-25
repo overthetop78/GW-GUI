@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Firmware.Integrated"><value>System-ROM</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (Japan)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (Nord-Amerika)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (Europa)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>Valgfri ROM for DVD-spilleren på PS2.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>Velg ROM1-kopien som passer til valgt BIOS, vanligvis en .rom1-fil eller rom1.bin. Den inneholder moduler for DVD-spilleren og identifikasjonsdata. La feltet stå tomt hvis konsollen ikke har en ROM1-kopi. Hoved-BIOS velges i BIOS-feltet.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>Valgfri PS2-ROM med kinesiske skrifttyper.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>Velg ROM2-kopien fra den kinesiske SCPH-50009-konsollen som passer til valgt BIOS, vanligvis en .rom2-fil eller rom2.bin. La feltet stå tomt for konsoller uten ROM2. Denne filen erstatter ikke hoved-BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>Lagrede konsollinnstillinger.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>Velg en .nvm-fil på 1024 byte som passer til valgt BIOS. Den inneholder konsollens innstillinger. Filen er valgfri: la feltet stå tomt for å bruke lagrede innstillinger eller la emulatoren opprette standardinnstillinger.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>Versjonen til den mekaniske kontrolleren.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>Velg en .mec-fil på 4 byte som passer til valgt BIOS. Den inneholder den mekaniske kontrollerens versjonsnummer, ikke hele fastvaren. Filen er valgfri: la feltet stå tomt for å bruke lagrede data eller la emulatoren opprette en standardfil.</value></data>
+</root>

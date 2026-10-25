@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Emulates SHARP X68000 Bilgisayarlar.</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Emulates SHARP X1 Bilgisayarlar.</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Makine Sesi</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Controller seçenekler</value></data>
+  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>Karakter Karakter Karakter Karakter ROM</value></data>
+  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Ekran hafıza</value></data>
+  <data name="Emulation.Sharp.Setting.AdpcmVolume" xml:space="preserve"><value>ADPCM hacim hacmi</value></data>
+  <data name="Emulation.Sharp.Setting.AudioDesynchronization" xml:space="preserve"><value>Kart aşırı ses</value></data>
+  <data name="Emulation.Sharp.Setting.AudioSampleRate" xml:space="preserve"><value>Ses örneği oranı</value></data>
+  <data name="Emulation.Sharp.Setting.ButtonOrder" xml:space="preserve"><value>Düğme siparişi</value></data>
+  <data name="Emulation.Sharp.Setting.DiskSeekSound" xml:space="preserve"><value>Disk ses arama</value></data>
+  <data name="Emulation.Sharp.Setting.FmBoard" xml:space="preserve"><value>FM Ses tahta</value></data>
+  <data name="Emulation.Sharp.Setting.FmVolume" xml:space="preserve"><value>FM hacim hacmi</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRate" xml:space="preserve"><value>Video çerçeve oranı oranı</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRateAdjustment" xml:space="preserve"><value>Frame rate ayarlama</value></data>
+  <data name="Emulation.Sharp.Setting.FrameSkip" xml:space="preserve"><value>Skipped video çerçeveleri</value></data>
+  <data name="Emulation.Sharp.Setting.HideGraphics" xml:space="preserve"><value>Gizle Grafikleri</value></data>
+  <data name="Emulation.Sharp.Setting.HideSprites" xml:space="preserve"><value>Hide sprites ve arka planları</value></data>
+  <data name="Emulation.Sharp.Setting.HideText" xml:space="preserve"><value>Gizlen</value></data>
+  <data name="Emulation.Sharp.Setting.MemorySize" xml:space="preserve"><value>RAM kapasite kapasitesi kapasite kapasitesi kapasite kapasitesi</value></data>
+  <data name="Emulation.Sharp.Setting.RapidFire" xml:space="preserve"><value>Hızlı ateş</value></data>
+  <data name="Emulation.Sharp.Setting.Raster" xml:space="preserve"><value>Raster etkiler</value></data>
+  <data name="Emulation.Sharp.Setting.ReverseJoystick" xml:space="preserve"><value>Ters kontrolör giriş</value></data>
+  <data name="Emulation.Sharp.Setting.UnlimitedSpeed" xml:space="preserve"><value>Sınırsız emulation hız</value></data>
+  <data name="Emulation.Sharp.Setting.VerticalSync" xml:space="preserve"><value>Dikey senkronizasyon</value></data>
+  <data name="Emulation.Sharp.Setting.VideoBeforeAudio" xml:space="preserve"><value>Videoyu önceden tanımlama</value></data>
+  <data name="Emulation.Sharp.Value.High" xml:space="preserve"><value>Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek</value></data>
+  <data name="Emulation.Sharp.Value.Low" xml:space="preserve"><value>Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low</value></data>
+  <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>Machine display</value></data>
+</root>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Help.DisplayArea" xml:space="preserve"><value>选择控制台图像的可见区域。</value></data>
+  <data name="Emulation.Epoch.Help.PixelAspect" xml:space="preserve"><value>选择长方形或平方像素。</value></data>
+  <data name="Emulation.Epoch.Help.Resolution" xml:space="preserve"><value>选择内部渲染分辨率。</value></data>
+  <data name="Emulation.Epoch.Help.ColorPalette" xml:space="preserve"><value>选择控制台的调色板。</value></data>
+  <data name="Emulation.Epoch.Help.RefreshRate" xml:space="preserve"><value>选择控制台刷新率 。</value></data>
+  <data name="Emulation.Epoch.Help.ShowVideoMemory" xml:space="preserve"><value>显示电视画面以外的视频内存 。</value></data>
+  <data name="Emulation.Epoch.Help.ShowInputs" xml:space="preserve"><value>在图像上显示当前控制器状态 。</value></data>
+  <data name="Emulation.Epoch.Help.Language" xml:space="preserve"><value>选择模拟屏幕的语言。</value></data>
+  <data name="Emulation.Epoch.Help.ValidateFirmware" xml:space="preserve"><value>校验控制台 BIOS 开始前的校验和 。</value></data>
+  <data name="Emulation.Epoch.Help.ShowKeypadAtStart" xml:space="preserve"><value>模拟开始时显示控制台键盘 。</value></data>
+  <data name="Emulation.Epoch.Help.AnnounceCourseSwitch" xml:space="preserve"><value>更改时显示所选游戏课程 。</value></data>
+</root>

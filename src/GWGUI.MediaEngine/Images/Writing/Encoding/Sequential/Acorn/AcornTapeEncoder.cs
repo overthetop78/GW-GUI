@@ -1,4 +1,5 @@
-﻿using System.Buffers.Binary;
+using static GWGUI.MediaFileSystems.Functions.MediaMetadataFunctions;
+using System.Buffers.Binary;
 using System.Collections.Frozen;
 using System.Globalization;
 using GWGUI.MediaEngine.Constants;
@@ -16,11 +17,8 @@ namespace GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Acorn;
 /// <summary>Rebuilds validated Acorn cassette blocks as UEF implicit data chunks or standard PCM FSK.</summary>
 public sealed class AcornTapeEncoder : ISequentialMediaEncoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.Uef, TapeImageFormatIds.Wav }
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedMachines =
-        new[] { DiskSystemIds.AcornBbc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.Uef, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.AcornBbc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => UefConstants.EncoderId;
     public IReadOnlySet<string> FormatIds => SupportedFormats;
@@ -35,12 +33,10 @@ public sealed class AcornTapeEncoder : ISequentialMediaEncoder
             && request.RetainedSegments.Count == 0
             && request.Blocks.All(block => block.IntegrityValid == true && TryBuildBlock(block, out _))
             && (!request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase)
-                || TryReadSampleRate(request.Parameters, out _));
+                || PcmSampleFunctions.TryReadSampleRate(request.Parameters, out _));
     }
 
-    public Task<SequentialMediaImageRepresentation> EncodeAsync(
-        SequentialEncodeRequest request,
-        CancellationToken cancellationToken = default)
+    public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)
     {
         if (!CanEncode(request))
             throw new InvalidDataException("Acorn tape encoding requires validated CFS blocks with complete cassette metadata.");
@@ -50,9 +46,7 @@ public sealed class AcornTapeEncoder : ISequentialMediaEncoder
             TryBuildBlock(block, out var bytes);
             return bytes;
         }).ToArray();
-        return Task.FromResult(request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase)
-            ? EncodeWave(encodedBlocks, request.Parameters)
-            : EncodeUef(encodedBlocks));
+        return Task.FromResult(request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase) ? EncodeWave(encodedBlocks, request.Parameters) : EncodeUef(encodedBlocks));
     }
 
     private static SequentialMediaImageRepresentation EncodeUef(IReadOnlyList<byte[]> blocks)
@@ -62,9 +56,7 @@ public sealed class AcornTapeEncoder : ISequentialMediaEncoder
         for (var index = 0; index < blocks.Count; index++)
         {
             var bytes = blocks[index];
-            var duration = TimeSpan.FromSeconds(
-                bytes.Length * (1 + UefConstants.AcornDataBitsPerFrame + UefConstants.AcornStopBitsPerFrame)
-                / (double)UefConstants.DefaultBaudRate);
+            var duration = TimeSpan.FromSeconds(bytes.Length * (1 + UefConstants.AcornDataBitsPerFrame + UefConstants.AcornStopBitsPerFrame) / (double)UefConstants.DefaultBaudRate);
             var source = new MemoryRandomAccessData(bytes);
             segments.Add(new SequentialMediaSegment(
                 index,
@@ -84,11 +76,9 @@ public sealed class AcornTapeEncoder : ISequentialMediaEncoder
         return new SequentialMediaImageRepresentation(blocks.Sum(block => (long)block.Length), elapsed, segments);
     }
 
-    private static SequentialMediaImageRepresentation EncodeWave(
-        IReadOnlyList<byte[]> blocks,
-        IReadOnlyDictionary<string, string> parameters)
+    private static SequentialMediaImageRepresentation EncodeWave(IReadOnlyList<byte[]> blocks, IReadOnlyDictionary<string, string> parameters)
     {
-        TryReadSampleRate(parameters, out var sampleRate);
+        PcmSampleFunctions.TryReadSampleRate(parameters, out var sampleRate);
         var samples = new List<short>();
         var level = UefConstants.PcmAmplitude;
         for (var index = 0; index < blocks.Count; index++)
@@ -103,16 +93,7 @@ public sealed class AcornTapeEncoder : ISequentialMediaEncoder
                 UefConstants.AcornOneFrequency,
                 index == 0 ? UefConstants.InitialCarrierSeconds : UefConstants.InterBlockCarrierSeconds);
             foreach (var value in blocks[index])
-                FskSerialFunctions.AppendPcmFrame(
-                    samples,
-                    ref level,
-                    sampleRate,
-                    UefConstants.DefaultBaudRate,
-                    UefConstants.AcornZeroFrequency,
-                    UefConstants.AcornOneFrequency,
-                    UefConstants.AcornDataBitsPerFrame,
-                    UefConstants.AcornStopBitsPerFrame,
-                    value);
+                FskSerialFunctions.AppendPcmFrame( samples, ref level, sampleRate, UefConstants.DefaultBaudRate, UefConstants.AcornZeroFrequency, UefConstants.AcornOneFrequency, UefConstants.AcornDataBitsPerFrame, UefConstants.AcornStopBitsPerFrame, value);
         }
 
         var pcm = new byte[samples.Count * sizeof(short)];
@@ -164,8 +145,7 @@ public sealed class AcornTapeEncoder : ISequentialMediaEncoder
             + UefConstants.AcornDataLengthFieldLength
             + UefConstants.AcornFlagsLength
             + UefConstants.AcornNextAddressLength;
-        bytes = new byte[1 + headerLength + UefConstants.AcornChecksumLength
-            + block.Data.Length + UefConstants.AcornChecksumLength];
+        bytes = new byte[1 + headerLength + UefConstants.AcornChecksumLength + block.Data.Length + UefConstants.AcornChecksumLength];
         bytes[0] = UefConstants.AcornBlockSync;
         name.CopyTo(bytes, 1);
         var cursor = 1 + name.Length + 1;
@@ -180,47 +160,26 @@ public sealed class AcornTapeEncoder : ISequentialMediaEncoder
         bytes[cursor++] = flags;
         BinaryPrimitives.WriteUInt32LittleEndian(bytes.AsSpan(cursor), nextAddress);
         cursor += UefConstants.AcornNextAddressLength;
-        var headerChecksum = Crc16Calculator.Compute(
-            bytes.AsSpan(1, headerLength).ToArray(),
-            UefConstants.AcornChecksumPolynomial,
-            UefConstants.AcornChecksumInitialValue);
+        var headerChecksum = Crc16Calculator.Compute(bytes.AsSpan(1, headerLength).ToArray(), UefConstants.AcornChecksumPolynomial, UefConstants.AcornChecksumInitialValue);
         BinaryPrimitives.WriteUInt16BigEndian(bytes.AsSpan(cursor), headerChecksum);
         cursor += UefConstants.AcornChecksumLength;
         block.Data.Span.CopyTo(bytes.AsSpan(cursor));
-        var dataChecksum = Crc16Calculator.Compute(
-            block.Data.ToArray(),
-            UefConstants.AcornChecksumPolynomial,
-            UefConstants.AcornChecksumInitialValue);
+        var dataChecksum = Crc16Calculator.Compute(block.Data.ToArray(), UefConstants.AcornChecksumPolynomial, UefConstants.AcornChecksumInitialValue);
         BinaryPrimitives.WriteUInt16BigEndian(bytes.AsSpan(cursor + block.Data.Length), dataChecksum);
         return true;
-    }
-
-    private static bool TryReadSampleRate(IReadOnlyDictionary<string, string> parameters, out int sampleRate)
-    {
-        sampleRate = 0;
-        return parameters.TryGetValue("sampleRate", out var text)
-            && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out sampleRate)
-            && sampleRate >= 8000;
     }
 
     private static bool TryReadHexUInt32(IReadOnlyDictionary<string, string> metadata, string key, out uint value)
     {
         value = 0;
-        return metadata.TryGetValue(key, out var text)
-            && uint.TryParse(text, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out value);
+        return metadata.TryGetValue(key, out var text) && uint.TryParse(text, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out value);
     }
 
     private static bool TryReadHexByte(IReadOnlyDictionary<string, string> metadata, string key, out byte value)
     {
         value = 0;
-        return metadata.TryGetValue(key, out var text)
-            && byte.TryParse(text, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out value);
+        return metadata.TryGetValue(key, out var text) && byte.TryParse(text, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out value);
     }
 
-    private static bool TryReadUInt16(IReadOnlyDictionary<string, string> metadata, string key, out ushort value)
-    {
-        value = 0;
-        return metadata.TryGetValue(key, out var text)
-            && ushort.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value);
-    }
+
 }

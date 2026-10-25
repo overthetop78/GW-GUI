@@ -1,13 +1,12 @@
+using GWGUI.App.ViewModels;
 using GWGUI.App.ViewModels.Conversion;
 using GWGUI.App.ViewModels.Operations;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
 
 namespace GWGUI.App.ViewModels.Main;
 
-public sealed class MainWindowViewModel(string hardwareText, string operationText) : INotifyPropertyChanged
+public sealed class MainWindowViewModel(string hardwareText, string operationText) : ObservableObject
 {
     private string _hardwareText = hardwareText;
     private Brush _hardwareBrush = Brushes.Gray;
@@ -16,10 +15,6 @@ public sealed class MainWindowViewModel(string hardwareText, string operationTex
     private string _operationText = operationText;
     private Brush _operationBrush = Brushes.Gray;
     private Visibility _progressVisibility = Visibility.Collapsed;
-    private bool _progressIndeterminate;
-    private double _progressValue;
-    private string _progressText = "";
-    private Visibility _globalProgressVisibility = Visibility.Visible;
     private Visibility _face0ProgressVisibility = Visibility.Collapsed;
     private Visibility _face1ProgressVisibility = Visibility.Collapsed;
     private double _face0ProgressValue;
@@ -42,10 +37,6 @@ public sealed class MainWindowViewModel(string hardwareText, string operationTex
     public string OperationText { get => _operationText; set => Set(ref _operationText, value); }
     public Brush OperationBrush { get => _operationBrush; set => Set(ref _operationBrush, value); }
     public Visibility ProgressVisibility { get => _progressVisibility; set => Set(ref _progressVisibility, value); }
-    public bool ProgressIndeterminate { get => _progressIndeterminate; set => Set(ref _progressIndeterminate, value); }
-    public double ProgressValue { get => _progressValue; set => Set(ref _progressValue, value); }
-    public string ProgressText { get => _progressText; set => Set(ref _progressText, value); }
-    public Visibility GlobalProgressVisibility { get => _globalProgressVisibility; set => Set(ref _globalProgressVisibility, value); }
     public Visibility Face0ProgressVisibility { get => _face0ProgressVisibility; set => Set(ref _face0ProgressVisibility, value); }
     public Visibility Face1ProgressVisibility { get => _face1ProgressVisibility; set => Set(ref _face1ProgressVisibility, value); }
     public double Face0ProgressValue { get => _face0ProgressValue; set => Set(ref _face0ProgressValue, value); }
@@ -56,13 +47,4 @@ public sealed class MainWindowViewModel(string hardwareText, string operationTex
     public string HostToolsUpdateText { get => _hostToolsUpdateText; set => Set(ref _hostToolsUpdateText, value); }
     public Visibility TimerVisibility { get => _timerVisibility; set => Set(ref _timerVisibility, value); }
     public string ElapsedText { get => _elapsedText; set => Set(ref _elapsedText, value); }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    private void Set<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
-    {
-        if (EqualityComparer<T>.Default.Equals(field, value)) return;
-        field = value;
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
 }

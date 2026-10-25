@@ -30,8 +30,7 @@ public static class ApmPartitionWriter
         U32(metadata, 4, (uint)(disk.Length / 512));
         Entry(metadata.AsSpan(512, 512), (uint)volumes.Count + 1, 1, 63, "Partition map", "Apple_partition_map");
         for (var i = 0; i < volumes.Count; i++)
-            Entry(metadata.AsSpan((i + 2) * 512, 512), (uint)volumes.Count + 1,
-                (uint)(volumes[i].OffsetBytes / 512), (uint)(volumes[i].LengthBytes / 512), volumes[i].EffectivePartitionName, volumes[i].PartitionType!);
+            Entry(metadata.AsSpan((i + 2) * 512, 512), (uint)volumes.Count + 1, (uint)(volumes[i].OffsetBytes / 512), (uint)(volumes[i].LengthBytes / 512), volumes[i].EffectivePartitionName, volumes[i].PartitionType!);
         disk.Position = 0; disk.Write(metadata); disk.Flush();
     }
     private static void Entry(Span<byte> entry, uint count, uint start, uint length, string name, string type)

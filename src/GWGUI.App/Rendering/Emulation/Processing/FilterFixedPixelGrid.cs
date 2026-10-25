@@ -15,8 +15,7 @@ internal static class FilterFixedPixelGrid
         }
         """;
 
-    internal static void Apply(float[] colors, int sourceWidth, int sourceHeight,
-        int outputWidth, int outputHeight, int intensitySetting, int gapSetting)
+    internal static void Apply(float[] colors, int sourceWidth, int sourceHeight, int outputWidth, int outputHeight, int intensitySetting, int gapSetting)
     {
         if (intensitySetting == 0 || gapSetting == 0 || sourceWidth <= 0 || sourceHeight <= 0)
             return;

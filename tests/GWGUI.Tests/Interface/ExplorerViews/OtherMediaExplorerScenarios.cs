@@ -1,9 +1,10 @@
 using System.Windows;
 using System.Windows.Controls;
+using GWGUI.App.Localization.Extensions;
 using GWGUI.App.ViewModels.Explorer;
 using GWGUI.App.Views.Controls.Explorer;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
-using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaVolumeDescriptor = GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
 
@@ -32,8 +33,7 @@ public sealed class OtherMediaExplorerScenarios(StaExecutionScenarios sta)
         Assert.Equal(2, selector.Items.Count);
         selector.SelectedIndex = 1;
         Assert.Equal("DATA", Find<TextBlock>(section, "VolumeNameText").Text);
-        Assert.Equal("DATA.BIN", Assert.IsType<ExplorerContentItem>(
-            Assert.Single(Find<ListView>(section, "ContentsList").Items.Cast<object>())).Entry.Name);
+        Assert.Equal("DATA.BIN", Assert.IsType<ExplorerContentItem>(Assert.Single(Find<ListView>(section, "ContentsList").Items.Cast<object>())).Entry.Name);
     });
 
     [Fact]
@@ -43,8 +43,7 @@ public sealed class OtherMediaExplorerScenarios(StaExecutionScenarios sta)
         var tracks = new[]
         {
             new OpticalTrackDescriptor(1, 1, OpticalTrackMode.Mode1Data2048, 0, 2, 2_048, 0, 2_048, source, 0),
-            new OpticalTrackDescriptor(1, 2, OpticalTrackMode.Audio, 2, 2, 2_352, 0, 2_352,
-                new MemoryRandomAccessData(new byte[2 * 2_352]), 0),
+            new OpticalTrackDescriptor(1, 2, OpticalTrackMode.Audio, 2, 2, 2_352, 0, 2_352, new MemoryRandomAccessData(new byte[2 * 2_352]), 0),
             new OpticalTrackDescriptor(2, 3, OpticalTrackMode.Mode1Data2048, 4, 2, 2_048, 0, 2_048, source, 4 * 2_048)
         };
         var representation = new OpticalMediaImageRepresentation(6 * 2_048, tracks);
@@ -70,8 +69,7 @@ public sealed class OtherMediaExplorerScenarios(StaExecutionScenarios sta)
         var section = Display(Document(MediaKind.Tape, representation, [volume]));
 
         Assert.Equal(Visibility.Collapsed, Find<ComboBox>(section, "SessionSelector").Visibility);
-        Assert.Equal("PROGRAM.BIN", Assert.IsType<ExplorerContentItem>(
-            Assert.Single(Find<ListView>(section, "ContentsList").Items.Cast<object>())).Entry.Name);
+        Assert.Equal("PROGRAM.BIN", Assert.IsType<ExplorerContentItem>(Assert.Single(Find<ListView>(section, "ContentsList").Items.Cast<object>())).Entry.Name);
     });
 
     [Fact]
@@ -80,14 +78,9 @@ public sealed class OtherMediaExplorerScenarios(StaExecutionScenarios sta)
         var segment = new SequentialMediaSegment(0, SequentialSegmentKind.DataBlock, 132, duration: TimeSpan.FromSeconds(2));
         var representation = new SequentialMediaImageRepresentation(132, TimeSpan.FromSeconds(2), [segment]);
         var volume = Volume(0, 132, "TEST TAPE", fileName: "TEST TAPE.bin");
-        var section = Display(Document(
-            MediaKind.Tape,
-            representation,
-            [volume],
-            "tape.atari-cas",
-            new Dictionary<string, string> { ["systemId"] = "atari-8bit" }));
+        var section = Display(Document(MediaKind.Tape, representation, [volume], "tape.atari-cas", new Dictionary<string, string> { ["systemId"] = "atari-8bit" }));
 
-        Assert.Equal("Atari CAS", Find<TextBlock>(section, "FileSystemText").Text);
+        Assert.Equal($"{LocExtension.Get("Explorer.Cassette")} {LocExtension.Get("System.atari-8bit")}", Find<TextBlock>(section, "FileSystemText").Text);
         Assert.Equal("Atari 8-bit", Find<TextBlock>(section, "SystemText").Text);
         Assert.Equal("1", Find<TextBlock>(section, "EntryCountText").Text);
     });
@@ -129,28 +122,13 @@ public sealed class OtherMediaExplorerScenarios(StaExecutionScenarios sta)
         return new ExploredMediaImage(document, volumes, []);
     }
 
-    private static ExploredMediaVolume Volume(
-        long start,
-        long length,
-        string name,
-        int? partition = null,
-        string fileName = "FILE.BIN",
-        int? session = null,
-        int? track = null)
+    private static ExploredMediaVolume Volume(long start, long length, string name, int? partition = null, string fileName = "FILE.BIN", int? session = null, int? track = null)
     {
-        var descriptor = new MediaVolumeDescriptor(
-            start,
-            length,
-            "test",
-            partitionNumber: partition,
-            sessionNumber: session,
-            trackNumber: track,
-            name: name);
+        var descriptor = new MediaVolumeDescriptor(start, length, "test", partitionNumber: partition, sessionNumber: session, trackNumber: track, name: name);
         var entry = new FileSystemEntry(fileName, FileSystemEntryKind.File, 1, null, string.Empty, 0, 0, true, [], [1]);
         var fileSystem = new FileSystemVolume(name, "test.fs", length, 0, null, null, [entry], [], freeSpaceKnown: false);
         return new ExploredMediaVolume(descriptor, "test.reader", fileSystem, []);
     }
 
-    private static T Find<T>(ExplorerSection section, string name) where T : class =>
-        Assert.IsType<T>(section.FindName(name));
+    private static T Find<T>(ExplorerSection section, string name) where T : class => Assert.IsType<T>(section.FindName(name));
 }

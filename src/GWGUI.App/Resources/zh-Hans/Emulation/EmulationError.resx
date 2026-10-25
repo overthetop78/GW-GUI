@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>需要一个 Kickstart 路径 。</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>所需的固件路径为空 。</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>选中的文件不存在 。</value></data>
+  <data name="Emulation.Error.Title"><value>模拟错误</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>所需的仿真器没有安装 。</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>模拟器拒绝了请求的操作 。</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>模拟器在使用时无法更新 。</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>缺少必需的固件 。</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>所选的固件与此机器不相容 。</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>未找到配置的媒体文件 。</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>选中的媒体不为此模拟器所支持 。</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>模拟器选项无效 。</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>与模拟器进程的联系失败 。</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>模拟机器无法启动 。</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>媒体操作失败.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>保存状态无效或损坏 。</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>保存状态与此机配置不相容 。</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>保存状态操作失败 。</value></data>
 </root>

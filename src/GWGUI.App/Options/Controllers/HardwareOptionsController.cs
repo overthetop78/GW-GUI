@@ -116,8 +116,7 @@ internal sealed class HardwareOptionsController(
         section.Drives.ItemsSource = rows;
     }
 
-    public void MergeUnconfigured(IReadOnlyList<ControllerSettings> detectedControllers) =>
-        state.MergeUnconfigured(detectedControllers);
+    public void MergeUnconfigured(IReadOnlyList<ControllerSettings> detectedControllers) => state.MergeUnconfigured(detectedControllers);
 
     public void ApplyTo(AppSettings settings)
     {

@@ -6,8 +6,8 @@ using GWGUI.App.Presenters.Emulation.Configurations;
 using GWGUI.App.Services.Emulation;
 using GWGUI.App.Services.Storage;
 using GWGUI.App.Views.Controls.Emulation.Input;
+using GWGUI.App.Views.Controls.Emulation.Machine;
 using GWGUI.App.Views.Controls.Common;
-using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using GWGUI.Emulation;
@@ -20,12 +20,13 @@ public sealed partial class EmulationPreferencesSection : UserControl
 {
     public static event EventHandler<EmulationConfigurationSavedEventArgs>? ConfigurationSaved;
     public static event EventHandler<EmulationConfigurationSavedEventArgs>? VideoConfigurationChanged;
+    internal static event Func<Task>? ConfigurationDeleted;
     internal event Func<IEmulationModule, IEmulationConfiguration, Task>? EditConfigurationRequested;
 
     private readonly IReadOnlyList<IEmulationModule> _modules = EmulationModuleRegistry.Modules;
-    private readonly TextBlock _configurationBrandLabel = new();
-    private readonly ComboBox _configurationBrand = new();
-    private readonly ObservableCollection<EmulationModuleListItem> _configurationBrands = [];
+    private readonly EmulationConfigurationSelector _configurationSelector = new();
+    private string? _selectedConfigurationMachineId;
+    private IEmulationModule? _selectedConfigurationModule;
     private IReadOnlyList<EmulationConfigurationTableRow> _configurationRows = [];
     private readonly EmulationConfigurationTable _configurationTable = new();
     private readonly InputBindingEditor _shortcuts = new();
@@ -43,6 +44,7 @@ public sealed partial class EmulationPreferencesSection : UserControl
 
     public EmulationPreferencesSection()
     {
+        _shortcuts.ConfigureCaptureSources(GWGUI.App.Enums.Input.InputCaptureSources.Keyboard | GWGUI.App.Enums.Input.InputCaptureSources.Mouse | GWGUI.App.Enums.Input.InputCaptureSources.Controller, true);
         _tabs = new TabControl
         {
             Margin = new Thickness(8),
@@ -50,7 +52,19 @@ public sealed partial class EmulationPreferencesSection : UserControl
             VerticalContentAlignment = VerticalAlignment.Stretch
         };
         _shortcuts.BindingsChanged += async (_, _) => await SaveShortcutsAsync();
-        _configurationBrand.SelectionChanged += (_, _) => FilterConfigurationTable();
+        _configurationSelector.BrandSelected += module =>
+        {
+            _selectedConfigurationModule = module;
+            _selectedConfigurationMachineId = null;
+            RebuildConfigurationBrands();
+            FilterConfigurationTable();
+        };
+        _configurationSelector.MachineSelected += (_, machine) =>
+        {
+            _selectedConfigurationMachineId = _selectedConfigurationMachineId == machine.Id ? null : machine.Id;
+            RebuildConfigurationBrands();
+            FilterConfigurationTable();
+        };
         _configurationTable.EditRequested += async row => await EditConfigurationAsync(row);
         _configurationTable.DeleteRequested += async row => await DeleteConfigurationAsync(row);
         _storageFolder.LostKeyboardFocus += async (_, _) => await SaveFoldersAsync();
@@ -91,30 +105,24 @@ public sealed partial class EmulationPreferencesSection : UserControl
         finally { _loadingConfigurations = false; }
     }
 
-    internal static void RaiseConfigurationSaved(object sender, EmulationConfigurationSavedEventArgs args) =>
-        ConfigurationSaved?.Invoke(sender, args);
+    internal static void RaiseConfigurationSaved(object sender, EmulationConfigurationSavedEventArgs args) => ConfigurationSaved?.Invoke(sender, args);
 
-    internal static void RaiseVideoConfigurationChanged(object sender, EmulationConfigurationSavedEventArgs args) =>
-        VideoConfigurationChanged?.Invoke(sender, args);
+    internal static void RaiseVideoConfigurationChanged(object sender, EmulationConfigurationSavedEventArgs args) => VideoConfigurationChanged?.Invoke(sender, args);
 
     internal void RefreshLocalizedContent()
     {
-        var shortcutValues = _shortcuts.Rows.ToDictionary(row => row.Id, row => row.Binding,
-            StringComparer.Ordinal);
+        var shortcutValues = _shortcuts.Rows.ToDictionary(row => row.Id, row => row.Binding, StringComparer.Ordinal);
         foreach (var (tab, resourceKey) in _localizedTabs)
         {
             var text = LocExtension.Get(resourceKey);
             if (tab.Header is MainTabHeader header) header.Text = text;
         }
         _shortcuts.SetRows(GlobalShortcutDefinitions(), shortcutValues);
-        _shortcuts.ConfigurePresentation(LocExtension.Get("Emulation.Input.Actions"),
-            LocExtension.Get("Emulation.Input.Binding.Search"));
-        _configurationBrandLabel.Text = LocExtension.Get("Emulation.Configuration.Brand");
+        _shortcuts.ConfigurePresentation(LocExtension.Get("Emulation.Input.Actions"), LocExtension.Get("Emulation.Input.Binding.Search"));
         _configurationTable.RefreshLocalizedContent();
         if (_configurationsLoaded)
         {
-            _configurationRows = EmulationConfigurationTablePresenter.CreateRows(
-                _configurationRows.Select(row => (row.Module, row.Configuration)));
+            _configurationRows = EmulationConfigurationTablePresenter.CreateRows(_configurationRows.Select(row => (row.Module, row.Configuration)));
             RebuildConfigurationBrands();
             FilterConfigurationTable();
             _ = ReloadConfigurationsAsync();
@@ -122,4 +130,3 @@ public sealed partial class EmulationPreferencesSection : UserControl
     }
 
 }
-

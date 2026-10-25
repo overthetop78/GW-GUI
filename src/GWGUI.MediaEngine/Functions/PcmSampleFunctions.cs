@@ -1,3 +1,4 @@
+using static GWGUI.MediaFileSystems.Functions.MediaMetadataFunctions;
 using System.Buffers.Binary;
 
 namespace GWGUI.MediaEngine.Functions;
@@ -5,6 +6,18 @@ namespace GWGUI.MediaEngine.Functions;
 /// <summary>Shares integer PCM profile validation and channel extraction between sequential media decoders.</summary>
 internal static class PcmSampleFunctions
 {
+
+    internal static void AppendPulses(List<short> samples, ref short level, ushort tStates, int count, int sampleRate, int tStatesPerSecond)
+    {
+        var sampleCount = Math.Max(1, (int)Math.Round(tStates * sampleRate / (double)tStatesPerSecond));
+        for (var pulse = 0; pulse < count; pulse++)
+        {
+            for (var sample = 0; sample < sampleCount; sample++) samples.Add(level);
+            level = (short)-level;
+        }
+    }
+
+
     public static void AppendSilence(List<short> samples, int sampleRate, double durationSeconds)
     {
         ArgumentNullException.ThrowIfNull(samples);
@@ -15,12 +28,7 @@ internal static class PcmSampleFunctions
         for (var index = 0; index < count; index++) samples.Add(0);
     }
 
-    public static bool TryGetProfile(
-        IReadOnlyDictionary<string, string> metadata,
-        out int channels,
-        out int sampleRate,
-        out int bitsPerSample,
-        out int blockAlign)
+    public static bool TryGetProfile(IReadOnlyDictionary<string, string> metadata, out int channels, out int sampleRate, out int bitsPerSample, out int blockAlign)
     {
         channels = sampleRate = bitsPerSample = blockAlign = 0;
         return TryReadInt(metadata, "channels", out channels)
@@ -33,12 +41,7 @@ internal static class PcmSampleFunctions
             && blockAlign == channels * (bitsPerSample / 8);
     }
 
-    public static IReadOnlyList<int> ExtractChannel(
-        ReadOnlySpan<byte> pcm,
-        int channels,
-        int bitsPerSample,
-        int blockAlign,
-        int channel)
+    public static IReadOnlyList<int> ExtractChannel(ReadOnlySpan<byte> pcm, int channels, int bitsPerSample, int blockAlign, int channel)
     {
         if (channel < 0 || channel >= channels) throw new ArgumentOutOfRangeException(nameof(channel));
         if (blockAlign <= 0 || pcm.Length % blockAlign != 0)
@@ -66,10 +69,6 @@ internal static class PcmSampleFunctions
         return (result & 0x00800000) == 0 ? result : result | unchecked((int)0xff000000);
     }
 
-    private static bool TryReadInt(IReadOnlyDictionary<string, string> metadata, string key, out int value)
-    {
-        value = 0;
-        return metadata.TryGetValue(key, out var text)
-            && int.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out value);
-    }
+    internal static bool TryReadSampleRate(IReadOnlyDictionary<string, string> parameters, out int sampleRate) =>
+        TryReadInt(parameters, "sampleRate", out sampleRate) && sampleRate >= 8000;
 }

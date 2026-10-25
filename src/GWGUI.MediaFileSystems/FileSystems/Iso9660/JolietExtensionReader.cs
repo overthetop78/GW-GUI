@@ -13,13 +13,10 @@ public sealed class JolietExtensionReader : Iso9660FileSystemReader
     {
         if (descriptor[0] != Iso9660Constants.SupplementaryVolumeDescriptorType || descriptor.Length < 91)
             return false;
-        return descriptor.Slice(88, 3).SequenceEqual("%/@"u8)
-            || descriptor.Slice(88, 3).SequenceEqual("%/C"u8)
-            || descriptor.Slice(88, 3).SequenceEqual("%/E"u8);
+        return descriptor.Slice(88, 3).SequenceEqual("%/@"u8) || descriptor.Slice(88, 3).SequenceEqual("%/C"u8) || descriptor.Slice(88, 3).SequenceEqual("%/E"u8);
     }
 
-    protected override string DecodeVolumeIdentifier(ReadOnlySpan<byte> value) =>
-        System.Text.Encoding.BigEndianUnicode.GetString(value).TrimEnd(' ', '\0');
+    protected override string DecodeVolumeIdentifier(ReadOnlySpan<byte> value) => System.Text.Encoding.BigEndianUnicode.GetString(value).TrimEnd(' ', '\0');
 
     protected override string DecodeFileIdentifier(ReadOnlySpan<byte> value)
     {

@@ -1,0 +1,182 @@
+using GWGUI.Emulation.Interfaces;
+using CommonCoreHostFunctions = GWGUI.Emulation.Atari.Common.Functions.CoreHostFunctions;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography;
+using GWGUI.Emulation;
+
+namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Services;
+
+internal sealed partial class ExternalCore : IEmulatorCore
+{
+    /// <inheritdoc/>
+    public int DiskCount => GetDiskStatus().ImageCount;
+    /// <inheritdoc/>
+    public int CurrentDiskIndex => GetDiskStatus().CurrentIndex;
+    /// <inheritdoc/>
+    public bool SupportsPointerCapture => true;
+
+    /// <inheritdoc/>
+    /// <remarks>Le backend possède une seule entrée native de reset ; son traitement existant conserve les montages et les réglages.</remarks>
+    public void SoftReset() => HardReset();
+
+    /// <inheritdoc/>
+    public bool ShutdownRequested => _callbacks?.ShutdownRequested ?? false;
+
+    /// <inheritdoc/>
+    public IReadOnlyList<ControllerFeedbackState> ControllerFeedback => _callbacks?.Feedback.Snapshot() ?? [];
+
+    private readonly string _corePath;
+    private readonly IEmulatorAdapter _adapter;
+    private readonly MachineFactory _mediaAdapter;
+    private ExternalCoreInfo _info;
+    private IEmulationCoreLibrary? _library;
+    private ExternalCoreExports? _exports;
+    private ExternalHostCallbacks? _callbacks;
+    private LoadedContent? _content;
+    private bool _nativeInitialized;
+    private bool _gameLoaded;
+    private bool _supportsSaveStates;
+    private bool _disposed;
+    private readonly List<MediaConfiguration> _mountedMedia = [];
+    private readonly List<SessionMedia> _sessionMedia = [];
+    private string? _sessionDirectory;
+    private EmulatorPreparedContent? _preparedContent;
+    private MachineConfiguration? _configuration;
+    private PreparedCartridge? _cartridge;
+
+    internal ExternalCore(string absoluteCorePath, Emulator emulator)
+    {
+        _corePath = Path.GetFullPath(absoluteCorePath);
+        Emulator = emulator;
+        _adapter = EmulatorCatalog.CreateAdapter(emulator);
+        _mediaAdapter = (MachineFactory)_adapter;
+        _info = ExternalCoreProbe.Inspect(absoluteCorePath, emulator);
+        _info = _info with { Extensions = _adapter.ResolveContentExtensions(_info.Extensions, _info.NeedsFullPath) };
+        CoreSha256 = CommonCoreHostFunctions.StateFiles.HashBytes(File.ReadAllBytes(_corePath)).ToLowerInvariant();
+    }
+
+    public Emulator Emulator { get; }
+    public VideoFrame? LatestVideoFrame => _callbacks?.LatestVideoFrame;
+    public AudioChunk? LatestAudioChunk => _callbacks?.LatestAudioChunk;
+    public IReadOnlyList<CoreOption> Options => _callbacks?.Options ?? [];
+    public IReadOnlyList<string> Diagnostics => _callbacks?.Diagnostics ?? [];
+    public IReadOnlyDictionary<int, bool> LedStates => _callbacks?.LedStates ?? new Dictionary<int, bool>();
+    public string CoreName => _info.LibraryName;
+    public string CoreVersion => _info.LibraryVersion;
+    public string CoreSha256 { get; }
+    public IReadOnlySet<string> SupportedContentExtensions => _info.Extensions;
+    public bool SupportsSaveStates => _supportsSaveStates;
+    public double FramesPerSecond => _callbacks?.FramesPerSecond ?? default;
+    public int SampleRate => _callbacks?.SampleRate ?? default;
+    public EmulationVideoStandard? Region { get; private set; }
+    public int BufferedAudioFrames => _callbacks?.BufferedAudioFrames ?? default;
+    public long AudioOverrunCount => _callbacks?.AudioOverrunCount ?? default;
+    public long AudioUnderrunCount => _callbacks?.AudioUnderrunCount ?? default;
+    public HostProcessState HostProcessState => HostProcessState.InProcess;
+    public int? HostProcessId => null;
+    internal IReadOnlyList<MediaConfiguration> MountedMedia => _mountedMedia;
+
+    public bool TryDequeueAudio(out AudioChunk? chunk)
+    {
+        chunk = null;
+        return _callbacks?.TryDequeueAudio(out chunk) == true;
+    }
+
+    public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
+    {
+        ObjectDisposedException.ThrowIf(_disposed, this);
+        if (_library is not null)
+            throw new InvalidOperationException(ErrorMessages.CoreAlreadyInitialized);
+
+        try
+        {
+            var absoluteSession = Path.GetFullPath(sessionDirectory);
+            _configuration = configuration;
+            _sessionDirectory = absoluteSession;
+            var systemDirectory = Path.Combine(absoluteSession, CoreDirectoryConstants.SystemDirectoryName);
+            var media = _mediaAdapter.SelectPrimaryMedia(configuration);
+            _adapter.PrepareFirmware(configuration, systemDirectory);
+            _library = CommonCoreHostFunctions.NativeResources.CreateLibrary(_corePath);
+            _exports = CoreFunctions.ResolveExports(_library);
+            var configuredOptions = _mediaAdapter.PrepareOptions(_mediaAdapter.GetConfiguredOptions(configuration));
+            _callbacks = new ExternalHostCallbacks(Emulator,
+                systemDirectory,
+                Path.Combine(absoluteSession, CoreDirectoryConstants.ContentDirectoryName),
+                saveDirectory ?? Path.Combine(absoluteSession, CoreDirectoryConstants.SavesDirectoryName),
+                Path.Combine(absoluteSession, CoreDirectoryConstants.AssetsDirectoryName),
+                configuredOptions);
+            CoreFunctions.InstallCallbacks(_exports, _callbacks);
+            _exports.Initialize();
+            _nativeInitialized = true;
+            _info = CoreFunctions.ReadInitializedInfo(_exports, Emulator);
+            _callbacks.ValidateConfiguredOptions();
+
+            _preparedContent = _mediaAdapter.PrepareContent(configuration, media, absoluteSession, _info);
+            media = _preparedContent?.Configuration;
+            if (_preparedContent?.ActivityPaths is { } activityPaths)
+                _callbacks.TrackOpticalMedia(activityPaths);
+            var runtimeOptions = _mediaAdapter.PrepareOptions(_preparedContent?.RuntimeOptions ?? configuration.Options);
+            foreach (var option in runtimeOptions)
+                if (!configuration.Options.TryGetValue(option.Key, out var configuredValue)
+                    || !string.Equals(configuredValue, option.Value, StringComparison.Ordinal))
+                    _callbacks.SetOption(option.Key, option.Value);
+
+            if (media is not null)
+            {
+                _content = ContentFunctions.Create(_preparedContent!.RuntimePath, _preparedContent.NeedsFullPath, _info.Extensions, Emulator == Emulator.Atari800);
+            }
+            CoreLifecycleFunctions.Load(_exports, _callbacks, configuration, _content?.GameInfo ?? nint.Zero, () => _mediaAdapter.ConfigureControllers(_exports, _callbacks, configuration));
+            _gameLoaded = true;
+            if (_preparedContent?.BootMedia is { } bootFloppy)
+            {
+                _sessionMedia.Add(bootFloppy);
+                _callbacks.DiskControl.Insert(bootFloppy.RuntimePath);
+                _exports.Reset();
+                var configuredFloppy = configuration.Media.First(item => item.Slot == EmulationMediaSlot.Floppy0);
+                MediaRuntimeFunctions.Register(_mountedMedia, configuredFloppy);
+            }
+            _supportsSaveStates = StateFunctions.IsAvailable(_exports);
+            Region = RuntimeFunctions.Region(_exports.GetRegion());
+            _mediaAdapter.ValidatePreparedContent(_preparedContent, _callbacks.DiskControl.IsAvailable);
+            if (media is not null)
+            {
+                MediaRuntimeFunctions.Register(_mountedMedia, media);
+                if (_preparedContent?.SessionMedia is { } sessionMedia)
+                    _sessionMedia.Add(sessionMedia);
+            }
+        }
+        catch
+        {
+            DisposeNativeResources();
+            throw;
+        }
+    }
+
+    public void RunFrame()
+    {
+        _callbacks?.NotifyAudioBufferStatus();
+        RequireCallbacks().BeginFrame();
+        RequireExports().Run();
+    }
+    public void HardReset() => RequireExports().Reset();
+    public void SetInput(EmulationInputSnapshot snapshot) => RequireCallbacks().Input = _mediaAdapter.PrepareInput(snapshot);
+    public void SetControllerPortDevice(int port, PeripheralCategory peripheral)
+    {
+        var configuration = _configuration ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
+        _mediaAdapter.ConfigureController(RequireExports(), RequireCallbacks(), configuration, port, peripheral);
+        _callbacks?.Feedback.ResetPort(port);
+    }
+    public void SetOption(string key, string value)
+    {
+        var options = _mediaAdapter.PrepareOptions(new Dictionary<string, string>(StringComparer.Ordinal) { [key] = value });
+        foreach (var option in options) RequireCallbacks().SetOption(option.Key, option.Value);
+    }
+    /// <inheritdoc/>
+    public int MinimumAudioLatencyMilliseconds => _callbacks?.MinimumAudioLatencyMilliseconds ?? 0;
+    /// <inheritdoc/>
+    public void SetAudioBufferStatus(AudioOutputBufferStatus? status)
+    {
+        if (_callbacks is { } callbacks) callbacks.OutputAudioStatus = status;
+    }
+}

@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Content.Initial" xml:space="preserve"><value>משחקי מדיה</value></data>
+  <data name="Emulation.Snk.Memory.Display" xml:space="preserve"><value>זיכרון וידאו</value></data>
+  <data name="Emulation.Snk.Audio.Native" xml:space="preserve"><value>חומרה אודיו</value></data>
+  <data name="Emulation.Snk.Video.Native" xml:space="preserve"><value>וידאו חומרה</value></data>
+  <data name="Emulation.Snk.Controls.Native" xml:space="preserve"><value>הגדרות המפקח</value></data>
+  <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>הגדרות מערכת</value></data>
+  <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>מערכת מערכת BIOS</value></data>
+  <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>עזר BIOS</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>מדמה את Neo Geo CD ואת Neo Geo CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>מדמה מערכות Neo Geo המשתמשות במחסניות משחק ובתקליטורי CD.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>מדמה מערכות SNK תואמות.</value></data>
+  <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>שפה</value></data>
+  <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>שפה יפנית</value></data>
+  <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>שפה אנגלית</value></data>
+  <data name="Emulation.Snk.Help.DarkFilterLevel" xml:space="preserve"><value>ניתן להשתמש בהפחתה של בהירות מבוססת אלומיניום. מאי כדי להימנע מזן זוהר / עין בעת משחק משחקים עם רקע לבן.</value></data>
+  <data name="Emulation.Snk.Value.Manual" xml:space="preserve"><value>ידני</value></data>
+  <data name="Emulation.Snk.Setting.RealTimeClock" xml:space="preserve"><value>שעון אמת</value></data>
+  <data name="Emulation.Snk.Help.RealTimeClock" xml:space="preserve"><value>בחר כיצד השעון המפוחד בזמן אמת מתקדם. "Deterministic" נחשב מסגרות חיקוי מבסיס קבוע, כך RTC קריאה היא יעילה ובטוחה עבור netplay, rewind ו-reward. 'זמן אמיתי' קורא את השעון המארח ישירות (שעון חי, אך לא-קבוע).</value></data>
+  <data name="Emulation.Snk.Value.Deterministic" xml:space="preserve"><value>המונחים</value></data>
+  <data name="Emulation.Snk.Value.RealTime" xml:space="preserve"><value>זמן אמיתי</value></data>
+  <data name="Emulation.Snk.Setting.AudioQuality" xml:space="preserve"><value>איכות אודיו</value></data>
+  <data name="Emulation.Snk.Setting.AudioSampleRate" xml:space="preserve"><value>תגית: Audio Rate</value></data>
+  <data name="Emulation.Snk.Value.Game" xml:space="preserve"><value>משחק Game</value></data>
+  <data name="Emulation.Snk.Value.System" xml:space="preserve"><value>מערכת</value></data>
+  <data name="Emulation.Snk.Setting.MainProcessorSpeed" xml:space="preserve"><value>מהירות המעבד (%)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderMethod" xml:space="preserve"><value>שיטת Alternate</value></data>
+  <data name="Emulation.Snk.Setting.VideoApproach1Enabled" xml:space="preserve"><value>גישה וידאו 1</value></data>
+  <data name="Emulation.Snk.Setting.HideGameInfoScreen" xml:space="preserve"><value>מסך המשחק</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningScreen" xml:space="preserve"><value>מסך אזהרה</value></data>
+  <data name="Emulation.Snk.Setting.EnableMultithreading" xml:space="preserve"><value>רב-לשונית</value></data>
+  <data name="Emulation.Snk.Setting.SetBrightness" xml:space="preserve"><value>המונחים:</value></data>
+  <data name="Emulation.Snk.Setting.SetContrast" xml:space="preserve"><value>המונחים</value></data>
+  <data name="Emulation.Snk.Setting.SetGamma" xml:space="preserve"><value>תגית gamma</value></data>
+  <data name="Emulation.Snk.Setting.SkipDisclaimer" xml:space="preserve"><value>« « OUT REEXER</value></data>
+  <data name="Emulation.Snk.Setting.SkipWarnings" xml:space="preserve"><value>אזהרות דלג</value></data>
+  <data name="Emulation.Snk.Help.DisplayMAMEMenu" xml:space="preserve"><value>עקבו אחרי The show of the inside MAME התפריט.</value></data>
+  <data name="Emulation.Snk.Setting.Brightness" xml:space="preserve"><value>ברייטור</value></data>
+  <data name="Emulation.Snk.Help.Brightness" xml:space="preserve"><value>משנה את רמת הבהירות בשימוש.</value></data>
+  <data name="Emulation.Snk.Setting.GammaCorrection" xml:space="preserve"><value>גמה תיקון</value></data>
+  <data name="Emulation.Snk.Help.GammaCorrection" xml:space="preserve"><value>משנה את רמת הגמה בשימוש.</value></data>
+  <data name="Emulation.Snk.Help.DisplayArtwork" xml:space="preserve"><value>משמש כדי להציג אמנות אישית בעת זמין.</value></data>
+  <data name="Emulation.Snk.Help.ArtworkResolutionMultiplier" xml:space="preserve"><value>מגביר את החלטת האמנות על ידי ערך ההכפלה שנבחר.</value></data>
+  <data name="Emulation.Snk.Setting.SpecifyNeoGeoBIOS" xml:space="preserve"><value>המונחים: Neo Geo BIOS</value></data>
+  <data name="Emulation.Snk.Help.SpecifyNeoGeoBIOS" xml:space="preserve"><value>בחרו קבצי ביו-ס אלטרנטיביים.</value></data>
+  <data name="Emulation.Snk.Value.Asia" xml:space="preserve"><value>אסיה</value></data>
+  <data name="Emulation.Snk.Value.Japan" xml:space="preserve"><value>יפן יפן</value></data>
+  <data name="Emulation.Snk.Setting.UseSamples" xml:space="preserve"><value>השתמש בדגימות</value></data>
+  <data name="Emulation.Snk.Help.UseSamples" xml:space="preserve"><value>לאפשר לקבצי דגימת אודיו להיות טעון בעת מסופקת בדוגמת הדגימות.</value></data>
+  <data name="Emulation.Snk.Help.AutosaveHiscore" xml:space="preserve"><value>מומלץ להשתמש ברירת מחדל אשר תציל את השלד כאשר תוכן הסגירה. recursively תציל שוב ושוב את כל הזמן במהלך המשחקplay. נכים יעקוף את השימוש של המשחק. hiscore.dat קובץ שלם</value></data>
+  <data name="Emulation.Snk.Help.CPUClockScale" xml:space="preserve"><value>בשימוש מתחת או מעל השעון, החיקוי CPU באחוז מסוים.</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningsScreen" xml:space="preserve"><value>אזהרות מסך</value></data>
+  <data name="Emulation.Snk.Setting.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>השתמש בעומק צבע 32 סיביות כאשר זמין</value></data>
+  <data name="Emulation.Snk.Help.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>שינוי פורמט פיקסל, כמה משחקים דורשים זה כדי להפוך כראוי, זה יכול להשפיע על הופעות על כמה פלטפורמות</value></data>
+  <data name="Emulation.Snk.Setting.VerticalMode" xml:space="preserve"><value>מצב רדי</value></data>
+  <data name="Emulation.Snk.Help.VerticalMode" xml:space="preserve"><value>תצוגה רוטט עבור מסכים אנכיים</value></data>
+  <data name="Emulation.Snk.Value.Alternate" xml:space="preserve"><value>חלופי</value></data>
+  <data name="Emulation.Snk.Value.TATEAlternate" xml:space="preserve"><value>TATE חלופי</value></data>
+  <data name="Emulation.Snk.Setting.UseA60HzRefreshRate" xml:space="preserve"><value>השתמש בשיעור של 60 הרץ</value></data>
+  <data name="Emulation.Snk.Help.UseA60HzRefreshRate" xml:space="preserve"><value>השתמש 60 הרץ במקום קצב הרענון המקורי.זה יכול לשנות את מהירות המשחק ולגרום לאנדר אנימציה.</value></data>
+  <data name="Emulation.Snk.Setting.Resolution" xml:space="preserve"><value>החלטה</value></data>
+  <data name="Emulation.Snk.Help.Resolution" xml:space="preserve"><value>פתרון במשחקים מסוימים (בשיתוף)</value></data>
+  <data name="Emulation.Snk.Help.FixedFrameskip" xml:space="preserve"><value>כאשר 'פרמפציפ' מוגדר 'Fixed', או אם החזית לא תומכת במצב 'Frameskip' חלופי, לדלג על קצב קבוע של X מסגרות מתוך X+1</value></data>
+  <data name="Emulation.Snk.Value.NoSkipping" xml:space="preserve"><value>לא לדלג</value></data>
+  <data name="Emulation.Snk.Setting.CPUClock" xml:space="preserve"><value>CPU שעון השעון</value></data>
+  <data name="Emulation.Snk.Help.CPUClock" xml:space="preserve"><value>שינוי חיקוי תדר cpu עבור מערכות שונות, על ידי הגדלת אתה יכול לתקן להאטות הילידים במשחקים מסוימים, על ידי ירידה אתה יכול לעזור ביצועים על מכשירים באיכות נמוכה.</value></data>
+  <data name="Emulation.Snk.Setting.DiagnosticInput" xml:space="preserve"><value>Input</value></data>
+  <data name="Emulation.Snk.Help.DiagnosticInput" xml:space="preserve"><value>שילוב כפתורים להזין את תפריט שירות הממשלה</value></data>
+  <data name="Emulation.Snk.Help.Hiscores" xml:space="preserve"><value>תמיכה בדרג גבוה, אתה גם צריך את הקובץ hiscore.dat ב-מערכת / fbneo / תיקיה</value></data>
+  <data name="Emulation.Snk.Help.AllowPatchedRomsets" xml:space="preserve"><value>לאפשר לקודים מהמערכת / Fbneo / תיקייה כדי לעקוף את הרשומות שלך, crcs יהיה להתעלם אבל גדלים ושמות חייב עדיין להתאים, בנוסף זה גם מתג המאסטר עבור אם אם אתה יודע אם אתה יודע אם. IPS פטך ורומניה נתונים מבוצעים או לא, אתה צריך לסגור תוכן עבור הגדרה זו כדי לקחת אפקט</value></data>
+  <data name="Emulation.Snk.Setting.SampleInterpolation" xml:space="preserve"><value>המונחים: Interpolation</value></data>
+  <data name="Emulation.Snk.Help.SampleInterpolation" xml:space="preserve"><value>התפוצצות מדגם Conformation, היא עלולה להשפיע על הופעות</value></data>
+  <data name="Emulation.Snk.Setting.FMInterpolation" xml:space="preserve"><value>FM זיהום</value></data>
+  <data name="Emulation.Snk.Help.FMInterpolation" xml:space="preserve"><value>המונחים FM התפוצצות, זה יכול להשפיע על הופעות</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilter" xml:space="preserve"><value>פילטר נמוך</value></data>
+  <data name="Emulation.Snk.Help.LowPassFilter" xml:space="preserve"><value>המונחים: lowPass Filter</value></data>
+  <data name="Emulation.Snk.Setting.AnalogSpeed" xml:space="preserve"><value>מהירות Analog Speed</value></data>
+  <data name="Emulation.Snk.Help.AnalogSpeed" xml:space="preserve"><value>מהירות בקרת אנלוגיה Mitigate, כמה משחקים עשויים לדרוש ערכים נמוכים כדי להיות משחקני</value></data>
+  <data name="Emulation.Snk.Setting.SOCDMode" xml:space="preserve"><value>SOCD מצב</value></data>
+  <data name="Emulation.Snk.Help.SOCDMode" xml:space="preserve"><value>שינוי שינוי ULDR עדיפות</value></data>
+  <data name="Emulation.Snk.Value.Disabled" xml:space="preserve"><value>מוגבלויות</value></data>
+  <data name="Emulation.Snk.Value.SimultaneousNeutral" xml:space="preserve"><value>המונחים: Simultaneous Neutral</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority4Way" xml:space="preserve"><value>עדיפות אחרונה (4 דרכים)</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority8Way" xml:space="preserve"><value>נספח אחרון (8 דרכים)</value></data>
+  <data name="Emulation.Snk.Value.FirstInputPriority" xml:space="preserve"><value>המונחים: inputעדיפות</value></data>
+  <data name="Emulation.Snk.Setting.CrosshairEmulation" xml:space="preserve"><value>חיקוי Crossשיער</value></data>
+  <data name="Emulation.Snk.Value.HideWithLightgunDevice" xml:space="preserve"><value>מסתתר עם מכשיר Lightgun</value></data>
+  <data name="Emulation.Snk.Value.AlwaysHide" xml:space="preserve"><value>תמיד מסתתר</value></data>
+  <data name="Emulation.Snk.Value.AlwaysShow" xml:space="preserve"><value>תמיד המופע</value></data>
+  <data name="Emulation.Snk.Setting.NeoGeoMode" xml:space="preserve"><value>המונחים: Neo-Geo Mode</value></data>
+  <data name="Emulation.Snk.Help.NeoGeoMode" xml:space="preserve"><value>לטעון ביוים מתאימים בהתאם לבחירתך, בתנאי ביוים כאלה תואם את המשחק הריצה</value></data>
+  <data name="Emulation.Snk.Value.MVSEuropeAsiaEnglish" xml:space="preserve"><value>MVS אירופה/אסיה (אנגלית)</value></data>
+  <data name="Emulation.Snk.Value.MVSUSAEnglishCensored" xml:space="preserve"><value>MVS USA אנגלית - Censored</value></data>
+  <data name="Emulation.Snk.Value.MVSJapanJapanese" xml:space="preserve"><value>MVS יפן (יפן)</value></data>
+  <data name="Emulation.Snk.Value.AESEuropeAsiaEnglish" xml:space="preserve"><value>AES אירופה/אסיה (אנגלית)</value></data>
+  <data name="Emulation.Snk.Value.AESJapanJapanese" xml:space="preserve"><value>AES יפן (יפן)</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardMode" xml:space="preserve"><value>מצב כרטיס זיכרון</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardMode" xml:space="preserve"><value>לשנות את ההתנהגות עבור כרטיס הזיכרון</value></data>
+  <data name="Emulation.Snk.Value.Shared" xml:space="preserve"><value>משותף</value></data>
+  <data name="Emulation.Snk.Value.PerGame" xml:space="preserve"><value>משחק</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip11" xml:space="preserve"><value>דביג Dip 1 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip11" xml:space="preserve"><value>ההרחבה Enable Debug Dip 1 1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip12" xml:space="preserve"><value>דביג Dip 1 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip12" xml:space="preserve"><value>ההרחבה Enable Debug Dip 1 2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip13" xml:space="preserve"><value>דביג Dip 1 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip13" xml:space="preserve"><value>דיון אמין Dip 1 3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip14" xml:space="preserve"><value>דביג Dip 1 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip14" xml:space="preserve"><value>דיון אמין Dip 1 4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip15" xml:space="preserve"><value>דביג Dip 1 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip15" xml:space="preserve"><value>דיון אמין Dip 1 5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip16" xml:space="preserve"><value>דביג Dip 1 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip16" xml:space="preserve"><value>דיון אמין Dip 1 6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip17" xml:space="preserve"><value>דביג Dip 1 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip17" xml:space="preserve"><value>« שיחה יעילה Dip 1 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip18" xml:space="preserve"><value>דביג Dip 1 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip18" xml:space="preserve"><value>דיון אמין Dip 1 8</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip21" xml:space="preserve"><value>דביג Dip 2 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip21" xml:space="preserve"><value>ההרחבה Enable Debug Dip 2 1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip22" xml:space="preserve"><value>דביג Dip 2 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip22" xml:space="preserve"><value>ההרחבה Enable Debug Dip 2 2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip23" xml:space="preserve"><value>דביג Dip 2 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip23" xml:space="preserve"><value>ההרחבה Enable Debug Dip 2 3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip24" xml:space="preserve"><value>דביג Dip 2 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip24" xml:space="preserve"><value>« שיחה יעילה Dip 2 4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip25" xml:space="preserve"><value>דביג Dip 2 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip25" xml:space="preserve"><value>דיון אמין Dip 2 5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip26" xml:space="preserve"><value>דביג Dip 2 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip26" xml:space="preserve"><value>« שיחה יעילה Dip 2 6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip27" xml:space="preserve"><value>דביג Dip 2 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip27" xml:space="preserve"><value>דיון אמין Dip 2 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip28" xml:space="preserve"><value>דביג Dip 2 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip28" xml:space="preserve"><value>דיון אמין Dip 2 8</value></data>
+  <data name="Emulation.Snk.Setting.Layer1" xml:space="preserve"><value>שכבה 1</value></data>
+  <data name="Emulation.Snk.Help.Layer1" xml:space="preserve"><value>על ידי debugging</value></data>
+  <data name="Emulation.Snk.Setting.Layer2" xml:space="preserve"><value>שכבה 2</value></data>
+  <data name="Emulation.Snk.Setting.Layer3" xml:space="preserve"><value>שכבה 3</value></data>
+  <data name="Emulation.Snk.Setting.Layer4" xml:space="preserve"><value>שכבה 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite1" xml:space="preserve"><value>ספרט 1</value></data>
+  <data name="Emulation.Snk.Setting.Sprite2" xml:space="preserve"><value>ספר 2</value></data>
+  <data name="Emulation.Snk.Setting.Sprite3" xml:space="preserve"><value>ספרט 3</value></data>
+  <data name="Emulation.Snk.Setting.Sprite4" xml:space="preserve"><value>ספרט 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite5" xml:space="preserve"><value>ספרט 5</value></data>
+  <data name="Emulation.Snk.Setting.Sprite6" xml:space="preserve"><value>ספר 6</value></data>
+  <data name="Emulation.Snk.Setting.Sprite7" xml:space="preserve"><value>ספר 7</value></data>
+  <data name="Emulation.Snk.Setting.Sprite8" xml:space="preserve"><value>ספר 8</value></data>
+  <data name="Emulation.Snk.Setting.ThreadMode" xml:space="preserve"><value>המונחים: Mode</value></data>
+  <data name="Emulation.Snk.Setting.Cheats" xml:space="preserve"><value>ב-BVs</value></data>
+  <data name="Emulation.Snk.Setting.Throttle"><value>Throttle</value></data>
+  <data name="Emulation.Snk.Setting.BootToBIOS" xml:space="preserve"><value>ל Boot to BIOS</value></data>
+  <data name="Emulation.Snk.Setting.BootToOSD" xml:space="preserve"><value>ל Boot to OSD</value></data>
+  <data name="Emulation.Snk.Setting.ReadConfiguration" xml:space="preserve"><value>קרא סודיות</value></data>
+  <data name="Emulation.Snk.Setting.WriteConfiguration" xml:space="preserve"><value>לכתוב סודיות</value></data>
+  <data name="Emulation.Snk.Setting.MAMEINIPaths" xml:space="preserve"><value>MAME INI נתיבים</value></data>
+  <data name="Emulation.Snk.Setting.Softlists"><value>Softlists</value></data>
+  <data name="Emulation.Snk.Setting.MediaType" xml:space="preserve"><value>סוג מדיה</value></data>
+  <data name="Emulation.Snk.Value.Cart" xml:space="preserve"><value>עגלות</value></data>
+  <data name="Emulation.Snk.Value.Cass" xml:space="preserve"><value>s</value></data>
+  <data name="Emulation.Snk.Value.Cdrm" xml:space="preserve"><value>crm</value></data>
+  <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>הצצה</value></data>
+  <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>קשה</value></data>
+  <data name="Emulation.Snk.Value.Prin"><value>prin</value></data>
+  <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>מערבה</value></data>
+  <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS המונחים</value></data>
+  <data name="Emulation.Snk.Setting.JoystickDeadzone"><value>Joystick Deadzone</value></data>
+  <data name="Emulation.Snk.Setting.JoystickSaturation"><value>Joystick Saturation</value></data>
+  <data name="Emulation.Snk.Setting.JoystickThreshold" xml:space="preserve"><value>תגית: Thrhold</value></data>
+  <data name="Emulation.Snk.Setting.Joystick4WaySimulation" xml:space="preserve"><value>Joystick 4way Simulation</value></data>
+  <data name="Emulation.Snk.Value.4way" xml:space="preserve"><value>4</value></data>
+  <data name="Emulation.Snk.Value.Strict" xml:space="preserve"><value>קפדני</value></data>
+  <data name="Emulation.Snk.Value.Qbert" xml:space="preserve"><value>«</value></data>
+  <data name="Emulation.Snk.Setting.ProfileButtonsPerGame" xml:space="preserve"><value>פרופיל בוטטונים למשחק</value></data>
+  <data name="Emulation.Snk.Setting.Mouse" xml:space="preserve"><value>עכבר עכבר</value></data>
+  <data name="Emulation.Snk.Setting.LightgunMode" xml:space="preserve"><value>המונחים: lightgun Mode</value></data>
+  <data name="Emulation.Snk.Value.Lightgun"><value>Lightgun</value></data>
+  <data name="Emulation.Snk.Value.Touchscreen" xml:space="preserve"><value>מסך מגע</value></data>
+  <data name="Emulation.Snk.Setting.LightgunOffscreenPosition" xml:space="preserve"><value>המונחים: lightgun Offscreen</value></data>
+  <data name="Emulation.Snk.Value.Free" xml:space="preserve"><value>חינם חינם</value></data>
+  <data name="Emulation.Snk.Value.FixedTopLeft" xml:space="preserve"><value>קבוע (Top Left)</value></data>
+  <data name="Emulation.Snk.Value.FixedBottomRight" xml:space="preserve"><value>קבוע (Botom Right)</value></data>
+  <data name="Emulation.Snk.Setting.ScreenRotationMode" xml:space="preserve"><value>המונחים: sound</value></data>
+  <data name="Emulation.Snk.Value.Internal" xml:space="preserve"><value>פנימית פנימית</value></data>
+  <data name="Emulation.Snk.Setting.AudioProcessorSpeed" xml:space="preserve"><value>מהירות מעבד אודיו (%)</value></data>
+  <data name="Emulation.Snk.Help.AutomaticLoadFastForward" xml:space="preserve"><value>תכונה ניסיונית כדי לקדם באופן אוטומטי CD גישה.&#xA;עובד עם:&#xA;ג'נרי SCSI&#xA;תגית: Sega CD ניאו גיאו CD</value></data>
+  <data name="Emulation.Snk.Setting.CoinLimit" xml:space="preserve"><value>הגבלת מטבע</value></data>
+  <data name="Emulation.Snk.Setting.SampleRate" xml:space="preserve"><value>דרגה</value></data>
+  <data name="Emulation.Snk.Help.SampleRate" xml:space="preserve"><value>מספר דגימות אודיו נלקח לשנייה.שיעורים גבוהים מספקים אודיו איכותי יותר.</value></data>
+  <data name="Emulation.Snk.Value.Threshold" xml:space="preserve"><value>סף סף סף סף סף סף סף סף סף סף סף סף סף סף סף סף סף סף סף סף</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipInterval" xml:space="preserve"><value>המונחים: p Interval</value></data>
+  <data name="Emulation.Snk.Help.FrameskipInterval" xml:space="preserve"><value>מספר מקסימלי של מסגרות רצופות שניתן לדלג עליהן.ערכים נמוכים יותר לשמור עדכונים חזותיים חלקה יותר במחיר של טיפות אודיו נוספות כאשר המארח מוגזמת יתר.</value></data>
+  <data name="Emulation.Snk.Setting.ShowGameInformation" xml:space="preserve"><value>הצג Game Information</value></data>
+  <data name="Emulation.Snk.Help.ShowGameInformation" xml:space="preserve"><value>הצג Show Show MAME"נהג-סטטיסטיקה ומסכים של מידע על משחקים לפני המשחק מתחיל לרוץ.</value></data>
+  <data name="Emulation.Snk.Setting.Stereo"><value>Stereo</value></data>
+  <data name="Emulation.Snk.Help.Stereo" xml:space="preserve"><value>אודיו stereo stereo דיסable עבור מעט נמוך יותר CPU משחקים שלא משתמשים ב-stereo Mixing.</value></data>
+  <data name="Emulation.Snk.Setting.SystemType" xml:space="preserve"><value>מערכת Type</value></data>
+  <data name="Emulation.Snk.Help.SystemType" xml:space="preserve"><value>ציין את סוג המערכת: AES, MVSאו היקום BIOS מערכת מערכת</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoAESHomeConsole" xml:space="preserve"><value>Neo Geo AES Home Console</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoMVSArcade"><value>Neo Geo MVS (Arcade)</value></data>
+  <data name="Emulation.Snk.Value.UniverseBIOSCommunityEnhancedBIOS" xml:space="preserve"><value>היקום BIOS (הופנה מהדף BIOS) )</value></data>
+  <data name="Emulation.Snk.Setting.CDSystemType" xml:space="preserve"><value>CD מערכת Type</value></data>
+  <data name="Emulation.Snk.Help.CDSystemType" xml:space="preserve"><value>המונחים: CD סוג מערכת כאשר טעינה Neo Geo CD תמונות דיסק</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDFrontLoader"><value>Neo Geo CD (Front Loader)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDTopLoader" xml:space="preserve"><value>Neo Geo CD (העשב העליון)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDZUniverseBIOS" xml:space="preserve"><value>Neo Geo CDZ (Universe) BIOS) )</value></data>
+  <data name="Emulation.Snk.Setting.Region" xml:space="preserve"><value>אזור</value></data>
+  <data name="Emulation.Snk.Help.Region" xml:space="preserve"><value>ציין את האזור: USAיפן, אסיה, אירופה</value></data>
+  <data name="Emulation.Snk.Value.Europe" xml:space="preserve"><value>אירופה אירופה</value></data>
+  <data name="Emulation.Snk.Help.MemoryCard" xml:space="preserve"><value>אפשרות או נכות כרטיס הזיכרון</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardWriteProtect" xml:space="preserve"><value>למנוע שינויים בכרטיס הזיכרון.</value></data>
+  <data name="Emulation.Snk.Setting.SettingMode" xml:space="preserve"><value>המונחים: Mode</value></data>
+  <data name="Emulation.Snk.Help.SettingMode" xml:space="preserve"><value>תביאו את המערכת ROM תפריט ב-Glock on arcade Systems</value></data>
+  <data name="Emulation.Snk.Help.FourPlayerMode" xml:space="preserve"><value>נגן 4 (Dualual MVS המונחים: Asia / Japan MVS מערכות</value></data>
+  <data name="Emulation.Snk.Help.Freeplay" xml:space="preserve"><value>Play Play Play MVS משחקים ללא צורך להכניס מטבעות</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanTop" xml:space="preserve"><value>מסיכת פיקסלים החבויים על ידי כץ או גבול על CRTs מקוריים (למעלה)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanBottom" xml:space="preserve"><value>מסיכת פיקסלים החבויים על ידי כץ או גבול על CRTs מקוריים ( ⁇ )</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanLeft" xml:space="preserve"><value>מסיכת פיקסלים החבויים על ידי כץ או גבול על CRTs מקוריים (משמאל)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanRight" xml:space="preserve"><value>מסיכת פיקסלים החבויים על ידי כץ או גבול על CRTs מקוריים (ימין)</value></data>
+  <data name="Emulation.Snk.Setting.Palette" xml:space="preserve"><value>פטי</value></data>
+  <data name="Emulation.Snk.Help.Palette" xml:space="preserve"><value>הגדר את המלט</value></data>
+  <data name="Emulation.Snk.Setting.AspectRatio" xml:space="preserve"><value>המונחים: aspect Ratio</value></data>
+  <data name="Emulation.Snk.Help.AspectRatio" xml:space="preserve"><value>המונחים: aspect Ratio</value></data>
+  <data name="Emulation.Snk.Value.PerfectlySquarePixels11PAR" xml:space="preserve"><value>פיקסלים בגודל מושלם (1:1 PAR) )</value></data>
+  <data name="Emulation.Snk.Value.OstensiblyAccurateNTSCAspectRatio4544PAR" xml:space="preserve"><value>באופן בלתי נמנע NTSC Aspect Ratio (45:44 PAR) )</value></data>
+  <data name="Emulation.Snk.Value.VeryTraditionalNTSCAspectRatio43DAR" xml:space="preserve"><value>מאוד מסורתי NTSC Aspect Ratio (4:3 DAR) )</value></data>
+  <data name="Emulation.Snk.Setting.SpritesPerLineLimit" xml:space="preserve"><value>המונחים: a-line Limit</value></data>
+  <data name="Emulation.Snk.Help.SpritesPerLineLimit" xml:space="preserve"><value>הגדר את הגבול ספיריטים-טווח - הגדלת גורם glitches במשחקים מסוימים</value></data>
+  <data name="Emulation.Snk.Setting.ProcessorSpeed" xml:space="preserve"><value>מהירות תהליכים</value></data>
+  <data name="Emulation.Snk.Help.ProcessorSpeed" xml:space="preserve"><value>הפעל את המעבד ב 24 MHz, מהירות זו עלולה לגרום שגיאות במשחקים.</value></data>
+  <data name="Emulation.Snk.Setting.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>דיסוציא ADPCM אישור Wrap</value></data>
+  <data name="Emulation.Snk.Help.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>שינוי ADPCM התנהגות של accumulator לתקן שגיאות קוליות במשחקים מסוימים. Leave this place available for other Games.</value></data>
+  <data name="Emulation.Snk.Help.CDSpeedHack" xml:space="preserve"><value>פטצ'ר BIOS לולאות עסוקות להפחתת זמני הטעינה (לא עובד עבור היקום) BIOS) )</value></data>
+  <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>לתקן את BIOS העלאת נקודות כאשר CD buffer DMA גדול יותר ממגזר אחד, תיקון קול מושחת בשלב בונוס של אמנות של לחימה.זהו האקר, והתנהגות חומרה אמיתית אינה מאומתת.</value></data>
+  <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>קדימה CD מסך טעינה</value></data>
+  <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>התפוצצות הזמנה שלישית (4 נקודות)</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>מדמה את Neo Geo Pocket ואת Neo Geo Pocket Color.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>מדמה את Neo Geo Pocket ואת Neo Geo Pocket Color.</value></data>
+  <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>בחרו את השפה בשימוש על ידי משחקים תואמים.</value></data>
+  <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>מסגרת וידאו לדלג</value></data>
+  <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>דלג כמה מסגרות וידאו כאשר הביצועים אינם מספיקים, כדי להפחית את ההפרעות בפלט אודיו.</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipThreshold" xml:space="preserve"><value>רצועת buffer Audio buffer (%)</value></data>
+  <data name="Emulation.Snk.Help.FrameskipThreshold" xml:space="preserve"><value>דלג מסגרות וידאו כאשר buffer אודיו מכיל פחות נתונים מאשר אחוז זה של יכולת.</value></data>
+  <data name="Emulation.Snk.Help.AudioQuality" xml:space="preserve"><value>בחר בין סינתזה מהירה יותר קולי וסינתזה מדויקת יותר של קול.</value></data>
+  <data name="Emulation.Snk.Help.AudioSampleRate" xml:space="preserve"><value>בחר את תדירות הדגימה אודיו sampling. תדרים גבוהים יותר יכול לשפר איכות הקול ודורש יותר כוח עיבוד.</value></data>
+  <data name="Emulation.Snk.Setting.AutoSaveLoadStates" xml:space="preserve"><value>להציל ולשחזר את המדינות באופן אוטומטי</value></data>
+  <data name="Emulation.Snk.Help.SkipDisclaimer" xml:space="preserve"><value>הסתר את ההודעה המשפטית כאשר משחק מתחיל.</value></data>
+  <data name="Emulation.Snk.Help.SkipWarnings" xml:space="preserve"><value>הסתרת אזהרות על בעיות ידועות כאשר משחק מתחיל.</value></data>
+  <data name="Emulation.Snk.Help.SampleRateHint" xml:space="preserve"><value>בחר את תדירות הדגימה אודיו sampling.מצב אוטומטי משתמש בתדירות הפלט המועדפת.</value></data>
+  <data name="Emulation.Snk.Value.UpPriorityUpOverrideDown" xml:space="preserve"><value>לתת עדיפות לכיוון למעלה</value></data>
+  <data name="Emulation.Snk.Value.DownPriorityLeftRightLastInputPriority" xml:space="preserve"><value>תן עדיפות לכיוון מטה; השתמש בקלט האופקי האחרון</value></data>
+  <data name="Emulation.Snk.Help.CrosshairEmulation" xml:space="preserve"><value>בחר אם להציג את סימון מכוון.מצב אוטומטי מסתיר אותו כאשר אקדח אור או מסך מגע משמש.</value></data>
+  <data name="Emulation.Snk.Value.UseBiosSetInBIOSDipswitch" xml:space="preserve"><value>השתמש ב BIOS נבחר על ידי מתגי החומרה</value></data>
+  <data name="Emulation.Snk.Setting.SoftlistAutomaticMediaType" xml:space="preserve"><value>מחיקת סוג המדיה באופן אוטומטי</value></data>
+  <data name="Emulation.Snk.Help.VFSEnabled" xml:space="preserve"><value>השתמש במערכת הקבצים הווירטואלית המסופקת על ידי היישום.גרסה 4 או מאוחר יותר נדרש.</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkHardcodedOverlayOpacity" xml:space="preserve"><value>המונחים: overlay  ⁇</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardWriteProtect" xml:space="preserve"><value>הגנה על כרטיס הזיכרון מפני שינויים</value></data>
+  <data name="Emulation.Snk.Setting.DarkFilterLevel" xml:space="preserve"><value>הקרנה (%)</value></data>
+  <data name="Emulation.Snk.Value.Fast" xml:space="preserve"><value>המונחים: synthesis</value></data>
+  <data name="Emulation.Snk.Value.AccurateBandLimited" xml:space="preserve"><value>המונחים: sound synthesis</value></data>
+  <data name="Emulation.Snk.Setting.SaveStateNaming" xml:space="preserve"><value>שמות קבצים המדינה</value></data>
+  <data name="Emulation.Snk.Setting.EnableCheats" xml:space="preserve"><value>קודים בוגדים</value></data>
+  <data name="Emulation.Snk.Setting.HideNagScreen" xml:space="preserve"><value>להסתיר את מסך ההודעה המשפטית</value></data>
+  <data name="Emulation.Snk.Setting.CoreProvidedAspectRatio" xml:space="preserve"><value>יחס היבט של Display המסופק על ידי החיקוי</value></data>
+  <data name="Emulation.Snk.Setting.SetFrameskip" xml:space="preserve"><value>מסגרות וידאו כדי לדלג</value></data>
+  <data name="Emulation.Snk.Setting.SampleRateHint" xml:space="preserve"><value>תדירות השמעה המועדפת</value></data>
+  <data name="Emulation.Snk.Setting.UseExternalHiscoreDat" xml:space="preserve"><value>השתמש בקובץ High-score החיצוני hiscore.dat</value></data>
+  <data name="Emulation.Snk.Setting.DisplayMAMEMenu" xml:space="preserve"><value>הצג את MAME תפריט</value></data>
+  <data name="Emulation.Snk.Setting.DisplayArtwork" xml:space="preserve"><value>הצג אמנות דקורטיבית</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkResolutionMultiplier" xml:space="preserve"><value>פתרון אמנות דקורטיבית מכפיל</value></data>
+  <data name="Emulation.Snk.Value.AutoAggressive" xml:space="preserve"><value>מצב אוטומטי אגרסיבי</value></data>
+  <data name="Emulation.Snk.Value.AutoMax" xml:space="preserve"><value>מצב אוטומטי מקסימלי</value></data>
+  <data name="Emulation.Snk.Setting.AutosaveHiscore" xml:space="preserve"><value>לשמור ציונים גבוהים באופן אוטומטי</value></data>
+  <data name="Emulation.Snk.Value.Recursively" xml:space="preserve"><value>חיפוש subfolders</value></data>
+  <data name="Emulation.Snk.Setting.BypassTimingSkew" xml:space="preserve"><value>לעקוף את התזמון</value></data>
+  <data name="Emulation.Snk.Setting.CPUClockScale" xml:space="preserve"><value>מהירות תהליכים</value></data>
+  <data name="Emulation.Snk.Setting.FixedFrameskip" xml:space="preserve"><value>מספר קבוע של מסגרות וידאו כדי לדלג</value></data>
+  <data name="Emulation.Snk.Value.Fixed" xml:space="preserve"><value>מספר קבוע</value></data>
+  <data name="Emulation.Snk.Setting.Hiscores" xml:space="preserve"><value>ציונים גבוהים</value></data>
+  <data name="Emulation.Snk.Setting.AllowPatchedRomsets" xml:space="preserve"><value>מאפשר ארכיונים של המשחק</value></data>
+  <data name="Emulation.Snk.Value.2Point1stOrder" xml:space="preserve"><value>התפוצצות הזמנה ראשונה (2 נקודות)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderer" xml:space="preserve"><value>שיטת עריכת חלופית</value></data>
+  <data name="Emulation.Snk.Value.Cropped" xml:space="preserve"><value>תמונה קרופט</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRendererResolution" xml:space="preserve"><value>פתרון</value></data>
+  <data name="Emulation.Snk.Setting.AutomaticLoadFastForward" xml:space="preserve"><value>טעינת דיסק אוטומטית</value></data>
+  <data name="Emulation.Snk.Setting.FourPlayerMode" xml:space="preserve"><value>מצב של ארבעה שחקנים</value></data>
+  <data name="Emulation.Snk.Setting.Freeplay" xml:space="preserve"><value>לשחק בלי להכניס מטבעות</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanTop" xml:space="preserve"><value>פיקסלים נסתרים לאורך קצה המסך העליון</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanBottom" xml:space="preserve"><value>פיקסלים נסתרים לאורך קצה המסך התחתון</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanLeft" xml:space="preserve"><value>פיקסלים נסתרים לאורך קצה המסך השמאלי</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanRight" xml:space="preserve"><value>פיקסלים נסתרים לאורך קצה המסך הנכון</value></data>
+  <data name="Emulation.Snk.Value.ResistorNetwork" xml:space="preserve"><value>סימולציה צבע רשת</value></data>
+  <data name="Emulation.Snk.Value.Raw" xml:space="preserve"><value>צבעים לא מעודכנים</value></data>
+  <data name="Emulation.Snk.Value.HardwareAccurate96" xml:space="preserve"><value>מגבלת החומרה המקורית (96)</value></data>
+  <data name="Emulation.Snk.Value.Double192" xml:space="preserve"><value>כפול מהגבול המקורי (192)</value></data>
+  <data name="Emulation.Snk.Value.Triple288" xml:space="preserve"><value>משולש הגבול המקורי (288)</value></data>
+  <data name="Emulation.Snk.Setting.CDSpeedHack" xml:space="preserve"><value>הורדת העיכובים</value></data>
+  <data name="Emulation.Snk.Setting.CDDMALengthLimit" xml:space="preserve"><value>הגבלת גודל העברת נתונים הדיסק</value></data>
+  <data name="Emulation.Snk.Setting.SkipCDLoading" xml:space="preserve"><value>עקבו אחרי The disse loading Animation</value></data>
+  <data name="Emulation.Snk.Setting.HorizontalOverscan"><value>פיקסלים נסתרים לאורך הקצוות הימניים והשמאליים</value></data>
+  <data name="Emulation.Snk.Setting.PerGameSaves"><value>חיסכון בנפרד לכל משחק</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilterLevel"><value>רמת סינון אודיו (%)</value></data>
+</root>

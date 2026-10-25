@@ -61,9 +61,7 @@ internal static class ScpCandidateRanker
                     continue;
                 }
 
-                var evidence = FileSystemEvidence.From(
-                    recognized.Volume,
-                    DiskImageDecodeScore.Calculate(recognized.Image));
+                var evidence = FileSystemEvidence.From(recognized.Volume, DiskImageDecodeScore.Calculate(recognized.Image));
                 if (bestFileSystemEvidence is null || evidence.IsBetterThan(bestFileSystemEvidence.Value))
                 {
                     bestRecognized = recognized.Image;
@@ -85,9 +83,7 @@ internal static class ScpCandidateRanker
         var sourceHeads = source.Tracks.Select(track => track.Head).Distinct().Count();
         var sourceCylinders = source.Tracks.Select(track => track.Cylinder).Distinct().Count();
         var minimumCylinders = Math.Max(1, (int)Math.Floor(sourceCylinders * 0.9));
-        return image.Heads == sourceHeads
-            && image.Cylinders >= minimumCylinders
-            && image.Cylinders <= sourceCylinders;
+        return image.Heads == sourceHeads && image.Cylinders >= minimumCylinders && image.Cylinders <= sourceCylinders;
     }
 
     internal static SectorImage? NormalizeCompatibleGeometry(SectorImage? image, ScpImage source)
@@ -100,12 +96,8 @@ internal static class ScpCandidateRanker
 
         var formatId = image.FormatId.StartsWith(GWGUI.MediaEngine.Constants.DiskImageFormatIds.AtariStPrefix, StringComparison.OrdinalIgnoreCase)
             ? GWGUI.MediaEngine.Constants.DiskImageFormatIds.AtariSt720
-            : image.FormatId.StartsWith(GWGUI.MediaEngine.Constants.DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase)
-                ? GWGUI.MediaEngine.Constants.DiskImageFormatIds.Ibm720
-                : null;
-        return formatId is null
-            ? image
-            : new SectorImage(formatId, 512, 80, 2, 9, image.AvailableBlocks);
+            : image.FormatId.StartsWith(GWGUI.MediaEngine.Constants.DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) ? GWGUI.MediaEngine.Constants.DiskImageFormatIds.Ibm720 : null;
+        return formatId is null ? image : new SectorImage(formatId, 512, 80, 2, 9, image.AvailableBlocks);
     }
 
 }

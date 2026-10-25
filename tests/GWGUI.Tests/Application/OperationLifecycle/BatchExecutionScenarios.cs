@@ -12,8 +12,7 @@ internal static class BatchExecutionScenarios
     }
     public static async Task Run(bool cancel)
     {
-        var runner=new Runner(new Queue<GwExecutionResult>([
-            new(0,false,TimeSpan.Zero,[]),new(1,cancel,TimeSpan.Zero,[]),new(0,false,TimeSpan.Zero,[])]));
+        var runner=new Runner(new Queue<GwExecutionResult>([new(0,false,TimeSpan.Zero,[]),new(1,cancel,TimeSpan.Zero,[]),new(0,false,TimeSpan.Zero,[])]));
         var starting=new List<string>();
         var items=new[]{"one","two","three"}.Select(x=>new GwBatchItem(x,new("virtual",x,[]))).ToArray();
         var result=await new GwBatchExecutor(runner).RunAsync(items,itemStarting:i=>starting.Add(i.Label));

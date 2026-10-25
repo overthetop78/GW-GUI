@@ -1,0 +1,124 @@
+using CommonControllerFunctions = GWGUI.Emulation.Commodore.Common.Functions.ControllerFunctions;
+using GWGUI.Emulation;
+using GWGUI.Emulation.Enums;
+
+namespace GWGUI.Emulation.Commodore.Common.Machines.Common.Functions;
+
+internal static partial class InputSettingsFunctions
+{
+    internal static EmulationInputSettings Describe(MachineConfiguration configuration)
+    {
+        configuration = EmulatorCatalog.CreateAdapter(configuration.Core).ApplyInputConfiguration(configuration);
+        var input = configuration.Input ?? new InputConfiguration();
+        var model = ModelCatalog.Get(configuration.Model);
+        var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(EmulatorCatalog.CreateAdapter(configuration.Core).GetKeyboardDefinitions(configuration), input.KeyboardBindings ?? EmulationSdk.InputProcessing.ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard) : null;
+        var mouse = model.MouseButtonCount == MachineSettingsConstants.NoDevices ? null : new EmulationInputBindingSet(MouseDefinitions(model),
+            EmulationSdk.InputProcessing.MouseBindings(input.MouseButtonMappings, MouseAction.None),
+            EmulationInputSource.Mouse | EmulationInputSource.Keyboard);
+        var configured = input.Controllers ?? [];
+        var portCount = CommonControllerFunctions.PortCount(configuration);
+        var ports = Enumerable.Range(ControllerPortConstants.MinimumControllerPort, portCount).Select(index =>
+        {
+            var number = index + ControllerPortConstants.OneControllerPort;
+            var current = configured.FirstOrDefault(item => item.Port == index);
+            var type = current?.Peripheral ?? (index < model.ControllerPortCount ? ControllerCatalog.Default(model) : PeripheralCategory.Joystick);
+            var choices = index < model.ControllerPortCount ? ControllerCatalog.Types(model) : ControllerCatalog.ParallelPortTypes;
+            return new EmulationControllerPort(number,
+                choices.Select(Choice).ToArray(), type.ToString(),
+                current?.DeviceId,
+                new EmulationInputBindingSet(ControllerDefinitions(type), current?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true), DeadZonePercent: current?.DeadZonePercent ?? 0, VisualId: current?.VisualId) { OutputBindings = current?.OutputBindings ?? new Dictionary<string, EmulationControllerOutputBinding>() };
+        }).ToArray();
+        return new EmulationInputSettings(keyboard, mouse, ports);
+    }
+
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
+    {
+        if (settings.ControllerPorts.Any(port => port.DeadZonePercent is < 0 or > 100)) throw new ArgumentOutOfRangeException(nameof(settings), nameof(EmulationControllerPort.DeadZonePercent));
+        var current = configuration.Input ?? new InputConfiguration();
+        var keyboard = settings.Keyboard?.Values ?? new Dictionary<string, string>();
+        var mouse = EmulationSdk.InputProcessing.CreateMouseMappings(settings.Mouse, MouseAction.None)
+            ?? new Dictionary<string, MouseAction>();
+        var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(port.Number - ControllerPortConstants.OneControllerPort,
+            Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var type) ? type : PeripheralCategory.None, port.PhysicalDeviceId, port.Bindings.Values,
+            port.VisualId, OutputBindings: port.OutputBindings, DeadZonePercent: port.DeadZonePercent)).ToArray();
+        var input = current with
+        {
+            KeyboardBindings = keyboard,
+            KeyboardMappings = EmulationSdk.InputProcessing.ToKeys(keyboard),
+            MouseButtonMappings = mouse,
+            Controllers = controllers
+        };
+        return EmulatorCatalog.CreateAdapter(configuration.Core).ApplyInputConfiguration(configuration with { Input = input });
+    }
+
+    internal static IReadOnlyList<InputBindingDefinition> GenericKeyboardDefinitions() => [];
+
+    private static IReadOnlyList<InputBindingDefinition> MouseDefinitions(Model model)
+    {
+        if (model.MouseButtonCount == MachineSettingsConstants.NoDevices) return [];
+        var definitions = new List<InputBindingDefinition>
+        {
+            Definition(nameof(MouseAction.LeftButton), InputSettingsFunctionsConstants.ResourceMouseButtonLeft, InputSettingsFunctionsConstants.MouseLeft),
+            Definition(nameof(MouseAction.RightButton), InputSettingsFunctionsConstants.ResourceMouseButtonRight, InputSettingsFunctionsConstants.MouseRight)
+        };
+        if (model.MouseButtonCount >= InputSnapshotFunctionsConstants.MouseWithMiddleButtonCount)
+            definitions.Add(Definition(nameof(MouseAction.MiddleButton), InputSettingsFunctionsConstants.ResourceMouseButtonMiddle, InputSettingsFunctionsConstants.MouseMiddle));
+        return definitions;
+    }
+
+    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(PeripheralCategory type)
+    {
+        if (type is PeripheralCategory.None or PeripheralCategory.Keyboard) return [];
+        var definitions = new List<InputBindingDefinition>
+        {
+            Definition(InputSettingsFunctionsConstants.Up, InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
+            Definition(InputSettingsFunctionsConstants.Down, InputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
+            Definition(InputSettingsFunctionsConstants.Left, InputSettingsFunctionsConstants.ResourceControllerActionLeft, string.Empty),
+            Definition(InputSettingsFunctionsConstants.Right, InputSettingsFunctionsConstants.ResourceControllerActionRight, string.Empty)
+        };
+        if (type == PeripheralCategory.Cd32Pad)
+        {
+            definitions.AddRange([
+                Definition(InputSettingsFunctionsConstants.B, InputSettingsFunctionsConstants.ResourceAmigaControllerCd32Red, string.Empty),
+                Definition(InputSettingsFunctionsConstants.A, InputSettingsFunctionsConstants.ResourceAmigaControllerCd32Blue, string.Empty),
+                Definition(InputSettingsFunctionsConstants.Y, InputSettingsFunctionsConstants.ResourceAmigaControllerCd32Green, string.Empty),
+                Definition(InputSettingsFunctionsConstants.X, InputSettingsFunctionsConstants.ResourceAmigaControllerCd32Yellow, string.Empty),
+                Definition(InputSettingsFunctionsConstants.L, InputSettingsFunctionsConstants.ResourceAmigaControllerCd32Rewind, string.Empty),
+                Definition(InputSettingsFunctionsConstants.R, InputSettingsFunctionsConstants.ResourceAmigaControllerCd32FastForward, string.Empty),
+                Definition(InputSettingsFunctionsConstants.Start, InputSettingsFunctionsConstants.ResourceAmigaControllerCd32PlayPause, string.Empty)
+            ]);
+        }
+        else
+        {
+            definitions.Add(Definition(InputSettingsFunctionsConstants.B, InputSettingsFunctionsConstants.ResourceControllerActionFire1, string.Empty));
+            definitions.Add(Definition(InputSettingsFunctionsConstants.A, InputSettingsFunctionsConstants.ResourceControllerActionFire2, string.Empty));
+        }
+        definitions.Add(Definition(InputSettingsFunctionsConstants.L2, InputSettingsFunctionsConstants.ResourceControllerActionTurboFire, string.Empty));
+        return definitions.Select(definition => type == PeripheralCategory.AnalogJoystick ? definition with
+        {
+            OppositeDirectionId = definition.Id switch
+            {
+                EmulationControllerCommandIds.Left => EmulationControllerCommandIds.Right,
+                EmulationControllerCommandIds.Right => EmulationControllerCommandIds.Left,
+                EmulationControllerCommandIds.Up => EmulationControllerCommandIds.Down,
+                EmulationControllerCommandIds.Down => EmulationControllerCommandIds.Up,
+                _ => null
+            }
+        } : definition).ToArray();
+    }
+
+    internal static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding) => new(id, resourceKey, defaultBinding, EmulationSdk.InputProcessing.BindingDisplayValue(resourceKey));
+
+    private static EmulationControllerChoice Choice(PeripheralCategory type) =>
+        new(type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type), CompatibleVisualIds: CompatibleVisualIds(type), DefaultVisualId: DefaultVisualId(type), VisualCommandIds: VisualCommandIds(type))
+        {
+            Category = type switch
+            {
+                PeripheralCategory.None => EmulationControllerCategory.None,
+                PeripheralCategory.RetroPad or PeripheralCategory.Cd32Pad => EmulationControllerCategory.Gamepad,
+                PeripheralCategory.Keyboard => EmulationControllerCategory.OtherSimulation,
+                PeripheralCategory.AnalogJoystick or PeripheralCategory.Joystick => EmulationControllerCategory.Joystick,
+                _ => EmulationControllerCategory.Unspecified
+            }
+        };
+}

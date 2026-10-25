@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.caprice32.Description"><value>Emulgointi Amstrad CPC, CPC Plus ja GX4000 Järjestelmät.</value></data>
+  <data name="Emulation.Amstrad.Language"><value>CPC järjestelmän kieli</value></data>
+  <data name="Emulation.Amstrad.Language.English"><value>Englannin kieli</value></data>
+  <data name="Emulation.Amstrad.Language.French"><value>ranska</value></data>
+  <data name="Emulation.Amstrad.Language.Spanish"><value>espanja</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor"><value>Monitorityyppi</value></data>
+  <data name="Emulation.Amstrad.Video.Intensity"><value>Seurannan voimakkuus</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Color"><value>Väri</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Green"><value>Vihreä yksivärinen</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.White"><value>Valkoinen yksivärinen</value></data>
+  <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM Emulaattoriin rakennettu</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>Emulgoi Amstrad CPC 6128 sisäänrakennettu ROM ja tuki levykuvia ja valokuvia.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Monitorin tyyppi</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Kuvan kehystys</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Nopeushakata</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Automaattinen</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>Yliskannaus</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Käytössä</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Ei käytössä</value></data>
+</root>

@@ -1,4 +1,4 @@
-using ConversionOutput = global::GWGUI.MediaEngine.Images.Conversion.ConversionOutput;
+using ConversionOutput = GWGUI.MediaEngine.Images.Conversion.ConversionOutput;
 using GWGUI.Infrastructure.Settings.Hardware;
 using GWGUI.App.Contracts.Services.Dialogs;
 using GWGUI.App.Enums.Services.Dialogs;
@@ -28,9 +28,7 @@ public sealed class WpfBusinessDialogService(Window owner) : IBusinessDialogServ
     public IReadOnlyList<ConversionConflictDecision>? ResolveConversionConflicts(IReadOnlyList<ConversionOutput> outputs)
     {
         var dialog = new ConversionConflictWindow(outputs) { Owner = owner };
-        return dialog.ShowDialog() == true
-            ? dialog.Rows.Select(row => new ConversionConflictDecision(row.Output, row.Choice)).ToArray()
-            : null;
+        return dialog.ShowDialog() == true ? dialog.Rows.Select(row => new ConversionConflictDecision(row.Output, row.Choice)).ToArray() : null;
     }
 
     public MissingHardwareChoice ResolveMissingHardware(IReadOnlyList<ControllerSettings> controllers)

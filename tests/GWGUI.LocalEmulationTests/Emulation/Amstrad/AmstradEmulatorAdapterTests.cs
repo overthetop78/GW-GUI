@@ -1,0 +1,646 @@
+using CoreOption = GWGUI.Emulation.Contracts.EmulationOption;
+using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services;
+using System.Globalization;
+using System.IO;
+using System.Net;
+using System.Reflection;
+using System.Net.Http;
+using System.Text.Json;
+using GWGUI.Emulation.Amstrad.Common.Machines.Common.Contracts;
+using GWGUI.Emulation.Amstrad.Common.Machines.Common.Constants;
+using GWGUI.Emulation.Amstrad.Common.Machines.Common.Dictionaries;
+using GWGUI.Emulation.Amstrad.Common.Machines.Common.Enums;
+using GWGUI.Emulation.Amstrad.Common.Machines.Common.Functions;
+using GWGUI.Emulation.Amstrad.Common.Services;
+using GWGUI.Emulation.Amstrad.Common.Constants;
+using GWGUI.Emulation.Amstrad.Emulators.Caprice32.Constants;
+using GWGUI.Emulation.Amstrad.Emulators.Caprice32.Functions;
+using GWGUI.Emulation.Amstrad.Common.Interfaces;
+using GWGUI.Emulation.Amstrad.Modules;
+using GWGUI.Emulation.Contracts;
+using GWGUI.Emulation.Enums;
+using CpcClassicCatalog = GWGUI.Emulation.Amstrad.Common.Machines.CpcClassic.Dictionaries.ModelCatalog;
+using CpcPlusCatalog = GWGUI.Emulation.Amstrad.Common.Machines.CpcPlus.Dictionaries.ModelCatalog;
+using Gx4000Catalog = GWGUI.Emulation.Amstrad.Common.Machines.Gx4000.Dictionaries.ModelCatalog;
+
+namespace GWGUI.Tests.Emulation.Amstrad;
+
+public sealed class AmstradEmulatorAdapterTests
+{
+    [Theory]
+    [InlineData("caprice32", "cpc-6128", true, true)]
+    [InlineData("caprice32", "gx4000", true, false)]
+    [InlineData("crocods", "cpc-6128", false, false)]
+    public async Task PointerCapabilityKeepsBackendAndModelRestrictions(string emulatorId, string model, bool backendSupportsPointer, bool mouseVisible)
+    {
+        using var client = new HttpClient();
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), client, Path.GetTempPath());
+        var configuration = Assert.IsType<MachineConfiguration>(await module.UseEmulatorAsync(module.CreateConfiguration(model), emulatorId));
+        var adapter = new Engine().Adapter(configuration);
+        var pointer = Assert.IsAssignableFrom<GWGUI.Emulation.Amstrad.Common.Interfaces.IEmulatorPointerCapabilities>(adapter);
+        Assert.Equal(backendSupportsPointer, pointer.SupportsPointer(configuration));
+        Assert.Equal(mouseVisible, module.Describe(model, configuration).Visibility.Tabs[EmulationMachineTab.Mouse]);
+        Assert.Equal(mouseVisible, module.DescribeInputSettings(configuration).Mouse is not null);
+    }
+
+    [Theory]
+    [InlineData("cpc-464")]
+    [InlineData("cpc-664")]
+    [InlineData("cpc-6128")]
+    [InlineData("cpc-464-plus")]
+    [InlineData("cpc-6128-plus")]
+    [InlineData("gx4000")]
+    public void AllModelsExposeGx4000GamepadOnBothPorts(string machineId)
+    {
+        using var httpClient = new HttpClient();
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var configuration = module.CreateConfiguration(machineId);
+        var settings = module.DescribeInputSettings(configuration);
+        Assert.Equal(2, settings.ControllerPorts.Count);
+        foreach (var port in settings.ControllerPorts)
+        {
+            var gamepad = Assert.Single(port.ControllerChoices, choice => choice.Id == nameof(PeripheralCategory.Gamepad));
+            Assert.Equal(EmulationControllerCategory.Gamepad, gamepad.Category);
+            Assert.Equal(GWGUI.Emulation.Constants.EmulationControllerVisualIds.AmstradGx4000Controller, gamepad.DefaultVisualId);
+            Assert.Contains(gamepad.DefaultVisualId, gamepad.CompatibleVisualIds!);
+            Assert.Equal(6, gamepad.BindingDefinitions!.Count);
+            Assert.All(gamepad.BindingDefinitions, definition => Assert.True(string.IsNullOrEmpty(definition.DefaultBinding)));
+            Assert.Empty(port.Bindings.Values);
+            Assert.Equal("B", gamepad.VisualCommandIds![EmulationControllerVisualControl.PrimaryAction]);
+            Assert.Equal("A", gamepad.VisualCommandIds[EmulationControllerVisualControl.SecondaryAction]);
+        }
+        var selected = settings with
+        {
+            ControllerPorts = settings.ControllerPorts.Select(port => port with
+            {
+                SelectedControllerId = nameof(PeripheralCategory.Gamepad),
+                VisualId = GWGUI.Emulation.Constants.EmulationControllerVisualIds.AmstradGx4000Controller
+            }).ToArray()
+        };
+        var restored = module.DescribeInputSettings(module.ApplyInputSettings(configuration, selected));
+        Assert.All(restored.ControllerPorts, port =>
+        {
+            Assert.Equal(nameof(PeripheralCategory.Gamepad), port.SelectedControllerId);
+            Assert.Equal(GWGUI.Emulation.Constants.EmulationControllerVisualIds.AmstradGx4000Controller, port.VisualId);
+            Assert.Empty(port.Bindings.Values);
+        });
+    }
+
+    [Fact]
+    public void MachineGroupsExposeOnlyTheRequestedMachines()
+    {
+        Assert.Equal(["cpc-464", "cpc-664", "cpc-6128"], CpcClassicCatalog.All.Select(model => model.Id));
+        Assert.Equal(["cpc-464-plus", "cpc-6128-plus"], CpcPlusCatalog.All.Select(model => model.Id));
+        Assert.Equal(["gx4000"], Gx4000Catalog.All.Select(model => model.Id));
+        Assert.Equal(6, MachineCatalog.All.Count);
+    }
+
+    [Fact]
+    public void MachineConfigurationPersistsItsSelectedEmulator()
+    {
+        var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+        var original = new MachineConfiguration("cpc-6128", "caprice32");
+
+        var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(original, options), options);
+
+        Assert.NotNull(restored);
+        Assert.Equal(original.Id, restored.Id);
+        Assert.Equal("caprice32", restored.EmulatorId);
+        Assert.Equal(1, original.SchemaVersion);
+        Assert.Equal(1, restored.SchemaVersion);
+    }
+
+    [Fact]
+    public void EngineDiscoversCaprice32ThroughTheCommonAdapter()
+    {
+        var adapterType = typeof(AmstradEmulationModule).Assembly.GetType("GWGUI.Emulation.Amstrad.Emulators.Caprice32.Factories.Caprice32MachineFactory");
+        var commonType = typeof(AmstradEmulationModule).Assembly.GetType("GWGUI.Emulation.Amstrad.Common.Interfaces.IEmulatorAdapter");
+        Assert.NotNull(adapterType);
+        Assert.NotNull(commonType);
+        Assert.Contains(commonType!, adapterType!.GetInterfaces());
+
+        var field = typeof(Engine).GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic);
+        var adapters = Assert.IsAssignableFrom<System.Collections.IDictionary>(field!.GetValue(new Engine()));
+        Assert.Equal(["caprice32", "crocods"], adapters.Keys.Cast<string>());
+    }
+
+    [Fact]
+    public async Task Caprice32CoreAndFirmwareUseTheirMachineSubdirectories()
+    {
+        var directory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        var moduleDirectory = Path.Combine(directory, "Emulation", "Machines", "amstrad");
+        var coreDirectory = Path.Combine(moduleDirectory, "Core", "caprice32");
+        Directory.CreateDirectory(coreDirectory);
+        try
+        {
+            await File.WriteAllBytesAsync(Path.Combine(coreDirectory, "cap32_libretro.dll"), [0]);
+            await File.WriteAllTextAsync(Path.Combine(coreDirectory, "core.json"), "{\"version\":\"test-version\"}");
+            using var httpClient = new HttpClient();
+            var factory = new AmstradEmulationModuleFactory();
+            var module = Assert.IsType<AmstradEmulationModule>(factory.Create(new EmulationModuleContext(directory, moduleDirectory, httpClient)));
+
+            var installation = await module.GetEmulatorInstallationAsync("cpc-6128");
+
+            Assert.Equal("test-version", installation.InstalledVersion);
+            Assert.True(Directory.Exists(Path.Combine(moduleDirectory, "Firmware")));
+        }
+        finally
+        {
+            if (Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
+        }
+    }
+
+    [Fact]
+    public async Task Caprice32UsesTheGenericReleaseSelectionContracts()
+    {
+        using var httpClient = new HttpClient(new ReleaseHandler());
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var configuration = module.CreateConfiguration("cpc-6128");
+
+        var releases = await module.FindEmulatorReleasesAsync(configuration);
+
+        var release = Assert.Single(releases);
+        Assert.Equal(["caprice32", "crocods"], (await module.GetEmulatorInstallationsAsync(configuration)).Select(item => item.EmulatorId));
+        Assert.StartsWith("official-", release.Id, StringComparison.Ordinal);
+        Assert.Equal(release.Id, release.Version);
+        Assert.True(release.IsRequired);
+        Assert.Same(release, Assert.Single(releases, candidate => candidate.IsRequired));
+    }
+
+    [Theory]
+    [InlineData("cpc-464", false)]
+    [InlineData("cpc-664", false)]
+    [InlineData("cpc-6128", true)]
+    [InlineData("cpc-464-plus", false)]
+    [InlineData("cpc-6128-plus", false)]
+    [InlineData("gx4000", false)]
+    public async Task CrocoDSIsOfferedOnlyForItsSupportedMachine(string model, bool supported)
+    {
+        using var client = new HttpClient();
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), client, Path.GetTempPath());
+        var original = module.CreateConfiguration(model);
+        Assert.Equal(supported, (await module.GetEmulatorInstallationsAsync(original)).Any(item => item.EmulatorId == "crocods"));
+        if (!supported)
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => module.UseEmulatorAsync(original, "crocods").AsTask());
+        else
+            Assert.Equal("crocods", Assert.IsType<MachineConfiguration>(await module.UseEmulatorAsync(original, "crocods")).EmulatorId);
+    }
+
+    [Fact]
+    public async Task CrocoDSSettingsExcludeUnsupportedCaprice32HardwareAndOptions()
+    {
+        using var client = new HttpClient();
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), client, Path.GetTempPath());
+        var config = await module.UseEmulatorAsync(module.CreateConfiguration("cpc-6128"), "crocods");
+        var settings = module.Describe("cpc-6128", config);
+        var fields = settings.Blocks.SelectMany(block => block.Fields).ToDictionary(field => field.Id);
+        Assert.Equal("CrocoDS", fields[SettingsConstants.Emulator].Value);
+        Assert.Equal("128 KiB", fields[SettingsConstants.Ram].Value);
+        Assert.Equal(EmulationSettingsEditor.Information, fields[SettingsConstants.Ram].Editor);
+        Assert.DoesNotContain(SettingsConstants.FloppySound, fields.Keys);
+        Assert.DoesNotContain(SettingsConstants.VideoIntensity, fields.Keys);
+        Assert.DoesNotContain(SettingsConstants.VideoResolution, fields.Keys);
+        Assert.False(settings.Visibility.Tabs[EmulationMachineTab.Mouse]);
+        Assert.Null(module.DescribeInputSettings(config).Mouse);
+        var drive = Assert.Single(module.DescribeStorageSettings(config).AvailableDevices);
+        Assert.True(drive.RequiresMachineRecreation);
+        Assert.Equal([".dsk", ".sna", ".kcr"], drive.AcceptedExtensions);
+        Assert.Equal("caprice32", Assert.IsType<MachineConfiguration>(module.ChangeMachine(config, "gx4000")).EmulatorId);
+    }
+
+    [Fact]
+    public void CrocoDSDeclaredOptionsKeepNativeKeysChoicesAndPersistedValues()
+    {
+        var config = new MachineConfiguration("cpc-6128", "crocods", new Dictionary<string, string> { ["crocods_resize"] = "Overscan" });
+        var option = new CoreOption("crocods_resize", "Resize", null, null, "Auto", "Auto", [new("Auto", "Auto"), new("320x200", "320x200"), new("Overscan", "Overscan")], true);
+        var settings = GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions.Create(config, [option]);
+        var field = Assert.Single(settings.SelectMany(block => block.Fields), field => field.Id == "crocods_resize");
+        Assert.Equal("Overscan", field.Value);
+        Assert.Equal(["Auto", "320x200", "Overscan"], field.Choices!.Select(choice => choice.Id));
+        using var client = new HttpClient();
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), client, Path.GetTempPath());
+        var updated = module.ApplySettings(config, new Dictionary<string, string?> { ["crocods_resize"] = "320x200" });
+        Assert.Equal("320x200", module.RuntimeOptions(updated)["crocods_resize"]);
+        var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(updated, updated.GetType()));
+        Assert.Equal("crocods", restored!.EmulatorId);
+        Assert.Equal("320x200", restored.Options!["crocods_resize"]);
+    }
+
+    [Theory]
+    [InlineData(".cdt", MediaCategory.Cassette)]
+    [InlineData(".cpr", MediaCategory.Cartridge)]
+    [InlineData(".m3u", MediaCategory.Floppy)]
+    public void CrocoDSRejectsUnsupportedContent(string extension, MediaCategory category)
+    {
+        var config = new MachineConfiguration("cpc-6128", "crocods", Media: [new MediaConfiguration(Path.Combine(Path.GetTempPath(), "content" + extension), category)]);
+        Assert.Throws<ArgumentOutOfRangeException>(() => GWGUI.Emulation.Amstrad.Emulators.CrocoDS.Factories.CrocoDSMachineFactory.Validate(config));
+    }
+
+    [Theory]
+    [InlineData("cpc-464", 0, true, false)]
+    [InlineData("cpc-664", 1, false, false)]
+    [InlineData("cpc-6128", 1, false, false)]
+    [InlineData("cpc-464-plus", 0, true, true)]
+    [InlineData("cpc-6128-plus", 1, false, true)]
+    [InlineData("gx4000", 0, false, true)]
+    public void BuiltInStorageCannotBeRemoved(string machineId, int floppyCount, bool cassette, bool cartridge)
+    {
+        using var httpClient = new HttpClient();
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var configuration = module.CreateConfiguration(machineId);
+        var initial = module.DescribeStorageSettings(configuration);
+
+        Assert.Equal(floppyCount, initial.AvailableDevices.Count(device => device.Slot.Category == EmulationMediaCategory.FloppyDrive && device.IsPermanent));
+        Assert.Equal(cassette, initial.AvailableDevices.Any(device => device.Slot == EmulationMediaSlot.Cassette0 && device.IsPermanent));
+        Assert.Equal(cartridge, initial.AvailableDevices.Any(device => device.Slot == EmulationMediaSlot.Cartridge0 && device.IsPermanent));
+
+        var removed = module.ApplyStorageSettings(configuration, initial with { ConfiguredSlots = [] });
+        var restored = module.DescribeStorageSettings(removed);
+        Assert.All(initial.AvailableDevices.Where(device => device.IsPermanent), device => Assert.Contains(device.Slot, restored.ConfiguredSlots));
+    }
+
+    [Theory]
+    [InlineData("cpc-464", 2, true)]
+    [InlineData("cpc-664", 2, true)]
+    [InlineData("cpc-6128", 2, true)]
+    [InlineData("cpc-464-plus", 2, true)]
+    [InlineData("cpc-6128-plus", 2, true)]
+    [InlineData("gx4000", 0, false)]
+    public void OptionalStorageMatchesMachineCapabilities(string machineId, int maximumFloppyCount, bool cassetteAvailable)
+    {
+        using var httpClient = new HttpClient();
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var settings = module.DescribeStorageSettings(module.CreateConfiguration(machineId));
+
+        Assert.Equal(maximumFloppyCount, settings.AvailableDevices.Count(device => device.Slot.Category == EmulationMediaCategory.FloppyDrive));
+        Assert.Equal(cassetteAvailable, settings.AvailableDevices.Any(device => device.Slot == EmulationMediaSlot.Cassette0));
+        Assert.DoesNotContain(settings.AvailableDevices, device => device.Slot.Category == EmulationMediaCategory.HardDisk);
+        Assert.All(settings.AvailableDevices, device => Assert.Equal(EmulationStorageConfigurationKind.None, device.ConfigurationKind));
+    }
+
+    [Fact]
+    public void CpcSettingsExposeAllGenericMachineTabs()
+    {
+        using var httpClient = new HttpClient();
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var configuration = module.CreateConfiguration("cpc-464");
+        var description = module.Describe("cpc-464", configuration);
+        var input = module.DescribeInputSettings(configuration);
+
+        Assert.All(new[] { EmulationMachineTab.General, EmulationMachineTab.Cpu,
+            EmulationMachineTab.Ram, EmulationMachineTab.Rom, EmulationMachineTab.Video,
+            EmulationMachineTab.Audio }, tab => Assert.Contains(description.Blocks, block => block.Tab == tab && block.Fields.Count > 0));
+        Assert.NotNull(input.Keyboard);
+        Assert.NotNull(input.Mouse);
+        Assert.Equal(2, input.ControllerPorts.Count);
+        Assert.All(input.ControllerPorts, port => Assert.NotEmpty(port.Bindings.Definitions));
+        Assert.All(input.ControllerPorts, port => Assert.DoesNotContain(port.ControllerChoices, choice => choice.Id.Equals("Keyboard", StringComparison.OrdinalIgnoreCase)));
+        Assert.True(Assert.IsType<MachineConfiguration>(configuration).Input!.CaptureMouse);
+    }
+
+    [Fact]
+    public void Caprice32SettingsExposeOnlySupportedRomVideoAndAudioOptions()
+    {
+        using var httpClient = new HttpClient();
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var description = module.Describe("cpc-6128", module.CreateConfiguration("cpc-6128"));
+        var fields = description.Blocks.SelectMany(block => block.Fields).ToDictionary(field => field.Id);
+
+        var firmware = fields[SettingsConstants.FirmwareIntegrated];
+        Assert.Equal(EmulationSettingsEditor.Information, firmware.Editor);
+        Assert.Equal(SettingsDescriptionFunctionsConstants.Caprice32, firmware.Value);
+        Assert.DoesNotContain(description.Blocks.SelectMany(block => block.Fields), field => field.Tab == EmulationMachineTab.Rom && field.Editor != EmulationSettingsEditor.Information);
+
+        var resolution = fields[SettingsConstants.VideoResolution];
+        Assert.Equal([SettingsDescriptionFunctionsConstants.Resolution384, SettingsDescriptionFunctionsConstants.Resolution400], resolution.Choices!.Select(choice => choice.Id));
+        Assert.Contains(SettingsConstants.VideoCrop, fields.Keys);
+        Assert.Contains(SettingsConstants.FloppySound, fields.Keys);
+        Assert.DoesNotContain(fields.Keys, key => key.Contains("volume", StringComparison.OrdinalIgnoreCase));
+    }
+
+    [Fact]
+    public void AmstradConfigurationSummaryDoesNotDisplayAudioState()
+    {
+        using var httpClient = new HttpClient();
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration("cpc-6128"));
+
+        Assert.Equal(module.SummarizeConfiguration(configuration with { AudioEnabled = true }).Details, module.SummarizeConfiguration(configuration with { AudioEnabled = false }).Details);
+    }
+
+    [Fact]
+    public void AmstradSettingHelpIsDeclaredAndLocalized()
+    {
+        using var httpClient = new HttpClient();
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var description = module.Describe("cpc-6128", module.CreateConfiguration("cpc-6128"));
+        var fields = description.Blocks.SelectMany(block => block.Fields).ToArray();
+        foreach (var field in fields)
+        {
+            Assert.False(string.IsNullOrWhiteSpace(field.ExplanationResourceKey), field.Id);
+            Assert.False(string.IsNullOrWhiteSpace(field.DetailedExplanationResourceKey), field.Id);
+            if (!field.ExplanationResourceKey!.StartsWith("Emulation.Amstrad.", StringComparison.Ordinal)) continue;
+            Assert.True(module.TryGetString(field.ExplanationResourceKey!, CultureInfo.GetCultureInfo("fr-FR"), out var shortHelp));
+            Assert.False(string.IsNullOrWhiteSpace(shortHelp));
+            Assert.True(module.TryGetString(field.DetailedExplanationResourceKey!, CultureInfo.GetCultureInfo("fr-FR"), out var detailedHelp));
+            Assert.False(string.IsNullOrWhiteSpace(detailedHelp));
+        }
+        Assert.NotEmpty(fields);
+    }
+
+    [Fact]
+    public void Caprice32PointerConsumesCapturedRelativeMovement()
+    {
+        using var callbacks = new ExternalHostCallbacks(Path.GetTempPath(), Path.GetTempPath(), Path.GetTempPath(), null);
+        callbacks.Input = EmulationInputSnapshot.Empty with
+        {
+            Pointer = EmulationInputSnapshot.Empty.Pointer with
+            {
+                DeltaX = 10,
+                DeltaY = -5,
+                Left = true
+            }
+        };
+
+        callbacks.InputPoll();
+
+        Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter + 10 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerX));
+        Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter - 5 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerY));
+        Assert.Equal(1, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerPressed));
+
+        callbacks.Input = EmulationInputSnapshot.Empty with
+        {
+            Pointer = EmulationInputSnapshot.Empty.Pointer with { DeltaX = -4, DeltaY = 3 }
+        };
+        callbacks.InputPoll();
+        Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter + 6 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerX));
+        Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter - 2 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerY));
+
+        callbacks.Input = EmulationInputSnapshot.Empty;
+        callbacks.InputPoll();
+        Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter + 6 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerX));
+    }
+
+    [Theory]
+    [InlineData("fr-FR", "french")]
+    [InlineData("es-ES", "spanish")]
+    [InlineData("en-US", "english")]
+    [InlineData("de-DE", "english")]
+    public void Caprice32LanguageFollowsApplicationLanguage(string cultureName, string expected)
+    {
+        var previousCulture = CultureInfo.CurrentUICulture;
+        try
+        {
+            CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo(cultureName);
+            var configuration = new MachineConfiguration("cpc-464", "caprice32");
+
+            var native = Caprice32OptionFunctions.ToNative(configuration);
+
+            Assert.Equal(expected, native.Options![OptionConstants.Language]);
+        }
+        finally
+        {
+            CultureInfo.CurrentUICulture = previousCulture;
+        }
+    }
+
+    [Fact]
+    public void ConfiguredKeyboardMappingIsAppliedToRuntimeInput()
+    {
+        var configuration = new InputConfiguration(KeyboardMappings: new Dictionary<string, EmulationKey> { [nameof(EmulationKey.F1)] = EmulationKey.A });
+        var physical = EmulationInputSnapshot.Empty with
+        {
+            Keys = new HashSet<EmulationKey> { EmulationKey.A }
+        };
+
+        var mapped = InputSnapshotFunctions.Apply(physical, configuration, false);
+
+        Assert.Contains(EmulationKey.F1, mapped.Keys);
+        Assert.DoesNotContain(EmulationKey.A, mapped.Keys);
+    }
+
+    [Fact]
+    public void SpecialKeyboardBindingsPersistReassignmentAndExplicitClearing()
+    {
+        var original = new InputConfiguration(KeyboardBindings: new Dictionary<string, string> { [nameof(EmulationKey.AmstradCopy)] = nameof(EmulationKey.F10), [nameof(EmulationKey.AmstradF0)] = string.Empty });
+        var restored = JsonSerializer.Deserialize<InputConfiguration>(JsonSerializer.Serialize(original))!;
+        var keys = KeyboardBindingFunctions.Apply(new HashSet<EmulationKey> { EmulationKey.F10, EmulationKey.RightAlt, EmulationKey.Numpad0, EmulationKey.A, EmulationKey.F1 }, restored);
+        Assert.Contains(EmulationKey.AmstradCopy, keys);
+        Assert.DoesNotContain(EmulationKey.F10, keys);
+        Assert.DoesNotContain(EmulationKey.AmstradF0, keys);
+        Assert.Contains(EmulationKey.RightAlt, keys);
+        Assert.Contains(EmulationKey.A, keys);
+        Assert.Contains(EmulationKey.F1, keys);
+        Assert.Equal(string.Empty, KeyboardBindingFunctions.Normalize(restored)[nameof(EmulationKey.AmstradF0)]);
+    }
+
+    [Fact]
+    public void LegacyKeyboardBindingsPreserveUserValuesAndExplicitSemanticOverrides()
+    {
+        var input = new InputConfiguration(KeyboardBindings: new Dictionary<string, string> { [nameof(EmulationKey.RightAlt)] = nameof(EmulationKey.B),
+            [nameof(EmulationKey.AmstradCopy)] = nameof(EmulationKey.C),
+            [nameof(EmulationKey.Numpad0)] = string.Empty,
+            [nameof(EmulationKey.Numpad1)] = nameof(EmulationKey.A) });
+        var values = KeyboardBindingFunctions.Normalize(input);
+        Assert.Equal(nameof(EmulationKey.C), values[nameof(EmulationKey.AmstradCopy)]);
+        Assert.Equal(string.Empty, values[nameof(EmulationKey.AmstradF0)]);
+        Assert.Equal(nameof(EmulationKey.A), values[nameof(EmulationKey.F1)]);
+        Assert.DoesNotContain(nameof(EmulationKey.RightAlt), values.Keys);
+        Assert.DoesNotContain(nameof(EmulationKey.Numpad1), values.Keys);
+    }
+    [Theory]
+    [InlineData(true, 307u)]
+    [InlineData(false, 308u)]
+    public void NativeKeyboardRoutingPreservesFunctionsAndSuppressesOldPhysicalAliases(bool caprice, uint copyCode)
+    {
+        var nativeKeys = caprice ? GWGUI.Emulation.Amstrad.Emulators.Caprice32.Dictionaries.KeyboardDictionary.NativeKeys : GWGUI.Emulation.Amstrad.Emulators.CrocoDS.Dictionaries.KeyboardDictionary.NativeKeys;
+        ExternalHostCallbacks? callbacks = null;
+        try
+        {
+            callbacks = new ExternalHostCallbacks(AppContext.BaseDirectory, AppContext.BaseDirectory, AppContext.BaseDirectory, null, createDirectories: false, keyboardOverrides: nativeKeys);
+            var configuration = new InputConfiguration(KeyboardBindings: new Dictionary<string, string> { [nameof(EmulationKey.AmstradCopy)] = nameof(EmulationKey.F10), [nameof(EmulationKey.AmstradClear)] = string.Empty });
+            callbacks.Input = EmulationInputSnapshot.Empty with { Keys = KeyboardBindingFunctions.Apply(new HashSet<EmulationKey> { EmulationKey.F1, EmulationKey.F10, EmulationKey.Delete }, configuration) };
+            callbacks.InputPoll();
+            Assert.Equal((short)1, callbacks.InputState(0, ExternalHostCallbacksConstants.KeyboardDevice, 0, 257));
+            Assert.Equal((short)1, callbacks.InputState(0, ExternalHostCallbacksConstants.KeyboardDevice, 0, copyCode));
+            Assert.Equal((short)0, callbacks.InputState(0, ExternalHostCallbacksConstants.KeyboardDevice, 0, 127));
+            callbacks.Input = EmulationInputSnapshot.Empty with { Keys = KeyboardBindingFunctions.Apply(new HashSet<EmulationKey> { EmulationKey.RightAlt }, configuration) };
+            callbacks.InputPoll();
+            Assert.Equal((short)0, callbacks.InputState(0, ExternalHostCallbacksConstants.KeyboardDevice, 0, copyCode));
+        }
+        finally
+        {
+            callbacks?.Dispose();
+        }
+    }
+    [Theory]
+    [InlineData(PeripheralCategory.Joystick)]
+    [InlineData(PeripheralCategory.Gamepad)]
+    public void EmptyControllerMappingsKeepTheVirtualControllerNeutral(PeripheralCategory controllerType)
+    {
+        const uint buttons = (1u << 4) | (1u << 0);
+        var configuration = new InputConfiguration(Controllers:
+        [
+            new ControllerBinding(0, controllerType, Mappings:
+                new Dictionary<string, string>
+                {
+                    ["Up"] = string.Empty,
+                    ["Down"] = string.Empty,
+                    ["Left"] = string.Empty,
+                    ["Right"] = string.Empty,
+                    ["B"] = string.Empty,
+                    ["A"] = string.Empty
+                })
+        ]);
+        var controller = new EmulationControllerState(buttons, 123, -456, 0, 0, 0, 0)
+        {
+            DeviceId = "gameinput:test"
+        };
+        var physical = EmulationInputSnapshot.Empty with { Controllers = [controller] };
+
+        var mapped = InputSnapshotFunctions.Apply(physical, configuration, false);
+
+        Assert.Equal(EmulationControllerState.Empty, mapped.Controllers[0]);
+    }
+
+    [Fact]
+    public void CpcKeyboardListsOnlySpecialMachineKeysWithAutomaticHostBindings()
+    {
+        using var httpClient = new HttpClient();
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var keyboard = Assert.IsType<EmulationInputBindingSet>(module.DescribeInputSettings(module.CreateConfiguration("cpc-6128")).Keyboard);
+
+        Assert.Equal(new[] { nameof(EmulationKey.AmstradCopy), nameof(EmulationKey.AmstradClear), nameof(EmulationKey.AmstradF0), nameof(EmulationKey.AmstradFPeriod) }, keyboard.Definitions.Select(key => key.Id));
+        Assert.Equal(new[] { "COPY", "CLR", "F0", "F." }, keyboard.Definitions.Select(key => key.InvariantDisplayValue));
+        Assert.All(keyboard.Definitions, definition => Assert.True(Enum.TryParse<EmulationKey>(definition.DefaultBinding, out _)));
+        var plusKeyboard = Assert.IsType<EmulationInputBindingSet>(module.DescribeInputSettings(module.CreateConfiguration("cpc-6128-plus")).Keyboard);
+        Assert.Equal(keyboard.Definitions.Select(key => key.Id), plusKeyboard.Definitions.Select(key => key.Id));
+        Assert.Null(module.DescribeInputSettings(module.CreateConfiguration("gx4000")).Keyboard);
+    }
+
+    [Fact]
+    public void Caprice32DoesNotReceiveTheReservedFullscreenChord()
+    {
+        using var callbacks = new ExternalHostCallbacks(Path.GetTempPath(), Path.GetTempPath(), Path.GetTempPath(), null);
+        var alt = new HashSet<EmulationKey> { EmulationKey.LeftAlt };
+        var chord = new HashSet<EmulationKey> { EmulationKey.LeftAlt, EmulationKey.Return };
+
+        Assert.Contains(EmulationKey.LeftAlt, callbacks.FilterReservedKeyboardChord(alt));
+        Assert.Empty(callbacks.FilterReservedKeyboardChord(chord));
+        Assert.Empty(callbacks.FilterReservedKeyboardChord(alt));
+        Assert.Empty(callbacks.FilterReservedKeyboardChord(new HashSet<EmulationKey>()));
+        Assert.Contains(EmulationKey.LeftAlt, callbacks.FilterReservedKeyboardChord(alt));
+    }
+
+    [Fact]
+    public void CapturedMouseNeverInjectsJoystickButtons()
+    {
+        using var callbacks = new ExternalHostCallbacks(Path.GetTempPath(), Path.GetTempPath(), Path.GetTempPath(), null);
+        callbacks.Input = EmulationInputSnapshot.Empty with
+        {
+            Pointer = EmulationInputSnapshot.Empty.Pointer with
+            {
+                DeltaX = -3,
+                DeltaY = 2,
+                Left = true,
+                Right = true
+            }
+        };
+        callbacks.InputPoll();
+        var buttons = unchecked((ushort)callbacks.InputState(0, ExternalHostCallbacksConstants.JoypadDevice, 0, ExternalHostCallbacksConstants.JoypadMask));
+
+        Assert.Equal(0, buttons);
+    }
+
+    [Fact]
+    public async Task ColdResetUsesTheCoreColdRestartCommand()
+    {
+        var core = new RecordingCore();
+        var configuration = new MachineConfiguration("cpc-6128", "caprice32");
+        var sessionDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        var machine = new Machine(configuration.Id, configuration, core, [], sessionDirectory);
+
+        try
+        {
+            await machine.StartAsync();
+            await machine.HardResetAsync();
+
+            Assert.Equal(1, core.HardResetCount);
+            Assert.Equal(0, core.SoftResetCount);
+        }
+        finally
+        {
+            await machine.DisposeAsync();
+        }
+        Assert.True(core.Disposed);
+    }
+
+    private sealed class RecordingCore : IEmulatorCore
+    {
+        public bool SupportsPointerCapture => true;
+        public string Emulator => "synthetic";
+
+        public int MinimumAudioLatencyMilliseconds => 0;
+        public void SetAudioBufferStatus(AudioOutputBufferStatus? status) { }
+        public HostProcessState HostProcessState => HostProcessState.InProcess;
+        public int? HostProcessId => null;
+        public bool SupportsSaveStates => true;
+        public EmulationVideoStandard? Region => null;
+        public int BufferedAudioFrames => 0;
+        public long AudioOverrunCount => 0;
+        public long AudioUnderrunCount => 0;
+
+        public void SaveMediaChanges(EmulationMediaSlot slot) { }
+        public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) => false;
+        public DiskStatus GetDiskStatus() => new(DiskCount, CurrentDiskIndex, DiskCount == 0, []);
+        public bool ShutdownRequested => false;
+        public VideoFrame? LatestVideoFrame => null;
+        public AudioChunk? LatestAudioChunk => null;
+        public IReadOnlyList<CoreOption> Options => [];
+        public IReadOnlyList<string> Diagnostics => [];
+        public IReadOnlyDictionary<int, bool> LedStates => new Dictionary<int, bool>();
+        public string CoreName => "test";
+        public string CoreVersion => "1";
+        public IReadOnlySet<string> SupportedContentExtensions => new HashSet<string>();
+        public string CoreSha256 => "test";
+        public double FramesPerSecond => 50;
+        public int SampleRate => 44_100;
+        public int DiskCount => 0;
+        public int CurrentDiskIndex => -1;
+        public int HardResetCount { get; private set; }
+        public int SoftResetCount { get; private set; }
+        public bool Disposed { get; private set; }
+
+        public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null) { }
+        public void RunFrame() => Thread.Sleep(1);
+        public void HardReset() => HardResetCount++;
+        public void SoftReset() => SoftResetCount++;
+        public void Stop() { }
+        public void SetInput(EmulationInputSnapshot snapshot) { }
+        public void SetControllerPortDevice(int port, PeripheralCategory peripheral) { }
+        public void InsertMedia(MediaConfiguration media) { }
+        public void EjectMedia(EmulationMediaSlot slot) { }
+        public void SelectDisk(int index) { }
+        public byte[] SaveState() => [];
+        public void LoadState(ReadOnlySpan<byte> state) { }
+        public void SetOption(string key, string value) { }
+        public bool TryDequeueAudio(out AudioChunk? chunk) { chunk = null; return false; }
+        public void Dispose() => Disposed = true;
+    }
+
+    private sealed class ReleaseHandler : HttpMessageHandler
+    {
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            var response = new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ByteArrayContent([]),
+                RequestMessage = request
+            };
+            response.Content.Headers.LastModified = new DateTimeOffset(2026, 9, 26, 12, 0, 0, TimeSpan.Zero);
+            return Task.FromResult(response);
+        }
+    }
+}

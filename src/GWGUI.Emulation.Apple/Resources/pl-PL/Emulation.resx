@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.applewin.Description"><value>Emuluje komputery Apple II za pomocą emulatora AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Emuluje komputery Macintosh II za pomocą emulatora Mini vMac.</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Wariant maszyny</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>Ustawienia wideo rdzenia emulacji</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Karty rozszerzeń</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Pamięć używana przez rdzeń</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>Systemowe pliki ROM są dołączone do AppleWin.</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>Dostępny rdzeń nie obsługuje tego modelu maszyny.</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Listy odtwarzania dysku</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Pusty</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>Karta w Slot 3</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>Karta myszy</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>Karta w Slot 4</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>Karta w szczelinie 5</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>Sterownik dysku twardego</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>Karta w Slot 7</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>Kolor (RGB Karta / monitor)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>Kolor (Kompozyt Idealizowany)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>Kolor (monitor kompozytowy)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>Kolor TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>Monochrom (Amber)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>Monochromatyczny (zielony)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>Monochromatyczny (biały)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>Tryb wideo</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>Pół skanerów</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>Styl wideo</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>Video Odśwież szybkość</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>Najpierw</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>Poprzedni</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>Rozpocznij listę odtwarzania</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>Użyj obu dyskietek</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>Pasek stanu</value></data>
+</root>

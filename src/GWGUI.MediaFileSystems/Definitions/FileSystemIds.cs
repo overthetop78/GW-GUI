@@ -7,6 +7,10 @@ public static class FileSystemIds
     public const string Joliet = "iso9660-joliet";
     public const string RockRidge = "iso9660-rock-ridge";
     public const string Udf = "udf";
+    /// <summary>Identifie le système de fichiers Xbox XDVDFS.</summary>
+    public const string Xdvdfs = "microsoft-xdvdfs";
+    /// <summary>Identifie la table de fichiers FST des disques optiques Nintendo GameCube/Wii.</summary>
+    public const string NintendoGameCubeFst = "nintendo-gamecube-fst";
     /// <summary>Identifies decoded sequential media content exposed for exploration.</summary>
     public const string SequentialContent = "sequential-content";
     /// <summary>Identifie Acorn ADFS/FileCore.</summary>
@@ -35,6 +39,10 @@ public static class FileSystemIds
     public const string AmigaFlatResourceArchive = "amiga-flat-resource-archive";
     /// <summary>Identifie la variante Amstrad de CP/M.</summary>
     public const string AmstradCpm = "amstrad.cpm";
+    /// <summary>Identifie les banques de cartouche, ROM et sections d'instantané Amstrad.</summary>
+    public const string AmstradMediaStructure = "amstrad-media-structure";
+    /// <summary>Identifie les banques d'une cartouche console décodée.</summary>
+    public const string ConsoleCartridgeStructure = "console-cartridge-structure";
     /// <summary>Identifie Apple DOS.</summary>
     public const string AppleDos = "apple-dos";
     /// <summary>Identifie Atari DOS.</summary>

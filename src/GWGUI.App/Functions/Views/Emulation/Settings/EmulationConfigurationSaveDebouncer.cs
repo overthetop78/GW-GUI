@@ -19,8 +19,7 @@ internal sealed class EmulationConfigurationSaveDebouncer : IDisposable
         _ = RunAsync(current, save, failed);
     }
 
-    private static async Task RunAsync(CancellationTokenSource current,
-        Func<Task> save, Action<Exception> failed)
+    private static async Task RunAsync(CancellationTokenSource current, Func<Task> save, Action<Exception> failed)
     {
         try
         {

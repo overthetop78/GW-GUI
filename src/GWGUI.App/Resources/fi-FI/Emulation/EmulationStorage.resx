@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>Kiintolevy</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>Liitäntä</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Esivaraa tiedosto</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Levykkeet ja CD-levyt lisätään tai korvataan ajokoneesta.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Käytä emulointinäkymää lisätäksesi tai vaihtaaksesi mediaa.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Poista tietoväline</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Levykuva on jo olemassa: {0}\nHaluatko korvata sen?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Käytettävissä olevat tyypit, mallit ja tunnisteet riippuvat valitusta koneesta.</value></data>
@@ -75,4 +75,13 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kasettipaikka</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Asenna neljä ensimmäistä levyä DF0...DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Levy {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Käytä korttia</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Valittu tiedosto liitetään tähän virtuaaliseen tallennuslaitteeseen.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Valitse olemassa oleva korttitiedosto.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Korttitiedoston koko on virheellinen.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Valitse tämän laitteen tukema tiedostomuoto.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Rajoittamaton</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Tyhjennä, kun peli suljetaan</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Muistikortti</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>Kortin nimi</value></data>
 </root>

@@ -27,8 +27,7 @@ public class ModuleLocalizationTests(StaExecutionScenarios sta)
     {
         const string key = "Module.Localization.Test.Missing";
         Assert.Equal($"[{key}]", LocExtension.GetLocalized(new Catalog([]), key));
-        Assert.Equal(string.Empty, LocExtension.GetLocalized(
-            new Catalog(new Dictionary<string, string> { [key] = string.Empty }), key));
+        Assert.Equal(string.Empty, LocExtension.GetLocalized(new Catalog(new Dictionary<string, string> { [key] = string.Empty }), key));
     });
 
     [Fact]

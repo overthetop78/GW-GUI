@@ -3,13 +3,10 @@ using GWGUI.MediaEngine.Images.Conversion.Apple;
 using GWGUI.MediaEngine.Functions;
 using GWGUI.MediaEngine.Images.Models.Sectors;
 using GWGUI.MediaEngine.Constants;
-
 using GWGUI.MediaEngine.Images.Formats.Floppy.Raw;
-
 using GWGUI.MediaEngine.Images.Reading.Recognition;
 
 namespace GWGUI.MediaEngine.Images.Reading.Reconstruction.Sectors.Apple;
-
 /// <summary>Construit une image sectorielle Apple II depuis des pistes GCR dÃ©jÃ  dÃ©codÃ©es.</summary>
 internal static class AppleIISectorImageBuilder
 {
@@ -20,18 +17,32 @@ internal static class AppleIISectorImageBuilder
         var trackCount = Math.Max(AppleIIGeometry.TrackCount, selected.Count == 0 ? AppleIIGeometry.TrackCount : selected.Keys.Max(key => key.Track) + 1);
         var sectorsPerTrack = selected.Count > 0 && selected.Keys.Max(key => key.Sector) < 13 ? 13 : AppleIIGeometry.SectorsPerTrack;
         var dosBlocks = CreateDosBlocks(selected, sectorsPerTrack);
-        if (dosBlocks.Length == 0) return new(DiskImageFormatIds.AppleIIGcr, AppleIIGeometry.SectorSize, trackCount, DiskGeometryConstants.SingleSidedHeadCount, AppleIIGeometry.SectorsPerTrack, []);
-        if (sectorsPerTrack == 13) return new(DiskImageFormatIds.AppleIIDos32, AppleIIGeometry.SectorSize, trackCount, DiskGeometryConstants.SingleSidedHeadCount, sectorsPerTrack, dosBlocks);
+        if (dosBlocks.Length == 0)
+            return new(DiskImageFormatIds.AppleIIGcr, AppleIIGeometry.SectorSize, trackCount, DiskGeometryConstants.SingleSidedHeadCount, AppleIIGeometry.SectorsPerTrack, []);
+        if (sectorsPerTrack == 13)
+            return new(DiskImageFormatIds.AppleIIDos32, AppleIIGeometry.SectorSize, trackCount, DiskGeometryConstants.SingleSidedHeadCount, sectorsPerTrack, dosBlocks);
         var proDosBlocks = CreateProDosBlocks(selected, trackCount);
         var proDosProbe = ToDense(proDosBlocks, trackCount * AppleIIGeometry.ProDosBlocksPerTrack, MacintoshGcrGeometry.BlockSize);
-        if (!proDosProbe.MissingBlocks.Any() && AppleRawImageProbe.LooksLikeProDos(proDosProbe.Data)) return new(DiskImageFormatIds.AppleIIProDos, MacintoshGcrGeometry.BlockSize, trackCount, DiskGeometryConstants.SingleSidedHeadCount, AppleIIGeometry.ProDosBlocksPerTrack, proDosBlocks);
+        if (!proDosProbe.MissingBlocks.Any() && AppleRawImageProbe.LooksLikeProDos(proDosProbe.Data))
+            return new(DiskImageFormatIds.AppleIIProDos, MacintoshGcrGeometry.BlockSize, trackCount, DiskGeometryConstants.SingleSidedHeadCount, AppleIIGeometry.ProDosBlocksPerTrack, proDosBlocks);
         var dosProbe = ToDense(dosBlocks, trackCount * AppleIIGeometry.SectorsPerTrack, AppleIIGeometry.SectorSize);
-        return new(!dosProbe.MissingBlocks.Any() && AppleRawImageProbe.LooksLikeDos33(dosProbe.Data) ? DiskImageFormatIds.AppleIIDos33 : DiskImageFormatIds.AppleIIGcr, AppleIIGeometry.SectorSize, trackCount, DiskGeometryConstants.SingleSidedHeadCount, sectorsPerTrack, dosBlocks);
+        return new(
+            !dosProbe.MissingBlocks.Any() && AppleRawImageProbe.LooksLikeDos33(dosProbe.Data) ? DiskImageFormatIds.AppleIIDos33 : DiskImageFormatIds.AppleIIGcr,
+            AppleIIGeometry.SectorSize,
+            trackCount,
+            DiskGeometryConstants.SingleSidedHeadCount,
+            sectorsPerTrack,
+            dosBlocks
+        );
     }
 
     /// <summary>Construit les blocs dans l'ordre d'un fichier DOS Apple II.</summary>
-    private static SectorBlock[] CreateDosBlocks(IReadOnlyDictionary<(int Track, int Sector), DecodedSector> selected, int sectorsPerTrack) => selected.Where(pair => pair.Key.Sector < sectorsPerTrack).Select(pair => new SectorBlock(pair.Key.Track * sectorsPerTrack + (sectorsPerTrack == AppleIIGeometry.SectorsPerTrack ? AppleIISectorOrderConverter.PhysicalToDosFileSector(pair.Key.Sector) : pair.Key.Sector), new(pair.Key.Track, 0, pair.Key.Sector), pair.Value.Data!.ToArray(), pair.Value.IntegrityValid)).ToArray();
-
+    private static SectorBlock[] CreateDosBlocks(IReadOnlyDictionary<(int Track, int Sector), DecodedSector> selected, int sectorsPerTrack) => selected.Where(pair => pair.Key.Sector < sectorsPerTrack).Select(pair => new SectorBlock(
+            pair.Key.Track * sectorsPerTrack + (sectorsPerTrack == AppleIIGeometry.SectorsPerTrack ? AppleIISectorOrderConverter.PhysicalToDosFileSector(pair.Key.Sector) : pair.Key.Sector),
+            new(pair.Key.Track, 0, pair.Key.Sector),
+            pair.Value.Data!.ToArray(),
+            pair.Value.IntegrityValid
+        )).ToArray();
     /// <summary>Assemble deux secteurs physiques de 256 octets dans chaque bloc logique ProDOS de 512 octets.</summary>
     private static SectorBlock[] CreateProDosBlocks(IReadOnlyDictionary<(int Track, int Sector), DecodedSector> selected, int trackCount)
     {
@@ -42,10 +53,12 @@ internal static class AppleIISectorImageBuilder
             {
                 var first = AppleIISectorOrderConverter.ProDosToPhysicalSector(block * 2);
                 var second = AppleIISectorOrderConverter.ProDosToPhysicalSector((block * 2) + 1);
-                if (!selected.TryGetValue((track, first), out var low) || !selected.TryGetValue((track, second), out var high)) continue;
+                if (!selected.TryGetValue((track, first), out var low) || !selected.TryGetValue((track, second), out var high))
+                    continue;
                 blocks.Add(new(track * 8 + block, new(track, 0, block), low.Data!.Concat(high.Data!).ToArray(), low.IntegrityValid == true && high.IntegrityValid == true));
             }
         }
+
         return blocks.ToArray();
     }
 
@@ -56,10 +69,12 @@ internal static class AppleIISectorImageBuilder
         var present = new bool[count];
         foreach (var block in blocks)
         {
-            if (block.LogicalBlock < 0 || block.LogicalBlock >= count) throw SectorImageBuilderExceptions.InvalidLogicalBlock(nameof(AppleIISectorImageBuilder), block.LogicalBlock, count);
+            if (block.LogicalBlock < 0 || block.LogicalBlock >= count)
+                throw SectorImageBuilderExceptions.InvalidLogicalBlock(nameof(AppleIISectorImageBuilder), block.LogicalBlock, count);
             block.Data.ToArray().CopyTo(data, block.LogicalBlock * blockSize);
             present[block.LogicalBlock] = true;
         }
+
         return new(data, Enumerable.Range(0, count).Where(index => !present[index]).ToArray());
     }
 }

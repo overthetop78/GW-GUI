@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Language"><value>Nintendo мова системи</value></data>
+  <data name="Emulation.Nintendo.Language.English"><value>Англійська мова</value></data>
+  <data name="Emulation.Nintendo.Language.French"><value>Французька</value></data>
+  <data name="Emulation.Nintendo.Language.Spanish"><value>Іспанка</value></data>
+  <data name="Emulation.Nintendo.Firmware.Integrated"><value>Система ROM</value></data>
+  <data name="Emulation.Emulator.mesen.Description"><value>Утеплювачі Nintendo Entertainment System і Famicom Disk System.</value></data>
+  <data name="Emulation.Emulator.gw.Description"><value>Утеплювачі Nintendo Game &amp; Watch.</value></data>
+  <data name="Emulation.Emulator.beetle_vb.Description"><value>Збільшує Nintendo Virtual Boy.</value></data>
+  <data name="Emulation.Emulator.mupen64plus-next.Description"><value>Використовуються системи Nintendo 64.</value></data>
+  <data name="Emulation.Emulator.melonds.Description"><value>Використовуються системи Nintendo DS та DSi.</value></data>
+  <data name="Emulation.Emulator.snes9x.Description"><value>Системи Super Nintendo і Super Famicom.</value></data>
+  <data name="Emulation.Emulator.gambatte.Description"><value>Покращує систему Nintendo Game Boy. Також емулятори Game Boy Color системи.</value></data>
+  <data name="Emulation.Emulator.mgba.Description"><value>Утеплювачі Nintendo Game Boy Advance систем.</value></data>
+  <data name="Emulation.Emulator.citra.Description"><value>Використовуються системи Nintendo 3DS з Citra.</value></data>
+  <data name="Emulation.Emulator.dolphin.Description"><value>Використовуються системи Nintendo GameCube та Wii з Dolphin.</value></data>
+</root>

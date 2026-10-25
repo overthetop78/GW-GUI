@@ -36,4 +36,27 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (højre hånd)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Udseende</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Kontrollør {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Anordning til indstilling af signaler</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Flysimulering</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Racing simulering</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Dansesimulation</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Sang simulation</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Andre simuleringsperiferier</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>Stærk vibration</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>Svag vibration</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>Genlad</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Sigtekornets farve</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Dansemåtte</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Indstil tastaturet i fanebladet Tastatur.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Indstil musen i fanebladet mus.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Enhedstype</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>Kontrollør anvendt til vibrationer</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>Stansnings- og akseopgaver</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>Stick {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>Tastatur eller brugerdefinerede opgaver</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>Venstre stok</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>Højre kæp</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>Akse {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>Økser {0} / {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>Gemt opgave</value></data>
 </root>

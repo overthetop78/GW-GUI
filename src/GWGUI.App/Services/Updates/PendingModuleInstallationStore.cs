@@ -5,13 +5,11 @@ namespace GWGUI.App.Services.Updates;
 
 internal sealed class PendingModuleInstallationStore
 {
-    private readonly Dictionary<string, PendingModuleInstallation> _items =
-        new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, PendingModuleInstallation> _items = new(StringComparer.OrdinalIgnoreCase);
 
     internal event EventHandler? Changed;
 
-    internal IReadOnlyList<PendingModuleInstallation> Items =>
-        _items.Values.OrderBy(item => item.DisplayName, StringComparer.CurrentCultureIgnoreCase).ToArray();
+    internal IReadOnlyList<PendingModuleInstallation> Items => _items.Values.OrderBy(item => item.DisplayName, StringComparer.CurrentCultureIgnoreCase).ToArray();
 
     internal bool Contains(string moduleId) => _items.ContainsKey(moduleId);
 

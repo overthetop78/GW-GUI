@@ -24,9 +24,7 @@ internal static class GameInputResourceReleaser
         entry.HidDecoder?.Dispose();
     }
 
-    internal static bool IsInteropFailure(Exception exception) => exception is
-        COMException or InvalidComObjectException or InvalidCastException or InvalidOperationException or
-        ArgumentException or OverflowException;
+    internal static bool IsInteropFailure(Exception exception) => exception is COMException or InvalidComObjectException or InvalidCastException or InvalidOperationException or ArgumentException or OverflowException;
 
     internal static void Release(object? value)
     {

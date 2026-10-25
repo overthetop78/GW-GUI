@@ -16,8 +16,7 @@ internal static class FilterVfdCellStructure
         }
         """;
 
-    internal static void Apply(float[] emission, int width, int height, int sourceWidth,
-        int sourceHeight, EmulationVfdStructure structure, int cellSize, int cellGap)
+    internal static void Apply(float[] emission, int width, int height, int sourceWidth, int sourceHeight, EmulationVfdStructure structure, int cellSize, int cellGap)
     {
         if (structure == EmulationVfdStructure.Graphic) return;
         var radius = (0.20f + cellSize / 100f * 0.28f) * (1f - cellGap / 100f * 0.72f);

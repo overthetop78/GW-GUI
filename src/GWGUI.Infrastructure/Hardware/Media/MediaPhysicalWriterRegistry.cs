@@ -1,7 +1,7 @@
-using MediaPhysicalWriteProgress = global::GWGUI.MediaEngine.Contracts.MediaPhysicalWriteProgress;
-using MediaPhysicalWriteResult = global::GWGUI.MediaEngine.Contracts.MediaPhysicalWriteResult;
-using MediaWritePlan = global::GWGUI.MediaEngine.Contracts.MediaWritePlan;
-using IMediaPhysicalWriter = global::GWGUI.MediaEngine.Interfaces.IMediaPhysicalWriter;
+using MediaPhysicalWriteProgress = GWGUI.MediaEngine.Contracts.MediaPhysicalWriteProgress;
+using MediaPhysicalWriteResult = GWGUI.MediaEngine.Contracts.MediaPhysicalWriteResult;
+using MediaWritePlan = GWGUI.MediaEngine.Contracts.MediaWritePlan;
+using IMediaPhysicalWriter = GWGUI.MediaEngine.Interfaces.IMediaPhysicalWriter;
 
 namespace GWGUI.Infrastructure.Hardware.Media;
 
@@ -18,8 +18,7 @@ public sealed class MediaPhysicalWriterRegistry
             throw new ArgumentException("A physical writer cannot be null.", nameof(writers));
         if (registered.Any(writer => string.IsNullOrWhiteSpace(writer.Id)))
             throw new ArgumentException("A physical writer identifier cannot be empty.", nameof(writers));
-        var duplicate = registered.GroupBy(writer => writer.Id, StringComparer.OrdinalIgnoreCase)
-            .FirstOrDefault(group => group.Skip(1).Any());
+        var duplicate = registered.GroupBy(writer => writer.Id, StringComparer.OrdinalIgnoreCase).FirstOrDefault(group => group.Skip(1).Any());
         if (duplicate is not null)
             throw new ArgumentException($"Physical writer identifier '{duplicate.Key}' is registered more than once.", nameof(writers));
         this.writers = Array.AsReadOnly(registered);
@@ -31,25 +30,16 @@ public sealed class MediaPhysicalWriterRegistry
     {
         ArgumentNullException.ThrowIfNull(plan);
         ArgumentException.ThrowIfNullOrWhiteSpace(deviceId);
-        var compatible = writers.Where(writer =>
-            writer.SupportedMediaKinds.Contains(plan.MediaKind)
-            && writer.CanWrite(plan, deviceId)).ToArray();
+        var compatible = writers.Where(writer => writer.SupportedMediaKinds.Contains(plan.MediaKind) && writer.CanWrite(plan, deviceId)).ToArray();
         return compatible.Length switch
         {
             1 => compatible[0],
-            0 => throw new NotSupportedException(
-                $"No physical writer accepts device '{deviceId}' for media family '{plan.MediaKind}'."),
-            _ => throw new InvalidOperationException(
-                $"Multiple physical writers accept device '{deviceId}' for media family '{plan.MediaKind}'.")
+            0 => throw new NotSupportedException($"No physical writer accepts device '{deviceId}' for media family '{plan.MediaKind}'."),
+            _ => throw new InvalidOperationException($"Multiple physical writers accept device '{deviceId}' for media family '{plan.MediaKind}'.")
         };
     }
 
-    public Task<MediaPhysicalWriteResult> WriteAsync(
-        MediaWritePlan plan,
-        string deviceId,
-        IReadOnlyDictionary<string, string> options,
-        IProgress<MediaPhysicalWriteProgress>? progress = null,
-        CancellationToken cancellationToken = default)
+    public Task<MediaPhysicalWriteResult> WriteAsync(MediaWritePlan plan, string deviceId, IReadOnlyDictionary<string, string> options, IProgress<MediaPhysicalWriteProgress>? progress = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(options);
         return GetRequired(plan, deviceId).WriteAsync(plan, deviceId, options, progress, cancellationToken);

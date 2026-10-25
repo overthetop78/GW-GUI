@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Atari funstick</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>لوحة مفاتيح رقمية</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed"><value>سرعة الحركة</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton"><value>بينما يغلق زر الإطفاء</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways"><value>دائماً</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility"><value>مدى اتفاق المراقب المالي</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity"><value>الحساسية الرقمية</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity"><value>حساسية التحليل</value></data>
+  <data name="Emulation.Atari.Controller.DualStick"><value>إثنين من عصي الفرح استخدمتا معاً</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts"><value>مرافئ السوائب</value></data>
+</root>

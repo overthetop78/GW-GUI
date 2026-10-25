@@ -27,8 +27,13 @@ action nécessaire manque, l'ajouter à la suite de la dernière action cochée 
 dépend. Si l'ordre restant est faux, le corriger avant toute modification du code. Réécrire une
 action imprécise avant de l'exécuter et supprimer une action devenue fausse ou sans objet.
 
+## Nouveau chantier d’émulation
+
+- [Module Amstrad et choix du moteur par machine](emulation/amstrad.md) — chantier actif de référence pour Caprice32, CrocoDS et la future reprise d’Atari/Amiga; PCW restera différé jusqu’au choix de son moteur.
+
 ## Travail à reprendre après validation ou disponibilité
 
+- [Traduction complète des écrans du BIOS PC-FX](emulation/pcfx-bios-french.md) — compléter la ROM française au-delà du menu principal ; reporté.
 - [Publications restantes](release.md) — prochaines publications de l’application, du module Atari et, si son contrat évolue, du SDK.
 - [Atari](emulation/atari.md) — validations, accessibilité, Jaguar CD, guide et étude Atari System 1; reporté.
 - [Validations d’émulation](emulation/remaining-validations.md) — Amiga, cassette Atari800, GameInput, CPU masqué et distribution indépendante; reporté.

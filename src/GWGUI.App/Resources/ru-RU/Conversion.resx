@@ -34,4 +34,6 @@
   <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Внутренняя конверсия не удалась {0}: {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>Потенциальная потеря данных</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>Это преобразование не может сохранить всю исходную информацию:&#xA;&#xA;{0}&#xA;&#xA;Хочешь продолжить?</value></data>
+  <data name="Conversion.OutputCollision"><value>Несколько конверсий создадут один и тот же файл.{0}Этот выбор невозможен, если только{1}Проверено.</value></data>
+  <data name="Conversion.Failed"><value>Конверсия провалилась для {0}: {1}</value></data>
 </root>

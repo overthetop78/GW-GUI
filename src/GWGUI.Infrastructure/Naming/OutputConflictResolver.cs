@@ -6,8 +6,7 @@ public enum OutputConflictChoice { Overwrite, NextSequence, EditName }
 
 public static class OutputConflictResolver
 {
-    public static string FindNextAvailable(string folder, string baseName, string extension, SequenceKind kind, int width, long start, Func<string, bool>? exists = null)
-        => FindNextAvailableWithValue(folder, baseName, extension, kind, width, start, exists).Path;
+    public static string FindNextAvailable(string folder, string baseName, string extension, SequenceKind kind, int width, long start, Func<string, bool>? exists = null) => FindNextAvailableWithValue(folder, baseName, extension, kind, width, start, exists).Path;
 
     public static (string Path, long Value) FindNextAvailableWithValue(string folder, string baseName, string extension, SequenceKind kind, int width, long start, Func<string, bool>? exists = null)
     {

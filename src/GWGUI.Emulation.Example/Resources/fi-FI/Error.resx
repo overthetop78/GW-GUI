@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound"><value>Määriteltyä välinettä ei löytynyt.</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported"><value>Kone ei tue valittua mediaa.</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound"><value>Vaadittua emulointiydintä ei löytynyt.</value></data>
+  <data name="Emulation.Example.Error.CoreRejected"><value>Valittua emulointiytimen latausta ei voitu ladata.</value></data>
+  <data name="Emulation.Example.Error.Details"><value>Yksityiskohdat: {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid"><value>Firmware on virheellinen tai yhteensopimaton.</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing"><value>Tarvittava laiteohjelmisto puuttuu.</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing"><value>Polkua emulointiin ei ole saatavilla.</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure"><value>Emulointiisäntä ei toimi.</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid"><value>Valinnalla on virheellinen arvo.</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible"><value>Tallennettu tila on yhteensopimaton nykyisen koneen kanssa.</value></data>
+  <data name="Emulation.Example.Error.StateInvalid"><value>Tallennettu tila on virheellinen.</value></data>
+  <data name="Emulation.Example.Error.Unexpected"><value>Tapahtui odottamaton emulgointivirhe.</value></data>
+</root>

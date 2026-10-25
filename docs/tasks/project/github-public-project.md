@@ -53,7 +53,7 @@ stratégie NuGet Trusted Publishing doit également être réassociée au nouvea
       - [ ] Modifier `tests/GWGUI.Tests/Interface/Help/HelpTargetScenarios.cs` pour vérifier les nouvelles URL du wiki.
   - [ ] 3.2 Remplacer les adresses des modules officiels
     - [ ] 3.2.1 Modifier la source du module Amiga
-      - [ ] Modifier `src/GWGUI.Emulation.Amiga/module.json` pour utiliser le catalogue Amiga encore publié par `<ORGANISATION>/GW-GUI`, sans anticiper son futur dépôt indépendant.
+      - [ ] Modifier `src/GWGUI.Emulation.Commodore/module.json` pour utiliser le catalogue Amiga encore publié par `<ORGANISATION>/GW-GUI`, sans anticiper son futur dépôt indépendant.
     - [ ] 3.2.2 Modifier la source du module Atari
       - [ ] Modifier `src/GWGUI.Emulation.Atari/module.json` pour utiliser le catalogue Atari encore publié par `<ORGANISATION>/GW-GUI`, sans anticiper son futur dépôt indépendant.
   - [ ] 3.3 Remplacer les adresses des outils de publication

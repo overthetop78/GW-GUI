@@ -34,8 +34,7 @@ public partial class ExplorerSection
         PathText.Text = path ?? string.Empty;
         DocumentIdentity.Display(path ?? string.Empty, string.Empty, null);
         VolumeNameText.Foreground = BrushFor(false);
-        VolumeNameText.Text = FileSystemText.Text = CapacityText.Text = FreeText.Text = EntryCountText.Text =
-            ControlVisualConstants.EmptyValue;
+        VolumeNameText.Text = FileSystemText.Text = CapacityText.Text = FreeText.Text = EntryCountText.Text = ControlVisualConstants.EmptyValue;
         SystemText.Text = ProtectionText.Text = "\u2014";
         _rootFolder = null;
         _document = null;
@@ -85,18 +84,11 @@ public partial class ExplorerSection
         }
         else
         {
-            _detectedFormatIds = _detectedFormatIds
-                .Concat(reportedFormatIds)
-                .Distinct(StringComparer.OrdinalIgnoreCase)
-                .ToArray();
+            _detectedFormatIds = _detectedFormatIds.Concat(reportedFormatIds).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
         }
         UpdateDetectedFormatSelector(document.PrimaryFormatId);
         var detectedSummary = DetectedFormatsSummary();
-        DocumentIdentity.Display(
-            document.SourcePath,
-            detectedSummary,
-            GWGUI.MediaEngine.Enums.MediaKind.Floppy,
-            FormatForIdentity(document.PrimaryFormatId));
+        DocumentIdentity.Display(document.SourcePath, detectedSummary, GWGUI.MediaEngine.Enums.MediaKind.Floppy, FormatForIdentity(document.PrimaryFormatId));
         Classification.SetAutomaticDetection(AutomaticDetection.IsChecked == true);
         if (AutomaticDetection.IsChecked == true)
         {
@@ -130,31 +122,22 @@ public partial class ExplorerSection
         _document = null;
         _mediaDocument = document;
         PathText.Text = document.Document.Source.PrimaryPath;
-        var reportedFormatIds = new[] { document.Document.FormatId }
-            .Concat(detectedFormatIds ?? [])
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToArray();
+        var reportedFormatIds = new[] { document.Document.FormatId }.Concat(detectedFormatIds ?? []).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
         if (_automaticDetectedFormatId is null || AutomaticDetection.IsChecked == true)
         {
             _automaticDetectedFormatId = document.Document.FormatId;
             _detectedFormatIds = reportedFormatIds;
         }
         else
-            _detectedFormatIds = _detectedFormatIds.Concat(reportedFormatIds)
-                .Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
+            _detectedFormatIds = _detectedFormatIds.Concat(reportedFormatIds).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
         UpdateDetectedFormatSelector(document.Document.FormatId);
         var detectedSummary = DetectedFormatsSummary();
-        DocumentIdentity.Display(
-            document.Document.Source.PrimaryPath,
-            detectedSummary,
-            document.Document.MediaKind,
-            FormatForIdentity(document.Document.FormatId));
+        DocumentIdentity.Display(document.Document.Source.PrimaryPath, detectedSummary, document.Document.MediaKind, FormatForIdentity(document.Document.FormatId));
         Classification.SetAutomaticDetection(AutomaticDetection.IsChecked == true);
         if (AutomaticDetection.IsChecked == true)
             Classification.ApplyDetection(document.Document.FormatId, null, _detectedFormatIds);
 
-        var selectedVolume = document.Volumes.FirstOrDefault(volume => volume.FileSystem is not null)
-            ?? document.Volumes.FirstOrDefault();
+        var selectedVolume = document.Volumes.FirstOrDefault(volume => volume.FileSystem is not null) ?? document.Volumes.FirstOrDefault();
         ConfigureSessions(selectedVolume?.Descriptor.SessionNumber);
         ConfigureVolumesAndAudio(selectedVolume);
     }

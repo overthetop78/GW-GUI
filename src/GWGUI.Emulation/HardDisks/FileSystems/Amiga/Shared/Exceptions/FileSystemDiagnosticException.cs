@@ -5,8 +5,7 @@ namespace Hst.Amiga.FileSystems.Exceptions;
 
 public sealed class FileSystemDiagnosticException : IOException
 {
-    public FileSystemDiagnosticException(FileSystemErrorCode errorCode, string message,
-        params object[] arguments) : base(message)
+    public FileSystemDiagnosticException(FileSystemErrorCode errorCode, string message, params object[] arguments) : base(message)
     {
         ErrorCode = errorCode;
         Arguments = arguments;

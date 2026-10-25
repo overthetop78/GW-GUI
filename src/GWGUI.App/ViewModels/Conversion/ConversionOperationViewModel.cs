@@ -1,13 +1,12 @@
-using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
-using ConversionSelection = global::GWGUI.MediaEngine.Images.Conversion.ConversionSelection;
+using GWGUI.App.ViewModels;
+using EnabledOption = GWGUI.MediaEngine.Contracts.Options.EnabledOption;
+using ConversionSelection = GWGUI.MediaEngine.Images.Conversion.ConversionSelection;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.App.ViewModels.Operations.Options;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace GWGUI.App.ViewModels.Conversion;
 
-public sealed class ConversionOperationViewModel : INotifyPropertyChanged
+public sealed class ConversionOperationViewModel : ObservableObject
 {
     private string _sourcePath = "";
     private string _outputName = "";
@@ -30,7 +29,7 @@ public sealed class ConversionOperationViewModel : INotifyPropertyChanged
     public IReadOnlySet<string> SelectedFormats => _selectedFormats;
     public IReadOnlyDictionary<string, HashSet<string>> ExplicitExtensions => _explicitExtensions;
 
-    public IReadOnlyList<EnabledOption> BuildOptions() => AllOptions().Where(x => x.Enabled).Select(x => x.ToEnabledOption()).ToArray();
+    public IReadOnlyList<EnabledOption> BuildOptions() => OperationOptionViewModelBase.BuildOptions(AllOptions());
 
     public void SetFormat(string formatId, bool selected, IEnumerable<string>? extensions)
     {
@@ -39,9 +38,7 @@ public sealed class ConversionOperationViewModel : INotifyPropertyChanged
         if (values.Count == 0) _explicitExtensions.Remove(formatId); else _explicitExtensions[formatId] = values;
     }
 
-    public IEnumerable<ConversionSelection> BuildSelections(IEnumerable<DiskFormat> formats) => formats
-        .Where(format => _selectedFormats.Contains(format.Id))
-        .Select(format => new ConversionSelection(format.Id, _explicitExtensions.GetValueOrDefault(format.Id) ?? []));
+    public IEnumerable<ConversionSelection> BuildSelections(IEnumerable<DiskFormat> formats) => formats.Where(format => _selectedFormats.Contains(format.Id)).Select(format => new ConversionSelection(format.Id, _explicitExtensions.GetValueOrDefault(format.Id) ?? []));
 
     public void ApplyProfile(IReadOnlySet<string> enabled, IReadOnlyDictionary<string, string> values)
     {
@@ -74,24 +71,12 @@ public sealed class ConversionOperationViewModel : INotifyPropertyChanged
         return result;
     }
 
-    public HashSet<string> CaptureEnabledOptions() => AllOptions().Where(x => x.Enabled).Select(x => x.Argument.TrimStart('-')).ToHashSet();
+    public HashSet<string> CaptureEnabledOptions() => OperationOptionViewModelBase.CaptureEnabledOptions(AllOptions());
     public Dictionary<string, string> CaptureValues()
-    {
-        var result = AllOptions().OfType<ValueOptionViewModel>().ToDictionary(x => x.Argument.TrimStart('-'), x => x.Value);
-        result["expert"] = ExpertArguments; return result;
-    }
+        => OperationOptionViewModelBase.CaptureValues(AllOptions(), ExpertArguments);
 
     private void ApplyOptions(IReadOnlySet<string> enabled, IReadOnlyDictionary<string, string> values)
-    {
-        foreach (var option in AllOptions())
-        {
-            var key = option.Argument.TrimStart('-'); option.Enabled = enabled.Contains(key);
-            if (option is ValueOptionViewModel valued && values.TryGetValue(key, out var value)) valued.Value = value;
-        }
-        ExpertArguments = values.GetValueOrDefault("expert", "");
-    }
+        => ExpertArguments = OperationOptionViewModelBase.ApplyOptions(AllOptions(), enabled, values);
 
     private IEnumerable<OperationOptionViewModelBase> AllOptions() => [Tracks, OutputTracks, AdjustSpeed, Pll, HardSectors, Reverse, DiskDefs];
-    public event PropertyChangedEventHandler? PropertyChanged;
-    private void Set<T>(ref T field, T value, [CallerMemberName] string? name = null) { if (EqualityComparer<T>.Default.Equals(field, value)) return; field = value; PropertyChanged?.Invoke(this, new(name)); }
 }

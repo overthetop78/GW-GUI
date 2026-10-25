@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Help.AdpcmVolume" xml:space="preserve"><value>Säädä tilavuus ADPCM Äänikanava.</value></data>
+  <data name="Emulation.Sharp.Help.AudioDesynchronization" xml:space="preserve"><value>Hylkää ylimääräiset ääninäytteet vähentääkseen äänen synkronointivirheitä.</value></data>
+  <data name="Emulation.Sharp.Help.AudioSampleRate" xml:space="preserve"><value>Valitse ääninäytteen näytteenottotaajuus.</value></data>
+  <data name="Emulation.Sharp.Help.ButtonOrder" xml:space="preserve"><value>Valitse ohjaimen painikkeiden järjestys.</value></data>
+  <data name="Emulation.Sharp.Help.CpuSpeed" xml:space="preserve"><value>Valitse prosessorin taajuus.</value></data>
+  <data name="Emulation.Sharp.Help.DiskSeekSound" xml:space="preserve"><value>Pelaa levykkeen levykkeen pään liikkeen ääntä.</value></data>
+  <data name="Emulation.Sharp.Help.FmBoard" xml:space="preserve"><value>Käytä FM Äänilevy.</value></data>
+  <data name="Emulation.Sharp.Help.FmVolume" xml:space="preserve"><value>Säädä tilavuus FM Äänikanava.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRate" xml:space="preserve"><value>Valitse videoruutujen määrä sekunnissa.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRateAdjustment" xml:space="preserve"><value>Säädä videon ajoitus nykyaikaisille näytöille vähentää äänen änkytystä.</value></data>
+  <data name="Emulation.Sharp.Help.FrameSkip" xml:space="preserve"><value>Valitse murto-osa videokuvia ohitettava. Renderöinti yksi kuva kolmesta hypätä kaksi kolmesta.</value></data>
+  <data name="Emulation.Sharp.Help.HideGraphics" xml:space="preserve"><value>Piilota videokuvan grafiikkakerros.</value></data>
+  <data name="Emulation.Sharp.Help.HideSprites" xml:space="preserve"><value>Piilota videokuvan sprite ja taustakerros.</value></data>
+  <data name="Emulation.Sharp.Help.HideText" xml:space="preserve"><value>Piilota videokuvan tekstikerros.</value></data>
+  <data name="Emulation.Sharp.Help.MemorySize" xml:space="preserve"><value>Valitse emulgoidun määrän RAM.</value></data>
+  <data name="Emulation.Sharp.Help.RapidFire" xml:space="preserve"><value>Toista ohjaimen painike painaa automaattisesti.</value></data>
+  <data name="Emulation.Sharp.Help.Raster" xml:space="preserve"><value>Ota rasteritehosteet käyttöön emulgoidussa videokuvassa.</value></data>
+  <data name="Emulation.Sharp.Help.Resolution" xml:space="preserve"><value>Valitse matala tai korkea lähtöresoluutio.</value></data>
+  <data name="Emulation.Sharp.Help.ReverseJoystick" xml:space="preserve"><value>Peruuta ohjaimen syöte emulaattorin ohjeiden mukaisesti.</value></data>
+  <data name="Emulation.Sharp.Help.UnlimitedSpeed" xml:space="preserve"><value>Aja kone niin nopeasti kuin mahdollista. Ääni voi olla unsynkronoitu.</value></data>
+  <data name="Emulation.Sharp.Help.VerticalSync" xml:space="preserve"><value>Synkronoi emulgoitu näyttö pystysuunnassa.</value></data>
+  <data name="Emulation.Sharp.Help.VideoBeforeAudio" xml:space="preserve"><value>Vähennä videovideon latenssia ennen äänen latenssia.</value></data>
+</root>

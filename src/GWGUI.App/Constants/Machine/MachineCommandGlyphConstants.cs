@@ -18,4 +18,5 @@ internal static class MachineCommandGlyphConstants
     internal static string Controller => IconGlyphs.Controller;
     internal static string Pointer => IconGlyphs.Mouse;
     internal static string Renderer => IconGlyphs.Display;
+    internal static string CoreOptions => IconGlyphs.Settings;
 }

@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>La posición solicitada es inválida para este objeto del sistema de archivos.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>La operación de nodos de asignación falló.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Bloque índice de mapas de bitmap de nodos de asignación {0}/{1} no se podía leer.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>El cabezal de la unidad no está en el cilindro solicitado ({0}). Recalibrar la unidad antes de leer.</value></data>
 </root>

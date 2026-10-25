@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Error.CoreNotFound"><value>필요한 Atari 코어는 찾을 수 없습니다.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected"><value>선정된 Atari 핵심은 적재될 수 없었습니다.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing"><value>필요한 Atari 펌웨어가 누락되었습니다.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid"><value>Atari 펌웨어는 유효하지 않거나 호환되지 않습니다.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound"><value>구성 Atari 미디어가 발견되지 않았습니다.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported"><value>구성 된 미디어는이 Atari 기계에 의해 지원되지 않습니다.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid"><value>Atari 옵션은 잘못된 값이 있습니다.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure"><value>Atari 호스트와 통신 실패.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid"><value>Atari 저장된 상태는 유효하지 않습니다.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible"><value>Atari에 저장된 국가는 현재 기계와 호환이 됩니다.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected"><value>예기치 않은 Atari 에뮬레이션 오류가 발생했습니다.</value></data>
+  <data name="Emulation.Atari.Error.Details"><value>세부 사항: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration"><value>활성 Atari 구성을 수정하거나 삭제할 수 없습니다.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>필수 Atari 펌웨어가 구성되지 않습니다. 펌웨어: {0} 기계: {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing"><value>설정된 Atari 펌웨어 파일은 찾을 수 없습니다. 펌웨어: {0} 파일: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing"><value>Configured Atari 미디어가 발견되지 않았습니다 : {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing"><value>Atari 호스트 실행 가능한 경로는 사용할 수 없습니다.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled"><value>Atari 에뮬레이션 코어가 설치되지 않습니다. 코어: {0}</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>선택한 Atari 에뮬레이터는 공유 카트리지 컨트롤러를 사용하지 않습니다.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>선택된 Atari 기계는 카트리지 매체를 요구합니다.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>카트리지 확장은 선택한 Atari 에뮬레이터에 의해 지원되지 않습니다.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Atari 카트리지는 독서를 위해 열 수 없습니다.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Atari 에뮬레이터는 교체 카트리지를 거부했습니다.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Atari 에뮬레이터는 교체 및 이전 카트리지를 모두 거부했습니다.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>이 Atari 에뮬레이터는 카트리지없이 전원을 유지 할 수 없습니다.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>선택된 Atari 에뮬레이터는 카트리지 지역 선택을 노출하지 않습니다.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>이 Atari 에뮬레이터는 카트리지 타이밍 모드를 사용할 수 없습니다 SECAM.</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel"><value>이 값은 선택한 모델에 의해 결정됩니다.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>호환되지 않는 FPU는이 모델에 사용할 수 있습니다.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory"><value>교체 메모리는이 모델에 사용할 수 없습니다.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware"><value>이 모델에는 구성 가능한 펌웨어가 없습니다.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard"><value>이 모델에는 키보드가 없습니다.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse"><value>이 모델은 마우스가 없습니다.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage"><value>이 모형에는 저장 매체가 없습니다.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>컴팩트 디스크 미디어를 사용하려면이 모델을 선택하십시오 : Jaguar CD.</value></data>
+</root>

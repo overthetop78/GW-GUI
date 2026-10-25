@@ -25,9 +25,9 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
     /// <returns>L'image Macintosh ou Lisa reconstruite avec sa capacitÃ© et son nombre logique de blocs.</returns>
     /// <exception cref="InvalidDataException">Aucun secteur GCR Apple IWM n'a Ã©tÃ© dÃ©codÃ© ou aucun candidat ne respecte la gÃ©omÃ©trie zonÃ©e.</exception>
     /// <remarks>La capacitÃ© est exprimÃ©e en octets et dÃ©pend du nombre de faces dÃ©tectÃ© dans les adresses candidates.</remarks>
-    public SectorImage Decode(ScpImage scp, string? requestedFormatId, CancellationToken cancellationToken)
+    public SectorImage Decode(ScpImage scp, string? requestedFormatId, CancellationToken cancellationToken, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress = null)
     {
-        var candidates = decoder.DecodeCandidates(scp, FluxCodecIds.AppleMacGcr, AppleIwmGcrFormat.SectorByteCount, cancellationToken);
+        var candidates = decoder.DecodeCandidates(scp, FluxCodecIds.AppleMacGcr, AppleIwmGcrFormat.SectorByteCount, cancellationToken, progress);
         if (candidates.Count == 0) throw ScpReconstructionExceptions.NoDecodedSectors(AppleIwmGcrFormat.StructureDescriptionName);
         var heads = candidates.Keys.Any(address => address.Head == 1) ? DiskGeometryConstants.DoubleSidedHeadCount : DiskGeometryConstants.SingleSidedHeadCount;
         var blocks = new List<SectorBlock>();
@@ -37,17 +37,14 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
             if (address.Cylinder >= MacintoshGcrGeometry.CylinderCount || address.Head >= heads) continue;
             var sectorsPerTrack = MacintoshGcrGeometry.Sectors(address.Cylinder);
             if (address.Number < 0 || address.Number >= sectorsPerTrack) continue;
-            var priorCylinderBlocks = Enumerable.Range(0, address.Cylinder)
-                .Sum(cylinder => MacintoshGcrGeometry.Sectors(cylinder) * heads);
+            var priorCylinderBlocks = Enumerable.Range(0, address.Cylinder).Sum(cylinder => MacintoshGcrGeometry.Sectors(cylinder) * heads);
             var logical = priorCylinderBlocks + address.Head * sectorsPerTrack + address.Number;
             blocks.Add(AppleScpSectorDecoder.Select(logical, address, pair.Value));
         }
         if (blocks.Count == 0) throw ScpReconstructionExceptions.NoUsableSectors(AppleIwmGcrFormat.StructureDescriptionName);
         var count = MacintoshGcrGeometry.SingleSidedBlockCount * heads;
         var provisional = new SectorImage(DiskImageFormatIds.AppleMacGcr, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.CylinderCount, heads, MacintoshGcrGeometry.MaximumSectorsPerTrack, blocks, capacity: count * (long)MacintoshGcrGeometry.BlockSize, logicalBlockCount: count);
-        var formatId = requestedFormatId?.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) == true
-            ? requestedFormatId
-            : DiskImageFormatIds.AppleMacGcr;
+        var formatId = requestedFormatId?.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) == true ? requestedFormatId : DiskImageFormatIds.AppleMacGcr;
         if (requestedFormatId is null && blocks.Any(block => block.Tag is { Count: >= 6 } tag && tag[4] == 0 && tag[5] == 1))
             formatId = DiskImageFormatIds.AppleLisaOffice;
         if (requestedFormatId is null && TryFlattenPayload(provisional, out var payload) &&
@@ -59,11 +56,7 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
                 formatId = DiskImageFormatIds.AppleLisaMacWorks;
             var signature = (mdb.Data[0] << BitPrimitives.BitsPerByte) | mdb.Data[1];
             if (!formatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase))
-                formatId = signature == 0xd2d7
-                    ? DiskImageFormatIds.AppleMacMfs
-                    : signature == 0x4244
-                        ? DiskImageFormatIds.AppleMacHfs
-                        : DiskImageFormatIds.AppleIIProDos;
+                formatId = signature == 0xd2d7 ? DiskImageFormatIds.AppleMacMfs : signature == 0x4244 ? DiskImageFormatIds.AppleMacHfs : DiskImageFormatIds.AppleIIProDos;
         }
         return new(formatId, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.CylinderCount, heads, MacintoshGcrGeometry.MaximumSectorsPerTrack, blocks, capacity: count * (long)MacintoshGcrGeometry.BlockSize, logicalBlockCount: count);
     }

@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>ต้องใช้เส้นทางของคิกเริรต์</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>เส้นทางของเครื่องคอมไพล์ไม่มีความต้องการ</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>แฟ้มที่เลือกไว้ยังไม่มีอยู่</value></data>
+  <data name="Emulation.Error.Title"><value>การจําลองผิดพลาด</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>ตัวจําลองที่จําเป็นต้องใช้ยังไม่ได้ถูกติดตั้ง</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>นักจําลองปฏิเสธการดําเนินงานที่ร้องขอ</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>ไม่สามารถปรับโปรแกรมจําลองได้ขณะใช้งาน</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>เครื่องสร้างแผงความต้องการหายไป</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>เครื่องที่ถูกเลือกไม่เข้ากันกับเครื่องนี้</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>ไม่พบแฟ้มเล่นสื่อที่ปรับแต่งแล้ว</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>สื่อที่เลือกไว้ไม่รองรับสื่อโดยตัวจําลองนี้</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>ตัวเลือกของตัวจําลองไม่ถูกต้อง</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>การสื่อสารกับกระบวนการจําลองล้มเหลว</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>ไม่สามารถเริ่มเครื่องจักรจําลองได้</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>ปฏิบัติการสื่อล้มเหลว</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>รัฐที่บันทึกไว้เป็นโมฆะหรือเสียหาย</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>รัฐที่บันทึกไว้ไม่เข้ากันได้กับการปรับแต่งเครื่องนี้</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>ปฏิบัติการของเซอร์วิสเซฟสเตทล้มเหลว</value></data>
 </root>

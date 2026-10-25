@@ -11,8 +11,7 @@ internal static class FilterPlasmaLightDiffusion
         }
         """;
 
-    internal static void Apply(float[] colors, int sourceWidth, int sourceHeight,
-        int outputWidth, int outputHeight, int setting)
+    internal static void Apply(float[] colors, int sourceWidth, int sourceHeight, int outputWidth, int outputHeight, int setting)
     {
         if (setting <= 0 || outputWidth <= 0 || outputHeight <= 0) return;
         var source = colors.ToArray();
@@ -24,10 +23,8 @@ internal static class FilterPlasmaLightDiffusion
             for (var x = 0; x < outputWidth; x++)
             for (var channel = 0; channel < 3; channel++)
             {
-                var near = CardinalAverage(source, outputWidth, outputHeight, x, y,
-                    radiusX, radiusY, channel);
-                var far = CardinalAverage(source, outputWidth, outputHeight, x, y,
-                    radiusX * 2, radiusY * 2, channel);
+                var near = CardinalAverage(source, outputWidth, outputHeight, x, y, radiusX, radiusY, channel);
+                var far = CardinalAverage(source, outputWidth, outputHeight, x, y, radiusX * 2, radiusY * 2, channel);
                 var light = MathF.Max(0f, near * 0.7f + far * 0.3f - 0.12f) / 0.88f;
                 var index = (y * outputWidth + x) * 3 + channel;
                 colors[index] = Math.Clamp(source[index] + light * amount, 0f, 1f);
@@ -35,15 +32,13 @@ internal static class FilterPlasmaLightDiffusion
         });
     }
 
-    private static float CardinalAverage(float[] colors, int width, int height,
-        int x, int y, int radiusX, int radiusY, int channel) =>
+    private static float CardinalAverage(float[] colors, int width, int height, int x, int y, int radiusX, int radiusY, int channel) =>
         (Sample(colors, width, height, x - radiusX, y, channel)
          + Sample(colors, width, height, x + radiusX, y, channel)
          + Sample(colors, width, height, x, y - radiusY, channel)
          + Sample(colors, width, height, x, y + radiusY, channel)) * 0.25f;
 
-    private static float Sample(float[] colors, int width, int height,
-        int x, int y, int channel)
+    private static float Sample(float[] colors, int width, int height, int x, int y, int channel)
     {
         x = Math.Clamp(x, 0, width - 1);
         y = Math.Clamp(y, 0, height - 1);

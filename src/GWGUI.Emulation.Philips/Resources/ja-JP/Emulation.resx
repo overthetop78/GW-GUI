@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.m2000.Description" xml:space="preserve"><value>エミュレータ PHILIPS P2000T パソコン</value></data>
+  <data name="Emulation.Emulator.o2em.Description" xml:space="preserve"><value>エミュレータ MAGNAVOX ODYSSEY2 と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と PHILIPS VIDEOPAC G7000 コンソール。</value></data>
+  <data name="Emulation.Emulator.same_cdi.Description" xml:space="preserve"><value>エミュレータ PHILIPS CD-I コンソール。</value></data>
+  <data name="Emulation.Philips.Audio.Native" xml:space="preserve"><value>エミュレータオーディオ</value></data>
+  <data name="Emulation.Philips.Keyboard.Native" xml:space="preserve"><value>キーボードの解釈</value></data>
+  <data name="Emulation.Philips.Memory.Display" xml:space="preserve"><value>ビデオメモリ</value></data>
+  <data name="Emulation.Philips.Setting.AlternateRenderer" xml:space="preserve"><value>代替ビデオレンダリング</value></data>
+  <data name="Emulation.Philips.Setting.AudioVolume" xml:space="preserve"><value>コンソールの可聴周波容積</value></data>
+  <data name="Emulation.Philips.Setting.AutoSave" xml:space="preserve"><value>自動保存状態</value></data>
+  <data name="Emulation.Philips.Setting.Cheats" xml:space="preserve"><value>ゲームチートコード</value></data>
+  <data name="Emulation.Philips.Setting.CropOverscan" xml:space="preserve"><value>ビデオ境界を削除します。</value></data>
+  <data name="Emulation.Philips.Setting.KeyboardMapping" xml:space="preserve"><value>キーボードキーマッピング</value></data>
+  <data name="Emulation.Philips.Setting.LowPassFilter" xml:space="preserve"><value>低パスのオーディオフィルタ</value></data>
+  <data name="Emulation.Philips.Setting.LowPassRange" xml:space="preserve"><value>可聴周波フィルター締切りの頻度</value></data>
+  <data name="Emulation.Philips.Setting.MixFrames" xml:space="preserve"><value>ブレンドビデオフレーム</value></data>
+  <data name="Emulation.Philips.Setting.NvramPerGame" xml:space="preserve"><value>各ゲームごとに個別の永続的なメモリ</value></data>
+  <data name="Emulation.Philips.Setting.StateNaming" xml:space="preserve"><value>保存された状態ファイル命名</value></data>
+  <data name="Emulation.Philips.Setting.Throttle" xml:space="preserve"><value>限界のエミュレーションの速度</value></data>
+  <data name="Emulation.Philips.Setting.VoiceVolume" xml:space="preserve"><value>音声の音量</value></data>
+  <data name="Emulation.Philips.System.Native" xml:space="preserve"><value>エミュレータオプション</value></data>
+  <data name="Emulation.Philips.Value.Game" xml:space="preserve"><value>試合ごとに</value></data>
+  <data name="Emulation.Philips.Value.Positional" xml:space="preserve"><value>物理的なキーの位置</value></data>
+  <data name="Emulation.Philips.Value.Simple" xml:space="preserve"><value>シンプルなブレンド</value></data>
+  <data name="Emulation.Philips.Value.Symbolic" xml:space="preserve"><value>印刷された文字</value></data>
+  <data name="Emulation.Philips.Value.System" xml:space="preserve"><value>システムごと</value></data>
+  <data name="Emulation.Philips.Video.Native" xml:space="preserve"><value>エミュレータビデオ</value></data>
+</root>

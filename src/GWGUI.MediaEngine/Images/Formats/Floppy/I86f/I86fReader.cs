@@ -42,8 +42,7 @@ public sealed class I86fReader : IMediaImageReader
     }
 
     /// <summary>Lit un conteneur 86F déjà chargé en mémoire.</summary>
-    public Task<I86fImage> ReadAsync(ReadOnlyMemory<byte> data, CancellationToken cancellationToken = default) =>
-        Task.FromResult(Read(data.ToArray(), cancellationToken));
+    public Task<I86fImage> ReadAsync(ReadOnlyMemory<byte> data, CancellationToken cancellationToken = default) => Task.FromResult(Read(data.ToArray(), cancellationToken));
 
     async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {

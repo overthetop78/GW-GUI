@@ -2,13 +2,15 @@ namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding.Sectors;
 
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Recognition;
 using GWGUI.MediaEngine.Images.Models.Sectors;
+using GWGUI.MediaEngine.Images.Models.Flux;
 
 /// <summary>Décrit un reconstructeur SCP nommé, sa famille et sa fonction de lecture réutilisable.</summary>
 internal sealed record ScpSectorImageCandidate(
     string Id,
     ScpFormatFamily Family,
     Func<string, string?, CancellationToken, Task<SectorImage>> ReadAsync,
-    Func<string, string?, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>?, CancellationToken, Task<SectorImage>>? ProgressiveReadAsync = null)
+    Func<string, string?, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>?, CancellationToken, Task<SectorImage>>? ProgressiveReadAsync = null,
+    Func<ProtectedTrackImage, string?, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>?, CancellationToken, Task<SectorImage>>? FluxReadAsync = null)
 {
     public string DisplayName => Id switch
     {
@@ -28,12 +30,9 @@ internal sealed record ScpSectorImageCandidate(
         _ => Family.ToString()
     };
 
-    public Task<SectorImage> ReadWithProgressAsync(
-        string path,
-        string? formatId,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken) =>
-        ProgressiveReadAsync is null
-            ? ReadAsync(path, formatId, cancellationToken)
-            : ProgressiveReadAsync(path, formatId, progress, cancellationToken);
+    public Task<SectorImage> ReadWithProgressAsync(string path, string? formatId, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken) =>
+        ProgressiveReadAsync is null ? ReadAsync(path, formatId, cancellationToken) : ProgressiveReadAsync(path, formatId, progress, cancellationToken);
+
+    public Task<SectorImage> ReadWithProgressAsync(ProtectedTrackImage image, string? formatId, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken) =>
+        FluxReadAsync is null ? throw new NotSupportedException($"The flux candidate '{Id}' requires an SCP source path.") : FluxReadAsync(image, formatId, progress, cancellationToken);
 }

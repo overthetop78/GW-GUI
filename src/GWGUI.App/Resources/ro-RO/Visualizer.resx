@@ -38,7 +38,7 @@
   <data name="Visual.IntegrityUnavailable"><value>indisponibil</value></data>
   <data name="Visual.DecoderName.iso.fm"><value>ISO FM (densitate unică)</value></data>
   <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar hard-sectored MFM</value></data>
-  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit hard-sectored FM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit cu sector dur FM</value></data>
   <data name="Visual.DecoderName.micraln.fm"><value>Micral N hard-sectored FM</value></data>
   <data name="Visual.DecoderName.arburg"><value>Sistemul/datele Arburg</value></data>
   <data name="Visual.DecoderName.raw"><value>Fluxul de materii prime</value></data>

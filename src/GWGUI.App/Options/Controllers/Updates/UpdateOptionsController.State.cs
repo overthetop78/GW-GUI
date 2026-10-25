@@ -37,18 +37,12 @@ internal sealed partial class UpdateOptionsController : IDisposable
         _section.InstallModuleFileButton.IsEnabled = !value;
         _section.InstallModuleUrlButton.IsEnabled = !value;
         _section.ModuleCatalogUrl.IsEnabled = !value;
-        _section.CancelButton.Visibility = value && scope == UpdateSearchScope.Application
-            ? Visibility.Visible : Visibility.Collapsed;
-        _section.CancelModulesButton.Visibility = value && scope == UpdateSearchScope.Modules
-            ? Visibility.Visible : Visibility.Collapsed;
-        _section.Progress.Visibility = value && scope == UpdateSearchScope.Application
-            ? Visibility.Visible : Visibility.Collapsed;
-        _section.ModulesProgress.Visibility = value && scope == UpdateSearchScope.Modules
-            && _moduleOperationPage == ModuleOperationPage.Module ? Visibility.Visible : Visibility.Collapsed;
-        _section.AvailableModulesProgress.Visibility = value && scope == UpdateSearchScope.Modules
-            && _moduleOperationPage == ModuleOperationPage.Directory ? Visibility.Visible : Visibility.Collapsed;
-        _section.ManualInstallationProgress.Visibility = value && scope == UpdateSearchScope.Modules
-            && _moduleOperationPage == ModuleOperationPage.Advanced ? Visibility.Visible : Visibility.Collapsed;
+        _section.CancelButton.Visibility = value && scope == UpdateSearchScope.Application ? Visibility.Visible : Visibility.Collapsed;
+        _section.CancelModulesButton.Visibility = value && scope == UpdateSearchScope.Modules ? Visibility.Visible : Visibility.Collapsed;
+        _section.Progress.Visibility = value && scope == UpdateSearchScope.Application ? Visibility.Visible : Visibility.Collapsed;
+        _section.ModulesProgress.Visibility = value && scope == UpdateSearchScope.Modules && _moduleOperationPage == ModuleOperationPage.Module ? Visibility.Visible : Visibility.Collapsed;
+        _section.AvailableModulesProgress.Visibility = value && scope == UpdateSearchScope.Modules && _moduleOperationPage == ModuleOperationPage.Directory ? Visibility.Visible : Visibility.Collapsed;
+        _section.ManualInstallationProgress.Visibility = value && scope == UpdateSearchScope.Modules && _moduleOperationPage == ModuleOperationPage.Advanced ? Visibility.Visible : Visibility.Collapsed;
         if (!value) return;
         if (scope == UpdateSearchScope.Application) _section.Progress.Value = 0;
         else ActiveModuleProgress().Value = 0;
@@ -104,8 +98,7 @@ internal sealed partial class UpdateOptionsController : IDisposable
         }
     }
 
-    private static bool CanInstall(UpdateSearchResult result) =>
-        result.Plan.IsCompatible && result.Plan.Items.Count > 0;
+    private static bool CanInstall(UpdateSearchResult result) => result.Plan.IsCompatible && result.Plan.Items.Count > 0;
 
     private static void DeletePreparedWork(string workDirectory)
     {
@@ -133,8 +126,7 @@ internal sealed partial class UpdateOptionsController : IDisposable
             AvailableModuleResults[index] = new(row.Id, row.DisplayName, row.CatalogUrl,
                 downloaded ? _localize("Updates.ModuleDownloaded", []) : row.DetailsLabel,
                 row.IsInstalled, downloaded, !row.IsInstalled && !downloaded,
-                downloaded ? _localize("Updates.ModuleDownloaded", [])
-                    : _localize("Updates.ModuleDirectoryInstalledBadge", []));
+                downloaded ? _localize("Updates.ModuleDownloaded", []) : _localize("Updates.ModuleDirectoryInstalledBadge", []));
         }
     }
 }

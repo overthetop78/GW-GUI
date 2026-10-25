@@ -34,4 +34,6 @@
   <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Sisäinen muuntaminen epäonnistui {0}: {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>Potentiaalinen tietojen menetys</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>Tämä muuntaminen ei voi säilyttää kaikkia lähdetietoja:&#xA;&#xA;{0}&#xA;&#xA;Haluatko jatkaa?</value></data>
+  <data name="Conversion.OutputCollision"><value>Useat muunnokset loisivat saman tiedoston '{0}". Tämä valinta ei ole mahdollista, ellei "{1}' on tarkistettu.</value></data>
+  <data name="Conversion.Failed"><value>Muunto epäonnistui {0}: {1}</value></data>
 </root>

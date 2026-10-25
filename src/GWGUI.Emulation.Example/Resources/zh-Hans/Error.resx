@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound"><value>未找到配置的介质 。</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported"><value>机器不支持所选的介质 。</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound"><value>找不到所需的模拟核心 。</value></data>
+  <data name="Emulation.Example.Error.CoreRejected"><value>无法装入所选的模拟核心 。</value></data>
+  <data name="Emulation.Example.Error.Details"><value>细节 : {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid"><value>固件无效或不兼容 。</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing"><value>缺少一个必需的固件。</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing"><value>模拟主机程序的路径没有可用.</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure"><value>与模拟主机的通信失败 。</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid"><value>选项的值无效 。</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible"><value>保存状态与当前机器不相容 。</value></data>
+  <data name="Emulation.Example.Error.StateInvalid"><value>保存状态无效 。</value></data>
+  <data name="Emulation.Example.Error.Unexpected"><value>发生了出乎意料的仿真错误 。</value></data>
+</root>

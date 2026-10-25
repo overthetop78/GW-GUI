@@ -94,7 +94,6 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Sürtünme</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Sönümleyici</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Atalet</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Oyun çubuğu</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Çok eksenli denetleyici</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID kullanımı</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>eksenler</value></data>
@@ -104,7 +103,7 @@
   <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Giriş raporu</value></data>
   <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Çıkış raporu</value></data>
   <data name="Controllers.AnalogDeadZones" xml:space="preserve"><value>Analog ölü bölgeler</value></data>
-  <data name="Controllers.StickDeadZone" xml:space="preserve"><value>Sticks</value></data>
+  <data name="Controllers.StickDeadZone"><value>Sticks</value></data>
   <data name="Controllers.TriggerDeadZone" xml:space="preserve"><value>Tesirli Tesir</value></data>
   <data name="Controllers.OuterDeadZone" xml:space="preserve"><value>Dış Ölü Bölge</value></data>
 </root>

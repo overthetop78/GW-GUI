@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Panasonic.Error.AlreadyInitialized"><value>L'hôte d'émulation est déjà initialisé.</value></data>
+  <data name="Emulation.Panasonic.Error.CommunicationFailed"><value>La communication de l'hôte de l'émulation a échoué.</value></data>
+  <data name="Emulation.Panasonic.Error.ContentFileMissing"><value>Le support configuré n'a pas pu être trouvé.</value></data>
+  <data name="Emulation.Panasonic.Error.DynamicMediaUnsupported"><value>La session d'émulation ne peut pas échanger ce support.</value></data>
+  <data name="Emulation.Panasonic.Error.ExecutableMissing"><value>L'exécutable hôte d'émulation est manquant.</value></data>
+  <data name="Emulation.Panasonic.Error.InstalledLibraryLockedFormat"><value>La bibliothèque installée ne peut pas être remplacée : {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.InvalidArchitecture"><value>Le noyau téléchargé n'est pas Windows x64.</value></data>
+  <data name="Emulation.Panasonic.Error.InvalidConfiguration"><value>La configuration de l'émulation est invalide.</value></data>
+  <data name="Emulation.Panasonic.Error.InvalidResponseLengthFormat"><value>Longueur de réponse de l'hôte d'émulation non valide: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.MachineInvalidState"><value>La session d'émulation n'est pas dans l'état requis.</value></data>
+  <data name="Emulation.Panasonic.Error.MachineStopped"><value>La séance d'émulation s'est arrêtée.</value></data>
+  <data name="Emulation.Panasonic.Error.MissingExpectedLibraryFormat"><value>L'archive téléchargée ne contient pas {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.MissingPublishedDate"><value>La réponse officielle ne précise pas la date de publication.</value></data>
+  <data name="Emulation.Panasonic.Error.NotInitialized"><value>L'hôte d'émulation n'est pas initialisé.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessExitSuffixFormat"><value> Code de sortie: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessNotInitialized"><value>Le processus hôte d'émulation n'est pas initialisé.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessStartFailed"><value>Le processus hôte d'émulation ne pouvait pas démarrer.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessUnavailable"><value>Le processus hôte d'émulation n'est pas disponible.</value></data>
+  <data name="Emulation.Panasonic.Error.ProtocolVersionMismatchFormat"><value>Version du protocole {0} ne correspond pas {1}.</value></data>
+  <data name="Emulation.Panasonic.Error.RequestCancelled"><value>La demande d'hôte d'émulation a été annulée.</value></data>
+  <data name="Emulation.Panasonic.Error.ResponseTimeout"><value>La réponse de l'hôte d'émulation a été chronométrée.</value></data>
+  <data name="Emulation.Panasonic.Error.ResponseUnavailable"><value>La réponse de l'hôte à l'émulation n'est pas disponible.</value></data>
+  <data name="Emulation.Panasonic.Error.SharedVideoUnavailable"><value>Le transport vidéo partagé n'est pas disponible.</value></data>
+  <data name="Emulation.Panasonic.Error.StateIncompatible"><value>L'état sauvegardé est incompatible avec la machine actuelle.</value></data>
+  <data name="Emulation.Panasonic.Error.StateInvalid"><value>L'état sauvé est invalide.</value></data>
+  <data name="Emulation.Panasonic.Error.StateUnavailable"><value>L'émulateur ne supporte pas les états sauvegardés.</value></data>
+  <data name="Emulation.Panasonic.Error.UnknownCommandFormat"><value>Commande de l'hôte d'émulation inconnue : {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.UnsupportedControllerDevice"><value>Le dispositif de commande n'est pas pris en charge.</value></data>
+</root>

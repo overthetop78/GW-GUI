@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Watara.Error.AlreadyInitialized"><value>המארחת כבר מקודם.</value></data>
+  <data name="Emulation.Watara.Error.CommunicationFailed"><value>התקשורת המארחת נכשלה.</value></data>
+  <data name="Emulation.Watara.Error.ContentFileMissing"><value>לא ניתן למצוא את המדיום המפונק.</value></data>
+  <data name="Emulation.Watara.Error.DynamicMediaUnsupported"><value>המפגש של החיקוי אינו יכול להחליף את המדיום הזה.</value></data>
+  <data name="Emulation.Watara.Error.ExecutableMissing"><value>המארחת המתושמת נעדרת.</value></data>
+  <data name="Emulation.Watara.Error.InstalledLibraryLockedFormat"><value>לא ניתן להחליף את הספרייה המותקנת: {0}.</value></data>
+  <data name="Emulation.Watara.Error.InvalidArchitecture"><value>הליבה הנרדפת אינה Windows x64.</value></data>
+  <data name="Emulation.Watara.Error.InvalidConfiguration"><value>תצורת החיקוי היא בלתי חוקית.</value></data>
+  <data name="Emulation.Watara.Error.InvalidResponseLengthFormat"><value>אורך תגובה לא חוקי: {0}.</value></data>
+  <data name="Emulation.Watara.Error.MachineInvalidState"><value>המפגש החיקוי אינו במדינה הנדרשת.</value></data>
+  <data name="Emulation.Watara.Error.MachineStopped"><value>המפגש החיקוי נפסק.</value></data>
+  <data name="Emulation.Watara.Error.MissingExpectedLibraryFormat"><value>הארכיון ההורדה אינו מכיל {0}.</value></data>
+  <data name="Emulation.Watara.Error.MissingPublishedDate"><value>התגובה הרשמית אינה מזהה את תאריך הפרסום שלה.</value></data>
+  <data name="Emulation.Watara.Error.NotInitialized"><value>המארחת אינה ראשונית.</value></data>
+  <data name="Emulation.Watara.Error.ProcessExitSuffixFormat"><value> קוד יציאה: {0}.</value></data>
+  <data name="Emulation.Watara.Error.ProcessNotInitialized"><value>תהליך החיקוי אינו ראשוני.</value></data>
+  <data name="Emulation.Watara.Error.ProcessStartFailed"><value>תהליך החיקוי לא יכול להתחיל.</value></data>
+  <data name="Emulation.Watara.Error.ProcessUnavailable"><value>תהליך החיקוי אינו זמין.</value></data>
+  <data name="Emulation.Watara.Error.ProtocolVersionMismatchFormat"><value>גירסה פרוטוקול {0} לא תואם {1}.</value></data>
+  <data name="Emulation.Watara.Error.RequestCancelled"><value>הבקשה לחיקוי בוטלה.</value></data>
+  <data name="Emulation.Watara.Error.ResponseTimeout"><value>תגובתו של המארחת הגיעה.</value></data>
+  <data name="Emulation.Watara.Error.ResponseUnavailable"><value>התגובה המארחת אינה זמינה.</value></data>
+  <data name="Emulation.Watara.Error.SharedVideoUnavailable"><value>העברת וידאו משותפת אינה זמינה.</value></data>
+  <data name="Emulation.Watara.Error.StateIncompatible"><value>המדינה הנושחת אינה עולה בקנה אחד עם המכונה הנוכחית.</value></data>
+  <data name="Emulation.Watara.Error.StateInvalid"><value>המדינה הנושחת היא בלתי חוקית.</value></data>
+  <data name="Emulation.Watara.Error.StateUnavailable"><value>החיקוי אינו תומך במדינות שניצלו.</value></data>
+  <data name="Emulation.Watara.Error.UnknownCommandFormat"><value>פקודת חיקוי לא ידועה: {0}.</value></data>
+  <data name="Emulation.Watara.Error.UnsupportedControllerDevice"><value>מכשיר הבקר אינו נתמך.</value></data>
+</root>

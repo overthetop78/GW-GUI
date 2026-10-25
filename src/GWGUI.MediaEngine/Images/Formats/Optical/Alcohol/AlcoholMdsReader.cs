@@ -1,6 +1,6 @@
 using System.Buffers.Binary;
 using System.Collections.Frozen;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
@@ -15,14 +15,10 @@ namespace GWGUI.MediaEngine.Images.Formats.Optical.Alcohol;
 /// <summary>Reads validated autonomous version 1 CD MDS descriptors and their MDF track ranges.</summary>
 public sealed class AlcoholMdsReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { OpticalImageFormatIds.AlcoholMds }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.Optical }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
-    private static readonly IReadOnlyList<ReadOnlyMemory<byte>> SupportedSignatures =
-        [AlcoholMdsFormat.HeaderSignature];
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { OpticalImageFormatIds.AlcoholMds }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Optical }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
+    private static readonly IReadOnlyList<ReadOnlyMemory<byte>> SupportedSignatures = [AlcoholMdsFormat.HeaderSignature];
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => AlcoholMdsFormat.Extensions;
@@ -33,16 +29,13 @@ public sealed class AlcoholMdsReader : IMediaImageReader
 
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId)) return false;
         try
         {
             var header = await ReadHeaderAsync(context, cancellationToken).ConfigureAwait(false);
-            return AlcoholMdsFormat.IsSupportedVersion(header.MajorVersion)
-                && (header.MediumType & AlcoholMdsConstants.DvdMediumFlag) == 0;
+            return AlcoholMdsFormat.IsSupportedVersion(header.MajorVersion) && (header.MediumType & AlcoholMdsConstants.DvdMediumFlag) == 0;
         }
         catch (Exception exception) when (exception is InvalidDataException or NotSupportedException)
         {
@@ -50,9 +43,7 @@ public sealed class AlcoholMdsReader : IMediaImageReader
         }
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var header = await ReadHeaderAsync(context, cancellationToken).ConfigureAwait(false);
         if (!AlcoholMdsFormat.IsSupportedVersion(header.MajorVersion))
@@ -68,10 +59,7 @@ public sealed class AlcoholMdsReader : IMediaImageReader
             sessions.Add(await ReadSessionAsync(context, bytes, cancellationToken).ConfigureAwait(false));
         }
 
-        var sources = sessions.SelectMany(session => session.Tracks)
-            .Select(track => track.DataPath)
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToDictionary(path => path, path => new FileRandomAccessData(path), StringComparer.OrdinalIgnoreCase);
+        var sources = sessions.SelectMany(session => session.Tracks).Select(track => track.DataPath).Distinct(StringComparer.OrdinalIgnoreCase) .ToDictionary(path => path, path => new FileRandomAccessData(path), StringComparer.OrdinalIgnoreCase);
         var descriptors = new List<OpticalTrackDescriptor>();
         foreach (var session in sessions)
         {
@@ -83,21 +71,15 @@ public sealed class AlcoholMdsReader : IMediaImageReader
                 var availableSectors = (source.Length - track.StartOffset) / track.SectorSize;
                 if (track.StartOffset < 0 || track.StartOffset > source.Length || availableSectors <= 0)
                     throw new InvalidDataException($"MDS track {track.TrackNumber} starts outside its MDF file.");
-                var next = ordered.Skip(index + 1).FirstOrDefault(candidate =>
-                    candidate.DataPath.Equals(track.DataPath, StringComparison.OrdinalIgnoreCase)
-                    && candidate.StartOffset > track.StartOffset);
-                var sectorCount = next is null
-                    ? availableSectors
-                    : (next.StartOffset - track.StartOffset) / track.SectorSize;
+                var next = ordered.Skip(index + 1).FirstOrDefault(candidate => candidate.DataPath.Equals(track.DataPath, StringComparison.OrdinalIgnoreCase) && candidate.StartOffset > track.StartOffset);
+                var sectorCount = next is null ? availableSectors : (next.StartOffset - track.StartOffset) / track.SectorSize;
                 var sessionRemaining = session.EndSector - track.StartSector;
                 if (sessionRemaining > 0) sectorCount = Math.Min(sectorCount, sessionRemaining);
                 if (sectorCount <= 0 || track.StartOffset > source.Length - checked(sectorCount * track.SectorSize))
                     throw new InvalidDataException($"MDS track {track.TrackNumber} exceeds its MDF file.");
 
                 var interleavedSubchannels = track.SubchannelMode != 0;
-                var payloadSize = interleavedSubchannels
-                    ? track.SectorSize - OpticalSectorConstants.SubchannelSize
-                    : track.SectorSize;
+                var payloadSize = interleavedSubchannels ? track.SectorSize - OpticalSectorConstants.SubchannelSize : track.SectorSize;
                 var mode = ResolveMode(track, payloadSize);
                 var (userOffset, userLength) = ResolveUserWindow(mode);
                 descriptors.Add(new OpticalTrackDescriptor(
@@ -113,24 +95,15 @@ public sealed class AlcoholMdsReader : IMediaImageReader
                     track.StartOffset,
                     [new OpticalTrackIndex(1, 0)],
                     subchannelSource: interleavedSubchannels ? source : null,
-                    subchannelSourceOffset: interleavedSubchannels
-                        ? checked(track.StartOffset + payloadSize)
-                        : 0,
+                    subchannelSourceOffset: interleavedSubchannels ? checked(track.StartOffset + payloadSize) : 0,
                     subchannelBytesPerSector: interleavedSubchannels ? OpticalSectorConstants.SubchannelSize : 0,
                     subchannelStride: interleavedSubchannels ? track.SectorSize : 0));
             }
         }
 
         var associatedPaths = sources.Keys.ToArray();
-        var sourceDescriptor = new MediaSourceDescriptor(
-            context.Source.PrimaryPath,
-            associatedPaths,
-            context.Source.KnownLength,
-            context.Source.RequestedFormatId);
-        var representation = new OpticalMediaImageRepresentation(
-            descriptors.Sum(track => checked(track.SectorCount * track.UserDataLength)),
-            descriptors,
-            associatedFiles: [context.Source.PrimaryPath, .. associatedPaths]);
+        var sourceDescriptor = new MediaSourceDescriptor(context.Source.PrimaryPath, associatedPaths, context.Source.KnownLength, context.Source.RequestedFormatId);
+        var representation = new OpticalMediaImageRepresentation(descriptors.Sum(track => checked(track.SectorCount * track.UserDataLength)), descriptors, associatedFiles: [context.Source.PrimaryPath, .. associatedPaths]);
         return new MediaImageDocument(
             sourceDescriptor,
             OpticalImageFormatIds.AlcoholMds,
@@ -147,10 +120,7 @@ public sealed class AlcoholMdsReader : IMediaImageReader
             });
     }
 
-    private static async Task<AlcoholMdsSessionBlock> ReadSessionAsync(
-        MediaRecognitionContext context,
-        ReadOnlyMemory<byte> memory,
-        CancellationToken cancellationToken)
+    private static async Task<AlcoholMdsSessionBlock> ReadSessionAsync(MediaRecognitionContext context, ReadOnlyMemory<byte> memory, CancellationToken cancellationToken)
     {
         var bytes = memory.Span;
         var start = BinaryPrimitives.ReadInt32LittleEndian(bytes[0..4]);
@@ -173,10 +143,7 @@ public sealed class AlcoholMdsReader : IMediaImageReader
             var trackNumber = span[AlcoholMdsConstants.TrackNumberOffset];
             if (trackNumber == AlcoholMdsConstants.LeadOutTrackNumber)
             {
-                leadOut = ToFrames(
-                    span[AlcoholMdsConstants.TrackMinuteOffset],
-                    span[AlcoholMdsConstants.TrackSecondOffset],
-                    span[AlcoholMdsConstants.TrackFrameOffset]);
+                leadOut = ToFrames(span[AlcoholMdsConstants.TrackMinuteOffset], span[AlcoholMdsConstants.TrackSecondOffset], span[AlcoholMdsConstants.TrackFrameOffset]);
                 continue;
             }
             var extraOffset = BinaryPrimitives.ReadUInt32LittleEndian(span.Slice(AlcoholMdsConstants.TrackExtraOffset, 4));
@@ -192,17 +159,7 @@ public sealed class AlcoholMdsReader : IMediaImageReader
             var startSector = BinaryPrimitives.ReadUInt32LittleEndian(span.Slice(AlcoholMdsConstants.TrackStartSectorOffset, 4));
             var startOffset = checked((long)BinaryPrimitives.ReadUInt64LittleEndian(span.Slice(AlcoholMdsConstants.TrackStartOffsetOffset, 8)));
             var dataPath = await ReadDataPathAsync(context, footerOffset, cancellationToken).ConfigureAwait(false);
-            tracks.Add(new AlcoholMdsTrackBlock(
-                trackSession,
-                trackNumber,
-                trackMode,
-                subchannelMode,
-                adrControl,
-                sectorSize,
-                startSector,
-                startOffset,
-                footerOffset,
-                dataPath));
+            tracks.Add(new AlcoholMdsTrackBlock(trackSession, trackNumber, trackMode, subchannelMode, adrControl, sectorSize, startSector, startOffset, footerOffset, dataPath));
         }
 
         var resolvedEnd = leadOut ?? end;
@@ -211,10 +168,7 @@ public sealed class AlcoholMdsReader : IMediaImageReader
         return new AlcoholMdsSessionBlock(number, start, resolvedEnd, firstTrack, lastTrack, tracks);
     }
 
-    private static async Task<string> ReadDataPathAsync(
-        MediaRecognitionContext context,
-        long footerOffset,
-        CancellationToken cancellationToken)
+    private static async Task<string> ReadDataPathAsync(MediaRecognitionContext context, long footerOffset, CancellationToken cancellationToken)
     {
         var footer = await ReadRangeAsync(context, footerOffset, AlcoholMdsConstants.TrackFooterSize, cancellationToken).ConfigureAwait(false);
         var nameOffset = BinaryPrimitives.ReadUInt32LittleEndian(footer.Span.Slice(AlcoholMdsConstants.FooterFileNameOffset, 4));
@@ -226,11 +180,7 @@ public sealed class AlcoholMdsReader : IMediaImageReader
         return Path.GetFullPath(Path.IsPathFullyQualified(name) ? name : Path.Combine(mdsDirectory, name));
     }
 
-    private static async Task<string> ReadNullTerminatedStringAsync(
-        MediaRecognitionContext context,
-        long offset,
-        bool wide,
-        CancellationToken cancellationToken)
+    private static async Task<string> ReadNullTerminatedStringAsync(MediaRecognitionContext context, long offset, bool wide, CancellationToken cancellationToken)
     {
         const int maximumBytes = 4096;
         if (offset < 0 || offset >= context.Length) throw new InvalidDataException("An MDS filename offset is outside the descriptor.");
@@ -251,32 +201,20 @@ public sealed class AlcoholMdsReader : IMediaImageReader
         return System.Text.Encoding.Latin1.GetString(bytes.Span[..terminator]);
     }
 
-    private static async ValueTask<MdsHeader> ReadHeaderAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    private static async ValueTask<MdsHeader> ReadHeaderAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var memory = await ReadRangeAsync(context, 0, AlcoholMdsConstants.HeaderSize, cancellationToken).ConfigureAwait(false);
         var bytes = memory.Span;
-        if (!bytes.Slice(AlcoholMdsConstants.SignatureOffset, AlcoholMdsConstants.SignatureLength)
-            .SequenceEqual(AlcoholMdsFormat.HeaderSignature.Span))
+        if (!bytes.Slice(AlcoholMdsConstants.SignatureOffset, AlcoholMdsConstants.SignatureLength).SequenceEqual(AlcoholMdsFormat.HeaderSignature.Span))
             throw new InvalidDataException("The MDS signature is missing.");
         var sessionsOffset = BinaryPrimitives.ReadUInt32LittleEndian(bytes.Slice(AlcoholMdsConstants.SessionsOffsetOffset, 4));
         var sessionCount = BinaryPrimitives.ReadUInt16LittleEndian(bytes.Slice(AlcoholMdsConstants.SessionCountOffset, 2));
         if (sessionCount == 0 || sessionsOffset > context.Length - checked(sessionCount * AlcoholMdsConstants.SessionBlockSize))
             throw new InvalidDataException("The MDS session table exceeds the descriptor.");
-        return new MdsHeader(
-            bytes[AlcoholMdsConstants.VersionOffset],
-            bytes[AlcoholMdsConstants.VersionOffset + 1],
-            BinaryPrimitives.ReadUInt16LittleEndian(bytes.Slice(AlcoholMdsConstants.MediumTypeOffset, 2)),
-            sessionCount,
-            sessionsOffset);
+        return new MdsHeader( bytes[AlcoholMdsConstants.VersionOffset], bytes[AlcoholMdsConstants.VersionOffset + 1], BinaryPrimitives.ReadUInt16LittleEndian(bytes.Slice(AlcoholMdsConstants.MediumTypeOffset, 2)), sessionCount, sessionsOffset);
     }
 
-    private static async ValueTask<ReadOnlyMemory<byte>> ReadRangeAsync(
-        MediaRecognitionContext context,
-        long offset,
-        int length,
-        CancellationToken cancellationToken)
+    private static async ValueTask<ReadOnlyMemory<byte>> ReadRangeAsync(MediaRecognitionContext context, long offset, int length, CancellationToken cancellationToken)
     {
         if (offset < 0 || length < 0 || offset > context.Length - length)
             throw new InvalidDataException("An MDS structure exceeds the descriptor file.");

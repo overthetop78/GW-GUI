@@ -1,4 +1,4 @@
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Contracts.Explorer;
@@ -52,15 +52,10 @@ public sealed class DiskImageExplorer
     /// <exception cref="FileNotFoundException">Le chemin n'existe pas.</exception>
     /// <exception cref="DiskImageCandidatesRejectedException">Un conteneur candidat est identifiÃ© mais corrompu.</exception>
     /// <exception cref="OperationCanceledException">Le jeton demande l'annulation.</exception>
-    public async Task<ExploredDiskImage> ExploreAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
-        => await ExploreAsync(path, formatId, null, cancellationToken).ConfigureAwait(false);
+    public async Task<ExploredDiskImage> ExploreAsync(string path, string? formatId = null, CancellationToken cancellationToken = default) => await ExploreAsync(path, formatId, null, cancellationToken).ConfigureAwait(false);
 
     /// <summary>Explore l'image et publie les unités réelles de l'analyse SCP lorsqu'elle s'applique.</summary>
-    public async Task<ExploredDiskImage> ExploreAsync(
-        string path,
-        string? formatId,
-        IProgress<ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+    public async Task<ExploredDiskImage> ExploreAsync(string path, string? formatId, IProgress<ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         if (!File.Exists(path)) throw new FileNotFoundException($"L'image de média '{path}' n'existe pas.", path);
         MediaImageDocument document;
@@ -89,15 +84,26 @@ public sealed class DiskImageExplorer
 
         if (document.Representation is FluxMediaImageRepresentation flux)
         {
-            if (!document.FormatId.Equals(DiskImageFormatIds.RawScp, StringComparison.OrdinalIgnoreCase)) return documents.CreateUnknown(path);
-            var scpImage = ProtectedTrackScpImageAdapter.Create(flux.Image, document.Metadata);
-            scpImageLoaded?.Invoke(scpImage);
-            var explored = await scpExploration.ExploreAutomaticallyAsync(
-                path,
-                scpImage,
-                progress,
-                cancellationToken).ConfigureAwait(false);
-            return formatId is null ? explored : explored.SelectFormat(formatId) ?? documents.CreateUnknown(path);
+            if (document.FormatId.Equals(DiskImageFormatIds.RawScp, StringComparison.OrdinalIgnoreCase))
+            {
+                var scpImage = ProtectedTrackScpImageAdapter.Create(flux.Image, document.Metadata);
+                scpImageLoaded?.Invoke(scpImage);
+                var explored = await scpExploration.ExploreAutomaticallyAsync(path, scpImage, progress, cancellationToken).ConfigureAwait(false);
+                return formatId is null ? explored : explored.SelectFormat(formatId) ?? documents.CreateUnknown(path);
+            }
+
+            var presentationImage = ProtectedTrackScpImageAdapter.Create(flux.Image, document.Metadata);
+            scpImageLoaded?.Invoke(presentationImage);
+            try
+            {
+                var decoded = await scpExploration.ReadAsync(flux.Image, formatId, progress, cancellationToken).ConfigureAwait(false);
+                var decodedResult = formatId is null ? ReadAutomatically(decoded) : ReadExplicitly(decoded, formatId);
+                return documents.Create(path, decodedResult.Image, decodedResult.Detected, [decodedResult.Image], presentationImage);
+            }
+            catch (Exception exception) when (exception is InvalidDataException or NotSupportedException)
+            {
+                return documents.CreateUnknown(path, presentationImage);
+            }
         }
 
         if (document.Representation is not SectorMediaImageRepresentation sectors) return documents.CreateUnknown(path);
@@ -107,10 +113,7 @@ public sealed class DiskImageExplorer
     }
 
     /// <summary>Explore une capture SCP déjà acquise en mémoire tout en conservant son chemin de destination.</summary>
-    public Task<ExploredDiskImage> ExploreScpAsync(
-        string path,
-        ScpImage image,
-        CancellationToken cancellationToken = default)
+    public Task<ExploredDiskImage> ExploreScpAsync(string path, ScpImage image, CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
         ArgumentNullException.ThrowIfNull(image);
@@ -120,9 +123,7 @@ public sealed class DiskImageExplorer
     /// <summary>Reads through the common chain and retries without a downstream sector-format hint when necessary.</summary>
     private async Task<MediaImageDocument> ReadDocumentAsync(string path, string? formatId, CancellationToken cancellationToken)
     {
-        var containerFormatId = Path.GetExtension(path).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase)
-            ? null
-            : formatId;
+        var containerFormatId = Path.GetExtension(path).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) ? null : formatId;
         var source = new MediaSourceDescriptor(path, [], RequestedFormatId: containerFormatId);
         try
         {
@@ -139,10 +140,7 @@ public sealed class DiskImageExplorer
     {
         var candidates = new[] { image }.Concat(interpretations.AdditionalImageCandidates(image));
         var detected = fileSystems.ReadDistinctCandidates(candidates)
-            .Select(candidate => new ExploredFileSystem(
-                candidate.Match.ReaderId,
-                (SectorImage)candidate.Image,
-                FileSystemVolumeMapper.ConvertVolume(candidate.Match.Volume, ((SectorImage)candidate.Image).FormatId)))
+            .Select(candidate => new ExploredFileSystem(candidate.Match.ReaderId, (SectorImage)candidate.Image, FileSystemVolumeMapper.ConvertVolume(candidate.Match.Volume, ((SectorImage)candidate.Image).FormatId)))
             .ToArray();
         return (image, detected);
     }
@@ -153,8 +151,7 @@ public sealed class DiskImageExplorer
         var selectedImage = image.FormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase) ? image : image.WithFormatId(formatId);
         if (fileSystems.TryRead(selectedImage, formatId, out var match))
         {
-            return (selectedImage, [new(match.ReaderId, selectedImage,
-                FileSystemVolumeMapper.ConvertVolume(match.Volume, selectedImage.FormatId))]);
+            return (selectedImage, [new(match.ReaderId, selectedImage, FileSystemVolumeMapper.ConvertVolume(match.Volume, selectedImage.FormatId))]);
         }
         return (selectedImage, []);
     }

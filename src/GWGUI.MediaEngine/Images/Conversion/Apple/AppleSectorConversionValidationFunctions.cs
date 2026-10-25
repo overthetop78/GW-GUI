@@ -24,7 +24,6 @@ internal static class AppleSectorConversionValidationFunctions
             || targetFormatId.Equals(DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase) &&
                     image.FormatId.Equals(DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase);
         if (!valid)
-            throw new InvalidDataException(
-                $"Apple source format '{image.FormatId}' cannot be written as '{targetFormatId}' without changing its file system.");
+            throw new InvalidDataException($"Apple source format '{image.FormatId}' cannot be written as '{targetFormatId}' without changing its file system.");
     }
 }

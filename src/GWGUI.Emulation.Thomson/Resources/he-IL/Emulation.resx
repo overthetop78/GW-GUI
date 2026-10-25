@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.theodore.Description"><value>מדמה את Thomson MO / TO.</value></data>
+  <data name="Emulation.Thomson.Start" xml:space="preserve"><value>תוכנית סטארט-אפ</value></data>
+  <data name="Emulation.Thomson.Start.AutoRun" xml:space="preserve"><value>התחל את התוכנית טעון באופן אוטומטי</value></data>
+  <data name="Emulation.Thomson.Start.UseGameHash" xml:space="preserve"><value>לזהות את התוכנית על ידי ה- Checkum</value></data>
+  <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>הצג הוראות לפתיחת התוכנית</value></data>
+  <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Printer</value></data>
+  <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>שמור את הפלט המדפסת לקובץ</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>עט אור</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>מגע עט האור</value></data>
+</root>

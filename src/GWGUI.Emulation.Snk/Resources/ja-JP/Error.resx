@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Error.StateIncompatible" xml:space="preserve"><value>とりあえず SNK 保存状態は、現在のマシンと互換性がありません。</value></data>
+  <data name="Emulation.Snk.Error.Unexpected" xml:space="preserve"><value>予期しない SNK エミュレータエラーが発生しました。</value></data>
+  <data name="Emulation.Snk.Error.FirmwareMissing" xml:space="preserve"><value>必須項目 SNK ファームウェアが不足しています。</value></data>
+  <data name="Emulation.Snk.Error.FirmwareInvalid" xml:space="preserve"><value>システム ROM 無効または非互換です。</value></data>
+  <data name="Emulation.Snk.Error.ContentNotFound" xml:space="preserve"><value>構成される SNK メディアが見つかりませんでした。</value></data>
+  <data name="Emulation.Snk.Error.ContentUnsupported" xml:space="preserve"><value>選択したメディアに対応していません。</value></data>
+  <data name="Emulation.Snk.Error.OptionInvalid" xml:space="preserve"><value>ツイート SNK オプションには無効な値があります。</value></data>
+  <data name="Emulation.Snk.Error.CoreNotFound" xml:space="preserve"><value>必須事項 SNK コアが見つかりませんでした。</value></data>
+  <data name="Emulation.Snk.Error.CoreRejected" xml:space="preserve"><value>選択された SNK コアはロードできませんでした。</value></data>
+  <data name="Emulation.Snk.Error.StateInvalid" xml:space="preserve"><value>とりあえず SNK 保存状態が無効です。</value></data>
+  <data name="Emulation.Snk.Error.HostExecutableMissing" xml:space="preserve"><value>とりあえず SNK ホスト実行可能パスは利用できません。</value></data>
+  <data name="Emulation.Snk.Error.Details" xml:space="preserve"><value>詳細情報: {0}</value></data>
+  <data name="Emulation.Snk.Error.HostProtocolFailure" xml:space="preserve"><value>コミュニケーションとコミュニケーション SNK ホストが失敗しました。</value></data>
+  <data name="Emulation.Snk.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>未知の環境コマンド: {0}</value></data>
+</root>

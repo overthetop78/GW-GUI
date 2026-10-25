@@ -15,4 +15,5 @@
   <data name="Emulation.Configuration" xml:space="preserve"><value>Nastavení</value></data>
   <data name="Emulation.Configurations" xml:space="preserve"><value>Konfigurace</value></data>
   <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Smazat tuto konfiguraci Amiga?</value></data>
+  <data name="Emulation.Configuration.Selector"><value>Značky a stroje</value></data>
 </root>

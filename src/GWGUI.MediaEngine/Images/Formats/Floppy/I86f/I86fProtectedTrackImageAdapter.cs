@@ -17,14 +17,7 @@ public static class I86fProtectedTrackImageAdapter
             var head = track.LogicalIndex / I86fLayout.TrackTableEntriesPerSide;
             var indexTime = checked((uint)(track.Bits.Count * (long)I86fLayout.TicksPerBitCell));
             var revolution = FluxRevolutionFactory.Create(track.Bits, I86fLayout.TicksPerBitCell, indexTime);
-            return new ProtectedTrack(
-                cylinder,
-                head,
-                track.Bits,
-                [new TrackTimingSegment(0, track.Bits.Count, bitCellNanoseconds)],
-                [],
-                [],
-                [new TrackFluxRevolution(ScpFormatConstants.ResolutionStepNanoseconds, revolution)]);
+            return new ProtectedTrack(cylinder, head, track.Bits, [new TrackTimingSegment(0, track.Bits.Count, bitCellNanoseconds)], [], [], [new TrackFluxRevolution(ScpFormatConstants.ResolutionStepNanoseconds, revolution)]);
         }).ToArray();
         return new ProtectedTrackImage(tracks, false);
     }

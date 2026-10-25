@@ -91,8 +91,7 @@ internal static class FilterSegmentDisplayLayout
         new(.5f,.1f,.5f,.46f), new(.5f,.54f,.5f,.9f)
     ];
 
-    internal static SegmentDisplayElement[] Elements(EmulationSegmentDisplayLayout layout,
-        bool decimalPoint, bool colon)
+    internal static SegmentDisplayElement[] Elements(EmulationSegmentDisplayLayout layout, bool decimalPoint, bool colon)
     {
         var elements = (layout switch
         {

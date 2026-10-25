@@ -13,8 +13,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem.Blocks
         {
             if (longNameFileSystemCommentBlock.Type != FastFileSystemConstants.TYPE_COMMENT)
             {
-                throw new ArgumentException($"Invalid long name file system comment block type '{longNameFileSystemCommentBlock.Type}'",
-                    nameof(longNameFileSystemCommentBlock));
+                throw new ArgumentException($"Invalid long name file system comment block type '{longNameFileSystemCommentBlock.Type}'", nameof(longNameFileSystemCommentBlock));
             }
 
             var blockBytes = new byte[blockSize];

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.emuscv.Description" xml:space="preserve"><value>Tính SUPER CASSETTE VISION - Máy điều khiển.</value></data>
+  <data name="Emulation.Emulator.pd777.Description" xml:space="preserve"><value>Tính CASSETTE VISION - Máy điều khiển.</value></data>
+  <data name="Emulation.Epoch.Memory.Display" xml:space="preserve"><value>Bộ nhớ phim</value></data>
+  <data name="Emulation.Epoch.Video.Native" xml:space="preserve"><value>Video bàn điều khiển</value></data>
+  <data name="Emulation.Epoch.Controls.Native" xml:space="preserve"><value>Điều khiển bàn điều khiển</value></data>
+  <data name="Emulation.Epoch.Setting.DisplayArea" xml:space="preserve"><value>Vùng hiển thị</value></data>
+  <data name="Emulation.Epoch.Setting.PixelAspect" xml:space="preserve"><value>Hình điểm ảnh</value></data>
+  <data name="Emulation.Epoch.Setting.ColorPalette" xml:space="preserve"><value>Bảng màu</value></data>
+  <data name="Emulation.Epoch.Setting.RefreshRate" xml:space="preserve"><value>Tần số cập nhật</value></data>
+  <data name="Emulation.Epoch.Setting.ShowVideoMemory" xml:space="preserve"><value>Hiển thị bộ nhớ phim đầy đủ</value></data>
+  <data name="Emulation.Epoch.Setting.ShowInputs" xml:space="preserve"><value>Trạng thái điều khiển hiển thị</value></data>
+  <data name="Emulation.Epoch.Setting.ValidateFirmware" xml:space="preserve"><value>Kiểm tra BIOS checksum</value></data>
+  <data name="Emulation.Epoch.Setting.ShowKeypadAtStart" xml:space="preserve"><value>Hiển thị bàn phím khi khởi chạy</value></data>
+  <data name="Emulation.Epoch.Setting.AnnounceCourseSwitch" xml:space="preserve"><value>Hiển thị phần chọn trình đơn</value></data>
+  <data name="Emulation.Epoch.Value.Rectangular" xml:space="preserve"><value>Hình chữ nhật</value></data>
+  <data name="Emulation.Epoch.Value.Low" xml:space="preserve"><value>Thấp</value></data>
+  <data name="Emulation.Epoch.Value.High" xml:space="preserve"><value>Cao</value></data>
+</root>

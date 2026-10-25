@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>A Kickstart path is required.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>A required firmware path is empty.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>The selected file does not exist.</value></data>
+  <data name="Emulation.Error.Title"><value>Emulation error</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>The required emulator is not installed.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>The emulator rejected the requested operation.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>The emulator cannot be updated while it is in use.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>Required firmware is missing.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>The selected firmware is incompatible with this machine.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>The configured media file was not found.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>The selected media is not supported by this emulator.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>An emulator option is invalid.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>Communication with the emulator process failed.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>The emulated machine could not be started.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>The media operation failed.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>The saved state is invalid or damaged.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>The saved state is not compatible with this machine configuration.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>The saved-state operation failed.</value></data>
 </root>

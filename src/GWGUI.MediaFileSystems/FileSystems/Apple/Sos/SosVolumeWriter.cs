@@ -1,6 +1,6 @@
-using MediaSectorAddress = global::GWGUI.MediaFileSystems.Contracts.MediaSectorAddress;
-using MediaSectorGeometry = global::GWGUI.MediaFileSystems.Contracts.MediaSectorGeometry;
-using MediaSectorWritePlan = global::GWGUI.MediaFileSystems.Contracts.MediaSectorWritePlan;
+using MediaSectorAddress = GWGUI.MediaFileSystems.Contracts.MediaSectorAddress;
+using MediaSectorGeometry = GWGUI.MediaFileSystems.Contracts.MediaSectorGeometry;
+using MediaSectorWritePlan = GWGUI.MediaFileSystems.Contracts.MediaSectorWritePlan;
 using GWGUI.MediaFileSystems.FileSystems.Apple.ProDos;
 using GWGUI.MediaFileSystems.Migration;
 

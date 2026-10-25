@@ -16,9 +16,7 @@ namespace GWGUI.App.Options.Models.Updates;
 
 internal sealed class UpdateComponentRow
 {
-    internal UpdateComponentRow(string id, UpdateComponentKind kind, string displayName, string installedLabel,
-        string statusLabel, IReadOnlyList<string> versions, string? selectedVersion, bool canSelectVersion,
-        UpdateVisualState state)
+    internal UpdateComponentRow(string id, UpdateComponentKind kind, string displayName, string installedLabel, string statusLabel, IReadOnlyList<string> versions, string? selectedVersion, bool canSelectVersion, UpdateVisualState state)
     {
         Id = id;
         Kind = kind;

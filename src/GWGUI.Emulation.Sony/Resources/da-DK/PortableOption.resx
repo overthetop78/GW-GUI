@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>Fast Boot</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Skips BIOS Start skærmen og starter spillet direkte. Deaktivér dette for at åbne konsolindstillinger eller hukommelseskortet manager.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Automatisk</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU-kerne</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Hurtig hukommelse</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Aktivér hurtigere hukommelsesadgang. Det kan gøre nogle spil ustabile.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Ignorér dårlige hukommelsesadgang</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>Tidsstyring af lageradgang</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>Værtscomputer</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>Læseforsinkelser for UMD-diske</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>Synkroniser med realtidsuret</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>Synkroniserer emuleringen med realtidsuret for at mindske inputforsinkelsen. Det kan reducere ydeevnen.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>Låst CPU-hastighed</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>Cache Fuld ISO i RAM</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>Støtte til interne bedragerier</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Label"><value>Spilsprog</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Help"><value>'Automatic' vil bruge frontend-sproget.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>Kinesisk traditionel</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>Kinesisk simplificeret</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>PSP Model</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>Softwareredigering</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Brug softwarerendering for større nøjagtighed med et højere behov for regnekraft.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>Rendering- opløsning</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>Vælg den interne gengivelsesopløsning.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA Antialiserende midler</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Anvend MSAA-kantudjævning med Vulkan.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>beskære til 16x9</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>Beskær billedets top og bund, så det vises i formatet 16:9.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>Frameskip Formand</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Label"><value>Frameskip- type</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.0"><value>Antal videobilleder</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>Procentdel af billedfrekvensen</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>Auto Frameskip</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>Render Duplikér rammer til 60 Hz</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>Duplikerer videobilleder for at give mere flydende bevægelser i spil med lav billedfrekvens.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Registrer ændringer i billedfrekvensen</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Giv programmet besked om ændringer i spillets billedfrekvens.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Buffering af grafikkommandoer</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>Reducér buffering af grafikkommandoer for at mindske inputforsinkelsen. Det kan sænke ydelsen. Kun OpenGL og Vulkan.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Ingen ekstra grafikbuffering</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Buffer højst ét videobillede</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Bekræftelsesknap</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Kompensation for analog styrepinds cirkulære og firkantede bevægelsesområde</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Analog Deadzone</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Anvend en ekstra dødzone for den analoge styrepind efter programmets behandling af input.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Analog akseskala</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Help"><value>Anvend ekstra følsomhed for den analoge styrepind efter programmets behandling af input.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Label"><value>Skip buffereffekter</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Spring framebuffer-effekter over for at forbedre ydelsen. Nogle spil viser muligvis intet billede.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Skip GPU Tilbagebetalinger</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Spring kopiering af grafikdata fra GPU til CPU over. Nogle spil kræver disse kopier for at vise billedet korrekt.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Udskudt teksturcaching (hurtigere)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Hurtigere, men kan forårsage tekstproblemer i et par spil.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>spline / bezier kurvers kvalitet</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Kun bruges af nogle spil, styrer glathed kurver.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Label"><value>Lavere opløsning for effekter</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Help"><value>Sænk opløsningen af visse visuelle effekter for at undgå gengivelsesfejl.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Value.2"><value>Afbalanceret</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_gpu_hardware_transform.Label"><value>Hardware Transform</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Label"><value>Software Skinning</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Help"><value>Behandl og saml tegneoperationer for animerede 3D-modeller på CPU. Det forbedrer ydelsen i de fleste spil.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Label"><value>Hardware Tesselation</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Help"><value>Brug GPU til at tegne glatte kurver.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Label"><value>Type af teksturopskalering</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Value.3"><value>Hybrid + Bikubic</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Label"><value>Teksturér opskaleringsniveau</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Help"><value>Forstørrelse af teksturer øger CPU-belastningen. Nogle teksturer forstørres senere for at undgå hakken.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Label"><value>Texture Depositerisér</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Help"><value>Reducér synlige farvebånd i forstørrede teksturer.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_replacement.Label"><value>Teksturerstatning</value></data>
+  </root>

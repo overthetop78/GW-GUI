@@ -8,9 +8,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
             {
                 Name = entry.Name,
                 Type = GetEntryType(entry.Type),
-                Size = entry.Type == FastFileSystemConstants.ST_LFILE && entry.LinkEntryBlock != null
-                    ? entry.LinkEntryBlock.ByteSize
-                    : entry.Size,
+                Size = entry.Type == FastFileSystemConstants.ST_LFILE && entry.LinkEntryBlock != null ? entry.LinkEntryBlock.ByteSize : entry.Size,
                 ProtectionBits = ProtectionBitsConverter.ToProtectionBits((int)entry.Access),
                 Date = entry.Date,
                 Comment = entry.Comment,

@@ -2,7 +2,6 @@
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
-
 /// <summary>Regroupe les définitions techniques du format Membrain MFM.</summary>
 internal static class MembrainMfmFormat
 {
@@ -95,7 +94,6 @@ internal static class MembrainMfmFormat
 
     /// <summary>Indique si l'octet est une marque de données Membrain.</summary>
     public static bool IsDataAddressMark(byte value) => value is >= FirstDataAddressMark and <= LastDataAddressMark;
-
     /// <summary>Crée l'exception signalant une taille de secteur invalide.</summary>
     public static ArgumentException InvalidSectorSize(int actualSize) => new($"Membrain sectors contain {SectorSize} bytes; received {actualSize} bytes.");
 }
@@ -104,14 +102,23 @@ internal static class MembrainMfmFormat
 internal static class MembrainMfmAddress
 {
     /// <summary>Empaquette le cylindre, la face et le secteur dans les deux octets Membrain.</summary>
-    public static (byte CylinderHigh, byte PackedAddress) Pack(int cylinder, int head, int sector) => ((byte)(cylinder >> MembrainMfmFormat.CylinderLowBitCount), (byte)(((cylinder & MembrainMfmFormat.CylinderLowValueMask) << MembrainMfmFormat.CylinderLowShift) | (head << MembrainMfmFormat.HeadShift) | (sector & MembrainMfmFormat.SectorMask)));
-
+    public static (byte CylinderHigh, byte PackedAddress) Pack(int cylinder,
+        int head,
+        int sector) => ((byte)(cylinder >> MembrainMfmFormat.CylinderLowBitCount), (byte)(((cylinder & MembrainMfmFormat.CylinderLowValueMask) << MembrainMfmFormat.CylinderLowShift) | (head << MembrainMfmFormat.HeadShift) | (sector & MembrainMfmFormat.SectorMask)));
     /// <summary>Dépaquette les deux octets d'adresse Membrain.</summary>
-    public static (byte Cylinder, byte Head, byte Sector) Unpack(byte cylinderHigh, byte packedAddress) => ((byte)(((cylinderHigh & MembrainMfmFormat.CylinderHighMask) << MembrainMfmFormat.CylinderLowBitCount) | ((packedAddress & MembrainMfmFormat.CylinderLowMask) >> MembrainMfmFormat.CylinderLowShift)), (byte)((packedAddress >> MembrainMfmFormat.HeadShift) & MembrainMfmFormat.HeadMask), (byte)(packedAddress & MembrainMfmFormat.SectorMask));
+    public static (byte Cylinder, byte Head, byte Sector) Unpack(byte cylinderHigh,
+        byte packedAddress) => ((byte)(((cylinderHigh 
+            & MembrainMfmFormat.CylinderHighMask) 
+            << MembrainMfmFormat.CylinderLowBitCount) 
+            | ((packedAddress 
+            & MembrainMfmFormat.CylinderLowMask) 
+            >> MembrainMfmFormat.CylinderLowShift)), (byte)((packedAddress 
+            >> MembrainMfmFormat.HeadShift) 
+            & MembrainMfmFormat.HeadMask), (byte)(packedAddress 
+            & MembrainMfmFormat.SectorMask));
 }
 
 /// <summary>Représente un en-tête Membrain décodé.</summary>
 internal sealed record MembrainMfmHeader(int Offset, byte Cylinder, byte Head, byte Sector, bool CrcValid, byte[] Bytes);
-
 /// <summary>Représente un bloc de données Membrain décodé.</summary>
 internal sealed record MembrainMfmData(int Offset, byte Mark, byte[] Payload, byte[] Bytes, bool CrcValid);

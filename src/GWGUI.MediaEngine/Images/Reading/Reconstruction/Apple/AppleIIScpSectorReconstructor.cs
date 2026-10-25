@@ -22,15 +22,14 @@ internal sealed class AppleIIScpSectorReconstructor(AppleScpSectorDecoder decode
     /// <param name="cancellationToken">Jeton permettant d'annuler le dÃ©codage des rÃ©volutions.</param>
     /// <returns>L'image Apple II reconstruite dans l'ordre DOS ou ProDOS demandÃ©.</returns>
     /// <exception cref="InvalidDataException">Aucun secteur Apple II n'a Ã©tÃ© dÃ©codÃ© ou aucun candidat ne respecte la gÃ©omÃ©trie retenue.</exception>
-    public SectorImage Decode(ScpImage scp, bool prodosOrder, CancellationToken cancellationToken)
+    public SectorImage Decode(ScpImage scp, bool prodosOrder, CancellationToken cancellationToken, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress = null)
     {
-        var candidates = decoder.DecodeCandidates(scp, FluxCodecIds.AppleIIGcr, AppleIIGcrFormat.SectorSize, cancellationToken);
+        var candidates = decoder.DecodeCandidates(scp, FluxCodecIds.AppleIIGcr, AppleIIGcrFormat.SectorSize, cancellationToken, progress);
         if (candidates.Count == 0) throw ScpReconstructionExceptions.NoDecodedSectors(AppleIIGcrFormat.StructureDescriptionName);
         if (prodosOrder) return CreateProDosImage(candidates);
         var sectorsPerTrack = candidates.Keys.Any(address => address.Number >= AppleIIGcrFormat.FiveAndThreeSectorsPerTrack) ? AppleIIGcrFormat.SixAndTwoSectorsPerTrack : AppleIIGcrFormat.FiveAndThreeSectorsPerTrack;
         var blocks = candidates.Where(pair => pair.Key.Cylinder < AppleIIGeometry.MaximumReconstructedTrackCount && pair.Key.Number >= 0 && pair.Key.Number < sectorsPerTrack)
-            .Select(pair => AppleScpSectorDecoder.Select(
-                pair.Key.Cylinder * sectorsPerTrack + (sectorsPerTrack == AppleIIGeometry.SectorsPerTrack ? AppleIIGeometry.PhysicalToDos[pair.Key.Number] : pair.Key.Number), pair.Key, pair.Value)).ToArray();
+            .Select(pair => AppleScpSectorDecoder.Select(pair.Key.Cylinder * sectorsPerTrack + (sectorsPerTrack == AppleIIGeometry.SectorsPerTrack ? AppleIIGeometry.PhysicalToDos[pair.Key.Number] : pair.Key.Number), pair.Key, pair.Value)).ToArray();
         if (blocks.Length == 0) throw ScpReconstructionExceptions.NoUsableSectors(AppleIIGcrFormat.StructureDescriptionName);
         var formatId = sectorsPerTrack == AppleIIGeometry.Dos32SectorsPerTrack ? DiskImageFormatIds.AppleIIDos32 : DiskImageFormatIds.AppleIIDos33;
         return new(formatId, AppleIIGeometry.SectorSize, Math.Max(AppleIIGeometry.TrackCount, blocks.Max(block => block.Address.Cylinder) + 1), DiskGeometryConstants.SingleSidedHeadCount, sectorsPerTrack, blocks);

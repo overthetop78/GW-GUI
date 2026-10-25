@@ -1,4 +1,5 @@
 using GWGUI.App.Localization.Extensions;
+using GWGUI.App.Contracts.Emulation.Configurations;
 using GWGUI.App.Services.Emulation;
 using GWGUI.App.Views.Controls.Emulation.Options;
 using GWGUI.Emulation.Contracts;
@@ -7,8 +8,10 @@ using GWGUI.Emulation.Interfaces;
 using GWGUI.Tests.Application.TestInfrastructure;
 using GWGUI.VideoPresentation.Services;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using GWGUI.VideoPresentation.Dictionaries;
 namespace GWGUI.Tests.Interface.EmulationViews;
 
 internal static class MachineConfigurationScenarios
@@ -21,7 +24,7 @@ internal static class MachineConfigurationScenarios
         public Exception? SaveError;
         public List<IReadOnlyDictionary<string,string?>> Applied = [];
         public IEmulationModule Service;
-        public Module()
+        public Module(bool includeVideo = false, bool includeDirectories = false)
         {
             Service = ControlledDependencies.Simulate<IEmulationModule>((method,args) => method.Name switch
             {
@@ -29,7 +32,7 @@ internal static class MachineConfigurationScenarios
                 "get_DisplayResourceKey" => "Emulation.Machine.Model",
                 "get_Machines" => new EmulationMachineDefinition[] { new("a","Emulation.Machine.Model"),new("b","Emulation.Machine.Model") },
                 "CreateConfiguration" => new Configuration(Id,Guid.NewGuid(),(string)args[0]!),
-                "Describe" => Describe((Configuration)args[1]!),
+                "Describe" => Describe((Configuration)args[1]!, includeVideo, includeDirectories),
                 "LoadConfigurationsAsync" => ValueTask.FromResult<IReadOnlyList<IEmulationConfiguration>>(Saved.ToArray()),
                 "SaveConfigurationAsync" => Save((IEmulationConfiguration)args[0]!),
                 "ApplySettings" => Apply((Configuration)args[0]!, (IReadOnlyDictionary<string,string?>)args[1]!),
@@ -43,13 +46,19 @@ internal static class MachineConfigurationScenarios
         }
         private Configuration Apply(Configuration configuration, IReadOnlyDictionary<string,string?> values)
         { Applied.Add(new Dictionary<string,string?>(values)); return configuration with { Value = values["toggle"] ?? "off" }; }
-        private static EmulationMachineSettings Describe(Configuration configuration) => new(configuration.MachineId,
-            new(new Dictionary<EmulationMachineTab,bool> { [EmulationMachineTab.General] = true,[EmulationMachineTab.Cpu] = true }),
+        private static EmulationMachineSettings Describe(Configuration configuration, bool includeVideo, bool includeDirectories) => new(configuration.MachineId,
+            new(new Dictionary<EmulationMachineTab,bool>
+            {
+                [EmulationMachineTab.General] = true,
+                [EmulationMachineTab.Cpu] = true,
+                [EmulationMachineTab.Video] = includeVideo
+            }),
             [new("general",EmulationMachineTab.General,"Emulation.Machine.Model",
                 [new("toggle",EmulationMachineTab.General,"general","Emulation.Value.Enabled",EmulationSettingsEditor.Toggle,configuration.Value,EnabledValue:"on",DisabledValue:"off"),
-                 new("hidden",EmulationMachineTab.General,"general","Emulation.Machine.Model",EmulationSettingsEditor.Text,"hidden",IsVisible:false)]),
-             new("cpu",EmulationMachineTab.Cpu,"Emulation.Machine.Model",
-                [new("locked",EmulationMachineTab.Cpu,"cpu","Emulation.Machine.Model",EmulationSettingsEditor.Text,"fixed",IsEnabled:false)])]);
+                 new("hidden",EmulationMachineTab.General,"general","Emulation.Machine.Model",EmulationSettingsEditor.Text,"hidden",IsVisible:false),
+                 new("codes",EmulationMachineTab.General,"general","Emulation.Machine.Model",EmulationSettingsEditor.DirectoryPath,"selected-codes",IsVisible:includeDirectories),
+                 new("default-folder",EmulationMachineTab.General,"general","Emulation.Machine.Model",EmulationSettingsEditor.DirectoryPath,"default-images",IsVisible:includeDirectories,DefaultFolderCategory:EmulationDefaultFolderCategory.HardDisk)]),
+             new("cpu",EmulationMachineTab.Cpu,"Emulation.Machine.Model", [new("locked",EmulationMachineTab.Cpu,"cpu","Emulation.Machine.Model",EmulationSettingsEditor.Text,"fixed",IsEnabled:false)])]);
         public void Cleanup() { EmulationConfigurationDraftStore.Remove(Id,"a"); EmulationConfigurationDraftStore.Remove(Id,"b"); }
     }
     internal static IEnumerable<T> Controls<T>(DependencyObject root) where T:DependencyObject
@@ -57,6 +66,24 @@ internal static class MachineConfigurationScenarios
         if(root is T control) yield return control;
         foreach(var child in LogicalTreeHelper.GetChildren(root).OfType<DependencyObject>())
             foreach(var descendant in Controls<T>(child)) yield return descendant;
+    }
+    public static void FunctionalDirectoriesRemainVisible()
+    {
+        var module = new Module(includeDirectories: true);
+        var files = new MemoryVideoProfileFiles();
+        var store = new VideoPresentationProfileStore("virtual-video", fileSystem: files, schedule: action => { action(); return Task.CompletedTask; });
+        var view = new EmulationModuleSettingsSection(module.Service, store, error => throw error);
+        try
+        {
+            Assert.Contains(Controls<TextBox>(view), control => control.Text == "selected-codes");
+            Assert.DoesNotContain(Controls<TextBox>(view), control => control.Text == "default-images");
+            Assert.Empty(files.Writes);
+        }
+        finally
+        {
+            view.Content = null;
+            module.Cleanup();
+        }
     }
     public static async Task ConfigurationEditing(bool failed)
     {
@@ -122,5 +149,69 @@ internal static class MachineConfigurationScenarios
             Assert.Empty(errors); Assert.Empty(other.Saved);
         }
         finally { module.Cleanup(); other.Cleanup(); }
+    }
+
+    public static async Task MachineSwitchKeepsSavedAndDraftChanges()
+    {
+        var module = new Module();
+        var errors = new List<Exception>();
+        var saved = new Configuration(module.Id, Guid.NewGuid(), "a");
+        module.Saved.Add(saved);
+        var view = new EmulationModuleSettingsSection(module.Service, showError: errors.Add);
+        try
+        {
+            await view.EditConfigurationAsync(saved);
+            var machines = Assert.Single(Controls<ListBox>(view));
+            Assert.Single(Controls<CheckBox>(view)).IsChecked = true;
+            machines.SelectedIndex = 1;
+            await Dispatcher.Yield(DispatcherPriority.ContextIdle);
+            Assert.Equal("b", view.CurrentConfiguration.MachineId);
+            Assert.Single(Controls<CheckBox>(view)).IsChecked = true;
+            machines.SelectedIndex = 0;
+            await Dispatcher.Yield(DispatcherPriority.ContextIdle);
+            Assert.True(Assert.Single(Controls<CheckBox>(view)).IsChecked);
+            Assert.Equal("on", Assert.IsType<Configuration>(Assert.Single(module.Saved)).Value);
+            machines.SelectedIndex = 1;
+            await Dispatcher.Yield(DispatcherPriority.ContextIdle);
+            Assert.True(Assert.Single(Controls<CheckBox>(view)).IsChecked);
+            Assert.True(EmulationConfigurationDraftStore.TryGet(module.Id, "b", out var draft));
+            Assert.Equal("on", Assert.IsType<Configuration>(draft).Value);
+            Assert.Empty(errors);
+        }
+        finally
+        {
+            await view.DisposeAsync();
+            module.Cleanup();
+        }
+    }
+
+    public static async Task VideoProfileChangesArePublishedAndPersisted()
+    {
+        var module = new Module(includeVideo: true);
+        var configuration = new Configuration(module.Id, Guid.NewGuid(), "a");
+        module.Saved.Add(configuration);
+        var files = new MemoryVideoProfileFiles();
+        var profiles = new VideoPresentationProfileStore("virtual-video", fileSystem: files,
+            schedule: action => { action(); return Task.CompletedTask; });
+        var view = new EmulationModuleSettingsSection(module.Service, profiles);
+        EmulationConfigurationSavedEventArgs? published = null;
+        view.VideoConfigurationChanged += (_, args) => published = args;
+        try
+        {
+            await view.EditConfigurationAsync(configuration);
+            var grain = Controls<Slider>(view).Single(slider => AutomationProperties.GetAutomationId(slider) == EmulationVideoProcessingCatalog.Grain);
+
+            grain.Value = 60;
+            await Dispatcher.Yield(DispatcherPriority.ContextIdle);
+
+            Assert.Equal(configuration.Id, published?.Configuration.Id);
+            Assert.Equal(60, profiles.Get(module.Id, configuration.Id).Processing!.Stylistic.Grain);
+            Assert.NotEmpty(files.Writes);
+        }
+        finally
+        {
+            await view.DisposeAsync();
+            module.Cleanup();
+        }
     }
 }

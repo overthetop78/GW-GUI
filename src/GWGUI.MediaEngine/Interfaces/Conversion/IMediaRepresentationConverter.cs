@@ -13,15 +13,13 @@ public interface IMediaRepresentationConverter
 
     IReadOnlySet<MediaRepresentationKind> TargetRepresentationKinds { get; }
 
-    bool CanConvert(
-        MediaImageDocument source,
-        string targetFormatId,
-        MediaRepresentationKind targetRepresentationKind);
+    bool CanConvert(MediaImageDocument source, string targetFormatId, MediaRepresentationKind targetRepresentationKind);
 
     Task<MediaRepresentationConversionResult> ConvertAsync(
         MediaImageDocument source,
         string targetFormatId,
         MediaRepresentationKind targetRepresentationKind,
         IReadOnlyDictionary<string, string> options,
+        Action<MediaExplorationProgress>? progress = null,
         CancellationToken cancellationToken = default);
 }

@@ -14,11 +14,9 @@ internal static class WozWriter
     /// <param name="tracks">Pistes binaires dans l'ordre Apple II.</param>
     /// <param name="path">Chemin du fichier de destination.</param>
     /// <param name="cancellationToken">Jeton d'annulation.</param>
-    public static Task WriteAsync(IReadOnlyList<IReadOnlyList<bool>> tracks, string path, CancellationToken cancellationToken = default) =>
-        WriteAsync(tracks, path, cancellationToken, File.WriteAllBytesAsync);
+    public static Task WriteAsync(IReadOnlyList<IReadOnlyList<bool>> tracks, string path, CancellationToken cancellationToken = default) => WriteAsync(tracks, path, cancellationToken, File.WriteAllBytesAsync);
 
-    internal static async Task WriteAsync(IReadOnlyList<IReadOnlyList<bool>> tracks, string path, CancellationToken cancellationToken,
-        Func<string, byte[], CancellationToken, Task> writeBytes)
+    internal static async Task WriteAsync(IReadOnlyList<IReadOnlyList<bool>> tracks, string path, CancellationToken cancellationToken, Func<string, byte[], CancellationToken, Task> writeBytes)
     {
         if (tracks.Count == 0 || tracks.Count > WozLayout.AppleIITrackCount) throw WozExceptions.InvalidTrackCount(tracks.Count, WozLayout.AppleIITrackCount);
         for (var track = 0; track < tracks.Count; track++) if (tracks[track].Count > MaximumTrackBitCount) throw WozExceptions.TrackTooLong(track, tracks[track].Count, MaximumTrackBitCount);

@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>(كيكستارت) مطلوب</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>الطريق المطلوب هو البرمجيات الفارغة</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>الملف المختار غير موجود</value></data>
+  <data name="Emulation.Error.Title"><value>خطأ في الصياغة</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>الناظم المطلوب غير مركب</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>ورفضت الهيئة العملية المطلوبة.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>ولا يمكن تحديث المرشد بينما هو مستخدم.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>البرمجيات المطلوبة مفقودة</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>البرمجيات المختارة لا تتوافق مع هذه الآلة</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>لم يعثر على ملف الإعلام المكون.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>ولا يدعم هذا المرشد وسائط الإعلام المختارة.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>خيار الناظم غير صحيح</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>فشل التواصل مع عملية الناظمة.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>الآلة المُحتَزَنة لا يمكن أن تبدأ</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>فشلت عملية الإعلام.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>الدولة المنقذة باطلة أو متضررة</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>الدولة المنقذة لا تتوافق مع هذه التشكيلة</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>عملية الإنقاذ فشلت</value></data>
 </root>

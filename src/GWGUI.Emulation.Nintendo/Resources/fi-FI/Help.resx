@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Short"><value>Emuloidulle koneelle käytettävissä olevan RAM-muistin määrä.</value></data>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Detailed"><value>Näyttää valitun Nintendo-koneen antaman RAM:n.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Short"><value>Järjestelmä ROM.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Detailed"><value>Näyttää valitun koneen ja emulaattorin järjestelmän ROM- tilan.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Short"><value>Nintendo-konemalli konfiguroidaan.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Short"><value>Emulaattori valittu tähän koneeseen.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Detailed"><value>Tunnistaa tämän koneen konfigurointiin käytetyn emulaattorin toteutuksen.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Short"><value>Prosessori emulgoi tämän koneen.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Detailed"><value>Näyttää valitun Nintendo-koneen tarjoaman prosessorimallin.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Short"><value>Alkuperäinen prosessorin kellotaajuus.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Detailed"><value>Näyttää valitun Nintendo-koneen prosessorin nimellisen kellotaajuuden.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Short"><value>Ota käyttöön tai poista emulgoitu ääni.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Detailed"><value>Kontrolloi onko GW GUI soittaa ääninäytteitä luotu emulaattori.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Short"><value>Ääniteho GW GUI.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Detailed"><value>Valitsee Windowsin äänilähdön, jota käytetään tämän emulgoidun koneen äänen soittamiseen.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Detailed"><value>Tunnistaa Nintendo-mallin, jonka laitteistokonfiguraatiota muokataan.</value></data>
+</root>

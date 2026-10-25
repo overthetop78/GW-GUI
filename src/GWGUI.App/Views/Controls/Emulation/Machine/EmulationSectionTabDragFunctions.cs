@@ -49,15 +49,12 @@ public sealed partial class EmulationSection
     {
         var dragged = args.Data.GetData(typeof(TabItem)) as TabItem;
         var target = Ancestor<TabItem>(args.OriginalSource as DependencyObject);
-        args.Effects = dragged is not null && target is not null
-            && _machines.Items.IndexOf(dragged) > 0 && _machines.Items.IndexOf(target) > 0
-            ? DragDropEffects.Move : DragDropEffects.None;
+        args.Effects = dragged is not null && target is not null && _machines.Items.IndexOf(dragged) > 0 && _machines.Items.IndexOf(target) > 0 ? DragDropEffects.Move : DragDropEffects.None;
         var position = args.GetPosition(_machines);
         double? insertionX = null;
         if (args.Effects == DragDropEffects.Move && target is not null)
         {
-            var bounds = target.TransformToAncestor(_machines)
-                .TransformBounds(new Rect(new Point(), target.RenderSize));
+            var bounds = target.TransformToAncestor(_machines).TransformBounds(new Rect(new Point(), target.RenderSize));
             insertionX = position.X > bounds.Left + bounds.Width / 2 ? bounds.Right : bounds.Left;
         }
         _tabDragAdorner?.Update(position, insertionX);
@@ -79,10 +76,8 @@ public sealed partial class EmulationSection
         var sourceIndex = _machines.Items.IndexOf(dragged);
         var targetIndex = _machines.Items.IndexOf(target);
         if (sourceIndex <= 0 || targetIndex <= 0) return;
-        var bounds = target.TransformToAncestor(_machines)
-            .TransformBounds(new Rect(new Point(), target.RenderSize));
-        var insertionIndex = targetIndex +
-            (pointerX > bounds.Left + bounds.Width / 2 ? 1 : 0);
+        var bounds = target.TransformToAncestor(_machines).TransformBounds(new Rect(new Point(), target.RenderSize));
+        var insertionIndex = targetIndex + (pointerX > bounds.Left + bounds.Width / 2 ? 1 : 0);
         if (sourceIndex < insertionIndex) insertionIndex--;
         if (sourceIndex == insertionIndex) return;
         _machines.Items.RemoveAt(sourceIndex);

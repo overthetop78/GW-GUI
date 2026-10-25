@@ -143,8 +143,7 @@ internal static class NavigationScenarios
         public bool ShowPreferences(AppSettings settings, PreferencesSection section = PreferencesSection.General)
         { Calls.Add("preferences"); return false; }
         public void ShowEmulationPreferences(AppSettings settings) => Calls.Add("emulation");
-        public void ShowEmulationModuleOptions(AppSettings settings, string moduleId) =>
-            Calls.Add($"emulation:{moduleId}");
+        public void ShowEmulationModuleOptions(AppSettings settings, string moduleId) => Calls.Add($"emulation:{moduleId}");
         public void ShowUpdates() => Calls.Add("updates");
         public void ShowLogHistory(string logsDirectory) => Calls.Add("history");
         public void ShowAbout() => Calls.Add("about");

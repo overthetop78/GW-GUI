@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.emuscv.Description" xml:space="preserve"><value>エミュレータ SUPER CASSETTE VISION コンソール。</value></data>
+  <data name="Emulation.Emulator.pd777.Description" xml:space="preserve"><value>エミュレータ CASSETTE VISION コンソール。</value></data>
+  <data name="Emulation.Epoch.Memory.Display" xml:space="preserve"><value>ビデオメモリ</value></data>
+  <data name="Emulation.Epoch.Video.Native" xml:space="preserve"><value>コンソールビデオ</value></data>
+  <data name="Emulation.Epoch.Controls.Native" xml:space="preserve"><value>コンソール制御</value></data>
+  <data name="Emulation.Epoch.Setting.DisplayArea" xml:space="preserve"><value>ディスプレイエリア</value></data>
+  <data name="Emulation.Epoch.Setting.PixelAspect" xml:space="preserve"><value>ピクセル形状</value></data>
+  <data name="Emulation.Epoch.Setting.ColorPalette" xml:space="preserve"><value>カラーパレット</value></data>
+  <data name="Emulation.Epoch.Setting.RefreshRate" xml:space="preserve"><value>リフレッシュレート</value></data>
+  <data name="Emulation.Epoch.Setting.ShowVideoMemory" xml:space="preserve"><value>フルビデオメモリの表示</value></data>
+  <data name="Emulation.Epoch.Setting.ShowInputs" xml:space="preserve"><value>ディスプレイコントローラの状態</value></data>
+  <data name="Emulation.Epoch.Setting.ValidateFirmware" xml:space="preserve"><value>検証 BIOS チェックサム</value></data>
+  <data name="Emulation.Epoch.Setting.ShowKeypadAtStart" xml:space="preserve"><value>スタートアップでキーパッドを表示</value></data>
+  <data name="Emulation.Epoch.Setting.AnnounceCourseSwitch" xml:space="preserve"><value>ディスプレイコースの選択</value></data>
+  <data name="Emulation.Epoch.Value.Rectangular" xml:space="preserve"><value>長方形</value></data>
+  <data name="Emulation.Epoch.Value.Low" xml:space="preserve"><value>低いです</value></data>
+  <data name="Emulation.Epoch.Value.High" xml:space="preserve"><value>グレード</value></data>
+</root>

@@ -18,5 +18,5 @@
   <data name="Profile.SystemDelete"><value>Oletusprofiili on pysyvä, eikä sitä voi poistaa.</value></data>
   <data name="Profile.DuplicateName"><value>Tämän välilehden profiililla on jo tämä nimi.</value></data>
   <data name="Profile.Replace"><value>Tämä profiili on jo olemassa. Vaihda se?</value></data>
-  <data name="Profile.DeleteConfirm"><value>Poistetaanko profiili &quot;{0}&quot;?</value></data>
+  <data name="Profile.DeleteConfirm"><value>Poistetaanko profiili "{0}"?</value></data>
 </root>

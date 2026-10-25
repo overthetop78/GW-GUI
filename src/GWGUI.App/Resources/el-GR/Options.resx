@@ -58,7 +58,7 @@
   <data name="Options.Engines.Description" xml:space="preserve"><value>Επιλέξτε ανεξάρτητα τη μηχανή που χρησιμοποιείται για κάθε λειτουργία.</value></data>
   <data name="Options.Engines.Internal" xml:space="preserve"><value>Εσωτερική μηχανή GW GUI</value></data>
   <data name="Options.Engines.StrictChoice" xml:space="preserve"><value>Η επιλεγμένη μηχανή χρησιμοποιείται αυστηρά. Αν δεν μπορεί να εκτελέσει τη λειτουργία, το GW GUI το αναφέρει χωρίς να χρησιμοποιήσει σιωπηρά την άλλη μηχανή.</value></data>
-  <data name="Options.EmulationMachineTitle" xml:space="preserve"><value>{0} — {1} : {2}</value></data>
+  <data name="Options.EmulationMachineTitle"><value>{0} — {1} : {2}</value></data>
   <data name="Options.PreferencesTitle"><value>Προτιμήσεις</value></data>
   <data name="Options.EmulationTitle"><value>Προτιμήσεις εξομοίωσης</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} ⁇  προσομοίωσης</value></data>

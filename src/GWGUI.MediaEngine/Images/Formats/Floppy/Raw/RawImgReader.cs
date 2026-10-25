@@ -15,11 +15,7 @@ namespace GWGUI.MediaEngine.Images.Formats.Floppy.Raw;
 /// <summary>Lit les images IMG ambiguës et départage les interprétations IBM, Amstrad CPC et Amstrad PCW prises en charge.</summary>
 internal sealed class RawImgReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds = IbmPcGeometryCatalog.All
-        .Select(geometry => geometry.FormatId)
-        .Append(DiskImageFormatIds.AmstradCpc)
-        .Append(DiskImageFormatIds.AmstradPcw)
-        .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormatIds = IbmPcGeometryCatalog.All.Select(geometry => geometry.FormatId).Append(DiskImageFormatIds.AmstradCpc).Append(DiskImageFormatIds.AmstradPcw) .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<string> SupportedExtensions = new[] { DiskImageFileExtensions.Img }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Floppy }.ToFrozenSet();
     private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Sectors }.ToFrozenSet();
@@ -38,8 +34,7 @@ internal sealed class RawImgReader : IMediaImageReader
     IReadOnlySet<string> IMediaImageReader.AssociatedFileExtensions => FrozenSet<string>.Empty;
     IReadOnlySet<MediaKind> IMediaImageReader.MediaKinds => SupportedMediaKinds;
     IReadOnlySet<MediaRepresentationKind> IMediaImageReader.RepresentationKinds => SupportedRepresentationKinds;
-    bool IMediaImageReader.SupportsFormatId(string formatId)
-        => SupportedFormatIds.Contains(formatId) || formatId.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase);
+    bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId) || formatId.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase);
 
     /// <summary>Lit le fichier IMG puis conserve ou réidentifie l'image construite par le Reader IBM selon son contenu.</summary>
     /// <param name="path">Chemin de l'image IMG brute.</param>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.applewin.Description"><value>Emuliert Apple II-Computer mit AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Emuliert Macintosh II-Computer mit Mini vMac.</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Maschinenvariante</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>Videoeinstellungen des Emulatorkerns</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Erweiterungskarten</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Speicher, der vom Kern verwendet wird</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>Die System-ROMs sind in AppleWin enthalten.</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>Der verfügbare Kern unterstützt dieses Maschinenmodell nicht.</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Disk Playlists</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Leer</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>Karte in Slot 3</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>Mauskarte</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>Karte in Slot 4</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>Karte in Slot 5</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>Festplattencontroller</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>Karte in Slot 7</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>Farbe ()RGB Karte/Monitor</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>Farbe (Komposit idealisiert)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>Farbe (Composite Monitor)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>Farbe TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>Monochrom (Amber)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>Monochrom (grün)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>Monochrom (weiß)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>Videomodus</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>Halbe Scanlinien</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>Videostil</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>Video Refresh Rate</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>Erster</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>Vorherige</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>Playlist Start Disk</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>Verwenden Sie beide Diskettenlaufwerke</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>Statusleiste</value></data>
+</root>

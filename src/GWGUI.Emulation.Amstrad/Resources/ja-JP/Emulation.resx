@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.caprice32.Description"><value>エミュレータ Amstrad CPC, CPC プラスと GX4000 システム。</value></data>
+  <data name="Emulation.Amstrad.Language"><value>CPC システム言語</value></data>
+  <data name="Emulation.Amstrad.Language.English"><value>中国語(簡体)</value></data>
+  <data name="Emulation.Amstrad.Language.French"><value>フレンチ</value></data>
+  <data name="Emulation.Amstrad.Language.Spanish"><value>スペイン語</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor"><value>モニタータイプ</value></data>
+  <data name="Emulation.Amstrad.Video.Intensity"><value>モニターの強度</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Color"><value>注文方法</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Green"><value>緑のモノクロ</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.White"><value>白いモノクロ</value></data>
+  <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM エミュレータに組み込まれて</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>Amstrad CPC 6128 を組み込みの ROM でエミュレートし、ディスクイメージとスナップショットのサポートを行います。</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>モニタータイプ</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>イメージの組み立て</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>スピードハック</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>自動</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>オーバースキャン</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>有効</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>無効</value></data>
+</root>

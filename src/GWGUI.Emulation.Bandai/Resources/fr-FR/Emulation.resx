@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Vidéo de la console</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Son de la console</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Commandes de la console</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Émule WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Lit les disques Playdia avec PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Émule Tamagotchi P1 avec TamaLIBretro.</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Ce cœur lit les disques sans émuler les processeurs.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Mémoire vidéo</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Orientation de l’affichage</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>Orientation des commandes</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Palette monochrome</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>Seuil de déclenchement du saut d’images</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>Mode 60 Hz</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>Fréquence d’échantillonnage audio</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>Filtre audio</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>Inverser les boutons A et B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>Automatique</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>Manuel</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>Paysage</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>Portrait</value></data>
+</root>

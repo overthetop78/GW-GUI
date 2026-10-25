@@ -1,3 +1,4 @@
+using GWGUI.App.Functions.Views.Visualization;
 using GWGUI.App.Constants.Rendering.Sequential;
 using GWGUI.App.Contracts.Rendering.Sequential;
 using GWGUI.App.Contracts.Views.Visualization;
@@ -15,7 +16,6 @@ namespace GWGUI.App.Views.Controls.Visualization;
 public partial class SequentialMediaView : UserControl, IMediaVisualizationView
 {
     private readonly SkiaSequentialMediaRenderer _renderer = new();
-    private CancellationTokenSource? _preparationCancellation;
     private SequentialMediaRenderModel? _model;
     private SequentialMediaSegment? _selectedSegment;
     private int _preparedSegmentCount;
@@ -39,9 +39,6 @@ public partial class SequentialMediaView : UserControl, IMediaVisualizationView
     public void SetDocument(SequentialMediaRenderModel model)
     {
         ArgumentNullException.ThrowIfNull(model);
-        _preparationCancellation?.Cancel();
-        _preparationCancellation?.Dispose();
-        _preparationCancellation = new CancellationTokenSource();
         _model = model;
         _selectedSegment = null;
         _preparedSegmentCount = 0;
@@ -53,7 +50,12 @@ public partial class SequentialMediaView : UserControl, IMediaVisualizationView
         SetFilterVisibility(ChannelLabel, ChannelSelector, model.Segments.Any(item => item.ChannelNumber.HasValue));
         UpdateSelectionLabel();
         UpdateCanvasWidth();
-        _ = PrepareProgressivelyAsync(_preparationCancellation.Token);
+    }
+
+    internal void RevealThrough(int segmentCount)
+    {
+        _preparedSegmentCount = Math.Clamp(segmentCount, 0, _model?.Segments.Count ?? 0);
+        Canvas.InvalidateVisual();
     }
 
     public void SelectElement(int surface, long position)
@@ -63,49 +65,18 @@ public partial class SequentialMediaView : UserControl, IMediaVisualizationView
         Canvas.InvalidateVisual();
     }
 
-    private async Task PrepareProgressivelyAsync(CancellationToken cancellationToken)
-    {
-        var count = _model?.Segments.Count ?? 0;
-        try
-        {
-            while (_preparedSegmentCount < count)
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-                _preparedSegmentCount = Math.Min(count, _preparedSegmentCount + 32);
-                Canvas.InvalidateVisual();
-                await Dispatcher.Yield(DispatcherPriority.Background);
-            }
-        }
-        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested) { }
-    }
-
     private void Canvas_PaintSurface(object? sender, SKPaintSurfaceEventArgs e)
     {
         _renderPixelWidth = Math.Max(1, e.Info.Width);
         _renderPixelHeight = Math.Max(1, e.Info.Height);
         var filtered = FilteredModel();
-        _renderer.Render(
-            e.Surface.Canvas,
-            filtered,
-            _selectedSegment,
-            Math.Min(_preparedSegmentCount, filtered?.Segments.Count ?? 0),
-            SequentialMediaRenderConstants.DefaultWrappedLineCount,
-            e.Info.Width,
-            e.Info.Height,
-            _zoom);
+        _renderer.Render(e.Surface.Canvas, filtered, _selectedSegment, Math.Min(_preparedSegmentCount, filtered?.Segments.Count ?? 0), SequentialMediaRenderConstants.DefaultWrappedLineCount, e.Info.Width, e.Info.Height, _zoom);
     }
 
-    private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        => SelectAt(e.GetPosition(Canvas));
+    private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) => SelectAt(e.GetPosition(Canvas));
 
     private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
-    {
-        if (e.ChangedButton != MouseButton.Middle || _zoom <= 1) return;
-        _panDragLast = e.GetPosition(TimelineScrollViewer);
-        Canvas.Cursor = VisualizationCursors.Grabbing;
-        Canvas.CaptureMouse();
-        e.Handled = true;
-    }
+        => VisualizationPanFunctions.Begin(Canvas, TimelineScrollViewer, _zoom, ref _panDragLast, e);
 
     private void Canvas_MouseMove(object sender, MouseEventArgs e)
     {
@@ -117,26 +88,14 @@ public partial class SequentialMediaView : UserControl, IMediaVisualizationView
     }
 
     private void Canvas_MouseUp(object sender, MouseButtonEventArgs e)
-    {
-        if (e.ChangedButton != MouseButton.Middle || _panDragLast is null) return;
-        _panDragLast = null;
-        Canvas.ReleaseMouseCapture();
-        Canvas.ClearValue(CursorProperty);
-        e.Handled = true;
-    }
+        => VisualizationPanFunctions.End(Canvas, ref _panDragLast, e);
 
     private void SelectAt(Point pointer)
     {
         var filtered = FilteredModel();
         var scaleX = _renderPixelWidth / Math.Max(1, Canvas.ActualWidth);
         var scaleY = _renderPixelHeight / Math.Max(1, Canvas.ActualHeight);
-        var segment = _renderer.HitTest(
-            filtered,
-            SequentialMediaRenderConstants.DefaultWrappedLineCount,
-            _renderPixelWidth,
-            _renderPixelHeight,
-            new SKPoint((float)(pointer.X * scaleX), (float)(pointer.Y * scaleY)),
-            _zoom);
+        var segment = _renderer.HitTest(filtered, SequentialMediaRenderConstants.DefaultWrappedLineCount, _renderPixelWidth, _renderPixelHeight, new SKPoint((float)(pointer.X * scaleX), (float)(pointer.Y * scaleY)), _zoom);
         if (segment is null) return;
         _selectedSegment = segment;
         UpdateSelectionLabel();
@@ -197,21 +156,16 @@ public partial class SequentialMediaView : UserControl, IMediaVisualizationView
         var face = SelectedValue(FaceSelector);
         var track = SelectedValue(TrackSelector);
         var channel = SelectedValue(ChannelSelector);
-        var segments = _model.Segments.Where(segment =>
-            (face is null || segment.FaceNumber == face) &&
-            (track is null || segment.TrackNumber == track) &&
-            (channel is null || segment.ChannelNumber == channel)).ToArray();
+        var segments = _model.Segments.Where(segment => (face is null || segment.FaceNumber == face) && (track is null || segment.TrackNumber == track) && (channel is null || segment.ChannelNumber == channel)).ToArray();
         return _model with { Segments = segments };
     }
 
-    private static int? SelectedValue(ComboBox selector) =>
-        selector.SelectedItem is KeyValuePair<int?, string> choice ? choice.Key : null;
+    private static int? SelectedValue(ComboBox selector) => selector.SelectedItem is KeyValuePair<int?, string> choice ? choice.Key : null;
 
     private static void SetChoices(ComboBox selector, IEnumerable<int> values, string resourceKey)
     {
         var choices = new List<KeyValuePair<int?, string>> { new(null, LocExtension.Get("Visual.All")) };
-        choices.AddRange(values.Distinct().Order().Select(value =>
-            new KeyValuePair<int?, string>(value, LocExtension.Get(resourceKey, value))));
+        choices.AddRange(values.Distinct().Order().Select(value => new KeyValuePair<int?, string>(value, LocExtension.Get(resourceKey, value))));
         selector.ItemsSource = choices;
         selector.SelectedIndex = 0;
     }
@@ -237,9 +191,7 @@ public partial class SequentialMediaView : UserControl, IMediaVisualizationView
             return;
         }
 
-        var duration = _model.Duration is { } value
-            ? $"  ·  {LocExtension.Get("Visual.DurationLabel")} {value:g}"
-            : string.Empty;
+        var duration = _model.Duration is { } value ? $"  ·  {LocExtension.Get("Visual.DurationLabel")} {value:g}" : string.Empty;
         SelectionLabel.Text = $"{LocExtension.Get("Explorer.Cassette")}{duration}  ·  {LocExtension.Get("Visual.SegmentCountLabel")} {_model.Segments.Count}";
     }
 }

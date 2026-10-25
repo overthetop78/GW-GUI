@@ -36,4 +36,27 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (rechte Hand)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Darstellung</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Regler {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Zeigevorrichtung</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Flugsimulation</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Rennsimulation</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Tanzsimulation</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Singsimulation</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Sonstige Simulationsperipheriegeräte</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>Starke Vibration</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>Schwache Vibration</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>Nachladen</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Farbe des Fadenkreuzes</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Tanzmatte</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Konfigurieren Sie die Tastatur im Tab Tastatur.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Konfigurieren Sie die Maus im Maus-Tab.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Art des Produkts</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>Regler für Vibrationen</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>Stäbchen- und Achsenzuordnungen</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>Stick {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>Tastatur oder benutzerdefinierte Zuordnungen</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>linker Stab</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>rechter Stock</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>Achse {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>Achsen {0} / {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>Gespeicherte Zuweisung</value></data>
 </root>

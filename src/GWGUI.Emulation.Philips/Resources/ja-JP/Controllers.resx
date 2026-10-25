@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Controller.CdiGamepad" xml:space="preserve"><value>CD-I ゲームパッド</value></data>
+  <data name="Emulation.Philips.Controller.LightGun" xml:space="preserve"><value>雷雨</value></data>
+  <data name="Emulation.Philips.Input.Action1" xml:space="preserve"><value>ボタン 1</value></data>
+  <data name="Emulation.Philips.Input.Action2" xml:space="preserve"><value>ボタン2</value></data>
+  <data name="Emulation.Philips.Input.Action3" xml:space="preserve"><value>ボタン3</value></data>
+  <data name="Emulation.Philips.Input.Auxiliary" xml:space="preserve"><value>補助ボタン</value></data>
+  <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>シュート</value></data>
+  <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>再読み込み</value></data>
+  <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>ガントリガー</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>コントローラーのポート1と2を入れ替える</value></data>
+</root>

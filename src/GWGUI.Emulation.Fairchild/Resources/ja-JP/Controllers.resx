@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>ハンドルを左に回転させる</value></data>
+  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>ハンドルを右に回転させます</value></data>
+  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>ハンドルを下に押します</value></data>
+  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>ハンドルを抜く</value></data>
+  <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>コンソールボタンを表示する</value></data>
+  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>2つのコントローラーをスワッピング</value></data>
+</root>

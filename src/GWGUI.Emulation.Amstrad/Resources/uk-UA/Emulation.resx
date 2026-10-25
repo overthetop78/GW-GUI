@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.caprice32.Description"><value>Голоси Amstrad CPC, CPC Плюси і GX4000 системи.</value></data>
+  <data name="Emulation.Amstrad.Language"><value>CPC мова системи</value></data>
+  <data name="Emulation.Amstrad.Language.English"><value>Українська мова</value></data>
+  <data name="Emulation.Amstrad.Language.French"><value>Французька</value></data>
+  <data name="Emulation.Amstrad.Language.Spanish"><value>Іспанська</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor"><value>Тип монітора</value></data>
+  <data name="Emulation.Amstrad.Video.Intensity"><value>інтенсивність монітора</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Color"><value>Колір</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Green"><value>Зелений монохромний</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.White"><value>Білий монохромний</value></data>
+  <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM вбудований в емулятор</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>Використовує Amstrad CPC 6128 з вбудованим ROM і підтримкою образів дисків та знімків.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Тип монітора</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Зображення обрамлення</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Швидкість хак</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Автоматичний</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>Поза «69»</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Увімкнено</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Вимкнено</value></data>
+</root>

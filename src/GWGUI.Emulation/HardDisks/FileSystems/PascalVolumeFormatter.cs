@@ -11,8 +11,7 @@ public static class PascalVolumeFormatter
         if (capacity < 6 * 512 || capacity > 65535L * 512 || capacity % 512 != 0)
             throw new ArgumentOutOfRangeException(nameof(capacity));
         ArgumentNullException.ThrowIfNull(label);
-        if (label.Length is < 1 or > 7 || label.Any(c => c < '!' || c > '~' ||
-            c is >= 'a' and <= 'z' || "$=?,[#:".Contains(c)))
+        if (label.Length is < 1 or > 7 || label.Any(c => c < '!' || c > '~' || c is >= 'a' and <= 'z' || "$=?,[#:".Contains(c)))
             throw new ArgumentException("Pascal labels require 1–7 uppercase printable ASCII characters without reserved punctuation.", nameof(label));
     }
 

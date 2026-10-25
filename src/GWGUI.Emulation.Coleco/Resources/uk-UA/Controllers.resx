@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Controller.Standard" xml:space="preserve"><value>Контролер зв'язку ColecoVision</value></data>
+  <data name="Emulation.Coleco.Controller.Paddle" xml:space="preserve"><value>Панчохи</value></data>
+  <data name="Emulation.Coleco.Action.Purple" xml:space="preserve"><value>Фіолетовий гудзик</value></data>
+  <data name="Emulation.Coleco.Action.Blue" xml:space="preserve"><value>Синя кнопка</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerLeft" xml:space="preserve"><value>Спіннер зліва</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerRight" xml:space="preserve"><value>Шпиннер права</value></data>
+  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>Кнопка лівої сторони</value></data>
+  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>Кнопка правої сторони</value></data>
+</root>

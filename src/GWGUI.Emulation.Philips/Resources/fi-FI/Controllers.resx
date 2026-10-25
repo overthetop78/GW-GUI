@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Controller.CdiGamepad" xml:space="preserve"><value>CD-I pelipad</value></data>
+  <data name="Emulation.Philips.Controller.LightGun" xml:space="preserve"><value>Kevytkivääri</value></data>
+  <data name="Emulation.Philips.Input.Action1" xml:space="preserve"><value>Nappi 1</value></data>
+  <data name="Emulation.Philips.Input.Action2" xml:space="preserve"><value>Nappi 2</value></data>
+  <data name="Emulation.Philips.Input.Action3" xml:space="preserve"><value>Nappi 3</value></data>
+  <data name="Emulation.Philips.Input.Auxiliary" xml:space="preserve"><value>Apunappi</value></data>
+  <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Ammu.</value></data>
+  <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Lataa uudelleen</value></data>
+  <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Aseen laukaisin</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>Vaihda ohjainportit 1 ja 2 keskenään</value></data>
+</root>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.applewin.Description"><value>AppleWin を使用して Apple II コンピューターをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Mini vMac を使用して Macintosh II コンピューターをエミュレートします。</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>機械変形</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>エミュレーションコアの映像設定</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>拡張カード</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>コアで使われる記憶</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>システム ROM は AppleWin に含まれています。</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>利用可能なコアは、このマシンモデルをサポートしていません。</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>ディスクプレイリスト</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>スタッフ</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>スロット3のカード</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>マウスカード</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>スロット4のカード</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>スロット5のカード</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>ハードディスクコントローラ</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>スロット7のカード</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>色(色)RGB カード/モニター</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>色(複合体化)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>色(複合モニター)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>注文方法 TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>モノクロ(Amber)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>モノクロ(グリーン)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>モノクロ(白)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>ビデオ モード</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>ハーフスキャスライン</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>ビデオ スタイル</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>ビデオはリフレッシュ レートを</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>ファースト</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>過去の投稿</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>プレイリストの開始ディスク</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>フロッピードライブの両方を使用する</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>ステータスバー</value></data>
+</root>

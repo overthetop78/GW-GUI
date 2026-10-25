@@ -1,3 +1,5 @@
+using GWGUI.MediaEngine.Functions;
+using GWGUI.MediaEngine.Constants;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
@@ -15,28 +17,20 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
             return;
         }
 
-        var curatedFormats = curated.Formats
-            .Select(format => ApplyPhysicalCapabilities(format, capabilities))
-            .ToList();
+        var curatedFormats = curated.Formats.Select(format => ApplyPhysicalCapabilities(format, capabilities)).ToList();
         var known = curatedFormats.Select(format => format.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
-        curatedFormats.AddRange(capabilities.FormatIds
-            .Where(id => !known.Contains(id))
-            .Order(StringComparer.OrdinalIgnoreCase)
-            .Select(id => CreateDiscoveredFormat(id, capabilities.ImageExtensions))
-            .Where(format => format.Extensions.Count > 0));
+        curatedFormats.AddRange(capabilities.FormatIds.Where(id => !known.Contains(id)).Order(StringComparer.OrdinalIgnoreCase).Select(id => CreateDiscoveredFormat(id, capabilities.ImageExtensions)) .Where(format => format.Extensions.Count > 0));
         Formats = curatedFormats;
     }
 
     public IReadOnlyList<DiskFormat> GetCompatibleOutputs(string sourceExtension)
-    {
-        var normalized = Normalize(sourceExtension);
-        return Formats.Where(format => format.CompatibleSourceExtensions?.Contains(normalized) == true).ToArray();
-    }
+        => BuiltInImageFormatCatalog.GetCompatibleOutputs(Formats, sourceExtension);
 
     private static DiskFormat ApplyPhysicalCapabilities(DiskFormat format, GwFormatCapabilities capabilities)
     {
         if (!format.SupportsPhysicalRead && !format.SupportsPhysicalWrite) return format;
-        var supported = BuiltInDiskDefinitions.Supports(format.Id);
+        var supported = format.Id is DiskImageFormatIds.RawScp or DiskImageFormatIds.RawHfe
+            || BuiltInDiskDefinitions.Supports(format.Id);
         var gwFormat = GwFormatArgument.FromCatalogId(format.Id);
         supported |= gwFormat is not null && capabilities.FormatIds.Contains(gwFormat);
         return format with
@@ -53,19 +47,13 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
         var detail = id.Contains('.') ? string.Join(" · ", id.Split('.')[1..].Select(FriendlyToken)) : null;
         var preferred = supported.Contains(".img") ? ".img" : supported.Contains(".scp") ? ".scp" : supported.Order(StringComparer.OrdinalIgnoreCase).FirstOrDefault();
         var extensions = preferred is null ? Array.Empty<ImageExtension>() : [new ImageExtension(preferred, preferred.TrimStart('.').ToUpperInvariant(), true)];
-        var sources = new HashSet<string>(supported.Select(Normalize), StringComparer.OrdinalIgnoreCase);
+        if (DiskDefsFormatReader.Definitions.TryGetValue(id, out var definition)
+            && definition.Tracks.All(track => track.Codec == "bitcell"))
+            extensions = new[] { ".scp", ".hfe" }.Where(supported.Contains)
+                .Select((extension, index) => new ImageExtension(extension, extension[1..].ToUpperInvariant(), index == 0)).ToArray();
+        var sources = new HashSet<string>(supported.Select(MediaFileExtensionFunctions.NormalizeCore), StringComparer.OrdinalIgnoreCase);
         var tag = Regex.Replace(id.ToUpperInvariant(), "[^A-Z0-9]+", "-").Trim('-');
-        return new DiskFormat(
-            id,
-            family,
-            detail is null ? family : $"{family} — {detail}",
-            extensions,
-            false,
-            sources,
-            tag,
-            FloppyFormFactor.Unknown,
-            SupportsPhysicalRead: true,
-            SupportsPhysicalWrite: true);
+        return new DiskFormat(id, family, detail is null ? family : $"{family} — {detail}", extensions, false, sources, tag, FloppyFormFactor.Unknown, SupportsPhysicalRead: true, SupportsPhysicalWrite: true);
     }
 
     private static string FriendlyToken(string token)
@@ -80,10 +68,7 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
             _ => null
         };
         if (known is not null) return known;
-        var words = Regex.Split(token.Replace('_', '-'), "[-]+").Where(word => word.Length > 0)
-            .Select(word => CultureInfo.InvariantCulture.TextInfo.ToTitleCase(word.ToLowerInvariant()));
+        var words = Regex.Split(token.Replace('_', '-'), "[-]+").Where(word => word.Length > 0).Select(word => CultureInfo.InvariantCulture.TextInfo.ToTitleCase(word.ToLowerInvariant()));
         return string.Join(" ", words);
     }
-
-    private static string Normalize(string value) => value.StartsWith('.') ? value.ToLowerInvariant() : "." + value.ToLowerInvariant();
 }

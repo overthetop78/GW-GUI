@@ -1,3 +1,4 @@
+using GWGUI.MediaFileSystems.Primitives;
 using GWGUI.MediaFileSystems.Constants;
 using GWGUI.MediaFileSystems.Interfaces;
 
@@ -33,6 +34,5 @@ internal static class AtariBootDiskFunctions
         return true;
     }
 
-    private static ushort ReadUInt16(IReadOnlyList<byte> data, int offset) =>
-        (ushort)(data[offset] | data[offset + 1] << (sizeof(byte) * 8));
+    private static ushort ReadUInt16(IReadOnlyList<byte> data, int offset) => (ushort)LittleEndianUInt16.ReadIndexed(data, offset);
 }

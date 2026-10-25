@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Panasonic.Controller.ThreeDOPad" xml:space="preserve"><value>3DO Control Pad</value></data>
+  <data name="Emulation.Panasonic.Controller.Flightstick" xml:space="preserve"><value>3DO Flightstick</value></data>
+  <data name="Emulation.Panasonic.Controller.OrbatakTrackball" xml:space="preserve"><value>Orbatak Trackball</value></data>
+  <data name="Emulation.Panasonic.Input.ActiveDevices" xml:space="preserve"><value>Active controllers</value></data>
+  <data name="Emulation.Panasonic.Input.HideCrosshairs" xml:space="preserve"><value>Hide aiming markers</value></data>
+  <data name="Emulation.Panasonic.Controller.Mouse" xml:space="preserve"><value>Mouse (3DO)</value></data>
+  <data name="Emulation.Panasonic.Controller.Lightgun" xml:space="preserve"><value>Optical gun (3DO)</value></data>
+  <data name="Emulation.Panasonic.Controller.ArcadeLightgun" xml:space="preserve"><value>Arcade optical gun</value></data>
+</root>

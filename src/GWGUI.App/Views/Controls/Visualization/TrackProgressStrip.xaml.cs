@@ -26,14 +26,9 @@ public partial class TrackProgressStrip : UserControl
 
     public TrackProgressStrip() => InitializeComponent();
 
-    public void Configure(int head, IReadOnlyList<int> cylinders, string label)
-        => Configure(MediaVisualizationProgressUnit.Track, head, cylinders.Select(value => (long)value).ToArray(), label);
+    public void Configure(int head, IReadOnlyList<int> cylinders, string label) => Configure(MediaVisualizationProgressUnit.Track, head, cylinders.Select(value => (long)value).ToArray(), label);
 
-    public void Configure(
-        MediaVisualizationProgressUnit unit,
-        int surface,
-        IReadOnlyList<long> elements,
-        string label)
+    public void Configure(MediaVisualizationProgressUnit unit, int surface, IReadOnlyList<long> elements, string label)
     {
         ArgumentNullException.ThrowIfNull(elements);
         ArgumentNullException.ThrowIfNull(label);

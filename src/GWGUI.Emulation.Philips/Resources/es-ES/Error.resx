@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Error.ContentNotFound" xml:space="preserve"><value>No se encontró el medio configurado de Philips.</value></data>
+  <data name="Emulation.Philips.Error.ContentUnsupported" xml:space="preserve"><value>Esta máquina no admite los medios seleccionados.</value></data>
+  <data name="Emulation.Philips.Error.CoreNotFound" xml:space="preserve"><value>No se encontró el núcleo necesario de Philips.</value></data>
+  <data name="Emulation.Philips.Error.CoreRejected" xml:space="preserve"><value>El núcleo seleccionado de Philips no se puede cargar.</value></data>
+  <data name="Emulation.Philips.Error.Details" xml:space="preserve"><value>Detalles: {0}</value></data>
+  <data name="Emulation.Philips.Error.FirmwareInvalid" xml:space="preserve"><value>El sistema ROM es inválido o incompatible.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareMissing" xml:space="preserve"><value>Falta un firmware de Philips requerido.</value></data>
+  <data name="Emulation.Philips.Error.HostExecutableMissing" xml:space="preserve"><value>El camino ejecutable de Philips es indisponible.</value></data>
+  <data name="Emulation.Philips.Error.HostProtocolFailure" xml:space="preserve"><value>La comunicación con el anfitrión Philips falló.</value></data>
+  <data name="Emulation.Philips.Error.OptionInvalid" xml:space="preserve"><value>Una opción de Philips tiene un valor inválido.</value></data>
+  <data name="Emulation.Philips.Error.StateIncompatible" xml:space="preserve"><value>El estado salvado de Philips es incompatible con la máquina actual.</value></data>
+  <data name="Emulation.Philips.Error.StateInvalid" xml:space="preserve"><value>El estado salvado de Philips es inválido.</value></data>
+  <data name="Emulation.Philips.Error.Unexpected" xml:space="preserve"><value>Un error inesperado de emulación de Philips ocurrió.</value></data>
+  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Unknown environment command: {0}</value></data>
+</root>

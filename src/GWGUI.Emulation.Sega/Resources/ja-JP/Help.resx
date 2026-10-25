@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sega.Help.General.Model.Short"><value>構成されるSega機械モデル。</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>エミュレートされた機械に利用できるRAMの量。</value></data>
+  <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>エミュレーション・コアが露出したRAM拡張を選択します。</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>システム ROM はエミュレーションの中心に造られます。</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>エミュレーションコアは、内部でシステムROMを提供し、ROMファイルセレクターを露出しません。</value></data>
+  <data name="Emulation.Sega.Help.General.Emulator.Short"><value>この機械のために選ばれるエミュレータ。</value></data>
+  <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>このマシン構成を実行するために使用されるエミュレータの実装を特定します。</value></data>
+  <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master Systemのハードウェア モデル。</value></data>
+  <data name="Emulation.Sega.Help.MasterSystem.Variant.Detailed"><value>選択して下さいMaster System IかMaster System IIハードウェア。</value></data>
+  <data name="Emulation.Sega.Help.MasterSystem.ThreeDGlasses.Short"><value>Master System用3Dメガネ。</value></data>
+  <data name="Emulation.Sega.Help.MasterSystem.ThreeDGlasses.Detailed"><value>3Dメガネインターフェイスを有効にし、Segaカードスロットを予約します。</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.Model.Short"><value>Mega Driveのハードウェア モデル。</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.Model.Detailed"><value>Mega Drive IかMega Drive IIのハードウェアを選んで下さい。</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.Region.Short"><value>Mega Drive区域。</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.Region.Detailed"><value>NTSC-U、NTSC-J、PALまたはSECAM領域の動作を自動的に選択します。</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.VideoStandard.Short"><value>Mega Driveビデオ標準。</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.VideoStandard.Detailed"><value>自動、50のHzか60のHzのビデオ タイミングを選んで下さい。</value></data>
+  <data name="Emulation.Sega.Help.Cpu.Model.Short"><value>この機械のためにエミュレートされるプロセッサ。</value></data>
+  <data name="Emulation.Sega.Help.Cpu.Model.Detailed"><value>選択されたSega機械によって提供されるプロセッサ モデルを示します。</value></data>
+  <data name="Emulation.Sega.Help.Cpu.Frequency.Short"><value>元のプロセッサのクロック頻度。</value></data>
+  <data name="Emulation.Sega.Help.Cpu.Frequency.Detailed"><value>選択されたSega機械のプロセッサのわずかなクロック周波数を示します。</value></data>
+  <data name="Emulation.Sega.Help.Audio.Enabled.Short"><value>エミュレートされた音を有効または無効にします。</value></data>
+  <data name="Emulation.Sega.Help.Audio.Enabled.Detailed"><value>GW GUIがエミュレータによって生成されたオーディオサンプルを再生するかどうかを制御します。</value></data>
+  <data name="Emulation.Sega.Help.Audio.Output.Short"><value>GW GUIの音声出力。</value></data>
+  <data name="Emulation.Sega.Help.Audio.Output.Detailed"><value>このエミュレートされたマシンから音を再生するために使用されるWindowsオーディオ出力を選択します。</value></data>
+  <data name="Emulation.Sega.Help.General.Model.Detailed"><value>ハードウェア構成を編集しているSegaモデルを特定します。</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Short"><value>Mega-CDのハードウェア モデル。</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Detailed"><value>選択して下さいMega-CD IかMega-CD II.</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed"><value>Mega-CD を有効にします。 光学ドライブが自動的に追加されます。</value></data>
+  <data name="Emulation.Sega.Help.MegaDrive.32X.Detailed"><value>Mega Driveで32Xを有効にします。 有効化時にデフォルトで32Xカートリッジが無効になっています。</value></data>
+</root>

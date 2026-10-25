@@ -1,5 +1,5 @@
 
-using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
+using IMediaSectorImage = GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Commodore.Dos;
 
@@ -7,8 +7,7 @@ namespace GWGUI.MediaFileSystems.FileSystems.Commodore.Dos;
 internal static class CommodoreDosSectorReader
 {
     /// <summary>Tente de récupérer un secteur complet sans masquer sa coordonnée logique.</summary>
-    public static bool TryRead(IMediaSectorImage image, int track, int sector, out IReadOnlyList<byte> data)
-        => Read(image, track, sector, out data) == CommodoreDosSectorReadStatus.Success;
+    public static bool TryRead(IMediaSectorImage image, int track, int sector, out IReadOnlyList<byte> data) => Read(image, track, sector, out data) == CommodoreDosSectorReadStatus.Success;
 
     /// <summary>Récupère un secteur en distinguant coordonnée invalide, absence et taille incorrecte.</summary>
     public static CommodoreDosSectorReadStatus Read(IMediaSectorImage image, int track, int sector, out IReadOnlyList<byte> data)

@@ -1,0 +1,20 @@
+namespace GWGUI.Emulation.Sony.Common.Machines.Common.Dictionaries;
+
+internal static class SettingsHelpDictionary
+{
+    internal static readonly IReadOnlyDictionary<string, string> Resources =
+        new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            [SettingsConstants.Model] = "Emulation.Sony.Help.General.Model",
+            [SettingsConstants.Emulator] = "Emulation.Sony.Help.General.Emulator",
+            [SettingsConstants.Model + ".cpu"] = "Emulation.Sony.Help.Cpu.Model",
+            [SettingsConstants.Model + ".frequency"] = "Emulation.Sony.Help.Cpu.Frequency",
+            [SettingsConstants.Model + ".video"] = "Emulation.Sony.Help.Video.Chip",
+            [SettingsConstants.Model + ".audio"] = "Emulation.Sony.Help.Audio.Chip",
+            [SettingsConstants.Ram] = "Emulation.Sony.Help.Memory.Ram",
+            [SettingsConstants.FirmwareIntegrated] = "Emulation.Sony.Help.Firmware.Integrated",
+            [SettingsConstants.AudioEnabled] = "Emulation.Help.Audio.Enabled",
+            [SettingsConstants.AudioOutput] = "Emulation.Help.Audio.Output",
+            [SettingsConstants.AudioLatency] = "Emulation.Help.Audio.Latency"
+        };
+}

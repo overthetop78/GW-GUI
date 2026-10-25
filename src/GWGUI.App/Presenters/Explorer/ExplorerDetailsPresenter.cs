@@ -1,4 +1,4 @@
-using MediaVolumeOrigins = global::GWGUI.MediaEngine.Constants.MediaVolumeOrigins;
+using MediaVolumeOrigins = GWGUI.MediaEngine.Constants.MediaVolumeOrigins;
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Contracts.Explorer;
 using GWGUI.App.Enums.Explorer;
@@ -64,18 +64,13 @@ public static class ExplorerDetailsPresenter
         return new(volumeName.Text, ExplorerIconCategory.DiskImage, rows, volumeName.IsSynthetic);
     }
 
-    public static ExplorerDetailsPresentation ForMedia(
-        ExploredMediaImage document,
-        ExploredMediaVolume exploredVolume,
-        string? currentSystem = null)
+    public static ExplorerDetailsPresentation ForMedia(ExploredMediaImage document, ExploredMediaVolume exploredVolume, string? currentSystem = null)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(exploredVolume);
         var volume = exploredVolume.FileSystem;
         var syntheticName = string.IsNullOrWhiteSpace(volume?.Name);
-        var volumeName = syntheticName
-            ? $"({LocExtension.Get("Explorer.Unnamed")})"
-            : volume!.Name;
+        var volumeName = syntheticName ? $"({LocExtension.Get("Explorer.Unnamed")})" : volume!.Name;
         var capacity = volume?.Capacity ?? exploredVolume.Descriptor.Length;
         var entries = volume?.Entries ?? [];
         if (document.Document.MediaKind == MediaKind.Tape)
@@ -119,11 +114,7 @@ public static class ExplorerDetailsPresenter
                 rows.Add(new("Explorer.Faces", faceCount.ToString()));
         }
         if (descriptor.Origin != MediaVolumeOrigins.OpticalTrack)
-            rows.Add(new(
-                "Visual.PartitionTableLabel",
-                string.IsNullOrWhiteSpace(descriptor.PartitionTable)
-                    ? LocExtension.Get("Visual.PartitionTable.None")
-                    : descriptor.PartitionTable.ToUpperInvariant()));
+            rows.Add(new("Visual.PartitionTableLabel", string.IsNullOrWhiteSpace(descriptor.PartitionTable) ? LocExtension.Get("Visual.PartitionTable.None") : descriptor.PartitionTable.ToUpperInvariant()));
         if (descriptor.PartitionNumber is { } partitionNumber)
             rows.Add(new("Visual.PartitionNumberLabel", partitionNumber.ToString()));
         if (!string.IsNullOrWhiteSpace(descriptor.PartitionType))
@@ -151,10 +142,7 @@ public static class ExplorerDetailsPresenter
             new("Explorer.UserDataSize", StorageSizeFormatter.FormatBytes(track.UserDataLength)),
             new("Explorer.Subchannels", track.HasSubchannels ? LocExtension.Get("Controllers.Yes") : LocExtension.Get("Controllers.No"))
         };
-        return new(
-            $"{LocExtension.Get("Explorer.Track")} {track.TrackNumber}",
-            track.IsAudio ? ExplorerIconCategory.Audio : ExplorerIconCategory.DiskImage,
-            rows);
+        return new($"{LocExtension.Get("Explorer.Track")} {track.TrackNumber}", track.IsAudio ? ExplorerIconCategory.Audio : ExplorerIconCategory.DiskImage, rows);
     }
 
     public static ExplorerDetailsPresentation ForItem(ExplorerContentItem item)
@@ -171,12 +159,7 @@ public static class ExplorerDetailsPresenter
                 rows.Add(new("Explorer.TextEncoding", TextEncoding(item.Definition.TextEncoding)));
             rows.Add(new("Explorer.Preview", LocExtension.Get($"Explorer.Preview.{item.Definition.PreviewKind}")));
         }
-        rows.AddRange(
-        [
-            new("Explorer.Size", item.SizeText),
-            new("Explorer.Modified", item.ModifiedText),
-            new("Explorer.Comment", string.IsNullOrWhiteSpace(item.Entry.Comment) ? "\u2014" : item.Entry.Comment)
-        ]);
+        rows.AddRange([new("Explorer.Size", item.SizeText), new("Explorer.Modified", item.ModifiedText), new("Explorer.Comment", string.IsNullOrWhiteSpace(item.Entry.Comment) ? "\u2014" : item.Entry.Comment)]);
         if (item.Definition.ExecutionKind != ExplorerExecutionKind.None)
             rows.Add(new("Explorer.Execution", LocExtension.Get($"Explorer.Execution.{item.Definition.ExecutionKind}")));
         if (item.Entry.Kind == GWGUI.MediaEngine.Enums.FileSystemEntryKind.Directory)
@@ -186,14 +169,11 @@ public static class ExplorerDetailsPresenter
         AddMetadataRow(rows, item.Entry.Metadata, "partialRecordCount", "Explorer.PartialRecords");
         AddMetadataRow(rows, item.Entry.Metadata, "baudRates", "Explorer.BaudRates", "baud");
         if (item.Entry.Metadata.TryGetValue("endRecordPresent", out var endRecordPresent))
-            rows.Add(new("Explorer.EndRecord", bool.TryParse(endRecordPresent, out var present) && present
-                ? LocExtension.Get("Controllers.Yes")
-                : LocExtension.Get("Controllers.No")));
+            rows.Add(new("Explorer.EndRecord", bool.TryParse(endRecordPresent, out var present) && present ? LocExtension.Get("Controllers.Yes") : LocExtension.Get("Controllers.No")));
         return new(item.Name, item.IconCategory, rows, false, item.Tone);
     }
 
-    private static string? ReadMetadata(IReadOnlyDictionary<string, string> metadata, string key) =>
-        metadata.TryGetValue(key, out var value) && !string.IsNullOrWhiteSpace(value) ? value : null;
+    private static string? ReadMetadata(IReadOnlyDictionary<string, string> metadata, string key) => metadata.TryGetValue(key, out var value) && !string.IsNullOrWhiteSpace(value) ? value : null;
 
     private static string? SystemName(string? systemId) => systemId switch
     {
@@ -201,20 +181,13 @@ public static class ExplorerDetailsPresenter
         _ => systemId
     };
 
-    private static void AddMetadataRow(
-        ICollection<ExplorerDetailRow> rows,
-        IReadOnlyDictionary<string, string> metadata,
-        string metadataKey,
-        string labelKey,
-        string? unit = null)
+    private static void AddMetadataRow(ICollection<ExplorerDetailRow> rows, IReadOnlyDictionary<string, string> metadata, string metadataKey, string labelKey, string? unit = null)
     {
         if (ReadMetadata(metadata, metadataKey) is { } value)
             rows.Add(new(labelKey, unit is null ? value : $"{value} {unit}"));
     }
 
-    private static void AddChunkSummaryRow(
-        ICollection<ExplorerDetailRow> rows,
-        IReadOnlyDictionary<string, string> metadata)
+    private static void AddChunkSummaryRow(ICollection<ExplorerDetailRow> rows, IReadOnlyDictionary<string, string> metadata)
     {
         var count = ReadMetadata(metadata, "chunkCount");
         var types = ReadMetadata(metadata, "chunkTypes");

@@ -37,13 +37,7 @@ public sealed record RecognitionAudit(
     IReadOnlyList<string> Diagnostics,
     IReadOnlyDictionary<string, string> RejectedCandidates);
 
-public sealed record MediaAudit(
-    long? LogicalLength,
-    bool SupportsRandomAccess,
-    bool SupportsSequentialAccess,
-    long? DeclaredCapacity,
-    long? UsedBytes,
-    long? FreeBytes);
+public sealed record MediaAudit(long? LogicalLength, bool SupportsRandomAccess, bool SupportsSequentialAccess, long? DeclaredCapacity, long? UsedBytes, long? FreeBytes);
 
 public sealed record VolumeAudit(
     long Start,
@@ -109,14 +103,7 @@ public sealed record FileEntryAudit(
     bool ContentExtracted,
     IReadOnlyList<FileEntryAudit> Children);
 
-public sealed record VisualizationAudit(
-    bool Recognized,
-    string RepresentationKind,
-    string ProgressUnit,
-    string Direction,
-    IReadOnlyList<int> Surfaces,
-    IReadOnlyList<int>? Layers,
-    int ElementCount);
+public sealed record VisualizationAudit(bool Recognized, string RepresentationKind, string ProgressUnit, string Direction, IReadOnlyList<int> Surfaces, IReadOnlyList<int>? Layers, int ElementCount);
 
 public sealed record SupportAudit(
     bool ExplorerRecognized,

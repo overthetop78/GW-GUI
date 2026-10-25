@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Help.DisplayArea" xml:space="preserve"><value>Válassza ki a konzol képének látható területét.</value></data>
+  <data name="Emulation.Epoch.Help.PixelAspect" xml:space="preserve"><value>Válassza ki a téglalap vagy négyzet alakú pixeleket.</value></data>
+  <data name="Emulation.Epoch.Help.Resolution" xml:space="preserve"><value>Válassza ki a belső renderelés felbontását.</value></data>
+  <data name="Emulation.Epoch.Help.ColorPalette" xml:space="preserve"><value>Válassza ki a konzol színpaletta.</value></data>
+  <data name="Emulation.Epoch.Help.RefreshRate" xml:space="preserve"><value>Válassza ki a konzol frissítési sebességét.</value></data>
+  <data name="Emulation.Epoch.Help.ShowVideoMemory" xml:space="preserve"><value>Videómemória megjelenítése a TV-n túl.</value></data>
+  <data name="Emulation.Epoch.Help.ShowInputs" xml:space="preserve"><value>A kép fölött jelenítse meg az aktuális vezérlő állapotot.</value></data>
+  <data name="Emulation.Epoch.Help.Language" xml:space="preserve"><value>Válassza ki az emulátor képernyők nyelvét.</value></data>
+  <data name="Emulation.Epoch.Help.ValidateFirmware" xml:space="preserve"><value>A konzol ellenőrzése BIOS a kezdési időpont előtt az ellenőrző összeg.</value></data>
+  <data name="Emulation.Epoch.Help.ShowKeypadAtStart" xml:space="preserve"><value>A konzol billentyűzet megjelenítése az emuláció kezdetén.</value></data>
+  <data name="Emulation.Epoch.Help.AnnounceCourseSwitch" xml:space="preserve"><value>A kijelölt játékkurzus megjelenítése a változtatáskor.</value></data>
+</root>

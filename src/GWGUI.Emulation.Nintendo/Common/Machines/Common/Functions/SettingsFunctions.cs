@@ -1,0 +1,70 @@
+namespace GWGUI.Emulation.Nintendo.Common.Machines.Common.Functions;
+
+internal static partial class SettingsDescriptionFunctions
+{
+    internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration, IEmulatorAdapter? adapter)
+    {
+        var model = ModelCatalog.Get(configuration.Model);
+        List<EmulationSettingsBlock> blocks =
+        [
+            Block(SettingsDescriptionFunctionsConstants.General, EmulationMachineTab.General,
+                SettingsDescriptionFunctionsConstants.ResourceGeneral,
+                SettingsDescriptionFunctionsConstants.IconGeneral, 2,
+                Information(SettingsConstants.Model, EmulationMachineTab.General, SettingsDescriptionFunctionsConstants.General, SettingsDescriptionFunctionsConstants.ResourceMachineModel, model.DisplayName),
+                Information(SettingsConstants.Emulator, EmulationMachineTab.General, SettingsDescriptionFunctionsConstants.General, SettingsDescriptionFunctionsConstants.ResourceEmulator, configuration.EmulatorId)),
+            Block(SettingsDescriptionFunctionsConstants.Cpu, EmulationMachineTab.Cpu,
+                SettingsDescriptionFunctionsConstants.ResourceCpuProcessor,
+                SettingsDescriptionFunctionsConstants.IconCpu, 2,
+                Information(SettingsConstants.Model + ".cpu", EmulationMachineTab.Cpu, SettingsDescriptionFunctionsConstants.Cpu, SettingsDescriptionFunctionsConstants.ResourceCpuModel, string.Join(" / ", model.Processors)),
+                Information(SettingsConstants.Model + ".frequency", EmulationMachineTab.Cpu,
+                    SettingsDescriptionFunctionsConstants.Cpu,
+                    SettingsDescriptionFunctionsConstants.ResourceCpuSpeed,
+                    SettingsDescriptionFunctionsConstants.CpuFrequency)),
+            Block(SettingsDescriptionFunctionsConstants.Memory, EmulationMachineTab.Ram,
+                SettingsDescriptionFunctionsConstants.ResourceMemoryMain,
+                SettingsDescriptionFunctionsConstants.IconMemory, 1,
+                Information(SettingsConstants.Ram, EmulationMachineTab.Ram, SettingsDescriptionFunctionsConstants.Memory, SettingsDescriptionFunctionsConstants.ResourceMemoryMain, $"{(adapter?.GetMemoryKib(configuration) ?? model.RamKib)} KiB")),
+            Block(SettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom,
+                SettingsDescriptionFunctionsConstants.ResourceRom,
+                SettingsDescriptionFunctionsConstants.IconFirmware, 2,
+                adapter is null ? [] : [.. FirmwareConfigurationFunctions.Fields(configuration, adapter)]),
+            Block(SettingsDescriptionFunctionsConstants.Video, EmulationMachineTab.Video,
+                SettingsDescriptionFunctionsConstants.ResourceVideo,
+                SettingsDescriptionFunctionsConstants.IconVideo, 2,
+                Information(SettingsConstants.Model + ".video", EmulationMachineTab.Video,
+                    SettingsDescriptionFunctionsConstants.Video,
+                    SettingsDescriptionFunctionsConstants.ResourceVideo,
+                    model.VideoChip ?? SettingsDescriptionFunctionsConstants.CpuFrequency)),
+            Block(SettingsDescriptionFunctionsConstants.Audio, EmulationMachineTab.Audio,
+                SettingsDescriptionFunctionsConstants.ResourceAudio,
+                SettingsDescriptionFunctionsConstants.IconAudio, 2,
+                Toggle(SettingsConstants.AudioEnabled, EmulationMachineTab.Audio, SettingsDescriptionFunctionsConstants.Audio, SettingsDescriptionFunctionsConstants.ResourceAudioEnabled, configuration.AudioEnabled),
+                AudioOutput(configuration.Audio?.OutputDeviceId),
+                Select(SettingsConstants.AudioLatency, EmulationMachineTab.Audio,
+                    SettingsDescriptionFunctionsConstants.Audio,
+                    SettingsDescriptionFunctionsConstants.ResourceAudioLatency,
+                    (configuration.Audio?.LatencyMilliseconds ?? AudioConstants.DefaultLatencyMilliseconds).ToString(),
+                    AudioConstants.LatencyChoicesMilliseconds.Select(value => Invariant(value.ToString(), $"{value} ms", value))),
+                Information(SettingsConstants.Model + ".audio", EmulationMachineTab.Audio,
+                    SettingsDescriptionFunctionsConstants.Audio,
+                    SettingsDescriptionFunctionsConstants.ResourceAudio,
+                    model.AudioChip ?? SettingsDescriptionFunctionsConstants.CpuFrequency))
+        ];
+        foreach (var coreBlock in adapter?.GetMachineSettingsBlocks(configuration) ?? [])
+        {
+            var index = blocks.FindIndex(block => block.Tab == coreBlock.Tab);
+            if (index < 0)
+            {
+                blocks.Add(coreBlock);
+                continue;
+            }
+            var existing = blocks[index];
+            blocks[index] = existing with
+            {
+                Fields = [.. existing.Fields, .. coreBlock.Fields.Select(field => field with { BlockId = existing.Id })],
+                Columns = Math.Min(existing.Columns, coreBlock.Columns)
+            };
+        }
+        return blocks;
+    }
+}

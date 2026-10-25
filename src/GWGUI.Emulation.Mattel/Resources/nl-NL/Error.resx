@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mattel.Error.ContentNotFound" xml:space="preserve"><value>De geconfigureerde Mattel media is niet gevonden.</value></data>
+  <data name="Emulation.Mattel.Error.ContentUnsupported" xml:space="preserve"><value>Deze machine ondersteunt de geselecteerde media niet.</value></data>
+  <data name="Emulation.Mattel.Error.CoreNotFound" xml:space="preserve"><value>De vereiste Mattel kern werd niet gevonden.</value></data>
+  <data name="Emulation.Mattel.Error.CoreRejected" xml:space="preserve"><value>De geselecteerde Mattel-kern kon niet geladen worden.</value></data>
+  <data name="Emulation.Mattel.Error.Details" xml:space="preserve"><value>Details: {0}</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareInvalid" xml:space="preserve"><value>Het systeem ROM ongeldig of onverenigbaar is.</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareMissing" xml:space="preserve"><value>Er ontbreekt een vereiste Mattel firmware.</value></data>
+  <data name="Emulation.Mattel.Error.HostExecutableMissing" xml:space="preserve"><value>Het uitvoerbare pad van Mattel-host is niet beschikbaar.</value></data>
+  <data name="Emulation.Mattel.Error.HostProtocolFailure" xml:space="preserve"><value>Communicatie met de Mattel-host is mislukt.</value></data>
+  <data name="Emulation.Mattel.Error.OptionInvalid" xml:space="preserve"><value>Een Mattel-optie heeft een ongeldige waarde.</value></data>
+  <data name="Emulation.Mattel.Error.StateIncompatible" xml:space="preserve"><value>De opgeslagen Mattel staat is niet compatibel met de huidige machine.</value></data>
+  <data name="Emulation.Mattel.Error.StateInvalid" xml:space="preserve"><value>De opgeslagen status van Mattel is ongeldig.</value></data>
+  <data name="Emulation.Mattel.Error.Unexpected" xml:space="preserve"><value>Er is een onverwachte Mattel emulatiefout opgetreden.</value></data>
+  <data name="Emulation.Mattel.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Onbekend omgevingscommando: {0}</value></data>
+</root>

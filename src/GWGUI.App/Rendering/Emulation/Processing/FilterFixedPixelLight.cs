@@ -2,8 +2,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 
 internal static class FilterFixedPixelLight
 {
-    internal static void ApplyBacklight(float[] colors, int width, int height,
-        float intensity, float blackFloor, float bleed, float gainMinimum, float gainRange)
+    internal static void ApplyBacklight(float[] colors, int width, int height, float intensity, float blackFloor, float bleed, float gainMinimum, float gainRange)
     {
         var original = bleed > 0f ? colors.ToArray() : colors;
         for (var y = 0; y < height; y++)

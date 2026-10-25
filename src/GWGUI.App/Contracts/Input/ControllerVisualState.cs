@@ -39,27 +39,19 @@ internal sealed record ControllerVisualState
     internal IReadOnlyDictionary<string, float> EmulatedCommandValues { get; init; } =
         new Dictionary<string, float>(StringComparer.Ordinal);
 
-    internal bool IsStandardActive(ControllerVisualControl control) =>
-        StandardControls.Contains(control);
+    internal bool IsStandardActive(ControllerVisualControl control) => StandardControls.Contains(control);
 
-    internal bool IsLabeledActive(ControllerVisualControl control) =>
-        LabeledControls.Contains(control);
+    internal bool IsLabeledActive(ControllerVisualControl control) => LabeledControls.Contains(control);
 
     internal bool IsRawButtonActive(int index) => ActiveRawButtons.Contains(index);
 
     internal float RawAxisSigned(int index)
     {
         if (!RawAxisValues.TryGetValue(index, out var value)) return 0f;
-        return RawAxesUseNormalizedValues
-            ? Math.Clamp(value * 2f - 1f, -1f, 1f)
-            : Math.Clamp(value, -1f, 1f);
+        return RawAxesUseNormalizedValues ? Math.Clamp(value * 2f - 1f, -1f, 1f) : Math.Clamp(value, -1f, 1f);
     }
 
-    internal float RawAxisUnsigned(int index, float defaultValue = 0f) =>
-        RawAxisValues.TryGetValue(index, out var value)
-            ? Math.Clamp(value, 0f, 1f)
-            : defaultValue;
+    internal float RawAxisUnsigned(int index, float defaultValue = 0f) => RawAxisValues.TryGetValue(index, out var value) ? Math.Clamp(value, 0f, 1f) : defaultValue;
 
-    internal float EmulatedCommandValue(string commandId) =>
-        EmulatedCommandValues.TryGetValue(commandId, out var value) ? value : 0f;
+    internal float EmulatedCommandValue(string commandId) => EmulatedCommandValues.TryGetValue(commandId, out var value) ? value : 0f;
 }

@@ -5,6 +5,8 @@ using GWGUI.App.Controllers.Emulation.Options;
 using GWGUI.App.Functions.Views.Emulation.Settings;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Services.Emulation;
+using GWGUI.App.Constants.Views.Emulation;
+using GWGUI.App.Functions.Emulation.Machine;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,11 +20,13 @@ internal sealed partial class EmulationModuleSettingsSection
         if (_loading || _machines.SelectedItem is not EmulationMachineChoice selected) return;
         await ExecuteAsync(async () =>
         {
-            _configuration = _saved.FirstOrDefault(item => item.MachineId == selected.Definition.Id)
-                ?? (EmulationConfigurationDraftStore.TryGet(_module.Id, selected.Definition.Id, out var draft)
-                    ? draft : _module.CreateConfiguration(selected.Definition.Id));
+            CaptureEditorValues();
+            var previous = _configuration;
+            var wasSaved = _saved.Any(item => item.Id == previous.Id);
+            if (!wasSaved) EmulationConfigurationDraftStore.Set(_module.Id, previous);
+            if (wasSaved) await PersistCapturedConfigurationAsync(previous, true);
+            _configuration = _saved.FirstOrDefault(item => item.MachineId == selected.Definition.Id) ?? (EmulationConfigurationDraftStore.TryGet(_module.Id, selected.Definition.Id, out var draft) ? draft : _module.CreateConfiguration(selected.Definition.Id));
             RebuildEditor();
-            if (_emulatorManagement is not null) await _emulatorManagement.RefreshAsync();
             NotifyEditingContextChanged();
         });
     }
@@ -37,33 +41,38 @@ internal sealed partial class EmulationModuleSettingsSection
 
     private async Task ApplyUserChangeAsync()
     {
+        if (_inputSettings?.HasErrors == true) return;
         _profiles.Get(_module.Id, _configuration.Id);
         CaptureEditorValues();
-        if (!_saved.Any(configuration => configuration.MachineId == _configuration.MachineId))
-        {
-            await EmulationConfigurationPersistenceFunctions.PersistAsync(
-                _module, _configuration, hasSavedConfiguration: false, profiles: _profiles);
-            return;
-        }
+        var configuration = _configuration;
+        await PersistCapturedConfigurationAsync(configuration, _saved.Any(item => item.Id == configuration.Id));
+    }
+
+    private async Task PersistCapturedConfigurationAsync(IEmulationConfiguration configuration, bool hasSavedConfiguration)
+    {
         await _saveInputGate.WaitAsync();
         try
         {
-            CaptureEditorValues();
-            var configuration = _configuration;
-            if (await EmulationConfigurationPersistenceFunctions.PersistAsync(
-                    _module, configuration, hasSavedConfiguration: true, profiles: _profiles))
+            if (await EmulationConfigurationPersistenceFunctions.PersistAsync(_module, configuration, hasSavedConfiguration, profiles: _profiles))
+            {
+                _saved = _saved.Select(item => item.Id == configuration.Id ? configuration : item).ToArray();
                 ConfigurationSaved?.Invoke(this, new EmulationConfigurationSavedEventArgs(configuration));
+            }
         }
         finally { _saveInputGate.Release(); }
     }
 
     private async Task SaveAsync()
     {
+        if (_inputSettings?.HasErrors == true) return;
         _profiles.Get(_module.Id, _configuration.Id);
         var values = _fieldControls.ToDictionary(item => item.Key, item => ReadValue(item.Value), StringComparer.Ordinal);
         _configuration = _module.ApplySettings(_configuration, values);
         if (_inputSettings is not null) _configuration = _inputSettings.Apply(_configuration);
         if (_storageSettings is not null) _configuration = _storageSettings.Apply(_configuration);
+        if (_emulatorManagement is not null)
+            await _emulatorManagement.EnsureEmulatorSelectedAsync();
+        _configuration = EmulationVideoConfigurationFunctions.Apply(_module, _configuration, _profiles.Get(_module.Id, _configuration.Id).Renderer);
         var configuration = _configuration;
         await _profiles.SaveAsync(_module.Id, configuration.Id);
         await _module.SaveConfigurationAsync(configuration);
@@ -80,19 +89,16 @@ internal sealed partial class EmulationModuleSettingsSection
 
     private static string? ReadValue(FrameworkElement control) => control switch
     {
-        ComboBox { SelectedItem: EmulationSettingsChoiceView selected } => selected.Choice.Id,
-        CheckBox { Tag: EmulationSettingsField field } toggle => toggle.IsChecked == true
-            ? field.EnabledValue : field.DisabledValue,
+        Button { Tag: string directory } => directory,
         TextBox text => text.Text,
         Grid { Tag: TextBox path } => path.Text,
-        _ => null
+        _ => GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsFieldControlFunctions.Read(control)
     };
 
     private void SelectMachine(string machineId)
     {
         _loading = true;
-        _machines.SelectedItem = _machines.Items.Cast<EmulationMachineChoice>()
-            .First(item => item.Definition.Id == machineId);
+        _machines.SelectedItem = _machines.Items.Cast<EmulationMachineChoice>().First(item => item.Definition.Id == machineId);
         _loading = false;
     }
 
@@ -100,8 +106,12 @@ internal sealed partial class EmulationModuleSettingsSection
     {
         EmulationSettingsLayout.DetachReusableElement(_machines);
         EmulationSettingsLayout.DetachReusableElement(_videoProcessing);
-        Content = null;
-        Content = BuildEditor();
+        var rebuilt = BuildEditor();
+        Content = rebuilt;
+        if (_emulatorManagement is not null)
+            _ = ExecuteAsync(_emulatorManagement.RefreshAsync);
+        if (_selectedTab == EmulationMachineTab.Rom && _firmwareManagement is not null)
+            _ = ExecuteAsync(_firmwareManagement.RefreshAsync);
     }
 
     private void SetConfiguration(IEmulationConfiguration configuration)
@@ -110,13 +120,10 @@ internal sealed partial class EmulationModuleSettingsSection
         RebuildEditor();
     }
 
-    private string CurrentMachineId() => _configuration.MachineId;
-
     private void NotifyEditingContextChanged()
     {
         var machine = (_machines.SelectedItem as EmulationMachineChoice)?.DisplayName ?? _configuration.MachineId;
-        EditingContextChanged?.Invoke(this, new EmulationMachineEditingContext(
-            LocExtension.GetForModule(_module, _module.DisplayResourceKey), machine));
+        EditingContextChanged?.Invoke(this, new EmulationMachineEditingContext(LocExtension.GetForModule(_module, _module.DisplayResourceKey), machine));
     }
 
     private Task TabActivatedAsync(EmulationMachineTab tab) => RememberTabAndActivateAsync(tab);
@@ -131,13 +138,10 @@ internal sealed partial class EmulationModuleSettingsSection
     internal void RefreshLocalizedContent()
     {
         CaptureEditorValues();
-        var choices = _module.Machines.Select(machine => new EmulationMachineChoice(machine,
-            LocExtension.GetForModule(_module, machine.DisplayResourceKey),
-            _saved.Any(configuration => configuration.MachineId == machine.Id))).ToArray();
+        var choices = _module.Machines.Select(CreateMachineChoice).ToArray();
         _machines.ItemsSource = choices;
         SelectMachine(_configuration.MachineId);
-        FlowDirection = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft
-            ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+        FlowDirection = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
         RebuildEditor();
         NotifyEditingContextChanged();
     }
@@ -145,9 +149,9 @@ internal sealed partial class EmulationModuleSettingsSection
     private void CaptureEditorValues()
     {
         if (_fieldControls.Count != 0)
-            _configuration = _module.ApplySettings(_configuration,
-                _fieldControls.ToDictionary(item => item.Key, item => ReadValue(item.Value), StringComparer.Ordinal));
+            _configuration = _module.ApplySettings(_configuration, _fieldControls.ToDictionary(item => item.Key, item => ReadValue(item.Value), StringComparer.Ordinal));
         if (_inputSettings is not null) _configuration = _inputSettings.Apply(_configuration);
         if (_storageSettings is not null) _configuration = _storageSettings.Apply(_configuration);
+        _configuration = EmulationVideoConfigurationFunctions.Apply(_module, _configuration, _profiles.Get(_module.Id, _configuration.Id).Renderer);
     }
 }

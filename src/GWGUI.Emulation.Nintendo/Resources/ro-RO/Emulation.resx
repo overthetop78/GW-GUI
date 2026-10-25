@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Language"><value>Limbajul sistemului Nintendo</value></data>
+  <data name="Emulation.Nintendo.Language.English"><value>Limba engleză</value></data>
+  <data name="Emulation.Nintendo.Language.French"><value>Franceză</value></data>
+  <data name="Emulation.Nintendo.Language.Spanish"><value>Spaniolă</value></data>
+  <data name="Emulation.Nintendo.Firmware.Integrated"><value>Sistemul ROM</value></data>
+  <data name="Emulation.Emulator.mesen.Description"><value>Emulează Nintendo Entertainment System și Famicom Disk System.</value></data>
+  <data name="Emulation.Emulator.gw.Description"><value>Emulează Nintendo Game &amp; Watch.</value></data>
+  <data name="Emulation.Emulator.beetle_vb.Description"><value>Emulează Nintendo Virtual Boy.</value></data>
+  <data name="Emulation.Emulator.mupen64plus-next.Description"><value>Emulează Nintendo 64 sisteme.</value></data>
+  <data name="Emulation.Emulator.melonds.Description"><value>Emulează sistemele Nintendo DS și DSi.</value></data>
+  <data name="Emulation.Emulator.snes9x.Description"><value>Emulează sistemele Super Nintendo și Super Famicom.</value></data>
+  <data name="Emulation.Emulator.gambatte.Description"><value>Emulează sistemul Nintendo Game Boy. De asemenea, emulează sistemul Game Boy Color.</value></data>
+  <data name="Emulation.Emulator.mgba.Description"><value>Emulează sistemele Nintendo Game Boy Advance.</value></data>
+  <data name="Emulation.Emulator.citra.Description"><value>Emulează Nintendo 3DS sisteme cu Citra.</value></data>
+  <data name="Emulation.Emulator.dolphin.Description"><value>Emulează Nintendo GameCube și Wii sisteme cu Dolphin.</value></data>
+</root>

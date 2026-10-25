@@ -17,8 +17,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 	    /// <param name="overwrite"></param>
 	    /// <param name="g">Globaldata.</param>
 	    /// <returns></returns>
-	    public static async Task<IPfs3Entry> Open(Pfs3ObjectInfo parentfi, string fullname, Amiga.FileSystems.FileMode mode,
-		    bool overwrite, Pfs3GlobalData g)
+        public static async Task<IPfs3Entry> Open(Pfs3ObjectInfo parentfi, string fullname, Amiga.FileSystems.FileMode mode, bool overwrite, Pfs3GlobalData g)
         {
 	        // static SIPTR dd_Open(struct DosPacket *pkt, globaldata * g)
 	        // ARG1 = BPTR Filehandle to fill in
@@ -231,8 +230,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 						throw new PathNotFoundException($"Path '{filename}' not found");
 					}
 
-					var hasReadProtectionBit =
-						(filefi.file.direntry.protection & Pfs3Constants.FIBF_READ) == 0;
+					var hasReadProtectionBit = (filefi.file.direntry.protection & Pfs3Constants.FIBF_READ) == 0;
 
 					if (!g.IgnoreProtectionBits && !hasReadProtectionBit)
 					{

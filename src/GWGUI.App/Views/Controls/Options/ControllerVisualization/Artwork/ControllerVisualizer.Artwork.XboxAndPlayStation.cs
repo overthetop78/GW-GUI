@@ -17,10 +17,8 @@ public sealed partial class ControllerVisualizer
         var rematch = Model == ControllerVisualModel.XboxRematchCore;
         var leftStick = rematch ? (.255, .405) : (.258, .298);
         var rightStick = rematch ? (.615, .555) : (.612, .502);
-        DrawArtworkStick(dc, At(bounds, leftStick.Item1, leftStick.Item2), input.LeftX, input.LeftY,
-            input.Button(GameInputGamepadButtons.LeftThumbstick, 8), Radius(bounds, .08));
-        DrawArtworkStick(dc, At(bounds, rightStick.Item1, rightStick.Item2), input.RightX, input.RightY,
-            input.Button(GameInputGamepadButtons.RightThumbstick, 9), Radius(bounds, .08));
+        DrawArtworkStick(dc, At(bounds, leftStick.Item1, leftStick.Item2), input.LeftX, input.LeftY, input.Button(GameInputGamepadButtons.LeftThumbstick, 8), Radius(bounds, .08));
+        DrawArtworkStick(dc, At(bounds, rightStick.Item1, rightStick.Item2), input.RightX, input.RightY, input.Button(GameInputGamepadButtons.RightThumbstick, 9), Radius(bounds, .08));
         if (rematch)
         {
             DrawFaceButtons(dc, bounds, (.730, .455), (.790, .360), (.665, .360), (.730, .270));
@@ -42,40 +40,29 @@ public sealed partial class ControllerVisualizer
             DrawShoulderAndTriggerOverlays(dc, bounds, .275, .725, .150);
         }
 
-        DrawArtworkHalo(dc, At(bounds, .350, .650), Radius(bounds, .032),
-            input.Button(GameInputGamepadButtons.PaddleLeft1, 14));
-        DrawArtworkHalo(dc, At(bounds, .405, .715), Radius(bounds, .032),
-            input.Button(GameInputGamepadButtons.PaddleLeft2, 15));
-        DrawArtworkHalo(dc, At(bounds, .650, .650), Radius(bounds, .032),
-            input.Button(GameInputGamepadButtons.PaddleRight1, 16));
-        DrawArtworkHalo(dc, At(bounds, .595, .715), Radius(bounds, .032),
-            input.Button(GameInputGamepadButtons.PaddleRight2, 17));
+        DrawArtworkHalo(dc, At(bounds, .350, .650), Radius(bounds, .032), input.Button(GameInputGamepadButtons.PaddleLeft1, 14));
+        DrawArtworkHalo(dc, At(bounds, .405, .715), Radius(bounds, .032), input.Button(GameInputGamepadButtons.PaddleLeft2, 15));
+        DrawArtworkHalo(dc, At(bounds, .650, .650), Radius(bounds, .032), input.Button(GameInputGamepadButtons.PaddleRight1, 16));
+        DrawArtworkHalo(dc, At(bounds, .595, .715), Radius(bounds, .032), input.Button(GameInputGamepadButtons.PaddleRight2, 17));
     }
 
     private void DrawXbox360ArtworkOverlays(DrawingContext dc, Rect bounds)
     {
         var input = Input;
-        DrawArtworkStick(dc, At(bounds, .249, .278), input.LeftX, input.LeftY,
-            input.Button(GameInputGamepadButtons.LeftThumbstick, 8), Radius(bounds, .078));
-        DrawArtworkStick(dc, At(bounds, .610, .497), input.RightX, input.RightY,
-            input.Button(GameInputGamepadButtons.RightThumbstick, 9), Radius(bounds, .078));
+        DrawArtworkStick(dc, At(bounds, .249, .278), input.LeftX, input.LeftY, input.Button(GameInputGamepadButtons.LeftThumbstick, 8), Radius(bounds, .078));
+        DrawArtworkStick(dc, At(bounds, .610, .497), input.RightX, input.RightY, input.Button(GameInputGamepadButtons.RightThumbstick, 9), Radius(bounds, .078));
         DrawArtworkDpad(dc, bounds, .363, .498, .045);
         DrawFaceButtons(dc, bounds, (.735, .388), (.799, .289), (.670, .285), (.735, .179));
-        DrawArtworkHalo(dc, At(bounds, .402, .288), Radius(bounds, .027),
-            input.Button(GameInputGamepadButtons.View, 6));
-        DrawArtworkHalo(dc, At(bounds, .586, .287), Radius(bounds, .027),
-            input.Button(GameInputGamepadButtons.Menu, 7));
-        DrawArtworkHalo(dc, At(bounds, .499, .290), Radius(bounds, .052),
-            input.SystemButton(GameInputSystemButtons.Guide));
+        DrawArtworkHalo(dc, At(bounds, .402, .288), Radius(bounds, .027), input.Button(GameInputGamepadButtons.View, 6));
+        DrawArtworkHalo(dc, At(bounds, .586, .287), Radius(bounds, .027), input.Button(GameInputGamepadButtons.Menu, 7));
+        DrawArtworkHalo(dc, At(bounds, .499, .290), Radius(bounds, .052), input.SystemButton(GameInputSystemButtons.Guide));
         DrawShoulderAndTriggerOverlays(dc, bounds, .270, .730, .080);
     }
     private void DrawGenericArtworkOverlays(DrawingContext dc, Rect bounds)
     {
         var input = Input;
-        DrawArtworkStick(dc, At(bounds, .350, .550), input.LeftX, input.LeftY,
-            input.Button(GameInputGamepadButtons.LeftThumbstick, 8), Radius(bounds, .07));
-        DrawArtworkStick(dc, At(bounds, .625, .550), input.RightX, input.RightY,
-            input.Button(GameInputGamepadButtons.RightThumbstick, 9), Radius(bounds, .07));
+        DrawArtworkStick(dc, At(bounds, .350, .550), input.LeftX, input.LeftY, input.Button(GameInputGamepadButtons.LeftThumbstick, 8), Radius(bounds, .07));
+        DrawArtworkStick(dc, At(bounds, .625, .550), input.RightX, input.RightY, input.Button(GameInputGamepadButtons.RightThumbstick, 9), Radius(bounds, .07));
         DrawFaceButtons(dc, bounds, (.765, .445), (.835, .350), (.695, .350), (.765, .255));
         DrawArtworkDpad(dc, bounds, .250, .350, .040);
         DrawArtworkHalo(dc, At(bounds, .420, .350), Radius(bounds, .025), Input.Button(GameInputGamepadButtons.View, 6));
@@ -107,17 +94,12 @@ public sealed partial class ControllerVisualizer
         if (analog)
         {
             var stickY = modern ? .515 : .610;
-            DrawArtworkStick(dc, At(bounds, .375, stickY), input.LeftX, input.LeftY,
-                input.Button(GameInputGamepadButtons.LeftThumbstick, 8), Radius(bounds, .070));
-            DrawArtworkStick(dc, At(bounds, .625, stickY), input.RightX, input.RightY,
-                input.Button(GameInputGamepadButtons.RightThumbstick, 9), Radius(bounds, .070));
+            DrawArtworkStick(dc, At(bounds, .375, stickY), input.LeftX, input.LeftY, input.Button(GameInputGamepadButtons.LeftThumbstick, 8), Radius(bounds, .070));
+            DrawArtworkStick(dc, At(bounds, .625, stickY), input.RightX, input.RightY, input.Button(GameInputGamepadButtons.RightThumbstick, 9), Radius(bounds, .070));
         }
         DrawShoulderAndTriggerOverlays(dc, bounds, .220, .780, .145);
     }
-    private void DrawFaceButtons(
-        DrawingContext dc, Rect bounds,
-        (double X, double Y) a, (double X, double Y) b,
-        (double X, double Y) x, (double X, double Y) y)
+    private void DrawFaceButtons(DrawingContext dc, Rect bounds, (double X, double Y) a, (double X, double Y) b, (double X, double Y) x, (double X, double Y) y)
     {
         var radius = Radius(bounds, .045);
         DrawArtworkHalo(dc, At(bounds, a.X, a.Y), radius, Input.Button(GameInputGamepadButtons.A, 0));
@@ -128,16 +110,10 @@ public sealed partial class ControllerVisualizer
 
     private void DrawShoulderAndTriggerOverlays(DrawingContext dc, Rect bounds, double leftX, double rightX, double shoulderY)
     {
-        DrawArtworkHalo(dc, At(bounds, leftX, shoulderY), Radius(bounds, .050),
-            Input.Button(GameInputGamepadButtons.LeftShoulder, 4));
-        DrawArtworkHalo(dc, At(bounds, rightX, shoulderY), Radius(bounds, .050),
-            Input.Button(GameInputGamepadButtons.RightShoulder, 5));
-        DrawArtworkTrigger(dc, new Rect(
-            bounds.X + bounds.Width * (leftX - .08), bounds.Y + bounds.Height * .075,
-            bounds.Width * .16, 7), Input.LeftTrigger);
-        DrawArtworkTrigger(dc, new Rect(
-            bounds.X + bounds.Width * (rightX - .08), bounds.Y + bounds.Height * .075,
-            bounds.Width * .16, 7), Input.RightTrigger);
+        DrawArtworkHalo(dc, At(bounds, leftX, shoulderY), Radius(bounds, .050), Input.Button(GameInputGamepadButtons.LeftShoulder, 4));
+        DrawArtworkHalo(dc, At(bounds, rightX, shoulderY), Radius(bounds, .050), Input.Button(GameInputGamepadButtons.RightShoulder, 5));
+        DrawArtworkTrigger(dc, new Rect(bounds.X + bounds.Width * (leftX - .08), bounds.Y + bounds.Height * .075, bounds.Width * .16, 7), Input.LeftTrigger);
+        DrawArtworkTrigger(dc, new Rect(bounds.X + bounds.Width * (rightX - .08), bounds.Y + bounds.Height * .075, bounds.Width * .16, 7), Input.RightTrigger);
     }
 
     private void DrawArtworkDpad(
@@ -161,14 +137,10 @@ public sealed partial class ControllerVisualizer
         var dy = offset;
         var w = Math.Max(8, bounds.Width * buttonWidth);
         var h = Math.Max(8, bounds.Height * buttonLength);
-        DrawArtworkDirection(dc, new Rect(center.X - w / 2, center.Y - dy - h / 2, w, h),
-            Input.Direction(GameInputSwitchPosition.Up, GameInputGamepadButtons.DPadUp, upButton, horizontalAxis, verticalAxis));
-        DrawArtworkDirection(dc, new Rect(center.X - w / 2, center.Y + dy - h / 2, w, h),
-            Input.Direction(GameInputSwitchPosition.Down, GameInputGamepadButtons.DPadDown, downButton, horizontalAxis, verticalAxis));
-        DrawArtworkDirection(dc, new Rect(center.X - dx - h / 2, center.Y - w / 2, h, w),
-            Input.Direction(GameInputSwitchPosition.Left, GameInputGamepadButtons.DPadLeft, leftButton, horizontalAxis, verticalAxis));
-        DrawArtworkDirection(dc, new Rect(center.X + dx - h / 2, center.Y - w / 2, h, w),
-            Input.Direction(GameInputSwitchPosition.Right, GameInputGamepadButtons.DPadRight, rightButton, horizontalAxis, verticalAxis));
+        DrawArtworkDirection(dc, new Rect(center.X - w / 2, center.Y - dy - h / 2, w, h), Input.Direction(GameInputSwitchPosition.Up, GameInputGamepadButtons.DPadUp, upButton, horizontalAxis, verticalAxis));
+        DrawArtworkDirection(dc, new Rect(center.X - w / 2, center.Y + dy - h / 2, w, h), Input.Direction(GameInputSwitchPosition.Down, GameInputGamepadButtons.DPadDown, downButton, horizontalAxis, verticalAxis));
+        DrawArtworkDirection(dc, new Rect(center.X - dx - h / 2, center.Y - w / 2, h, w), Input.Direction(GameInputSwitchPosition.Left, GameInputGamepadButtons.DPadLeft, leftButton, horizontalAxis, verticalAxis));
+        DrawArtworkDirection(dc, new Rect(center.X + dx - h / 2, center.Y - w / 2, h, w), Input.Direction(GameInputSwitchPosition.Right, GameInputGamepadButtons.DPadRight, rightButton, horizontalAxis, verticalAxis));
     }
 
 }

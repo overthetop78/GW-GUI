@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>快速启动</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>跳过 BIOS 启动屏幕并直接启动游戏。 禁用此功能打开控制台设置或内存卡管理器 。</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>自动的</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU 核心</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>快速内存</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>加快内存访问速度。这可能导致部分游戏运行不稳定。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>忽略不良内存访问</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>存储访问时序</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>宿主计算机</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>UMD光盘读取延迟</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>与实时时钟同步</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>将模拟过程与实时时钟同步以减少输入延迟。这可能降低性能。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>锁定了 CPU 速度</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>缓存全 ISO in RAM</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>内部骗取支持</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Label"><value>游戏语言</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Help"><value>"自动"将使用前端语言.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>中国传统</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>简体中文</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>PSP 模型</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>软件渲染</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>使用软件渲染以提高准确性，但需要更多处理能力。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>渲染解析</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>选择内部渲染分辨率。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA 防伪</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>使用Vulkan应用多重采样抗锯齿（MSAA）。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>作物为 16x9</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>裁剪图像的顶部和底部，以16:9的宽高比显示画面。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>框架skip</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Label"><value>框架skip 类型</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.0"><value>视频帧数</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>视频帧率百分比</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>自动框架skip</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>复制框架为 60 Hz</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>复制视频帧，使低帧率游戏中的动作更流畅。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>检测视频帧率变化</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>将游戏视频帧率的变化报告给应用程序。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>图形命令缓冲</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>减少图形命令缓冲以降低输入延迟。这可能降低性能。仅适用于OpenGL和Vulkan。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>无额外图形缓冲</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>最多缓冲一个视频帧</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>确认按钮</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>模拟摇杆圆形与方形移动范围补偿</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>类似死区</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>在应用程序处理输入后，对模拟摇杆额外应用死区设置。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>类似轴缩放</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Help"><value>在应用程序处理输入后，对模拟摇杆额外应用灵敏度设置。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Label"><value>跳过缓冲效应</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>跳过帧缓冲效果以提高性能。部分游戏可能无法显示画面。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>跳过 GPU 读取</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>跳过从GPU向CPU复制图形数据。部分游戏需要这些复制操作才能正确显示。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>延迟纹理缓存（加速）</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>更快,但可以在几场游戏中引起文本问题.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>Spline/ Bezier 曲线质量</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>仅被一些游戏所使用,控制曲线的平滑.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Label"><value>效果的下解析度</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Help"><value>降低部分视觉效果的分辨率，以避免渲染错误。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Value.2"><value>余额d</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_gpu_hardware_transform.Label"><value>硬件变换</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Label"><value>软件剥皮</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Help"><value>在CPU上处理并合并动画3D模型的绘制操作。这可以提高大多数游戏的性能。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Label"><value>硬件Teselation</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Help"><value>使用GPU渲染平滑曲线。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Label"><value>纹理升级类型</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Value.3"><value>混合+比库比克</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Label"><value>纹理升级级</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Help"><value>放大纹理会增加CPU使用率。部分纹理会稍后放大，以避免卡顿。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Label"><value>质地去污名化</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Help"><value>减少放大纹理中可见的色带。</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_replacement.Label"><value>纹理替换</value></data>
+  </root>

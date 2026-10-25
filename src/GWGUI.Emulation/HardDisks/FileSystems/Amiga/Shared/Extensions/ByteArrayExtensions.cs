@@ -39,9 +39,7 @@
 
         public static void WriteString(this byte[] bytes, int offset, string text, int length, byte fillByte = 0)
         {
-            var textBytes = AmigaTextHelper.GetBytes(text.Length > length
-                ? text.Substring(0, length)
-                : text);
+            var textBytes = AmigaTextHelper.GetBytes(text.Length > length ? text.Substring(0, length) : text);
 
             Array.Copy(textBytes, 0, bytes, offset, textBytes.Length);
 

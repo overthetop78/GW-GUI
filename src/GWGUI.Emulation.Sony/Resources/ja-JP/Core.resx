@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.pcsx2.Description"><value>PlayStation 2システムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.ppsspp.Description"><value>PlayStation Portableシステムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Sony PlayStation / PS oneシステムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>外部BIOSとメモリーカードイメージを使用して、携帯機器Sony PocketStationをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Beetle PSXのソフトウェアレンダラーでPlayStationシステムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Beetle PSXのハードウェアレンダラーでPlayStationシステムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>PCSX-ReARMedでPlayStationシステムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>PCEE2と外部BIOSでPlayStation 2システムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Play!とその内蔵システムファームウェアエミュレーションでPlayStation 2システムをエミュレートします。</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>RPCS3と外部システムファームウェアでPlayStation 3システムをエミュレートします。</value></data>
+</root>

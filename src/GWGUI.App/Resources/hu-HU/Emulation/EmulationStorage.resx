@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>Merevlemez</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>Csatoló</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Fájl előzetes lefoglalása</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>A folyamatgépből a floppykat és a CD-ket kell beilleszteni vagy lecserélni.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Használja az emuláció nézet behelyezni vagy megváltoztatni média.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Adathordozó eltávolítása</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>A lemezkép már létezik: {0}\nLecseréli?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Az elérhető típusok, modellek és azonosítók a kiválasztott géptől függenek.</value></data>
@@ -75,4 +75,13 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kazettafoglalat</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Az első négy lemez csatlakoztatása DF0-DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Lemez {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Kártya használata</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>A kijelölt fájl csatlakozik ehhez a virtuális tároló eszközhöz.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Válasszon ki egy meglévő kártyafájlt.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>A kártyafájl érvénytelen méretű.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Válassza ki az eszköz által támogatott fájlformátumot.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Korlátlan</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Törlés a játék bezárásakor</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Memóriakártya</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>Kártya neve</value></data>
 </root>

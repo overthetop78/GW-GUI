@@ -31,9 +31,7 @@ public sealed class ImageFormatWorkspace
     {
         var discovered = DiskDefsFormatReader.Read(path);
         var formatIds = Capabilities.FormatIds.Concat(discovered).ToHashSet(StringComparer.OrdinalIgnoreCase);
-        var extensions = Capabilities.ImageExtensions.Count > 0
-            ? Capabilities.ImageExtensions
-            : ImageFormatFallbackExtensions.All;
+        var extensions = Capabilities.ImageExtensions.Count > 0 ? Capabilities.ImageExtensions : ImageFormatFallbackExtensions.All;
 
         Capabilities = new GwFormatCapabilities(formatIds, extensions);
         Rebuild();
@@ -41,9 +39,14 @@ public sealed class ImageFormatWorkspace
 
     public void Rebuild()
     {
-        Catalog = new CapabilityAwareImageFormatCatalog(
-            new BuiltInImageFormatCatalog(_localize),
-            Capabilities);
+        var curated = new BuiltInImageFormatCatalog(_localize);
+        var formatIds = DiskDefsFormatReader.Definitions.Keys.Concat(Capabilities.FormatIds)
+            .Concat(curated.Formats.Where(format => format.SupportsPhysicalRead || format.SupportsPhysicalWrite)
+                .Select(format => GwFormatArgument.FromCatalogId(format.Id) ?? format.Id))
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var extensions = Capabilities.ImageExtensions.Concat([".img", ".scp", ".hfe"])
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        Catalog = new CapabilityAwareImageFormatCatalog(curated, new GwFormatCapabilities(formatIds, extensions));
         Detector = new ImageFormatDetector(Catalog);
     }
 }

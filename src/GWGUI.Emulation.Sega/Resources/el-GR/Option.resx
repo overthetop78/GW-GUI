@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sega.MasterSystem.Variant"><value>Master System μοντέλο</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses"><value>Τρισδιάστατα γυαλιά</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>Ενεργοποιημένο</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>Απενεργοποίηση</value></data>
+  <data name="Emulation.Sega.MegaDrive.Model"><value>Μοντέλο Mega Drive</value></data>
+  <data name="Emulation.Sega.MegaDrive.Region"><value>Περιφέρεια</value></data>
+  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>Αυτόματο</value></data>
+  <data name="Emulation.Sega.MegaDrive.VideoStandard"><value>Πρότυπο βίντεο</value></data>
+  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>Αυτόματο</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Μοντέλο Mega-CD</value></data>
+  <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Ενεργοποίηση Mega-CD</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X"><value>Ενεργοποίηση 32X</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Ενεργοποιημένο</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Απενεργοποίηση</value></data>
+</root>

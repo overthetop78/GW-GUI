@@ -21,9 +21,7 @@ public partial class EmulationPreferencesWindow : Window
     private bool _initializing = true;
     private bool _closingAfterSave;
     private bool _closeInProgress;
-    public EmulationPreferencesWindow(AppSettings settings,
-        ISettingsStore? settingsStore = null, string? dataDirectory = null,
-        Action<Exception>? reportSaveError = null)
+    public EmulationPreferencesWindow(AppSettings settings, ISettingsStore? settingsStore = null, string? dataDirectory = null, Action<Exception>? reportSaveError = null)
     {
         InitializeComponent();
         _settings = settings;
@@ -32,7 +30,7 @@ public partial class EmulationPreferencesWindow : Window
         _reportSaveError = reportSaveError ?? (error => ShowLoggedError(error, "Saving Emulation options"));
         EmulationSection.EditConfigurationRequested += async (module, configuration) =>
         {
-            var window = new EmulationModuleOptionsWindow(module, configuration) { Owner = this };
+            var window = new EmulationModuleOptionsWindow(module, configuration, reservedBindings: _settings.EmulationShortcuts.Values) { Owner = this };
             window.ShowDialog();
             await EmulationSection.ReloadConfigurationsForWindowAsync();
         };
@@ -70,8 +68,7 @@ public partial class EmulationPreferencesWindow : Window
     {
         ErrorLog.Write(exception, context);
         var detail = ExceptionDescriptionFunctions.Describe(exception);
-        MessageBox.Show(this, LocExtension.Get("Error.Unexpected", detail),
-            LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Warning);
+        MessageBox.Show(this, LocExtension.Get("Error.Unexpected", detail), LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Warning);
     }
 
     private void Close_Click(object sender, RoutedEventArgs e) => BeginClose();
@@ -103,8 +100,7 @@ public partial class EmulationPreferencesWindow : Window
                     await Dispatcher.InvokeAsync(() =>
                     {
                         if (IsLoaded)
-                            MessageBox.Show(this, LocExtension.Get("Error.SaveFailed", detail),
-                                LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show(this, LocExtension.Get("Error.SaveFailed", detail), LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Warning);
                     }).Task.ConfigureAwait(false);
             }
             catch (Exception dialogException)

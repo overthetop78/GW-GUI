@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>หน่วยความจําวีดิทัศน์</value></data>
+  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>ตัวเลือกของตัวควบคุม</value></data>
+  <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>ระบบ</value></data>
+  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>ADAM ไดรว์ดิสก์</value></data>
+  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>ADAM ข้อมูล</value></data>
+  <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>อัตราการรีเฟรชวิดีโอ</value></data>
+  <data name="Emulation.Coleco.Setting.CartridgeType" xml:space="preserve"><value>ตลับหมึก</value></data>
+  <data name="Emulation.Coleco.Setting.VideoChip" xml:space="preserve"><value>ชิปวิดีโอ</value></data>
+  <data name="Emulation.Coleco.Setting.ScreenBorders" xml:space="preserve"><value>กรอบจอ</value></data>
+  <data name="Emulation.Coleco.Setting.RemoveSpriteLimit" xml:space="preserve"><value>ลบค่าจํากัดของ spirn</value></data>
+  <data name="Emulation.Coleco.Setting.AllowOppositeDirections" xml:space="preserve"><value>อนุญาตให้ทําตรงกันข้าม</value></data>
+  <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>ความ ไว ต่อ การ ควบคุม ของ ผู้ ป่วย</value></data>
+  <data name="Emulation.Coleco.Setting.ColorPalette" xml:space="preserve"><value>จานสี</value></data>
+  <data name="Emulation.Coleco.Setting.CropTopBorder" xml:space="preserve"><value>ซ่อนกรอบของหน้าจอด้านบน</value></data>
+  <data name="Emulation.Coleco.Setting.CropBottomBorder" xml:space="preserve"><value>ซ่อนกรอบของหน้าจอล่าง</value></data>
+  <data name="Emulation.Coleco.Setting.CropLeftBorder" xml:space="preserve"><value>ซ่อนกรอบจอด้านซ้าย</value></data>
+  <data name="Emulation.Coleco.Setting.CropRightBorder" xml:space="preserve"><value>ซ่อนกรอบจอด้านขวา</value></data>
+  <data name="Emulation.Coleco.Setting.CropScreenBorders" xml:space="preserve"><value>ซ่อนกรอบจอ</value></data>
+  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>บูตแบบเร็ว</value></data>
+  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>ตลับหมึกมาตรฐาน</value></data>
+  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>กรอบบนและด้านล่าง</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>ขอบเขตทั้งหมด (284 พิกเซล)</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>เส้นขอบทั้งหมด (กว้าง 320 พิกเซล)</value></data>
+  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>จําลอง COLECOVISION และ ADAM.</value></data>
+  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>จําลอง COLECOVISION.</value></data>
+  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>จําลอง COLECOVISION.</value></data>
+</root>

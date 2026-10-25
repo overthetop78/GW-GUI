@@ -5,8 +5,7 @@ namespace GWGUI.Emulation.HardDisks.FileSystems;
 
 public static class AmigaDosVolumeFormatter
 {
-    public static void Format(Stream volume, string label, bool fastFileSystem)
-        => Format(volume,label,fastFileSystem?(byte)1:(byte)0);
+    public static void Format(Stream volume, string label, bool fastFileSystem) => Format(volume,label,fastFileSystem?(byte)1:(byte)0);
 
     public static void Validate(long capacity,string label,byte variant)
     {

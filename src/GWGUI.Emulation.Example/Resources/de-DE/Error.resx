@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound"><value>Das konfigurierte Medium wurde nicht gefunden.</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported"><value>Die Maschine unterstützt das ausgewählte Medium nicht.</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound"><value>Der benötigte Emulationskern wurde nicht gefunden.</value></data>
+  <data name="Emulation.Example.Error.CoreRejected"><value>Der ausgewählte Emulationskern konnte nicht geladen werden.</value></data>
+  <data name="Emulation.Example.Error.Details"><value>Einzelheiten: {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid"><value>Eine Firmware ist ungültig oder inkompatibel.</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing"><value>Eine erforderliche Firmware fehlt.</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing"><value>Der Pfad zum Emulations-Hostprogramm ist nicht verfügbar.</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure"><value>Die Kommunikation mit dem Emulations-Host ist fehlgeschlagen.</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid"><value>Eine Option hat einen ungültigen Wert.</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible"><value>Der gespeicherte Zustand ist mit der aktuellen Maschine nicht kompatibel.</value></data>
+  <data name="Emulation.Example.Error.StateInvalid"><value>Der gespeicherte Zustand ist ungültig.</value></data>
+  <data name="Emulation.Example.Error.Unexpected"><value>Es trat ein unerwarteter Emulationsfehler auf.</value></data>
+</root>

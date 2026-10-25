@@ -34,7 +34,9 @@ public sealed class DataGeneralFmDecoder : IFluxDecoder
             sectors.Add(new(decoded.Identity.Cylinder, decoded.Identity.Head, decoded.Identity.Sector, DataGeneralFmFormat.SectorSizeCode, DataGeneralFmFormat.SectorSize, decoded.ChecksumValid, syncOffsets[index], SectorIntegrityKind.Checksum, decoded.Payload));
             structures.Add(new(FluxStructureKind.FormatHeader, syncOffsets[index], DataGeneralFmFormat.EncodedSyncBitCount + DataGeneralFmFormat.IdentityByteCount * DataGeneralFmFormat.EncodedByteBitCount, DataGeneralFmDescriptions.Header(decoded.Identity)));
             structures.Add(new(FluxStructureKind.FormatData, syncOffsets[index + 1], DataGeneralFmFormat.EncodedSyncBitCount + DataGeneralFmFormat.DataBlockByteCount * DataGeneralFmFormat.EncodedByteBitCount, DataGeneralFmDescriptions.Data(decoded.Identity, decoded.ChecksumValid)));
-            index++;
+            var dataEnd = syncOffsets[index + 1] + DataGeneralFmFormat.EncodedSyncBitCount
+                + DataGeneralFmFormat.DataBlockByteCount * DataGeneralFmFormat.EncodedByteBitCount;
+            while (index + 1 < syncOffsets.Count && syncOffsets[index + 1] < dataEnd) index++;
         }
         var confidence = FluxDecoderConfidence.Calculate(sectors.Count, structures.Count, DataGeneralFmFormat.ConfidenceSectorWeight, DataGeneralFmFormat.ConfidenceDivisor);
         return new(Id, DisplayName, confidence, stream.BitCellTicks, structures, bytes, sectors);

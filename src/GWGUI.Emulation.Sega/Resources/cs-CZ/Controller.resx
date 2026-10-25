@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sega.Controller.SegaSg1000Joystick"><value>SG-1000 joystick</value></data>
+  <data name="Emulation.Sega.Controller.SegaSg1000IiJoypad"><value>SG-1000 IIGamepad</value></data>
+  <data name="Emulation.Sega.Controller.SegaSc3000Keyboard"><value>SC-3000 klávesnice</value></data>
+  <data name="Emulation.Sega.Controller.SegaMasterSystemController"><value>Master System regulátor</value></data>
+  <data name="Emulation.Sega.Controller.SegaGameGearController"><value>Game Gear built- in controlls</value></data>
+  <data name="Emulation.Sega.Controller.SegaMegaDriveThreeButton"><value>Mega Drive 3- tlačítko regulátor</value></data>
+  <data name="Emulation.Sega.Controller.SegaMegaDriveSixButton"><value>Mega Drive 6- tlačítko regulátor</value></data>
+  <data name="Emulation.Sega.Controller.SegaArcadePowerStickSixButton"><value>Arcade Power Stick 6- knoflík regulátor</value></data>
+  <data name="Emulation.Sega.Controller.SegaSaturnController"><value>Saturn regulátor</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastController"><value>Regulátor Dreamcastu</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastMouse"><value>Myš Dreamcast</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastKeyboard"><value>Dreamcast klávesnice</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastLightGun"><value>Dreamcast lehká pistole</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastFishingController"><value>Rybářský kontrolor Dreamcast</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastArcadeStick"><value>Arkádová hůl Dreamcast</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastTwinStick"><value>Dvoulůžkový klacek Dreamcast</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastMaracas"><value>Dreamcast maracas</value></data>
+</root>

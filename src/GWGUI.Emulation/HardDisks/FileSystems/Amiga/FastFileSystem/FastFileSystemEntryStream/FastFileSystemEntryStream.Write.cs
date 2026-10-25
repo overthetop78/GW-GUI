@@ -24,8 +24,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
                 if (await AdfCreateNextFileBlock() == uint.MaxValue)
                 {
                     /* bug found by Rikard */
-                throw new FileSystemDiagnosticException(FileSystemErrorCode.NoFreeSectorAvailable,
-                    FastFileSystemErrorMessages.NoFreeSectorAvailable);
+                throw new FileSystemDiagnosticException(FileSystemErrorCode.NoFreeSectorAvailable, FastFileSystemErrorMessages.NoFreeSectorAvailable);
                 }
 
                 posInDataBlk = 0;
@@ -48,8 +47,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
                     if (await AdfCreateNextFileBlock() == uint.MaxValue)
                     {
                         /* bug found by Rikard */
-                    throw new FileSystemDiagnosticException(FileSystemErrorCode.NoFreeSectorAvailable,
-                        FastFileSystemErrorMessages.NoFreeSectorAvailable);
+                    throw new FileSystemDiagnosticException(FileSystemErrorCode.NoFreeSectorAvailable, FastFileSystemErrorMessages.NoFreeSectorAvailable);
                     }
 
                     posInDataBlk = 0;

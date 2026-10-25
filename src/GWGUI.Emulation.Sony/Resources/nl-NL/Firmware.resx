@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Firmware.Integrated"><value>Systeem-ROM</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (Japan)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (Noord-Amerika)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (Europa)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>Optionele ROM van de dvd-speler van de PS2.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>Kies de ROM1-dump die bij het geselecteerde BIOS hoort, meestal een .rom1-bestand of rom1.bin. Deze bevat dvd-spelermodules en identificatiegegevens. Laat dit veld leeg als uw console geen ROM1-dump heeft. Selecteer het hoofd-BIOS in het veld BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>Optionele PS2-ROM met Chinese lettertypen.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>Kies de ROM2-dump van de Chinese SCPH-50009-console die bij het geselecteerde BIOS hoort, meestal een .rom2-bestand of rom2.bin. Laat dit veld leeg voor consoles zonder ROM2. Dit bestand vervangt het hoofd-BIOS niet.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>Opgeslagen console-instellingen.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>Selecteer een .nvm-bestand van 1024 bytes dat bij het geselecteerde BIOS hoort. Het bevat de console-instellingen. Het bestand is optioneel: laat het veld leeg om opgeslagen instellingen te gebruiken of de emulator standaardinstellingen te laten maken.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>Versie van de mechanische controller.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>Selecteer een .mec-bestand van 4 bytes dat bij het geselecteerde BIOS hoort. Het bevat het versienummer van de mechanische controller, niet de volledige firmware. Het bestand is optioneel: laat het veld leeg om opgeslagen gegevens te gebruiken of de emulator een standaardbestand te laten maken.</value></data>
+</root>

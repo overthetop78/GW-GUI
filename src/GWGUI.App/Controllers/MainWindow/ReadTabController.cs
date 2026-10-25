@@ -51,7 +51,7 @@ internal sealed partial class ReadTabController(
     IGreaseweazleRunner runner,
     DiskImageWorkspaceController diskImageWorkspace,
     TextBox commandPreview,
-    TextBox logOutput,
+    RichTextBox logOutput,
     Func<string?> selectedDeviceArgument,
     Func<string?> selectedDriveArgument,
     Func<bool> ensureSelectedHardwareAvailable,
@@ -83,12 +83,11 @@ internal sealed partial class ReadTabController(
 
     private bool UsesInternalPhysicalRead => settings().Engines.PhysicalRead == OperationEngine.Internal;
     private string? lastInternalReadProgressLine;
+    private bool refreshingProfiles;
 
     internal void UpdateExtension()
     {
-        ExtensionText.Text = RawScpRadio.IsChecked == true
-            ? LocExtension.Get("Read.RawScp")
-            : (ExtensionCombo.SelectedItem as ImageExtension)?.DisplayName ?? LocExtension.Get("Read.ChooseType");
+        ExtensionText.Text = RawScpRadio.IsChecked == true ? LocExtension.Get("Read.RawScp") : (ExtensionCombo.SelectedItem as ImageExtension)?.DisplayName ?? LocExtension.Get("Read.ChooseType");
     }
 
     private void ApplyProfile(OperationProfile profile)
@@ -104,8 +103,7 @@ internal sealed partial class ReadTabController(
                 RawScpRadio.IsChecked = true;
             else if (profile.Values.GetValueOrDefault(ReadTabConstants.ResultProfileKey) == ReadTabConstants.KnownResultId)
                 KnownFormatRadio.IsChecked = true;
-            SelectFormat(profile.Values.GetValueOrDefault(ReadTabConstants.FormatProfileKey),
-                profile.Values.GetValueOrDefault(ReadTabConstants.ExtensionProfileKey));
+            SelectFormat(profile.Values.GetValueOrDefault(ReadTabConstants.FormatProfileKey), profile.Values.GetValueOrDefault(ReadTabConstants.ExtensionProfileKey));
             if (profile.Values.TryGetValue(ReadTabConstants.FolderProfileKey, out var folder)
                 && !string.IsNullOrWhiteSpace(folder))
                 viewModel.Read.Folder = folder;
@@ -121,8 +119,7 @@ internal sealed partial class ReadTabController(
 
         FamilyCombo.SelectedItem = format.Family;
         FormatCombo.SelectedItem = format;
-        var extension = format.Extensions.FirstOrDefault(item =>
-            item.Extension.Equals(imageExtension, StringComparison.OrdinalIgnoreCase));
+        var extension = format.Extensions.FirstOrDefault(item => item.Extension.Equals(imageExtension, StringComparison.OrdinalIgnoreCase));
         if (extension is not null)
             ExtensionCombo.SelectedItem = extension;
     }

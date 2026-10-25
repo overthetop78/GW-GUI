@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mattel.Error.ContentNotFound" xml:space="preserve"><value>ไม่พบสื่อของ Mattel ที่ปรับแต่งแล้ว</value></data>
+  <data name="Emulation.Mattel.Error.ContentUnsupported" xml:space="preserve"><value>เครื่องนี้ไม่รองรับสื่อที่เลือก</value></data>
+  <data name="Emulation.Mattel.Error.CoreNotFound" xml:space="preserve"><value>ไม่พบแกนของแมทเทลที่ต้องการ</value></data>
+  <data name="Emulation.Mattel.Error.CoreRejected" xml:space="preserve"><value>ไม่สามารถโหลดแกนของ Mattel ได้</value></data>
+  <data name="Emulation.Mattel.Error.Details" xml:space="preserve"><value>รายละเอียด: {0}</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareInvalid" xml:space="preserve"><value>ระบบ ROM ไม่สมบูรณ์หรือเข้ากันไม่ได้</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareMissing" xml:space="preserve"><value>มัตเทล เฟิร์มแวร์หายไป</value></data>
+  <data name="Emulation.Mattel.Error.HostExecutableMissing" xml:space="preserve"><value>ไม่สามารถประมวลผลพาธของเครื่องของ Matel ได้</value></data>
+  <data name="Emulation.Mattel.Error.HostProtocolFailure" xml:space="preserve"><value>การติดต่อกับเครื่องของแมทเทลล้มเหลว</value></data>
+  <data name="Emulation.Mattel.Error.OptionInvalid" xml:space="preserve"><value>ตัวเลือก Matel มีค่าที่ไม่ถูกต้อง</value></data>
+  <data name="Emulation.Mattel.Error.StateIncompatible" xml:space="preserve"><value>มัตเทลช่วยรักษาสถานะ ไม่ให้เข้ากับเครื่องปัจจุบัน</value></data>
+  <data name="Emulation.Mattel.Error.StateInvalid" xml:space="preserve"><value>รัฐแมทเทลเซฟ ใช้งานไม่ได้</value></data>
+  <data name="Emulation.Mattel.Error.Unexpected" xml:space="preserve"><value>เกิดข้อผิดพลาดในการจําลองเครื่องของมาเทลอย่างไม่คาดคิด</value></data>
+  <data name="Emulation.Mattel.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>ไม่รู้จักคําสั่งสภาพแวดล้อม: {0}</value></data>
+</root>

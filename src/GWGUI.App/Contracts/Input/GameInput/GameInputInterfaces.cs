@@ -6,31 +6,13 @@ namespace GWGUI.App.Services.Input.GameInput;
 internal delegate void GameInputReadingCallback(ulong token, IntPtr context, IGameInputReading reading);
 
 [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-internal delegate void GameInputDeviceCallback(
-    ulong token,
-    IntPtr context,
-    IGameInputDevice device,
-    ulong timestamp,
-    GameInputDeviceStatus currentStatus,
-    GameInputDeviceStatus previousStatus);
+internal delegate void GameInputDeviceCallback(ulong token, IntPtr context, IGameInputDevice device, ulong timestamp, GameInputDeviceStatus currentStatus, GameInputDeviceStatus previousStatus);
 
 [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-internal delegate void GameInputSystemButtonCallback(
-    ulong token,
-    IntPtr context,
-    IGameInputDevice device,
-    ulong timestamp,
-    GameInputSystemButtons currentButtons,
-    GameInputSystemButtons previousButtons);
+internal delegate void GameInputSystemButtonCallback(ulong token, IntPtr context, IGameInputDevice device, ulong timestamp, GameInputSystemButtons currentButtons, GameInputSystemButtons previousButtons);
 
 [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-internal delegate void GameInputKeyboardLayoutCallback(
-    ulong token,
-    IntPtr context,
-    IGameInputDevice device,
-    ulong timestamp,
-    uint currentLayout,
-    uint previousLayout);
+internal delegate void GameInputKeyboardLayoutCallback(ulong token, IntPtr context, IGameInputDevice device, ulong timestamp, uint currentLayout, uint previousLayout);
 
 [ComImport, Guid("20EFC1C7-5D9A-43BA-B26F-B807FA48609C"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 internal interface IGameInput

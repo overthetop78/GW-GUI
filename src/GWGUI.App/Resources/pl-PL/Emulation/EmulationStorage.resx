@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>Dysk twardy</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>Interfejs</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Wstępnie przydziel plik</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Pompie i płyty CD są wstawiane lub wymieniane z uruchomionej maszyny.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Użyj widoku emulacji, aby wprowadzić lub zmienić nośniki.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Usuń nośnik</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Obraz dysku już istnieje: {0}\nCzy chcesz go zastąpić?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Dostępne typy, modele i identyfikatory zależą od wybranej maszyny.</value></data>
@@ -75,4 +75,13 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Gniazdo kartridża</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Zamontować pierwsze cztery dyski w DF0-DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Dysk {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Użyj karty</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>Wybrany plik zostanie dołączony do tego wirtualnego urządzenia pamięci masowej.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Wybierz istniejący plik karty.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>Plik karty ma nieprawidłowy rozmiar.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Wybierz format pliku obsługiwany przez to urządzenie.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Bez ograniczeń</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Wyczyść przy zamknięciu gry</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Karta pamięci</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>Nazwa karty</value></data>
 </root>

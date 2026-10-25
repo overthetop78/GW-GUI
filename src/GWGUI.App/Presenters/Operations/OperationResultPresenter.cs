@@ -22,11 +22,7 @@ public sealed class OperationResultPresenter(Action<Exception, string>? logError
             _ => "Operation.ExitCode"
         };
         var statusArguments = state == OperationResultState.Error ? new object[] { result.ExitCode } : [];
-        return new(state,
-        [
-            new(statusKey, statusArguments, true),
-            new("Operation.Finished", [result.ExitCode, result.Duration.ToString("g")], true)
-        ]);
+        return new(state, [new(statusKey, statusArguments, true), new("Operation.Finished", [result.ExitCode, result.Duration.ToString("g")], true)]);
     }
 
     public OperationResultPresentation Present(OperationOutcome<GwBatchExecutionResult> outcome)

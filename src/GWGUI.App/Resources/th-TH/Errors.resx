@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>ตําแหน่งที่ต้องการไม่ถูกต้องสําหรับวัตถุระบบแฟ้มนี้</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>ปฏิบัติการการแทนที่- การระบุพิกัดล้มเหลว</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>บล็อกดัชนีการแทนที่ {0}/{1} ไม่สามารถอ่านได้</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>หัวไดรฟ์ไม่ได้อยู่ที่กระบอกร้องขอ (School){0}จ๊ะ จองไดร์ฟใหม่ก่อนอ่าน</value></data>
 </root>

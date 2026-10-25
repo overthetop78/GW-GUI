@@ -8,10 +8,7 @@ namespace GWGUI.MediaEngine.Images.Models.Sequential;
 /// <summary>Describes sequential faces, tracks, channels, segments, and timing only when supplied by the source.</summary>
 public sealed class SequentialMediaImageRepresentation : IMediaImageRepresentation
 {
-    public SequentialMediaImageRepresentation(
-        long? logicalLength,
-        TimeSpan? duration = null,
-        IReadOnlyList<SequentialMediaSegment>? segments = null)
+    public SequentialMediaImageRepresentation(long? logicalLength, TimeSpan? duration = null, IReadOnlyList<SequentialMediaSegment>? segments = null)
     {
         if (logicalLength is < 0) throw new ArgumentOutOfRangeException(nameof(logicalLength));
         if (duration is { } declaredDuration && declaredDuration < TimeSpan.Zero) throw new ArgumentOutOfRangeException(nameof(duration));

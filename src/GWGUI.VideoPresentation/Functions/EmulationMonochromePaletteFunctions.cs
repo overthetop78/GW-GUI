@@ -9,12 +9,10 @@ public static class EmulationMonochromePaletteFunctions
         var red = (int)((argb >> 16) & 0xff);
         var green = (int)((argb >> 8) & 0xff);
         var blue = (int)(argb & 0xff);
-        return Palettes.MinBy(palette => Distance(red, green, blue,
-            palette.Red, palette.Green, palette.Blue)).Palette;
+        return Palettes.MinBy(palette => Distance(red, green, blue, palette.Red, palette.Green, palette.Blue)).Palette;
     }
 
-    private static int Distance(int red, int green, int blue, int targetRed,
-        int targetGreen, int targetBlue)
+    private static int Distance(int red, int green, int blue, int targetRed, int targetGreen, int targetBlue)
     {
         var deltaRed = red - targetRed;
         var deltaGreen = green - targetGreen;

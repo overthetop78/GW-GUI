@@ -15,11 +15,9 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.Simh;
 /// <summary>Validates complete SIMH tape object framing before exposing records and markers.</summary>
 public sealed class SimhTapeReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { TapeImageFormatIds.SimhTap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { TapeImageFormatIds.SimhTap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Tape }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => SimhTapeFormat.Extensions;
@@ -56,13 +54,9 @@ public sealed class SimhTapeReader : IMediaImageReader
             new Dictionary<string, string>(StringComparer.Ordinal));
     }
 
-    private static async Task<ParseResult> ParseAsync(
-        string path,
-        bool createSegments,
-        CancellationToken cancellationToken)
+    private static async Task<ParseResult> ParseAsync(string path, bool createSegments, CancellationToken cancellationToken)
     {
-        await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read,
-            64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
+        await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, 64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
         if (stream.Length < SimhTapeConstants.WordSize)
             throw new InvalidDataException("A SIMH tape image must contain at least one object word.");
         var source = createSegments ? new FileRandomAccessData(path) : null;
@@ -102,8 +96,7 @@ public sealed class SimhTapeReader : IMediaImageReader
 
             var length = word & SimhTapeConstants.RecordLengthMask;
             if (length == 0) throw new InvalidDataException("A SIMH data record cannot have zero length.");
-            var paddedLength = (length + SimhTapeConstants.RecordAlignment - 1)
-                & ~(uint)(SimhTapeConstants.RecordAlignment - 1);
+            var paddedLength = (length + SimhTapeConstants.RecordAlignment - 1) & ~(uint)(SimhTapeConstants.RecordAlignment - 1);
             if (stream.Length - stream.Position < paddedLength + SimhTapeConstants.WordSize)
                 throw new InvalidDataException("A SIMH data record exceeds the image boundary.");
             var dataOffset = stream.Position;
@@ -133,11 +126,7 @@ public sealed class SimhTapeReader : IMediaImageReader
         return new ParseResult(segments, diagnostics);
     }
 
-    private static SequentialMediaSegment Marker(
-        long position,
-        SequentialSegmentKind kind,
-        uint value,
-        string objectKind) =>
+    private static SequentialMediaSegment Marker(long position, SequentialSegmentKind kind, uint value, string objectKind) =>
         new(
             position,
             kind,
@@ -148,7 +137,5 @@ public sealed class SimhTapeReader : IMediaImageReader
                 [SimhTapeConstants.MarkerValueMetadataKey] = value.ToString("x8", CultureInfo.InvariantCulture)
             });
 
-    private sealed record ParseResult(
-        IReadOnlyList<SequentialMediaSegment> Segments,
-        IReadOnlyList<string> Diagnostics);
+    private sealed record ParseResult(IReadOnlyList<SequentialMediaSegment> Segments, IReadOnlyList<string> Diagnostics);
 }

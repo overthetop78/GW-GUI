@@ -11,10 +11,8 @@ internal static class VhdxFormat
     public static readonly ReadOnlyMemory<byte> HeaderSignature = System.Text.Encoding.ASCII.GetBytes("head");
     public static readonly ReadOnlyMemory<byte> RegionTableSignature = System.Text.Encoding.ASCII.GetBytes("regi");
     public static readonly ReadOnlyMemory<byte> MetadataTableSignature = System.Text.Encoding.ASCII.GetBytes("metadata");
-    public static readonly IReadOnlySet<string> Extensions =
-        new[] { DiskImageFileExtensions.Vhdx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    public static readonly IReadOnlySet<int> LogicalSectorSizes =
-        new[] { HardDiskFormatConstants.LegacyLogicalSectorSize, HardDiskFormatConstants.LargeLogicalSectorSize }.ToFrozenSet();
+    public static readonly IReadOnlySet<string> Extensions = new[] { DiskImageFileExtensions.Vhdx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    public static readonly IReadOnlySet<int> LogicalSectorSizes = new[] { HardDiskFormatConstants.LegacyLogicalSectorSize, HardDiskFormatConstants.LargeLogicalSectorSize }.ToFrozenSet();
     public static readonly IReadOnlySet<HardDiskImageVariant> Variants = new[]
     {
         HardDiskImageVariant.Fixed,

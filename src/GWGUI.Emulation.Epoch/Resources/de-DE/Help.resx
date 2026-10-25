@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Help.DisplayArea" xml:space="preserve"><value>Wählen Sie den sichtbaren Bereich des Konsolenbildes aus.</value></data>
+  <data name="Emulation.Epoch.Help.PixelAspect" xml:space="preserve"><value>Wählen Sie rechteckige oder quadratische Pixel.</value></data>
+  <data name="Emulation.Epoch.Help.Resolution" xml:space="preserve"><value>Wählen Sie die interne Rendering-Auflösung.</value></data>
+  <data name="Emulation.Epoch.Help.ColorPalette" xml:space="preserve"><value>Wählen Sie die Konsolen-Farbpalette.</value></data>
+  <data name="Emulation.Epoch.Help.RefreshRate" xml:space="preserve"><value>Wählen Sie die Konsolen-Aktualisierungsrate.</value></data>
+  <data name="Emulation.Epoch.Help.ShowVideoMemory" xml:space="preserve"><value>Videospeicher über das Fernsehbild hinaus anzeigen.</value></data>
+  <data name="Emulation.Epoch.Help.ShowInputs" xml:space="preserve"><value>Zeigen Sie den aktuellen Controller-Zustand über dem Bild an.</value></data>
+  <data name="Emulation.Epoch.Help.Language" xml:space="preserve"><value>Wählen Sie die Sprache der Emulatorbildschirme aus.</value></data>
+  <data name="Emulation.Epoch.Help.ValidateFirmware" xml:space="preserve"><value>Überprüfen Sie die Konsole BIOS Prüfsumme vor Beginn.</value></data>
+  <data name="Emulation.Epoch.Help.ShowKeypadAtStart" xml:space="preserve"><value>Zeigen Sie die Konsolen-Tastatur an, wenn die Emulation beginnt.</value></data>
+  <data name="Emulation.Epoch.Help.AnnounceCourseSwitch" xml:space="preserve"><value>Zeigen Sie den ausgewählten Spielkurs an, wenn er sich ändert.</value></data>
+</root>

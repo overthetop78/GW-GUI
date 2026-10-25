@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Acorn.Option.AutoBoot" xml:space="preserve"><value>Spustit automaticky z vloženého disku</value></data>
+  <data name="Emulation.Emulator.b2.Description" xml:space="preserve"><value>Emuláty BBC MICRO a BBC MASTER počítače.</value></data>
+  <data name="Emulation.Acorn.Storage.DiscController"><value>Regulátor disket</value></data>
+  <data name="Emulation.Acorn.Video.Controller"><value>Načasování videa</value></data>
+  <data name="Emulation.Acorn.Video.Pixels"><value>Pixel a barevný generátor</value></data>
+  <data name="Emulation.Acorn.Video.Teletext"><value>Generátor znaků teletextu</value></data>
+</root>

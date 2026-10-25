@@ -7,8 +7,7 @@ internal static class FilterScaleFx
     private const float CandidateThreshold = 0.5f;
     private const float DifferenceThreshold = 0.06f;
 
-    public static void Sample(float[] source, int width, int height,
-        float positionX, float positionY, Span<float> result)
+    public static void Sample(float[] source, int width, int height, float positionX, float positionY, Span<float> result)
     {
         var sourceX = Math.Clamp((int)MathF.Floor(positionX), 0, width - 1);
         var sourceY = Math.Clamp((int)MathF.Floor(positionY), 0, height - 1);
@@ -54,15 +53,11 @@ internal static class FilterScaleFx
             x = Math.Clamp(x, 0, width - 1);
             y = Math.Clamp(y, 0, height - 1);
             var offset = (y * width + x) * 3;
-            return new Color(
-                SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset]),
-                SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 1]),
-                SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 2]));
+            return new Color( SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset]), SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 1]), SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 2]));
         }
     }
 
-    private static Corner Classify(Color center, Color horizontal, Color vertical,
-        Color diagonal, Color oppositeHorizontal, Color oppositeVertical)
+    private static Corner Classify(Color center, Color horizontal, Color vertical, Color diagonal, Color oppositeHorizontal, Color oppositeVertical)
     {
         var junction = Distance(horizontal, vertical);
         var centerGap = MathF.Min(Distance(center, horizontal), Distance(center, vertical));
@@ -72,38 +67,26 @@ internal static class FilterScaleFx
             return default;
 
         var continuation = MathF.Min(Distance(diagonal, horizontal), Distance(diagonal, vertical));
-        var weight = Math.Clamp((CandidateThreshold - junction) / CandidateThreshold, 0f, 1f)
-            * Math.Clamp((centerGap + continuation) / MathF.Max(junction, 0.001f), 0f, 1f);
+        var weight = Math.Clamp((CandidateThreshold - junction) / CandidateThreshold, 0f, 1f) * Math.Clamp((centerGap + continuation) / MathF.Max(junction, 0.001f), 0f, 1f);
         if (weight <= DifferenceThreshold) return default;
 
-        var candidate = Distance(center, horizontal) <= Distance(center, vertical)
-            ? horizontal : vertical;
+        var candidate = Distance(center, horizontal) <= Distance(center, vertical) ? horizontal : vertical;
         return new Corner(candidate, weight, true);
     }
 
-    private static Color CornerOrCenter(Corner corner, Color center) =>
-        corner.Active ? corner.Color : center;
+    private static Color CornerOrCenter(Corner corner, Color center) => corner.Active ? corner.Color : center;
 
     private static Color SelectMid(Color center, Color axial, Corner first, Corner second)
     {
         if (first.Active && second.Active && Distance(first.Color, second.Color) < CandidateThreshold)
-            return Distance(axial, first.Color) <= Distance(axial, second.Color)
-                ? first.Color : second.Color;
+            return Distance(axial, first.Color) <= Distance(axial, second.Color) ? first.Color : second.Color;
         var corner = first.Strength >= second.Strength ? first : second;
-        return corner.Active && Distance(corner.Color, axial) < CandidateThreshold * 0.5f
-            ? axial : center;
+        return corner.Active && Distance(corner.Color, axial) < CandidateThreshold * 0.5f ? axial : center;
     }
 
     // Compuphase perceptual RGB metric used by ScaleFX pass 0.
     private static float Distance(Color first, Color second)
-    {
-        var redMean = 0.5f * (first.Red + second.Red);
-        var red = first.Red - second.Red;
-        var green = first.Green - second.Green;
-        var blue = first.Blue - second.Blue;
-        return MathF.Sqrt((2f + redMean) * red * red + 4f * green * green
-            + (3f - redMean) * blue * blue) / 3f;
-    }
+        => FilterSampling.Distance(first.Red, first.Green, first.Blue, second.Red, second.Green, second.Blue);
 
     private readonly record struct Color(float Red, float Green, float Blue);
     private readonly record struct Corner(Color Color, float Strength, bool Active);

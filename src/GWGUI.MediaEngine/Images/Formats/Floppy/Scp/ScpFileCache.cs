@@ -19,9 +19,7 @@ internal sealed class ScpFileCache
             _entries.TryRemove(obsolete, out _);
         }
 
-        _entries[identity] = new Lazy<Task<ScpImage>>(
-            () => Task.FromResult(image),
-            LazyThreadSafetyMode.ExecutionAndPublication);
+        _entries[identity] = new Lazy<Task<ScpImage>>(() => Task.FromResult(image), LazyThreadSafetyMode.ExecutionAndPublication);
     }
 
     /// <summary>Retourne l'image déjà chargée ou appelle le chargeur pour la version actuelle du fichier.</summary>

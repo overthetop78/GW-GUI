@@ -3097,7 +3097,7 @@ Structure acceptée : `Images`, `PhysicalMedia`, `Constants`, `Contracts`, `Enum
   - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.EventsAndCommands.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
   - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.Controls.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
   - [x] Modifier `src/GWGUI.App/Views/Windows/Shell/MainWindow.ComponentConnections.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
-  - [x] Modifier `src/GWGUI.Emulation.Amiga/Functions/AmigaRuntimeMediaFunctions.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
+  - [x] Modifier `src/GWGUI.Emulation.Commodore/Functions/AmigaRuntimeMediaFunctions.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
   - [x] Modifier `src/GWGUI.Emulation.Atari/Functions/AtariScpMediaFunctions.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
   - [x] Modifier `src/GWGUI.App/Services/Parity/MediaEngineConversionSupport.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.
   - [x] Modifier `src/GWGUI.MediaEngine/Images/Conversion/MediaConversionComposition.cs` : remplacer l'import `GWGUI.MediaEngine.Composition` par l'espace de noms racine du moteur, ou le retirer s'il est inutile.

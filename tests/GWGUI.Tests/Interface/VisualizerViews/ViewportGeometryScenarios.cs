@@ -13,8 +13,7 @@ internal static class ViewportGeometryScenarios
 {
     public static void Geometry()
     {
-        var view = new ScpDiskView(ControlledDependencies.Simulate<IScpRenderer>((method, _) =>
-            method.Name is "ClearCache" or "RevealTrack" ? null : throw new InvalidOperationException(method.Name)));
+        var view = new ScpDiskView(ControlledDependencies.Simulate<IScpRenderer>((method, _) => method.Name is "ClearCache" or "RevealTrack" ? null : throw new InvalidOperationException(method.Name)));
         view.Measure(new Size(400, 300)); view.Arrange(new Rect(0, 0, 400, 300));
         var tracks = new[] { new ScpTrack(0, 0, 0, []), new ScpTrack(2, 1, 0, []), new ScpTrack(1, 0, 1, []) };
         var image = new ScpImage(ExplorerDocumentScenarios.Document("geometry").ScpImage!.Header, tracks, true, 688);

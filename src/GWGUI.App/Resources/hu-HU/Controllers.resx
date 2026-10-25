@@ -94,7 +94,6 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Súrlódás</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Csillapító</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Tehetetlenség</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Botkormány</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Többtengelyes vezérlő</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID-használat</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>tengelyek</value></data>
@@ -104,7 +103,7 @@
   <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Bemeneti jelentés</value></data>
   <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Kimeneti jelentés</value></data>
   <data name="Controllers.AnalogDeadZones" xml:space="preserve"><value>Az analóg halott zónák</value></data>
-  <data name="Controllers.StickDeadZone" xml:space="preserve"><value>Sticks</value></data>
+  <data name="Controllers.StickDeadZone"><value>Sticks</value></data>
   <data name="Controllers.TriggerDeadZone" xml:space="preserve"><value>Rugók</value></data>
   <data name="Controllers.OuterDeadZone" xml:space="preserve"><value>Külső holtzóna</value></data>
 </root>

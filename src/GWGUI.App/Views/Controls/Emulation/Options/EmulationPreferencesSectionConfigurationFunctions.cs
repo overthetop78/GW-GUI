@@ -1,4 +1,4 @@
-﻿using GWGUI.App.Constants.Emulation.Errors;
+using GWGUI.App.Constants.Emulation.Errors;
 using GWGUI.App.Presenters.Common;
 using GWGUI.App.Contracts.Emulation.Configurations;
 using GWGUI.App.Localization.Extensions;
@@ -11,12 +11,8 @@ public sealed partial class EmulationPreferencesSection
 {
     private async Task ReloadConfigurationsAsync()
     {
-        var loaded = await Task.WhenAll(_modules.Select(async module =>
-            (Module: module, Configurations: await Task.Run(async () =>
-                await module.LoadConfigurationsAsync()))));
-        _configurationRows = EmulationConfigurationTablePresenter.CreateRows(
-            loaded.SelectMany(item => item.Configurations.Select(configuration =>
-                (item.Module, Configuration: configuration))));
+        var loaded = await Task.WhenAll(_modules.Select(async module => (Module: module, Configurations: await Task.Run(async () => await module.LoadConfigurationsAsync()))));
+        _configurationRows = EmulationConfigurationTablePresenter.CreateRows(loaded.SelectMany(item => item.Configurations.Select(configuration => (item.Module, Configuration: configuration))));
         RebuildConfigurationBrands();
         FilterConfigurationTable();
     }
@@ -24,10 +20,7 @@ public sealed partial class EmulationPreferencesSection
     private async Task DeleteConfigurationAsync(EmulationConfigurationTableRow row)
     {
         var answer = MessageBox.Show(
-            string.Format(
-                LocExtension.Get("Emulation.Configuration.DeleteConfirm"),
-                LocExtension.GetForModule(row.Module, row.Module.DisplayResourceKey),
-                row.MachineName),
+            string.Format(LocExtension.Get("Emulation.Configuration.DeleteConfirm"), LocExtension.GetForModule(row.Module, row.Module.DisplayResourceKey), row.MachineName),
             LocExtension.Get("Common.Delete"),
             MessageBoxButton.YesNo,
             MessageBoxImage.Warning);
@@ -37,17 +30,14 @@ public sealed partial class EmulationPreferencesSection
         try
         {
             await row.Module.DeleteConfigurationAsync(row.Configuration.Id);
-            GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Delete(
-                row.Module.Id, row.Configuration.Id);
+            GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Delete(row.Module.Id, row.Configuration.Id);
             await ReloadConfigurationsAsync();
+            foreach (Func<Task> refresh in ConfigurationDeleted?.GetInvocationList() ?? [])
+                await refresh();
         }
         catch (Exception error)
         {
-            ControlErrorPresenter.ShowEmulation(
-                this,
-                error,
-                ControlErrorContexts.EmulationConfigurationManagement,
-                LocExtension.GetForModule(row.Module, row.Module.DisplayResourceKey));
+            ControlErrorPresenter.ShowEmulation(this, error, ControlErrorContexts.EmulationConfigurationManagement, LocExtension.GetForModule(row.Module, row.Module.DisplayResourceKey));
         }
     }
 
@@ -59,27 +49,23 @@ public sealed partial class EmulationPreferencesSection
 
     private void FilterConfigurationTable()
     {
-        var selectedModule = (_configurationBrand.SelectedItem as EmulationModuleListItem)?.Module;
-        _configurationTable.SetRows(selectedModule is null
-            ? []
-            : _configurationRows.Where(row => ReferenceEquals(row.Module, selectedModule)).ToArray());
+        var selectedModule = _selectedConfigurationModule;
+        _configurationTable.SetRows(selectedModule is null ? [] : _configurationRows.Where(row => row.Module.Id == selectedModule.Id
+            && (_selectedConfigurationMachineId is null || row.Configuration.MachineId == _selectedConfigurationMachineId)).ToArray());
     }
 
     private void RebuildConfigurationBrands()
     {
-        var selectedModule = (_configurationBrand.SelectedItem as EmulationModuleListItem)?.Module;
-        _configurationBrand.ItemsSource = _configurationBrands;
-        _configurationBrand.DisplayMemberPath = nameof(EmulationModuleListItem.DisplayName);
-        _configurationBrands.Clear();
-        foreach (var module in _modules.Where(module =>
-                     _configurationRows.Any(row => ReferenceEquals(row.Module, module))))
-            _configurationBrands.Add(new EmulationModuleListItem(
-                module, LocExtension.GetForModule(module, module.DisplayResourceKey)));
-        _configurationBrand.SelectedItem = selectedModule is null
-            ? null
-            : _configurationBrands.FirstOrDefault(item =>
-                ReferenceEquals(item.Module, selectedModule));
+        var configuredModules = _modules.Where(module => _configurationRows.Any(row => row.Module.Id == module.Id)).ToArray();
+        _selectedConfigurationModule = configuredModules.FirstOrDefault(module => module.Id == _selectedConfigurationModule?.Id)
+            ?? configuredModules.FirstOrDefault();
+        var machineIds = _configurationRows.Where(row => row.Module.Id == _selectedConfigurationModule?.Id)
+            .Select(row => row.Configuration.MachineId).ToHashSet(StringComparer.Ordinal);
+        if (_selectedConfigurationMachineId is not null && !machineIds.Contains(_selectedConfigurationMachineId))
+            _selectedConfigurationMachineId = null;
+        _configurationSelector.SetItems(configuredModules, _selectedConfigurationModule,
+            _selectedConfigurationModule?.Machines.Where(machine => machineIds.Contains(machine.Id)).ToArray() ?? [],
+            _selectedConfigurationMachineId);
     }
 
 }
-

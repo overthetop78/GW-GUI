@@ -19,8 +19,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem.Blocks
 
             for (var i = 0; i < mapEntries; i++)
             {
-                BigEndianConverter.ConvertUInt32ToBytes(i < bitmapBlock.Map.Length ? bitmapBlock.Map[i] : 0,
-                    blockBytes, 0x4 + i * SizeOf.ULong);
+                BigEndianConverter.ConvertUInt32ToBytes(i < bitmapBlock.Map.Length ? bitmapBlock.Map[i] : 0, blockBytes, 0x4 + i * SizeOf.ULong);
             }
 
             bitmapBlock.Checksum = ChecksumHelper.UpdateChecksum(blockBytes, 0x0);

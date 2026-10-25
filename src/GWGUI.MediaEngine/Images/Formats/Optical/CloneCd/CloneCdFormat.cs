@@ -20,6 +20,5 @@ internal static class CloneCdFormat
     public static string FormatId => OpticalImageFormatIds.CloneCd;
     public static bool CanRead => true;
     public static bool CanWrite => false;
-    public static bool IsSupportedVersion(int version) =>
-        version is >= CloneCdConstants.MinimumVersion and <= CloneCdConstants.MaximumVersion;
+    public static bool IsSupportedVersion(int version) => version is >= CloneCdConstants.MinimumVersion and <= CloneCdConstants.MaximumVersion;
 }

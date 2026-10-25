@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Controller.CdiGamepad" xml:space="preserve"><value>CD-I จั่วเกม</value></data>
+  <data name="Emulation.Philips.Controller.LightGun" xml:space="preserve"><value>ไลท์กุน</value></data>
+  <data name="Emulation.Philips.Input.Action1" xml:space="preserve"><value>ปุ่ม 1</value></data>
+  <data name="Emulation.Philips.Input.Action2" xml:space="preserve"><value>ปุ่ม 2</value></data>
+  <data name="Emulation.Philips.Input.Action3" xml:space="preserve"><value>ปุ่ม 3</value></data>
+  <data name="Emulation.Philips.Input.Auxiliary" xml:space="preserve"><value>ปุ่มขยายสัญญาณ</value></data>
+  <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>ยิง</value></data>
+  <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>เรียกใหม่</value></data>
+  <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>ลั่นไก</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>สลับพอร์ตคอนโทรลเลอร์ 1 และ 2</value></data>
+</root>

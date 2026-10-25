@@ -1,7 +1,7 @@
 using System.Buffers.Binary;
-using MediaPhysicalEncodingIds = global::GWGUI.MediaEngine.Constants.MediaPhysicalEncodingIds;
-using MediaFluxRevolutionData = global::GWGUI.MediaEngine.Contracts.MediaFluxRevolutionData;
-using MediaFluxTrackData = global::GWGUI.MediaEngine.Contracts.MediaFluxTrackData;
+using MediaPhysicalEncodingIds = GWGUI.MediaEngine.Constants.MediaPhysicalEncodingIds;
+using MediaFluxRevolutionData = GWGUI.MediaEngine.Contracts.MediaFluxRevolutionData;
+using MediaFluxTrackData = GWGUI.MediaEngine.Contracts.MediaFluxTrackData;
 
 namespace GWGUI.MediaEngine.Functions;
 
@@ -13,14 +13,11 @@ public static class MediaFluxTrackDataFunctions
         ArgumentNullException.ThrowIfNull(track);
         if (track.Revolutions.Count > MediaPhysicalEncodingIds.MaximumFluxRevolutions)
             throw new InvalidDataException("The flux track contains too many revolutions.");
-        if (track.Revolutions.Any(revolution =>
-                revolution.FluxIntervalsNanoseconds.Count > MediaPhysicalEncodingIds.MaximumFluxIntervalsPerRevolution))
+        if (track.Revolutions.Any(revolution => revolution.FluxIntervalsNanoseconds.Count > MediaPhysicalEncodingIds.MaximumFluxIntervalsPerRevolution))
             throw new InvalidDataException("A flux revolution contains too many intervals.");
 
         var length = checked((long)MediaPhysicalEncodingIds.FluxTrackV1HeaderSize
-            + track.Revolutions.Sum(revolution =>
-                (long)MediaPhysicalEncodingIds.FluxTrackV1RevolutionHeaderSize
-                + (long)revolution.FluxIntervalsNanoseconds.Count * MediaPhysicalEncodingIds.UInt32Size));
+            + track.Revolutions.Sum(revolution => (long)MediaPhysicalEncodingIds.FluxTrackV1RevolutionHeaderSize + (long)revolution.FluxIntervalsNanoseconds.Count * MediaPhysicalEncodingIds.UInt32Size));
         if (length > int.MaxValue) throw new InvalidDataException("The serialized flux track is too large.");
         var result = new byte[(int)length];
         BinaryPrimitives.WriteUInt32LittleEndian(result, MediaPhysicalEncodingIds.FluxTrackV1Magic);
@@ -29,9 +26,7 @@ public static class MediaFluxTrackDataFunctions
         foreach (var revolution in track.Revolutions)
         {
             BinaryPrimitives.WriteUInt32LittleEndian(result.AsSpan(offset), revolution.IndexTimeNanoseconds);
-            BinaryPrimitives.WriteUInt32LittleEndian(
-                result.AsSpan(offset + MediaPhysicalEncodingIds.UInt32Size),
-                checked((uint)revolution.FluxIntervalsNanoseconds.Count));
+            BinaryPrimitives.WriteUInt32LittleEndian(result.AsSpan(offset + MediaPhysicalEncodingIds.UInt32Size), checked((uint)revolution.FluxIntervalsNanoseconds.Count));
             offset += MediaPhysicalEncodingIds.FluxTrackV1RevolutionHeaderSize;
             foreach (var interval in revolution.FluxIntervalsNanoseconds)
             {

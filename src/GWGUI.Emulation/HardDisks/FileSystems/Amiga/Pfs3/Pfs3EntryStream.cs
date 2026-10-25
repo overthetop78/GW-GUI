@@ -47,8 +47,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             return (int)Pfs3Directory.ReadFromObject(fileEntry, buffer, (uint)buffer.Length, g).GetAwaiter().GetResult();
         }
 
-        public override async Task<int> ReadAsync(byte[] buffer, int offset, int count,
-            CancellationToken cancellationToken)
+        public override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
             if (offset != 0)
             {

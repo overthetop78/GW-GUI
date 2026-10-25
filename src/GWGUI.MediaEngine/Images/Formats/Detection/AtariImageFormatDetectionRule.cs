@@ -21,9 +21,7 @@ internal sealed class AtariImageFormatDetectionRule : IImageFormatDetectionRule
             return false;
         }
 
-        result = formatId is null
-            ? context.Ambiguous("Detection.AtariUnknownSize")
-            : context.Result(formatId, FormatConfidence.Certain, "Detection.AtariSize");
+        result = formatId is null ? context.Ambiguous("Detection.AtariUnknownSize") : context.Result(formatId, FormatConfidence.Certain, "Detection.AtariSize");
         return true;
     }
 
@@ -65,9 +63,7 @@ internal sealed class AtariImageFormatDetectionRule : IImageFormatDetectionRule
             if (sectorsPerTrack is < 1 or > 36 || heads is < 1 or > 2 || lastCylinder < firstCylinder) return null;
             var capacityKiB = checked((lastCylinder + 1) * heads * sectorsPerTrack / 2);
             var formatId = $"atarist.{capacityKiB}";
-            return context.Catalog.Formats.Any(format => format.Id.Equals(formatId, StringComparison.OrdinalIgnoreCase))
-                ? formatId
-                : null;
+            return context.Catalog.Formats.Any(format => format.Id.Equals(formatId, StringComparison.OrdinalIgnoreCase)) ? formatId : null;
         }
         catch (IOException) { return null; }
         catch (UnauthorizedAccessException) { return null; }

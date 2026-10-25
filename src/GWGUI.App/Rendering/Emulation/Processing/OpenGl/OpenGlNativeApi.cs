@@ -7,16 +7,11 @@ namespace GWGUI.App.Rendering.Emulation.Processing.OpenGl;
 
 internal sealed class OpenGlNativeApi
 {
-    private readonly DeleteProgramDelegate _deleteProgram =
-        Load<DeleteProgramDelegate>(OpenGlNativeFunctionNames.DeleteProgram);
-    private readonly GetUniformLocationDelegate _getUniformLocation =
-        Load<GetUniformLocationDelegate>(OpenGlNativeFunctionNames.GetUniformLocation);
-    private readonly Uniform1iDelegate _uniform1i =
-        Load<Uniform1iDelegate>(OpenGlNativeFunctionNames.Uniform1Integer);
-    private readonly Uniform4fDelegate _uniform4f =
-        Load<Uniform4fDelegate>(OpenGlNativeFunctionNames.Uniform4Float);
-    private readonly UseProgramDelegate _useProgram =
-        Load<UseProgramDelegate>(OpenGlNativeFunctionNames.UseProgram);
+    private readonly DeleteProgramDelegate _deleteProgram = Load<DeleteProgramDelegate>(OpenGlNativeFunctionNames.DeleteProgram);
+    private readonly GetUniformLocationDelegate _getUniformLocation = Load<GetUniformLocationDelegate>(OpenGlNativeFunctionNames.GetUniformLocation);
+    private readonly Uniform1iDelegate _uniform1i = Load<Uniform1iDelegate>(OpenGlNativeFunctionNames.Uniform1Integer);
+    private readonly Uniform4fDelegate _uniform4f = Load<Uniform4fDelegate>(OpenGlNativeFunctionNames.Uniform4Float);
+    private readonly UseProgramDelegate _useProgram = Load<UseProgramDelegate>(OpenGlNativeFunctionNames.UseProgram);
 
     internal uint CreateProgram(string vertexSource, string fragmentSource)
     {
@@ -54,16 +49,13 @@ internal sealed class OpenGlNativeApi
         }
     }
 
-    internal int GetUniformLocation(uint program, string name) =>
-        _getUniformLocation(program, name);
+    internal int GetUniformLocation(uint program, string name) => _getUniformLocation(program, name);
 
     internal void SetUniform(int location, int value) => _uniform1i(location, value);
 
-    internal void SetUniform(int location, Vector4 value) =>
-        _uniform4f(location, value.X, value.Y, value.Z, value.W);
+    internal void SetUniform(int location, Vector4 value) => _uniform4f(location, value.X, value.Y, value.Z, value.W);
 
-    internal void SetUniform(int location, float x, float y, float z, float w) =>
-        _uniform4f(location, x, y, z, w);
+    internal void SetUniform(int location, float x, float y, float z, float w) => _uniform4f(location, x, y, z, w);
 
     internal void UseProgram(uint program) => _useProgram(program);
 
@@ -78,8 +70,7 @@ internal sealed class OpenGlNativeApi
         var deleteShader = Load<DeleteShaderDelegate>(OpenGlNativeFunctionNames.DeleteShader);
         var shader = createShader(stage);
         var bytes = Encoding.UTF8.GetBytes(source);
-        var sourcePointer = Marshal.AllocHGlobal(
-            bytes.Length + OpenGlVideoConstants.ShaderSourceTerminatorByteCount);
+        var sourcePointer = Marshal.AllocHGlobal(bytes.Length + OpenGlVideoConstants.ShaderSourceTerminatorByteCount);
         var pointers = Marshal.AllocHGlobal(IntPtr.Size);
         var lengths = Marshal.AllocHGlobal(sizeof(int));
         try
@@ -108,16 +99,14 @@ internal sealed class OpenGlNativeApi
     private static string ShaderLog(uint shader)
     {
         var log = new StringBuilder(OpenGlVideoConstants.InfoLogCapacity);
-        Load<GetShaderInfoLogDelegate>(OpenGlNativeFunctionNames.GetShaderInfoLog)(
-            shader, log.Capacity, out _, log);
+        Load<GetShaderInfoLogDelegate>(OpenGlNativeFunctionNames.GetShaderInfoLog)(shader, log.Capacity, out _, log);
         return log.ToString();
     }
 
     private static string ProgramLog(uint program)
     {
         var log = new StringBuilder(OpenGlVideoConstants.InfoLogCapacity);
-        Load<GetProgramInfoLogDelegate>(OpenGlNativeFunctionNames.GetProgramInfoLog)(
-            program, log.Capacity, out _, log);
+        Load<GetProgramInfoLogDelegate>(OpenGlNativeFunctionNames.GetProgramInfoLog)(program, log.Capacity, out _, log);
         return log.ToString();
     }
 
@@ -141,15 +130,13 @@ internal sealed class OpenGlNativeApi
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
     private delegate uint CreateShaderDelegate(uint stage);
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
-    private delegate void ShaderSourceDelegate(
-        uint shader, int count, IntPtr strings, IntPtr lengths);
+    private delegate void ShaderSourceDelegate(uint shader, int count, IntPtr strings, IntPtr lengths);
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
     private delegate void CompileShaderDelegate(uint shader);
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
     private delegate void GetShaderivDelegate(uint shader, uint property, out int value);
     [UnmanagedFunctionPointer(CallingConvention.Winapi, CharSet = CharSet.Ansi)]
-    private delegate void GetShaderInfoLogDelegate(
-        uint shader, int capacity, out int length, StringBuilder log);
+    private delegate void GetShaderInfoLogDelegate(uint shader, int capacity, out int length, StringBuilder log);
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
     private delegate void DeleteShaderDelegate(uint shader);
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
@@ -161,8 +148,7 @@ internal sealed class OpenGlNativeApi
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
     private delegate void GetProgramivDelegate(uint program, uint property, out int value);
     [UnmanagedFunctionPointer(CallingConvention.Winapi, CharSet = CharSet.Ansi)]
-    private delegate void GetProgramInfoLogDelegate(
-        uint program, int capacity, out int length, StringBuilder log);
+    private delegate void GetProgramInfoLogDelegate(uint program, int capacity, out int length, StringBuilder log);
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
     private delegate void DeleteProgramDelegate(uint program);
     [UnmanagedFunctionPointer(CallingConvention.Winapi, CharSet = CharSet.Ansi)]

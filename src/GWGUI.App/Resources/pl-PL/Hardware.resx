@@ -4,7 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Hardware.Port" xml:space="preserve"><value>Port</value></data>
+  <data name="Hardware.Port"><value>Port</value></data>
   <data name="Hardware.UsbId" xml:space="preserve"><value>Identyfikator USB</value></data>
   <data name="Hardware.Drive" xml:space="preserve"><value>Prowadzić</value></data>
   <data name="Hardware.Available" xml:space="preserve"><value>Dostępny</value></data>

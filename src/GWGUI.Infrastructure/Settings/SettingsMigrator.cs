@@ -86,12 +86,8 @@ public static class SettingsMigrator
     {
         settings.Engines = new EngineSettings
         {
-            PhysicalRead = settings.Read.EnabledOptions.Remove("internal-reader")
-                ? OperationEngine.Internal
-                : OperationEngine.GreaseweazleHostTools,
-            PhysicalWrite = settings.Write.EnabledOptions.Remove("internal-writer")
-                ? OperationEngine.Internal
-                : OperationEngine.GreaseweazleHostTools,
+            PhysicalRead = settings.Read.EnabledOptions.Remove("internal-reader") ? OperationEngine.Internal : OperationEngine.GreaseweazleHostTools,
+            PhysicalWrite = settings.Write.EnabledOptions.Remove("internal-writer") ? OperationEngine.Internal : OperationEngine.GreaseweazleHostTools,
             Conversion = OperationEngine.Internal,
             ExplorerRead = OperationEngine.Internal
         };
@@ -107,28 +103,19 @@ public static class SettingsMigrator
     {
         settings.Language = settings.Language?.Trim() ?? "";
         settings.DefaultImagesFolder ??= Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        settings.EmulationStorageFolder = string.IsNullOrWhiteSpace(settings.EmulationStorageFolder)
-            ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GW GUI", "Emulation")
-            : settings.EmulationStorageFolder.Trim();
-        settings.EmulationCaptureFolder = string.IsNullOrWhiteSpace(settings.EmulationCaptureFolder)
-            ? Path.Combine(settings.EmulationStorageFolder, "Captures") : settings.EmulationCaptureFolder.Trim();
-        settings.EmulationStateFolder = string.IsNullOrWhiteSpace(settings.EmulationStateFolder)
-            ? Path.Combine(settings.EmulationStorageFolder, "States") : settings.EmulationStateFolder.Trim();
+        settings.EmulationStorageFolder = string.IsNullOrWhiteSpace(settings.EmulationStorageFolder) ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GW GUI", "Emulation") : settings.EmulationStorageFolder.Trim();
+        settings.EmulationCaptureFolder = string.IsNullOrWhiteSpace(settings.EmulationCaptureFolder) ? Path.Combine(settings.EmulationStorageFolder, "Captures") : settings.EmulationCaptureFolder.Trim();
+        settings.EmulationStateFolder = string.IsNullOrWhiteSpace(settings.EmulationStateFolder) ? Path.Combine(settings.EmulationStorageFolder, "States") : settings.EmulationStateFolder.Trim();
         settings.EmulationShortcuts ??= [];
         settings.EmulationMediaFolders ??= [];
-        settings.EmulationMediaFolders = settings.EmulationMediaFolders
-            .Where(item => !string.IsNullOrWhiteSpace(item.ModuleId)
-                           && !string.IsNullOrWhiteSpace(item.MachineId)
-                           && !string.IsNullOrWhiteSpace(item.Folder))
+        settings.EmulationMediaFolders = settings.EmulationMediaFolders.Where(item => !string.IsNullOrWhiteSpace(item.ModuleId) && !string.IsNullOrWhiteSpace(item.MachineId) && !string.IsNullOrWhiteSpace(item.Folder))
             .GroupBy(item => (Module: item.ModuleId.Trim(), Machine: item.MachineId.Trim(), item.Category))
             .Select(group => group.Last()).ToList();
         foreach (var shortcut in EmulationShortcutDefaults.Values)
             if (!settings.EmulationShortcuts.ContainsKey(shortcut.Key)) settings.EmulationShortcuts[shortcut.Key] = shortcut.Value;
         settings.LastDiskImageFolder = string.IsNullOrWhiteSpace(settings.LastDiskImageFolder) ? null : settings.LastDiskImageFolder.Trim();
-        settings.LastVisualizerImageFolder = string.IsNullOrWhiteSpace(settings.LastVisualizerImageFolder)
-            ? settings.LastDiskImageFolder : settings.LastVisualizerImageFolder.Trim();
-        settings.LastExplorerImageFolder = string.IsNullOrWhiteSpace(settings.LastExplorerImageFolder)
-            ? settings.LastDiskImageFolder : settings.LastExplorerImageFolder.Trim();
+        settings.LastVisualizerImageFolder = string.IsNullOrWhiteSpace(settings.LastVisualizerImageFolder) ? settings.LastDiskImageFolder : settings.LastVisualizerImageFolder.Trim();
+        settings.LastExplorerImageFolder = string.IsNullOrWhiteSpace(settings.LastExplorerImageFolder) ? settings.LastDiskImageFolder : settings.LastExplorerImageFolder.Trim();
         settings.Window ??= new WindowPlacementSettings();
         settings.Controllers ??= [];
         settings.UnconfiguredControllers ??= [];
@@ -147,11 +134,8 @@ public static class SettingsMigrator
         settings.Conversion.OptionValues ??= [];
         settings.Conversion.EnabledOptions ??= [];
         settings.Conversion.RecentCustomTagPatterns ??= [];
-        settings.Conversion.RecentCustomTagPatterns = settings.Conversion.RecentCustomTagPatterns
-            .Where(pattern => !string.IsNullOrWhiteSpace(pattern)).Distinct(StringComparer.OrdinalIgnoreCase).Take(5).ToList();
-        settings.Conversion.TagPattern = string.IsNullOrWhiteSpace(settings.Conversion.TagPattern)
-            ? "[{FAMILY}-{FORMAT}] "
-            : settings.Conversion.TagPattern.Replace("{tag}", "{FAMILY}-{FORMAT}", StringComparison.OrdinalIgnoreCase);
+        settings.Conversion.RecentCustomTagPatterns = settings.Conversion.RecentCustomTagPatterns.Where(pattern => !string.IsNullOrWhiteSpace(pattern)).Distinct(StringComparer.OrdinalIgnoreCase).Take(5).ToList();
+        settings.Conversion.TagPattern = string.IsNullOrWhiteSpace(settings.Conversion.TagPattern) ? "[{FAMILY}-{FORMAT}] " : settings.Conversion.TagPattern.Replace("{tag}", "{FAMILY}-{FORMAT}", StringComparison.OrdinalIgnoreCase);
         if (string.Equals(settings.Conversion.TagPattern, " [{FAMILY}-{FORMAT}]", StringComparison.OrdinalIgnoreCase))
             settings.Conversion.TagPattern = "[{FAMILY}-{FORMAT}] ";
         foreach (var profile in settings.Profiles) { profile.Values ??= []; profile.EnabledOptions ??= []; }
@@ -161,8 +145,7 @@ public static class SettingsMigrator
         settings.Engines.ExplorerRead = NormalizeEngine(settings.Engines.ExplorerRead, OperationEngine.Internal);
     }
 
-    private static OperationEngine NormalizeEngine(OperationEngine engine, OperationEngine fallback) =>
-        Enum.IsDefined(engine) ? engine : fallback;
+    private static OperationEngine NormalizeEngine(OperationEngine engine, OperationEngine fallback) => Enum.IsDefined(engine) ? engine : fallback;
 
     private static string? CorrectFormatId(string? id) => id == "amiga.amigadoshd" ? "amiga.amigados_hd" : id;
 

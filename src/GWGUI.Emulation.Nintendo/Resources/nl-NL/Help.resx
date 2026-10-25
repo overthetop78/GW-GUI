@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Short"><value>Hoeveelheid RAM beschikbaar voor de emuleerde machine.</value></data>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Detailed"><value>Toont het RAM-geheugen dat door de geselecteerde Nintendo machine wordt geleverd.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Short"><value>Systeem ROM.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Detailed"><value>Toont de systeem-ROM status voor de geselecteerde machine en emulator.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Short"><value>Nintendo machinemodel wordt geconfigureerd.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Short"><value>Emulator geselecteerd voor deze machine.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Detailed"><value>Identificeert de emulator implementatie die wordt gebruikt om deze machineconfiguratie uit te voeren.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Short"><value>Processor emuleerd voor deze machine.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Detailed"><value>Toont het processormodel dat door de geselecteerde Nintendo machine wordt geleverd.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Short"><value>Originele processor klokfrequentie.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Detailed"><value>Toont de nominale klokfrequentie van de processor in de geselecteerde Nintendo machine.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Short"><value>Inschakelen of uitschakelen van emuleerd geluid.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Detailed"><value>Bepaalt of GW GUI de audio samples afspeelt die door de emulator worden gegenereerd.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Short"><value>Audio-uitvoer gebruikt door GW GUI.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Detailed"><value>Selecteer de Windows audio-uitvoer gebruikt om geluid af te spelen vanaf deze emuleerde machine.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Detailed"><value>Identificeert het Nintendo model waarvan de hardware-configuratie wordt bewerkt.</value></data>
+</root>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Näyttää prosessorin nimellisen kellotaajuuden valitussa Sony koneessa.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Alkuperäinen prosessorin kellotaajuus.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Näyttää valitun Sony koneen prosessorimallin.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>Prosessori emulgoi tämän koneen.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>Näyttää valitun koneen ja emulaattorin järjestelmän ROM- tilan.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>Järjestelmä ROM.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Tunnistaa tämän koneen konfigurointiin käytetyn emulaattorin toteutuksen.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>Emulaattori valittu tähän koneeseen.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Tunnistetaan Sony malli, jonka laitteistokonfiguraatio on muokattu.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony konemalli konfiguroitu.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Näyttää RAM:n, jonka tarjoaa valittu Sony kone.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Emuloidulle koneelle käytettävissä olevan RAM-muistin määrä.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Emuloidun CPU:n tiheys valitun kelloprosentin jälkeen.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>Konsolin nimellistaajuus kerrotaan valitulla prosenttiosuudella. Tämä muuttaa emulgoitua prosessoria, ei isäntäprosessoria. Korkeammat arvot voivat vähentää hidastumisia, mutta voivat rikkoa pelin ajoitusta. Automaattinen käyttää emulaattorin oletus.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Valitun koneen alkuperäinen grafiikkalaitteisto.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Näyttää valitun koneen alkuperäisen grafiikkalaitteiston. Emulaattorin renderöintiasetukset muuttavat tuotettua kuvaa. GW GUI:n suodattimet käsittelevät kuvan tämän jälkeen.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Valitun koneen alkuperäinen äänilaitteisto.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Näyttää valitun koneen alkuperäisen äänilaitteiston. Äänilähdön ja viiveen asetukset ohjaavat äänen toistoa tietokoneella.</value></data>
+</root>

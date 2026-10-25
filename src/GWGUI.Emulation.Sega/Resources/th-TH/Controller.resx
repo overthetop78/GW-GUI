@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sega.Controller.SegaSg1000Joystick"><value>แท่งควบคุม SG-1000</value></data>
+  <data name="Emulation.Sega.Controller.SegaSg1000IiJoypad"><value>เกม SG-1000 II</value></data>
+  <data name="Emulation.Sega.Controller.SegaSc3000Keyboard"><value>แป้นพิมพ์ SC-3000</value></data>
+  <data name="Emulation.Sega.Controller.SegaMasterSystemController"><value>Master System ตัวควบคุม</value></data>
+  <data name="Emulation.Sega.Controller.SegaGameGearController"><value>Game Gear ควบคุมภายใน</value></data>
+  <data name="Emulation.Sega.Controller.SegaMegaDriveThreeButton"><value>Mega Drive ตัวควบคุมปุ่ม 3 ปุ่ม</value></data>
+  <data name="Emulation.Sega.Controller.SegaMegaDriveSixButton"><value>Mega Drive ตัวควบคุมปุ่ม 6</value></data>
+  <data name="Emulation.Sega.Controller.SegaArcadePowerStickSixButton"><value>Acade Power stick 6 ปุ่มควบคุม</value></data>
+  <data name="Emulation.Sega.Controller.SegaSaturnController"><value>Saturn ตัวควบคุม</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastController"><value>Dreamcast ตัวควบคุม</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastMouse"><value>Dreamcast เมาส์</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastKeyboard"><value>คีย์บอร์ด Dreamcaster</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastLightGun"><value>Dreamcast ปืนแสง พ.ศ.</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastFishingController"><value>Dreamcast เครื่องควบคุมการประมง พ.ศ.</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastArcadeStick"><value>แท่งเกม Dreamcaster</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastTwinStick"><value>Dreamcast ไม้แฝด พ.ศ.</value></data>
+  <data name="Emulation.Sega.Controller.SegaDreamcastMaracas"><value>Dreamcast มารากัส พ.ศ.</value></data>
+</root>

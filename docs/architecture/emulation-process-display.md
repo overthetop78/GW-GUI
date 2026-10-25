@@ -43,9 +43,9 @@ complétée par les commandes/PID et l'énumération des fenêtres Win32 en lect
 
 - `src/GWGUI.Launcher/GWGUI.Launcher.csproj` définit l'exécutable commun `gwgui`.
 - `src/GWGUI.App/App.xaml.cs` traite les commandes hôtes avant de créer la fenêtre principale.
-- `src/GWGUI.Emulation.Amiga/Services/AmigaProcessCore.cs` lance le processus Amiga.
+- `src/GWGUI.Emulation.Commodore/Services/AmigaProcessCore.cs` lance le processus Amiga.
 - `src/GWGUI.Emulation.Atari/Services/AtariProcessCore.cs` lance le processus Atari.
-- `src/GWGUI.Emulation.Amiga/Services/AmigaCoreHost.cs` et
+- `src/GWGUI.Emulation.Commodore/Services/AmigaCoreHost.cs` et
   `src/GWGUI.Emulation.Atari/Services/AtariCoreHost.cs` hébergent les moteurs sans fenêtre visible.
 
 ## Noms des machines dans la liste : différé

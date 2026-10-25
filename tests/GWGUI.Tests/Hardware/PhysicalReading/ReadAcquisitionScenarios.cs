@@ -1,7 +1,8 @@
 using System.Globalization;
+using GWGUI.App.Services.PhysicalDiskReading;
 using GWGUI.App.Contracts.Services.PhysicalDiskReading;
-using MediaAcquisitionProgress = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionProgress;
-using MediaAcquisitionResult = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
+using MediaAcquisitionProgress = GWGUI.MediaEngine.Contracts.MediaAcquisitionProgress;
+using MediaAcquisitionResult = GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.Infrastructure.Constants;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;
@@ -15,9 +16,7 @@ internal static class ReadAcquisitionScenarios
     public static async Task IndexModes(bool hard)
     {
         var device = new Device();
-        device.Read = (_, _) => hard
-            ? new(new uint[] { 50, 100, 100, 100, 40, 40 }, new uint[] { 50, 100, 100, 100, 40, 40 }, 1000, [])
-            : new(new uint[] { 1, 50, 50, 50 }, [], 1000, []);
+        device.Read = (_, _) => hard ? new(new uint[] { 50, 100, 100, 100, 40, 40 }, new uint[] { 50, 100, 100, 100, 40, 40 }, 1000, []) : new(new uint[] { 1, 50, 50, 50 }, [], 1000, []);
         var options = Options with
         {
             Tracks = [new(0, 1)],
@@ -34,14 +33,7 @@ internal static class ReadAcquisitionScenarios
         Assert.Equal("close", device.Calls[^1]);
     }
 
-    internal static PhysicalDiskReadOptions Options => new(
-        "virtual-port",
-        (GreaseweazleBusType)1,
-        1,
-        [new(2, 1, 4, 0), new(0, 0)],
-        (ScpDiskType)0,
-        Revolutions: 1,
-        SeekRetries: 1);
+    internal static PhysicalDiskReadOptions Options => new("virtual-port", (GreaseweazleBusType)1, 1, [new(2, 1, 4, 0), new(0, 0)], (ScpDiskType)0, Revolutions: 1, SeekRetries: 1);
 
     public static async Task Acquire()
     {
@@ -63,43 +55,11 @@ internal static class ReadAcquisitionScenarios
         Assert.Equal(2, progress.Values.Count(value => value.AcquiredUnit is not null));
     }
 
-    internal static Task<MediaAcquisitionResult> AcquireAsync(
-        Device device,
-        PhysicalDiskReadOptions options,
-        IProgress<MediaAcquisitionProgress>? progress = null,
-        CancellationToken cancellationToken = default) =>
-        new GreaseweazleMediaAcquisitionProvider(() => device).AcquireAsync(
-            MediaKind.Floppy,
-            options.PortName,
-            CreateProviderOptions(options),
-            progress,
-            cancellationToken);
+    internal static Task<MediaAcquisitionResult> AcquireAsync(Device device, PhysicalDiskReadOptions options, IProgress<MediaAcquisitionProgress>? progress = null, CancellationToken cancellationToken = default) =>
+        new GreaseweazleMediaAcquisitionProvider(() => device).AcquireAsync(MediaKind.Floppy, options.PortName, CreateProviderOptions(options), progress, cancellationToken);
 
     internal static IReadOnlyDictionary<string, string> CreateProviderOptions(PhysicalDiskReadOptions options)
-    {
-        var values = new Dictionary<string, string>(StringComparer.Ordinal)
-        {
-            [GreaseweazleMediaOptionKeys.BusType] = options.BusType.ToString(),
-            [GreaseweazleMediaOptionKeys.DriveUnit] = options.DriveUnit.ToString(CultureInfo.InvariantCulture),
-            [GreaseweazleMediaOptionKeys.Tracks] = string.Join(';', options.Tracks.Select(track =>
-                $"{track.Cylinder}:{track.Head}:{track.DriveCylinder}:{track.DriveHead}")),
-            [GreaseweazleMediaOptionKeys.DiskType] = options.DiskType.ToString(),
-            [GreaseweazleMediaOptionKeys.Revolutions] = options.Revolutions.ToString(CultureInfo.InvariantCulture),
-            [GreaseweazleMediaOptionKeys.FluxOverflowRetries] = options.FluxOverflowRetries.ToString(CultureInfo.InvariantCulture),
-            [GreaseweazleMediaOptionKeys.SeekRetries] = options.SeekRetries.ToString(CultureInfo.InvariantCulture),
-            [GreaseweazleMediaOptionKeys.HardSectors] = options.HardSectors.ToString(CultureInfo.InvariantCulture)
-        };
-        AddMilliseconds(values, GreaseweazleMediaOptionKeys.FakeIndexMilliseconds, options.FakeIndexPeriod);
-        AddMilliseconds(values, GreaseweazleMediaOptionKeys.MotorSpinUpMilliseconds, options.MotorSpinUpDelay);
-        AddMilliseconds(values, GreaseweazleMediaOptionKeys.TrackSettleMilliseconds, options.TrackSettleDelay);
-        return values;
-    }
-
-    private static void AddMilliseconds(IDictionary<string, string> values, string key, TimeSpan? duration)
-    {
-        if (duration is { } present)
-            values[key] = present.TotalMilliseconds.ToString(CultureInfo.InvariantCulture);
-    }
+    => InternalPhysicalDiskReader.CreateOptions(options);
 
     internal sealed class Reports : IProgress<MediaAcquisitionProgress>
     {

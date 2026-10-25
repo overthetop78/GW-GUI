@@ -33,6 +33,7 @@
   <data name="Emulation.Storage.Cd.Writer"><value>CD writer</value></data>
   <data name="Emulation.Storage.Cd.WriterHint"><value>A blank disc can be created only when the selected machine and emulator support writing.</value></data>
   <data name="Emulation.Storage.Cd.Device"><value>CD-ROM drive</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>Memory card</value></data>
   <data name="Emulation.Storage.Device.Configure"><value>Configure</value></data>
   <data name="Emulation.Storage.Floppy.CreateBlank"><value>Create a blank floppy</value></data>
   <data name="Emulation.Storage.Disk.Image"><value>Disk image</value></data>
@@ -43,7 +44,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>Hard disk</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>Interface</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Preallocate the file</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Floppies and CDs are inserted or replaced from the running machine.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Use the emulation view to insert or change media.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Remove media</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>The disk image already exists: {0}\nDo you want to replace it?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>The available types, models and identifiers depend on the selected machine.</value></data>
@@ -77,4 +78,12 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Cartridge slot</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Mount the first four disks in DF0–DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Disk {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>Use card</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>The selected file will be attached to this virtual storage device.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>Select an existing card file.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>The card file has an invalid size.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>Choose a file format supported by this device.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>Unlimited</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Clear when the game closes</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>Card name</value></data>
 </root>

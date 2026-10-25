@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Help.AyStereoSeparation" xml:space="preserve"><value>בחרו את סדר AY ערוצים קוליים בפלט סטריאו.</value></data>
+  <data name="Emulation.Sinclair.Help.AyVolume" xml:space="preserve"><value>התאמת נפח AY השבב הקולי</value></data>
+  <data name="Emulation.Sinclair.Help.BeeperVolume" xml:space="preserve"><value>להתאים את נפח גנרטור הקול שנבנה.</value></data>
+  <data name="Emulation.Sinclair.Help.BorderSize" xml:space="preserve"><value>בחרו כמה מגבול המסך מוצג.</value></data>
+  <data name="Emulation.Sinclair.Help.Chroma81" xml:space="preserve"><value>דמיין את הסיומת הגרפיקה של Chroma 81 צבעים.</value></data>
+  <data name="Emulation.Sinclair.Help.EmulationSpeed" xml:space="preserve"><value>בחר את מהירות החיקוי כאחוז מהמהירות המקורית.</value></data>
+  <data name="Emulation.Sinclair.Help.FullerBox" xml:space="preserve"><value>דמיין את קול המלאכה ואת הרחבה שמחה.</value></data>
+  <data name="Emulation.Sinclair.Help.HighResolution" xml:space="preserve"><value>בחר הרחבה גרפיקה גבוהה ברזולוציה.</value></data>
+  <data name="Emulation.Sinclair.Help.Issue2Keyboard" xml:space="preserve"><value>דמיין את התנהגות המקלדת של החומרה 2.</value></data>
+  <data name="Emulation.Sinclair.Help.MemoryBankContent" xml:space="preserve"><value>בחר את התוכן של בנק הזיכרון מ 8 עד 16KB.</value></data>
+  <data name="Emulation.Sinclair.Help.MouseSwapButtons" xml:space="preserve"><value>נצלו את הכפתורים הנכונים והשמאליים של העכבר המתומח.</value></data>
+  <data name="Emulation.Sinclair.Help.Palette" xml:space="preserve"><value>בחרו את הצבעים המשמשים לצבעים המוצגים.</value></data>
+  <data name="Emulation.Sinclair.Help.SoundHardware" xml:space="preserve"><value>בחרו את חומרת הצלילה הנשגבת.</value></data>
+  <data name="Emulation.Sinclair.Help.SpeakerType" xml:space="preserve"><value>בחר את המסנן המשמש לרמקולים הגנובים.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeAutoLoad" xml:space="preserve"><value>התחילו לטעון את הסיגריה באופן אוטומטי.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeFastLoad" xml:space="preserve"><value>לטעון נתונים של סורק מהר יותר.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeLoadSound" xml:space="preserve"><value>שחקו את הצליל המיוצר תוך כדי טעינת נתוני ה-Csette.</value></data>
+  <data name="Emulation.Sinclair.Help.TurboSound" xml:space="preserve"><value>דמיין את הסיומת הקול של טורבו עם שני AY שבבים</value></data>
+  <data name="Emulation.Sinclair.Help.USpeech" xml:space="preserve"><value>דמיין את הרחבה הנאום של קירה uSpeech. Both נדרש קבצי קושחה חייב להיות נוכח.</value></data>
+  <data name="Emulation.Sinclair.Help.VideoPreset" xml:space="preserve"><value>בחרו את המראה של אות הוידאו הגנוב.</value></data>
+  <data name="Emulation.Sinclair.Help.Melodik" xml:space="preserve"><value>דמיין את MELODIK הרחבה קולית</value></data>
+</root>

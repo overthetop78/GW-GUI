@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Controller.WonderSwan" xml:space="preserve"><value>WonderSwan</value></data>
+  <data name="Emulation.Bandai.Controller.Playdia" xml:space="preserve"><value>Playdia</value></data>
+  <data name="Emulation.Bandai.Controller.Tamagotchi" xml:space="preserve"><value>Tamagotchi</value></data>
+  <data name="Emulation.Bandai.Action.A" xml:space="preserve"><value>A</value></data>
+  <data name="Emulation.Bandai.Action.B" xml:space="preserve"><value>B</value></data>
+  <data name="Emulation.Bandai.Action.X1" xml:space="preserve"><value>X1</value></data>
+  <data name="Emulation.Bandai.Action.X2" xml:space="preserve"><value>X2</value></data>
+  <data name="Emulation.Bandai.Action.X3" xml:space="preserve"><value>X3</value></data>
+  <data name="Emulation.Bandai.Action.X4" xml:space="preserve"><value>X4</value></data>
+  <data name="Emulation.Bandai.Action.Y1" xml:space="preserve"><value>Y1</value></data>
+  <data name="Emulation.Bandai.Action.Y2" xml:space="preserve"><value>Y2</value></data>
+  <data name="Emulation.Bandai.Action.Y3" xml:space="preserve"><value>Y3</value></data>
+  <data name="Emulation.Bandai.Action.Y4" xml:space="preserve"><value>Y4</value></data>
+  <data name="Emulation.Bandai.Action.Start" xml:space="preserve"><value>Start</value></data>
+  <data name="Emulation.Bandai.Action.Select" xml:space="preserve"><value>Select</value></data>
+  <data name="Emulation.Bandai.Action.Rotate" xml:space="preserve"><value>Rotate</value></data>
+  <data name="Emulation.Bandai.Action.Execute" xml:space="preserve"><value>Execute</value></data>
+  <data name="Emulation.Bandai.Action.Cancel" xml:space="preserve"><value>Cancel</value></data>
+</root>

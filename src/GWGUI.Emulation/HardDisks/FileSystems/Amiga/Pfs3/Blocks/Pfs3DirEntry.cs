@@ -70,8 +70,7 @@ namespace Hst.Amiga.FileSystems.Pfs3.Blocks
         /// </summary>
         public string LinkPath { get; private set; }
 
-        public Pfs3DirEntry(byte next, sbyte type, uint anode, uint fsize, byte protection, DateTime date, string name,
-            string comment, Pfs3ExtraFields extraFields)
+        public Pfs3DirEntry(byte next, sbyte type, uint anode, uint fsize, byte protection, DateTime date, string name, string comment, Pfs3ExtraFields extraFields)
         {
             this.type = type;
             this.anode = anode;
@@ -84,8 +83,7 @@ namespace Hst.Amiga.FileSystems.Pfs3.Blocks
             Next = next;
         }
 
-        public Pfs3DirEntry(byte next, sbyte type, uint anode, uint fsize, byte protection, DateTime date, string name,
-            string comment, Pfs3ExtraFields extraFields, Pfs3GlobalData g)
+        public Pfs3DirEntry(byte next, sbyte type, uint anode, uint fsize, byte protection, DateTime date, string name, string comment, Pfs3ExtraFields extraFields, Pfs3GlobalData g)
         {
             this.type = type;
             this.anode = anode;
@@ -104,9 +102,7 @@ namespace Hst.Amiga.FileSystems.Pfs3.Blocks
         {
         }
 
-        public Pfs3DirEntry Clone() =>
-            new Pfs3DirEntry(Next, type, anode, fsize, protection, CreationDate, Name, comment,
-                new Pfs3ExtraFields(ExtraFields));
+        public Pfs3DirEntry Clone() => new Pfs3DirEntry(Next, type, anode, fsize, protection, CreationDate, Name, comment, new Pfs3ExtraFields(ExtraFields));
 
         public void SetType(sbyte type)
         {

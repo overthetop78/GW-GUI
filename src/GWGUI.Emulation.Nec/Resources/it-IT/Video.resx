@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Video.Monitor"><value>Tipo di monitor</value></data>
+  <data name="Emulation.Nec.Video.Intensity"><value>Monitoraggio dell'intensità</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Color"><value>Colore</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Green"><value>Monocromatico verde</value></data>
+  <data name="Emulation.Nec.Video.Monitor.White"><value>Monocromatico bianco</value></data>
+  <data name="Emulation.Nec.Video.Palette"><value>tavolozza di colori</value></data>
+  <data name="Emulation.Nec.Video.Palette.Composite"><value>Composito</value></data>
+  <data name="Emulation.Nec.Video.HorizontalWidth"><value>Larghezza orizzontale</value></data>
+  <data name="Emulation.Nec.Video.DotClockWidth"><value>Larghezza dell'orologio Dot</value></data>
+  <data name="Emulation.Nec.Video.ChromaInterpolation"><value>Interpolazione cromatica</value></data>
+  <data name="Emulation.Nec.Video.NoSpriteLimit"><value>Rimuovere il limite di sprite</value></data>
+  <data name="Emulation.Nec.Video.InitialScanline"><value>Prima scansione visibile</value></data>
+  <data name="Emulation.Nec.Video.LastScanline"><value>Ulteriore scansione visibile</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip"><value>Scivolo telaio</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>Disattivato</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Automatico</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>Manuale</value></data>
+  <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>Soglia di skip telaio</value></data>
+  <data name="Emulation.Nec.Video.Overscan"><value>Mostra i bordi dell'immagine</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming"><value>Altezza dell'immagine visualizzata</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming"><value>Larghezza dell'immagine visualizzata</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Cropped"><value>Immagine visibile (240 linee)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Full"><value>Tutte le 263 linee</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Cropped"><value>Immagine visibile (348 pixel)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Full"><value>Tutti i 392 pixel</value></data>
+</root>

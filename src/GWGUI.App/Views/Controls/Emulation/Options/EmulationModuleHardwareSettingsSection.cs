@@ -18,6 +18,53 @@ internal sealed partial class EmulationModuleSettingsSection
 
     private UIElement BuildCpuSettingsTab(EmulationMachineSettings settings)
     {
+        if (settings.Blocks.Any(block => block.Tab == EmulationMachineTab.Cpu && block.IsCompact))
+        {
+            var blocks = settings.Blocks.Where(block => block.Tab == EmulationMachineTab.Cpu && block.IsVisible).ToArray();
+            var cards = blocks.ToDictionary(block => block.Id, block => EmulationSettingsLayout.IconCard(
+                EmulationSettingsLayout.BoundedForm(1, block.Fields.Where(field => field.IsVisible).Select(CreateControlField).ToArray()),
+                LocExtension.GetForModule(_module, block.TitleResourceKey), block.Icon ?? string.Empty));
+            foreach (var field in VisibleFields(settings, EmulationMachineTab.Cpu).Where(field => field.FrequencyScaleFieldId is not null))
+            {
+                if (!_fieldControls.TryGetValue(field.FrequencyScaleFieldId!, out var source)
+                    || _fieldControls[field.Id] is not TextBlock frequency) continue;
+                void UpdateFrequency()
+                {
+                    var selected = ReadValue(source);
+                    var scaled = EmulationSettingsValuePresentationFunctions.ScaledFrequency(field.NumericValue, selected);
+                    frequency.Text = selected == "auto" ? LocExtension.Get("Visual.Automatic")
+                        : scaled ?? (source is ComboBox { SelectedItem: EmulationSettingsChoiceView choice } ? choice.DisplayName : field.Value);
+                }
+                AttachValueChanged(source, UpdateFrequency);
+                if (source is Grid { Tag: Slider slider }) slider.ValueChanged += (_, _) => UpdateFrequency();
+                UpdateFrequency();
+            }
+            ApplySettingsRules(settings);
+            var cpuCards = new StackPanel { Margin = new Thickness(12) };
+            var compactCards = new List<FrameworkElement>();
+            void AddCompactCards()
+            {
+                if (compactCards.Count == 0) return;
+                var group = EmulationSettingsLayout.CompactCards(compactCards);
+                group.Margin = new Thickness(0);
+                cpuCards.Children.Add(group);
+                compactCards.Clear();
+            }
+            foreach (var block in blocks)
+            {
+                var card = cards[block.Id];
+                if (block.IsCompact && block.Fields.Count(field => field.IsVisible) <= 8)
+                {
+                    compactCards.Add(card);
+                    continue;
+                }
+                AddCompactCards();
+                card.Margin = new Thickness(0, 0, 0, 12);
+                cpuCards.Children.Add(card);
+            }
+            AddCompactCards();
+            return EmulationSettingsLayout.ScrollPage(cpuCards);
+        }
         var fields = VisibleFields(settings, EmulationMachineTab.Cpu);
         var cpu = FieldByLabel(fields, EmulationHardwareSettingsConstants.CpuModelResourceKey);
         if (cpu is null) return BuildGenericSettingsTab(settings, EmulationMachineTab.Cpu);
@@ -29,32 +76,27 @@ internal sealed partial class EmulationModuleSettingsSection
         var speedControl = speed is null ? null : CreateControlField(speed);
         var machineName = (_machines.SelectedItem as EmulationMachineChoice)?.DisplayName ?? settings.MachineId;
         var cpuName = EmulationSettingsValuePresentationFunctions.DisplayValue(cpu, _module);
-        var originalSpeed = originalSpeedField is null ? string.Empty
-            : EmulationSettingsValuePresentationFunctions.DisplayValue(originalSpeedField, _module);
+        var originalSpeed = originalSpeedField is null ? string.Empty : EmulationSettingsValuePresentationFunctions.DisplayValue(originalSpeedField, _module);
+        var hardwareFields = new[] { cpu, speed, originalSpeedField, precision, fpu }.OfType<EmulationSettingsField>().Select(field => field.Id).ToHashSet(StringComparer.Ordinal);
+        var processorFields = fields.Where(field => !hardwareFields.Contains(field.Id)).Select(CreateControlField).ToArray();
         var page = EmulationSettingsLayout.CpuSettingsPage(new EmulationCpuSettingsContent(
             cpuControl,
-            new TextBlock { Text = string.Join(" · ", new[] { machineName, cpuName, originalSpeed }
-                .Where(value => !string.IsNullOrWhiteSpace(value))) },
+            new TextBlock { Text = string.Join(" · ", new[] { machineName, cpuName, originalSpeed }.Where(value => !string.IsNullOrWhiteSpace(value))) },
             precision is null ? null : CreateControlField(precision),
             fpu is null ? null : CreateControlField(fpu),
-            originalSpeedField is null
-                ? new EmulationSettingsControlField(LocExtension.Get("Emulation.Cpu.SpeedOriginal"),
-                    new TextBlock { Text = originalSpeed })
-                : CreateControlField(originalSpeedField),
-            speed is { IsEnabled: true } ? speedControl : null));
+            originalSpeedField is null ? new EmulationSettingsControlField(LocExtension.Get("Emulation.Cpu.SpeedOriginal"), new TextBlock { Text = originalSpeed }) : CreateControlField(originalSpeedField),
+            speed is { IsEnabled: true } ? speedControl : null,
+            processorFields));
         ApplySettingsRules(settings);
         return EmulationSettingsLayout.ScrollPage(page);
     }
 
     private UIElement BuildMemorySettingsTab(EmulationMachineSettings settings)
     {
-        var memoryBlocks = settings.Blocks.Where(block => block.Tab == EmulationMachineTab.Ram && block.IsVisible)
-            .ToArray();
-        var mainFields = memoryBlocks.Where(block => block.TitleResourceKey == "Emulation.Memory.Main")
-            .SelectMany(block => block.Fields).Where(field => field.IsVisible).ToArray();
+        var memoryBlocks = settings.Blocks.Where(block => block.Tab == EmulationMachineTab.Ram && block.IsVisible).ToArray();
+        var mainFields = memoryBlocks.Where(block => block.TitleResourceKey == "Emulation.Memory.Main").SelectMany(block => block.Fields).Where(field => field.IsVisible).ToArray();
         if (mainFields.Length == 0) return BuildGenericSettingsTab(settings, EmulationMachineTab.Ram);
-        var extensionFields = memoryBlocks.Where(block => block.TitleResourceKey != "Emulation.Memory.Main")
-            .SelectMany(block => block.Fields).Where(field => field.IsVisible).ToArray();
+        var extensionFields = memoryBlocks.Where(block => block.TitleResourceKey != "Emulation.Memory.Main").SelectMany(block => block.Fields).Where(field => field.IsVisible).ToArray();
         var mainControls = mainFields.Select(CreateControlField).ToArray();
         var extensionControls = extensionFields.Select(CreateControlField).ToArray();
         var fields = mainFields.Concat(extensionFields).ToArray();
@@ -99,8 +141,7 @@ internal sealed partial class EmulationModuleSettingsSection
         }
     }
 
-    private void ApplySettingsRule(EmulationSettingsRule rule, FrameworkElement source,
-        FrameworkElement target, bool sourceChanged)
+    private void ApplySettingsRule(EmulationSettingsRule rule, FrameworkElement source, FrameworkElement target, bool sourceChanged)
     {
         var sourceValue = ReadValue(source);
         var targetValue = ReadValue(target);
@@ -113,8 +154,7 @@ internal sealed partial class EmulationModuleSettingsSection
             finally { _applyingSettingsRule = wasApplyingRule; }
         }
         if (rule.Category == EmulationSettingsRuleCategory.VisibleWhenSourceDiffers)
-            target.Visibility = sourceValue == rule.ComparedValue
-                ? Visibility.Collapsed : Visibility.Visible;
+            target.Visibility = sourceValue == rule.ComparedValue ? Visibility.Collapsed : Visibility.Visible;
     }
 
     private void AttachUserChangeHandlers()
@@ -148,29 +188,39 @@ internal sealed partial class EmulationModuleSettingsSection
             toggle.Checked += (_, _) => action();
             toggle.Unchecked += (_, _) => action();
         }
+        else if (control is Slider slider) slider.ValueChanged += (_, _) => action();
+        else if (control is RadioButton radio) radio.Checked += (_, _) => action();
+        else if (control is Panel panel)
+            foreach (var child in panel.Children.OfType<FrameworkElement>()) AttachValueChanged(child, action);
     }
 
     private static void SelectValue(FrameworkElement control, string value)
     {
         if (control is ComboBox selection)
-            selection.SelectedItem = selection.Items.Cast<EmulationSettingsChoiceView>()
-                .FirstOrDefault(item => item.Choice.Id == value);
+            selection.SelectedItem = selection.Items.Cast<EmulationSettingsChoiceView>().FirstOrDefault(item => item.Choice.Id == value);
         else if (control is CheckBox toggle && toggle.Tag is EmulationSettingsField field)
             toggle.IsChecked = value == field.EnabledValue;
+        else if (control is Panel panel)
+            foreach (var radio in panel.Children.OfType<RadioButton>())
+                radio.IsChecked = radio.Tag is EmulationSettingsChoiceView choice && choice.Choice.Id == value;
     }
 
-    private static IReadOnlyList<EmulationSettingsField> VisibleFields(EmulationMachineSettings settings,
-        EmulationMachineTab tab) => settings.Blocks.Where(block => block.Tab == tab && block.IsVisible)
-        .SelectMany(block => block.Fields).Where(field => field.IsVisible).ToArray();
+    private static IReadOnlyList<EmulationSettingsField> VisibleFields(EmulationMachineSettings settings, EmulationMachineTab tab) => settings.Blocks.Where(block => block.Tab == tab && block.IsVisible).SelectMany(block => block.Fields).Where(field => field.IsVisible).ToArray();
 
-    private static EmulationSettingsField? FieldByLabel(IEnumerable<EmulationSettingsField> fields,
-        string resourceKey) => fields.FirstOrDefault(field => field.LabelResourceKey == resourceKey);
+    private static EmulationSettingsField? FieldByLabel(IEnumerable<EmulationSettingsField> fields, string resourceKey) => fields.FirstOrDefault(field => field.LabelResourceKey == resourceKey);
 
     private long SelectedNumericValue(EmulationSettingsField field)
     {
         if (_fieldControls.TryGetValue(field.Id, out var control)
             && control is ComboBox { SelectedItem: EmulationSettingsChoiceView selected })
-            return selected.Choice.NumericValue ?? 0;
+            return EmulationSettingsValuePresentationFunctions.MemoryBytes(selected.Choice.InvariantDisplayValue) ?? selected.Choice.NumericValue ?? 0;
+        if (control is CheckBox toggle)
+            return toggle.IsChecked == true ? field.NumericValue ?? 0 : 0;
+        if (control is Panel { Tag: Func<string> read })
+        {
+            var choice = field.Choices?.FirstOrDefault(item => item.Id == read());
+            return choice?.NumericValue ?? EmulationSettingsValuePresentationFunctions.MemoryBytes(choice?.InvariantDisplayValue) ?? 0;
+        }
         return EmulationSettingsValuePresentationFunctions.DefaultNumericValue(field);
     }
 

@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Width="20" Height="20" IsHitTestVisible="False">
     <Grid>
-        <Image x:Name="NativeIcon" Stretch="Uniform" SnapsToDevicePixels="True"
-               RenderOptions.BitmapScalingMode="HighQuality"/>
+        <Image x:Name="NativeIcon" Stretch="Uniform" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality"/>
         <Rectangle x:Name="TintedIcon" Visibility="Collapsed" Fill="#18864B"/>
     </Grid>
 </UserControl>

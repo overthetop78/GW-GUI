@@ -37,8 +37,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
 
                 if (i != extBlock)
                 {
-                    throw new FileSystemDiagnosticException(FileSystemErrorCode.ReadFailed,
-                        FastFileSystemErrorMessages.ReadFailed);
+                    throw new FileSystemDiagnosticException(FileSystemErrorCode.ReadFailed, FastFileSystemErrorMessages.ReadFailed);
                 }
 
                 currentData = currentExt.Index[posInExtBlk] == 0
@@ -73,8 +72,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         {
             if (n > buffer.Length)
             {
-                throw new FileSystemDiagnosticException(FileSystemErrorCode.CountExceedsBuffer,
-                    FastFileSystemErrorMessages.CountExceedsBuffer(n, buffer.Length), n, buffer.Length);
+                throw new FileSystemDiagnosticException(FileSystemErrorCode.CountExceedsBuffer, FastFileSystemErrorMessages.CountExceedsBuffer(n, buffer.Length), n, buffer.Length);
             }
 
             var blockSize = volume.DataBlockSize;
@@ -156,8 +154,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
 
             if (volume.UseOfs && data.SeqNum != nDataBlock + 1)
             {
-                throw new FileSystemDiagnosticException(FileSystemErrorCode.IncorrectDataBlockSequence,
-                    FastFileSystemErrorMessages.IncorrectDataBlockSequence);
+                throw new FileSystemDiagnosticException(FileSystemErrorCode.IncorrectDataBlockSequence, FastFileSystemErrorMessages.IncorrectDataBlockSequence);
             }
 
             nDataBlock++;

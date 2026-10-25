@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound"><value>ไม่พบสื่อที่ปรับแต่งแล้ว</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported"><value>เครื่องไม่รองรับสื่อที่เลือกไว้</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound"><value>ไม่พบแกนการจําลองที่จําเป็น</value></data>
+  <data name="Emulation.Example.Error.CoreRejected"><value>ไม่สามารถโหลดแกนการจําลองที่เลือกไว้ได้</value></data>
+  <data name="Emulation.Example.Error.Details"><value>รายละเอียด: {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid"><value>เครื่องคอมไพล์ใช้งานไม่ได้หรือไม่เข้ากัน</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing"><value>ยูนิแวร์ที่ต้องใช้หายไป</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing"><value>ไม่มีพาธไปยังโปรแกรมจําลองโปรแกรม</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure"><value>การติดต่อกับเครื่องจําลองล้มเหลว</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid"><value>ตัวเลือกมีค่าที่ใช้ไม่ได้</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible"><value>รัฐที่บันทึกไว้ไม่ตรงกับเครื่องปัจจุบัน</value></data>
+  <data name="Emulation.Example.Error.StateInvalid"><value>รัฐที่บันทึกไว้ใช้งานไม่ได้</value></data>
+  <data name="Emulation.Example.Error.Unexpected"><value>เกิดข้อผิดพลาดในการจําลองอย่างไม่คาดคิด</value></data>
+</root>

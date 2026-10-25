@@ -1,3 +1,4 @@
+using GWGUI.MediaFileSystems.Primitives;
 using GWGUI.MediaFileSystems.Constants;
 using GWGUI.MediaFileSystems.Interfaces;
 
@@ -45,10 +46,7 @@ internal static class AtariKFileFunctions
         return true;
     }
 
-    private static int PayloadLength(IReadOnlyList<byte> header) =>
-        header[AtariKFileConstants.PayloadLengthOffset]
-        | header[AtariKFileConstants.PayloadLengthOffset + 1] << (sizeof(byte) * 8)
-        | header[AtariKFileConstants.PayloadLengthOffset + 2] << (sizeof(byte) * 16);
+    private static int PayloadLength(IReadOnlyList<byte> header) => LittleEndianUInt24.ReadIndexed(header, AtariKFileConstants.PayloadLengthOffset);
 
     private static bool TryReadPayload(IMediaSectorImage image, int payloadLength, out byte[] payload)
     {
@@ -64,10 +62,7 @@ internal static class AtariKFileFunctions
         return true;
     }
 
-    private static bool HasAtariExecutableHeader(IReadOnlyList<byte> data) =>
-        data.Count >= AtariKFileConstants.MinimumExecutableLength
-        && ReadUInt16(data, 0) == AtariKFileConstants.ExecutableMarker;
+    private static bool HasAtariExecutableHeader(IReadOnlyList<byte> data) => data.Count >= AtariKFileConstants.MinimumExecutableLength && ReadUInt16(data, 0) == AtariKFileConstants.ExecutableMarker;
 
-    private static int ReadUInt16(IReadOnlyList<byte> data, int offset) =>
-        data[offset] | data[offset + 1] << (sizeof(byte) * 8);
+    private static int ReadUInt16(IReadOnlyList<byte> data, int offset) => LittleEndianUInt16.ReadIndexed(data, offset);
 }

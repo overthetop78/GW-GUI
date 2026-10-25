@@ -7,9 +7,5 @@ internal interface IEmulationVideoProcessingPipeline : IDisposable
     EmulationVideoRenderer Renderer { get; }
     void ResetTemporalHistory() { }
 
-    VideoFrame Process(
-        EmulationVideoProcessingConfiguration configuration,
-        VideoFrame frame,
-        EmulationVideoProcessingSize sourceSize,
-        EmulationVideoProcessingSize outputSize);
+    VideoFrame Process(EmulationVideoProcessingConfiguration configuration, VideoFrame frame, EmulationVideoProcessingSize sourceSize, EmulationVideoProcessingSize outputSize);
 }

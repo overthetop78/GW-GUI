@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>A posição solicitada é inválida para este objeto do sistema de arquivos.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>A operação de nó de alocação falhou.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Bloco de índice de mapa de bits de nó de alocação {0}//{1} não foi possível ler.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>A cabeça de acionamento não está no cilindro solicitado ({0}). Recalibrar a unidade antes de ler.</value></data>
 </root>

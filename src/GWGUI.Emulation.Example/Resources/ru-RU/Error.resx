@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound"><value>Настроенной среды не найдено.</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported"><value>Машина не поддерживает выбранную среду.</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound"><value>Необходимый эмуляционный ядро не найдено.</value></data>
+  <data name="Emulation.Example.Error.CoreRejected"><value>Выбранное эмуляционное ядро не могло быть загружено.</value></data>
+  <data name="Emulation.Example.Error.Details"><value>Подробности: {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid"><value>Прошивка является недействительной или несовместимой.</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing"><value>Не хватает необходимого прошивки.</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing"><value>Путь к программе эмуляции хоста недоступен.</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure"><value>Связь с хостом эмуляции не удалась.</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid"><value>Опцион имеет недействительное значение.</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible"><value>Сохраненное состояние несовместимо с текущей машиной.</value></data>
+  <data name="Emulation.Example.Error.StateInvalid"><value>Спасенное государство недействительно.</value></data>
+  <data name="Emulation.Example.Error.Unexpected"><value>Произошла неожиданная ошибка эмуляции.</value></data>
+</root>

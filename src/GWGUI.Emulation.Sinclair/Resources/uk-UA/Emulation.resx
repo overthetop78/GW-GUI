@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.81.Description"><value>Емулює Sinclair ZX81.</value></data>
+  <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>Аудіотехніка</value></data>
+  <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>Початковий зміст</value></data>
+  <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>Відео пам'яті</value></data>
+  <data name="Emulation.Sinclair.Setting.AyStereoSeparation" xml:space="preserve"><value>AY стереотипний порядок каналу</value></data>
+  <data name="Emulation.Sinclair.Setting.AyVolume" xml:space="preserve"><value>AY об'єм</value></data>
+  <data name="Emulation.Sinclair.Setting.BorderSize" xml:space="preserve"><value>Розмір бордюру екрану</value></data>
+  <data name="Emulation.Sinclair.Setting.EmulationSpeed" xml:space="preserve"><value>Швидкість емульсії</value></data>
+  <data name="Emulation.Sinclair.Setting.HighResolution" xml:space="preserve"><value>Висока роздільна здатність графіки</value></data>
+  <data name="Emulation.Sinclair.Setting.MemoryBankContent" xml:space="preserve"><value>8–16 КАБ пам'яті банку</value></data>
+  <data name="Emulation.Sinclair.Setting.MouseSwapButtons" xml:space="preserve"><value>Обмін кнопками мишки</value></data>
+  <data name="Emulation.Sinclair.Setting.Palette" xml:space="preserve"><value>Колірна палітра</value></data>
+  <data name="Emulation.Sinclair.Setting.SoundHardware" xml:space="preserve"><value>Звукові апарати</value></data>
+  <data name="Emulation.Sinclair.Setting.SpeakerType" xml:space="preserve"><value>Тип спікера</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeAutoLoad" xml:space="preserve"><value>Автоматичне завантаження касету</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeFastLoad" xml:space="preserve"><value>Швидка завантаження касету</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeLoadSound" xml:space="preserve"><value>Касетний зарядний звук</value></data>
+  <data name="Emulation.Sinclair.Setting.VideoPreset" xml:space="preserve"><value>Відео-замінник</value></data>
+  <data name="Emulation.Sinclair.Value.AmberMonochrome" xml:space="preserve"><value>Монохромний абрикос</value></data>
+  <data name="Emulation.Sinclair.Value.Beeper" xml:space="preserve"><value>Вбудований звуковий генератор</value></data>
+  <data name="Emulation.Sinclair.Value.GreenMonochrome" xml:space="preserve"><value>Зелений монохромний</value></data>
+  <data name="Emulation.Sinclair.Value.InvertedColours" xml:space="preserve"><value>Збочений колір</value></data>
+  <data name="Emulation.Sinclair.Value.Monochrome" xml:space="preserve"><value>Чорний і білий</value></data>
+  <data name="Emulation.Sinclair.Value.None" xml:space="preserve"><value>Ні</value></data>
+  <data name="Emulation.Sinclair.Value.Normal" xml:space="preserve"><value>Нормативно-правова форма</value></data>
+  <data name="Emulation.Sinclair.Value.RomShadow" xml:space="preserve"><value>ROM дзеркала</value></data>
+  <data name="Emulation.Sinclair.Value.Television" xml:space="preserve"><value>Телевізор</value></data>
+  <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>Телевізор</value></data>
+  <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>Нефільтровані</value></data>
+  <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>Відеопоказ</value></data>
+  <data name="Emulation.Emulator.fuse.Description"><value>Емулює сумісні системи ZX Spectrum.</value></data>
+  <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>Вбудований звуковий об'єм</value></data>
+  <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>Ревізія 2 клавіатури</value></data>
+  <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>Очистити зображення</value></data>
+  <data name="Emulation.Sinclair.Value.Full" xml:space="preserve"><value>Повний екран кордону</value></data>
+  <data name="Emulation.Sinclair.Value.Noisy" xml:space="preserve"><value>Зображення з шумом</value></data>
+</root>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Error.StateIncompatible" xml:space="preserve"><value>ولاية كولكو المنقذة لا تتوافق مع الآلة الحالية</value></data>
+  <data name="Emulation.Coleco.Error.Unexpected" xml:space="preserve"><value>حدث خطأ غير متوقع في تقليد كولكو</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareMissing" xml:space="preserve"><value>(كومسترا كورت كولكو) مطلوب مفقود</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid" xml:space="preserve"><value>النظام ROM غير صحيح أو غير متوافق</value></data>
+  <data name="Emulation.Coleco.Error.ContentNotFound" xml:space="preserve"><value>لم يتم العثور على وسائل الإعلام المُشكلة لـ (كولكو)</value></data>
+  <data name="Emulation.Coleco.Error.ContentUnsupported" xml:space="preserve"><value>هذه الآلة لا تدعم وسائل الإعلام المختارة</value></data>
+  <data name="Emulation.Coleco.Error.OptionInvalid" xml:space="preserve"><value>خيار كولكو له قيمة غير صحيحة</value></data>
+  <data name="Emulation.Coleco.Error.CoreNotFound" xml:space="preserve"><value>لم يتم العثور على الجوهر المطلوب من كولكو</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected" xml:space="preserve"><value>لا يمكن تحميل نواة كولكو المختارة</value></data>
+  <data name="Emulation.Coleco.Error.StateInvalid" xml:space="preserve"><value>ولاية كولكو المنقذة باطلة</value></data>
+  <data name="Emulation.Coleco.Error.Details" xml:space="preserve"><value>التفاصيل: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostProtocolFailure" xml:space="preserve"><value>الاتصال مع مضيف كولكو فشل.</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>قيادة بيئة غير معروفة: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing" xml:space="preserve"><value>مسار برنامج الحفز غير متاح</value></data>
+</root>

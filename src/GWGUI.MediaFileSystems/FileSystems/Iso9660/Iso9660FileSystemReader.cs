@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using GWGUI.MediaFileSystems;
-using MediaVolumeDescriptor = global::GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
+using MediaVolumeDescriptor = GWGUI.MediaFileSystems.Contracts.MediaVolumeDescriptor;
 using System.Buffers.Binary;
 using GWGUI.MediaFileSystems.Constants;
 using GWGUI.MediaFileSystems.Interfaces;
@@ -39,29 +39,15 @@ public class Iso9660FileSystemReader : IMediaFileSystemReader
         var warnings = new List<string>();
         var visited = new HashSet<uint>();
         var entries = ReadDirectory(track, root.Extent, root.Length, visited, warnings);
-        var name = DecodeVolumeIdentifier(descriptor.AsSpan(
-            Iso9660Constants.VolumeIdentifierOffset,
-            Iso9660Constants.VolumeIdentifierLength));
-        return new FileSystemVolume(
-            name,
-            Id,
-            checked((long)volumeBlocks * blockSize),
-            0,
-            null,
-            null,
-            entries,
-            warnings,
-            freeSpaceKnown: false,
-            attributes: ["ISO 9660"]);
+        var name = DecodeVolumeIdentifier(descriptor.AsSpan(Iso9660Constants.VolumeIdentifierOffset, Iso9660Constants.VolumeIdentifierLength));
+        return new FileSystemVolume(name, Id, checked((long)volumeBlocks * blockSize), 0, null, null, entries, warnings, freeSpaceKnown: false, attributes: ["ISO 9660"]);
     }
 
-    protected virtual bool AcceptVolumeDescriptor(ReadOnlySpan<byte> descriptor) =>
-        descriptor[0] == Iso9660Constants.PrimaryVolumeDescriptorType;
+    protected virtual bool AcceptVolumeDescriptor(ReadOnlySpan<byte> descriptor) => descriptor[0] == Iso9660Constants.PrimaryVolumeDescriptorType;
 
     protected virtual bool AcceptFileSystem(IMediaOpticalTrack track, ReadOnlySpan<byte> descriptor) => true;
 
-    protected virtual string DecodeVolumeIdentifier(ReadOnlySpan<byte> value) =>
-        System.Text.Encoding.ASCII.GetString(value).TrimEnd(' ', '\0');
+    protected virtual string DecodeVolumeIdentifier(ReadOnlySpan<byte> value) => System.Text.Encoding.ASCII.GetString(value).TrimEnd(' ', '\0');
 
     protected virtual string DecodeFileIdentifier(ReadOnlySpan<byte> value)
     {
@@ -81,10 +67,7 @@ public class Iso9660FileSystemReader : IMediaFileSystemReader
             var descriptor = ReadUserSector(track, block);
             if (descriptor.Length < Iso9660Constants.LogicalBlockSize)
                 throw new InvalidDataException("An ISO 9660 volume descriptor is incomplete.");
-            if (!descriptor.AsSpan(
-                    Iso9660Constants.VolumeDescriptorIdentifierOffset,
-                    Iso9660Constants.VolumeDescriptorIdentifierLength)
-                .SequenceEqual(System.Text.Encoding.ASCII.GetBytes(Iso9660Constants.VolumeDescriptorIdentifier)))
+            if (!descriptor.AsSpan(Iso9660Constants.VolumeDescriptorIdentifierOffset, Iso9660Constants.VolumeDescriptorIdentifierLength).SequenceEqual(System.Text.Encoding.ASCII.GetBytes(Iso9660Constants.VolumeDescriptorIdentifier)))
                 throw new InvalidDataException("The ISO 9660 volume descriptor identifier is missing.");
             if (AcceptVolumeDescriptor(descriptor) && AcceptFileSystem(track, descriptor)) return descriptor;
             if (descriptor[0] == Iso9660Constants.VolumeDescriptorTerminatorType)
@@ -92,12 +75,7 @@ public class Iso9660FileSystemReader : IMediaFileSystemReader
         }
     }
 
-    private IReadOnlyList<FileSystemEntry> ReadDirectory(
-        IMediaOpticalTrack track,
-        uint extent,
-        uint length,
-        HashSet<uint> visited,
-        ICollection<string> warnings)
+    private IReadOnlyList<FileSystemEntry> ReadDirectory(IMediaOpticalTrack track, uint extent, uint length, HashSet<uint> visited, ICollection<string> warnings)
     {
         if (!visited.Add(extent))
         {
@@ -128,9 +106,7 @@ public class Iso9660FileSystemReader : IMediaFileSystemReader
                 var childExtent = BinaryPrimitives.ReadUInt32LittleEndian(record.Slice(Iso9660Constants.DirectoryExtentOffset, 4));
                 var childLength = BinaryPrimitives.ReadUInt32LittleEndian(record.Slice(Iso9660Constants.DirectoryDataLengthOffset, 4));
                 var isDirectory = (record[Iso9660Constants.DirectoryFlagsOffset] & Iso9660Constants.DirectoryFlag) != 0;
-                var children = isDirectory
-                    ? ReadDirectory(track, childExtent, childLength, visited, warnings)
-                    : [];
+                var children = isDirectory ? ReadDirectory(track, childExtent, childLength, visited, warnings) : [];
                 IReadOnlyList<byte>? content = null;
                 if (!isDirectory && childLength <= int.MaxValue)
                     content = ReadExtent(track, childExtent, childLength);
@@ -175,17 +151,13 @@ public class Iso9660FileSystemReader : IMediaFileSystemReader
         return ReadExtent(track, root.Extent, root.Length);
     }
 
-    private byte[] ReadUserSector(IMediaOpticalTrack track, long relativeSector) =>
-        track.ReadUserDataAsync(relativeSector).AsTask().GetAwaiter().GetResult();
+    private byte[] ReadUserSector(IMediaOpticalTrack track, long relativeSector) => track.ReadUserDataAsync(relativeSector).AsTask().GetAwaiter().GetResult();
 
     private static IMediaOpticalTrack ResolveTrack(IMediaImageDocument document, MediaVolumeDescriptor volume)
     {
         if (document.Representation is not IMediaOpticalRepresentation optical || optical.Tracks is null)
             throw new NotSupportedException("ISO 9660 requires optical track data.");
-        return optical.Tracks.FirstOrDefault(track =>
-                !track.IsAudio
-                && (volume.SessionNumber is null || track.SessionNumber == volume.SessionNumber)
-                && (volume.TrackNumber is null || track.TrackNumber == volume.TrackNumber))
+        return optical.Tracks.FirstOrDefault(track => !track.IsAudio && (volume.SessionNumber is null || track.SessionNumber == volume.SessionNumber) && (volume.TrackNumber is null || track.TrackNumber == volume.TrackNumber))
             ?? throw new InvalidDataException("No data track is available for the requested optical volume.");
     }
 
@@ -194,9 +166,7 @@ public class Iso9660FileSystemReader : IMediaFileSystemReader
         var length = source[offset];
         if (length < Iso9660Constants.DirectoryRecordMinimumLength || offset > source.Length - length)
             throw new InvalidDataException("The ISO 9660 root directory record is invalid.");
-        return (
-            BinaryPrimitives.ReadUInt32LittleEndian(source.Slice(offset + Iso9660Constants.DirectoryExtentOffset, 4)),
-            BinaryPrimitives.ReadUInt32LittleEndian(source.Slice(offset + Iso9660Constants.DirectoryDataLengthOffset, 4)));
+        return (BinaryPrimitives.ReadUInt32LittleEndian(source.Slice(offset + Iso9660Constants.DirectoryExtentOffset, 4)), BinaryPrimitives.ReadUInt32LittleEndian(source.Slice(offset + Iso9660Constants.DirectoryDataLengthOffset, 4)));
     }
 
     private static ushort ReadBothEndianUInt16(ReadOnlySpan<byte> source, int offset)

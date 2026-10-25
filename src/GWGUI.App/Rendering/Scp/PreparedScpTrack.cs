@@ -15,7 +15,5 @@ public sealed partial class SkiaScpRenderer
         int UnverifiedSectors,
         bool HasFlux);
 
-    private sealed record PreparedScpRevolution(
-        IReadOnlyList<PreparedScpArc> FluxArcs,
-        double Quality);
+    private sealed record PreparedScpRevolution(IReadOnlyList<PreparedScpArc> FluxArcs, double Quality);
 }

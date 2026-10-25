@@ -337,4 +337,7 @@
   <data name="Emulation.Video.Renderer.Vulkan"><value>Vulkan</value></data>
   <data name="Emulation.Video.Renderer.OpenGL"><value>OpenGL</value></data>
   <data name="Emulation.Video.Renderer.Wpf"><value>WPF</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Hardware rendering</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Rendering mode</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>Hardware rendering uses the graphics API selected for the application when the emulator supports it.</value></data>
 </root>

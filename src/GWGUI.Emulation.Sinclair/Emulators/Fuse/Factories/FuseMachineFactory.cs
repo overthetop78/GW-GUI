@@ -1,0 +1,29 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Factories;
+using NativeSettings = GWGUI.Emulation.Sinclair.Emulators.Fuse.Functions.SettingsDescriptionFunctions;
+using GWGUI.Emulation.Sinclair.Emulators.Fuse.Constants;
+using NativeMedia = GWGUI.Emulation.Sinclair.Emulators.Fuse.Functions.MediaRuntimeFunctions;
+using NativeOptions = GWGUI.Emulation.Sinclair.Emulators.Fuse.Functions.RuntimeOptionFunctions;
+using NativeFirmware = GWGUI.Emulation.Sinclair.Emulators.Fuse.Functions.FirmwareRuntimeFunctions;
+
+namespace GWGUI.Emulation.Sinclair.Emulators.Fuse.Factories;
+
+internal sealed class FuseMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettings, IEmulatorInitialContentSettings
+{
+    public override IReadOnlyList<PeripheralCategory> GetPeripherals(MachineConfiguration configuration) => Enum.GetValues<PeripheralCategory>();
+    public bool SupportsInitialContent => true;
+
+    public override IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration, EmulatorManagementContext? context = null) => NativeSettings.Create(configuration);
+    public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null, EmulatorManagementContext? context = null) => NativeSettings.GetOptions(configuration);
+
+    public override bool SupportsNoContent => true;
+    public override bool SupportsPointer(MachineConfiguration configuration) => true;
+    public override bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => !NativeMedia.CanExchange(configuration, slot);
+    internal override bool SupportsMediaExchange(MachineConfiguration configuration, EmulationMediaSlot slot) => NativeMedia.CanExchange(configuration, slot);
+    internal override LoadedContent? PrepareContent(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions) => NativeMedia.Prepare(configuration, sessionDirectory, supportedExtensions);
+    internal override void CompleteMediaLoad(MachineConfiguration configuration, string sessionDirectory, ExternalHostCallbacks callbacks) => NativeMedia.CompleteLoad(configuration, sessionDirectory, callbacks);
+    public override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => NativeFirmware.Prepare(configuration, systemDirectory);
+    public override IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => NativeOptions.Prepare(configuration);
+    public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => NativeMedia.Devices(configuration);
+    public IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => NativeMedia.InitialContentPaths(configuration);
+}

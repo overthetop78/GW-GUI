@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Help.AdpcmVolume" xml:space="preserve"><value>Regolare il volume del ADPCM canale sonoro.</value></data>
+  <data name="Emulation.Sharp.Help.AudioDesynchronization" xml:space="preserve"><value>Scatena i campioni audio in eccesso per ridurre gli errori di sincronizzazione del suono.</value></data>
+  <data name="Emulation.Sharp.Help.AudioSampleRate" xml:space="preserve"><value>Scegli la frequenza di campionamento del suono.</value></data>
+  <data name="Emulation.Sharp.Help.ButtonOrder" xml:space="preserve"><value>Scegli l'ordine dei pulsanti del controller.</value></data>
+  <data name="Emulation.Sharp.Help.CpuSpeed" xml:space="preserve"><value>Scegli la frequenza del processore.</value></data>
+  <data name="Emulation.Sharp.Help.DiskSeekSound" xml:space="preserve"><value>Gioca il suono del movimento della testa del disco floppy.</value></data>
+  <data name="Emulation.Sharp.Help.FmBoard" xml:space="preserve"><value>Abilitare il FM scheda audio.</value></data>
+  <data name="Emulation.Sharp.Help.FmVolume" xml:space="preserve"><value>Regolare il volume del FM canale sonoro.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRate" xml:space="preserve"><value>Scegli il numero di fotogrammi video al secondo.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRateAdjustment" xml:space="preserve"><value>Regolare i tempi video per i display moderni per ridurre la stuttering del suono.</value></data>
+  <data name="Emulation.Sharp.Help.FrameSkip" xml:space="preserve"><value>Scegli la frazione di immagini video per saltare. Rendering una immagine su tre skips due su tre.</value></data>
+  <data name="Emulation.Sharp.Help.HideGraphics" xml:space="preserve"><value>Nascondere lo strato grafico dell'immagine video.</value></data>
+  <data name="Emulation.Sharp.Help.HideSprites" xml:space="preserve"><value>Nascondere sprite e strati di sfondo dell'immagine video.</value></data>
+  <data name="Emulation.Sharp.Help.HideText" xml:space="preserve"><value>Nascondere lo strato di testo dell'immagine video.</value></data>
+  <data name="Emulation.Sharp.Help.MemorySize" xml:space="preserve"><value>Scegliere la quantità di emulato RAM.</value></data>
+  <data name="Emulation.Sharp.Help.RapidFire" xml:space="preserve"><value>Ripetere il pulsante del controller preme automaticamente.</value></data>
+  <data name="Emulation.Sharp.Help.Raster" xml:space="preserve"><value>Abilitare gli effetti raster nell'immagine video emulata.</value></data>
+  <data name="Emulation.Sharp.Help.Resolution" xml:space="preserve"><value>Scegliere la risoluzione di output bassa o alta.</value></data>
+  <data name="Emulation.Sharp.Help.ReverseJoystick" xml:space="preserve"><value>Invertire l'ingresso del controller come fornito dall'emulatore.</value></data>
+  <data name="Emulation.Sharp.Help.UnlimitedSpeed" xml:space="preserve"><value>Eseguire la macchina il più velocemente possibile. Il suono può diventare non sincronizzato.</value></data>
+  <data name="Emulation.Sharp.Help.VerticalSync" xml:space="preserve"><value>Sincronizza il display emulato verticalmente.</value></data>
+  <data name="Emulation.Sharp.Help.VideoBeforeAudio" xml:space="preserve"><value>Ridurre la latenza video prima della latenza audio.</value></data>
+</root>

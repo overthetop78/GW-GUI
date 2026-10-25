@@ -1,0 +1,22 @@
+namespace GWGUI.Emulation.Sony.Common.Exceptions;
+
+/// <summary>Messages de validation et d'exécution du module, résolus par ExceptionText.</summary>
+internal static class ErrorMessages
+{
+
+    internal static string ContentRefused() => ExceptionText.Get(CoreErrorResourceKeys.ContentRefused);
+    internal static string InvalidStateSize(nuint size) => ExceptionText.Get(CoreErrorResourceKeys.InvalidStateSize, size);
+
+    internal static string ForEmulator(string? emulatorId, string key, params object[] arguments)
+    {
+        // Identifiants des profils de ressources du module, indépendants des classes de backend.
+        var profile = emulatorId switch
+        {
+            "pcsx2" => "Pcsx2",
+            "ppsspp" => "Ppsspp",
+            _ => null
+        };
+        return ExceptionText.Get(profile is null ? key : key.Replace("Emulation.Error.Core.", $"Emulation.Error.{profile}.", StringComparison.Ordinal), arguments);
+    }
+
+}

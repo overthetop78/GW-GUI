@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Family.Coleco" xml:space="preserve"><value>Coleco</value></data>
+  <data name="Emulation.Emulator.gearcoleco" xml:space="preserve"><value>Gearcoleco</value></data>
+  <data name="Emulation.Emulator.jollycv" xml:space="preserve"><value>JollyCV</value></data>
+  <data name="Emulation.Emulator.bluemsx" xml:space="preserve"><value>blueMSX</value></data>
+  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>Emulates COLECOVISION and ADAM.</value></data>
+  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>Emulates COLECOVISION.</value></data>
+  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>Emulates COLECOVISION.</value></data>
+  <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>Video memory</value></data>
+  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>Controller options</value></data>
+  <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>System</value></data>
+  <data name="Emulation.Coleco.Firmware.Os7" xml:space="preserve"><value>OS7 ROM</value></data>
+  <data name="Emulation.Coleco.Firmware.Eos" xml:space="preserve"><value>EOS ROM</value></data>
+  <data name="Emulation.Coleco.Firmware.SmartWriter" xml:space="preserve"><value>SmartWriter ROM</value></data>
+  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>ADAM disk drive</value></data>
+  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>ADAM data pack</value></data>
+  <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>Video refresh rate</value></data>
+  <data name="Emulation.Coleco.Setting.CartridgeType" xml:space="preserve"><value>Cartridge type</value></data>
+  <data name="Emulation.Coleco.Setting.VideoChip" xml:space="preserve"><value>Video chip</value></data>
+  <data name="Emulation.Coleco.Setting.ScreenBorders" xml:space="preserve"><value>Screen borders</value></data>
+  <data name="Emulation.Coleco.Setting.RemoveSpriteLimit" xml:space="preserve"><value>Remove sprite limit</value></data>
+  <data name="Emulation.Coleco.Setting.AllowOppositeDirections" xml:space="preserve"><value>Allow opposite directions</value></data>
+  <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>Rotary control sensitivity</value></data>
+  <data name="Emulation.Coleco.Setting.ColorPalette" xml:space="preserve"><value>Color palette</value></data>
+  <data name="Emulation.Coleco.Setting.CropTopBorder" xml:space="preserve"><value>Hide upper screen border</value></data>
+  <data name="Emulation.Coleco.Setting.CropBottomBorder" xml:space="preserve"><value>Hide lower screen border</value></data>
+  <data name="Emulation.Coleco.Setting.CropLeftBorder" xml:space="preserve"><value>Hide left screen border</value></data>
+  <data name="Emulation.Coleco.Setting.CropRightBorder" xml:space="preserve"><value>Hide right screen border</value></data>
+  <data name="Emulation.Coleco.Setting.CropScreenBorders" xml:space="preserve"><value>Hide screen borders</value></data>
+  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>Fast boot</value></data>
+  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>Standard cartridge</value></data>
+  <data name="Emulation.Coleco.Value.MegaCart" xml:space="preserve"><value>MegaCart</value></data>
+  <data name="Emulation.Coleco.Value.Activision" xml:space="preserve"><value>Activision</value></data>
+  <data name="Emulation.Coleco.Value.OCM" xml:space="preserve"><value>OCM</value></data>
+  <data name="Emulation.Coleco.Value.TMS9918A" xml:space="preserve"><value>TMS9918A</value></data>
+  <data name="Emulation.Coleco.Value.F18A" xml:space="preserve"><value>F18A</value></data>
+  <data name="Emulation.Coleco.Value.Frequency50Hz" xml:space="preserve"><value>50 Hz</value></data>
+  <data name="Emulation.Coleco.Value.Frequency60Hz" xml:space="preserve"><value>60 Hz</value></data>
+  <data name="Emulation.Coleco.Value.Aspect1By1PAR" xml:space="preserve"><value>1:1 PAR</value></data>
+  <data name="Emulation.Coleco.Value.Aspect4By3DAR" xml:space="preserve"><value>4:3 DAR</value></data>
+  <data name="Emulation.Coleco.Value.Aspect16By9DAR" xml:space="preserve"><value>16:9 DAR</value></data>
+  <data name="Emulation.Coleco.Value.Aspect16By10DAR" xml:space="preserve"><value>16:10 DAR</value></data>
+  <data name="Emulation.Coleco.Value.Aspect4By3NTSC" xml:space="preserve"><value>NTSC (4:3 DAR)</value></data>
+  <data name="Emulation.Coleco.Value.PAL" xml:space="preserve"><value>PAL</value></data>
+  <data name="Emulation.Coleco.Value.MSX2" xml:space="preserve"><value>MSX2</value></data>
+  <data name="Emulation.Coleco.Value.TeaTime" xml:space="preserve"><value>TeaTime</value></data>
+  <data name="Emulation.Coleco.Value.SYoung" xml:space="preserve"><value>SYoung</value></data>
+  <data name="Emulation.Coleco.Value.GCDatasheet" xml:space="preserve"><value>GCDatasheet</value></data>
+  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>Top and bottom borders</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>All borders (284 pixels wide)</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>All borders (320 pixels wide)</value></data>
+</root>

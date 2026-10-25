@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Detailed"><value>Контролює, чи грає GW GUI аудіо зразки, що генеруються зошитою машиною.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Enabled.Short"><value>Увімкнути або вимкнути емульований звук.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Detailed"><value>Відображення аудіо процесора, що надається вибраною машиною Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Model.Short"><value>Аудіопроцесор, який використовується вибраною машиною Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Detailed"><value>Вибирає аудіовихід Windows, який використовується для відтворення звуку з цієї ізольованої машини.</value></data>
+  <data name="Emulation.Microsoft.Help.Audio.Output.Short"><value>Аудіовихід, що використовується GW GUI.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Detailed"><value>Відображає початкову частоту процесора вибраної машини Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Frequency.Short"><value>Оригінальна частота процесора.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Detailed"><value>Відображення моделі процесора, що використовується вибраною машиною Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Cpu.Model.Short"><value>Процесор, який використовується вибраною машиною Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Detailed"><value>Система ROM є частиною вибраного Microsoft машинного визначення.</value></data>
+  <data name="Emulation.Microsoft.Help.Firmware.Integrated.Short"><value>Система ROM.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Detailed"><value>Відображає емулятор, обраний для машини. Не сумісний з ядром Microsoft все ще встановлюється.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Emulator.Short"><value>Емулятор, обраний для цієї машини.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Detailed"><value>Визначають апаратні та медіа-конфігурацій Microsoft, які відображаються.</value></data>
+  <data name="Emulation.Microsoft.Help.General.Model.Short"><value>Налаштування моделі Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Detailed"><value>Відображення RAM, що надається вибраною машиною Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Memory.Ram.Short"><value>Сума RAM надана вибраною машиною Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Detailed"><value>Відображує відеопроцесор, який надається вибраною машиною Microsoft.</value></data>
+  <data name="Emulation.Microsoft.Help.Video.Model.Short"><value>Відеопроцесор, який використовується вибраною машиною Microsoft.</value></data>
+</root>

@@ -72,9 +72,7 @@ internal static class HardDiskDeletionFile
 
     private static void RemoveEmptySparseBundleDirectories(IReadOnlyList<string> paths)
     {
-        var root = paths.Select(path => new FileInfo(path).Directory)
-            .SelectMany(directory => Ancestors(directory))
-            .FirstOrDefault(directory => directory.Extension.Equals(".sparsebundle", StringComparison.OrdinalIgnoreCase));
+        var root = paths.Select(path => new FileInfo(path).Directory).SelectMany(directory => Ancestors(directory)).FirstOrDefault(directory => directory.Extension.Equals(".sparsebundle", StringComparison.OrdinalIgnoreCase));
         if (root is null) return;
         var bands = Path.Combine(root.FullName, "bands");
         if (Directory.Exists(bands)) Directory.Delete(bands, recursive: false);
@@ -115,8 +113,7 @@ internal static class HardDiskDeletionFile
     }
 
     [DllImport("kernel32.dll", EntryPoint = "CreateFileW", CharSet = CharSet.Unicode, SetLastError = true)]
-    private static extern SafeFileHandle CreateFile(string path, uint access, uint share, nint security,
-        uint creation, uint attributes, nint template);
+    private static extern SafeFileHandle CreateFile(string path, uint access, uint share, nint security, uint creation, uint attributes, nint template);
     [DllImport("kernel32.dll", EntryPoint = "GetFinalPathNameByHandleW", CharSet = CharSet.Unicode, SetLastError = true)]
     private static extern uint GetFinalPathNameByHandle(SafeFileHandle handle, StringBuilder path, uint capacity, uint flags);
     [DllImport("kernel32.dll", SetLastError = true)]

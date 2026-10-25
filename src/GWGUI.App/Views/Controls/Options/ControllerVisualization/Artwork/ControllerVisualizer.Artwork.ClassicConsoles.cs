@@ -20,12 +20,8 @@ public sealed partial class ControllerVisualizer
 
     private void DrawNintendo64ArtworkOverlays(DrawingContext dc, Rect bounds)
     {
-        DrawArtworkDpad(dc, bounds, .277, .374, .060,
-            horizontalAxis: 3, verticalAxis: 4,
-            upButton: -1, downButton: -1, leftButton: -1, rightButton: -1,
-            buttonWidth: .043, buttonLength: .080);
-        DrawArtworkStick(dc, At(bounds, .496, .563), Input.LeftX, Input.LeftY,
-            false, Radius(bounds, .052));
+        DrawArtworkDpad(dc, bounds, .277, .374, .060, horizontalAxis: 3, verticalAxis: 4, upButton: -1, downButton: -1, leftButton: -1, rightButton: -1, buttonWidth: .043, buttonLength: .080);
+        DrawArtworkStick(dc, At(bounds, .496, .563), Input.LeftX, Input.LeftY, false, Radius(bounds, .052));
         DrawRawButtonHalo(dc, bounds, 5, .669, .454, .038);
         DrawRawButtonHalo(dc, bounds, 4, .620, .384, .038);
         DrawRawButtonHalo(dc, bounds, 9, .497, .382, .040);
@@ -39,8 +35,7 @@ public sealed partial class ControllerVisualizer
     }
     private void DrawNintendoEntertainmentSystemArtworkOverlays(DrawingContext dc, Rect bounds)
     {
-        DrawArtworkDpad(dc, bounds, .237, .562, .114, horizontalAxis: 0, verticalAxis: 1,
-            buttonWidth: .046, buttonLength: .145);
+        DrawArtworkDpad(dc, bounds, .237, .562, .114, horizontalAxis: 0, verticalAxis: 1, buttonWidth: .046, buttonLength: .145);
         DrawRawButtonHalo(dc, bounds, 0, .665, .674, .101);
         DrawRawButtonHalo(dc, bounds, 1, .772, .674, .101);
         DrawRawButtonMarker(dc, bounds, 8, .405, .689, .075, .083, 8);
@@ -49,8 +44,7 @@ public sealed partial class ControllerVisualizer
 
     private void DrawSuperNintendoArtworkOverlays(DrawingContext dc, Rect bounds)
     {
-        DrawArtworkDpad(dc, bounds, .214, .535, .085, horizontalAxis: 1, verticalAxis: 0,
-            buttonWidth: .060, buttonLength: .090);
+        DrawArtworkDpad(dc, bounds, .214, .535, .085, horizontalAxis: 1, verticalAxis: 0, buttonWidth: .060, buttonLength: .090);
         DrawRawButtonHalo(dc, bounds, 0, .781, .436, .055);
         DrawRawButtonHalo(dc, bounds, 1, .872, .532, .055);
         DrawRawButtonHalo(dc, bounds, 3, .690, .535, .055);
@@ -63,8 +57,7 @@ public sealed partial class ControllerVisualizer
 
     private void DrawMegaDriveArtworkOverlays(DrawingContext dc, Rect bounds, bool sixButtons)
     {
-        DrawArtworkDpad(dc, bounds, .226, .523, .082, horizontalAxis: 1, verticalAxis: 0,
-            buttonWidth: .058, buttonLength: .140);
+        DrawArtworkDpad(dc, bounds, .226, .523, .082, horizontalAxis: 1, verticalAxis: 0, buttonWidth: .058, buttonLength: .140);
         if (sixButtons)
         {
             DrawRawButtonHalo(dc, bounds, 2, .680, .599, .071);
@@ -95,8 +88,7 @@ public sealed partial class ControllerVisualizer
 
     private void DrawDreamcastArtworkOverlays(DrawingContext dc, Rect bounds)
     {
-        DrawArtworkStick(dc, At(bounds, .250, .275), Input.LeftX, Input.LeftY,
-            Input.Button(GameInputGamepadButtons.LeftThumbstick, 8), Radius(bounds, .065));
+        DrawArtworkStick(dc, At(bounds, .250, .275), Input.LeftX, Input.LeftY, Input.Button(GameInputGamepadButtons.LeftThumbstick, 8), Radius(bounds, .065));
         DrawArtworkDpad(dc, bounds, .270, .530, .045);
         DrawFaceButtons(dc, bounds, (.700, .470), (.800, .390), (.625, .390), (.700, .300));
         DrawArtworkHalo(dc, At(bounds, .500, .680), Radius(bounds, .035), Input.Button(GameInputGamepadButtons.Menu, 7));

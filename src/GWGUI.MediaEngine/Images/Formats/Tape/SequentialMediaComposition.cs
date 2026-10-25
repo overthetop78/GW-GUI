@@ -1,11 +1,13 @@
 ﻿using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Acorn;
+using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Amstrad;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Atari;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Commodore;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Msx;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Spectrum;
 using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential;
 using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Acorn;
+using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Amstrad;
 using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Atari;
 using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Commodore;
 using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Msx;
@@ -16,9 +18,7 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape;
 /// <summary>Assembles the sequential media codecs shared by conversion and exploration.</summary>
 public sealed class SequentialMediaComposition
 {
-    private SequentialMediaComposition(
-        SequentialDecoderRegistry decoders,
-        SequentialEncoderRegistry encoders)
+    private SequentialMediaComposition(SequentialDecoderRegistry decoders, SequentialEncoderRegistry encoders)
     {
         Decoders = decoders;
         Encoders = encoders;
@@ -32,6 +32,7 @@ public sealed class SequentialMediaComposition
         new SequentialDecoderRegistry(
         [
             new AtariCassetteDecoder(),
+            new AmstradCpcTapeDecoder(),
             new SpectrumTapeDecoder(),
             new CommodoreTapeDecoder(),
             new MsxTapeDecoder(),
@@ -40,6 +41,7 @@ public sealed class SequentialMediaComposition
         new SequentialEncoderRegistry(
         [
             new AtariCassetteEncoder(),
+            new AmstradCpcTapeEncoder(),
             new SpectrumTapeEncoder(),
             new CommodoreTapeEncoder(),
             new MsxTapeEncoder(),

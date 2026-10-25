@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Help.AlternateRenderer" xml:space="preserve"><value>エミュレーターが提供する代替レンダー方法を使用してください。</value></data>
+  <data name="Emulation.Philips.Help.AudioVolume" xml:space="preserve"><value>コンソールで生成された音の音量をパーセンテージとして設定します。</value></data>
+  <data name="Emulation.Philips.Help.AutoSave" xml:space="preserve"><value>同じコンテンツが再び開始したときにマシンの状態を保存し、復元します。</value></data>
+  <data name="Emulation.Philips.Help.Cheats" xml:space="preserve"><value>エミュレーターによって提供される不正なコードを有効にします。</value></data>
+  <data name="Emulation.Philips.Help.CpuOverclock" xml:space="preserve"><value>プロセッサの速度を元の頻度のパーセンテージとして調節して下さい。</value></data>
+  <data name="Emulation.Philips.Help.CropOverscan" xml:space="preserve"><value>ビデオイメージから外枠を削除します。</value></data>
+  <data name="Emulation.Philips.Help.KeyboardMapping" xml:space="preserve"><value>ホストキーボードキーが印刷された文字やその物理的な位置に従うかどうかを選択します。</value></data>
+  <data name="Emulation.Philips.Help.LowPassFilter" xml:space="preserve"><value>コンソールオーディオの高周波を削減します。</value></data>
+  <data name="Emulation.Philips.Help.LowPassRange" xml:space="preserve"><value>オーディオサンプリング周波数の割合としてローパスフィルタカットオフを設定します。</value></data>
+  <data name="Emulation.Philips.Help.MixFrames" xml:space="preserve"><value>連続したビデオフレームをブレンドします。 単純に等しい重量を使用しています。 パーセンテージは、前の画像のどれだけが見えるかを制御します。</value></data>
+  <data name="Emulation.Philips.Help.NvramPerGame" xml:space="preserve"><value>各ゲームごとに永続的なメモリを個別に保存します。</value></data>
+  <data name="Emulation.Philips.Help.Resolution" xml:space="preserve"><value>ビデオ出力解像度を選択します。</value></data>
+  <data name="Emulation.Philips.Help.StateNaming" xml:space="preserve"><value>保存状態を各ゲームごとに保存したり、システム全体に共有したりします。</value></data>
+  <data name="Emulation.Philips.Help.Throttle" xml:space="preserve"><value>元の機械速度にエミュレーションの速度を限って下さい。</value></data>
+  <data name="Emulation.Philips.Help.VideoStandard" xml:space="preserve"><value>エミュレーターで使われるテレビ規格を選択します。</value></data>
+  <data name="Emulation.Philips.Help.VoiceVolume" xml:space="preserve"><value>演題の音量をパーセンテージとして調整します。</value></data>
+</root>

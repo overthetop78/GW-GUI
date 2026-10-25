@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Help.DisplayArea" xml:space="preserve"><value>בחר את האזור הנראה של תמונת הקונסולה.</value></data>
+  <data name="Emulation.Epoch.Help.PixelAspect" xml:space="preserve"><value>בחר פיקסלים מלבניים או מרובעים.</value></data>
+  <data name="Emulation.Epoch.Help.Resolution" xml:space="preserve"><value>בחרו את ההחלטה הפנימית.</value></data>
+  <data name="Emulation.Epoch.Help.ColorPalette" xml:space="preserve"><value>בחרו את לוח הצבעים הקונסולה</value></data>
+  <data name="Emulation.Epoch.Help.RefreshRate" xml:space="preserve"><value>בחרו את קצב רענון הקונסולה.</value></data>
+  <data name="Emulation.Epoch.Help.ShowVideoMemory" xml:space="preserve"><value>הצגת זיכרון וידאו מעבר לדימוי הטלוויזיה.</value></data>
+  <data name="Emulation.Epoch.Help.ShowInputs" xml:space="preserve"><value>הצג את מצב הבקר הנוכחי על התמונה.</value></data>
+  <data name="Emulation.Epoch.Help.Language" xml:space="preserve"><value>בחרו את השפה של מסך החיקוי.</value></data>
+  <data name="Emulation.Epoch.Help.ValidateFirmware" xml:space="preserve"><value>בדוק את הקונסולה BIOS בדיקות לפני שמתחילות.</value></data>
+  <data name="Emulation.Epoch.Help.ShowKeypadAtStart" xml:space="preserve"><value>הצג את לוח המפתח הקונסולה כאשר החיקוי מתחיל.</value></data>
+  <data name="Emulation.Epoch.Help.AnnounceCourseSwitch" xml:space="preserve"><value>הצג את קורס המשחק שנבחר כאשר הוא משתנה.</value></data>
+</root>

@@ -11,4 +11,5 @@
   <data name="Emulation.Firmware.PartiallyCompatible"><value>เข้ากันได้บางส่วน</value></data>
   <data name="Emulation.Firmware.Official"><value>เป็นทางการ</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>ไม่รองรับ</value></data>
+  <data name="Emulation.Firmware.VoiceSamples"><value>ตัวอย่างของเสียง</value></data>
 </root>

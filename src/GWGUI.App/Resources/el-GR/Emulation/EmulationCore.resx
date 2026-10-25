@@ -24,4 +24,5 @@
   <data name="Emulation.Core.Install"><value>Εγκατάσταση</value></data>
   <data name="Emulation.Core.InstalledBadge"><value>Εγκατασταθέν</value></data>
   <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Βασικές επιλογές</value></data>
+  <data name="Emulation.Core.NameNoEmulatorAvailable"><value>Επιλέξτε έναν εξομοιωτή πριν από τη δημιουργία αυτής της μηχανής.</value></data>
 </root>

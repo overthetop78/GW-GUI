@@ -15,7 +15,7 @@
   <data name="Options.Theme.System" xml:space="preserve"><value>Sistem</value></data>
   <data name="Options.Theme.Light" xml:space="preserve"><value>Işık</value></data>
   <data name="Options.Theme.Dark" xml:space="preserve"><value>Karanlık</value></data>
-  <data name="Options.GwPath" xml:space="preserve"><value>gw.exe&apos;a giden yol</value></data>
+  <data name="Options.GwPath" xml:space="preserve"><value>gw.exe'a giden yol</value></data>
   <data name="Options.ToolsHelp" xml:space="preserve"><value>Araçlar eksikse asistan bunları indirmeyi veya mevcut bir kurulumu seçmeyi teklif edecektir. Güncellemeler yalnızca duyurulur.</value></data>
   <data name="Options.HardwarePersistence" xml:space="preserve"><value>Bir sürücünün bağlantısı kesildiğinde donanım ayarları kayıtlı kalır.</value></data>
   <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|Executable (Operaable)*.exe)|*.exe</value></data>

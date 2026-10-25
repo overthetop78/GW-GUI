@@ -1,5 +1,14 @@
 # Third-party notices
 
+## Thomson TO8D photograph
+
+Asset: `src/GWGUI.Emulation.Thomson/Assets/Machines/To8D.png`.
+Photograph by Frédéric BISSON, 24 April 2016, Retrogaming Days V, Évreux.
+Source: https://commons.wikimedia.org/wiki/File:Thomson_TO8D_(26347254330).jpg
+Original: https://upload.wikimedia.org/wikipedia/commons/b/b4/Thomson_TO8D_%2826347254330%29.jpg
+License: Creative Commons Attribution 2.0 Generic, https://creativecommons.org/licenses/by/2.0/.
+Adaptation: manual exterior silhouette alpha mask at the original 4912 x 3264 resolution, proportional resizing and transparent padding to 512 x 328 pixels with ImageMagick. The photographed case, keyboard, markings and inserted cartridge are preserved. Surrounding table, television and external cables are excluded. No generated or reconstructed parts.
+
 ## HDD formatting libraries
 
 This product includes software developed by Michiel Pelt.
@@ -104,3 +113,111 @@ NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPO
 NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
 DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+## ColecoVision Expansion Module #2 photograph
+
+Asset: `src/GWGUI.App/Assets/Controllers/coleco-driving-controller.png`.
+Photograph by Evan-Amos, 2 August 2016, dedicated to the public domain by the author.
+Source: https://commons.wikimedia.org/wiki/File:ColecoVision-Expansion2.jpg
+Original: https://upload.wikimedia.org/wikipedia/commons/7/7f/ColecoVision-Expansion2.jpg
+Adaptation: proportional resizing to 512 x 407 pixels and removal of the exterior white background by classical alpha processing. No generated or reconstructed hardware, controls, lettering or logos.
+
+## ColecoVision Super Action Controller photograph
+
+Asset: `src/GWGUI.App/Assets/Controllers/coleco-super-action-controller.png`.
+Product photograph published by PowerUp Gaming.
+Original: https://www.powerupgaming.ca/cdn/shop/products/colecovision-super-action-controller.png?v=1751239228
+Adaptation: 90-degree rotation, classical removal of the exterior white background, removal of detached background speckles, edge matte cleanup and proportional resizing to 355 x 512 pixels. The complete photographed controller and its cable are preserved. No generated hardware, controls, lettering or logos. No open license is asserted for this source photograph.
+
+## ColecoVision Roller Controller photograph
+
+Asset: `src/GWGUI.App/Assets/Controllers/coleco-roller-controller.png`.
+Source photograph published by Atariboy2600 in "Life as a Retro Video Gamer - Colecovision", AtariAge, September 2024: https://forums.atariage.com/topic/372301-life-as-a-retro-video-gamer-colecovision/.
+Original: https://media.invisioncic.com/r322239/monthly_2024_09/image.jpeg.06f9185257de0896433a83378044139c.jpeg
+Adaptation: crop of the actual Roller Controller, classical silhouette alpha masking, 10-degree rotation to straighten its photographed face and proportional resizing to 512 x 259 pixels. No generated or reconstructed hardware, controls, lettering or logos. No open license is asserted for this source photograph.
+
+## Apple II J-Plus photograph
+
+Asset: `src/GWGUI.Emulation.Apple/Assets/Machines/AppleIIJPlus.png`.
+Source photograph published by RR Auction: https://www.rrauction.com/auctions/lot-detail/349793807146036-apple-ii-j-plus-computer/.
+Original: https://cdn.rrauction.com/auction/714/3497938_1.jpg
+Adaptation: classical silhouette alpha masking of the actual computer and proportional resizing to a maximum dimension of 512 pixels, with transparent padding. The original Apple II J-Plus badge, katakana keyboard legends and complete case are preserved. No generated hardware, lettering or logos. No open license is asserted for this source photograph.
+
+## Coleco ADAM photograph
+
+Asset: `src/GWGUI.Emulation.Coleco/Assets/Machines/Adam.png`.
+Photograph by Akbkuku (Shelby Jueden), 16 July 2023. Published under Creative Commons Attribution 4.0 International: https://creativecommons.org/licenses/by/4.0/.
+Source: https://commons.wikimedia.org/wiki/File:Coleco-ADAM-computer-with-parts_(edit).jpg ; packaging edit by DigitalIceAge.
+Original: https://upload.wikimedia.org/wikipedia/commons/e/eb/Coleco-ADAM-computer-with-parts_%28edit%29.jpg
+Adaptation: classical silhouette alpha mask, removal of exterior background enclosed by the cable, proportional resizing to 512 x 240 pixels with transparent padding. Photographed hardware, cable, software and documentation are preserved; no generated or reconstructed components or lettering.
+
+## ZX Spectrum SE prototype photograph
+
+Asset: `src/GWGUI.Emulation.Sinclair/Assets/Machines/SpectrumSe.png`.
+Source: the prototype photograph published in ZX Shed issue 2, preserved by World of Spectrum: https://worldofspectrum.org/files/large/6b6c3ef9a7a2c60 (ZXShedIssue02.pdf).
+Adaptation: lossless assembly of the two embedded JPEG strips into the original 2048 x 653 photograph, classical silhouette alpha masking and proportional resizing to 512 pixels wide with transparent padding. The photographed rack enclosure, Cherry keyboard, connectors and controls are retained. The original photograph crops the top edge of the equipment; no missing parts or lettering have been generated or reconstructed. No open license is asserted for this source photograph.
+
+## Philips Videopac+ G7400 and Brandt Jopac JO7400 photographs
+
+Asset: `src/GWGUI.Emulation.Philips/Assets/Machines/VideopacG7400.png`.
+Photograph by Marco van den Hout, 27 August 2004, licensed under CC BY-SA 3.0: https://creativecommons.org/licenses/by-sa/3.0/ . Source: https://commons.wikimedia.org/wiki/File:Philips_Videopac_G7400.jpg . Original: https://upload.wikimedia.org/wikipedia/commons/3/3d/Philips_Videopac_G7400.jpg . Manual exterior silhouette alpha mask and proportional resizing with ImageMagick to 512 x 382 pixels; keyboard, case, branding and controls preserved. The adapted photograph remains under CC BY-SA 3.0.
+
+Asset: `src/GWGUI.Emulation.Philips/Assets/Machines/JopacJo7400.png`.
+Source photograph preserved by the Videopac.org Jopac archive: http://videopac.org/jopac/ , image http://videopac.org/jopac/p1010004.jpg (1600 x 1200). No photographer or specific reuse license is identified by the source. Manual silhouette alpha mask, removal of the exterior shadow and proportional resizing with ImageMagick to 512 x 393 pixels. The entire photographed console, membrane keyboard and original markings are retained; no generated or reconstructed parts.
+
+## Sony original DualShock controller photographs
+
+Asset: `src/GWGUI.App/Assets/Controllers/sony-dualshock-1.png`.
+Source: PiXEL-RETRO, Sony PlayStation original grey DualShock SCPH-1200 product photographs, https://pixel-retro.com/products/sony-playstation-manette-originale-grise-gray-joystick-controller . Original files: `IMG_5546.jpg` (front) and `IMG_5547.jpg` (upper buttons). No specific reuse license is stated by the source.
+Adaptation: classical manual silhouette masks and proportional resizing with ImageMagick, composed on a transparent 512 x 512 canvas. The main front photograph and a separate rotated detail of the upper buttons retain the original hardware and markings; no generated or reconstructed controls. The four upper-button interaction zones are placed on the separate photographic detail.
+
+## Sony DualShock 3 controller photograph
+
+Asset: `src/GWGUI.App/Assets/Controllers/sony-dualshock-3.png`.
+Source: https://commons.wikimedia.org/wiki/File:PS3_controller.png (1200 x 880 PNG), photographed by Evan-Amos; controller cutout by Lorenziand, derived from PS3Versions.png. The source is released into the public domain by its authors.
+Adaptation: proportional classical resampling to 512 x 375 pixels, preserving the existing transparent silhouette and photographic markings. No generated or reconstructed parts.
+
+## Sinclair ZX80 photograph
+
+Asset: `src/GWGUI.Emulation.Sinclair/Assets/Machines/Zx80.png`.
+Photograph by Daniel Ryde, Skövde, 31 August 2004; levels and sharpening edit by Ian Dunster. Licensed under Creative Commons Attribution-ShareAlike 3.0 Unported: https://creativecommons.org/licenses/by-sa/3.0/.
+Source: https://commons.wikimedia.org/wiki/File:ZX80.jpg
+Original: https://upload.wikimedia.org/wikipedia/commons/2/24/ZX80.jpg
+Adaptation: classical silhouette alpha mask, removal of the exterior background and cast shadow, proportional resizing and transparent padding to 512 x 406 pixels. The complete photographed case, keyboard and printed legends are retained. No generated or reconstructed parts. This adapted photograph remains under CC BY-SA 3.0.
+
+## Philips Videopac G7000 alpha correction
+
+Asset: `src/GWGUI.Emulation.Philips/Assets/Machines/VideopacG7000.png`.
+The existing repository photograph is retained. This update changes only its alpha channel: classical edge matte cleanup with protection of the dark cable pixels and a subpixel feather. RGB pixels, lettering, controls and cable paths are unchanged; no new photograph or generated hardware is introduced. Dimensions remain 512 x 312 pixels.
+
+## Amstrad GX4000 controller photograph
+
+Asset: src/GWGUI.App/Assets/Controllers/amstrad-gx4000-controller.png.
+Photograph by Evan-Amos, 31 January 2012, dedicated to the public domain by the author; cropped from the 2012 console-set photograph by Jesus.arnold.
+Source: https://commons.wikimedia.org/wiki/File:GX4000_controller.png
+Original: https://upload.wikimedia.org/wikipedia/commons/9/9a/GX4000_controller.png
+Adaptation: classical removal of the exterior white background, proportional resizing to a maximum dimension of 512 pixels, and a transparent margin. No generated controls, lettering or reconstructed hardware.
+
+Apple Standard J-665/G-665 controller photograph: phreakindee, CC0, https://commons.wikimedia.org/wiki/File:Standard_J-665_Joystick.jpg . The physical controller was isolated from its packaging and background with a manually drawn mask and resized with ImageMagick; no generated content. The two fire buttons and analog stick retain the original photograph.
+
+Apple/Bandai Pippin @mark console and Applejack controller photograph: Evan-Amos, public domain, https://commons.wikimedia.org/wiki/File:Pippin-Atmark-Console-Set.jpg . Background transparency and resizing only, with ImageMagick; no generated content.
+
+Apple Joystick IIe/IIc A2M2002 photograph: Apple II Documentation Project, https://mirrors.apple2.org.za/Apple%20II%20Documentation%20Project/Peripherals/Digitizers/Apple%20Joystick%20IIe%20and%20IIc/Photos/ . Source file: Apple Joystick IIe and IIc - Top.jpg ; model confirmed by the Base.jpg label and original Apple user instructions in the same collection. The archive does not identify the photographer or a specific license. Existing photograph isolated with a manual mask and resized to 512 pixels using ImageMagick, without generated content.
+
+Pippin wired Applejack controller photograph: Evan-Amos, public domain, https://commons.wikimedia.org/wiki/File:Bandai-Apple-Pippin-Applejack-Controller-FL.jpg . Background transparency and resizing with ImageMagick only; original photograph and markings preserved.
+
+CH Products Mach II and Mach III Apple II joystick photographs: Apple II Documentation Project, https://mirrors.apple2.org.za/Apple%20II%20Documentation%20Project/Peripherals/Digitizers/CH%20Products%20Mach%20II/Photos/CH%20Products%20Mach%20II.JPG and https://mirrors.apple2.org.za/Apple%20II%20Documentation%20Project/Peripherals/Digitizers/CH%20Products%20Mach%20III/Photos/CH%20Products%20Mach%20III.JPG . The archive does not identify a photographer or a specific license. The Mach III photograph contains two controllers; the Apple II controller with the 16-pin connector is the left-hand one retained here. Manual silhouette masks and proportional resizing with ImageMagick only, with no generated content. The shaft-top button duplicates button 0, as documented in Apple II/IIe/IIc Expansion Guide (1985), https://vintageapple.org/apple_ii/pdf/Apple_II-IIe-IIc_Expansion_Guide_1985.pdf .
+
+## Kraft Premium II Apple joystick photograph
+
+Asset: `src/GWGUI.App/Assets/Controllers/apple-kraft-premium-ii.png`.
+Source: owen2471, https://www.amibay.com/threads/vintage-kraft-premium-ii-joystick-apple.2455381/ , attachment `IMG_5396.webp` (2550363). The seller identifies the Apple version and reports using it on an Apple IIc. No specific reuse license is stated by the source.
+Adaptation: manual silhouette alpha mask and proportional resizing to a maximum dimension of 512 pixels with ImageMagick. The original casing, analog stick, single fire button and mechanical centering controls are preserved; cable and background removed. No generated content.
+
+## Sinclair ZX Spectrum 128K photograph
+
+Asset: `src/GWGUI.Emulation.Sinclair/Assets/Machines/Spectrum128K.png`.
+Photograph by Bill Bertram (Pixel8), 21 August 2006. Licensed under Creative Commons Attribution-ShareAlike 2.5 Generic: https://creativecommons.org/licenses/by-sa/2.5/.
+Source: https://commons.wikimedia.org/wiki/File:ZX_Spectrum128K.jpg
+Original: https://upload.wikimedia.org/wikipedia/commons/1/1b/ZX_Spectrum128K.jpg
+Adaptation: classical exterior flood-fill and silhouette alpha mask, removal of the cast shadow, proportional resizing and transparent padding to 512 x 276 pixels. The complete photographed case, keyboard legends and heatsink are preserved; no generated or reconstructed parts. The adapted photograph remains under CC BY-SA 2.5.

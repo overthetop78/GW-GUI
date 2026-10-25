@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>Riduzione di bande</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>Dettaglio recupero</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>Deinterlacciamento</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>Fuori</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>Disattivato</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob - anche linee</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - linee dispari</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Miscela verticale</value></data>
@@ -195,7 +195,7 @@
   <data name="Emulation.Video.Parameter.SegmentDisplayColor"><value>Colore del segmento</value></data>
   <data name="Emulation.Video.Parameter.SegmentDisplayThickness"><value>Spessore del segmento</value></data>
   <data name="Emulation.Video.Parameter.SegmentDisplayContrast"><value>Contrasto di attivazione</value></data>
-  <data name="Emulation.Video.Parameter.SegmentDisplayGlow"><value>Intensità dell&apos;alogenia</value></data>
+  <data name="Emulation.Video.Parameter.SegmentDisplayGlow"><value>Intensità dell'alogenia</value></data>
   <data name="Emulation.Video.Parameter.SegmentDisplayResponseTime"><value>Tempo di riaccensione (ms)</value></data>
   <data name="Emulation.Video.Technology.EPaper"><value>Carta elettronica</value></data>
   <data name="Emulation.Video.EPaper.ColorMode.Monochrome"><value>Monocromatico</value></data>
@@ -241,7 +241,7 @@
   <data name="Emulation.Video.Parameter.SignalConnection"><value>Qualità di connessione</value></data>
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>Degrado della connessione</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>Standard di colore</value></data>
-  <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>Intensità dell&apos;effetto standard</value></data>
+  <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>Intensità dell'effetto standard</value></data>
   <data name="Emulation.Video.Signal.Standard.Automatic"><value>Automatico</value></data>
   <data name="Emulation.Video.Signal.Connection.None"><value>Nessuno</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>Curva orizzontale</value></data>
@@ -285,12 +285,12 @@
   <data name="Emulation.Video.SegmentDisplay.Group.Geometry"><value>Geometria del segmento</value></data>
   <data name="Emulation.Video.SegmentDisplay.Group.Emission"><value>Emissione e sfondo</value></data>
   <data name="Emulation.Video.SegmentDisplay.Group.LightAndResponse"><value>Glow e risposta</value></data>
-  <data name="Emulation.Video.Parameter.EPaperInkDensity"><value>Densità dell&apos;inchiostro</value></data>
+  <data name="Emulation.Video.Parameter.EPaperInkDensity"><value>Densità dell'inchiostro</value></data>
   <data name="Emulation.Video.Parameter.EPaperPaperBrightness"><value>Luminosità della carta</value></data>
   <data name="Emulation.Video.Parameter.EPaperPaperWarmth"><value>Telaio di carta</value></data>
   <data name="Emulation.Video.Parameter.EPaperColorSaturation"><value>Saturazione di colore</value></data>
   <data name="Emulation.Video.Parameter.EPaperSurfaceTexture"><value>Texture di carta</value></data>
-  <data name="Emulation.Video.Parameter.EPaperEdgeSoftness"><value>Morbidezza del bordo dell&apos;inchiostro</value></data>
+  <data name="Emulation.Video.Parameter.EPaperEdgeSoftness"><value>Morbidezza del bordo dell'inchiostro</value></data>
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>Inchiostro e colori</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>Superficie della carta</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>Immagine rinfrescante e residua</value></data>
@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Bordo oscurante</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Ottica e luce</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Schermo di proiezione</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Rendering hardware</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Modalità di rendering</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>Il rendering hardware usa l’API grafica selezionata per l’applicazione, se l’emulatore la supporta.</value></data>
 </root>

@@ -9,4 +9,5 @@ internal sealed record EmulationCpuSettingsContent(
     EmulationSettingsControlField? Precision,
     EmulationSettingsControlField? Fpu,
     EmulationSettingsControlField OriginalSpeed,
-    EmulationSettingsControlField? CpuSpeed);
+    EmulationSettingsControlField? CpuSpeed,
+    IReadOnlyList<EmulationSettingsControlField>? ProcessorFields = null);

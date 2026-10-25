@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Thomson.Error.AlreadyInitialized"><value>De emulatie host is al geïnitialiseerd.</value></data>
+  <data name="Emulation.Thomson.Error.CommunicationFailed"><value>De communicatie met emulatiehost is mislukt.</value></data>
+  <data name="Emulation.Thomson.Error.ContentFileMissing"><value>Het geconfigureerde medium kon niet gevonden worden.</value></data>
+  <data name="Emulation.Thomson.Error.DynamicMediaUnsupported"><value>De emulatiesessie kan dit medium niet uitwisselen.</value></data>
+  <data name="Emulation.Thomson.Error.ExecutableMissing"><value>Het emulatiehost-programma ontbreekt.</value></data>
+  <data name="Emulation.Thomson.Error.InstalledLibraryLockedFormat"><value>De geïnstalleerde bibliotheek kan niet worden vervangen: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidArchitecture"><value>De gedownloade kern is geen Windows x64.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidConfiguration"><value>De emulatie-configuratie is ongeldig.</value></data>
+  <data name="Emulation.Thomson.Error.InvalidResponseLengthFormat"><value>Ongeldige responslengte van de emulatiehost: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.MachineInvalidState"><value>De emulatiesessie is niet in de vereiste staat.</value></data>
+  <data name="Emulation.Thomson.Error.MachineStopped"><value>De emulatiesessie is gestopt.</value></data>
+  <data name="Emulation.Thomson.Error.MissingExpectedLibraryFormat"><value>Het gedownloade archief bevat geen {0}.</value></data>
+  <data name="Emulation.Thomson.Error.MissingPublishedDate"><value>In het officiële antwoord wordt de publicatiedatum niet vermeld.</value></data>
+  <data name="Emulation.Thomson.Error.NotInitialized"><value>De emulatiehost is niet geïnitialiseerd.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessExitSuffixFormat"><value> Afsluitcode: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessNotInitialized"><value>Het emulatie host proces is niet geïnitialiseerd.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessStartFailed"><value>Het emulatie-hostproces kon niet starten.</value></data>
+  <data name="Emulation.Thomson.Error.ProcessUnavailable"><value>Het emulatie host proces is niet beschikbaar.</value></data>
+  <data name="Emulation.Thomson.Error.ProtocolVersionMismatchFormat"><value>Protocolversie {0} komt niet overeen {1}.</value></data>
+  <data name="Emulation.Thomson.Error.RequestCancelled"><value>Het verzoek om emulatiehost is geannuleerd.</value></data>
+  <data name="Emulation.Thomson.Error.ResponseTimeout"><value>De emulatie host response timed out.</value></data>
+  <data name="Emulation.Thomson.Error.ResponseUnavailable"><value>Het antwoord van de emulatiehost is niet beschikbaar.</value></data>
+  <data name="Emulation.Thomson.Error.SharedVideoUnavailable"><value>Het gedeelde videotransport is niet beschikbaar.</value></data>
+  <data name="Emulation.Thomson.Error.StateIncompatible"><value>De opgeslagen toestand is niet compatibel met de huidige machine.</value></data>
+  <data name="Emulation.Thomson.Error.StateInvalid"><value>De opgeslagen status is ongeldig.</value></data>
+  <data name="Emulation.Thomson.Error.StateUnavailable"><value>De emulator ondersteunt niet gerede staten.</value></data>
+  <data name="Emulation.Thomson.Error.UnknownCommandFormat"><value>Onbekende emulatiehost-opdracht: {0}.</value></data>
+  <data name="Emulation.Thomson.Error.UnsupportedControllerDevice"><value>Het controllerapparaat wordt niet ondersteund.</value></data>
+</root>

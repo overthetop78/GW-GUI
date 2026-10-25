@@ -18,24 +18,17 @@ public sealed class XfdReader : IMediaImageReader
 
     private static readonly IReadOnlyList<Profile> Profiles =
     [
-        new(DiskImageFormatIds.AtariXfd90, AtrLayout.SingleDensitySectorSize, AtrLayout.StandardSectorCount,
-            AtrLayout.SingleDensitySectorSize * AtrLayout.StandardSectorCount),
-        new(DiskImageFormatIds.AtariXfd130, AtrLayout.SingleDensitySectorSize, AtrLayout.EnhancedDensitySectorCount,
-            AtrLayout.SingleDensitySectorSize * AtrLayout.EnhancedDensitySectorCount),
-        new(DiskImageFormatIds.AtariXfd140, AtrLayout.SingleDensitySectorSize, AtrLayout.ExtendedSingleDensitySectorCount,
-            AtrLayout.SingleDensitySectorSize * AtrLayout.ExtendedSingleDensitySectorCount),
+        new(DiskImageFormatIds.AtariXfd90, AtrLayout.SingleDensitySectorSize, AtrLayout.StandardSectorCount, AtrLayout.SingleDensitySectorSize * AtrLayout.StandardSectorCount),
+        new(DiskImageFormatIds.AtariXfd130, AtrLayout.SingleDensitySectorSize, AtrLayout.EnhancedDensitySectorCount, AtrLayout.SingleDensitySectorSize * AtrLayout.EnhancedDensitySectorCount),
+        new(DiskImageFormatIds.AtariXfd140, AtrLayout.SingleDensitySectorSize, AtrLayout.ExtendedSingleDensitySectorCount, AtrLayout.SingleDensitySectorSize * AtrLayout.ExtendedSingleDensitySectorCount),
         new(DiskImageFormatIds.AtariXfd180, AtrLayout.DoubleDensitySectorSize, AtrLayout.StandardSectorCount,
             AtrLayout.BootSectorCount * AtrLayout.BootSectorSize
             + (AtrLayout.StandardSectorCount - AtrLayout.BootSectorCount) * AtrLayout.DoubleDensitySectorSize)
     ];
-    private static readonly IReadOnlySet<string> SupportedFormatIds = Profiles
-        .Select(profile => profile.FormatId)
-        .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedExtensions =
-        new[] { DiskImageFileExtensions.Xfd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormatIds = Profiles.Select(profile => profile.FormatId).ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedExtensions = new[] { DiskImageFileExtensions.Xfd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Floppy }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Sectors }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Sectors }.ToFrozenSet();
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => SupportedExtensions;
@@ -53,24 +46,16 @@ public sealed class XfdReader : IMediaImageReader
         return ValueTask.FromResult(profile is not null);
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var bytes = (await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false)).ToArray();
-        return MediaImageDocumentFactory.CreateFloppySector(
-            context.Source,
-            Read(bytes, context.RequestedFormatId, cancellationToken));
+        return MediaImageDocumentFactory.CreateFloppySector(context.Source, Read(bytes, context.RequestedFormatId, cancellationToken));
     }
 
-    internal static SectorImage Read(
-        byte[] bytes,
-        string? requestedFormatId = null,
-        CancellationToken cancellationToken = default)
+    internal static SectorImage Read(byte[] bytes, string? requestedFormatId = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(bytes);
-        var profile = ProfileFor(bytes.Length, requestedFormatId)
-            ?? throw new InvalidDataException($"Unsupported Atari XFD image length: {bytes.Length} bytes.");
+        var profile = ProfileFor(bytes.Length, requestedFormatId) ?? throw new InvalidDataException($"Unsupported Atari XFD image length: {bytes.Length} bytes.");
         var trailingLength = bytes.Length - profile.Length;
         if (trailingLength != 0
             && (trailingLength != SupportedTrailingPaddingLength
@@ -84,9 +69,7 @@ public sealed class XfdReader : IMediaImageReader
         for (var sector = 1; sector <= profile.SectorCount; sector++)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var length = profile.SectorSize > AtrLayout.BootSectorSize && sector <= AtrLayout.BootSectorCount
-                ? AtrLayout.BootSectorSize
-                : profile.SectorSize;
+            var length = profile.SectorSize > AtrLayout.BootSectorSize && sector <= AtrLayout.BootSectorCount ? AtrLayout.BootSectorSize : profile.SectorSize;
             var logical = sector - 1;
             var cylinder = logical / geometry.SectorsPerTrack;
             var sectorInTrack = logical % geometry.SectorsPerTrack + 1;

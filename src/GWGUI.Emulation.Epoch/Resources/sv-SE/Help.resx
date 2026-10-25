@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Help.DisplayArea" xml:space="preserve"><value>Välj det synliga området av konsolbilden.</value></data>
+  <data name="Emulation.Epoch.Help.PixelAspect" xml:space="preserve"><value>Välj rektangulära eller kvadratiska pixlar.</value></data>
+  <data name="Emulation.Epoch.Help.Resolution" xml:space="preserve"><value>Välj den interna rendering-upplösningen.</value></data>
+  <data name="Emulation.Epoch.Help.ColorPalette" xml:space="preserve"><value>Välj konsolfärgpaletten.</value></data>
+  <data name="Emulation.Epoch.Help.RefreshRate" xml:space="preserve"><value>Välj konsolen uppdateringsfrekvens.</value></data>
+  <data name="Emulation.Epoch.Help.ShowVideoMemory" xml:space="preserve"><value>Visa video minne bortom TV-bilden.</value></data>
+  <data name="Emulation.Epoch.Help.ShowInputs" xml:space="preserve"><value>Visa det aktuella kontrollertillståndet över bilden.</value></data>
+  <data name="Emulation.Epoch.Help.Language" xml:space="preserve"><value>Välj språket i emulatorskärmarna.</value></data>
+  <data name="Emulation.Epoch.Help.ValidateFirmware" xml:space="preserve"><value>Verifiera konsolen BIOS Konsumera innan du börjar.</value></data>
+  <data name="Emulation.Epoch.Help.ShowKeypadAtStart" xml:space="preserve"><value>Visa konsolen keypad när emuleringen börjar.</value></data>
+  <data name="Emulation.Epoch.Help.AnnounceCourseSwitch" xml:space="preserve"><value>Visa den valda spelkursen när den ändras.</value></data>
+</root>

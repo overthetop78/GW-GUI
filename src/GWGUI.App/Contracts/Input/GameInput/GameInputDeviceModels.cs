@@ -27,23 +27,11 @@ internal enum ControllerVisualModel
 
 internal enum GameInputControlType { Axis, Button, Switch, RawByte }
 
-internal sealed record GameInputControlDescriptor(
-    GameInputControlType Type,
-    int Index,
-    GameInputLabel Label,
-    GameInputSwitchKind SwitchKind = GameInputSwitchKind.Unknown,
-    IReadOnlyList<GameInputLabel>? SwitchLabels = null);
+internal sealed record GameInputControlDescriptor(GameInputControlType Type, int Index, GameInputLabel Label, GameInputSwitchKind SwitchKind = GameInputSwitchKind.Unknown, IReadOnlyList<GameInputLabel>? SwitchLabels = null);
 
-internal sealed record GameInputRawReportDescriptor(
-    GameInputRawDeviceReportKind Kind,
-    uint Id,
-    uint Size);
+internal sealed record GameInputRawReportDescriptor(GameInputRawDeviceReportKind Kind, uint Id, uint Size);
 
-internal sealed record GameInputForceFeedbackMotorDescriptor(
-    int Index,
-    GameInputFeedbackAxes SupportedAxes,
-    IReadOnlyList<GameInputForceFeedbackEffectKind> SupportedEffects,
-    bool PoweredOn);
+internal sealed record GameInputForceFeedbackMotorDescriptor(int Index, GameInputFeedbackAxes SupportedAxes, IReadOnlyList<GameInputForceFeedbackEffectKind> SupportedEffects, bool PoweredOn);
 
 internal sealed record GameInputStandardCapabilities(
     GameInputGamepadButtons GamepadLayout,
@@ -94,12 +82,7 @@ internal sealed record GameInputDeviceDescriptor(
     internal GameInputDeviceStatus Status { get; init; }
 }
 
-internal sealed record GameInputControlValue(
-    GameInputControlType Type,
-    int Index,
-    GameInputLabel Label,
-    float Value,
-    GameInputSwitchPosition SwitchPosition = GameInputSwitchPosition.Center)
+internal sealed record GameInputControlValue(GameInputControlType Type, int Index, GameInputLabel Label, float Value, GameInputSwitchPosition SwitchPosition = GameInputSwitchPosition.Center)
 {
     internal bool IsPressed => Type == GameInputControlType.Button && Value >= .5f;
 }
@@ -117,6 +100,5 @@ internal sealed record GameInputLiveState(
     GameInputRacingWheelState? RacingWheel,
     bool ControlsUseNormalizedAxes = false)
 {
-    internal static GameInputLiveState Empty(string deviceId) =>
-        new(deviceId, 0, GameInputKind.Unknown, [], [], GameInputSystemButtons.None, null, null, null, null);
+    internal static GameInputLiveState Empty(string deviceId) => new(deviceId, 0, GameInputKind.Unknown, [], [], GameInputSystemButtons.None, null, null, null, null);
 }

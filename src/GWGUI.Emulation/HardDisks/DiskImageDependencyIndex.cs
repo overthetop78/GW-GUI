@@ -1,15 +1,10 @@
 namespace GWGUI.Emulation.HardDisks;
 
 /// <summary>A short-lived dependency snapshot. Rebuild it before confirming a destructive operation.</summary>
-public sealed class DiskImageDependencyIndex(
-    Func<string, Stream> openRead,
-    Func<string, string>? resolveIdentity = null,
-    Func<string, DiskImageDependencyReference, string?>? resolveReference = null)
+public sealed class DiskImageDependencyIndex(Func<string, Stream> openRead, Func<string, string>? resolveIdentity = null, Func<string, DiskImageDependencyReference, string?>? resolveReference = null)
 {
-    private readonly Dictionary<string, IReadOnlyList<DiskImageDependencyReference>> dependencies =
-        new(DiskImageDependencyReader.PathComparer);
-    private readonly Dictionary<string, IReadOnlyList<DiskImageDependencyReference>> imageIdentifiers =
-        new(DiskImageDependencyReader.PathComparer);
+    private readonly Dictionary<string, IReadOnlyList<DiskImageDependencyReference>> dependencies = new(DiskImageDependencyReader.PathComparer);
+    private readonly Dictionary<string, IReadOnlyList<DiskImageDependencyReference>> imageIdentifiers = new(DiskImageDependencyReader.PathComparer);
     private readonly Dictionary<string, string> identities = new(DiskImageDependencyReader.PathComparer);
 
     private string Identity(string path)
@@ -104,9 +99,5 @@ public sealed class DiskImageDependencyIndex(
         return DiskImageDependencyReader.Resolve(fullPath, fullPath);
     }
 
-    private static bool SameIdentifier(
-        DiskImageDependencyReference first,
-        DiskImageDependencyReference second) =>
-        first.Uuid is { } uuid && second.Uuid == uuid ||
-        first.Sha1 is { } sha1 && string.Equals(second.Sha1, sha1, StringComparison.OrdinalIgnoreCase);
+    private static bool SameIdentifier(DiskImageDependencyReference first, DiskImageDependencyReference second) => first.Uuid is { } uuid && second.Uuid == uuid || first.Sha1 is { } sha1 && string.Equals(second.Sha1, sha1, StringComparison.OrdinalIgnoreCase);
 }

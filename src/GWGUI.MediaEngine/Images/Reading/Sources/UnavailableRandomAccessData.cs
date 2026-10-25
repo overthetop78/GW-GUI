@@ -1,4 +1,4 @@
-using IMediaRandomAccessData = global::GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData;
+using IMediaRandomAccessData = GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData;
 
 namespace GWGUI.MediaEngine.Images.Reading.Sources;
 
@@ -13,10 +13,7 @@ public sealed class UnavailableRandomAccessData : IMediaRandomAccessData
 
     public long Length { get; }
 
-    public ValueTask ReadExactlyAsync(
-        long offset,
-        Memory<byte> destination,
-        CancellationToken cancellationToken = default)
+    public ValueTask ReadExactlyAsync(long offset, Memory<byte> destination, CancellationToken cancellationToken = default)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(offset);
         cancellationToken.ThrowIfCancellationRequested();

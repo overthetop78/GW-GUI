@@ -1,20 +1,20 @@
-using MediaSectorAddress = global::GWGUI.MediaFileSystems.Contracts.MediaSectorAddress;
-using MediaSectorWriteBlock = global::GWGUI.MediaFileSystems.Contracts.MediaSectorWriteBlock;
-using MediaSectorWritePlan = global::GWGUI.MediaFileSystems.Contracts.MediaSectorWritePlan;
+using MediaSectorAddress = GWGUI.MediaFileSystems.Contracts.MediaSectorAddress;
+using MediaSectorWriteBlock = GWGUI.MediaFileSystems.Contracts.MediaSectorWriteBlock;
+using MediaSectorWritePlan = GWGUI.MediaFileSystems.Contracts.MediaSectorWritePlan;
 using GWGUI.MediaFileSystems;
 using System.Buffers.Binary;
 using GWGUI.MediaFileSystems.Migration;
 
-
 namespace GWGUI.MediaFileSystems.FileSystems.Fat12;
-
 public sealed class Fat12VolumeWriter
 {
     public MediaSectorWritePlan Create(MigrationPlan plan, Fat12TargetGeometry geometry)
     {
         ArgumentNullException.ThrowIfNull(plan);
-        if (geometry.SectorSize != FatBootSectorLayout.SectorSize || geometry.Cylinders <= 0 || geometry.Heads <= 0 || geometry.SectorsPerTrack <= 0) throw Fat12VolumeWriterExceptions.UnsupportedGeometry(geometry.FormatId);
-        if (!new Fat12VolumeNamePolicy().IsValid(plan.VolumeName)) throw Fat12VolumeWriterExceptions.InvalidEntry("/");
+        if (geometry.SectorSize != FatBootSectorLayout.SectorSize || geometry.Cylinders <= 0 || geometry.Heads <= 0 || geometry.SectorsPerTrack <= 0)
+            throw Fat12VolumeWriterExceptions.UnsupportedGeometry(geometry.FormatId);
+        if (!new Fat12VolumeNamePolicy().IsValid(plan.VolumeName))
+            throw Fat12VolumeWriterExceptions.InvalidEntry("/");
         return new Builder(plan, geometry).Build();
     }
 
@@ -24,7 +24,6 @@ public sealed class Fat12VolumeWriter
         private readonly byte[][] _sectors = Enumerable.Range(0, geometry.TotalSectors).Select(_ => new byte[FatBootSectorLayout.SectorSize]).ToArray();
         private readonly Fat12WritableLayout _layout = CreateLayout(geometry.TotalSectors);
         private int _nextCluster = Fat12Table.FirstDataCluster;
-
         public MediaSectorWritePlan Build()
         {
             var nodes = plan.Entries.Select(entry => CreateNode(entry, 0)).ToArray();
@@ -33,9 +32,12 @@ public sealed class Fat12VolumeWriter
             fat[0] = _layout.MediaDescriptor;
             fat[1] = Fat12Table.ReservedEntryByte;
             fat[2] = Fat12Table.ReservedEntryByte;
-            foreach (var node in nodes) WriteNode(node, fat);
+            foreach (var node in nodes)
+                WriteNode(node, fat);
             WriteRootDirectory(nodes);
-            for (var copy = 0; copy < _layout.FatCount; copy++) for (var sector = 0; sector < _layout.SectorsPerFat; sector++) fat.AsSpan(sector * FatBootSectorLayout.SectorSize, FatBootSectorLayout.SectorSize).CopyTo(_sectors[FatBootSectorLayout.FirstFatLogicalBlock + copy * _layout.SectorsPerFat + sector]);
+            for (var copy = 0; copy < _layout.FatCount; copy++)
+                for (var sector = 0; sector < _layout.SectorsPerFat; sector++)
+                    fat.AsSpan(sector * FatBootSectorLayout.SectorSize, FatBootSectorLayout.SectorSize).CopyTo(_sectors[FatBootSectorLayout.FirstFatLogicalBlock + copy * _layout.SectorsPerFat + sector]);
             var blocks = Enumerable.Range(0, geometry.TotalSectors).Select(logicalBlock =>
             {
                 var track = logicalBlock / geometry.SectorsPerTrack;
@@ -46,7 +48,8 @@ public sealed class Fat12VolumeWriter
 
         private Node CreateNode(MigrationEntry entry, int parentCluster)
         {
-            if (!_namePolicy.IsValid(entry.TargetName) || entry.Kind is not (FileSystemEntryKind.Directory or FileSystemEntryKind.File) || entry.Kind == FileSystemEntryKind.File && entry.Content is null) throw Fat12VolumeWriterExceptions.InvalidEntry(entry.SourcePath);
+            if (!_namePolicy.IsValid(entry.TargetName) || entry.Kind is not (FileSystemEntryKind.Directory or FileSystemEntryKind.File) || entry.Kind == FileSystemEntryKind.File && entry.Content is null)
+                throw Fat12VolumeWriterExceptions.InvalidEntry(entry.SourcePath);
             var clusterCount = entry.Kind == FileSystemEntryKind.Directory ? Math.Max(1, DivideRoundUp((entry.Children.Count + 2) * FatDirectoryLayout.EntrySize, _layout.ClusterByteCount)) : DivideRoundUp(entry.Content!.Count, _layout.ClusterByteCount);
             var clusters = AllocateClusters(clusterCount);
             var node = new Node(entry, parentCluster, clusters, []);
@@ -60,24 +63,32 @@ public sealed class Fat12VolumeWriter
             if (node.Entry.Kind == FileSystemEntryKind.File)
             {
                 var content = node.Entry.Content!.ToArray();
-                for (var index = 0; index < node.Clusters.Count; index++) WriteClusterData(node.Clusters[index], content.AsSpan(index * _layout.ClusterByteCount, Math.Min(_layout.ClusterByteCount, content.Length - index * _layout.ClusterByteCount)));
+                for (var index = 0; index < node.Clusters.Count; index++)
+                    WriteClusterData(node.Clusters[index], content.AsSpan(index * _layout.ClusterByteCount, Math.Min(_layout.ClusterByteCount, content.Length - index * _layout.ClusterByteCount)));
                 return;
             }
+
             var directory = new byte[node.Clusters.Count * _layout.ClusterByteCount];
             WriteSpecialDirectoryEntry(directory.AsSpan(0, FatDirectoryLayout.EntrySize), FatDirectoryLayout.CurrentDirectoryName, node.Clusters[0]);
             WriteSpecialDirectoryEntry(directory.AsSpan(FatDirectoryLayout.EntrySize, FatDirectoryLayout.EntrySize), FatDirectoryLayout.ParentDirectoryName, node.ParentCluster);
-            for (var index = 0; index < node.Children.Count; index++) WriteDirectoryEntry(directory.AsSpan((index + 2) * FatDirectoryLayout.EntrySize, FatDirectoryLayout.EntrySize), node.Children[index]);
-            for (var index = 0; index < node.Clusters.Count; index++) WriteClusterData(node.Clusters[index], directory.AsSpan(index * _layout.ClusterByteCount, _layout.ClusterByteCount));
-            foreach (var child in node.Children) WriteNode(child, fat);
+            for (var index = 0; index < node.Children.Count; index++)
+                WriteDirectoryEntry(directory.AsSpan((index + 2) * FatDirectoryLayout.EntrySize, FatDirectoryLayout.EntrySize), node.Children[index]);
+            for (var index = 0; index < node.Clusters.Count; index++)
+                WriteClusterData(node.Clusters[index], directory.AsSpan(index * _layout.ClusterByteCount, _layout.ClusterByteCount));
+            foreach (var child in node.Children)
+                WriteNode(child, fat);
         }
 
         private void WriteRootDirectory(IReadOnlyList<Node> nodes)
         {
-            if (nodes.Count + 1 > _layout.RootEntries) throw Fat12VolumeWriterExceptions.DiskFull();
+            if (nodes.Count + 1 > _layout.RootEntries)
+                throw Fat12VolumeWriterExceptions.DiskFull();
             var root = new byte[_layout.RootSectors * FatBootSectorLayout.SectorSize];
             WriteVolumeLabel(root.AsSpan(0, FatDirectoryLayout.EntrySize));
-            for (var index = 0; index < nodes.Count; index++) WriteDirectoryEntry(root.AsSpan((index + 1) * FatDirectoryLayout.EntrySize, FatDirectoryLayout.EntrySize), nodes[index]);
-            for (var sector = 0; sector < _layout.RootSectors; sector++) root.AsSpan(sector * FatBootSectorLayout.SectorSize, FatBootSectorLayout.SectorSize).CopyTo(_sectors[_layout.RootStart + sector]);
+            for (var index = 0; index < nodes.Count; index++)
+                WriteDirectoryEntry(root.AsSpan((index + 1) * FatDirectoryLayout.EntrySize, FatDirectoryLayout.EntrySize), nodes[index]);
+            for (var sector = 0; sector < _layout.RootSectors; sector++)
+                root.AsSpan(sector * FatBootSectorLayout.SectorSize, FatBootSectorLayout.SectorSize).CopyTo(_sectors[_layout.RootStart + sector]);
         }
 
         private void WriteBootSector()
@@ -115,7 +126,8 @@ public sealed class Fat12VolumeWriter
             target[FatDirectoryLayout.AttributesOffset] = (byte)(node.Entry.Kind == FileSystemEntryKind.Directory ? FatDirectoryAttributes.Directory : FatDirectoryAttributes.Archive);
             WriteTimestamp(target, node.Entry.Modified);
             BinaryPrimitives.WriteUInt16LittleEndian(target[FatDirectoryLayout.FirstClusterOffset..], checked((ushort)(node.Clusters.Count == 0 ? 0 : node.Clusters[0])));
-            if (node.Entry.Kind == FileSystemEntryKind.File) BinaryPrimitives.WriteUInt32LittleEndian(target[FatDirectoryLayout.FileSizeOffset..], checked((uint)node.Entry.Content!.Count));
+            if (node.Entry.Kind == FileSystemEntryKind.File)
+                BinaryPrimitives.WriteUInt32LittleEndian(target[FatDirectoryLayout.FileSizeOffset..], checked((uint)node.Entry.Content!.Count));
         }
 
         private static void WriteSpecialDirectoryEntry(Span<byte> target, string name, int cluster)
@@ -131,12 +143,14 @@ public sealed class Fat12VolumeWriter
             target[..11].Fill((byte)' ');
             var parts = name.Split(FatDirectoryLayout.ExtensionSeparator);
             System.Text.Encoding.ASCII.GetBytes(parts[0]).CopyTo(target);
-            if (parts.Length == 2) System.Text.Encoding.ASCII.GetBytes(parts[1]).CopyTo(target[FatDirectoryLayout.ExtensionOffset..]);
+            if (parts.Length == 2)
+                System.Text.Encoding.ASCII.GetBytes(parts[1]).CopyTo(target[FatDirectoryLayout.ExtensionOffset..]);
         }
 
         private static void WriteTimestamp(Span<byte> target, DateTimeOffset? value)
         {
-            if (value is null) return;
+            if (value is null)
+                return;
             var local = value.Value.DateTime;
             var year = Math.Clamp(local.Year, 1980, 2107);
             var date = (ushort)((year - 1980) << 9 | local.Month << 5 | local.Day);
@@ -147,8 +161,10 @@ public sealed class Fat12VolumeWriter
 
         private List<int> AllocateClusters(int count)
         {
-            if (count == 0) return [];
-            if (_nextCluster + count > Fat12Table.FirstDataCluster + _layout.ClusterCount) throw Fat12VolumeWriterExceptions.DiskFull();
+            if (count == 0)
+                return[];
+            if (_nextCluster + count > Fat12Table.FirstDataCluster + _layout.ClusterCount)
+                throw Fat12VolumeWriterExceptions.DiskFull();
             var clusters = Enumerable.Range(_nextCluster, count).ToList();
             _nextCluster += count;
             return clusters;
@@ -156,7 +172,8 @@ public sealed class Fat12VolumeWriter
 
         private void WriteClusterChain(Span<byte> fat, IReadOnlyList<int> clusters)
         {
-            for (var index = 0; index < clusters.Count; index++) WriteFatEntry(fat, clusters[index], index + 1 < clusters.Count ? clusters[index + 1] : Fat12Table.LastEndOfChain);
+            for (var index = 0; index < clusters.Count; index++)
+                WriteFatEntry(fat, clusters[index], index + 1 < clusters.Count ? clusters[index + 1] : Fat12Table.LastEndOfChain);
         }
 
         private void WriteClusterData(int cluster, ReadOnlySpan<byte> data)
@@ -165,7 +182,8 @@ public sealed class Fat12VolumeWriter
             for (var sector = 0; sector < _layout.SectorsPerCluster; sector++)
             {
                 var offset = sector * FatBootSectorLayout.SectorSize;
-                if (offset >= data.Length) break;
+                if (offset >= data.Length)
+                    break;
                 data.Slice(offset, Math.Min(FatBootSectorLayout.SectorSize, data.Length - offset)).CopyTo(_sectors[firstSector + sector]);
             }
         }
@@ -197,7 +215,8 @@ public sealed class Fat12VolumeWriter
                 var dataStart = 1 + fatCount * sectorsPerFat + rootSectors;
                 var clusters = (totalSectors - dataStart) / sectorsPerCluster;
                 var required = DivideRoundUp((clusters + Fat12Table.FirstDataCluster) * 3, 2 * FatBootSectorLayout.SectorSize);
-                if (required == sectorsPerFat) return new(totalSectors, sectorsPerCluster, fatCount, sectorsPerFat, rootEntries, 1 + fatCount * sectorsPerFat, rootSectors, dataStart, clusters, totalSectors >= 2880 ? (byte)0xf0 : (byte)0xf9);
+                if (required == sectorsPerFat)
+                    return new(totalSectors, sectorsPerCluster, fatCount, sectorsPerFat, rootEntries, 1 + fatCount * sectorsPerFat, rootSectors, dataStart, clusters, totalSectors >= 2880 ? (byte)0xf0 : (byte)0xf9);
                 sectorsPerFat = required;
             }
         }
@@ -210,7 +229,6 @@ public sealed class Fat12VolumeWriter
         }
 
         private static int DivideRoundUp(int value, int divisor) => checked((value + divisor - 1) / divisor);
-
         private sealed record Node(MigrationEntry Entry, int ParentCluster, List<int> Clusters, List<Node> Children);
     }
 }

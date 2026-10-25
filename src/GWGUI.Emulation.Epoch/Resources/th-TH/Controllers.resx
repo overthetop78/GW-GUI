@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft" xml:space="preserve"><value>ปุ่มซ้าย</value></data>
+  <data name="Emulation.Epoch.Input.FireRight" xml:space="preserve"><value>ปุ่มขวา</value></data>
+  <data name="Emulation.Epoch.Input.Power" xml:space="preserve"><value>ปุ่มส่งพลังงาน</value></data>
+  <data name="Emulation.Epoch.Input.Reset" xml:space="preserve"><value>ปุ่มตั้งใหม่</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft" xml:space="preserve"><value>ย้ายคานไปด้านซ้าย</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight" xml:space="preserve"><value>ย้ายคันโยกไปทางขวา</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease" xml:space="preserve"><value>เลือกหลักสูตรเกมถัดไป</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease" xml:space="preserve"><value>เลือกหลักสูตรเกมก่อนหน้า</value></data>
+  <data name="Emulation.Epoch.Input.GunFire" xml:space="preserve"><value>ลั่นไกปืน</value></data>
+  <data name="Emulation.Epoch.Input.GunReload" xml:space="preserve"><value>โหลดปืนใหม่</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease" xml:space="preserve"><value>หมุนทวนเข็มนาฬิกา</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase" xml:space="preserve"><value>บิดรอบ 1 หมุนตามเข็มนาฬิกา</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease" xml:space="preserve"><value>หมุนทวนเข็มนาฬิกา</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase" xml:space="preserve"><value>บิด 2 หมุนตามเข็มนาฬิกา</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease" xml:space="preserve"><value>ทวนเข็มนาฬิกา 3</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase" xml:space="preserve"><value>บิด 3: หมุนตามเข็มนาฬิกา</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease" xml:space="preserve"><value>หมุนทวนเข็มนาฬิกา</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase" xml:space="preserve"><value>หมุนตามเข็มนาฬิกา</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease" xml:space="preserve"><value>เล็งปืนซ้าย</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease" xml:space="preserve"><value>เล็งปืนขวา.</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease" xml:space="preserve"><value>เล็งปืนขึ้นไป</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease" xml:space="preserve"><value>เล็งปืนลง</value></data>
+</root>

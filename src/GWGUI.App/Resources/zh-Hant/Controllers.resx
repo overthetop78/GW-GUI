@@ -94,7 +94,6 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>摩擦</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>阻尼器</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>慣性</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>搖桿</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>多軸控制器</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID 用途</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>軸</value></data>

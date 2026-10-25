@@ -1,4 +1,5 @@
 using System.Buffers.Binary;
+using GWGUI.MediaEngine.Images.Writing;
 
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
@@ -12,18 +13,8 @@ public sealed class ScpWriter : IScpWriter
         ArgumentNullException.ThrowIfNull(image);
         Validate(image);
         var fullPath = Path.GetFullPath(path);
-        var directory = Path.GetDirectoryName(fullPath) ?? Directory.GetCurrentDirectory();
-        Directory.CreateDirectory(directory);
-        var temporaryPath = Path.Combine(directory, $".{Path.GetFileName(fullPath)}.{Guid.NewGuid():N}.tmp");
-        try
-        {
-            await WriteTemporaryAsync(temporaryPath, image, cancellationToken).ConfigureAwait(false);
-            File.Move(temporaryPath, fullPath, true);
-        }
-        finally
-        {
-            if (File.Exists(temporaryPath)) File.Delete(temporaryPath);
-        }
+        await AtomicFileWriter.WriteTemporaryAsync(fullPath,
+            temporaryPath => WriteTemporaryAsync(temporaryPath, image, cancellationToken)).ConfigureAwait(false);
     }
 
     /// <summary>Écrit le corps, puis revient compléter les offsets et le checksum avant fermeture.</summary>

@@ -68,6 +68,9 @@ public static class DiskImageFileExtensions
     /// <summary>Extension des images de pistes HxC Floppy Emulator.</summary>
     public const string Hfe = ".hfe";
 
+    /// <summary>Extension des captures de flux multipistes HxC Stream.</summary>
+    public const string HxcStream = ".hxcstream";
+
     /// <summary>Extension used by raw hard disk images without a container header.</summary>
     public const string Hdd = ".hdd";
 
@@ -128,6 +131,15 @@ public static class DiskImageFileExtensions
     /// <summary>Extension used by raw optical data track images.</summary>
     public const string Iso = ".iso";
 
+    /// <summary>Extension des images ISO brutes Nintendo GameCube/Wii.</summary>
+    public const string Gcm = ".gcm";
+
+    /// <summary>Extension des images de disque Nintendo Wii U non compressées.</summary>
+    public const string Wud = ".wud";
+
+    /// <summary>Extension des images de disque Nintendo Wii U indexées.</summary>
+    public const string Wux = ".wux";
+
     /// <summary>Extension used by CUE sheet descriptors.</summary>
     public const string Cue = ".cue";
 
@@ -143,6 +155,9 @@ public static class DiskImageFileExtensions
     /// <summary>Extension used by Alcohol media data files.</summary>
     public const string Mdf = ".mdf";
 
+    /// <summary>Extension des descripteurs de pistes optiques Dreamcast GDI.</summary>
+    public const string Gdi = ".gdi";
+
     public const string Wav = ".wav";
     public const string Cas = ".cas";
     public const string Tzx = ".tzx";
@@ -150,4 +165,75 @@ public static class DiskImageFileExtensions
     public const string Tsx = ".tsx";
     public const string Tap = ".tap";
     public const string Uef = ".uef";
+
+    /// <summary>Extension des cartouches Amstrad Plus/GX4000.</summary>
+    public const string Cpr = ".cpr";
+
+    /// <summary>Extension des ROM brutes Amstrad CPC.</summary>
+    public const string Rom = ".rom";
+
+    public const string Nes = ".nes";
+    /// <summary>Extension des images de disquette Famicom Disk System.</summary>
+    public const string Fds = ".fds";
+    public const string Sfc = ".sfc";
+    public const string Smc = ".smc";
+    public const string N64 = ".n64";
+    public const string Z64 = ".z64";
+    public const string V64 = ".v64";
+    public const string Gb = ".gb";
+    public const string Gbc = ".gbc";
+    public const string Gba = ".gba";
+    public const string Nds = ".nds";
+    /// <summary>Extension des simulations Nintendo Game &amp; Watch.</summary>
+    public const string Mgw = ".mgw";
+    public const string ThreeDs = ".3ds";
+    public const string Cia = ".cia";
+    public const string ThreeDsx = ".3dsx";
+    /// <summary>Extension des images CCI Nintendo 3DS.</summary>
+    public const string Cci = ".cci";
+    /// <summary>Extension des images CXI Nintendo 3DS.</summary>
+    public const string Cxi = ".cxi";
+    /// <summary>Extension des exécutables AXF Nintendo 3DS.</summary>
+    public const string Axf = ".axf";
+    /// <summary>Extension des exécutables ELF Nintendo 3DS.</summary>
+    public const string Elf = ".elf";
+    /// <summary>Extension des contenus APP Nintendo 3DS.</summary>
+    public const string App = ".app";
+    public const string Sms = ".sms";
+    public const string Sg = ".sg";
+    /// <summary>Extension des ROM SG-1000 et Sega My Card.</summary>
+    public const string Mv = ".mv";
+    public const string Md = ".md";
+    /// <summary>Extension des ROM Mega Drive au format MDX.</summary>
+    public const string Mdx = ".mdx";
+    /// <summary>Extension des ROM Mega Drive issues des distributions Sega Classics.</summary>
+    public const string Sgd = ".sgd";
+    /// <summary>Extension des ROM Mega Drive au format SMD.</summary>
+    public const string Smd = ".smd";
+    /// <summary>Extension des ROM Mega Drive au format BMS.</summary>
+    public const string Bms = ".bms";
+    /// <summary>Extension des ROM Mega Drive au format 68K.</summary>
+    public const string SixtyEightK = ".68k";
+    public const string Gen = ".gen";
+    public const string Gg = ".gg";
+    public const string ThirtyTwoX = ".32x";
+    public const string A26 = ".a26";
+    public const string A52 = ".a52";
+    public const string A78 = ".a78";
+    public const string Pce = ".pce";
+    /// <summary>Extension des ROM NEC SuperGrafx.</summary>
+    public const string Sgx = ".sgx";
+    public const string Vb = ".vb";
+    public const string Ws = ".ws";
+    public const string Wsc = ".wsc";
+    public const string Cgb = ".cgb";
+
+    /// <summary>Extension des fichiers Creative Voice.</summary>
+    public const string Voc = ".voc";
+
+    public const string Mp3 = ".mp3";
+    public const string Flac = ".flac";
+    public const string Aac = ".aac";
+    public const string M4a = ".m4a";
+    public const string Wma = ".wma";
 }

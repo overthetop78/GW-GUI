@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Panasonic.Error.AlreadyInitialized"><value>Хост эмуляции уже инициализирован.</value></data>
+  <data name="Emulation.Panasonic.Error.CommunicationFailed"><value>Связь хоста эмуляции не удалась.</value></data>
+  <data name="Emulation.Panasonic.Error.ContentFileMissing"><value>Настроенную среду найти не удалось.</value></data>
+  <data name="Emulation.Panasonic.Error.DynamicMediaUnsupported"><value>Сеанс эмуляции не может обмениваться этой средой.</value></data>
+  <data name="Emulation.Panasonic.Error.ExecutableMissing"><value>Исполняемый хост эмуляции отсутствует.</value></data>
+  <data name="Emulation.Panasonic.Error.InstalledLibraryLockedFormat"><value>Установленную библиотеку заменить нельзя: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.InvalidArchitecture"><value>Загруженное ядро не является Windows x64.</value></data>
+  <data name="Emulation.Panasonic.Error.InvalidConfiguration"><value>Конфигурация эмуляции недействительна.</value></data>
+  <data name="Emulation.Panasonic.Error.InvalidResponseLengthFormat"><value>Недействительная длина ответа хоста эмуляции: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.MachineInvalidState"><value>Сеанс эмуляции не находится в требуемом состоянии.</value></data>
+  <data name="Emulation.Panasonic.Error.MachineStopped"><value>Сеанс эмуляции прекратился.</value></data>
+  <data name="Emulation.Panasonic.Error.MissingExpectedLibraryFormat"><value>Загруженный архив не содержит {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.MissingPublishedDate"><value>Официальный ответ не указывает дату публикации.</value></data>
+  <data name="Emulation.Panasonic.Error.NotInitialized"><value>Хост эмуляции не инициализируется.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessExitSuffixFormat"><value> Код выхода: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessNotInitialized"><value>Процесс эмуляции хоста не инициализируется.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessStartFailed"><value>Процесс эмуляции хоста не мог начаться.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessUnavailable"><value>Процесс эмуляции хоста недоступен.</value></data>
+  <data name="Emulation.Panasonic.Error.ProtocolVersionMismatchFormat"><value>Протокольная версия {0} Не подходит {1}.</value></data>
+  <data name="Emulation.Panasonic.Error.RequestCancelled"><value>Запрос на эмуляцию хоста был отменен.</value></data>
+  <data name="Emulation.Panasonic.Error.ResponseTimeout"><value>Ответ хоста эмуляции был отсрочен.</value></data>
+  <data name="Emulation.Panasonic.Error.ResponseUnavailable"><value>Ответ хоста эмуляции недоступен.</value></data>
+  <data name="Emulation.Panasonic.Error.SharedVideoUnavailable"><value>Общий видеотранспорт недоступен.</value></data>
+  <data name="Emulation.Panasonic.Error.StateIncompatible"><value>Сохраненное состояние несовместимо с текущей машиной.</value></data>
+  <data name="Emulation.Panasonic.Error.StateInvalid"><value>Спасенное государство недействительно.</value></data>
+  <data name="Emulation.Panasonic.Error.StateUnavailable"><value>Эмулятор не поддерживает сохраненные состояния.</value></data>
+  <data name="Emulation.Panasonic.Error.UnknownCommandFormat"><value>Неизвестная команда хоста эмуляции: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.UnsupportedControllerDevice"><value>Контроллерное устройство не поддерживается.</value></data>
+</root>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.caprice32.Description"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 Amstrad CPC, CPC 더하기 GX4000 시스템.</value></data>
+  <data name="Emulation.Amstrad.Language"><value>CPC 시스템 언어</value></data>
+  <data name="Emulation.Amstrad.Language.English"><value>한국어</value></data>
+  <data name="Emulation.Amstrad.Language.French"><value>담당자: Mr. wang</value></data>
+  <data name="Emulation.Amstrad.Language.Spanish"><value>담당자: Mr. s.</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor"><value>감시자 유형</value></data>
+  <data name="Emulation.Amstrad.Video.Intensity"><value>모니터 강도</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Color"><value>색깔: 백색</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Green"><value>녹색 monochrome</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.White"><value>백색 monochrome</value></data>
+  <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM 에뮬레이터로 구축</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>내장 ROM과 디스크 이미지 및 스냅 샷을 지원하는 Amstrad CPC 6128를 격리합니다.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>감시자 유형</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>이미지 framing</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>속도 해킹</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>오토매틱</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>구름 많음</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>사용</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>사용 안 함</value></data>
+</root>

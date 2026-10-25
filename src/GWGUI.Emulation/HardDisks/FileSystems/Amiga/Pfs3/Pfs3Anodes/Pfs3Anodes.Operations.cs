@@ -40,8 +40,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             else
             {
                 anode.clustersize = anode.next = 0;
-                throw new FileSystemDiagnosticException(FileSystemErrorCode.AnodeMissing,
-                    Pfs3ErrorMessages.AnodeMissing(anodenr), anodenr);
+                throw new FileSystemDiagnosticException(FileSystemErrorCode.AnodeMissing, Pfs3ErrorMessages.AnodeMissing(anodenr), anodenr);
             }
         }
 
@@ -80,8 +79,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             }
             else
             {
-                throw new FileSystemDiagnosticException(FileSystemErrorCode.AnodeBlockAllocationFailed,
-                    Pfs3ErrorMessages.AnodeBlockAllocationFailed);
+                throw new FileSystemDiagnosticException(FileSystemErrorCode.AnodeBlockAllocationFailed, Pfs3ErrorMessages.AnodeBlockAllocationFailed);
             }
         }
 
@@ -109,9 +107,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
                 {
                     anodes = ablock.ANodeBlock.nodes;
                     for (k = andata.anodesperblock - 1; k > -1 && !found; k--)
-                        found = (anodes[k].clustersize == 0 &&
-                                 anodes[k].blocknr == 0 &&
-                                 anodes[k].next == 0);
+                        found = (anodes[k].clustersize == 0 && anodes[k].blocknr == 0 && anodes[k].next == 0);
                 }
             }
             else
@@ -132,9 +128,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
                                 {
                                     anodes = ablock.ANodeBlock.nodes;
                                     for (k = 0; k < andata.reserved && !found; k++)
-                                        found = (anodes[k].clustersize == 0 &&
-                                                 anodes[k].blocknr == 0 &&
-                                                 anodes[k].next == 0);
+                                        found = (anodes[k].clustersize == 0 && anodes[k].blocknr == 0 && anodes[k].next == 0);
 
                                     if (found)
                                         goto found_it;

@@ -12,4 +12,19 @@
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>Kickstart-ösvény szükséges.</value></data>
   <data name="Emulation.FileRequired" xml:space="preserve"><value>A szükséges firmware útvonal üres.</value></data>
   <data name="Emulation.FileMissing" xml:space="preserve"><value>A kijelölt fájl nem létezik.</value></data>
+  <data name="Emulation.Error.Title"><value>Emulációs hiba</value></data>
+  <data name="Emulation.Error.EmulatorNotInstalled"><value>A szükséges emulátor nincs telepítve.</value></data>
+  <data name="Emulation.Error.EmulatorRejected"><value>Az emulátor elutasította a kért műveletet.</value></data>
+  <data name="Emulation.Error.EmulatorUpdateBlocked"><value>Az emulátor használata közben nem frissíthető.</value></data>
+  <data name="Emulation.Error.FirmwareMissing"><value>A szükséges firmware hiányzik.</value></data>
+  <data name="Emulation.Error.FirmwareIncompatible"><value>A kiválasztott firmware nem kompatibilis ezzel a géppel.</value></data>
+  <data name="Emulation.Error.MediaNotFound"><value>A beállított médiafájl nem található.</value></data>
+  <data name="Emulation.Error.MediaUnsupported"><value>A kiválasztott médiumot nem támogatja ez az emulátor.</value></data>
+  <data name="Emulation.Error.OptionInvalid"><value>Az emulátor opció érvénytelen.</value></data>
+  <data name="Emulation.Error.HostCommunicationFailed"><value>Az emulátor-folyamattal való kommunikáció nem sikerült.</value></data>
+  <data name="Emulation.Error.MachineStartFailed"><value>Az emulált gépet nem sikerült elindítani.</value></data>
+  <data name="Emulation.Error.MediaOperationFailed"><value>A média nem működött.</value></data>
+  <data name="Emulation.Error.SavedStateInvalid"><value>A mentett állapot érvénytelen vagy sérült.</value></data>
+  <data name="Emulation.Error.SavedStateIncompatible"><value>A mentett állapot nem kompatibilis ezzel a gép konfigurációjával.</value></data>
+  <data name="Emulation.Error.SavedStateOperationFailed"><value>A védett állam akciója sikertelen.</value></data>
 </root>

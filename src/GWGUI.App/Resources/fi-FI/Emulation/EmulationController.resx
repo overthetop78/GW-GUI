@@ -36,4 +36,27 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (oikealla)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Ulkoasu</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Kontrolleri {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Osoitin</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Lentosimulaatio</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Kilpa-ajon simulointi</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Tanssisimulaatio</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Laulava simulointi</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Muut simulaatiot</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>Voimakas tärinä</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>Heikko tärinä</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>Lataa ase</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>Tähtäimen väri</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>Tanssimatto</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>Näppäimistön asetukset näppäimistövälilehdessä.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>Muokkaa hiiren välilehteä.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>Laitetyyppi</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>Tärinässä käytettävä kontrolleri</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>Työntö- ja akselitehtävät</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>Tarttuva {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>Näppäimistön tai mukautettujen toimeksiantojen</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>Vasen tikku</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>Oikea kiinni</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>Toimintalinja {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>Kirveet {0} / {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>Tallennettu tehtävä</value></data>
 </root>

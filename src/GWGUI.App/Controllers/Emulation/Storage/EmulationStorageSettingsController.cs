@@ -2,12 +2,13 @@ using GWGUI.App.Contracts.Emulation.Storage;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Views.Controls.Emulation.Storage;
 using GWGUI.App.Views.Dialogs.Emulation.Storage;
-using System.IO;
 using System.Windows;
+using System.IO;
 using GWGUI.Emulation;
-using Microsoft.Win32;
 using GWGUI.App.Services.Emulation;
 using GWGUI.App.Functions.Emulation.Storage;
+using GWGUI.App.Constants.Localization;
+using GWGUI.App.Services.Storage;
 
 
 namespace GWGUI.App.Controllers.Emulation.Storage;
@@ -21,8 +22,7 @@ internal sealed class EmulationStorageSettingsController
     private IEmulationConfiguration? _configuration;
     private EmulationStorageSettings _settings = new([], [], []);
 
-    internal EmulationStorageSettingsController(string moduleId, IEmulationStorageSettingsManager manager,
-        Func<EmulationDefaultFolderCategory?, string> defaultFolder)
+    internal EmulationStorageSettingsController(string moduleId, IEmulationStorageSettingsManager manager, Func<EmulationDefaultFolderCategory?, string> defaultFolder)
     {
         _moduleId = moduleId;
         _manager = manager;
@@ -39,26 +39,56 @@ internal sealed class EmulationStorageSettingsController
         _view.ConfigureRequested += ConfigureDevice;
         _configuration = configuration;
         _settings = _manager.DescribeStorageSettings(configuration);
+        foreach (var device in _settings.AvailableDevices.Where(device => device.UsesDirectory && device.DefaultImageSubdirectory is not null))
+        {
+            var items = (_settings.DeviceSettings ?? []).ToList();
+            var current = items.FirstOrDefault(item => item.Slot == device.Slot);
+            if (!string.IsNullOrWhiteSpace(current?.MemoryCardPath)) continue;
+            items.RemoveAll(item => item.Slot == device.Slot);
+            items.Add(new EmulationStorageDeviceSettings(device.Slot, MemoryCardPath: ImageDirectory(device)));
+            _settings = _settings with { DeviceSettings = items };
+        }
         Rebuild();
         return _view;
     }
 
-    internal IEmulationConfiguration Apply(IEmulationConfiguration configuration) =>
-        _manager.ApplyStorageSettings(configuration, _settings);
+    internal IEmulationConfiguration Apply(IEmulationConfiguration configuration)
+    {
+        if (_configuration is null || _configuration.ModuleId != configuration.ModuleId
+            || _configuration.MachineId != configuration.MachineId || _configuration.Id != configuration.Id)
+            return configuration;
+        foreach (var device in _settings.AvailableDevices.Where(device => device.UsesDirectory && device.DefaultImageSubdirectory is not null))
+        {
+            var path = _settings.DeviceSettings?.FirstOrDefault(item => item.Slot == device.Slot)?.MemoryCardPath;
+            if (!string.IsNullOrWhiteSpace(path)) Directory.CreateDirectory(path);
+        }
+        return _manager.ApplyStorageSettings(configuration, _settings);
+    }
+
+    private string ImageDirectory(EmulationMediaDevice device) => device.ImageDirectory
+        ?? (device.DefaultImageSubdirectory is { } subdirectory
+            ? Path.Combine(device.MediaType == EmulationMediaType.MemoryCard ? StoragePaths.EmulationStorageDirectory : _defaultFolder(EmulationDefaultFolderCategory.HardDisk), subdirectory)
+            : _defaultFolder(EmulationDefaultFolderCategory.HardDisk));
 
     private void AddDevice(object? sender, EventArgs args)
     {
-        var candidates = _settings.AvailableDevices
-            .Where(device => !_settings.ConfiguredSlots.Contains(device.Slot)).ToArray();
+        var candidates = _settings.AvailableDevices.Where(device => !_settings.ConfiguredSlots.Contains(device.Slot)).ToArray();
         if (candidates.Length == 0) return;
         var dialog = new AddStorageDeviceDialog(candidates.Select(device => device.MediaType).Distinct());
-        if (dialog.ShowDialog() != true) return;
-        var type = dialog.SelectedType;
+        EmulationMediaType type;
+        try
+        {
+            if (dialog.ShowDialog() != true) return;
+            type = dialog.SelectedType;
+        }
+        finally
+        {
+            dialog.Close();
+        }
         var selected = candidates.First(device => device.MediaType == type);
         var deviceSettings = (_settings.DeviceSettings ?? []).ToList();
         if (selected.FloppyOptions is { Models.Count: > 0 } floppy)
-            deviceSettings.Add(new EmulationStorageDeviceSettings(selected.Slot,
-                new FloppyDriveSettings(floppy.Models[0].Value, "100", false, false)));
+            deviceSettings.Add(new EmulationStorageDeviceSettings(selected.Slot, new FloppyDriveSettings(floppy.Models[0].Value, "100", false, false)));
         _settings = _settings with
         {
             ConfiguredSlots = _settings.ConfiguredSlots.Append(selected.Slot).ToArray(),
@@ -70,7 +100,7 @@ internal sealed class EmulationStorageSettingsController
 
     private void RemoveDevice(object? sender, EmulationStorageDeviceEventArgs args)
     {
-        if (!TryFind(args.Device, out var device)) return;
+        if (!TryFind(args.Device, out var device) || device.IsPermanent) return;
         _settings = _settings with
         {
             ConfiguredSlots = _settings.ConfiguredSlots.Where(slot => slot != device.Slot).ToArray(),
@@ -84,33 +114,144 @@ internal sealed class EmulationStorageSettingsController
     private void ConfigureDevice(object? sender, EmulationStorageDeviceEventArgs args)
     {
         if (!TryFind(args.Device, out var device)) return;
-        if (device.FloppyOptions is not null)
+        switch (device.ConfigurationKind)
         {
-            ConfigureFloppy(device);
-            return;
+            case EmulationStorageConfigurationKind.FloppyDrive:
+                ConfigureFloppy(device);
+                break;
+            case EmulationStorageConfigurationKind.HardDiskDrive:
+                ConfigureHardDisk(device);
+                break;
+            case EmulationStorageConfigurationKind.CartridgeSlot:
+                ConfigureCartridgeSlot(device);
+                break;
+            case EmulationStorageConfigurationKind.CompactDiscDrive:
+                ConfigureCompactDisc(device);
+                break;
+            case EmulationStorageConfigurationKind.ManagedStorage:
+                ConfigureManagedStorage(device);
+                break;
+            case EmulationStorageConfigurationKind.MemoryCard:
+                ConfigureMemoryCard(device);
+                break;
         }
-        if (device.MediaType == EmulationMediaType.HardDisk)
+    }
+
+    private void ConfigureManagedStorage(EmulationMediaDevice device)
+    {
+        var current = (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == device.Slot);
+        var dialog = new ManagedStorageConfigurationDialog(DeviceLabel(device), DeviceModel(device, device.Slot),
+            _moduleId, device.ConfigurationFields ?? [], current?.Options,
+            device.ConfigurationOptionDetailedResourceKey is { Length: > 0 } helpKey
+                ? LocExtension.GetForModule(_moduleId, helpKey) : null);
+        IReadOnlyDictionary<string, string> selected;
+        try
         {
-            ConfigureHardDisk(device);
-            return;
+            if (dialog.ShowDialog() != true) return;
+            selected = dialog.Options;
         }
-        var filter = string.Join(';', device.AcceptedExtensions.Select(extension => $"*{extension}"));
-        var dialog = new OpenFileDialog
-        {
-            InitialDirectory = MediaDirectory(device.MediaType),
-            ClientGuid = EmulationMediaDialogFunctions.ClientGuid(_moduleId,
-                _configuration?.MachineId ?? string.Empty, device.Slot),
-            Filter = string.IsNullOrWhiteSpace(filter)
-                ? LocExtension.Get("Emulation.Storage.Media.Associated") + "|*.*"
-                : LocExtension.Get("Emulation.Storage.Media.Associated") + $"|{filter}|" +
-                  LocExtension.Get("Emulation.Storage.Media.Associated") + "|*.*"
-        };
-        if (dialog.ShowDialog() != true) return;
-        var media = new EmulationMedia(dialog.FileName, device.Slot, device.MediaType, false, true);
+        finally { dialog.Close(); }
         _settings = _settings with
         {
-            MountedMedia = _settings.MountedMedia.Where(item => item.Slot != device.Slot).Append(media).ToArray()
+            DeviceSettings = (_settings.DeviceSettings ?? []).Where(item => item.Slot != device.Slot)
+                .Append(new EmulationStorageDeviceSettings(device.Slot, Options: selected)).ToArray()
         };
+        SettingsChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void ConfigureMemoryCard(EmulationMediaDevice device)
+    {
+        var current = (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == device.Slot)?.MemoryCardPath;
+        if (device.UsesDirectory)
+        {
+            var directoryDialog = new MemoryCardDirectoryConfigurationDialog(DeviceLabel(device), current, ImageDirectory(device));
+            try
+            {
+                if (directoryDialog.ShowDialog() != true) return;
+                SetMemoryCardPath(device, directoryDialog.SupportPath);
+            }
+            finally { directoryDialog.Close(); }
+            return;
+        }
+        var dialog = new HardDiskDriveConfigurationDialog(
+            DeviceLabel(device),
+            _configuration?.MachineId ?? string.Empty, current,
+            ImageDirectory(device),
+            device.HardDiskFormats ?? throw new InvalidOperationException(),
+            EmulationMediaDialogFunctions.ClientGuid(_moduleId, _configuration?.MachineId ?? string.Empty, device.Slot),
+            fixedImageSizeBytes: device.FixedImageSizeBytes ?? throw new InvalidOperationException(),
+            defaultImageFileName: device.DefaultImageFileName,
+            presentation: device.DialogPresentation);
+        string? selected;
+        try
+        {
+            if (dialog.ShowDialog() != true) return;
+            selected = dialog.SupportPath;
+        }
+        finally
+        {
+            dialog.Close();
+        }
+        SetMemoryCardPath(device, selected);
+    }
+
+    private void SetMemoryCardPath(EmulationMediaDevice device, string? selected)
+    {
+        _settings = _settings with
+        {
+            DeviceSettings = (_settings.DeviceSettings ?? []).Where(item => item.Slot != device.Slot).Append(new EmulationStorageDeviceSettings(device.Slot, MemoryCardPath: selected)).ToArray()
+        };
+        Rebuild();
+        SettingsChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void ConfigureCompactDisc(EmulationMediaDevice device)
+    {
+        var current = (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == device.Slot)?.CompactDisc ?? new EmulationCompactDiscDriveSettings();
+        var cacheLabel = device.CompactDiscCacheResourceKey is { } cacheResource ? LocExtension.GetForModule(_moduleId, cacheResource) : null;
+        var ignoreErrorsLabel = device.CompactDiscIgnoreErrorsResourceKey is { } ignoreResource ? LocExtension.GetForModule(_moduleId, ignoreResource) : null;
+        var dialog = new CompactDiscDriveConfigurationDialog(
+            DeviceLabel(device),
+            _configuration?.MachineId ?? string.Empty,
+            DeviceModel(device, device.Slot), current,
+            device.CompactDiscSpeeds, cacheLabel, ignoreErrorsLabel, _moduleId, device.ConfigurationFields,
+            device.TypeResourceKey is { } typeKey ? LocExtension.GetForModule(_moduleId, typeKey) : null);
+        EmulationCompactDiscDriveSettings selected;
+        try
+        {
+            if (dialog.ShowDialog() != true) return;
+            selected = dialog.Settings;
+        }
+        finally
+        {
+            dialog.Close();
+        }
+        _settings = _settings with
+        {
+            DeviceSettings = (_settings.DeviceSettings ?? []).Where(item => item.Slot != device.Slot).Append(new EmulationStorageDeviceSettings(device.Slot, CompactDisc: selected)).ToArray()
+        };
+        Rebuild();
+        SettingsChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void ConfigureCartridgeSlot(EmulationMediaDevice device)
+    {
+        var current = (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == device.Slot) ?.Cartridge ?? new CartridgeSlotSettings();
+        var label = string.IsNullOrWhiteSpace(device.ConfigurationOptionResourceKey) ? string.Empty : LocExtension.GetForModule(_moduleId, device.ConfigurationOptionResourceKey);
+        var hint = string.IsNullOrWhiteSpace(device.ConfigurationOptionDetailedResourceKey) ? null : LocExtension.GetForModule(_moduleId, device.ConfigurationOptionDetailedResourceKey);
+        var dialog = new CartridgeSlotConfigurationDialog(device.DisplayLabel ?? device.Slot.ToString(), _configuration?.MachineId ?? string.Empty, current, label, hint, _moduleId, device.ConfigurationFields);
+        CartridgeSlotSettings selected;
+        try
+        {
+            if (dialog.ShowDialog() != true) return;
+            selected = dialog.Settings;
+        }
+        finally
+        {
+            dialog.Close();
+        }
+        var settings = (_settings.DeviceSettings ?? []).Where(item => item.Slot != device.Slot).Append(new EmulationStorageDeviceSettings(device.Slot, Cartridge: selected)).ToArray();
+        _settings = _settings with { DeviceSettings = settings };
         Rebuild();
         SettingsChanged?.Invoke(this, EventArgs.Empty);
     }
@@ -121,45 +262,47 @@ internal sealed class EmulationStorageSettingsController
         var dialog = new HardDiskDriveConfigurationDialog(device.DisplayLabel ?? device.Slot.ToString(),
             _configuration?.MachineId ?? string.Empty, current?.Path,
             device.ImageDirectory ?? _defaultFolder(EmulationDefaultFolderCategory.HardDisk),
-            device.HardDiskFormats ?? [], EmulationMediaDialogFunctions.ClientGuid(_moduleId,
-                _configuration?.MachineId ?? string.Empty, device.Slot),
+            device.HardDiskFormats ?? [], EmulationMediaDialogFunctions.ClientGuid(_moduleId, _configuration?.MachineId ?? string.Empty, device.Slot),
             path => HardDiskDeletionService.DeleteAsync(path, _configuration!));
-        if (dialog.ShowDialog() != true) return;
-        var media = string.IsNullOrWhiteSpace(dialog.SupportPath) ? null
-            : new EmulationMedia(dialog.SupportPath, device.Slot, device.MediaType,
-                current?.IsReadOnly ?? false, true);
+        string? supportPath;
+        string? interfaceId;
+        try
+        {
+            if (dialog.ShowDialog() != true) return;
+            supportPath = dialog.SupportPath;
+            interfaceId = dialog.InterfaceId;
+        }
+        finally
+        {
+            dialog.Close();
+        }
+        var media = string.IsNullOrWhiteSpace(supportPath) ? null : new EmulationMedia(supportPath, device.Slot, device.MediaType, current?.IsReadOnly ?? false, true);
         _settings = _settings with
         {
-            MountedMedia = _settings.MountedMedia.Where(item => item.Slot != device.Slot)
-                .Concat(media is null ? [] : new[] { media }).ToArray(),
-            DeviceSettings = (_settings.DeviceSettings ?? []).Where(item => item.Slot != device.Slot)
-                .Append(new EmulationStorageDeviceSettings(device.Slot, InterfaceId: media is null ? null : dialog.InterfaceId?.ToLowerInvariant())).ToArray()
+            MountedMedia = _settings.MountedMedia.Where(item => item.Slot != device.Slot).Concat(media is null ? [] : new[] { media }).ToArray(),
+            DeviceSettings = (_settings.DeviceSettings ?? []).Where(item => item.Slot != device.Slot).Append(new EmulationStorageDeviceSettings(device.Slot, InterfaceId: media is null ? null : interfaceId?.ToLowerInvariant())).ToArray()
         };
         Rebuild();
         SettingsChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    private string MediaDirectory(EmulationMediaType type) => _defaultFolder(type switch
-    {
-        EmulationMediaType.Floppy => EmulationDefaultFolderCategory.Floppy,
-        EmulationMediaType.CompactDisc => EmulationDefaultFolderCategory.CompactDisc,
-        EmulationMediaType.HardDisk => EmulationDefaultFolderCategory.HardDisk,
-        EmulationMediaType.Cartridge => EmulationDefaultFolderCategory.Cartridge,
-        EmulationMediaType.Cassette => EmulationDefaultFolderCategory.Cassette,
-        _ => null
-    });
-
     private void ConfigureFloppy(EmulationMediaDevice device)
     {
-        var current = (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == device.Slot)?.Floppy
-            ?? new FloppyDriveSettings(device.FloppyOptions!.Models[0].Value, "100", false, false);
+        var current = (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == device.Slot)?.Floppy ?? new FloppyDriveSettings(device.FloppyOptions!.Models[0].Value, "100", false, false);
         var dialog = new FloppyDriveConfigurationDialog(device.DisplayLabel ?? device.Slot.ToString(),
             _configuration?.MachineId ?? string.Empty, current, device.FloppyOptions!,
-            EmulationMediaDialogFunctions.ClientGuid(_moduleId,
-                _configuration?.MachineId ?? string.Empty, device.Slot), _moduleId);
-        if (dialog.ShowDialog() != true) return;
-        var settings = (_settings.DeviceSettings ?? []).Where(item => item.Slot != device.Slot)
-            .Append(new EmulationStorageDeviceSettings(device.Slot, dialog.Settings)).ToArray();
+            EmulationMediaDialogFunctions.ClientGuid(_moduleId, _configuration?.MachineId ?? string.Empty, device.Slot), _moduleId, device.ConfigurationFields);
+        FloppyDriveSettings selectedSettings;
+        try
+        {
+            if (dialog.ShowDialog() != true) return;
+            selectedSettings = dialog.Settings;
+        }
+        finally
+        {
+            dialog.Close();
+        }
+        var settings = (_settings.DeviceSettings ?? []).Where(item => item.Slot != device.Slot).Append(new EmulationStorageDeviceSettings(device.Slot, selectedSettings)).ToArray();
         _settings = _settings with { DeviceSettings = settings };
         Rebuild();
         SettingsChanged?.Invoke(this, EventArgs.Empty);
@@ -174,13 +317,15 @@ internal sealed class EmulationStorageSettingsController
 
     private void Rebuild()
     {
-        var rows = _settings.ConfiguredSlots.Select(slot =>
+        var rows = _settings.ConfiguredSlots.OrderByDescending(slot => _settings.AvailableDevices.First(device => device.Slot == slot).IsPermanent).Select(slot =>
         {
             var device = _settings.AvailableDevices.First(candidate => candidate.Slot == slot);
             var media = _settings.MountedMedia.FirstOrDefault(item => item.Slot == slot);
+            var associatedPath = device.MediaType == EmulationMediaType.MemoryCard ? (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == slot)?.MemoryCardPath : media?.Path;
             var model = DeviceModel(device, slot);
-            return new EmulationStorageDeviceItem(slot, device.DisplayLabel ?? slot.ToString(), device.MediaType,
-                model, media?.Path, !device.IsPermanent);
+            return new EmulationStorageDeviceItem(slot, DeviceLabel(device), device.MediaType, model, associatedPath, !device.IsPermanent, device.ConfigurationKind != EmulationStorageConfigurationKind.None,
+                device.TypeResourceKey is { } typeKey ? LocExtension.GetForModule(_moduleId, typeKey) : null,
+                device.ConfigurationKind == EmulationStorageConfigurationKind.ManagedStorage ? LocExtension.Get("Visual.Automatic") : null);
         }).ToArray();
         _view.SetDevices(rows);
         _view.SetCanAdd(_settings.AvailableDevices.Any(device => !_settings.ConfiguredSlots.Contains(device.Slot)));
@@ -188,12 +333,14 @@ internal sealed class EmulationStorageSettingsController
 
     private string DeviceModel(EmulationMediaDevice device, EmulationMediaSlot slot)
     {
+        if (device.ModelResourceKey is { } resourceKey)
+            return LocExtension.GetForModule(_moduleId, resourceKey);
         if (device.FloppyOptions is null) return device.MediaType.ToString();
         var selected = (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == slot)?.Floppy?.Model;
-        var choice = device.FloppyOptions.Models.FirstOrDefault(item => item.Value == selected)
-            ?? device.FloppyOptions.Models[0];
-        return string.IsNullOrWhiteSpace(choice.DisplayResourceKey)
-            ? choice.InvariantDisplayValue ?? choice.Value
-            : LocExtension.GetForModule(_moduleId, choice.DisplayResourceKey);
+        var choice = device.FloppyOptions.Models.FirstOrDefault(item => item.Value == selected) ?? device.FloppyOptions.Models[0];
+        return string.IsNullOrWhiteSpace(choice.DisplayResourceKey) ? choice.InvariantDisplayValue ?? choice.Value : LocExtension.GetForModule(_moduleId, choice.DisplayResourceKey);
     }
+
+    private string DeviceLabel(EmulationMediaDevice device) => device.DisplayLabelResourceKey is { } key ? LocExtension.GetForModule(_moduleId, key, device.Slot.Index + 1) : device.DisplayLabel ?? device.Slot.ToString();
+
 }

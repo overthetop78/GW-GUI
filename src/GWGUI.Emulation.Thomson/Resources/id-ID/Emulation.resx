@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.theodore.Description"><value>Mengemulasikan Thomson MO / TO.</value></data>
+  <data name="Emulation.Thomson.Start" xml:space="preserve"><value>Program dimulai</value></data>
+  <data name="Emulation.Thomson.Start.AutoRun" xml:space="preserve"><value>Mulai program yang dimuat secara otomatis</value></data>
+  <data name="Emulation.Thomson.Start.UseGameHash" xml:space="preserve"><value>Identifikasi program berdasarkan checksum</value></data>
+  <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>Tampilkan instruksi untuk memulai program</value></data>
+  <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Pencetak</value></data>
+  <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>Simpan keluaran pencetak ke suatu berkas</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>Pena cahaya</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>Kontak pena cahaya</value></data>
+</root>

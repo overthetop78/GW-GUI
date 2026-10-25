@@ -12,5 +12,7 @@ public enum GreaseweazleCommand : byte
     Select = 12,
     Deselect = 13,
     SetBusType = 14,
-    Reset = 16
+    Reset = 16,
+    GetPin = 20,
+    NoClickStep = 22
 }

@@ -14,18 +14,8 @@ public sealed class OpticalMediaInspectorPresenter(Func<string, object[], string
         ArgumentNullException.ThrowIfNull(document);
         if (document.Representation is not OpticalMediaImageRepresentation optical)
             throw new ArgumentException("An optical media representation is required.", nameof(document));
-        var tracks = optical.Tracks?.Select(track => new OpticalMediaTrack(
-            track.SessionNumber,
-            track.TrackNumber,
-            track.FirstSector,
-            track.SectorCount,
-            OpticalTrackKind.Unknown)).ToArray() ?? [];
-        return new(
-            optical.LogicalLength,
-            optical.FaceCount,
-            optical.LayerCount,
-            tracks,
-            optical.AssociatedFiles ?? []);
+        var tracks = optical.Tracks?.Select(track => new OpticalMediaTrack(track.SessionNumber, track.TrackNumber, track.FirstSector, track.SectorCount, OpticalTrackKind.Unknown)).ToArray() ?? [];
+        return new(optical.LogicalLength, optical.FaceCount, optical.LayerCount, tracks, optical.AssociatedFiles ?? []);
     }
 
     public MediaInspectorModel BuildInspectorModel(MediaImageDocument document, OpticalMediaRenderModel model, OpticalMediaTrack? track)
@@ -61,8 +51,7 @@ public sealed class OpticalMediaInspectorPresenter(Func<string, object[], string
                 entries.Add(new(Localize("Visual.LayerLabel"), layer.ToString()));
             sections.Add(new(Localize("Visual.OpticalTrackTitle"), ControlVisualConstants.InformationGlyph, entries));
 
-            var volume = document.Volumes.FirstOrDefault(item =>
-                item.Start <= track.FirstSector && item.Start + item.Length >= track.FirstSector + track.SectorCount);
+            var volume = document.Volumes.FirstOrDefault(item => item.Start <= track.FirstSector && item.Start + item.Length >= track.FirstSector + track.SectorCount);
             if (volume is not null)
             {
                 var volumeEntries = new List<MediaInspectorEntry>
@@ -76,13 +65,9 @@ public sealed class OpticalMediaInspectorPresenter(Func<string, object[], string
         }
 
         if (model.AssociatedFiles.Count > 0)
-            sections.Add(new(Localize("Visual.AssociatedFilesTitle"), ControlVisualConstants.InformationGlyph,
-                model.AssociatedFiles.Select((path, index) => new MediaInspectorEntry((index + 1).ToString(), path)).ToArray()));
+            sections.Add(new(Localize("Visual.AssociatedFilesTitle"), ControlVisualConstants.InformationGlyph, model.AssociatedFiles.Select((path, index) => new MediaInspectorEntry((index + 1).ToString(), path)).ToArray()));
 
-        return new(
-            Localize("Visual.OpticalInspectorTitle"),
-            track is null ? null : $"{Localize("Visual.SessionLabel")} {track.SessionNumber} · {Localize("Visual.TrackLabel")} {track.TrackNumber}",
-            sections);
+        return new(Localize("Visual.OpticalInspectorTitle"), track is null ? null : $"{Localize("Visual.SessionLabel")} {track.SessionNumber} · {Localize("Visual.TrackLabel")} {track.TrackNumber}", sections);
     }
 
     private string Localize(string key, params object[] arguments) => localize(key, arguments);

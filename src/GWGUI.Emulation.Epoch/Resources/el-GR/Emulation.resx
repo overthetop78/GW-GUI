@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.emuscv.Description" xml:space="preserve"><value>Εξομοίωση SUPER CASSETTE VISION κονσόλες.</value></data>
+  <data name="Emulation.Emulator.pd777.Description" xml:space="preserve"><value>Εξομοίωση CASSETTE VISION κονσόλες.</value></data>
+  <data name="Emulation.Epoch.Memory.Display" xml:space="preserve"><value>μνήμη βίντεο</value></data>
+  <data name="Emulation.Epoch.Video.Native" xml:space="preserve"><value>Κονσόλα βίντεο</value></data>
+  <data name="Emulation.Epoch.Controls.Native" xml:space="preserve"><value>Έλεγχος κονσόλας</value></data>
+  <data name="Emulation.Epoch.Setting.DisplayArea" xml:space="preserve"><value>Περιοχή εμφάνισης</value></data>
+  <data name="Emulation.Epoch.Setting.PixelAspect" xml:space="preserve"><value>Σχήμα εικονοστοιχείου</value></data>
+  <data name="Emulation.Epoch.Setting.ColorPalette" xml:space="preserve"><value>Παλέτα χρωμάτων</value></data>
+  <data name="Emulation.Epoch.Setting.RefreshRate" xml:space="preserve"><value>Ρυθμός ανανέωσης</value></data>
+  <data name="Emulation.Epoch.Setting.ShowVideoMemory" xml:space="preserve"><value>Εμφάνιση πλήρους μνήμης βίντεο</value></data>
+  <data name="Emulation.Epoch.Setting.ShowInputs" xml:space="preserve"><value>Κατάσταση ελεγκτή εμφάνισης</value></data>
+  <data name="Emulation.Epoch.Setting.ValidateFirmware" xml:space="preserve"><value>Επαλήθευση BIOS ιγ) το άθροισμα ελέγχου</value></data>
+  <data name="Emulation.Epoch.Setting.ShowKeypadAtStart" xml:space="preserve"><value>Εμφάνιση πληκτρολογίου κατά την εκκίνηση</value></data>
+  <data name="Emulation.Epoch.Setting.AnnounceCourseSwitch" xml:space="preserve"><value>Επιλογή πορείας εμφάνισης</value></data>
+  <data name="Emulation.Epoch.Value.Rectangular" xml:space="preserve"><value>Ορθογώνια</value></data>
+  <data name="Emulation.Epoch.Value.Low" xml:space="preserve"><value>Χαμηλή</value></data>
+  <data name="Emulation.Epoch.Value.High" xml:space="preserve"><value>Υψηλό</value></data>
+</root>

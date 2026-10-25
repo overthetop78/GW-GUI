@@ -3,8 +3,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 // Adapted from mGBA's MIT-licensed hq2x.fs (Lior Halphon, 2015-2023).
 internal static class FilterHqx
 {
-    public static void Sample(float[] source, int width, int height,
-        float positionX, float positionY, Span<float> result)
+    public static void Sample(float[] source, int width, int height, float positionX, float positionY, Span<float> result)
     {
         var x = (int)MathF.Floor(positionX);
         var y = (int)MathF.Floor(positionY);
@@ -48,23 +47,17 @@ internal static class FilterHqx
         {
             px = Math.Clamp(px, 0, width - 1); py = Math.Clamp(py, 0, height - 1);
             var offset = (py * width + px) * 3;
-            return new FilterColor(
-                SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset]),
-                SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 1]),
-                SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 2]));
+            return new FilterColor( SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset]), SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 1]), SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 2]));
         }
     }
 
     private static bool Different(FilterColor a, FilterColor b)
     {
         var r=a[0]-b[0]; var g=a[1]-b[1]; var bl=a[2]-b[2];
-        return MathF.Abs(.25f*(r+g+bl))>.018f || MathF.Abs(.25f*(r-bl))>.002f
-            || MathF.Abs(-.125f*r+.25f*g-.125f*bl)>.005f;
+        return MathF.Abs(.25f*(r+g+bl))>.018f || MathF.Abs(.25f*(r-bl))>.002f || MathF.Abs(-.125f*r+.25f*g-.125f*bl)>.005f;
     }
-    private static FilterColor Mix(FilterColor a,float aw,FilterColor b,float bw) =>
-        new((a[0]*aw+b[0]*bw)/(aw+bw),(a[1]*aw+b[1]*bw)/(aw+bw),(a[2]*aw+b[2]*bw)/(aw+bw));
-    private static FilterColor Mix(FilterColor a,float aw,FilterColor b,float bw,FilterColor c,float cw) =>
-        new((a[0]*aw+b[0]*bw+c[0]*cw)/(aw+bw+cw),(a[1]*aw+b[1]*bw+c[1]*cw)/(aw+bw+cw),(a[2]*aw+b[2]*bw+c[2]*cw)/(aw+bw+cw));
+    private static FilterColor Mix(FilterColor a,float aw,FilterColor b,float bw) => new((a[0]*aw+b[0]*bw)/(aw+bw),(a[1]*aw+b[1]*bw)/(aw+bw),(a[2]*aw+b[2]*bw)/(aw+bw));
+    private static FilterColor Mix(FilterColor a,float aw,FilterColor b,float bw,FilterColor c,float cw) => new((a[0]*aw+b[0]*bw+c[0]*cw)/(aw+bw+cw),(a[1]*aw+b[1]*bw+c[1]*cw)/(aw+bw+cw),(a[2]*aw+b[2]*bw+c[2]*cw)/(aw+bw+cw));
 
     internal const string OpenGlShader = """
         vec3 hqxPointAt(vec2 center, vec2 offset)

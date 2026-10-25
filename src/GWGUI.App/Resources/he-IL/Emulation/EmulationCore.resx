@@ -24,4 +24,5 @@
   <data name="Emulation.Core.Install"><value>התקן</value></data>
   <data name="Emulation.Core.InstalledBadge"><value>התקנת</value></data>
   <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>אפשרויות ליבה</value></data>
+  <data name="Emulation.Core.NameNoEmulatorAvailable"><value>בחרו חיקוי לפני יצירת מכונה זו.</value></data>
 </root>

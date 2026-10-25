@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Error.ContentNotFound" xml:space="preserve"><value>設定されたフィリップス媒体が見つかりませんでした。</value></data>
+  <data name="Emulation.Philips.Error.ContentUnsupported" xml:space="preserve"><value>選択したメディアに対応していません。</value></data>
+  <data name="Emulation.Philips.Error.CoreNotFound" xml:space="preserve"><value>必要なフィリップスコアが見つかりませんでした。</value></data>
+  <data name="Emulation.Philips.Error.CoreRejected" xml:space="preserve"><value>選択したフィリップスコアは読み込められません。</value></data>
+  <data name="Emulation.Philips.Error.Details" xml:space="preserve"><value>詳細情報: {0}</value></data>
+  <data name="Emulation.Philips.Error.FirmwareInvalid" xml:space="preserve"><value>システム ROM 無効または非互換です。</value></data>
+  <data name="Emulation.Philips.Error.FirmwareMissing" xml:space="preserve"><value>必要なフィリップスファームウェアが不足しています。</value></data>
+  <data name="Emulation.Philips.Error.HostExecutableMissing" xml:space="preserve"><value>フィリップスホストの実行可能なパスは利用できません。</value></data>
+  <data name="Emulation.Philips.Error.HostProtocolFailure" xml:space="preserve"><value>フィリップスホストとのコミュニケーションが失敗しました。</value></data>
+  <data name="Emulation.Philips.Error.OptionInvalid" xml:space="preserve"><value>フィリップスオプションには、無効な値があります。</value></data>
+  <data name="Emulation.Philips.Error.StateIncompatible" xml:space="preserve"><value>フィリップス保存状態は、現在のマシンと互換性がありません。</value></data>
+  <data name="Emulation.Philips.Error.StateInvalid" xml:space="preserve"><value>保存状態が無効です。</value></data>
+  <data name="Emulation.Philips.Error.Unexpected" xml:space="preserve"><value>予期しないフィリップスエミュレーションエラーが発生しました。</value></data>
+  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>未知の環境コマンド: {0}</value></data>
+</root>

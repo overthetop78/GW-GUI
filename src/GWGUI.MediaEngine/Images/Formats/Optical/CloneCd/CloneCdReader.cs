@@ -1,5 +1,5 @@
 using System.Collections.Frozen;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
@@ -14,12 +14,9 @@ namespace GWGUI.MediaEngine.Images.Formats.Optical.CloneCd;
 /// <summary>Reads a CloneCD descriptor, mandatory raw IMG data, and optional SUB data as one optical document.</summary>
 public sealed class CloneCdReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { OpticalImageFormatIds.CloneCd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.Optical }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { OpticalImageFormatIds.CloneCd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Optical }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
     private readonly CloneCdDescriptorReader descriptors;
 
     public CloneCdReader(CloneCdDescriptorReader? descriptors = null)
@@ -36,9 +33,7 @@ public sealed class CloneCdReader : IMediaImageReader
 
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId))
             return false;
@@ -54,9 +49,7 @@ public sealed class CloneCdReader : IMediaImageReader
         }
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var descriptor = await descriptors.ReadAsync(context.Source.PrimaryPath, cancellationToken).ConfigureAwait(false);
         var imagePath = Path.GetFullPath(Path.ChangeExtension(context.Source.PrimaryPath, DiskImageFileExtensions.Img));
@@ -89,10 +82,7 @@ public sealed class CloneCdReader : IMediaImageReader
             var indexZero = declaration.Indexes.SingleOrDefault(item => item.Number == 0);
             var storedPregap = indexZero is null ? 0 : start - indexZero.RelativeSector;
             if (storedPregap < 0) throw new InvalidDataException($"CloneCD track {declaration.Number} has INDEX 0 after INDEX 1.");
-            var session = descriptor.TocEntries
-                .Where(entry => entry.Point == declaration.Number)
-                .Select(entry => entry.SessionNumber)
-                .FirstOrDefault();
+            var session = descriptor.TocEntries.Where(entry => entry.Point == declaration.Number).Select(entry => entry.SessionNumber).FirstOrDefault();
             if (session <= 0) session = 1;
             var (userOffset, userLength) = GetUserDataWindow(declaration.Mode);
             tracks.Add(new OpticalTrackDescriptor(
@@ -114,21 +104,12 @@ public sealed class CloneCdReader : IMediaImageReader
                 subchannelSourceOffset: subchannels is null ? 0 : checked(start * CloneCdConstants.SubchannelSize),
                 subchannelBytesPerSector: subchannels is null ? 0 : CloneCdConstants.SubchannelSize,
                 storedPregapSectors: storedPregap,
-                storedPregapSourceOffset: storedPregap > 0
-                    ? checked((start - storedPregap) * CloneCdConstants.RawSectorSize)
-                    : null));
+                storedPregapSourceOffset: storedPregap > 0 ? checked((start - storedPregap) * CloneCdConstants.RawSectorSize) : null));
         }
 
         var associatedPaths = subchannels is null ? new[] { imagePath } : new[] { imagePath, subPath };
-        var source = new MediaSourceDescriptor(
-            context.Source.PrimaryPath,
-            associatedPaths,
-            context.Source.KnownLength,
-            context.Source.RequestedFormatId);
-        var representation = new OpticalMediaImageRepresentation(
-            tracks.Sum(track => checked(track.SectorCount * track.UserDataLength)),
-            tracks,
-            associatedFiles: [context.Source.PrimaryPath, .. associatedPaths]);
+        var source = new MediaSourceDescriptor(context.Source.PrimaryPath, associatedPaths, context.Source.KnownLength, context.Source.RequestedFormatId);
+        var representation = new OpticalMediaImageRepresentation(tracks.Sum(track => checked(track.SectorCount * track.UserDataLength)), tracks, associatedFiles: [context.Source.PrimaryPath, .. associatedPaths]);
         return new MediaImageDocument(
             source,
             OpticalImageFormatIds.CloneCd,
@@ -145,9 +126,7 @@ public sealed class CloneCdReader : IMediaImageReader
             });
     }
 
-    private static long GetIndexOne(CueTrackDeclaration track) =>
-        track.Indexes.SingleOrDefault(index => index.Number == 1)?.RelativeSector
-        ?? throw new InvalidDataException($"CloneCD track {track.Number} does not contain INDEX 1.");
+    private static long GetIndexOne(CueTrackDeclaration track) => track.Indexes.SingleOrDefault(index => index.Number == 1)?.RelativeSector ?? throw new InvalidDataException($"CloneCD track {track.Number} does not contain INDEX 1.");
 
     private static (int Offset, int Length) GetUserDataWindow(OpticalTrackMode mode) => mode switch
     {

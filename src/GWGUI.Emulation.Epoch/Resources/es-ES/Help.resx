@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Help.DisplayArea" xml:space="preserve"><value>Seleccione el área visible de la imagen de la consola.</value></data>
+  <data name="Emulation.Epoch.Help.PixelAspect" xml:space="preserve"><value>Seleccione píxeles rectangulares o cuadrados.</value></data>
+  <data name="Emulation.Epoch.Help.Resolution" xml:space="preserve"><value>Seleccione la resolución de renderización interna.</value></data>
+  <data name="Emulation.Epoch.Help.ColorPalette" xml:space="preserve"><value>Seleccione la paleta de color de consola.</value></data>
+  <data name="Emulation.Epoch.Help.RefreshRate" xml:space="preserve"><value>Seleccione la tasa de actualización de la consola.</value></data>
+  <data name="Emulation.Epoch.Help.ShowVideoMemory" xml:space="preserve"><value>Mostrar la memoria de vídeo más allá de la imagen de la televisión.</value></data>
+  <data name="Emulation.Epoch.Help.ShowInputs" xml:space="preserve"><value>Mostrar el estado actual del controlador sobre la imagen.</value></data>
+  <data name="Emulation.Epoch.Help.Language" xml:space="preserve"><value>Seleccione el idioma de las pantallas emuladores.</value></data>
+  <data name="Emulation.Epoch.Help.ValidateFirmware" xml:space="preserve"><value>Verificar la consola BIOS checksum antes de empezar.</value></data>
+  <data name="Emulation.Epoch.Help.ShowKeypadAtStart" xml:space="preserve"><value>Mostrar el teclado de la consola cuando la emulación comienza.</value></data>
+  <data name="Emulation.Epoch.Help.AnnounceCourseSwitch" xml:space="preserve"><value>Mostrar el curso seleccionado cuando cambie.</value></data>
+</root>

@@ -64,8 +64,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             return string.Concat(isRelative ? string.Empty : "/", string.Join("/", pathComponents.ToList()));
         }
 
-        public static async Task<Pfs3CachedBlock> MakeDirBlock(uint blocknr, uint anodenr, uint rootanodenr, uint parentnr,
-            Pfs3GlobalData g)
+        public static async Task<Pfs3CachedBlock> MakeDirBlock(uint blocknr, uint anodenr, uint rootanodenr, uint parentnr, Pfs3GlobalData g)
         {
             // struct Pfs3Canode anode;
             // struct cdirblock *blk;

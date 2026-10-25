@@ -1,5 +1,4 @@
 namespace GWGUI.App.Rendering.Emulation.Processing;
-
 internal static partial class VeldridVideoProcessingShaders
 {
     private const string FragmentHeader = """
@@ -30,7 +29,6 @@ internal static partial class VeldridVideoProcessingShaders
         layout(location=0) out vec4 fsout_Color;
 
         """;
-
     private static readonly string FragmentBody = """
         float srgbToLinear(float value)
         {
@@ -120,40 +118,22 @@ internal static partial class VeldridVideoProcessingShaders
         }
         """ + "\n" + """
         #if DISPLAY_TECHNOLOGY == 2
-        """ + "\n" + FilterFixedPixelSubpixels.Shader + FilterFixedPixelGrid.Shader
-        + FilterLcdDisplay.Shader + FilterLedBacklitLcdDisplay.Shader + FilterOledDisplay.Shader
-        + FilterFixedPixelResponse.Shader + FilterFixedPixelPersistence.Shader + "\n" + """
+        """ + "\n" + FilterFixedPixelSubpixels.Shader + FilterFixedPixelGrid.Shader + FilterLcdDisplay.Shader + FilterLedBacklitLcdDisplay.Shader + FilterOledDisplay.Shader + FilterFixedPixelResponse.Shader + FilterFixedPixelPersistence.Shader + "\n" + """
         #endif
         #if DISPLAY_TECHNOLOGY == 3
-        """ + "\n" + FilterPlasmaCellStructure.Shader + FilterPlasmaTemporalDithering.Shader
-        + FilterPlasmaLightDiffusion.Shader + FilterPlasmaPersistence.Shader
-        + FilterPlasmaBlackDepth.Shader + FilterPlasmaPhosphorIntensity.Shader
-        + FilterPlasmaGammaResponse.Shader
-        + FilterPlasmaAutomaticBrightnessLimiter.Shader + "\n" + """
+        """ + "\n" + FilterPlasmaCellStructure.Shader + FilterPlasmaTemporalDithering.Shader + FilterPlasmaLightDiffusion.Shader + FilterPlasmaPersistence.Shader + FilterPlasmaBlackDepth.Shader + FilterPlasmaPhosphorIntensity.Shader + FilterPlasmaGammaResponse.Shader + FilterPlasmaAutomaticBrightnessLimiter.Shader + "\n" + """
         #endif
         #if DISPLAY_TECHNOLOGY == 4
-        """ + "\n" + FilterVectorLineDetection.Shader + FilterVectorLineIntensity.Shader
-        + FilterVectorBeamWidth.Shader + FilterVectorBeamFocus.Shader
-        + FilterVectorHalo.Shader + FilterVectorHaloRadius.Shader
-        + FilterVectorPhosphorColor.Shader + FilterVectorPersistence.Shader + "\n" + """
+        """ + "\n" + FilterVectorLineDetection.Shader + FilterVectorLineIntensity.Shader + FilterVectorBeamWidth.Shader + FilterVectorBeamFocus.Shader + FilterVectorHalo.Shader + FilterVectorHaloRadius.Shader + FilterVectorPhosphorColor.Shader + FilterVectorPersistence.Shader + "\n" + """
         #endif
         #if DISPLAY_TECHNOLOGY == 5
-        """ + "\n" + FilterVfdEmissionThreshold.Shader + FilterVfdPhosphorIntensity.Shader
-        + FilterVfdPhosphorColor.Shader + FilterVfdGlass.Shader
-        + FilterVfdCellStructure.Shader + FilterVfdHaloRadius.Shader
-        + FilterVfdHalo.Shader + FilterVfdPersistence.Shader + "\n" + """
+        """ + "\n" + FilterVfdEmissionThreshold.Shader + FilterVfdPhosphorIntensity.Shader + FilterVfdPhosphorColor.Shader + FilterVfdGlass.Shader + FilterVfdCellStructure.Shader + FilterVfdHaloRadius.Shader + FilterVfdHalo.Shader + FilterVfdPersistence.Shader + "\n" + """
         #endif
         #if DISPLAY_TECHNOLOGY == 6
-        """ + "\n" + FilterLedMatrixCellStructure.Shader
-        + FilterLedMatrixColor.Shader + FilterLedMatrixBrightness.Shader
-        + FilterLedMatrixHalo.Shader + FilterLedMatrixBlackDepth.Shader + "\n" + """
+        """ + "\n" + FilterLedMatrixCellStructure.Shader + FilterLedMatrixColor.Shader + FilterLedMatrixBrightness.Shader + FilterLedMatrixHalo.Shader + FilterLedMatrixBlackDepth.Shader + "\n" + """
         #endif
         #if DISPLAY_TECHNOLOGY == 7
-        """ + "\n" + FilterDotMatrixCellSize.Shader + FilterDotMatrixCellGap.Shader
-        + FilterDotMatrixShape.Shader + FilterDotMatrixDotSize.Shader + FilterDotMatrixContrast.Shader
-        + FilterDotMatrixBrightness.Shader + FilterDotMatrixPalette.Shader
-        + FilterDotMatrixHalo.Shader + FilterDotMatrixResponse.Shader
-        + FilterDotMatrixPersistence.Shader + "\n" + """
+        """ + "\n" + FilterDotMatrixCellSize.Shader + FilterDotMatrixCellGap.Shader + FilterDotMatrixShape.Shader + FilterDotMatrixDotSize.Shader + FilterDotMatrixContrast.Shader + FilterDotMatrixBrightness.Shader + FilterDotMatrixPalette.Shader + FilterDotMatrixHalo.Shader + FilterDotMatrixResponse.Shader + FilterDotMatrixPersistence.Shader + "\n" + """
         #endif
         #if DISPLAY_TECHNOLOGY == 8
         """ + "\n" + FilterSegmentDisplay.VeldridShader + "\n" + """
@@ -390,11 +370,7 @@ internal static partial class VeldridVideoProcessingShaders
             if(t==10)c=projectionPixel(uv);
         #endif
             return clamp(c,0.0,1.0);}
-        """ + SignalConnectionRgbScart.Shader + SignalConnectionComponent.Shader
-        + SignalConnectionSVideo.Shader + SignalConnectionComposite.Shader
-        + SignalConnectionRf.Shader + SignalStandardPal.Shader + SignalStandardNtsc.Shader
-        + SignalStandardSecam.Shader + FilterGrain.Shader + FilterVhs.Shader
-        + FilterChromaticAberration.Shader + FilterBloom.Shader + FilterSepia.Shader + """
+        """ + SignalConnectionRgbScart.Shader + SignalConnectionComponent.Shader + SignalConnectionSVideo.Shader + SignalConnectionComposite.Shader + SignalConnectionRf.Shader + SignalStandardPal.Shader + SignalStandardNtsc.Shader + SignalStandardSecam.Shader + FilterGrain.Shader + FilterVhs.Shader + FilterChromaticAberration.Shader + FilterBloom.Shader + FilterSepia.Shader + """
         vec3 signalEffects(vec3 color,vec2 uv)
         {
             vec2 stepSize=1.0/max(Parameters.Processing.zw,vec2(1.0));
@@ -423,9 +399,7 @@ internal static partial class VeldridVideoProcessingShaders
             c=filterGrain(c,Parameters.Stylistic.x,hash(floor(uv*Parameters.Output.xy)+Parameters.General.z)*2.0-1.0);
             return clamp(c,0.0,1.0);
         }
-        """ + FilterGeneralPersistence.Shader + FilterMotionBlur.Shader
-        + FilterFlicker.Shader + FilterInterlacing.Shader
-        + FilterBlackFrameInsertion.Shader + """
+        """ + FilterGeneralPersistence.Shader + FilterMotionBlur.Shader + FilterFlicker.Shader + FilterInterlacing.Shader + FilterBlackFrameInsertion.Shader + """
         void main()
         {
             vec3 c=displayEffect(restored(fsin_TexCoord),fsin_TexCoord);

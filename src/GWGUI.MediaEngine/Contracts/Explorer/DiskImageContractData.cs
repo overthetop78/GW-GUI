@@ -3,18 +3,14 @@ using FileSystemEntryKind = GWGUI.MediaEngine.Enums.FileSystemEntryKind;
 using GWGUI.MediaEngine.Interfaces;
 using GWGUI.MediaEngine.Images.Reading.Metadata;
 using GWGUI.MediaEngine.Contracts.Explorer;
-
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
-
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Contracts.Explorer;
-
 /// <summary>Construit le contrat public complet depuis les modèles internes déjà validés.</summary>
 internal static class DiskImageContractData
 {
     private static readonly IReadOnlyDictionary<string, string> EmptyParameters = new Dictionary<string, string>();
-
     public static IMetadonneesImage CreateMetadata(string sourcePath, SectorImage image, ScpImage? scp)
     {
         if (scp is not null)
@@ -39,26 +35,11 @@ internal static class DiskImageContractData
                 header.Checksum.ToString("X8", System.Globalization.CultureInfo.InvariantCulture),
                 null,
                 scp.ChecksumValid,
-                properties);
+                properties
+            );
         }
 
-        return new MetadataData(
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            image.Cylinders * image.Heads,
-            image.Heads,
-            false,
-            null,
-            null,
-            null,
-            new Dictionary<string, string>
-            {
-                ["extension"] = Path.GetExtension(sourcePath)
-            });
+        return new MetadataData(null, null, null, null, null, null, image.Cylinders * image.Heads, image.Heads, false, null, null, null, new Dictionary<string, string> { ["extension"] = Path.GetExtension(sourcePath) });
     }
 
     public static IReadOnlyList<IPiste> CreateTracks(SectorImage image, ScpImage? scp)
@@ -68,9 +49,7 @@ internal static class DiskImageContractData
             return scp.Tracks.Select(track => FromScpTrack(track, scp.Header.ResolutionNanoseconds)).ToArray();
         }
 
-        return Enumerable.Range(0, image.Cylinders)
-            .SelectMany(cylinder => Enumerable.Range(0, image.Heads).Select(head => FromSectorTrack(image, cylinder, head)))
-            .ToArray();
+        return Enumerable.Range(0, image.Cylinders).SelectMany(cylinder => Enumerable.Range(0, image.Heads).Select(head => FromSectorTrack(image, cylinder, head))).ToArray();
     }
 
     public static IPiste FromScpTrack(ScpTrack track, int resolutionNanoseconds)
@@ -84,19 +63,15 @@ internal static class DiskImageContractData
         DiskImageMetadata metadata,
         bool fileSystemRecognized,
         IReadOnlyList<ExploredFileSystem> fileSystems,
-        IReadOnlyList<SectorImage> decodedImages)
+        IReadOnlyList<SectorImage> decodedImages
+    )
     {
         var resolver = new DiskSystemResolver();
         var results = new List<IFormatDetecte>();
         var represented = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-
         foreach (var fileSystem in fileSystems)
         {
-            results.Add(CreateFormat(
-                fileSystem.Image.WithFormatId(fileSystem.FormatId),
-                fileSystem.Volume,
-                metadata,
-                resolver));
+            results.Add(CreateFormat(fileSystem.Image.WithFormatId(fileSystem.FormatId), fileSystem.Volume, metadata, resolver));
             represented.Add(fileSystem.FormatId);
         }
 
@@ -120,24 +95,17 @@ internal static class DiskImageContractData
 
     public static IReadOnlyList<IDiagnostic> CreateDiagnostics(IEnumerable<string> warnings)
     {
-        return warnings.Select(warning =>
-            (IDiagnostic)new DiagnosticData("warning", warning, EmptyParameters, null, null, null, null)).ToArray();
+        return warnings.Select(warning => (IDiagnostic)new DiagnosticData("warning", warning, EmptyParameters, null, null, null, null)).ToArray();
     }
 
-    private static IFormatDetecte CreateFormat(
-        SectorImage image,
-        FileSystemVolume? volume,
-        DiskImageMetadata metadata,
-        DiskSystemResolver resolver)
+    private static IFormatDetecte CreateFormat(SectorImage image, FileSystemVolume? volume, DiskImageMetadata metadata, DiskSystemResolver resolver)
     {
         var sectors = Enumerable.Range(0, image.BlockCount).Select(logicalBlock => CreateSector(image, logicalBlock)).ToArray();
         var entries = volume?.Entries.Select(CreateEntry).ToArray() ?? [];
         var validCount = sectors.Count(sector => sector.Etat == "available" && sector.DonneesValides != false);
         var invalidCount = sectors.Count(sector => sector.Etat == "invalid");
         long? freeBytes = volume is { FreeSpaceKnown: true } ? volume.FreeBytes : null;
-        long? usedBytes = volume is { FreeSpaceKnown: true }
-            ? Math.Max(0, volume.Capacity - volume.FreeBytes)
-            : null;
+        long? usedBytes = volume is { FreeSpaceKnown: true } ? Math.Max(0, volume.Capacity - volume.FreeBytes) : null;
         return new FormatData(
             resolver.ResolveId(image.FormatId) ?? string.Empty,
             image.FormatId,
@@ -170,7 +138,8 @@ internal static class DiskImageContractData
             metadata.Content.ModificationId,
             metadata.ProtectionId,
             entries,
-            CreateDiagnostics(volume?.Warnings ?? []));
+            CreateDiagnostics(volume?.Warnings ?? [])
+        );
     }
 
     private static ISecteur CreateSector(SectorImage image, int logicalBlock)
@@ -183,20 +152,7 @@ internal static class DiskImageContractData
 
         var state = block.IntegrityValid == false ? "invalid" : "available";
         var tag = block.Tag is null ? null : new ReadOnlyMemory<byte>(block.Tag.ToArray());
-        return new SectorData(
-            block.LogicalBlock,
-            block.Address.Cylinder,
-            block.Address.Head,
-            block.Address.Number,
-            block.Data.Count,
-            state,
-            block.Data.ToArray(),
-            null,
-            block.IntegrityValid,
-            tag,
-            block.FormatCode,
-            block.DiagnosticCode,
-            [block.Revolution]);
+        return new SectorData( block.LogicalBlock, block.Address.Cylinder, block.Address.Head, block.Address.Number, block.Data.Count, state, block.Data.ToArray(), null, block.IntegrityValid, tag, block.FormatCode, block.DiagnosticCode, [block.Revolution] );
     }
 
     private static IEntree CreateEntry(FileSystemEntry entry)
@@ -221,16 +177,13 @@ internal static class DiskImageContractData
             entry.LinkTarget,
             data,
             entry.Children.Select(CreateEntry).ToArray(),
-            CreateDiagnostics(entry.Diagnostics));
+            CreateDiagnostics(entry.Diagnostics)
+        );
     }
 
     private static IPiste FromSectorTrack(SectorImage image, int cylinder, int head)
     {
-        var sectors = image.AvailableBlocks
-            .Where(block => block.Address.Cylinder == cylinder && block.Address.Head == head)
-            .OrderBy(block => block.Address.Number)
-            .Select(block => (ISecteurSource)new SourceSectorData(block.Address.Number, block.Data.Count, block.Data.ToArray()))
-            .ToArray();
+        var sectors = image.AvailableBlocks.Where(block => block.Address.Cylinder == cylinder && block.Address.Head == head).OrderBy(block => block.Address.Number).Select(block => (ISecteurSource)new SourceSectorData(block.Address.Number, block.Data.Count, block.Data.ToArray())).ToArray();
         return new TrackData(null, cylinder, head, [], sectors);
     }
 
@@ -250,16 +203,99 @@ internal static class DiskImageContractData
 
     private static string EncodingId(string formatId)
     {
-        if (formatId.StartsWith("amiga.", StringComparison.OrdinalIgnoreCase)) return "amiga-mfm";
-        if (formatId.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase) || formatId.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase)) return "ibm-mfm";
+        if (formatId.StartsWith("amiga.", StringComparison.OrdinalIgnoreCase))
+            return "amiga-mfm";
+        if (formatId.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase) || formatId.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase))
+            return "ibm-mfm";
         return string.Empty;
     }
 
-    private sealed record MetadataData(string? Signature, string? TypeDisquette, int? ResolutionNanosecondes, int? NombreRevolutions, int? PremierePiste, int? DernierePiste, int NombrePistes, int? NombreFaces, bool ChecksumPresent, string? ChecksumDeclare, string? ChecksumCalcule, bool? ChecksumValide, IReadOnlyDictionary<string, string> ProprietesFormat) : IMetadonneesImage;
+    private sealed record MetadataData(
+        string? Signature,
+        string? TypeDisquette,
+        int? ResolutionNanosecondes,
+        int? NombreRevolutions,
+        int? PremierePiste,
+        int? DernierePiste,
+        int NombrePistes,
+        int? NombreFaces,
+        bool ChecksumPresent,
+        string? ChecksumDeclare,
+        string? ChecksumCalcule,
+        bool? ChecksumValide,
+        IReadOnlyDictionary<string, string> ProprietesFormat
+    ) : IMetadonneesImage;
     private sealed record TrackData(int? NumeroSource, int Cylindre, int Face, IReadOnlyList<IRevolution> Revolutions, IReadOnlyList<ISecteurSource> SecteursSource) : IPiste;
     private sealed record SourceSectorData(int Numero, int Taille, ReadOnlyMemory<byte> Donnees) : ISecteurSource;
-    private sealed record FormatData(string MachineId, string FormatId, string Encodage, int Cylindres, int Faces, int? SecteursParPiste, int? TailleSecteur, long CapaciteOctets, int NombreSecteursValides, int NombreSecteursInvalides, int NombreSecteursAbsents, IReadOnlyList<ISecteur> Secteurs, string? SystemeFichiers, string? NomVolume, long? CapaciteVolume, long? EspaceUtilise, long? EspaceLibre, DateTimeOffset? CreationVolume, DateTimeOffset? ModificationVolume, IReadOnlyList<string> AttributsVolume, bool? Amorcable, int? NumeroDisque, int? NombreDisques, string? OrigineNumeroDisque, int NombreEntrees, string? Organisation, string? Chargeur, IReadOnlyList<string> Compactages, string? Crack, string? Protection, IReadOnlyList<IEntree> Entrees, IReadOnlyList<IDiagnostic> Diagnostics) : IFormatDetecte;
-    private sealed record SectorData(int BlocLogique, int Cylindre, int Face, int Numero, int Taille, string Etat, ReadOnlyMemory<byte> Donnees, bool? EnteteValide, bool? DonneesValides, ReadOnlyMemory<byte>? Tag, byte? CodeFormat, byte? CodeDiagnostic, IReadOnlyList<int> Revolutions) : ISecteur;
-    private sealed record EntryData(string Nom, string Type, string? TypeNatifId, long Taille, long? TailleOccupee, DateTimeOffset? Creation, DateTimeOffset? Modification, DateTimeOffset? Acces, string? Commentaire, IReadOnlyList<string> Attributs, uint? AttributsBruts, long? ReferenceStockage, bool MetadonneesValides, bool? DonneesValides, bool NomSynthetique, string? CibleLien, ReadOnlyMemory<byte>? Donnees, IReadOnlyList<IEntree> Enfants, IReadOnlyList<IDiagnostic> Diagnostics) : IEntree;
+    private sealed record FormatData(
+        string MachineId,
+        string FormatId,
+        string Encodage,
+        int Cylindres,
+        int Faces,
+        int? SecteursParPiste,
+        int? TailleSecteur,
+        long CapaciteOctets,
+        int NombreSecteursValides,
+        int NombreSecteursInvalides,
+        int NombreSecteursAbsents,
+        IReadOnlyList<ISecteur> Secteurs,
+        string? SystemeFichiers,
+        string? NomVolume,
+        long? CapaciteVolume,
+        long? EspaceUtilise,
+        long? EspaceLibre,
+        DateTimeOffset? CreationVolume,
+        DateTimeOffset? ModificationVolume,
+        IReadOnlyList<string> AttributsVolume,
+        bool? Amorcable,
+        int? NumeroDisque,
+        int? NombreDisques,
+        string? OrigineNumeroDisque,
+        int NombreEntrees,
+        string? Organisation,
+        string? Chargeur,
+        IReadOnlyList<string> Compactages,
+        string? Crack,
+        string? Protection,
+        IReadOnlyList<IEntree> Entrees,
+        IReadOnlyList<IDiagnostic> Diagnostics
+    ) : IFormatDetecte;
+    private sealed record SectorData(
+        int BlocLogique,
+        int Cylindre,
+        int Face,
+        int Numero,
+        int Taille,
+        string Etat,
+        ReadOnlyMemory<byte> Donnees,
+        bool? EnteteValide,
+        bool? DonneesValides,
+        ReadOnlyMemory<byte>? Tag,
+        byte? CodeFormat,
+        byte? CodeDiagnostic,
+        IReadOnlyList<int> Revolutions
+    ) : ISecteur;
+    private sealed record EntryData(
+        string Nom,
+        string Type,
+        string? TypeNatifId,
+        long Taille,
+        long? TailleOccupee,
+        DateTimeOffset? Creation,
+        DateTimeOffset? Modification,
+        DateTimeOffset? Acces,
+        string? Commentaire,
+        IReadOnlyList<string> Attributs,
+        uint? AttributsBruts,
+        long? ReferenceStockage,
+        bool MetadonneesValides,
+        bool? DonneesValides,
+        bool NomSynthetique,
+        string? CibleLien,
+        ReadOnlyMemory<byte>? Donnees,
+        IReadOnlyList<IEntree> Enfants,
+        IReadOnlyList<IDiagnostic> Diagnostics
+    ) : IEntree;
     private sealed record DiagnosticData(string Niveau, string Code, IReadOnlyDictionary<string, string> Parametres, int? Cylindre, int? Face, int? Revolution, int? Secteur) : IDiagnostic;
 }

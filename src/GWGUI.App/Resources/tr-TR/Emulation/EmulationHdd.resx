@@ -15,5 +15,5 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Bir işletim sistemi olmadan boş bir ham disk oluşturun. Emated makine içindeki disk aletleri kullanarak hazırlayın ve formatlayın.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Disk hazırlama</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Blank (gerekli)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Biçimlendirme, işletim sistemi içermeyen boş bir birim oluşturur. Atari HDD&apos;den önyükleme için ayrıca emüle edilen makine içinden yüklenmiş uyumlu bir disk sürücüsü gerekir. Sıkıştırılmış görüntülere yapılan yazma işlemleri çıkarılmış bir kopyaya yönlendirilebilir.</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Biçimlendirme, işletim sistemi içermeyen boş bir birim oluşturur. Atari HDD'den önyükleme için ayrıca emüle edilen makine içinden yüklenmiş uyumlu bir disk sürücüsü gerekir. Sıkıştırılmış görüntülere yapılan yazma işlemleri çıkarılmış bir kopyaya yönlendirilebilir.</value></data>
 </root>

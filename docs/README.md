@@ -17,6 +17,7 @@ différées et les seules tâches encore ouvertes.
 - [Images de disque dur](project/hard-disk-images.md)
 - [Catalogue des formats de disque dur](project/hard-disk-format-catalog.md)
 - [Fichiers de plus de 500 lignes](project/large-source-files.md)
+- [Intégration du module d’émulation Amstrad](project/amstrad-emulation.md)
 
 ## Architecture actuelle
 

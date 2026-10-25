@@ -11,8 +11,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             var blockBytes = new byte[g.RootBlock.ReservedBlksize];
             if (rootblockextension.BlockBytes != null)
             {
-                Array.Copy(rootblockextension.BlockBytes, 0, blockBytes, 0,
-                    Math.Min(rootblockextension.BlockBytes.Length, g.RootBlock.ReservedBlksize));
+                Array.Copy(rootblockextension.BlockBytes, 0, blockBytes, 0, Math.Min(rootblockextension.BlockBytes.Length, g.RootBlock.ReservedBlksize));
             }
 
             BigEndianConverter.ConvertUInt16ToBytes(Pfs3Constants.EXTENSIONID, blockBytes, 0); // 0

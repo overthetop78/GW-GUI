@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Hoystick Atari</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>keypad numerik</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed"><value>Kecepatan gerakan kayuh</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton"><value>Sementara tombol api ditahan</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways"><value>Selalu</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility"><value>Kompabilitas controller</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity"><value>Sensitivitas digital</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity"><value>Sensitivitas analog</value></data>
+  <data name="Emulation.Atari.Controller.DualStick"><value>Dua joysticks digunakan bersama</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts"><value>Port swap</value></data>
+</root>

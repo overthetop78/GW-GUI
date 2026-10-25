@@ -7,8 +7,7 @@ internal sealed class FilterInterlacing
     private int _height;
     private long _sequence;
 
-    internal void ApplyFieldWeave(float[] colors, int sourceWidth, int sourceHeight,
-        long sequence, bool enabled, int visibility)
+    internal void ApplyFieldWeave(float[] colors, int sourceWidth, int sourceHeight, long sequence, bool enabled, int visibility)
     {
         if (!enabled || visibility <= 0)
         {
@@ -16,8 +15,7 @@ internal sealed class FilterInterlacing
             return;
         }
         var amount = Math.Clamp(visibility / 100f, 0f, 1f);
-        var compatible = _history is not null && _width == sourceWidth && _height == sourceHeight
-            && sequence > _sequence;
+        var compatible = _history is not null && _width == sourceWidth && _height == sourceHeight && sequence > _sequence;
         var current = colors.ToArray();
         var inactiveParity = (int)(sequence & 1);
         if (compatible)
@@ -27,12 +25,9 @@ internal sealed class FilterInterlacing
             for (var sourceX = 0; sourceX < sourceWidth; sourceX++)
             {
                 var offset = (sourceY * sourceWidth + sourceX) * 3;
-                colors[offset] = (colors[offset] * (1f - amount) + _history![offset] * amount)
-                    * fieldBrightness;
-                colors[offset + 1] = (colors[offset + 1] * (1f - amount) + _history[offset + 1] * amount)
-                    * fieldBrightness;
-                colors[offset + 2] = (colors[offset + 2] * (1f - amount) + _history[offset + 2] * amount)
-                    * fieldBrightness;
+                colors[offset] = (colors[offset] * (1f - amount) + _history![offset] * amount) * fieldBrightness;
+                colors[offset + 1] = (colors[offset + 1] * (1f - amount) + _history[offset + 1] * amount) * fieldBrightness;
+                colors[offset + 2] = (colors[offset + 2] * (1f - amount) + _history[offset + 2] * amount) * fieldBrightness;
             }
         }
         _history = current;

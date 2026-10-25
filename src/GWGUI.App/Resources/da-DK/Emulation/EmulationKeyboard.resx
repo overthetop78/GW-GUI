@@ -12,4 +12,5 @@
   <data name="Emulation.Keyboard.Priority.Description"><value>Genveje i GW GUI og Windows forbliver aktive og opfanges ikke af maskinen.</value></data>
   <data name="Emulation.Keyboard.EmulatedKey"><value>Maskintast</value></data>
   <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Bogstaver, tal og almindelige ændringstaster sendes direkte. Kun Amiga-funktions- og specialtaster skal tilknyttes her.</value></data>
+  <data name="Emulation.Keyboard.Modifier.Shift"><value>Skift</value></data>
 </root>

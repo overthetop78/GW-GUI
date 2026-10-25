@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound"><value>Nie znaleziono skonfigurowanego medium.</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported"><value>Maszyna nie obsługuje wybranego medium.</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound"><value>Nie znaleziono wymaganego rdzenia emulacyjnego.</value></data>
+  <data name="Emulation.Example.Error.CoreRejected"><value>Wybrany rdzeń emulacji nie mógł być wczytany.</value></data>
+  <data name="Emulation.Example.Error.Details"><value>Szczegóły: {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid"><value>Oprogramowanie firmowe jest nieprawidłowe lub niezgodne.</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing"><value>Brakuje wymaganego oprogramowania firmowego.</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing"><value>Ścieżka do programu emulacyjnego hosta jest niedostępna.</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure"><value>Komunikacja z hostem emulacji nie powiodła się.</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid"><value>Opcja ma niepoprawną wartość.</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible"><value>Zapisany stan jest niezgodny z obecną maszyną.</value></data>
+  <data name="Emulation.Example.Error.StateInvalid"><value>Zapisany stan jest niepoprawny.</value></data>
+  <data name="Emulation.Example.Error.Unexpected"><value>Wystąpił nieoczekiwany błąd emulacyjny.</value></data>
+</root>

@@ -12,10 +12,8 @@ namespace GWGUI.MediaEngine.Images.Formats.HardDisk.Raw;
 /// <summary>Writes a complete block representation as a headerless hard disk image.</summary>
 public sealed class RawHardDiskWriter : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { HardDiskImageFormatIds.Raw }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { HardDiskImageFormatIds.Raw }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
     public RawHardDiskWriter(IAtomicImageFileWriter? files = null)
@@ -42,47 +40,21 @@ public sealed class RawHardDiskWriter : IMediaImageWriter
             || document.Representation is not BlockMediaImageRepresentation blocks)
             return false;
 
-        return HasCompleteReadableCoverage(blocks);
+        return blocks.Capacity > 0 && RawHardDiskFormat.IsLengthCompatible(blocks.Capacity, blocks.LogicalBlockSize) && blocks.HasCompleteReadableCoverage();
     }
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!CanWrite(document, targetFormatId, extension)
             || document.Representation is not BlockMediaImageRepresentation blocks)
             throw new InvalidDataException("The media document cannot be written as a complete raw hard disk image.");
 
-        await files.WriteAsync(
-            outputPath,
-            (output, token) => WriteRangesAsync(blocks, output, token),
-            cancellationToken).ConfigureAwait(false);
+        await files.WriteAsync(outputPath, (output, token) => WriteRangesAsync(blocks, output, token), cancellationToken).ConfigureAwait(false);
         return [outputPath];
     }
 
-    private static bool HasCompleteReadableCoverage(BlockMediaImageRepresentation blocks)
-    {
-        if (blocks.Capacity <= 0 || !RawHardDiskFormat.IsLengthCompatible(blocks.Capacity, blocks.LogicalBlockSize))
-            return false;
-
-        long cursor = 0;
-        foreach (var range in blocks.Ranges.OrderBy(range => range.Address))
-        {
-            if (range.Address != cursor || range.Kind == MediaDataRangeKind.Unavailable)
-                return false;
-            cursor = checked(cursor + range.Length);
-        }
-
-        return cursor == blocks.Capacity;
-    }
-
-    private static async Task WriteRangesAsync(
-        BlockMediaImageRepresentation blocks,
-        Stream output,
-        CancellationToken cancellationToken)
+    private static async Task WriteRangesAsync(BlockMediaImageRepresentation blocks, Stream output, CancellationToken cancellationToken)
     {
         var buffer = new byte[64 * DataSizeConstants.BytesPerKibibyte];
         foreach (var range in blocks.Ranges.OrderBy(range => range.Address))
@@ -95,10 +67,7 @@ public sealed class RawHardDiskWriter : IMediaImageWriter
                 var destination = buffer.AsMemory(0, count);
                 if (range.Kind == MediaDataRangeKind.Stored)
                 {
-                    await range.Source!.ReadExactlyAsync(
-                        checked(range.SourceOffset + written),
-                        destination,
-                        cancellationToken).ConfigureAwait(false);
+                    await range.Source!.ReadExactlyAsync(checked(range.SourceOffset + written), destination, cancellationToken).ConfigureAwait(false);
                 }
                 else
                 {

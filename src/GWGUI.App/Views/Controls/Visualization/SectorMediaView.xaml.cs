@@ -76,8 +76,7 @@ public partial class SectorMediaView : UserControl, IMediaVisualizationView
     public void SelectElement(int surface, long position)
     {
         if (surface is < 0 or > 1 || _model?.Surfaces.All(item => item.Index != surface) != false) return;
-        var sector = _model.Surfaces.First(item => item.Index == surface).Tracks
-            .FirstOrDefault(track => track.Cylinder == position)?.Sectors.FirstOrDefault();
+        var sector = _model.Surfaces.First(item => item.Index == surface).Tracks.FirstOrDefault(track => track.Cylinder == position)?.Sectors.FirstOrDefault();
         _selectedPositions[surface] = sector?.Position;
         UpdateSelectionLabel(surface, sector);
         CanvasFor(surface).InvalidateVisual();
@@ -111,16 +110,7 @@ public partial class SectorMediaView : UserControl, IMediaVisualizationView
         var scaleY = e.Info.Height / Math.Max(1, CanvasFor(surface).ActualHeight);
         e.Surface.Canvas.Save();
         e.Surface.Canvas.Translate((float)(_pan[surface].X * scaleX), (float)(_pan[surface].Y * scaleY));
-        _renderer.Render(
-            e.Surface.Canvas,
-            _model,
-            surface,
-            _descriptor.Direction,
-            _selectedPositions[surface],
-            e.Info.Width,
-            e.Info.Height,
-            _zooms[surface],
-            _revealedTracks);
+        _renderer.Render(e.Surface.Canvas, _model, surface, _descriptor.Direction, _selectedPositions[surface], e.Info.Width, e.Info.Height, _zooms[surface], _revealedTracks);
         e.Surface.Canvas.Restore();
     }
 
@@ -170,20 +160,8 @@ public partial class SectorMediaView : UserControl, IMediaVisualizationView
         var renderSize = _renderSizes[surface];
         var renderWidth = renderSize.Width > 0 ? renderSize.Width : Math.Max(1, (int)Math.Round(canvas.ActualWidth));
         var renderHeight = renderSize.Height > 0 ? renderSize.Height : Math.Max(1, (int)Math.Round(canvas.ActualHeight));
-        var point = MapPointerToRender(
-            new Point(pointer.X - _pan[surface].X, pointer.Y - _pan[surface].Y),
-            canvas.ActualWidth,
-            canvas.ActualHeight,
-            renderWidth,
-            renderHeight);
-        var sector = _renderer.HitTest(
-            _model,
-            surface,
-            _descriptor.Direction,
-            renderWidth,
-            renderHeight,
-            point,
-            _zooms[surface]);
+        var point = MapPointerToRender(new Point(pointer.X - _pan[surface].X, pointer.Y - _pan[surface].Y), canvas.ActualWidth, canvas.ActualHeight, renderWidth, renderHeight);
+        var sector = _renderer.HitTest(_model, surface, _descriptor.Direction, renderWidth, renderHeight, point, _zooms[surface]);
         if (sector is null) return;
         _selectedPositions[surface] = sector.Position;
         UpdateSelectionLabel(surface, sector);
@@ -197,9 +175,7 @@ public partial class SectorMediaView : UserControl, IMediaVisualizationView
         var canvas = CanvasFor(surface);
         var maxX = Math.Max(0, canvas.ActualWidth * (_zooms[surface] - 1) / 2);
         var maxY = Math.Max(0, canvas.ActualHeight * (_zooms[surface] - 1) / 2);
-        _pan[surface] = new Point(
-            Math.Clamp(_pan[surface].X + deltaX, -maxX, maxX),
-            Math.Clamp(_pan[surface].Y + deltaY, -maxY, maxY));
+        _pan[surface] = new Point(Math.Clamp(_pan[surface].X + deltaX, -maxX, maxX), Math.Clamp(_pan[surface].Y + deltaY, -maxY, maxY));
         canvas.InvalidateVisual();
     }
 
@@ -256,15 +232,9 @@ public partial class SectorMediaView : UserControl, IMediaVisualizationView
     private Button ResetButtonFor(int surface) => surface == 0 ? ResetZoom0Button : ResetZoom1Button;
     private TextBlock SelectionLabelFor(int surface) => surface == 0 ? Selection0Label : Selection1Label;
 
-    private static int SurfaceFor(object? source) => source is FrameworkElement { Tag: string text }
-        && int.TryParse(text, out var surface) ? surface : -1;
+    private static int SurfaceFor(object? source) => source is FrameworkElement { Tag: string text } && int.TryParse(text, out var surface) ? surface : -1;
 
-    internal static SKPoint MapPointerToRender(
-        Point point,
-        double actualWidth,
-        double actualHeight,
-        int renderWidth,
-        int renderHeight)
+    internal static SKPoint MapPointerToRender(Point point, double actualWidth, double actualHeight, int renderWidth, int renderHeight)
     {
         var width = renderWidth > 0 ? renderWidth : Math.Max(1, (int)Math.Round(actualWidth));
         var height = renderHeight > 0 ? renderHeight : Math.Max(1, (int)Math.Round(actualHeight));

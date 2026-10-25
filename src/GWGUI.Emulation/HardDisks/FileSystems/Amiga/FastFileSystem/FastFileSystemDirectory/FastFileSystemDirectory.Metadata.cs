@@ -104,9 +104,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
                 throw new FileSystemException($"Invalid entry secType '{entryBlock.SecType}'");
             }
 
-            entryBlock.Comment = comment.Length > FastFileSystemConstants.MAXCMMTLEN
-                ? comment.Substring(0, FastFileSystemConstants.MAXCMMTLEN)
-                : comment;
+            entryBlock.Comment = comment.Length > FastFileSystemConstants.MAXCMMTLEN ? comment.Substring(0, FastFileSystemConstants.MAXCMMTLEN) : comment;
             await WriteEntryBlock(volume, nSect, entryBlock);
 
             if (volume.UseDirCache)

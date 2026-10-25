@@ -5,13 +5,7 @@ namespace GWGUI.MediaEngine.Contracts;
 /// <summary>Contains the validated CloneCD descriptor structure required to expose its raw image.</summary>
 public sealed class CloneCdDescriptor
 {
-    public CloneCdDescriptor(
-        int version,
-        int sessionCount,
-        string? catalogNumber,
-        IReadOnlyList<CloneCdTocEntry> tocEntries,
-        IReadOnlyList<CueTrackDeclaration> tracks,
-        IReadOnlyDictionary<int, IReadOnlyDictionary<string, int>> sessions)
+    public CloneCdDescriptor(int version, int sessionCount, string? catalogNumber, IReadOnlyList<CloneCdTocEntry> tocEntries, IReadOnlyList<CueTrackDeclaration> tracks, IReadOnlyDictionary<int, IReadOnlyDictionary<string, int>> sessions)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(version);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(sessionCount);
@@ -28,10 +22,7 @@ public sealed class CloneCdDescriptor
         TocEntries = new ReadOnlyCollection<CloneCdTocEntry>(tocEntries.ToArray());
         Tracks = new ReadOnlyCollection<CueTrackDeclaration>(tracks.ToArray());
         Sessions = new ReadOnlyDictionary<int, IReadOnlyDictionary<string, int>>(
-            sessions.ToDictionary(
-                pair => pair.Key,
-                pair => (IReadOnlyDictionary<string, int>)new ReadOnlyDictionary<string, int>(
-                    new Dictionary<string, int>(pair.Value, StringComparer.OrdinalIgnoreCase))));
+            sessions.ToDictionary(pair => pair.Key, pair => (IReadOnlyDictionary<string, int>)new ReadOnlyDictionary<string, int>(new Dictionary<string, int>(pair.Value, StringComparer.OrdinalIgnoreCase))));
     }
 
     public int Version { get; }

@@ -31,7 +31,7 @@
   <data name="Visual.StructureData"><value>Dati decodificati</value></data>
   <data name="Visual.StructureAnomaly"><value>Cancellato/anomalia</value></data>
   <data name="Visual.AnalysedRevolution"><value>Analisi basata sulla rivoluzione {0}.</value></data>
-  <data name="Visual.BitOffset"><value>po&apos; {0:N0}</value></data>
+  <data name="Visual.BitOffset"><value>po' {0:N0}</value></data>
   <data name="Visual.SectorDetail"><value>Settore C{0} H{1} R{2} · {3} byte · {4} {5}</value></data>
   <data name="Visual.CrcValid"><value>valido</value></data>
   <data name="Visual.CrcInvalid"><value>non valido</value></data>
@@ -47,7 +47,7 @@
   <data name="Visual.StructureKind.DataAddressMark"><value>Dati di settore</value></data>
   <data name="Visual.StructureKind.DeletedDataAddressMark"><value>Dati del settore cancellati</value></data>
   <data name="Visual.StructureKind.AmigaSync"><value>Amiga sincronizzazione</value></data>
-  <data name="Visual.StructureKind.AppleAddress"><value>Prologo dell&apos;indirizzo Apple</value></data>
+  <data name="Visual.StructureKind.AppleAddress"><value>Prologo dell'indirizzo Apple</value></data>
   <data name="Visual.StructureKind.AppleData"><value>Prologo dei dati Apple</value></data>
   <data name="Visual.StructureKind.CommodoreSync"><value>Commodore sincronizzazione</value></data>
   <data name="Visual.StructureKind.CommodoreHeader"><value>Commodore intestazione</value></data>
@@ -68,9 +68,9 @@
   <data name="Visual.StructuresTitle"><value>Strutture rilevate</value></data>
   <data name="Visual.SectorsTitle"><value>Settori</value></data>
   <data name="Visual.TransitionsUnit"><value>transizioni</value></data>
-  <data name="Visual.OpenImage"><value>Apri un&apos;immagine disco...</value></data>
-  <data name="Visual.DetachInspector"><value>Stacca l&apos;ispettore</value></data>
-  <data name="Visual.AttachInspector"><value>Attacca l&apos;ispettore</value></data>
+  <data name="Visual.OpenImage"><value>Apri un'immagine disco...</value></data>
+  <data name="Visual.DetachInspector"><value>Stacca l'ispettore</value></data>
+  <data name="Visual.AttachInspector"><value>Attacca l'ispettore</value></data>
   <data name="Visual.SummaryTab"><value>Riepilogo</value></data>
   <data name="Visual.FormatDetected"><value>Formato rilevato</value></data>
   <data name="Visual.AverageRpm"><value>Media RPM</value></data>

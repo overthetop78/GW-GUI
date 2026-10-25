@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.opera.Description"><value>Εξομοιώνει 3DO.</value></data>
+  <data name="Emulation.Panasonic.Memory.Capacity" xml:space="preserve"><value>Ικανότητα προσομοιωμένης μνήμης</value></data>
+  <data name="Emulation.Panasonic.Video.Mode" xml:space="preserve"><value>Λειτουργία βίντεο</value></data>
+  <data name="Emulation.Panasonic.Video.PixelFormat" xml:space="preserve"><value>Μορφή χρώματος εικονοστοιχείου</value></data>
+  <data name="Emulation.Panasonic.Video.BypassClut" xml:space="preserve"><value>Αγνόηση του πίνακα χρωμάτων</value></data>
+  <data name="Emulation.Panasonic.Video.HighResolution" xml:space="preserve"><value>Αποτύπωση υψηλής ανάλυσης</value></data>
+  <data name="Emulation.Panasonic.Audio.Processing" xml:space="preserve"><value>Επεξεργασία ήχου</value></data>
+  <data name="Emulation.Panasonic.Audio.Parallel" xml:space="preserve"><value>Παράλληλη επεξεργασία ήχου</value></data>
+  <data name="Emulation.Panasonic.Storage.SaveMode" xml:space="preserve"><value>Λειτουργία αποθήκευσης για αποθηκευμένα δεδομένα</value></data>
+  <data name="Emulation.Panasonic.Storage.Version" xml:space="preserve"><value>Τράπεζα μνήμης για αποθηκευμένα δεδομένα</value></data>
+  <data name="Emulation.Panasonic.Storage.CdSpeed" xml:space="preserve"><value>Ταχύτητα ανάγνωσης του CD-ROM</value></data>
+  <data name="Emulation.Panasonic.System" xml:space="preserve"><value>Σύστημα</value></data>
+  <data name="Emulation.Panasonic.System.RandomSeed" xml:space="preserve"><value>Αρχική τιμή της τυχαίας γεννήτριας</value></data>
+  <data name="Emulation.Panasonic.System.Diagnostics" xml:space="preserve"><value>Διαγνωστικά μηνύματα</value></data>
+  <data name="Emulation.Panasonic.Value.Hardware" xml:space="preserve"><value>Υλικό</value></data>
+  <data name="Emulation.Panasonic.Value.Software" xml:space="preserve"><value>Λογισμικό</value></data>
+  <data name="Emulation.Panasonic.Value.PerGame" xml:space="preserve"><value>Ανά παιχνίδι</value></data>
+  <data name="Emulation.Panasonic.Value.Shared" xml:space="preserve"><value>Κοινή χρήση μεταξύ παιχνιδιών</value></data>
+  <data name="Emulation.Panasonic.Value.Unlimited" xml:space="preserve"><value>Απεριόριστα</value></data>
+  <data name="Emulation.Panasonic.Value.Random" xml:space="preserve"><value>Τυχαίο</value></data>
+</root>

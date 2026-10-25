@@ -80,37 +80,26 @@ public sealed class SequentialMediaInspectorPresenter(Func<string, object[], str
         }
 
         return new(
-            Localize(model.FormatId?.Equals(TapeImageFormatIds.AtariCas, StringComparison.OrdinalIgnoreCase) == true
-                ? "Visual.CassetteInspectorTitle"
-                : "Visual.SequentialInspectorTitle"),
+            Localize(model.FormatId?.Equals(TapeImageFormatIds.AtariCas, StringComparison.OrdinalIgnoreCase) == true ? "Visual.CassetteInspectorTitle" : "Visual.SequentialInspectorTitle"),
             segment is null ? null : $"{segment.Start:g} · {segment.Duration:g}",
             sections);
     }
 
     private string Localize(string key, params object[] arguments) => localize(key, arguments);
 
-    private void AddMetadata(
-        ICollection<MediaInspectorEntry> entries,
-        IReadOnlyDictionary<string, string>? metadata,
-        string metadataKey,
-        string labelKey,
-        string? unit = null)
+    private void AddMetadata(ICollection<MediaInspectorEntry> entries, IReadOnlyDictionary<string, string>? metadata, string metadataKey, string labelKey, string? unit = null)
     {
         if (metadata?.TryGetValue(metadataKey, out var value) == true && !string.IsNullOrWhiteSpace(value))
             entries.Add(new(Localize(labelKey), value, unit));
     }
 
-    private void AddChunkSummary(
-        ICollection<MediaInspectorEntry> entries,
-        IReadOnlyDictionary<string, string>? metadata)
+    private void AddChunkSummary(ICollection<MediaInspectorEntry> entries, IReadOnlyDictionary<string, string>? metadata)
     {
         if (metadata is null) return;
         metadata.TryGetValue("chunkCount", out var count);
         metadata.TryGetValue("chunkTypes", out var types);
         if (!string.IsNullOrWhiteSpace(count) || !string.IsNullOrWhiteSpace(types))
-            entries.Add(new(Localize("Explorer.Chunks"), string.IsNullOrWhiteSpace(types)
-                ? count!
-                : string.IsNullOrWhiteSpace(count) ? types : $"{types} ({count})"));
+            entries.Add(new(Localize("Explorer.Chunks"), string.IsNullOrWhiteSpace(types) ? count! : string.IsNullOrWhiteSpace(count) ? types : $"{types} ({count})"));
     }
 
     private static SequentialSegmentKind MapKind(GWGUI.MediaEngine.Enums.SequentialSegmentKind kind) => kind switch

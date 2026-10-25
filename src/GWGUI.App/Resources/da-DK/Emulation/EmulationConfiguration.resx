@@ -15,4 +15,5 @@
   <data name="Emulation.Configuration" xml:space="preserve"><value>Indstilling</value></data>
   <data name="Emulation.Configurations" xml:space="preserve"><value>Konfigurationer</value></data>
   <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Slet denne Amiga-konfiguration?</value></data>
+  <data name="Emulation.Configuration.Selector"><value>Mærker og maskiner</value></data>
 </root>

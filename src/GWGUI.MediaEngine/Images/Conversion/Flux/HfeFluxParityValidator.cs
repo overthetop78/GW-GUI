@@ -17,8 +17,7 @@ internal static class HfeFluxParityValidator
             throw new InvalidDataException("La structure HFE a changé pendant la conversion.");
         foreach (var source in expected.Tracks)
         {
-            var target = actual.Tracks.SingleOrDefault(track =>
-                track.Cylinder == source.Cylinder && track.Head == source.Head);
+            var target = actual.Tracks.SingleOrDefault(track => track.Cylinder == source.Cylinder && track.Head == source.Head);
             if (target is null ||
                 source.BitCellTicks != target.BitCellTicks ||
                 !source.Bits.SequenceEqual(target.Bits))

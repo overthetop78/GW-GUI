@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>Den begärda positionen är ogiltig för detta filsystemobjekt.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Tilldelningsnoden-operationen misslyckades.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Tilldelning-node bitmap index block {0}////{1} kunde inte läsas.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>Körhuvudet är inte på den begärda cylindern ({0}Rekalibrera enheten innan du läser.</value></data>
 </root>

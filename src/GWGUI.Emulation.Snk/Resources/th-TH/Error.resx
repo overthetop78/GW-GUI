@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Error.StateIncompatible" xml:space="preserve"><value>เดอะ SNK สภาวะที่บันทึกไว้ไม่ตรงกับเครื่องปัจจุบัน</value></data>
+  <data name="Emulation.Snk.Error.Unexpected" xml:space="preserve"><value>ไม่คาดคิด SNK เกิดการจําลองผิดพลาด</value></data>
+  <data name="Emulation.Snk.Error.FirmwareMissing" xml:space="preserve"><value>ต้องการ SNK เฟิร์มแวร์หายไป</value></data>
+  <data name="Emulation.Snk.Error.FirmwareInvalid" xml:space="preserve"><value>ระบบ ROM ไม่สมบูรณ์หรือเข้ากันไม่ได้</value></data>
+  <data name="Emulation.Snk.Error.ContentNotFound" xml:space="preserve"><value>ค่าที่ปรับแต่ง SNK ไม่พบสื่อ</value></data>
+  <data name="Emulation.Snk.Error.ContentUnsupported" xml:space="preserve"><value>เครื่องนี้ไม่รองรับสื่อที่เลือก</value></data>
+  <data name="Emulation.Snk.Error.OptionInvalid" xml:space="preserve"><value>A SNK ตัวเลือกมีค่าที่ใช้ไม่ได้</value></data>
+  <data name="Emulation.Snk.Error.CoreNotFound" xml:space="preserve"><value>ความจําเป็น SNK ไม่พบแกนหลัก</value></data>
+  <data name="Emulation.Snk.Error.CoreRejected" xml:space="preserve"><value>ที่เลือกไว้ SNK ไม่สามารถบรรจุแกนได้</value></data>
+  <data name="Emulation.Snk.Error.StateInvalid" xml:space="preserve"><value>เดอะ SNK สถานะการบันทึกไว้ไม่ถูกต้อง</value></data>
+  <data name="Emulation.Snk.Error.HostExecutableMissing" xml:space="preserve"><value>เดอะ SNK ไม่สามารถประมวลผลพาธของโฮสต์ได้</value></data>
+  <data name="Emulation.Snk.Error.Details" xml:space="preserve"><value>รายละเอียด: {0}</value></data>
+  <data name="Emulation.Snk.Error.HostProtocolFailure" xml:space="preserve"><value>สื่อสารกับ SNK โฮสต์ล้มเหลว</value></data>
+  <data name="Emulation.Snk.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>ไม่รู้จักคําสั่งสภาพแวดล้อม: {0}</value></data>
+</root>

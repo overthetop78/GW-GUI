@@ -59,7 +59,7 @@ de médias. Les quatre projets concernés compilent sans avertissement ni erreur
 ```powershell
 dotnet build src/GWGUI.MediaEngine/GWGUI.MediaEngine.csproj --no-restore --configuration Debug --verbosity quiet
 dotnet build src/GWGUI.App/GWGUI.App.csproj --no-restore --configuration Debug --verbosity quiet
-dotnet build src/GWGUI.Emulation.Amiga/GWGUI.Emulation.Amiga.csproj --no-restore --configuration Debug --verbosity quiet
+dotnet build src/GWGUI.Emulation.Commodore/GWGUI.Emulation.Commodore.csproj --no-restore --configuration Debug --verbosity quiet
 dotnet build src/GWGUI.Emulation.Atari/GWGUI.Emulation.Atari.csproj --no-restore --configuration Debug --verbosity quiet
 ```
 

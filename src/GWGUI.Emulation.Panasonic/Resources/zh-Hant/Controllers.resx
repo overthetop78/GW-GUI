@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Panasonic.Input.ActiveDevices" xml:space="preserve"><value>活动控制器</value></data>
+  <data name="Emulation.Panasonic.Input.HideCrosshairs" xml:space="preserve"><value>隐藏瞄准标记</value></data>
+  <data name="Emulation.Panasonic.Controller.Mouse" xml:space="preserve"><value>鼠标( 3)DO) , (中文(简体) ).</value></data>
+  <data name="Emulation.Panasonic.Controller.Lightgun" xml:space="preserve"><value>光学枪(3发)DO) , (中文(简体) ).</value></data>
+  <data name="Emulation.Panasonic.Controller.ArcadeLightgun" xml:space="preserve"><value>枪口光学枪</value></data>
+</root>

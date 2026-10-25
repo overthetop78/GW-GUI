@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>Den forespurte posisjonen er ugyldig for dette filsystemet-objektet.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Tildelingsnødoperasjonen mislyktes.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Alocation-node punktgrafikkindeksblokk {0}/{1} Kunne ikke leses.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>Drivhodet er ikke på den ønskede sylinderen ({0}). Rekalibrere stasjonen før lesing.</value></data>
 </root>

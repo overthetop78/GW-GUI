@@ -1,9 +1,6 @@
 namespace GWGUI.Emulation.Contracts;
 
-public sealed record EmulationInputSnapshot(
-    IReadOnlySet<EmulationKey> Keys,
-    EmulationPointerState Pointer,
-    IReadOnlyList<EmulationControllerState> Controllers)
+public sealed record EmulationInputSnapshot(IReadOnlySet<EmulationKey> Keys, EmulationPointerState Pointer, IReadOnlyList<EmulationControllerState> Controllers)
 {
     public static EmulationInputSnapshot Empty { get; } = new(
         new HashSet<EmulationKey>(),

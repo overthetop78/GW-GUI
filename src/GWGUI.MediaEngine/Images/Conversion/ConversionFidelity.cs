@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Functions;
 namespace GWGUI.MediaEngine.Images.Conversion;
 
 /// <summary>Détermine les garanties associées à chaque niveau de fidélité.</summary>
@@ -5,8 +6,8 @@ public static class ConversionFidelity
 {
     public static ConversionFidelityLevel ForConversion(string sourceExtension, string targetExtension)
     {
-        var source = Normalize(sourceExtension);
-        var target = Normalize(targetExtension);
+        var source = MediaFileExtensionFunctions.NormalizeCore(sourceExtension);
+        var target = MediaFileExtensionFunctions.NormalizeCore(targetExtension);
         if (source == target && source is ".scp" or ".hfe")
             return ConversionFidelityLevel.PreservedFlux;
         if (source == ".hfe" && target == ".scp")
@@ -21,8 +22,4 @@ public static class ConversionFidelity
     };
 
     public static bool PreservesOriginalProtection(ConversionFidelityLevel level) => level == ConversionFidelityLevel.PreservedFlux;
-
-    private static string Normalize(string extension) => extension.StartsWith('.')
-        ? extension.ToLowerInvariant()
-        : "." + extension.ToLowerInvariant();
 }

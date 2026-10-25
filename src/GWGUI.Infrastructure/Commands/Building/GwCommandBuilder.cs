@@ -1,7 +1,7 @@
 using GWGUI.Infrastructure.Commands;
-using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
-using ConversionCommandBuilder = global::GWGUI.Infrastructure.Conversion.ConversionCommandBuilder;
-using ConversionOutput = global::GWGUI.MediaEngine.Images.Conversion.ConversionOutput;
+using EnabledOption = GWGUI.MediaEngine.Contracts.Options.EnabledOption;
+using ConversionCommandBuilder = GWGUI.Infrastructure.Conversion.ConversionCommandBuilder;
+using ConversionOutput = GWGUI.MediaEngine.Images.Conversion.ConversionOutput;
 using GWGUI.Infrastructure.Maintenance;
 using GWGUI.Infrastructure.Read;
 using GWGUI.Infrastructure.Write;
@@ -20,9 +20,7 @@ public sealed class GwCommandBuilder : IGwCommandBuilder
 
     public GwCommand BuildRead(ReadRequest request) => ReadCommandBuilder.Build(request);
     public GwCommand BuildWrite(WriteRequest request) => WriteCommandBuilder.Build(request);
-    public GwCommand BuildConversion(string executable, string source, ConversionOutput output,
-        IReadOnlyList<EnabledOption>? options = null, string? expertArguments = null) =>
-        ConversionCommandBuilder.Build(executable, source, output, options, expertArguments);
+    public GwCommand BuildConversion(string executable, string source, ConversionOutput output, IReadOnlyList<EnabledOption>? options = null, string? expertArguments = null) => ConversionCommandBuilder.Build(executable, source, output, options, expertArguments);
     public GwCommand BuildErase(EraseRequest request) => MaintenanceCommandBuilder.Erase(request);
     public GwCommand BuildClean(CleanRequest request) => MaintenanceCommandBuilder.Clean(request);
     public GwCommand BuildTool(ToolCommandRequest request) => ToolCommandBuilder.Build(request);

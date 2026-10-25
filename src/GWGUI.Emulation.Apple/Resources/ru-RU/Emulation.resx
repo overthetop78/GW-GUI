@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.applewin.Description"><value>Эмулирует компьютеры Apple II с помощью AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>Эмулирует компьютеры Macintosh II с помощью Mini vMac.</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Машинный вариант</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>Настройки видео ядра эмуляции</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Карты расширения</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Память, используемая ядром</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>Системные ROM включены в AppleWin.</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>Доступное ядро не поддерживает эту модель машины.</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Дисковые плейлисты</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>пустой</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>Карта в слоте 3</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>Мышиная карта</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>Карта в слоте 4</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>Карта в слоте 5</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>Hard Disk Controller</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>Карта в слоте 7</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>ЦветаRGB Карта/монитор</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>Цвет (композитный идеализированный)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>Цвет (композитный монитор)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>цвет TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>Монохром (янтарь)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>Монохром (зеленый)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>Монохром (белый)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>Режим видео</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>Полусканеры</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>Видео Стиль</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>Видео с обновленным тарифом</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>Первый</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>Предыдущее</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>Скачать игру Start Disk</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>Используйте оба дискеты</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>Статус бара</value></data>
+</root>

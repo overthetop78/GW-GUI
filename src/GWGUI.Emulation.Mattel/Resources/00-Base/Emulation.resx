@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.freeintv" xml:space="preserve"><value>FreeIntv</value></data>
+  <data name="Emulation.Emulator.freeintv.Description" xml:space="preserve"><value>Emulates the MATTEL INTELLIVISION console.</value></data>
+  <data name="Emulation.Family.Mattel" xml:space="preserve"><value>Mattel</value></data>
+  <data name="Emulation.Mattel.Controls.Native" xml:space="preserve"><value>Console controllers</value></data>
+  <data name="Emulation.Mattel.Firmware.Executive" xml:space="preserve"><value>EXEC ROM</value></data>
+  <data name="Emulation.Mattel.Firmware.Graphics" xml:space="preserve"><value>GROM</value></data>
+  <data name="Emulation.Mattel.Memory.Display" xml:space="preserve"><value>Video memory</value></data>
+  <data name="Emulation.Mattel.Setting.PlayerOneController" xml:space="preserve"><value>Controller for player 1</value></data>
+  <data name="Emulation.Mattel.Value.LeftController" xml:space="preserve"><value>Left controller</value></data>
+  <data name="Emulation.Mattel.Value.RightController" xml:space="preserve"><value>Right controller</value></data>
+</root>

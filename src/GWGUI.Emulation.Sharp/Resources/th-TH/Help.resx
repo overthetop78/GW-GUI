@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Help.AdpcmVolume" xml:space="preserve"><value>ปรับระดับเสียงของ ADPCM ช่องเสียง</value></data>
+  <data name="Emulation.Sharp.Help.AudioDesynchronization" xml:space="preserve"><value>แยกตัวอย่างเสียงมากเกินไป เพื่อลดข้อผิดพลาดของการปรับเสียงให้ตรงกัน</value></data>
+  <data name="Emulation.Sharp.Help.AudioSampleRate" xml:space="preserve"><value>เลือกความถี่ตัวอย่างเสียง</value></data>
+  <data name="Emulation.Sharp.Help.ButtonOrder" xml:space="preserve"><value>เลือกลําดับปุ่มควบคุม</value></data>
+  <data name="Emulation.Sharp.Help.CpuSpeed" xml:space="preserve"><value>เลือกความถี่ของตัวประมวลผล</value></data>
+  <data name="Emulation.Sharp.Help.DiskSeekSound" xml:space="preserve"><value>เล่นเพลงของฟลอปปี้ดิสก์ที่เคลื่อนหัว</value></data>
+  <data name="Emulation.Sharp.Help.FmBoard" xml:space="preserve"><value>เปิดใช้งาน FM บอร์ดเสียง</value></data>
+  <data name="Emulation.Sharp.Help.FmVolume" xml:space="preserve"><value>ปรับระดับเสียงของ FM ช่องเสียง</value></data>
+  <data name="Emulation.Sharp.Help.FrameRate" xml:space="preserve"><value>เลือกจํานวนเฟรมวิดีโอต่อวินาที</value></data>
+  <data name="Emulation.Sharp.Help.FrameRateAdjustment" xml:space="preserve"><value>ปรับ เวลา ดู วี ดิ ทัศน์ สําหรับ การ แสดง ใน สมัย ใหม่ เพื่อ ลด การ พูด ติด อ่าง.</value></data>
+  <data name="Emulation.Sharp.Help.FrameSkip" xml:space="preserve"><value>เลือกสัดส่วนภาพวิดีโอที่จะข้าม. การสร้างภาพ 1 จาก 3 ข้าม 2 จาก 3</value></data>
+  <data name="Emulation.Sharp.Help.HideGraphics" xml:space="preserve"><value>ซ่อนเลเยอร์ของรูปภาพ</value></data>
+  <data name="Emulation.Sharp.Help.HideSprites" xml:space="preserve"><value>ซ่อนเลเยอร์และพื้นหลังของรูปภาพ</value></data>
+  <data name="Emulation.Sharp.Help.HideText" xml:space="preserve"><value>ซ่อนเลเยอร์ข้อความของภาพวิดีโอ</value></data>
+  <data name="Emulation.Sharp.Help.MemorySize" xml:space="preserve"><value>เลือกปริมาณของสิ่งเลียนแบบ RAM.</value></data>
+  <data name="Emulation.Sharp.Help.RapidFire" xml:space="preserve"><value>กดปุ่มควบคุมซ้ําโดยอัตโนมัติ</value></data>
+  <data name="Emulation.Sharp.Help.Raster" xml:space="preserve"><value>เปิดใช้การลดรอยหยักของภาพในภาพวิดีโอ</value></data>
+  <data name="Emulation.Sharp.Help.Resolution" xml:space="preserve"><value>เลือกความละเอียดการแสดงผลน้อยหรือสูง</value></data>
+  <data name="Emulation.Sharp.Help.ReverseJoystick" xml:space="preserve"><value>กลับค่านําเข้าของตัวควบคุมตามที่โปรแกรมจําลองกําหนด</value></data>
+  <data name="Emulation.Sharp.Help.UnlimitedSpeed" xml:space="preserve"><value>เรียกใช้เครื่องจักรให้เร็วที่สุดเท่าที่จะทําได้ เสียงอาจจะกลายเป็น unchronized</value></data>
+  <data name="Emulation.Sharp.Help.VerticalSync" xml:space="preserve"><value>ปรับเทียบสีการแสดงผลแบบย่อทางแนวตั้ง</value></data>
+  <data name="Emulation.Sharp.Help.VideoBeforeAudio" xml:space="preserve"><value>ลดความเร็ววิดีโอก่อนเสียงจะหมดความเร็ว</value></data>
+</root>

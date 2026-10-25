@@ -12,8 +12,7 @@ internal static class MediaContentRecognitionRuleMatcher
         return rule.Signatures.All(signature => MatchesSignature(content, signature));
     }
 
-    public static bool HasContentConditions(MediaContentRecognitionRule rule) =>
-        rule.Signatures.Count > 0 || rule.ContentLengths is { Count: > 0 };
+    public static bool HasContentConditions(MediaContentRecognitionRule rule) => rule.Signatures.Count > 0 || rule.ContentLengths is { Count: > 0 };
 
     private static bool MatchesSignature(IReadOnlyList<byte> content, MediaContentSignature signature)
     {
@@ -29,10 +28,7 @@ internal static class MediaContentRecognitionRuleMatcher
         };
     }
 
-    private static bool MatchesFixed(
-        IReadOnlyList<byte> content,
-        MediaContentSignature signature,
-        bool fromEnd)
+    private static bool MatchesFixed(IReadOnlyList<byte> content, MediaContentSignature signature, bool fromEnd)
     {
         if (signature.Position is not int position || signature.ByteGroups.Count != 1) return false;
         var group = signature.ByteGroups[0];
@@ -40,10 +36,7 @@ internal static class MediaContentRecognitionRuleMatcher
         return MatchesAt(content, group, start);
     }
 
-    private static bool MatchesInOrder(
-        IReadOnlyList<byte> content,
-        MediaContentSignature signature,
-        bool fromEnd)
+    private static bool MatchesInOrder(IReadOnlyList<byte> content, MediaContentSignature signature, bool fromEnd)
     {
         if (signature.Position is not null) return false;
 
@@ -57,11 +50,7 @@ internal static class MediaContentRecognitionRuleMatcher
         return true;
     }
 
-    private static int Find(
-        IReadOnlyList<byte> content,
-        IReadOnlyList<byte> group,
-        int boundary,
-        bool fromEnd)
+    private static int Find(IReadOnlyList<byte> content, IReadOnlyList<byte> group, int boundary, bool fromEnd)
     {
         if (fromEnd)
         {
@@ -75,10 +64,7 @@ internal static class MediaContentRecognitionRuleMatcher
         return -1;
     }
 
-    private static bool MatchesAt(
-        IReadOnlyList<byte> content,
-        IReadOnlyList<byte> group,
-        int start)
+    private static bool MatchesAt(IReadOnlyList<byte> content, IReadOnlyList<byte> group, int start)
     {
         if (start < 0 || start > content.Count - group.Count) return false;
         for (var index = 0; index < group.Count; index++)

@@ -165,9 +165,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
                     listentry.filelock.fl_Key = (int)listentry.anodenr;
                     // listentry->lock.fl_Volume = MKBADDR(MKBADDR(newinfo.file.dirblock->volume->devlist);
                     listentry.volume = newinfo.file.dirblock.volume;
-                    fileentry.originalsize = Pfs3Macro.IsDelFile(newinfo)
-                        ? Pfs3Directory.GetDDFileSize(dde, g)
-                        : Pfs3Directory.GetDEFileSize(newinfo.file.direntry, g);
+                    fileentry.originalsize = Pfs3Macro.IsDelFile(newinfo) ? Pfs3Directory.GetDDFileSize(dde, g) : Pfs3Directory.GetDEFileSize(newinfo.file.direntry, g);
 
                     /* Get anodechain. If it fails anodechain will become NULL. This has to be
                      * taken into account by functions that use the chain

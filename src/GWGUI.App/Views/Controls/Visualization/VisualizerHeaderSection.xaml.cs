@@ -60,25 +60,18 @@ public partial class VisualizerHeaderSection : UserControl
     {
         Classification.ApplyDetection(formatId, protectionId);
         selectedClassificationFormatId = Classification.SelectedFormatId;
-        detectedFormatsSummary = BuildDetectedFormatsSummary(
-            string.IsNullOrWhiteSpace(formatId) ? [] : [formatId]);
+        detectedFormatsSummary = BuildDetectedFormatsSummary(string.IsNullOrWhiteSpace(formatId) ? [] : [formatId]);
     }
     public void ApplyDetection(string? formatId, string? protectionId, IEnumerable<string> detectedFormatIds, bool includeFlux = true)
     {
-        var ids = detectedFormatIds.Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
+        var ids = detectedFormatIds.Concat(string.IsNullOrWhiteSpace(formatId) ? [] : [formatId]).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
         Classification.ApplyDetection(formatId, protectionId, ids);
         selectedClassificationFormatId = Classification.SelectedFormatId;
         detectedFormatsSummary = BuildDetectedFormatsSummary(ids);
         var catalog = new DiskClassificationCatalog(formats);
-        var detectedChoices = ids.Select(catalog.ResolveFormat)
-                .Where(format => format is not null)
-                .Cast<DiskFormat>()
-                .DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase)
+        var detectedChoices = ids.Select(catalog.ResolveFormat).Where(format => format is not null).Cast<DiskFormat>().DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase)
                 .Select(format => new ExplorerFormatChoice(format.Id, $"{format.Family} · {format.DisplayName}"));
-        var choices = (includeFlux
-                ? new[] { new ExplorerFormatChoice(null, "Flux") }.Concat(detectedChoices)
-                : detectedChoices)
-            .ToArray();
+        var choices = (includeFlux ? new[] { new ExplorerFormatChoice(null, "Flux") }.Concat(detectedChoices) : detectedChoices).ToArray();
         updatingRepresentationChoice = true;
         RepresentationChoice.ItemsSource = choices;
         RepresentationChoice.SelectedIndex = 0;
@@ -104,8 +97,7 @@ public partial class VisualizerHeaderSection : UserControl
     {
         updatingRevolutionChoice = true;
         RevolutionChoice.ItemsSource = new[] { new RevolutionChoiceItem(null, LocExtension.Get("Visual.RevolutionSummary")) }
-            .Concat(Enumerable.Range(1, Math.Max(0, count))
-                .Select(number => new RevolutionChoiceItem(number - 1, LocExtension.Get("Visual.RevolutionChoice", number))))
+            .Concat(Enumerable.Range(1, Math.Max(0, count)).Select(number => new RevolutionChoiceItem(number - 1, LocExtension.Get("Visual.RevolutionChoice", number))))
             .ToArray();
         RevolutionChoice.SelectedIndex = 0;
         RevolutionControl.Visibility = Visibility.Visible;
@@ -131,27 +123,16 @@ public partial class VisualizerHeaderSection : UserControl
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(descriptor);
 
-        DocumentIdentity.Display(
-            document.Source.PrimaryPath,
-            detectedFormatsSummary,
-            document.MediaKind,
-            formats.FirstOrDefault(format => string.Equals(format.Id, document.FormatId, StringComparison.OrdinalIgnoreCase)));
+        DocumentIdentity.Display(document.Source.PrimaryPath, detectedFormatsSummary, document.MediaKind, formats.FirstOrDefault(format => string.Equals(format.Id, document.FormatId, StringComparison.OrdinalIgnoreCase)));
 
         LinkZoom.Visibility = descriptor.Surfaces.Count > 1 ? Visibility.Visible : Visibility.Collapsed;
-        ManualOptionsButton.Visibility = document.MediaKind == GWGUI.MediaEngine.Enums.MediaKind.Floppy
-            ? Visibility.Visible
-            : Visibility.Collapsed;
-        RevolutionControl.Visibility = descriptor.RepresentationKind == MediaRepresentationKind.Flux
-                                       && RevolutionChoice.Items.Count > 0
-            ? Visibility.Visible
-            : Visibility.Hidden;
+        ManualOptionsButton.Visibility = document.MediaKind == GWGUI.MediaEngine.Enums.MediaKind.Floppy ? Visibility.Visible : Visibility.Collapsed;
+        RevolutionControl.Visibility = descriptor.RepresentationKind == MediaRepresentationKind.Flux && RevolutionChoice.Items.Count > 0 ? Visibility.Visible : Visibility.Hidden;
     }
 
-    private void ManualOptionsButton_Click(object sender, RoutedEventArgs e) =>
-        ManualOptionsPopup.IsOpen = !ManualOptionsPopup.IsOpen;
+    private void ManualOptionsButton_Click(object sender, RoutedEventArgs e) => ManualOptionsPopup.IsOpen = !ManualOptionsPopup.IsOpen;
 
-    private CustomPopupPlacement[] ManualOptionsPopup_Place(Size popupSize, Size targetSize, Point offset) =>
-        [new(new Point(targetSize.Width - popupSize.Width, targetSize.Height), PopupPrimaryAxis.Horizontal)];
+    private CustomPopupPlacement[] ManualOptionsPopup_Place(Size popupSize, Size targetSize, Point offset) => [new(new Point(targetSize.Width - popupSize.Width, targetSize.Height), PopupPrimaryAxis.Horizontal)];
 
     private string BuildDetectedFormatsSummary(IEnumerable<string> formatIds)
     {
@@ -160,13 +141,7 @@ public partial class VisualizerHeaderSection : UserControl
             return LocExtension.Get("Explorer.DetectedFormats", "Atari 8-bit (Atari CAS)");
 
         var catalog = new DiskClassificationCatalog(formats);
-        var detected = ids
-            .Select(catalog.ResolveFormat)
-            .Where(format => format is not null)
-            .Cast<DiskFormat>()
-            .DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase)
-            .Select(format => $"{format.Family} ({format.DisplayName})")
-            .ToArray();
+        var detected = ids.Select(catalog.ResolveFormat).Where(format => format is not null).Cast<DiskFormat>().DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase).Select(format => $"{format.Family} ({format.DisplayName})") .ToArray();
         var value = detected.Length == 0 ? "\u2014" : string.Join("  \u00b7  ", detected);
         return LocExtension.Get("Explorer.DetectedFormats", value);
     }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Válassza ki az automatikus időzítést vagy a videó szabványt.</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Válassza ki az emulált videó chipet.</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Válassza ki a képképarány. Automatikus kiválasztás a játék régiót használja.</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>Válassza ki a látható képernyőhatárokat.</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>Távolítsa el a sprite-ok határértékét a képernyővonalanként. Ez grafikus hibákat okozhat.</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>Engedjük, hogy az ellenkező irányokat egymáshoz nyomják.</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>A rotációs vezérlő érzékenységének beállítása.</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>Válassza ki a színpaletta.</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>Rejtsd el a felső képernyős határt.</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>Rejtsd el az alsó képernyős határt.</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>Rejtsd el a bal oldali képernyős határt.</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Rejtsd el a megfelelő képernyőhatárt.</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>A képpontok elrejtése a megjelenített kép szélein.</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Hagyjuk a csizma késleltetést.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>A játékkazetta memóriaáramköre. Maradjon automatikus, kivéve hibás ROM-felismerés esetén.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Normál: legfeljebb 32 KiB. MegaCart és Activision: eltérő áramkörök a ROM-bankok váltásához. OCM: bankváltás és EEPROM-mentések. Az Activision áramkört jelöl, nem a játék kiadóját. Hibás típus esetén a játék nem indulhat el, vagy hibásan működhet.</value></data>
+</root>

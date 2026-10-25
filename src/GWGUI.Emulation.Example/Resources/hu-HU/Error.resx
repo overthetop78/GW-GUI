@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound"><value>A beállított adathordozót nem találták meg.</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported"><value>A gép nem támogatja a kiválasztott adathordozót.</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound"><value>A szükséges emulációs magot nem találták meg.</value></data>
+  <data name="Emulation.Example.Error.CoreRejected"><value>A kiválasztott emulációs magot nem sikerült betölteni.</value></data>
+  <data name="Emulation.Example.Error.Details"><value>Részletek: {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid"><value>A firmware érvénytelen vagy összeegyeztethetetlen.</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing"><value>Egy szükséges firmware hiányzik.</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing"><value>Az emuláció gazdatest programjához vezető út nem elérhető.</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure"><value>A kommunikáció az emulációs gazdatesttel sikertelen.</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid"><value>Az opciónak érvénytelen értéke van.</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible"><value>A mentett állapot összeegyeztethetetlen az aktuális géppel.</value></data>
+  <data name="Emulation.Example.Error.StateInvalid"><value>A megmentett állam érvénytelen.</value></data>
+  <data name="Emulation.Example.Error.Unexpected"><value>Váratlan emulációs hiba történt.</value></data>
+</root>

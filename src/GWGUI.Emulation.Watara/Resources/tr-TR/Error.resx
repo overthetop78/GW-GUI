@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Watara.Error.AlreadyInitialized"><value>Emulation host zaten ilk olarak yapılır.</value></data>
+  <data name="Emulation.Watara.Error.CommunicationFailed"><value>Emulation host iletişimi başarısız oldu.</value></data>
+  <data name="Emulation.Watara.Error.ContentFileMissing"><value>yapılandırılmış ortam bulunamadı.</value></data>
+  <data name="Emulation.Watara.Error.DynamicMediaUnsupported"><value>Emulation seansı bu ortayı değiştiremez.</value></data>
+  <data name="Emulation.Watara.Error.ExecutableMissing"><value>Emulation host executable eksik.</value></data>
+  <data name="Emulation.Watara.Error.InstalledLibraryLockedFormat"><value>Oluşturulan kütüphane değiştirilemez: {0}.</value></data>
+  <data name="Emulation.Watara.Error.InvalidArchitecture"><value>İndirilen çekirdek Windows x64 değildir.</value></data>
+  <data name="Emulation.Watara.Error.InvalidConfiguration"><value>Bağış yapılandırması geçersizdir.</value></data>
+  <data name="Emulation.Watara.Error.InvalidResponseLengthFormat"><value>Invalid emulation host response tall: {0}.</value></data>
+  <data name="Emulation.Watara.Error.MachineInvalidState"><value>Emulation seansı gerekli durumda değildir.</value></data>
+  <data name="Emulation.Watara.Error.MachineStopped"><value>Emulation seansı durduruldu.</value></data>
+  <data name="Emulation.Watara.Error.MissingExpectedLibraryFormat"><value>İndirilen arşivler içermemektedir {0}.</value></data>
+  <data name="Emulation.Watara.Error.MissingPublishedDate"><value>Resmi yanıt yayın tarihini tanımlamaz.</value></data>
+  <data name="Emulation.Watara.Error.NotInitialized"><value>Emulation host ilk olarak yapılmamıştır.</value></data>
+  <data name="Emulation.Watara.Error.ProcessExitSuffixFormat"><value> Çıkış kodu: {0}.</value></data>
+  <data name="Emulation.Watara.Error.ProcessNotInitialized"><value>Emulation host süreci ilk olarak yapılmamıştır.</value></data>
+  <data name="Emulation.Watara.Error.ProcessStartFailed"><value>Emulation host süreci başlamadı.</value></data>
+  <data name="Emulation.Watara.Error.ProcessUnavailable"><value>Emulation host süreci mevcut değildir.</value></data>
+  <data name="Emulation.Watara.Error.ProtocolVersionMismatchFormat"><value>Protokol versiyonu {0} Maç yapmaz {1}.</value></data>
+  <data name="Emulation.Watara.Error.RequestCancelled"><value>Emulation host isteği iptal edildi.</value></data>
+  <data name="Emulation.Watara.Error.ResponseTimeout"><value>Emulation host yanıt süresi çıktı.</value></data>
+  <data name="Emulation.Watara.Error.ResponseUnavailable"><value>Emulation host cevabı mevcut değildir.</value></data>
+  <data name="Emulation.Watara.Error.SharedVideoUnavailable"><value>Paylaşılan video taşımacılığı mevcut değildir.</value></data>
+  <data name="Emulation.Watara.Error.StateIncompatible"><value>Kurtarılan devlet mevcut makine ile uyumlu.</value></data>
+  <data name="Emulation.Watara.Error.StateInvalid"><value>Kurtarılan devlet geçersizdir.</value></data>
+  <data name="Emulation.Watara.Error.StateUnavailable"><value>The Simulator kurtarılan ülkeleri desteklemez.</value></data>
+  <data name="Emulation.Watara.Error.UnknownCommandFormat"><value>Bilinmeyen amulation host komut: {0}.</value></data>
+  <data name="Emulation.Watara.Error.UnsupportedControllerDevice"><value>Kontrol cihazı desteklenmez.</value></data>
+</root>

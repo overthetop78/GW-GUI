@@ -34,4 +34,6 @@
   <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>การแปลงภายในล้มเหลว {0}: {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>อาจมีข้อมูลสูญหาย</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>การแปลงนี้ไม่สามารถคงข้อมูลแหล่งกําเนิดทั้งหมด:&#xA;&#xA;{0}&#xA;&#xA;คุณต้องการจะทําต่อไปหรือไม่?</value></data>
+  <data name="Conversion.OutputCollision"><value>การแปลงหลายรูปแบบ จะสร้างแฟ้มเดียวกันขึ้น{0}'. เลือกตัวเลือกนี้เป็นไปไม่ได้จนกว่า'{1}'เช็คแล้ว'</value></data>
+  <data name="Conversion.Failed"><value>การเปลี่ยนหน้าที่ล้มเหลว {0}: {1}</value></data>
 </root>

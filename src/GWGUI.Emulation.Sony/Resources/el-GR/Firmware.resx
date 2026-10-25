@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Firmware.Integrated"><value>Σύστημα ROM</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS (Ιαπωνία)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS (Βόρεια Αμερική)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS (Ευρώπη)</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Help"><value>Προαιρετική ROM του προγράμματος αναπαραγωγής DVD του PS2.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom1.Details"><value>Επιλέξτε το αντίγραφο ROM1 που αντιστοιχεί στο επιλεγμένο BIOS, συνήθως αρχείο .rom1 ή rom1.bin. Περιέχει μονάδες αναπαραγωγής DVD και δεδομένα αναγνώρισης. Αφήστε το πεδίο κενό αν η κονσόλα σας δεν διαθέτει αντίγραφο ROM1. Το κύριο BIOS επιλέγεται στο πεδίο BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Help"><value>Προαιρετική ROM του PS2 με κινεζικές γραμματοσειρές.</value></data>
+  <data name="Emulation.Sony.Firmware.Rom2.Details"><value>Επιλέξτε το αντίγραφο ROM2 της κινεζικής κονσόλας SCPH-50009 που αντιστοιχεί στο επιλεγμένο BIOS, συνήθως αρχείο .rom2 ή rom2.bin. Αφήστε το πεδίο κενό για κονσόλες χωρίς ROM2. Το αρχείο αυτό δεν αντικαθιστά το κύριο BIOS.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Help"><value>Αποθηκευμένες ρυθμίσεις κονσόλας.</value></data>
+  <data name="Emulation.Sony.Firmware.Nvram.Details"><value>Επιλέξτε αρχείο .nvm μεγέθους 1024 byte που αντιστοιχεί στο επιλεγμένο BIOS. Περιέχει τις ρυθμίσεις της κονσόλας. Το αρχείο είναι προαιρετικό: αφήστε το πεδίο κενό για χρήση αποθηκευμένων ρυθμίσεων ή δημιουργία προεπιλογών από τον εξομοιωτή.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Help"><value>Έκδοση του μηχανικού ελεγκτή.</value></data>
+  <data name="Emulation.Sony.Firmware.Mec.Details"><value>Επιλέξτε αρχείο .mec μεγέθους 4 byte που αντιστοιχεί στο επιλεγμένο BIOS. Περιέχει τον αριθμό έκδοσης του μηχανικού ελεγκτή και όχι ολόκληρο το υλικολογισμικό του. Το αρχείο είναι προαιρετικό: αφήστε το πεδίο κενό για χρήση αποθηκευμένων δεδομένων ή δημιουργία προεπιλεγμένου αρχείου από τον εξομοιωτή.</value></data>
+</root>

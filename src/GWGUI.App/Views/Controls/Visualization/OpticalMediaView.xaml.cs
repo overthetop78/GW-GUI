@@ -1,3 +1,4 @@
+using GWGUI.App.Functions.Views.Visualization;
 using GWGUI.App.Contracts.Rendering.Optical;
 using GWGUI.App.Contracts.Views.Visualization;
 using GWGUI.App.Localization.Extensions;
@@ -49,8 +50,7 @@ public partial class OpticalMediaView : UserControl, IMediaVisualizationView
 
     public void SelectElement(int surface, long position)
     {
-        _selectedTrack = _model?.Tracks.FirstOrDefault(track =>
-            track.FirstSector == position && (track.FaceNumber is null || track.FaceNumber == surface));
+        _selectedTrack = _model?.Tracks.FirstOrDefault(track => track.FirstSector == position && (track.FaceNumber is null || track.FaceNumber == surface));
         UpdateSelectionLabel();
         Canvas.InvalidateVisual();
     }
@@ -59,33 +59,15 @@ public partial class OpticalMediaView : UserControl, IMediaVisualizationView
     {
         _renderSize = (e.Info.Width, e.Info.Height);
         e.Surface.Canvas.Save();
-        e.Surface.Canvas.Translate(
-            (float)(_pan.X * e.Info.Width / Math.Max(1, Canvas.ActualWidth)),
-            (float)(_pan.Y * e.Info.Height / Math.Max(1, Canvas.ActualHeight)));
-        _renderer.Render(
-            e.Surface.Canvas,
-            _model,
-            _selectedTrack,
-            SelectedValue(FaceSelector),
-            SelectedValue(LayerSelector),
-            SelectedValue(SessionSelector),
-            e.Info.Width,
-            e.Info.Height,
-            _zoom);
+        e.Surface.Canvas.Translate((float)(_pan.X * e.Info.Width / Math.Max(1, Canvas.ActualWidth)), (float)(_pan.Y * e.Info.Height / Math.Max(1, Canvas.ActualHeight)));
+        _renderer.Render(e.Surface.Canvas, _model, _selectedTrack, SelectedValue(FaceSelector), SelectedValue(LayerSelector), SelectedValue(SessionSelector), e.Info.Width, e.Info.Height, _zoom);
         e.Surface.Canvas.Restore();
     }
 
-    private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        => SelectAt(e.GetPosition(Canvas));
+    private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) => SelectAt(e.GetPosition(Canvas));
 
     private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
-    {
-        if (e.ChangedButton != MouseButton.Middle || _zoom <= 1) return;
-        _panDragLast = e.GetPosition(Canvas);
-        Canvas.Cursor = VisualizationCursors.Grabbing;
-        Canvas.CaptureMouse();
-        e.Handled = true;
-    }
+        => VisualizationPanFunctions.Begin(Canvas, Canvas, _zoom, ref _panDragLast, e);
 
     private void Canvas_MouseMove(object sender, MouseEventArgs e)
     {
@@ -93,38 +75,20 @@ public partial class OpticalMediaView : UserControl, IMediaVisualizationView
         var point = e.GetPosition(Canvas);
         var maxX = Math.Max(0, Canvas.ActualWidth * (_zoom - 1) / 2);
         var maxY = Math.Max(0, Canvas.ActualHeight * (_zoom - 1) / 2);
-        _pan = new Point(
-            Math.Clamp(_pan.X + point.X - last.X, -maxX, maxX),
-            Math.Clamp(_pan.Y + point.Y - last.Y, -maxY, maxY));
+        _pan = new Point(Math.Clamp(_pan.X + point.X - last.X, -maxX, maxX), Math.Clamp(_pan.Y + point.Y - last.Y, -maxY, maxY));
         _panDragLast = point;
         Canvas.InvalidateVisual();
     }
 
     private void Canvas_MouseUp(object sender, MouseButtonEventArgs e)
-    {
-        if (e.ChangedButton != MouseButton.Middle || _panDragLast is null) return;
-        _panDragLast = null;
-        Canvas.ReleaseMouseCapture();
-        Canvas.ClearValue(CursorProperty);
-        e.Handled = true;
-    }
+        => VisualizationPanFunctions.End(Canvas, ref _panDragLast, e);
 
     private void SelectAt(Point pointer)
     {
         var width = Math.Max(1, _renderSize.Width);
         var height = Math.Max(1, _renderSize.Height);
-        var point = new SKPoint(
-            (float)((pointer.X - _pan.X) * width / Math.Max(1, Canvas.ActualWidth)),
-            (float)((pointer.Y - _pan.Y) * height / Math.Max(1, Canvas.ActualHeight)));
-        var track = _renderer.HitTest(
-            _model,
-            SelectedValue(FaceSelector),
-            SelectedValue(LayerSelector),
-            SelectedValue(SessionSelector),
-            width,
-            height,
-            point,
-            _zoom);
+        var point = new SKPoint((float)((pointer.X - _pan.X) * width / Math.Max(1, Canvas.ActualWidth)), (float)((pointer.Y - _pan.Y) * height / Math.Max(1, Canvas.ActualHeight)));
+        var track = _renderer.HitTest(_model, SelectedValue(FaceSelector), SelectedValue(LayerSelector), SelectedValue(SessionSelector), width, height, point, _zoom);
         if (track is null) return;
         _selectedTrack = track;
         UpdateSelectionLabel();
@@ -159,8 +123,7 @@ public partial class OpticalMediaView : UserControl, IMediaVisualizationView
         Canvas.InvalidateVisual();
     }
 
-    private static int? SelectedValue(ComboBox selector) =>
-        selector.SelectedItem is KeyValuePair<int?, string> choice ? choice.Key : null;
+    private static int? SelectedValue(ComboBox selector) => selector.SelectedItem is KeyValuePair<int?, string> choice ? choice.Key : null;
 
     private static void SetChoices(ComboBox selector, IEnumerable<int> values, string resourceKey)
     {
@@ -173,7 +136,5 @@ public partial class OpticalMediaView : UserControl, IMediaVisualizationView
         selector.SelectedIndex = 0;
     }
 
-    private void UpdateSelectionLabel() => SelectionLabel.Text = _selectedTrack is null
-        ? string.Empty
-        : $"{LocExtension.Get("Visual.SessionLabel")} {_selectedTrack.SessionNumber} · {LocExtension.Get("Visual.TrackLabel")} {_selectedTrack.TrackNumber}";
+    private void UpdateSelectionLabel() => SelectionLabel.Text = _selectedTrack is null ? string.Empty : $"{LocExtension.Get("Visual.SessionLabel")} {_selectedTrack.SessionNumber} · {LocExtension.Get("Visual.TrackLabel")} {_selectedTrack.TrackNumber}";
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Panasonic.Error.AlreadyInitialized"><value>Emulation host zaten ilk olarak yapılır.</value></data>
+  <data name="Emulation.Panasonic.Error.CommunicationFailed"><value>Emulation host iletişimi başarısız oldu.</value></data>
+  <data name="Emulation.Panasonic.Error.ContentFileMissing"><value>yapılandırılmış ortam bulunamadı.</value></data>
+  <data name="Emulation.Panasonic.Error.DynamicMediaUnsupported"><value>Emulation seansı bu ortayı değiştiremez.</value></data>
+  <data name="Emulation.Panasonic.Error.ExecutableMissing"><value>Emulation host executable eksik.</value></data>
+  <data name="Emulation.Panasonic.Error.InstalledLibraryLockedFormat"><value>Oluşturulan kütüphane değiştirilemez: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.InvalidArchitecture"><value>İndirilen çekirdek Windows x64 değildir.</value></data>
+  <data name="Emulation.Panasonic.Error.InvalidConfiguration"><value>Bağış yapılandırması geçersizdir.</value></data>
+  <data name="Emulation.Panasonic.Error.InvalidResponseLengthFormat"><value>Invalid emulation host response tall: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.MachineInvalidState"><value>Emulation seansı gerekli durumda değildir.</value></data>
+  <data name="Emulation.Panasonic.Error.MachineStopped"><value>Emulation seansı durduruldu.</value></data>
+  <data name="Emulation.Panasonic.Error.MissingExpectedLibraryFormat"><value>İndirilen arşivler içermemektedir {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.MissingPublishedDate"><value>Resmi yanıt yayın tarihini tanımlamaz.</value></data>
+  <data name="Emulation.Panasonic.Error.NotInitialized"><value>Emulation host ilk olarak yapılmamıştır.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessExitSuffixFormat"><value> Çıkış kodu: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessNotInitialized"><value>Emulation host süreci ilk olarak yapılmamıştır.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessStartFailed"><value>Emulation host süreci başlamadı.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessUnavailable"><value>Emulation host süreci mevcut değildir.</value></data>
+  <data name="Emulation.Panasonic.Error.ProtocolVersionMismatchFormat"><value>Protokol versiyonu {0} Maç yapmaz {1}.</value></data>
+  <data name="Emulation.Panasonic.Error.RequestCancelled"><value>Emulation host isteği iptal edildi.</value></data>
+  <data name="Emulation.Panasonic.Error.ResponseTimeout"><value>Emulation host yanıt süresi çıktı.</value></data>
+  <data name="Emulation.Panasonic.Error.ResponseUnavailable"><value>Emulation host cevabı mevcut değildir.</value></data>
+  <data name="Emulation.Panasonic.Error.SharedVideoUnavailable"><value>Paylaşılan video taşımacılığı mevcut değildir.</value></data>
+  <data name="Emulation.Panasonic.Error.StateIncompatible"><value>Kurtarılan devlet mevcut makine ile uyumlu.</value></data>
+  <data name="Emulation.Panasonic.Error.StateInvalid"><value>Kurtarılan devlet geçersizdir.</value></data>
+  <data name="Emulation.Panasonic.Error.StateUnavailable"><value>The Simulator kurtarılan ülkeleri desteklemez.</value></data>
+  <data name="Emulation.Panasonic.Error.UnknownCommandFormat"><value>Bilinmeyen amulation host komut: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.UnsupportedControllerDevice"><value>Kontrol cihazı desteklenmez.</value></data>
+</root>

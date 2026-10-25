@@ -1,8 +1,16 @@
+#if GWGUI_MEDIA_ENGINE_EXPLORER
+using GWGUI.MediaEngine.Enums;
+using GWGUI.MediaFileSystems.Interfaces.Exploration;
+
+namespace GWGUI.MediaEngine.Contracts.Explorer;
+
+#else
 using GWGUI.MediaFileSystems.Interfaces.Exploration;
 using GWGUI.MediaFileSystems.Contracts;
 
 namespace GWGUI.MediaFileSystems;
 
+#endif
 /// <summary>Décrit une entrée décodée dans un système de fichiers.</summary>
 public sealed record FileSystemEntry : IFileSystemEntryView
 {
@@ -48,8 +56,7 @@ public sealed record FileSystemEntry : IFileSystemEntryView
         SyntheticName = syntheticName;
         LinkTarget = linkTarget;
         Diagnostics = Array.AsReadOnly((diagnostics ?? []).ToArray());
-        Metadata = new System.Collections.ObjectModel.ReadOnlyDictionary<string, string>(
-            new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.Ordinal));
+        Metadata = new System.Collections.ObjectModel.ReadOnlyDictionary<string, string>(new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.Ordinal));
     }
 
     /// <summary>Nom décodé de l'entrée.</summary>
@@ -68,10 +75,17 @@ public sealed record FileSystemEntry : IFileSystemEntryView
     public int StorageReference { get; }
     /// <summary>Indique si les métadonnées de l'entrée sont valides, indépendamment de la présence de son contenu.</summary>
     public bool MetadataValid { get; }
+#if GWGUI_MEDIA_ENGINE_EXPLORER
+    /// <summary>Copie non modifiable des entrées enfants.</summary>
+    public IReadOnlyList<FileSystemEntry> Children { get; }
+    string IFileSystemEntryView.KindName => Kind.ToString();
+    IReadOnlyList<IFileSystemEntryView> IFileSystemEntryView.Children => Children;
+#else
     /// <summary>Copie non modifiable des entrées enfants.</summary>
     public IReadOnlyList<FileSystemEntry> Children { get; init; }
     /// <summary>Identifiants d'affichage ajoutés après l'extraction de l'entrée.</summary>
     public FileSystemEntryAnalysis? Analysis { get; init; }
+#endif
     /// <summary>Copie non modifiable du contenu, collection vide pour un fichier vide, ou <see langword="null"/> lorsque le contenu est absent.</summary>
     public IReadOnlyList<byte>? Content { get; }
     /// <summary>Type natif de l'entrée, lorsqu'il est défini par le système de fichiers.</summary>
@@ -94,7 +108,12 @@ public sealed record FileSystemEntry : IFileSystemEntryView
     public IReadOnlyList<string> Diagnostics { get; }
     /// <summary>Métadonnées techniques propres au format de l'entrée.</summary>
     public IReadOnlyDictionary<string, string> Metadata { get; }
+#if GWGUI_MEDIA_ENGINE_EXPLORER
+    /// <summary>Identifiants d'affichage transmis par MediaFileSystems, s'ils sont disponibles.</summary>
+    public FileSystemEntryAnalysis? Analysis { get; init; }
+#else
 
     string IFileSystemEntryView.KindName => Kind.ToString();
     IReadOnlyList<IFileSystemEntryView> IFileSystemEntryView.Children => Children;
+#endif
 }

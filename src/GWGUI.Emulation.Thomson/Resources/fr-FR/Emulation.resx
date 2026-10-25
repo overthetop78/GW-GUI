@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.theodore.Description"><value>Émule Thomson MO / TO.</value></data>
+  <data name="Emulation.Thomson.Start" xml:space="preserve"><value>Lancement du programme</value></data>
+  <data name="Emulation.Thomson.Start.AutoRun" xml:space="preserve"><value>Démarrer le programme chargé automatiquement</value></data>
+  <data name="Emulation.Thomson.Start.UseGameHash" xml:space="preserve"><value>Identifier le programme par sa somme de contrôle</value></data>
+  <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>Afficher les instructions pour démarrer le programme</value></data>
+  <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Imprimante</value></data>
+  <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>Enregistrer la sortie de l'imprimante dans un fichier</value></data>
+  <data name="Emulation.Thomson.LightPen"><value>Crayon optique</value></data>
+  <data name="Emulation.Thomson.LightPen.Contact"><value>Contact du crayon optique</value></data>
+</root>

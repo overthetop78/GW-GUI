@@ -1,8 +1,6 @@
-
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.Msa;
-
 /// <summary>Construit les erreurs détaillées produites pendant la lecture d'un conteneur MSA.</summary>
 internal static class MsaExceptions
 {
@@ -23,7 +21,17 @@ internal static class MsaExceptions
     /// <summary>Signale une séquence RLE incomplète.</summary>
     public static InvalidDataException TruncatedRun(int cylinder, int head, int position, int packedLength) => new($"The compressed run in MSA track {cylinder}:{head} at packed offset {position} is truncated within {packedLength} bytes.");
     /// <summary>Signale une séquence RLE dont la répétition dépasse la piste attendue.</summary>
-    public static InvalidDataException InvalidRun(int cylinder, int head, int position, int count, int written, int expectedLength) => new($"The compressed run in MSA track {cylinder}:{head} at packed offset {position} has count {count}; {written} of {expectedLength} output bytes were already written.");
+    public static InvalidDataException InvalidRun(int cylinder,
+        int head,
+        int position,
+        int count,
+        int written,
+        int expectedLength) => new($"The compressed run in MSA track {cylinder}:{head} at packed offset {position} has count {count}; {written} of {expectedLength} output bytes were already written.");
     /// <summary>Signale une décompression qui ne consomme ou ne produit pas la longueur attendue.</summary>
-    public static InvalidDataException InvalidUnpackedLength(int cylinder, int head, int consumed, int packedLength, int written, int expectedLength) => new($"MSA track {cylinder}:{head} consumed {consumed} of {packedLength} compressed bytes and produced {written} of {expectedLength} expected bytes.");
+    public static InvalidDataException InvalidUnpackedLength(int cylinder,
+        int head,
+        int consumed,
+        int packedLength,
+        int written,
+        int expectedLength) => new($"MSA track {cylinder}:{head} consumed {consumed} of {packedLength} compressed bytes and produced {written} of {expectedLength} expected bytes.");
 }

@@ -4,6 +4,7 @@ internal static class ControlErrorPresenterConstants
 {
     internal const string UnknownResource = "Common.Unknown";
     internal const string UnexpectedResource = "Error.Unexpected";
+    internal const string EmulationErrorTitleResource = "Emulation.Error.Title";
     internal const string PowerFailureTitleResource = "Emulation.Error.PowerFailureTitle";
     internal const string MachineResource = "Emulation.Error.Machine";
     internal const string RequiredMediaResource = "Emulation.Error.RequiredMedia";

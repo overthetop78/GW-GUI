@@ -1,5 +1,10 @@
+#if GWGUI_MEDIA_ENGINE_EXPLORER
+namespace GWGUI.MediaEngine.Enums;
+
+#else
 namespace GWGUI.MediaFileSystems;
 
+#endif
 /// <summary>Indique la nature commune d'une entrée de système de fichiers.</summary>
 public enum FileSystemEntryKind
 {

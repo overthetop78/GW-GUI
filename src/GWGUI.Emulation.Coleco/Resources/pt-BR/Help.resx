@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Selecione o timing automático ou o padrão de vídeo.</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Selecione o chip de vídeo emulado.</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Selecione a proporção de aspecto da imagem. A seleção automática usa a região do jogo.</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>Selecione os contornos visíveis da tela.</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>Remova o limite das imagens por linha de tela. Isto pode causar erros gráficos.</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>Permitir que direções opostas sejam pressionadas juntas.</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>Ajuste a sensibilidade do controlador rotativo.</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>Selecione a paleta de cores.</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>Esconder a borda do ecrã superior.</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>Esconder a borda do ecrã inferior.</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>Esconder a borda esquerda do ecrã.</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Esconder a borda do ecrã direita.</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Esconder os pixels nas bordas da imagem exibida.</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Saltar o atraso da inicialização.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>Circuito de memória do cartucho. Mantenha Automático, salvo se a ROM for detectada incorretamente.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Padrão: até 32 KiB. MegaCart e Activision: circuitos diferentes para alternar bancos de ROM. OCM: alternância de bancos e salvamentos em EEPROM. Activision identifica um circuito, não a editora do jogo. Um tipo incorreto pode impedir a inicialização ou causar erros.</value></data>
+</root>

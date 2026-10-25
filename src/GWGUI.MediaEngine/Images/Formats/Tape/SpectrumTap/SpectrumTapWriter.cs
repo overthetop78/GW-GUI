@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Images.Reading.Blocks;
 using System.Buffers.Binary;
 using System.Collections.Frozen;
 using GWGUI.MediaEngine.Enums;
@@ -13,10 +14,8 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.SpectrumTap;
 /// <summary>Writes only complete checksum-valid Spectrum TAP blocks.</summary>
 public sealed class SpectrumTapWriter : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.SpectrumTap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.SpectrumTap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
     public SpectrumTapWriter(IAtomicImageFileWriter? files = null) => this.files = files ?? new AtomicImageFileWriter();
@@ -26,17 +25,9 @@ public sealed class SpectrumTapWriter : IMediaImageWriter
     public IReadOnlySet<string> ProducedFileExtensions => SpectrumTapFormat.Extensions;
     public bool ProducesMultipleFiles => false;
 
-    public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension) =>
-        SupportedFormats.Contains(targetFormatId)
-        && SpectrumTapFormat.Extensions.Contains(targetExtension)
-        && document.MediaKind == MediaKind.Tape
-        && TryGetBlocks(document, out _);
+    public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension) => SupportedFormats.Contains(targetFormatId) && SpectrumTapFormat.Extensions.Contains(targetExtension) && document.MediaKind == MediaKind.Tape && TryGetBlocks(document, out _);
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         if (!CanWrite(document, targetFormatId, Path.GetExtension(outputPath).ToLowerInvariant())
             || !TryGetBlocks(document, out var blocks))
@@ -48,7 +39,7 @@ public sealed class SpectrumTapWriter : IMediaImageWriter
                 var length = new byte[SpectrumTapConstants.LengthFieldSize];
                 BinaryPrimitives.WriteUInt16LittleEndian(length, checked((ushort)range.Length));
                 await output.WriteAsync(length, token).ConfigureAwait(false);
-                await CopyAsync(range, output, token).ConfigureAwait(false);
+                await BlockMediaDataReader.CopyToAsync(range, output, token).ConfigureAwait(false);
             }
         }, cancellationToken).ConfigureAwait(false);
         return [outputPath];
@@ -71,18 +62,5 @@ public sealed class SpectrumTapWriter : IMediaImageWriter
         }
         blocks = selected;
         return true;
-    }
-
-    private static async Task CopyAsync(MediaDataRange range, Stream output, CancellationToken cancellationToken)
-    {
-        var buffer = new byte[64 * 1024];
-        var completed = 0L;
-        while (completed < range.Length)
-        {
-            var count = (int)Math.Min(buffer.Length, range.Length - completed);
-            await range.Source!.ReadExactlyAsync(range.SourceOffset + completed, buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
-            await output.WriteAsync(buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
-            completed += count;
-        }
     }
 }

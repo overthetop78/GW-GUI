@@ -95,8 +95,7 @@ public sealed class RockRidgeExtensionReader : Iso9660FileSystemReader
                 var identifierLengthValue = entry[Iso9660Constants.SuspExtensionIdentifierLengthOffset];
                 if (identifierLengthValue <= entryLength - Iso9660Constants.SuspExtensionIdentifierOffset)
                 {
-                    var identifier = System.Text.Encoding.ASCII.GetString(
-                        entry.Slice(Iso9660Constants.SuspExtensionIdentifierOffset, identifierLengthValue));
+                    var identifier = System.Text.Encoding.ASCII.GetString(entry.Slice(Iso9660Constants.SuspExtensionIdentifierOffset, identifierLengthValue));
                     if (identifier is Iso9660Constants.RockRidgeExtensionIdentifier
                         or Iso9660Constants.RockRidgeIeeeExtensionIdentifier)
                         return true;

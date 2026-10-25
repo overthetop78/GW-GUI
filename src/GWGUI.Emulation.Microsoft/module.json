@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 2,
+  "id": "microsoft",
+  "entryAssembly": "gwgui.emulation.microsoft.dll",
+  "moduleVersion": "1.0.0",
+  "hostApiMinimum": "1.2",
+  "hostApiMaximum": "1.2",
+  "updateCatalogUrl": "https://github.com/overthetop78/GW-GUI/releases/download/module-microsoft-catalog/update-catalog.json"
+}

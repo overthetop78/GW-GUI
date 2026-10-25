@@ -14,8 +14,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
             return await Open(volume, entry.Parent, entry.Name, mode);
         }
 
-        public static async Task<Stream> Open(FastFileSystemVolumeState volume, uint parentSector, string name, FileMode mode,
-            bool overwrite = false, bool ignoreProtectionBits = false)
+        public static async Task<Stream> Open(FastFileSystemVolumeState volume, uint parentSector, string name, FileMode mode, bool overwrite = false, bool ignoreProtectionBits = false)
         {
             var parent = await FastFileSystemDisk.ReadEntryBlock(volume, parentSector);
 
@@ -79,9 +78,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
                     throw new PathAlreadyExistsException($"Path '{name}' already exists");
             }
 
-            var fileHdr = mode == FileMode.Write
-                ? new FastFileSystemEntryBlock(volume.FileSystemBlockSize) {  SecType = FastFileSystemConstants.ST_FILE }
-                : entry;
+            var fileHdr = mode == FileMode.Write ? new FastFileSystemEntryBlock(volume.FileSystemBlockSize) {  SecType = FastFileSystemConstants.ST_FILE } : entry;
 
             var eof = mode == FileMode.Write || mode == FileMode.Append;
 

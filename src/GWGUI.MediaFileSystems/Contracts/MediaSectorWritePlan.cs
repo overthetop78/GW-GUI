@@ -3,15 +3,7 @@ namespace GWGUI.MediaFileSystems.Contracts;
 /// <summary>Volume sectoriel construit à injecter dans un conteneur cible par le moteur.</summary>
 public sealed class MediaSectorWritePlan
 {
-    public MediaSectorWritePlan(
-        string formatId,
-        int blockSize,
-        int cylinders,
-        int heads,
-        int sectorsPerTrack,
-        IEnumerable<MediaSectorWriteBlock> blocks,
-        long? capacity = null,
-        int? logicalBlockCount = null)
+    public MediaSectorWritePlan(string formatId, int blockSize, int cylinders, int heads, int sectorsPerTrack, IEnumerable<MediaSectorWriteBlock> blocks, long? capacity = null, int? logicalBlockCount = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(formatId);
         ArgumentNullException.ThrowIfNull(blocks);

@@ -13,7 +13,7 @@
   <data name="Hardware.NoDrive" xml:space="preserve"><value>Tanımlanmış sürücü yok</value></data>
   <data name="Hardware.EditorTitle" xml:space="preserve"><value>Bir sürücüyü tanımlayın</value></data>
   <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle denetleyici</value></data>
-  <data name="Hardware.GwSelection" xml:space="preserve"><value>Seçim gw&apos;ye aktarıldı</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>Seçim gw'ye aktarıldı</value></data>
   <data name="Hardware.PhysicalSize" xml:space="preserve"><value>Fiziksel boyut</value></data>
   <data name="Hardware.SizeShort" xml:space="preserve"><value>Boyut</value></data>
   <data name="Hardware.DensityShort" xml:space="preserve"><value>Yoğunluk</value></data>
@@ -49,7 +49,7 @@
   <data name="Hardware.DriveChoice"><value>Sürücü {0} · {1}″ · {2} · {3}</value></data>
   <data name="Hardware.Forget"><value>Unutmak</value></data>
   <data name="Hardware.ForgetConfirm"><value>Bu sürücüyü veya cihazı gerçekten unutmak istiyor musunuz?</value></data>
-  <data name="Hardware.ForgetLastConfirm"><value>Bu, bu Greaseweazle için yapılandırılan son sürücüdür. Hem sürücüyü hem de Greaseweazle&apos;yi unutmak mı istiyorsunuz?</value></data>
-  <data name="Hardware.SelectController"><value>Önce ilgili Greaseweazle&apos;ye ait bir satırı seçin.</value></data>
+  <data name="Hardware.ForgetLastConfirm"><value>Bu, bu Greaseweazle için yapılandırılan son sürücüdür. Hem sürücüyü hem de Greaseweazle'yi unutmak mı istiyorsunuz?</value></data>
+  <data name="Hardware.SelectController"><value>Önce ilgili Greaseweazle'ye ait bir satırı seçin.</value></data>
   <data name="Hardware.MaximumDrives"><value>Bu Greaseweazle (A ve B) öğesine otomatik olarak en fazla iki sürücü atanabilir.</value></data>
 </root>

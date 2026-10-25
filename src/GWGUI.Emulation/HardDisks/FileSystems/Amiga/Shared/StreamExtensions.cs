@@ -17,8 +17,7 @@ internal static class StreamExtensions
         return offset == count ? bytes : bytes[..offset];
     }
 
-    public static Task WriteBytes(this Stream stream, byte[] bytes)
-        => stream.WriteAsync(bytes).AsTask();
+    public static Task WriteBytes(this Stream stream, byte[] bytes) => stream.WriteAsync(bytes).AsTask();
 
     public static async Task WriteBigEndianInt32(this Stream stream, int value)
     {

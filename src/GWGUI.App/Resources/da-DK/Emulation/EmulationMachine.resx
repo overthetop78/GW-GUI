@@ -5,5 +5,5 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Machine.Open"><value>Åbn</value></data>
-  <data name="Emulation.Machine.Model" xml:space="preserve"><value>Model</value></data>
+  <data name="Emulation.Machine.Model"><value>Model</value></data>
 </root>

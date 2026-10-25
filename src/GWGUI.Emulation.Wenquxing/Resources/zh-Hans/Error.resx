@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Wenquxing.Error.AlreadyInitialized"><value>模拟主机已经初始化 。</value></data>
+  <data name="Emulation.Wenquxing.Error.CommunicationFailed"><value>模拟主机通信失败 。</value></data>
+  <data name="Emulation.Wenquxing.Error.ContentFileMissing"><value>无法找到配置的媒体 。</value></data>
+  <data name="Emulation.Wenquxing.Error.DynamicMediaUnsupported"><value>模拟会话不能交换此介质 。</value></data>
+  <data name="Emulation.Wenquxing.Error.ExecutableMissing"><value>缺少模拟主机可执行文件 。</value></data>
+  <data name="Emulation.Wenquxing.Error.InstalledLibraryLockedFormat"><value>已安装的库无法替换 : {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidArchitecture"><value>下载的核心不是Windows x64.</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidConfiguration"><value>模拟配置无效 。</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidResponseLengthFormat"><value>无效的模拟主机响应长度 : {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.MachineInvalidState"><value>模拟会话不处于要求的状态 。</value></data>
+  <data name="Emulation.Wenquxing.Error.MachineStopped"><value>模拟会话停止 。</value></data>
+  <data name="Emulation.Wenquxing.Error.MissingExpectedLibraryFormat"><value>下载的归档不包含 {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.MissingPublishedDate"><value>官方答复未指明公布日期。</value></data>
+  <data name="Emulation.Wenquxing.Error.NotInitialized"><value>模拟主机没有初始化 。</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessExitSuffixFormat"><value> 退出代码 : {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessNotInitialized"><value>模拟主机进程没有初始化 。</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessStartFailed"><value>模拟主机进程无法启动 。</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessUnavailable"><value>模拟主机进程无法使用 。</value></data>
+  <data name="Emulation.Wenquxing.Error.ProtocolVersionMismatchFormat"><value>协议版本 {0} 不匹配的 {1}.</value></data>
+  <data name="Emulation.Wenquxing.Error.RequestCancelled"><value>模拟主机请求被取消 。</value></data>
+  <data name="Emulation.Wenquxing.Error.ResponseTimeout"><value>模拟主机响应超时 。</value></data>
+  <data name="Emulation.Wenquxing.Error.ResponseUnavailable"><value>模拟主机响应无法使用 。</value></data>
+  <data name="Emulation.Wenquxing.Error.SharedVideoUnavailable"><value>共享视频传输无法使用.</value></data>
+  <data name="Emulation.Wenquxing.Error.StateIncompatible"><value>保存状态与当前机器不相容 。</value></data>
+  <data name="Emulation.Wenquxing.Error.StateInvalid"><value>保存状态无效 。</value></data>
+  <data name="Emulation.Wenquxing.Error.StateUnavailable"><value>模拟器不支持保存状态 。</value></data>
+  <data name="Emulation.Wenquxing.Error.UnknownCommandFormat"><value>未知的仿真主机命令 : {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.UnsupportedControllerDevice"><value>不支持控制器设备 。</value></data>
+</root>

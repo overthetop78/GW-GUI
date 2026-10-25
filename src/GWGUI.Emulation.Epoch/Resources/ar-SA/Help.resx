@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Help.DisplayArea" xml:space="preserve"><value>إختاروا المنطقة المرئية من صورة الـ(كونول)</value></data>
+  <data name="Emulation.Epoch.Help.PixelAspect" xml:space="preserve"><value>اختيار البقايا الرجعية أو المربعات.</value></data>
+  <data name="Emulation.Epoch.Help.Resolution" xml:space="preserve"><value>اختيار القرار الداخلي.</value></data>
+  <data name="Emulation.Epoch.Help.ColorPalette" xml:space="preserve"><value>إختاروا لوحة البول</value></data>
+  <data name="Emulation.Epoch.Help.RefreshRate" xml:space="preserve"><value>إختار معدل إعادة تجديد الضمادات</value></data>
+  <data name="Emulation.Epoch.Help.ShowVideoMemory" xml:space="preserve"><value>اعرض ذاكرة الفيديو خارج الصورة التلفزيونية</value></data>
+  <data name="Emulation.Epoch.Help.ShowInputs" xml:space="preserve"><value>اعرضي حالة المراقب الحالي على الصورة</value></data>
+  <data name="Emulation.Epoch.Help.Language" xml:space="preserve"><value>إختار لغة شاشات المرشد</value></data>
+  <data name="Emulation.Epoch.Help.ValidateFirmware" xml:space="preserve"><value>تحقق من الضمادات BIOS فحص قبل البدء</value></data>
+  <data name="Emulation.Epoch.Help.ShowKeypadAtStart" xml:space="preserve"><value>اعرض لوحة المفاتيح عند بدء الزرع</value></data>
+  <data name="Emulation.Epoch.Help.AnnounceCourseSwitch" xml:space="preserve"><value>اعرض مسار اللعبة المختار عندما يتغير</value></data>
+</root>

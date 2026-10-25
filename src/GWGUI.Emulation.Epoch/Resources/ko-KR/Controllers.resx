@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft" xml:space="preserve"><value>왼쪽 버튼</value></data>
+  <data name="Emulation.Epoch.Input.FireRight" xml:space="preserve"><value>오른쪽 버튼</value></data>
+  <data name="Emulation.Epoch.Input.Power" xml:space="preserve"><value>힘 단추</value></data>
+  <data name="Emulation.Epoch.Input.Reset" xml:space="preserve"><value>재설정 버튼</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft" xml:space="preserve"><value>왼쪽 레버를 이동</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight" xml:space="preserve"><value>레버를 오른쪽으로 이동</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease" xml:space="preserve"><value>다음 게임 코스를 선택하십시오.</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease" xml:space="preserve"><value>이전 게임 코스 선택</value></data>
+  <data name="Emulation.Epoch.Input.GunFire" xml:space="preserve"><value>빛 총 방아쇠</value></data>
+  <data name="Emulation.Epoch.Input.GunReload" xml:space="preserve"><value>빛 총 reload</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease" xml:space="preserve"><value>패들 1 : 현관을 우회</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase" xml:space="preserve"><value>패들 1: 시계 방향으로 회전</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease" xml:space="preserve"><value>헤엄 2 : 현시를 돌리기</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase" xml:space="preserve"><value>패들 2: 시계 방향으로 회전</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease" xml:space="preserve"><value>패들 3 : 현시를 끄는</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase" xml:space="preserve"><value>패들 3: 시계 방향으로 회전</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease" xml:space="preserve"><value>패들 4 : 현시를 끄는</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase" xml:space="preserve"><value>패들 4: 시계 방향으로 회전</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease" xml:space="preserve"><value>총 왼쪽.</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease" xml:space="preserve"><value>총을 오른쪽으로.</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease" xml:space="preserve"><value>총을 올립니다.</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease" xml:space="preserve"><value>총을 내려 놓습니다.</value></data>
+</root>

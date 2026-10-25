@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.applewin.Description"><value>จำลองคอมพิวเตอร์ Apple II ด้วย AppleWin</value></data>
+  <data name="Emulation.Emulator.minivmac.Description"><value>จำลองคอมพิวเตอร์ Macintosh II ด้วย Mini vMac</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>องค์ประกอบของเครื่อง</value></data>
+  <data name="Emulation.Apple.Video.Native"><value>การตั้งค่าวิดีโอของแกนจำลอง</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>ไพ่ที่ขยายออกไป</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>หน่วยความจําที่ใช้โดยแกน</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded"><value>ไฟล์ ROM ของระบบรวมอยู่ใน AppleWin แล้ว</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>แกนหลักที่มีอยู่ไม่รองรับรุ่นของเครื่องนี้</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>รายการเล่นของดิสก์</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>ว่าง</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>การ์ดในสล็อต 3</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>นามบัตรของเมาส์</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>การ์ด ใน สล็อต 4</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>การ์ดในสล็อต 5</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>ตัวควบคุมฮาร์ดดิสก์</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>การ์ด ใน สล็อต 7</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>สี (Conder)RGB การ์ด/ พี่</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>สี (ปรับสี)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>สี (จอภาพมุมเดียวกัน)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>สี TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>พิมพ์สีเดียว (amber)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>พิมพ์สีเดียว (สีเขียว)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>พิมพ์สีเดียว (ขาว)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>โหมดวิดีโอ</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>เส้นต่อเนื่องครึ่งเส้น</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>รูปแบบวิดีโอ</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>อัตราการรีเฟรชวิดีโอ</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>อันแรก</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>ก่อนหน้า</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>รายการเล่นเริ่มดิสก์</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>ใช้ไดรฟ์ฟลอปปี้ทั้งสอง</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>แถบสถานะ</value></data>
+</root>

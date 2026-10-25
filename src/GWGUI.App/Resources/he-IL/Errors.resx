@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>העמדה המבוקשת אינה בתוקף עבור אובייקט זה של מערכת הקבצים.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>פעולת ההקצאה נכשלה.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>חסימה של Allocation-node bitmap {0}/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /{1} לא ניתן לקרוא.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>ראש הכונן אינו ב- cylinder המבוקש ({0}).לצמצם את הכונן לפני הקריאה.</value></data>
 </root>

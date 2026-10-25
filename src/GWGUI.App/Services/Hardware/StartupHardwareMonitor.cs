@@ -3,11 +3,11 @@ using GWGUI.Infrastructure.Settings;
 using GWGUI.Infrastructure.Settings.Hardware;
 using GWGUI.App.Contracts.Services.Hardware;
 using System.IO;
+using static GWGUI.Infrastructure.Functions.Hardware.GreaseweazleHardwareScanFunctions;
 
 namespace GWGUI.App.Services.Hardware;
 
-public sealed class StartupHardwareMonitor(IHardwareRegistry registry, ISettingsStore settingsStore,
-    Func<string, bool>? fileExists = null)
+public sealed class StartupHardwareMonitor(IHardwareRegistry registry, ISettingsStore settingsStore, Func<string, bool>? fileExists = null)
 {
     private readonly Func<string, bool> exists = fileExists ?? File.Exists;
     public async Task<StartupHardwareCheckResult> CheckAsync(AppSettings settings, CancellationToken cancellationToken = default)
@@ -22,7 +22,7 @@ public sealed class StartupHardwareMonitor(IHardwareRegistry registry, ISettings
 
         var scan = await registry.ScanAsync(settings.GwExecutablePath!, settings.Controllers, cancellationToken);
         settings.Controllers = scan.ConfiguredControllers.ToList();
-        var remembered = settings.UnconfiguredControllers.Select(CloneUnavailable).ToList();
+        var remembered = settings.UnconfiguredControllers.Select(GWGUI.Infrastructure.Functions.Hardware.GreaseweazleHardwareScanFunctions.CloneUnavailable).ToList();
         var newControllers = new List<ControllerSettings>();
         foreach (var detected in scan.UnconfiguredControllers)
         {
@@ -35,15 +35,7 @@ public sealed class StartupHardwareMonitor(IHardwareRegistry registry, ISettings
         return new(true, settings.Controllers.Where(controller => !controller.IsAvailable).ToArray(), newControllers);
     }
 
-    public static bool SameController(ControllerSettings left, ControllerSettings right) =>
-        Same(left.UsbId, right.UsbId) || Same(left.UsbSerialNumber, right.UsbSerialNumber) || Same(left.PnpDeviceId, right.PnpDeviceId);
-
-    private static ControllerSettings CloneUnavailable(ControllerSettings source) => new()
-    {
-        UsbId = source.UsbId, UsbSerialNumber = source.UsbSerialNumber, PnpDeviceId = source.PnpDeviceId,
-        LastUsbLocation = source.LastUsbLocation, VendorId = source.VendorId, ProductId = source.ProductId,
-        LastPort = source.LastPort, Model = source.Model, IsAvailable = false
-    };
+    public static bool SameController(ControllerSettings left, ControllerSettings right) => EqualsId(left.UsbId, right.UsbId) || EqualsId(left.UsbSerialNumber, right.UsbSerialNumber) || EqualsId(left.PnpDeviceId, right.PnpDeviceId);
 
     private static void CopyDetection(ControllerSettings source, ControllerSettings target)
     {
@@ -52,6 +44,4 @@ public sealed class StartupHardwareMonitor(IHardwareRegistry registry, ISettings
         target.LastPort = source.LastPort; target.Model = source.Model; target.IsAvailable = source.IsAvailable;
     }
 
-    private static bool Same(string? left, string? right) => !string.IsNullOrWhiteSpace(left) &&
-        !string.IsNullOrWhiteSpace(right) && string.Equals(left, right, StringComparison.OrdinalIgnoreCase);
 }

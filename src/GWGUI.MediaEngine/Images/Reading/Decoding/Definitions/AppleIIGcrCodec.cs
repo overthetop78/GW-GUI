@@ -1,47 +1,52 @@
 using GWGUI.MediaEngine.Images.Reading.Decoding.Apple;
 
 namespace GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
-
 /// <summary>Encode et décode les représentations 4-and-4, 5-and-3 et 6-and-2 des secteurs Apple II.</summary>
 internal static class AppleIIGcrCodec
 {
     /// <summary>Décode une valeur Apple II stockée sur deux octets 4-and-4.</summary>
-    /// <param name="high">Premier octet encodé.</param><param name="low">Second octet encodé.</param><returns>Valeur décodée.</returns>
+    /// <param name = "high">Premier octet encodé.</param><param name = "low">Second octet encodé.</param><returns>Valeur décodée.</returns>
     public static byte DecodeFourAndFour(byte high, byte low) => (byte)(((high << 1) | 1) & low);
-
     /// <summary>Encode une valeur Apple II sur deux octets 4-and-4.</summary>
-    /// <param name="value">Valeur à encoder.</param><returns>Les deux octets encodés.</returns>
+    /// <param name = "value">Valeur à encoder.</param><returns>Les deux octets encodés.</returns>
     public static (byte High, byte Low) EncodeFourAndFour(byte value) => ((byte)((value >> 1) | AppleIIGcrFormat.FourAndFourMask), (byte)(value | AppleIIGcrFormat.FourAndFourMask));
-
     /// <summary>Calcule le checksum XOR des trois valeurs d'adresse Apple II.</summary>
-    /// <param name="volume">Numéro du volume.</param><param name="cylinder">Numéro de piste.</param><param name="sector">Numéro de secteur.</param><returns>Checksum d'adresse.</returns>
+    /// <param name = "volume">Numéro du volume.</param><param name = "cylinder">Numéro de piste.</param><param name = "sector">Numéro de secteur.</param><returns>Checksum d'adresse.</returns>
     public static byte ComputeAddressChecksum(byte volume, byte cylinder, byte sector) => (byte)(volume ^ cylinder ^ sector);
-
     /// <summary>Encode volume, piste, secteur et checksum en représentation 4-and-4.</summary>
-    /// <param name="volume">Numéro du volume.</param><param name="cylinder">Numéro de piste.</param><param name="sector">Numéro de secteur.</param><returns>Les huit octets constituant l'adresse encodée.</returns>
+    /// <param name = "volume">Numéro du volume.</param><param name = "cylinder">Numéro de piste.</param><param name = "sector">Numéro de secteur.</param><returns>Les huit octets constituant l'adresse encodée.</returns>
     public static byte[] EncodeAddress(byte volume, byte cylinder, byte sector)
     {
         var encoded = new byte[AppleIIGcrFormat.EncodedAddressByteCount];
-        var values = new[] { volume, cylinder, sector, ComputeAddressChecksum(volume, cylinder, sector) };
+        var values = new[]
+        {
+            volume,
+            cylinder,
+            sector,
+            ComputeAddressChecksum(volume, cylinder, sector)
+        };
         for (var index = 0; index < values.Length; index++)
         {
             var pair = EncodeFourAndFour(values[index]);
             encoded[index * AppleIIGcrFormat.EncodedBytesPerAddressValue] = pair.High;
             encoded[index * AppleIIGcrFormat.EncodedBytesPerAddressValue + 1] = pair.Low;
         }
+
         return encoded;
     }
 
     /// <summary>Décode un bloc de secteur Apple II 6-and-2 depuis un flux de bits.</summary>
-    /// <param name="bits">Bits de la piste.</param><param name="offset">Position de lecture initiale, en bits.</param><returns>Données, validité du checksum et position finale, ou <see langword="null"/> en cas de bloc incomplet ou de symbole inconnu.</returns>
+    /// <param name = "bits">Bits de la piste.</param><param name = "offset">Position de lecture initiale, en bits.</param><returns>Données, validité du checksum et position finale, ou <see langword="null"/> en cas de bloc incomplet ou de symbole inconnu.</returns>
     public static (byte[] Data, bool Valid, int EndOffset)? TryDecodeSixAndTwo(IReadOnlyList<bool> bits, int offset)
     {
         var cursor = offset;
         var encoded = AppleBitLatch.TryReadBytes(bits, ref cursor, AppleIIGcrFormat.SixAndTwoEncodedByteCount);
-        if (encoded is null) return null;
+        if (encoded is null)
+            return null;
         var values = new byte[AppleIIGcrFormat.SixAndTwoEncodedByteCount];
         for (var index = 0; index < values.Length; index++)
-            if (!AppleIIGcrFormat.InverseSixAndTwoTable.TryGetValue(encoded[index], out values[index])) return null;
+            if (!AppleIIGcrFormat.InverseSixAndTwoTable.TryGetValue(encoded[index], out values[index]))
+                return null;
         var decoded = new byte[AppleIIGcrFormat.SixAndTwoDecodedByteCount];
         byte previous = 0;
         var encodedIndex = 0;
@@ -50,11 +55,13 @@ internal static class AppleIIGcrCodec
             decoded[index] = (byte)(values[encodedIndex++] ^ previous);
             previous = decoded[index];
         }
+
         for (var index = 0; index < AppleIIGcrFormat.SectorSize; index++)
         {
             decoded[index] = (byte)(values[encodedIndex++] ^ previous);
             previous = decoded[index];
         }
+
         var valid = (byte)(values[AppleIIGcrFormat.SixAndTwoEncodedByteCount - 1] ^ previous) == 0;
         var data = new byte[AppleIIGcrFormat.SectorSize];
         byte auxiliaryOffset = 0;
@@ -65,19 +72,22 @@ internal static class AppleIIGcrCodec
             decoded[AppleIIGcrFormat.SectorSize + auxiliaryOffset] = (byte)(auxiliary >> 2);
             data[index] = (byte)((decoded[index] << 2) | ((auxiliary & 2) >> 1) | ((auxiliary & 1) << 1));
         }
+
         return (data, valid, cursor);
     }
 
     /// <summary>Décode un bloc de secteur Apple II 5-and-3 depuis un flux de bits.</summary>
-    /// <param name="bits">Bits de la piste.</param><param name="offset">Position de lecture initiale, en bits.</param><returns>Données, validité du checksum et position finale, ou <see langword="null"/> en cas de bloc incomplet ou de symbole inconnu.</returns>
+    /// <param name = "bits">Bits de la piste.</param><param name = "offset">Position de lecture initiale, en bits.</param><returns>Données, validité du checksum et position finale, ou <see langword="null"/> en cas de bloc incomplet ou de symbole inconnu.</returns>
     public static (byte[] Data, bool Valid, int EndOffset)? TryDecodeFiveAndThree(IReadOnlyList<bool> bits, int offset)
     {
         var cursor = offset;
         var encoded = AppleBitLatch.TryReadBytes(bits, ref cursor, AppleIIGcrFormat.FiveAndThreeEncodedByteCount);
-        if (encoded is null) return null;
+        if (encoded is null)
+            return null;
         var values = new byte[AppleIIGcrFormat.FiveAndThreeEncodedByteCount];
         for (var index = 0; index < values.Length; index++)
-            if (!AppleIIGcrFormat.InverseFiveAndThreeTable.TryGetValue(encoded[index], out values[index])) return null;
+            if (!AppleIIGcrFormat.InverseFiveAndThreeTable.TryGetValue(encoded[index], out values[index]))
+                return null;
         const int threeSize = AppleIIGcrFormat.FiveAndThreeAuxiliaryByteCount;
         const int chunkSize = AppleIIGcrFormat.FiveAndThreeChunkByteCount;
         var threes = new byte[threeSize];
@@ -89,11 +99,13 @@ internal static class AppleIIGcrCodec
             checksum ^= values[source++];
             threes[index] = checksum;
         }
+
         for (var index = 0; index < AppleIIGcrFormat.SectorSize; index++)
         {
             checksum ^= values[source++];
             bases[index] = (byte)(checksum << 3);
         }
+
         var valid = values[source] == checksum;
         var data = new byte[AppleIIGcrFormat.SectorSize];
         var destination = 0;
@@ -110,40 +122,69 @@ internal static class AppleIIGcrCodec
             data[destination++] = (byte)(bases[chunkSize * 3 + index] | (four & 7));
             data[destination++] = (byte)(bases[chunkSize * 4 + index] | (five & 7));
         }
+
         data[destination] = (byte)(bases[AppleIIGcrFormat.SectorSize - 1] | (threes[threeSize - 1] & 7));
         return (data, valid, cursor);
     }
 
     /// <summary>Encode un secteur Apple II en représentation 6-and-2.</summary>
-    /// <param name="source">Données sectorielles à encoder.</param><returns>Symboles GCR encodés, checksum inclus.</returns>
+    /// <param name = "source">Données sectorielles à encoder.</param><returns>Symboles GCR encodés, checksum inclus.</returns>
     public static byte[] EncodeSixAndTwo(IReadOnlyList<byte> source)
     {
-        if (source.Count != AppleIIGcrFormat.SectorSize) throw AppleIIGcrFormat.InvalidSectorSize(source.Count);
+        if (source.Count != AppleIIGcrFormat.SectorSize)
+            throw AppleIIGcrFormat.InvalidSectorSize(source.Count);
         var buffer = new byte[AppleIIGcrFormat.MinimumSixAndTwoWorkBufferByteCount];
-        for (var index = 0; index < source.Count; index++) buffer[index] = source[index];
+        for (var index = 0; index < source.Count; index++)
+            buffer[index] = source[index];
         var encoded = new List<byte>(AppleIIGcrFormat.SixAndTwoEncodedByteCount);
         byte checksum = 0;
         for (var index = 0; index < AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount; index++)
         {
-            var value = (byte)(((buffer[index] & 1) << 1) | ((buffer[index] & 2) >> 1) | ((buffer[index + AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount] & 1) << 3) | ((buffer[index + AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount] & 2) << 1) | ((buffer[index + AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount * 2] & 1) << 5) | ((buffer[index + AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount * 2] & 2) << 3));
+            var value = (byte)(((buffer[index] 
+                & 1) 
+                << 1) 
+                | ((buffer[index] 
+                & 2) 
+                >> 1) 
+                | ((buffer[index 
+                + AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount] 
+                & 1) 
+                << 3) 
+                | ((buffer[index 
+                + AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount] 
+                & 2) 
+                << 1) 
+                | ((buffer[index 
+                + AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount 
+                * 2] 
+                & 1) 
+                << 5) 
+                | ((buffer[index 
+                + AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount 
+                * 2] 
+                & 2) 
+                << 3));
             encoded.Add(AppleIIGcrFormat.SixAndTwoTable[value ^ checksum]);
             checksum = value;
         }
+
         for (var index = 0; index < AppleIIGcrFormat.SectorSize; index++)
         {
             var value = (byte)(source[index] >> 2);
             encoded.Add(AppleIIGcrFormat.SixAndTwoTable[value ^ checksum]);
             checksum = value;
         }
+
         encoded.Add(AppleIIGcrFormat.SixAndTwoTable[checksum]);
         return encoded.ToArray();
     }
 
     /// <summary>Encode un secteur Apple II en représentation 5-and-3.</summary>
-    /// <param name="source">Données sectorielles à encoder.</param><returns>Symboles GCR encodés, checksum inclus.</returns>
+    /// <param name = "source">Données sectorielles à encoder.</param><returns>Symboles GCR encodés, checksum inclus.</returns>
     public static byte[] EncodeFiveAndThree(IReadOnlyList<byte> source)
     {
-        if (source.Count != AppleIIGcrFormat.SectorSize) throw AppleIIGcrFormat.InvalidSectorSize(source.Count);
+        if (source.Count != AppleIIGcrFormat.SectorSize)
+            throw AppleIIGcrFormat.InvalidSectorSize(source.Count);
         const int chunkSize = AppleIIGcrFormat.FiveAndThreeChunkByteCount;
         const int threeSize = AppleIIGcrFormat.FiveAndThreeAuxiliaryByteCount;
         var top = new byte[AppleIIGcrFormat.SectorSize];
@@ -167,6 +208,7 @@ internal static class AppleIIGcrCodec
             threes[chunk + chunkSize * 2] = (byte)(((two & 7) << 2) | ((three & 1) << 1) | (four & 1));
             chunk--;
         }
+
         var last = source[sourceOffset];
         top[AppleIIGcrFormat.SectorSize - 1] = (byte)(last >> 3);
         threes[^1] = (byte)(last & 7);
@@ -177,11 +219,13 @@ internal static class AppleIIGcrCodec
             encoded.Add(AppleIIGcrFormat.FiveAndThreeTable[threes[index] ^ checksum]);
             checksum = threes[index];
         }
+
         for (var index = 0; index < AppleIIGcrFormat.SectorSize; index++)
         {
             encoded.Add(AppleIIGcrFormat.FiveAndThreeTable[top[index] ^ checksum]);
             checksum = top[index];
         }
+
         encoded.Add(AppleIIGcrFormat.FiveAndThreeTable[checksum]);
         return encoded.ToArray();
     }

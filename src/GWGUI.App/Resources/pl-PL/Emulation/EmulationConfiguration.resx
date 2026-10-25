@@ -15,4 +15,5 @@
   <data name="Emulation.Configuration" xml:space="preserve"><value>Konfiguracja</value></data>
   <data name="Emulation.Configurations" xml:space="preserve"><value>Konfiguracje</value></data>
   <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Usuwa konfigurację Amigi?</value></data>
+  <data name="Emulation.Configuration.Selector"><value>Marki i maszyny</value></data>
 </root>

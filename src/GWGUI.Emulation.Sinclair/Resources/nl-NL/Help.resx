@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Help.AyStereoSeparation" xml:space="preserve"><value>Kies de volgorde van de AY geluidskanalen in stereo-uitgang.</value></data>
+  <data name="Emulation.Sinclair.Help.AyVolume" xml:space="preserve"><value>Het volume van de AY Geluidschip.</value></data>
+  <data name="Emulation.Sinclair.Help.BeeperVolume" xml:space="preserve"><value>Pas het volume van de ingebouwde geluidsgenerator aan.</value></data>
+  <data name="Emulation.Sinclair.Help.BorderSize" xml:space="preserve"><value>Kies hoeveel van de schermrand wordt weergegeven.</value></data>
+  <data name="Emulation.Sinclair.Help.Chroma81" xml:space="preserve"><value>Emuleer de Chroma 81 kleuren graphics extensie.</value></data>
+  <data name="Emulation.Sinclair.Help.EmulationSpeed" xml:space="preserve"><value>Kies de emulatiesnelheid als percentage van de oorspronkelijke snelheid.</value></data>
+  <data name="Emulation.Sinclair.Help.FullerBox" xml:space="preserve"><value>Emuleer de Fuller Box geluid en joystick uitbreiding.</value></data>
+  <data name="Emulation.Sinclair.Help.HighResolution" xml:space="preserve"><value>Kies een grafische extensie met hoge resolutie.</value></data>
+  <data name="Emulation.Sinclair.Help.Issue2Keyboard" xml:space="preserve"><value>Emuleer het toetsenbordgedrag van de Issue 2 hardware.</value></data>
+  <data name="Emulation.Sinclair.Help.MemoryBankContent" xml:space="preserve"><value>Kies de inhoud van de geheugenbank van 8 tot 16 KiB.</value></data>
+  <data name="Emulation.Sinclair.Help.MouseSwapButtons" xml:space="preserve"><value>Wissel de linker- en rechterknoppen van de geëmuleerde muis.</value></data>
+  <data name="Emulation.Sinclair.Help.Palette" xml:space="preserve"><value>Kies het palet dat gebruikt wordt voor de getoonde kleuren.</value></data>
+  <data name="Emulation.Sinclair.Help.SoundHardware" xml:space="preserve"><value>Kies de geëmulgeerde geluidshardware.</value></data>
+  <data name="Emulation.Sinclair.Help.SpeakerType" xml:space="preserve"><value>Kies het filter dat gebruikt wordt voor de geëmuleerde luidspreker.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeAutoLoad" xml:space="preserve"><value>Start automatisch een cassette te laden.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeFastLoad" xml:space="preserve"><value>Laad cassettegegevens sneller.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeLoadSound" xml:space="preserve"><value>Speel het geluid af dat wordt geproduceerd tijdens het laden van cassettegegevens.</value></data>
+  <data name="Emulation.Sinclair.Help.TurboSound" xml:space="preserve"><value>Emuleer de TurboSound sound extensie met twee AY Frieten.</value></data>
+  <data name="Emulation.Sinclair.Help.USpeech" xml:space="preserve"><value>Emuleer de Currah uSpeech spraakextensie. Beide benodigde firmwarebestanden moeten aanwezig zijn.</value></data>
+  <data name="Emulation.Sinclair.Help.VideoPreset" xml:space="preserve"><value>Kies het uiterlijk van het geëmulgeerde videosignaal.</value></data>
+  <data name="Emulation.Sinclair.Help.Melodik" xml:space="preserve"><value>Emuleer de MELODIK Geluidsuitbreiding.</value></data>
+</root>

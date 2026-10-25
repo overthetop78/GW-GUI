@@ -3,8 +3,7 @@ using System.Text;
 
 namespace GWGUI.Infrastructure.Processes;
 
-public sealed class ConsoleLogSession(string directory, Func<OperationLogSettings> settingsProvider,
-    ILogFileSystem? fileSystem = null, Func<DateTimeOffset>? clock = null)
+public sealed class ConsoleLogSession(string directory, Func<OperationLogSettings> settingsProvider, ILogFileSystem? fileSystem = null, Func<DateTimeOffset>? clock = null)
 {
     private readonly ILogFileSystem files = fileSystem ?? new LogFileSystem();
     private readonly Func<DateTimeOffset> now = clock ?? (() => DateTimeOffset.Now);

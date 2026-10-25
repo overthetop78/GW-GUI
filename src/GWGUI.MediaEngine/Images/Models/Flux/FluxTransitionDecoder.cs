@@ -79,15 +79,6 @@ internal static class FluxTransitionDecoder
         return Reconstruct(intervals, FluxTimingEstimator.EstimateNonFmBitCell(intervals), FluxDecodingParameters.MaximumNrziCellsPerInterval);
     }
 
-    /// <summary>Reconstruit un flux NRZI doublé avec la durée de cellule fournie et sans adaptation de l'horloge.</summary>
-    /// <param name="intervals">Intervalles de flux exprimés en ticks.</param>
-    /// <param name="bitCellTicks">Durée de cellule fournie, en ticks.</param>
-    /// <returns>Flux de bits reconstruit.</returns>
-    public static FluxBitstream DecodeDoubledNrzi(IReadOnlyList<uint> intervals, double bitCellTicks)
-    {
-        ArgumentNullException.ThrowIfNull(intervals);
-        return Reconstruct(intervals, Math.Max(FluxDecodingParameters.MinimumBitCellTicks, bitCellTicks), FluxDecodingParameters.MaximumNrziCellsPerInterval, adaptClock: false);
-    }
 
     /// <summary>Reconstruit les bits en quantifiant chaque intervalle avec une cellule éventuellement adaptée.</summary>
     /// <param name="intervals">Intervalles de flux exprimés en ticks.</param>

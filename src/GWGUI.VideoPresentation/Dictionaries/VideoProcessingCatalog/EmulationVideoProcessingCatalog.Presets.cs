@@ -9,25 +9,15 @@ public static partial class EmulationVideoProcessingCatalog
         new Dictionary<EmulationVideoPreset, EmulationVideoProcessingConfiguration>
         {
             [EmulationVideoPreset.Normal] = new(),
-            [EmulationVideoPreset.CrtArcadeColor] = CrtPreset(EmulationVideoSampling.SharpBilinear,
-                EmulationCrtColorMode.Color, 35, 20, EmulationCrtMask.ApertureGrille, 45, 8, 8, 40, 50),
-            [EmulationVideoPreset.CrtTelevisionColor] = CrtPreset(EmulationVideoSampling.Bilinear,
-                EmulationCrtColorMode.Color, 55, 35, EmulationCrtMask.ShadowMask, 35, 18, 15, 25, 60),
-            [EmulationVideoPreset.CrtGreen] = CrtPreset(EmulationVideoSampling.SharpBilinear,
-                EmulationCrtColorMode.Green, 42, 35, EmulationCrtMask.None, 0, 12, 10, 35, 50),
-            [EmulationVideoPreset.CrtAmber] = CrtPreset(EmulationVideoSampling.SharpBilinear,
-                EmulationCrtColorMode.Amber, 42, 35, EmulationCrtMask.None, 0, 12, 10, 35, 50),
-            [EmulationVideoPreset.CrtWhite] = CrtPreset(EmulationVideoSampling.SharpBilinear,
-                EmulationCrtColorMode.White, 38, 25, EmulationCrtMask.None, 0, 10, 8, 30, 50),
-            [EmulationVideoPreset.LcdColor] = FixedPixelPreset(EmulationFixedPixelTechnology.Lcd,
-                EmulationSubpixelLayout.Rgb, 35, 20, 16, 10, 70, 8),
-            [EmulationVideoPreset.LcdMonochrome] = FixedPixelPreset(EmulationFixedPixelTechnology.Lcd,
-                EmulationSubpixelLayout.Monochrome, 45, 25, 35, 25, 60, 15),
-            [EmulationVideoPreset.LedBacklitLcd] = FixedPixelPreset(
-                EmulationFixedPixelTechnology.LedBacklitLcd, EmulationSubpixelLayout.Rgb,
-                25, 15, 8, 5, 85, 12),
-            [EmulationVideoPreset.Oled] = FixedPixelPreset(EmulationFixedPixelTechnology.Oled,
-                EmulationSubpixelLayout.Rgb, 15, 10, 1, 0, null, 100),
+            [EmulationVideoPreset.CrtArcadeColor] = CrtPreset(EmulationVideoSampling.SharpBilinear, EmulationCrtColorMode.Color, 35, 20, EmulationCrtMask.ApertureGrille, 45, 8, 8, 40, 50),
+            [EmulationVideoPreset.CrtTelevisionColor] = CrtPreset(EmulationVideoSampling.Bilinear, EmulationCrtColorMode.Color, 55, 35, EmulationCrtMask.ShadowMask, 35, 18, 15, 25, 60),
+            [EmulationVideoPreset.CrtGreen] = CrtPreset(EmulationVideoSampling.SharpBilinear, EmulationCrtColorMode.Green, 42, 35, EmulationCrtMask.None, 0, 12, 10, 35, 50),
+            [EmulationVideoPreset.CrtAmber] = CrtPreset(EmulationVideoSampling.SharpBilinear, EmulationCrtColorMode.Amber, 42, 35, EmulationCrtMask.None, 0, 12, 10, 35, 50),
+            [EmulationVideoPreset.CrtWhite] = CrtPreset(EmulationVideoSampling.SharpBilinear, EmulationCrtColorMode.White, 38, 25, EmulationCrtMask.None, 0, 10, 8, 30, 50),
+            [EmulationVideoPreset.LcdColor] = FixedPixelPreset(EmulationFixedPixelTechnology.Lcd, EmulationSubpixelLayout.Rgb, 35, 20, 16, 10, 70, 8),
+            [EmulationVideoPreset.LcdMonochrome] = FixedPixelPreset(EmulationFixedPixelTechnology.Lcd, EmulationSubpixelLayout.Monochrome, 45, 25, 35, 25, 60, 15),
+            [EmulationVideoPreset.LedBacklitLcd] = FixedPixelPreset(EmulationFixedPixelTechnology.LedBacklitLcd, EmulationSubpixelLayout.Rgb, 25, 15, 8, 5, 85, 12),
+            [EmulationVideoPreset.Oled] = FixedPixelPreset(EmulationFixedPixelTechnology.Oled, EmulationSubpixelLayout.Rgb, 15, 10, 1, 0, null, 100),
             [EmulationVideoPreset.Plasma] = new()
             {
                 DisplayTechnology = EmulationVideoDisplayTechnology.Plasma,
@@ -61,8 +51,6 @@ public static partial class EmulationVideoProcessingCatalog
         {
             DisplayTechnology = EmulationVideoDisplayTechnology.FixedPixel,
             Sampling = EmulationVideoSampling.Nearest,
-            FixedPixel = new(technology, subpixels, GridIntensity: grid, PixelGap: gap,
-                ResponseTimeMilliseconds: responseMilliseconds, PersistenceIntensity: persistence,
-                BacklightIntensity: backlight, BlackDepth: blackDepth)
+            FixedPixel = new(technology, subpixels, GridIntensity: grid, PixelGap: gap, ResponseTimeMilliseconds: responseMilliseconds, PersistenceIntensity: persistence, BacklightIntensity: backlight, BlackDepth: blackDepth)
         };
 }

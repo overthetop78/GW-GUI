@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Emulerar SHARP X68000 datorer.</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Emulerar SHARP X1 datorer.</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Maskin ljud</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Controller alternativ</value></data>
+  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>Karaktär ROM</value></data>
+  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Visa minne</value></data>
+  <data name="Emulation.Sharp.Setting.AdpcmVolume" xml:space="preserve"><value>ADPCM Volymvolymvolym</value></data>
+  <data name="Emulation.Sharp.Setting.AudioDesynchronization" xml:space="preserve"><value>Discard överskott ljud</value></data>
+  <data name="Emulation.Sharp.Setting.AudioSampleRate" xml:space="preserve"><value>Audio-provfrekvens</value></data>
+  <data name="Emulation.Sharp.Setting.ButtonOrder" xml:space="preserve"><value>Button order</value></data>
+  <data name="Emulation.Sharp.Setting.DiskSeekSound" xml:space="preserve"><value>Disk söka ljud</value></data>
+  <data name="Emulation.Sharp.Setting.FmBoard" xml:space="preserve"><value>FM ljudbräda</value></data>
+  <data name="Emulation.Sharp.Setting.FmVolume" xml:space="preserve"><value>FM Volymvolymvolym</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRate" xml:space="preserve"><value>Video Ramfrekvens</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRateAdjustment" xml:space="preserve"><value>Ramfrekvensjustering</value></data>
+  <data name="Emulation.Sharp.Setting.FrameSkip" xml:space="preserve"><value>Skippade videoramar</value></data>
+  <data name="Emulation.Sharp.Setting.HideGraphics" xml:space="preserve"><value>Dölj grafik</value></data>
+  <data name="Emulation.Sharp.Setting.HideSprites" xml:space="preserve"><value>Dölj sprit och bakgrunder</value></data>
+  <data name="Emulation.Sharp.Setting.HideText" xml:space="preserve"><value>Dölj textskiktet</value></data>
+  <data name="Emulation.Sharp.Setting.MemorySize" xml:space="preserve"><value>RAM kapacitet</value></data>
+  <data name="Emulation.Sharp.Setting.RapidFire" xml:space="preserve"><value>Snabb eld</value></data>
+  <data name="Emulation.Sharp.Setting.Raster" xml:space="preserve"><value>Raster effekter</value></data>
+  <data name="Emulation.Sharp.Setting.ReverseJoystick" xml:space="preserve"><value>Reverse Controller Input</value></data>
+  <data name="Emulation.Sharp.Setting.UnlimitedSpeed" xml:space="preserve"><value>Obegränsad emuleringshastighet</value></data>
+  <data name="Emulation.Sharp.Setting.VerticalSync" xml:space="preserve"><value>Vertikal synkronisering</value></data>
+  <data name="Emulation.Sharp.Setting.VideoBeforeAudio" xml:space="preserve"><value>Prioritera video</value></data>
+  <data name="Emulation.Sharp.Value.High" xml:space="preserve"><value>Höghöghög</value></data>
+  <data name="Emulation.Sharp.Value.Low" xml:space="preserve"><value>Låg</value></data>
+  <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>Maskin display</value></data>
+</root>

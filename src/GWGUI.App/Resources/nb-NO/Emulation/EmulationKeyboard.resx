@@ -12,4 +12,5 @@
   <data name="Emulation.Keyboard.Priority.Description"><value>Hurtigtaster for GW GUI og Windows forblir aktive og fanges ikke av maskinen.</value></data>
   <data name="Emulation.Keyboard.EmulatedKey"><value>Maskintast</value></data>
   <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Bokstaver, tall og vanlige modifikatortaster sendes direkte. Bare Amigas funksjons- og spesialtaster må tilordnes her.</value></data>
+  <data name="Emulation.Keyboard.Modifier.Shift"><value>Skift</value></data>
 </root>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound"><value>Medium yang dikonfigurasi tidak ditemukan.</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported"><value>Mesin tidak mendukung media yang dipilih.</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound"><value>Inti emulasi yang diperlukan tidak ditemukan.</value></data>
+  <data name="Emulation.Example.Error.CoreRejected"><value>Inti emulasi yang dipilih tidak dapat dimuat.</value></data>
+  <data name="Emulation.Example.Error.Details"><value>Rincian: {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid"><value>Firmware tidak valid atau tidak kompatibel.</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing"><value>Sebuah firmware yang diperlukan hilang.</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing"><value>Path ke program host emulasi tidak tersedia.</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure"><value>Komunikasi dengan host emulasi gagal.</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid"><value>Sebuah opsi memiliki nilai yang tidak valid.</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible"><value>Keadaan tersimpan tidak kompatibel dengan mesin saat ini.</value></data>
+  <data name="Emulation.Example.Error.StateInvalid"><value>Keadaan tersimpan tidak valid.</value></data>
+  <data name="Emulation.Example.Error.Unexpected"><value>Terjadi galat emulasi yang tak terduga.</value></data>
+</root>

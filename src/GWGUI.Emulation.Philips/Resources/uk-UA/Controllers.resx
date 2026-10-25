@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Controller.CdiGamepad" xml:space="preserve"><value>CD-I геймпад</value></data>
+  <data name="Emulation.Philips.Controller.LightGun" xml:space="preserve"><value>мандар</value></data>
+  <data name="Emulation.Philips.Input.Action1" xml:space="preserve"><value>Кнопка 1</value></data>
+  <data name="Emulation.Philips.Input.Action2" xml:space="preserve"><value>Кнопка 2</value></data>
+  <data name="Emulation.Philips.Input.Action3" xml:space="preserve"><value>Кнопка 3</value></data>
+  <data name="Emulation.Philips.Input.Auxiliary" xml:space="preserve"><value>Допоміжна кнопка</value></data>
+  <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Зйомка</value></data>
+  <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Перевантаження</value></data>
+  <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Зброя пусконасоса</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>Поміняти місцями порти контролерів 1 і 2</value></data>
+</root>

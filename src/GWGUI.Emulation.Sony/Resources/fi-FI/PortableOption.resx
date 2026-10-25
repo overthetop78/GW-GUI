@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>Nopea saapas</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Jättää BIOS Käynnistä näyttö ja käynnistää pelin suoraan. Poista tämä avata konsoli asetukset tai muistikortin hallinta.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Automaattinen</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU Ydin</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Nopea muisti</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Ota nopeampi muistinkäyttö käyttöön. Se voi tehdä joistakin peleistä epävakaita.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Älä välitä huonoista muistoista</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>Tallennusvälineen käytön ajoitus</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>Isäntätietokone</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>UMD-levyn lukuviiveet</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>Synkronoi reaaliaikakellon kanssa</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>Synkronoi emuloinnin reaaliaikakelloon syöttöviiveen vähentämiseksi. Tämä voi heikentää suorituskykyä.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>Lukittu CPU Nopeus</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>Välimuistin koko ISO RAM-muodossa</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>Sisäinen huijaustuki</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Label"><value>Pelikieli</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Help"><value>"Automaattinen" käyttää etukielen kieltä.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>Kiinalainen perinteinen</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>Kiina Yksinkertaistettu</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>PSP-malli</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>Software Rendering</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Käytä ohjelmistopohjaista renderöintiä tarkkuuden parantamiseksi suuremmalla laskentatehon tarpeella.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>Renderointiresoluutio</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>Valitse sisäinen renderointiresoluutio.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA Anti-aliasointi</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Käytä MSAA-reunanpehmennystä Vulkanin avulla.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>Sato 16x9</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>Rajaa kuvan ylä- ja alareunaa, jotta kuvasuhteeksi tulee 16:9.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>Frameskip</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Label"><value>Frameskip-tyyppi</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.0"><value>Videoruutujen määrä</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>Prosenttiosuus videon kuvataajuudesta</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>Automaattinen kehyskippi</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>Renderoi kehykset 60 Hz:iin</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>Kahdentaa videoruudut liikkeen sulavoittamiseksi peleissä, joiden kuvataajuus on alhainen.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Tunnista videon kuvataajuuden muutokset</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Ilmoita sovellukselle pelin kuvataajuuden muutoksista.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Grafiikkakomentojen puskurointi</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>Vähennä grafiikkakomentojen puskurointia syöteviiveen lyhentämiseksi. Tämä voi heikentää suorituskykyä. Vain OpenGL ja Vulkan.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Ei ylimääräistä grafiikan puskurointia</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Puskuroi enintään yksi videoruutu</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Vahvistuspainike</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Analogisen sauvan ympyrän ja neliön muotoisen liikealueen kompensointi</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Analoginen Deadzone</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Käytä analogiselle sauvalle ylimääräistä kuollutta aluetta sovelluksen syötteenkäsittelyn jälkeen.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Analoginen akseliasteikko</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Help"><value>Käytä analogiselle sauvalle ylimääräistä herkkyyttä sovelluksen syötteenkäsittelyn jälkeen.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Label"><value>Ohita puskuriefektit</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Ohita kuvapuskurin tehosteet suorituskyvyn parantamiseksi. Joissakin peleissä kuva voi puuttua kokonaan.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Ohita GPU: n lukemat</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Ohita grafiikkatietojen kopiointi GPU:lta CPU:lle. Jotkin pelit tarvitsevat nämä kopiot kuvan näyttämiseen oikein.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Tekstuurien viivästetty välimuistitus (nopeutus)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Nopeammin, mutta voi aiheuttaa tekstiongelmia muutamassa pelissä.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>spline/bezier-käyrien laatu</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Käytetään vain joissakin peleissä, ohjaa sileys käyriä.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Label"><value>Alempi vaikutusten erottelukyky</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Help"><value>Pienennä joidenkin visuaalisten tehosteiden tarkkuutta renderöintivirheiden välttämiseksi.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Value.2"><value>Tasapainotettu</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_gpu_hardware_transform.Label"><value>Hardware Transform</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Label"><value>Ohjelmiston nylkeminen</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Help"><value>Käsittele ja yhdistä animoitujen 3D-mallien piirto-operaatioita CPU:lla. Tämä parantaa suorituskykyä useimmissa peleissä.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Label"><value>Hardware Tesselation</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Help"><value>Piirrä tasaisia käyriä GPU:n avulla.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Label"><value>Texture Upscale -tyyppi</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Value.3"><value>Hybridi + Bicubic</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Label"><value>Teksturointitaso</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Help"><value>Tekstuurien suurentaminen lisää CPU:n kuormitusta. Joidenkin tekstuurien suurentamista lykätään nykimisen välttämiseksi.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Label"><value>Texture Poistu</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Help"><value>Vähennä suurennettujen tekstuurien näkyviä väriraitoja.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_replacement.Label"><value>Tekstuurin korvaaminen</value></data>
+  </root>

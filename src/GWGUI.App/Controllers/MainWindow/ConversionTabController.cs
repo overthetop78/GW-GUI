@@ -1,10 +1,10 @@
 using GWGUI.Infrastructure.Commands;
 using GWGUI.Infrastructure.Commands.Building;
 using GWGUI.Infrastructure.Commands.Execution;
-using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
-using GwOptionValidator = global::GWGUI.Infrastructure.Commands.Options.GwOptionValidator;
-using ConversionOutput = global::GWGUI.MediaEngine.Images.Conversion.ConversionOutput;
-using ConversionPlanner = global::GWGUI.MediaEngine.Images.Conversion.ConversionPlanner;
+using EnabledOption = GWGUI.MediaEngine.Contracts.Options.EnabledOption;
+using GwOptionValidator = GWGUI.Infrastructure.Commands.Options.GwOptionValidator;
+using ConversionOutput = GWGUI.MediaEngine.Images.Conversion.ConversionOutput;
+using ConversionPlanner = GWGUI.MediaEngine.Images.Conversion.ConversionPlanner;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine.Images.Formats.Detection;
 using GWGUI.App.Profiles;
@@ -50,16 +50,15 @@ internal sealed class ConversionTabController(
     MediaImageReadingService mediaReader,
     MediaConversionService mediaConversion,
     SequentialMediaConversionService sequentialMediaConversion,
-    IFileDialogService fileDialogs,
+    Func<string?> selectSource,
     IBusinessDialogService businessDialogs,
     IMessageDialogService dialogs,
     DiskDefinitionsController diskDefinitionsController,
     OperationRuntimeController operation,
     ConsoleLogSession consoleLog,
     DiskImageWorkspaceController diskImageWorkspace,
-    TextBox readFolder,
     TextBox commandPreview,
-    TextBox logOutput,
+    RichTextBox logOutput,
     Func<int> selectedMainTab,
     Action<int> selectMainTab,
     Func<string, Task> loadImage,
@@ -84,7 +83,7 @@ internal sealed class ConversionTabController(
     internal void BuildFormats(string? extension, DetectedImageFormat? detection = null)
     {
         sourceExtension = extension; sourceDetection = detection;
-        var items = formatPresenter.Build(CurrentFormatCatalog(), extension, detection, viewModel.Conversion.SelectedFormats, viewModel.Conversion.ExplicitExtensions);
+        var items = formatPresenter.Build(CurrentFormatCatalog(), extension, UsesInternal && engineDestinations is not null ? null : detection, viewModel.Conversion.SelectedFormats, viewModel.Conversion.ExplicitExtensions);
         foreach (var item in items)
             if (!item.IsCompatible && viewModel.Conversion.SelectedFormats.Contains(item.Format.Id))
                 viewModel.Conversion.SetFormat(item.Format.Id, false, item.ExplicitExtensions);
@@ -118,7 +117,7 @@ internal sealed class ConversionTabController(
 
     internal async Task BrowseSourceAsync()
     {
-        var path = fileDialogs.OpenFile(new(LocExtension.Get("Common.DiskImageFilter"), readFolder.Text));
+        var path = selectSource();
         if (path is null) return;
         viewModel.Conversion.SourcePath = path; viewModel.Conversion.OutputName = Path.GetFileNameWithoutExtension(path);
         var detection = detectSource is null ? formatDetector().Detect(path, new FileInfo(path).Length) : detectSource(path);
@@ -135,10 +134,7 @@ internal sealed class ConversionTabController(
                 engineSourceDocument = document;
                 var directDestinations = mediaConversion.GetAvailableDestinations(document);
                 var sequentialDestinations = await sequentialMediaConversion.GetAvailableDestinationsAsync(document);
-                engineDestinations = directDestinations
-                    .Concat(sequentialDestinations)
-                    .Distinct()
-                    .ToArray();
+                engineDestinations = directDestinations.Concat(sequentialDestinations).Distinct().ToArray();
             }
             catch (Exception exception) when (exception is InvalidDataException or NotSupportedException)
             {
@@ -172,9 +168,7 @@ internal sealed class ConversionTabController(
     {
         if (string.IsNullOrWhiteSpace(viewModel.Conversion.SourcePath)) return [];
         var catalog = CurrentFormatCatalog();
-        return new ConversionPlanner(catalog).Plan(viewModel.Conversion.SourcePath, readFolder.Text,
-            viewModel.Conversion.OutputName.Trim(), viewModel.Conversion.BuildSelections(catalog.Formats),
-            viewModel.Conversion.AddTags, settings().Conversion.TagPattern);
+        return new ConversionPlanner(catalog).Plan(viewModel.Conversion.SourcePath, viewModel.Conversion.OutputName.Trim(), viewModel.Conversion.BuildSelections(catalog.Formats), viewModel.Conversion.AddTags, settings().Conversion.TagPattern);
     }
 
     private IImageFormatCatalog CurrentFormatCatalog()
@@ -182,23 +176,19 @@ internal sealed class ConversionTabController(
         var curated = formatCatalog();
         if (!UsesInternal || engineDestinations is null) return curated;
         var source = sourceExtension ?? string.Empty;
-        var formats = engineDestinations
-            .GroupBy(destination => destination.FormatId, StringComparer.OrdinalIgnoreCase)
+        var formats = engineDestinations.GroupBy(destination => destination.FormatId, StringComparer.OrdinalIgnoreCase)
             .Select(group =>
             {
+                var presentation = curated.Formats.FirstOrDefault(format => format.Id.Equals(group.Key, StringComparison.OrdinalIgnoreCase));
                 var destinations = group.ToArray();
-                var extensions = destinations
-                    .Select((destination, index) => new ImageExtension(destination.Extension, destination.Extension.TrimStart('.').ToUpperInvariant(), index == 0))
-                    .ToArray();
+                var extensions = destinations.Select((destination, index) => new ImageExtension(destination.Extension, destination.Extension.TrimStart('.').ToUpperInvariant(), index == 0)).ToArray();
                 return new DiskFormat(
                     group.Key,
-                    LocExtension.Get("Conversion.MediaEngineFamily"),
-                    LocExtension.Get("Format." + group.Key),
+                    presentation?.Family ?? string.Empty,
+                    presentation?.DisplayName ?? LocExtension.Get("Format." + group.Key),
                     extensions,
                     true,
-                    string.IsNullOrWhiteSpace(source)
-                        ? new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-                        : new HashSet<string>([source], StringComparer.OrdinalIgnoreCase),
+                    string.IsNullOrWhiteSpace(source) ? new HashSet<string>(StringComparer.OrdinalIgnoreCase) : new HashSet<string>([source], StringComparer.OrdinalIgnoreCase),
                     group.Key.ToUpperInvariant());
             });
         return new RuntimeImageFormatCatalog(curated, formats);
@@ -206,9 +196,7 @@ internal sealed class ConversionTabController(
 
     private bool IsInternalOutput(ConversionOutput output) =>
         ConversionBatchExecutor.IsInternal(viewModel.Conversion.SourcePath, output)
-        || engineDestinations?.Any(destination =>
-            destination.FormatId.Equals(output.FormatId, StringComparison.OrdinalIgnoreCase)
-            && destination.Extension.Equals(output.Extension, StringComparison.OrdinalIgnoreCase)) == true;
+        || engineDestinations?.Any(destination => destination.FormatId.Equals(output.FormatId, StringComparison.OrdinalIgnoreCase) && destination.Extension.Equals(output.Extension, StringComparison.OrdinalIgnoreCase)) == true;
 
     private EnabledOption[] Options() => viewModel.Conversion.BuildOptions().ToArray();
 
@@ -226,6 +214,10 @@ internal sealed class ConversionTabController(
                 : commandBuilder.BuildConversion(settings().GwExecutablePath ?? "gw.exe", viewModel.Conversion.SourcePath, outputs[0], Options(), viewModel.Conversion.ExpertArguments);
             commandPreview.Text = first.ToDisplayString() + (outputs.Count > 1 ? LocExtension.Get("Conversion.More", outputs.Count - 1) : "");
         }
+        catch (ConversionOutputCollisionException exception)
+        {
+            commandPreview.Text = $"⚠ {LocExtension.Get("Conversion.OutputCollision", Path.GetFileName(exception.OutputPath), LocExtension.Get("Conversion.AddTags"))}";
+        }
         catch (Exception exception) { ErrorLog.Write(exception, "Building conversion preview"); commandPreview.Text = $"⚠ {LocExtension.Get("Advanced.Invalid", LocExtension.Get("Common.Unknown"))}"; }
     }
 
@@ -237,6 +229,11 @@ internal sealed class ConversionTabController(
         if (string.IsNullOrWhiteSpace(view.OutputBlock.OutputNameTextBox.Text)) { dialogs.Show(LocExtension.Get("Conversion.NameRequired"), LocExtension.Get("Conversion.Title")); return; }
         IReadOnlyList<ConversionOutput> outputs;
         try { outputs = Plan(); GwOptionValidator.Validate(Options()); }
+        catch (ConversionOutputCollisionException exception)
+        {
+            dialogs.Show(LocExtension.Get("Conversion.OutputCollision", Path.GetFileName(exception.OutputPath), LocExtension.Get("Conversion.AddTags")), LocExtension.Get("Conversion.Title"), icon: UserDialogIcon.Warning);
+            return;
+        }
         catch { diskDefinitionsController.ShowInvalid(LocExtension.Get("Conversion.Title")); return; }
         if (outputs.Count == 0) { dialogs.Show(LocExtension.Get("Conversion.CheckOutput"), LocExtension.Get("Conversion.Title")); return; }
         if (UsesInternal && outputs.Any(x => !IsInternalOutput(x)))
@@ -244,8 +241,7 @@ internal sealed class ConversionTabController(
         var acceptSequentialLosses = false;
         if (UsesInternal)
         {
-            engineSourceDocument ??= await mediaReader.ReadAsync(
-                new GWGUI.MediaEngine.Contracts.MediaSourceDescriptor(viewModel.Conversion.SourcePath, []));
+            engineSourceDocument ??= await mediaReader.ReadAsync(new GWGUI.MediaEngine.Contracts.MediaSourceDescriptor(viewModel.Conversion.SourcePath, []));
             var losses = new List<string>();
             foreach (var output in outputs)
             {
@@ -260,11 +256,7 @@ internal sealed class ConversionTabController(
             if (distinctLosses.Length > 0)
             {
                 var detail = string.Join(Environment.NewLine, distinctLosses.Select(loss => $"• {loss}"));
-                if (dialogs.Show(
-                        LocExtension.Get("Conversion.SequentialLossesConfirm", detail),
-                        LocExtension.Get("Conversion.SequentialLossesTitle"),
-                        UserDialogButtons.YesNo,
-                        UserDialogIcon.Warning) != UserDialogResult.Yes)
+                if (dialogs.Show(LocExtension.Get("Conversion.SequentialLossesConfirm", detail), LocExtension.Get("Conversion.SequentialLossesTitle"), UserDialogButtons.YesNo, UserDialogIcon.Warning) != UserDialogResult.Yes)
                     return;
                 acceptSequentialLosses = true;
             }
@@ -277,7 +269,7 @@ internal sealed class ConversionTabController(
             var decisions = businessDialogs.ResolveConversionConflicts(existing); if (decisions is null) return;
             outputs = ConversionConflictResolutionFunctions.Apply(outputs, existing, decisions, NumberedPath);
         }
-        view.ExecuteActionButton.Content = LocExtension.Get("Common.Stop"); operation.Begin(); await operation.RenderPendingAsync(); logOutput.Clear();
+        view.ExecuteActionButton.Content = LocExtension.Get("Common.Stop"); operation.Begin(); await operation.RenderPendingAsync(); logOutput.Document.Blocks.Clear();
         await consoleLog.BeginAsync("convert", commandPreview.Text);
         var progress = new Progress<GwOutputLine>(operation.Report);
         var outcome = await operation.RunAsync(token =>
@@ -306,7 +298,5 @@ internal sealed class ConversionTabController(
         settings().Conversion.OptionValues = viewModel.Conversion.CaptureValues();
     }
 
-    internal void RestoreSettings() => viewModel.Conversion.ApplySettings(settings().Conversion.AddTags,
-        settings().Conversion.SelectedFormats, settings().Conversion.ExplicitExtensions,
-        settings().Conversion.EnabledOptions, settings().Conversion.OptionValues);
+    internal void RestoreSettings() => viewModel.Conversion.ApplySettings(settings().Conversion.AddTags, settings().Conversion.SelectedFormats, settings().Conversion.ExplicitExtensions, settings().Conversion.EnabledOptions, settings().Conversion.OptionValues);
 }

@@ -14,5 +14,6 @@
   <data name="Emulation.Configuration.DeleteConfirm"><value>هل تريد حذف تكوين {0} {1}؟</value></data>
   <data name="Emulation.Configuration" xml:space="preserve"><value>التكوين</value></data>
   <data name="Emulation.Configurations" xml:space="preserve"><value>خامسا - المفاوضات</value></data>
-  <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>تحذف هذه التشكيلة من &quot;أميغا&quot;؟</value></data>
+  <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>تحذف هذه التشكيلة من "أميغا"؟</value></data>
+  <data name="Emulation.Configuration.Selector"><value>العلامات التجارية والآلات</value></data>
 </root>

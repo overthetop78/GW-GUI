@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Language"><value>Nintendo rendszer nyelve</value></data>
+  <data name="Emulation.Nintendo.Language.English"><value>Angol nyelv</value></data>
+  <data name="Emulation.Nintendo.Language.French"><value>Francia</value></data>
+  <data name="Emulation.Nintendo.Language.Spanish"><value>Spanyol</value></data>
+  <data name="Emulation.Nintendo.Firmware.Integrated"><value>Rendszer ROM</value></data>
+  <data name="Emulation.Emulator.mesen.Description"><value>Emulátok Nintendo Entertainment System és Famicom Disk System.</value></data>
+  <data name="Emulation.Emulator.gw.Description"><value>Emulates Nintendo Game &amp; Watch.</value></data>
+  <data name="Emulation.Emulator.beetle_vb.Description"><value>Emulálja a Nintendo Virtual Boy.</value></data>
+  <data name="Emulation.Emulator.mupen64plus-next.Description"><value>Emulates Nintendo 64 rendszerek.</value></data>
+  <data name="Emulation.Emulator.melonds.Description"><value>Emulates Nintendo DS és DSi rendszerek.</value></data>
+  <data name="Emulation.Emulator.snes9x.Description"><value>Emulates Super Nintendo és Super Famicom rendszerek.</value></data>
+  <data name="Emulation.Emulator.gambatte.Description"><value>Emulálja a Nintendo Game Boy rendszert. A Game Boy Color rendszert is emulálja.</value></data>
+  <data name="Emulation.Emulator.mgba.Description"><value>Emulates Nintendo Game Boy Advance rendszerek.</value></data>
+  <data name="Emulation.Emulator.citra.Description"><value>Emulates Nintendo 3DS rendszerek Citra.</value></data>
+  <data name="Emulation.Emulator.dolphin.Description"><value>Emulátumok Nintendo GameCube és Wii rendszerekkel Dolphin.</value></data>
+</root>

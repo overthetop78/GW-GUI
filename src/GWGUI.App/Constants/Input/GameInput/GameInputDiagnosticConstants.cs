@@ -5,8 +5,7 @@ internal static class GameInputDiagnosticConstants
     internal const string MissingRawReportSuffix = "; rawReport=null";
     internal const string RawReportSizeFormat = "; rawSize={0}";
     internal const string RawReportCopyFormat = "; rawSize={0}; copied={1}";
-    internal const string CallbackTraceFormat =
-        "filter=0x{0:X8} token=0x{1:X16} device={2} id={3} current=0x{4:X8} previous=0x{5:X8}";
+    internal const string CallbackTraceFormat = "filter=0x{0:X8} token=0x{1:X16} device={2} id={3} current=0x{4:X8} previous=0x{5:X8}";
     internal const string CallbackTokenFormat = "callbackToken=0x{0:X16}";
     internal const string ContextFormat = "context=0x{0:X16}";
     internal const string DeviceIUnknownFormat = "deviceIUnknown=0x{0:X16}";

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Konsollvideo</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Konsolllyd</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Konsollkontroller</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Emulerer WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Spiller av Playdia-plater med PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Emulerer Tamagotchi P1 med TamaLIBretro.</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Denne kjernen spiller plater uten å emulere prosessorene.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Vis minne</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Vis orientering</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>Kontrollorientering</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Monokrom palett</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>Terskel for å hoppe over videobilder</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60 Hz-modus</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>Lydprøvetakingshastighet</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>Lydfilter</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>Bytt knapper A og B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>Automatisk</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>Manuell</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>Liggende</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>Stående</value></data>
+</root>

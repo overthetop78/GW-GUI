@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Short"><value>כמות ה- RAM זמינה למכונה הנחשקת.</value></data>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Detailed"><value>מציג את המכונה RAM שנבחרה על ידי מכונה Nintendo.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Short"><value>מערכת ROM.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Detailed"><value>מציג את מצב המערכת ROM עבור המכונה שנבחרה וחיקוי.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Short"><value>דגם Nintendo מוגדר.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Short"><value>אדמירטור נבחר למכונה זו.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Detailed"><value>Identifing היישום של החיקוי המשמש להפעיל את תצורת מכונה זו.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Short"><value>מעבד חיקוי למכונה זו.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Detailed"><value>מציג את מודל המעבד המסופק על ידי המכונה Nintendo שנבחרה.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Short"><value>תדירות שעון המעבד המקורי</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Detailed"><value>מציג את תדירות השעון nominal של המעבד במכונת Nintendo שנבחרה.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Short"><value>צליל אמין או מפוחד.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Detailed"><value>שליטה אם GW GUI משחק את הדגימות אודיו שנוצרו על ידי החיקוי.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Short"><value>צילום אודיו בשימוש על ידי GW GUI.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Detailed"><value>בחר את הפלט אודיו של Windows המשמש כדי לנגן קול ממכונה זו.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Detailed"><value>Identifies דגם Nintendo שתצורת החומרה שלו נערכת.</value></data>
+</root>

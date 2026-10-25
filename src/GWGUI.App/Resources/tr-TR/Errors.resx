@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>Talep edilen pozisyon bu dosya-sistem nesnesi için geçersizdir.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Dağıtım-node operasyonu başarısız oldu.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Allocation-node bitmap indeks blok blok {0}/ / / / / / /{1} okuyamazdı.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>Sürücü başı talep edilen silindirde değil (The drive head is not at the requested silindir (The drive head is not at the requested silindir (The drive head){0}).Okumadan önce sürücüyü uyar.</value></data>
 </root>

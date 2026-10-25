@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Thomson.Model.Mo5" xml:space="preserve"><value>MO5</value></data>
+  <data name="Emulation.Thomson.Model.Mo6" xml:space="preserve"><value>MO6</value></data>
+  <data name="Emulation.Thomson.Model.To7" xml:space="preserve"><value>TO7</value></data>
+  <data name="Emulation.Thomson.Model.To770" xml:space="preserve"><value>TO7/70</value></data>
+  <data name="Emulation.Thomson.Model.To8" xml:space="preserve"><value>TO8</value></data>
+  <data name="Emulation.Thomson.Model.To8D" xml:space="preserve"><value>TO8D</value></data>
+  <data name="Emulation.Thomson.Model.To9" xml:space="preserve"><value>TO9</value></data>
+  <data name="Emulation.Thomson.Model.To9Plus" xml:space="preserve"><value>TO9+</value></data>
+</root>

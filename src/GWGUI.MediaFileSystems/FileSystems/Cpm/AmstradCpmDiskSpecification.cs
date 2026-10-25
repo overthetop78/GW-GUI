@@ -1,5 +1,4 @@
 namespace GWGUI.MediaFileSystems.FileSystems.Cpm;
-
 /// <summary>Décrit les champs validés de la spécification disque Amstrad PCW.</summary>
 public sealed record AmstradCpmDiskSpecification(byte Tracks, byte SectorsPerTrack, int SectorSize, byte ReservedTracks, int AllocationSize, byte DirectoryBlocks)
 {
@@ -35,19 +34,26 @@ public sealed record AmstradCpmDiskSpecification(byte Tracks, byte SectorsPerTra
     public const int MaximumAllocationSize = 16384;
     /// <summary>Masque du code exponentiel de taille.</summary>
     public const byte SizeCodeMask = 7;
-
     /// <summary>Tente de lire et valider une spécification disque PCW.</summary>
     public static bool TryParse(ReadOnlySpan<byte> bytes, out AmstradCpmDiskSpecification specification)
     {
         specification = null!;
-        if (bytes.Length < MinimumLength) return false;
+        if (bytes.Length < MinimumLength)
+            return false;
         var tracks = bytes[TracksOffset];
         var sectorsPerTrack = bytes[SectorsPerTrackOffset];
         var sectorSize = MinimumSectorSize << (bytes[SectorSizeCodeOffset] & SizeCodeMask);
         var reservedTracks = bytes[ReservedTracksOffset];
         var allocationSize = MinimumSectorSize << (bytes[AllocationSizeCodeOffset] & SizeCodeMask);
         var directoryBlocks = bytes[DirectoryBlocksOffset];
-        if (tracks is 0 or > MaximumTracks || sectorsPerTrack is 0 or > MaximumSectorsPerTrack || sectorSize is < MinimumSectorSize or > MaximumSectorSize || reservedTracks > MaximumReservedTracks || allocationSize is < MinimumAllocationSize or > MaximumAllocationSize || directoryBlocks is 0 or > MaximumDirectoryBlocks) return false;
+        if (tracks is 0 or > MaximumTracks 
+            || sectorsPerTrack is 0 or > MaximumSectorsPerTrack 
+            || sectorSize is < MinimumSectorSize or > MaximumSectorSize 
+            || reservedTracks 
+            > MaximumReservedTracks 
+            || allocationSize is < MinimumAllocationSize or > MaximumAllocationSize 
+            || directoryBlocks is 0 or > MaximumDirectoryBlocks)
+            return false;
         specification = new(tracks, sectorsPerTrack, sectorSize, reservedTracks, allocationSize, directoryBlocks);
         return true;
     }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Консольное видео</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Консольный звук</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Консольный контроль</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Эмулирует WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>Воспроизводит диски Playdia с помощью PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>Эмулирует Tamagotchi P1 с помощью TamaLIBretro.</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Это ядро воспроизводит диски без эмуляции процессоров.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Отображение памяти</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Ориентация дисплея</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>Ориентация на контроль</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Монохромная палитра</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>Порог срабатывания пропуска кадров</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60 Гц режим</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>Скорость отбора проб аудио</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>Аудиофильтр</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>Кнопки Swap A и B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>автоматический</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>Ручной</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>Альбомная</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>Портретная</value></data>
+</root>

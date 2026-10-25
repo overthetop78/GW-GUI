@@ -7,8 +7,8 @@
   <data name="Emulation.Memory.Main"><value>Основна пам’ять</value></data>
   <data name="Emulation.Memory.Extensions"><value>Розширення пам’яті</value></data>
   <data name="Emulation.Memory.None"><value>Немає</value></data>
-  <data name="Emulation.Memory.CompatibleWithModel"><value>Конфігурація пам’яті сумісна з {0}.</value></data>
-  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Розширення пам’яті сумісні з {0}.</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>Сумісна конфігурація: {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Сумісні розширення пам'яті: {0}.</value></data>
   <data name="Emulation.Memory.Z3UnavailableForModel"><value>КСНУМКС III RAM КСНУМКС {0}.</value></data>
   <data name="Emulation.Memory.TotalConfigured"><value>Усього налаштовано пам’яті: {0} {1}</value></data>
 </root>

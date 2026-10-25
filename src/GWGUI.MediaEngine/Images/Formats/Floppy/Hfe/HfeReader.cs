@@ -85,16 +85,13 @@ public sealed class HfeReader : IMediaImageReader
                     remaining -= count;
                     block++;
                 }
-                tracks.Add(version3
-                    ? DecodeVersion3Track(cylinder, head, packed, bitCellTicks)
-                    : new HfeTrack(cylinder, head, HfeBitPacking.Unpack(packed), bitCellTicks));
+                tracks.Add(version3 ? DecodeVersion3Track(cylinder, head, packed, bitCellTicks) : new HfeTrack(cylinder, head, HfeBitPacking.Unpack(packed), bitCellTicks));
             }
         }
         return new(revision, cylinders, heads, encoding, bitRate, tracks.AsReadOnly());
     }
 
-    private static bool IsSupportedSignature(ReadOnlySpan<byte> signature)
-        => signature.SequenceEqual(HfeFormat.Signature) || signature.SequenceEqual(HfeFormat.Version3Signature);
+    private static bool IsSupportedSignature(ReadOnlySpan<byte> signature) => signature.SequenceEqual(HfeFormat.Signature) || signature.SequenceEqual(HfeFormat.Version3Signature);
 
     private static HfeTrack DecodeVersion3Track(int cylinder, int head, ReadOnlySpan<byte> packed, uint nominalTicks)
     {

@@ -1,0 +1,22 @@
+namespace GWGUI.Emulation.Nec.Common.Machines.Common.Contracts;
+
+public sealed record MachineConfiguration(
+    string Model,
+    string EmulatorId,
+    IReadOnlyDictionary<string, string>? Options = null,
+    Guid Id = default,
+    bool AudioEnabled = true,
+    IReadOnlyList<PeripheralCategory>? Controllers = null,
+    InputConfiguration? Input = null,
+    int SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion,
+    IReadOnlyList<MediaConfiguration>? Media = null,
+    AudioConfiguration? Audio = null,
+    string? FirmwarePath = null,
+    IReadOnlyDictionary<string, string>? FirmwarePaths = null,
+    string? HardDiskDirectory = null)
+    : GWGUI.Emulation.Interfaces.IEmulationConfiguration
+{
+    public string ModuleId => MachineConfigurationConstants.ModuleId;
+    string GWGUI.Emulation.Interfaces.IEmulationConfiguration.MachineId => Model;
+    public MachineConfiguration EnsureId() => Id == Guid.Empty ? this with { Id = Guid.NewGuid() } : this;
+}

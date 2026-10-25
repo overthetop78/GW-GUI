@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Language"><value>Nintendo systemspråk</value></data>
+  <data name="Emulation.Nintendo.Language.English"><value>Engelska språket</value></data>
+  <data name="Emulation.Nintendo.Language.French"><value>Franska franska</value></data>
+  <data name="Emulation.Nintendo.Language.Spanish"><value>Spanska spanska</value></data>
+  <data name="Emulation.Nintendo.Firmware.Integrated"><value>System ROM</value></data>
+  <data name="Emulation.Emulator.mesen.Description"><value>Emulerar Nintendo Entertainment System och Famicom Disk System.</value></data>
+  <data name="Emulation.Emulator.gw.Description"><value>Emulerar Nintendo Game &amp; Watch.</value></data>
+  <data name="Emulation.Emulator.beetle_vb.Description"><value>Emulerar Nintendo Virtual Boy.</value></data>
+  <data name="Emulation.Emulator.mupen64plus-next.Description"><value>Emulerar Nintendo 64 system.</value></data>
+  <data name="Emulation.Emulator.melonds.Description"><value>Emulerar Nintendo DS och DSi-system.</value></data>
+  <data name="Emulation.Emulator.snes9x.Description"><value>Emulerar Super Nintendo och Super Famicom-system.</value></data>
+  <data name="Emulation.Emulator.gambatte.Description"><value>Emulerar Nintendo Game Boy-systemet. Emulerar även Game Boy Color-systemet.</value></data>
+  <data name="Emulation.Emulator.mgba.Description"><value>Emulerar Nintendo Game Boy Advance-system.</value></data>
+  <data name="Emulation.Emulator.citra.Description"><value>Emulerar Nintendo 3DS-system med Citra.</value></data>
+  <data name="Emulation.Emulator.dolphin.Description"><value>Emulerar Nintendo GameCube och Wii-system med Dolphin.</value></data>
+</root>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Valitse automaattinen ajoitus tai videostandardi.</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Valitse emuloitu videosiru.</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Valitse kuva-suhde. Automaattinen valinta käyttää pelialuetta.</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>Valitse näkyvät näytön rajat.</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>Poista sprite-raja näytön riviä kohti. Tämä voi aiheuttaa graafisia virheitä.</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>Sallitaan vastakkaisten ohjeiden painaminen yhteen.</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>Säädä pyörivän ohjaimen herkkyys.</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>Valitse väripaletista.</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>Piilota yläruudun raja.</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>Piilota alaruudun raja.</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>Piilota vasemman näytön raja.</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Piilota oikea näyttöraja.</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Piilota pikselit näytöllä olevan kuvan reunoille.</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Jätä saappaan viive väliin.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>Pelikasetin muistipiiri. Käytä automaattista tunnistusta, ellei ROM-tiedostoa tunnisteta väärin.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Vakio: enintään 32 KiB. MegaCart ja Activision: erilaiset ROM-muistipankkien vaihtopiirit. OCM: muistipankkien vaihto ja EEPROM-tallennus. Activision tarkoittaa piiriä, ei pelin julkaisijaa. Väärä tyyppi voi estää käynnistyksen tai aiheuttaa virheitä.</value></data>
+</root>

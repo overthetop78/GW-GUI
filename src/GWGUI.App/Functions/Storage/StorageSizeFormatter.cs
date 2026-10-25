@@ -19,9 +19,7 @@ internal static class StorageSizeFormatter
         return $"{bytes / (double)BytesPerMebibyte:0.##} {MebibyteUnit}";
     }
 
-    internal static string FormatCapacity(long bytes) => bytes >= BytesPerGibibyte
-        ? $"{bytes / (double)BytesPerGibibyte:0.##} {GibibyteUnit}"
-        : $"{bytes / (double)BytesPerMebibyte:0.##} {MebibyteUnit}";
+    internal static string FormatCapacity(long bytes) => bytes >= BytesPerGibibyte ? $"{bytes / (double)BytesPerGibibyte:0.##} {GibibyteUnit}" : $"{bytes / (double)BytesPerMebibyte:0.##} {MebibyteUnit}";
 
     internal static string FormatKibibytes(int kibibytes)
     {
@@ -30,6 +28,5 @@ internal static class StorageSizeFormatter
         return $"{mebibytes.ToString(mebibytes % 1 == 0 ? "0" : "0.##", CultureInfo.CurrentCulture)} {MebibyteUnit}";
     }
 
-    private static bool UsesFrenchBinaryUnits =>
-        CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr";
+    private static bool UsesFrenchBinaryUnits => CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr";
 }

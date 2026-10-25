@@ -43,14 +43,14 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>דיסק קשיח</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>ממשק</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>הקצאה מוקדמת של הקובץ</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>תקליטונים ותקליטורים מוכנסים או מוחלפים מתוך המכונה הפועלת.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>השתמש בתצוגת החיקוי כדי להוסיף או לשנות את המדיה.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>הסרת מדיה</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>תמונת הדיסק כבר קיימת: {0}\nהאם להחליף אותה?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>הסוגים, הדגמים והמזהים הזמינים תלויים במכונה שנבחרה.</value></data>
   <data name="Emulation.Storage.Tape.Device"><value>כונן קלטת</value></data>
   <data name="Emulation.Storage.Disk.Use"><value>שימוש בדיסק</value></data>
   <data name="Emulation.Storage.Disk.UseExisting"><value>שימוש בדיסק קיים</value></data>
-  <data name="Emulation.Storage.ModifyInGeneral"><value>שינוי ב&apos;כללי&apos;</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>שינוי ב'כללי'</value></data>
   <data name="Emulation.Storage.Device.NoneAvailable"><value>אין התקן אחסון נוסף זמין למכונה זו.</value></data>
   <data name="Emulation.Storage.Device.List"><value>התקני אחסון</value></data>
   <data name="Emulation.Storage.Geometry.Allocation"><value>הקצאה</value></data>
@@ -75,4 +75,13 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>חריץ מחסנית</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Mount the first four Disks in DF0-DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>דיסק דיסק {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>השתמש בכרטיס</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>הקובץ שנבחר יהיה מחובר למכשיר אחסון וירטואלי זה.</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>בחר קובץ כרטיס קיים.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>לקובץ הכרטיס יש גודל לא חוקי.</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>בחר פורמט קובץ נתמך על ידי מכשיר זה.</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>ללא הגבלה</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>ניקוי בעת סגירת המשחק</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>כרטיס זיכרון</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>שם כרטיס</value></data>
 </root>

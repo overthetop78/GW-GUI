@@ -36,4 +36,27 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (오른손)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>모양</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>의 특징 {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Pointing 장치</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>비행 시뮬레이션</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>레이싱 시뮬레이션</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>댄스 시뮬레이션</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>싱싱 시뮬레이션</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>기타 시뮬레이션 주변 장치</value></data>
+  <data name="Emulation.Controller.Feedback.Strong"><value>강한 진동</value></data>
+  <data name="Emulation.Controller.Feedback.Weak"><value>약한 진동</value></data>
+  <data name="Emulation.Controller.Action.Reload"><value>재장전</value></data>
+  <data name="Emulation.Controller.CrosshairColor"><value>조준선 색상</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dance-mat"><value>댄스 매트</value></data>
+  <data name="Emulation.Controller.ConfigureInKeyboardTab"><value>키보드 탭에서 구성.</value></data>
+  <data name="Emulation.Controller.ConfigureInMouseTab"><value>마우스 탭에서 마우스를 구성합니다.</value></data>
+  <data name="Emulation.Controller.PeripheralType"><value>장치 유형</value></data>
+  <data name="Emulation.Controller.Feedback.Device"><value>진동에 사용되는 컨트롤러</value></data>
+  <data name="Emulation.Input.Analog.Title"><value>스틱 및 축 할당</value></data>
+  <data name="Emulation.Input.Analog.Stick"><value>뚱 베어 {0}</value></data>
+  <data name="Emulation.Input.Analog.Custom"><value>키보드 또는 사용자 지정 할당</value></data>
+  <data name="Emulation.Input.Analog.Left"><value>왼쪽 스틱</value></data>
+  <data name="Emulation.Input.Analog.Right"><value>꽉 쥐기</value></data>
+  <data name="Emulation.Input.Analog.Axis"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 {0}</value></data>
+  <data name="Emulation.Input.Analog.Axes"><value>엑세스 {0} / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / {1}</value></data>
+  <data name="Emulation.Input.Analog.Saved"><value>관련 상품</value></data>
 </root>

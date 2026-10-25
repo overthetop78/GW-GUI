@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Panasonic.Error.AlreadyInitialized"><value>Ο ξενιστής εξομοίωσης έχει ήδη αρχίσει.</value></data>
+  <data name="Emulation.Panasonic.Error.CommunicationFailed"><value>Η επικοινωνία του ξενιστή εξομοίωσης απέτυχε.</value></data>
+  <data name="Emulation.Panasonic.Error.ContentFileMissing"><value>Το ρυθμισμένο μέσο δεν βρέθηκε.</value></data>
+  <data name="Emulation.Panasonic.Error.DynamicMediaUnsupported"><value>Η συνεδρία εξομοίωσης δεν μπορεί να ανταλλάξει αυτό το μέσο.</value></data>
+  <data name="Emulation.Panasonic.Error.ExecutableMissing"><value>Το εκτελέσιμο του υπολογιστή εξομοίωσης λείπει.</value></data>
+  <data name="Emulation.Panasonic.Error.InstalledLibraryLockedFormat"><value>Η εγκατεστημένη βιβλιοθήκη δεν μπορεί να αντικατασταθεί: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.InvalidArchitecture"><value>Ο πυρήνας που έχει κατεβάσει δεν είναι τα Windows x64.</value></data>
+  <data name="Emulation.Panasonic.Error.InvalidConfiguration"><value>Η διαμόρφωση της εξομοίωσης είναι άκυρη.</value></data>
+  <data name="Emulation.Panasonic.Error.InvalidResponseLengthFormat"><value>Μη έγκυρο μήκος απόκρισης του ξενιστή εξομοίωσης: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.MachineInvalidState"><value>Η συνεδρία εξομοίωσης δεν είναι στην απαιτούμενη κατάσταση.</value></data>
+  <data name="Emulation.Panasonic.Error.MachineStopped"><value>Η συνεδρία εξομοίωσης σταμάτησε.</value></data>
+  <data name="Emulation.Panasonic.Error.MissingExpectedLibraryFormat"><value>Η λήψη της αρχειοθήκης δεν περιέχει {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.MissingPublishedDate"><value>Η επίσημη απάντηση δεν προσδιορίζει την ημερομηνία δημοσίευσής της.</value></data>
+  <data name="Emulation.Panasonic.Error.NotInitialized"><value>Ο ξενιστής εξομοίωσης δεν έχει αρχικοποιηθεί.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessExitSuffixFormat"><value> Κωδικός εξόδου: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessNotInitialized"><value>Η διαδικασία του υπολογιστή εξομοίωσης δεν έχει αρχικοποιηθεί.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessStartFailed"><value>Η διαδικασία του υπολογιστή εξομοίωσης δεν μπόρεσε να ξεκινήσει.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessUnavailable"><value>Η διαδικασία του υπολογιστή εξομοίωσης δεν είναι διαθέσιμη.</value></data>
+  <data name="Emulation.Panasonic.Error.ProtocolVersionMismatchFormat"><value>Έκδοση πρωτοκόλλου {0} δεν ταιριάζει {1}.</value></data>
+  <data name="Emulation.Panasonic.Error.RequestCancelled"><value>Το αίτημα για εξομοίωση ακυρώθηκε.</value></data>
+  <data name="Emulation.Panasonic.Error.ResponseTimeout"><value>Ο ξενιστής εξομοίωσης έχει χρονομετρηθεί.</value></data>
+  <data name="Emulation.Panasonic.Error.ResponseUnavailable"><value>Η απάντηση του ξενιστή εξομοίωσης δεν είναι διαθέσιμη.</value></data>
+  <data name="Emulation.Panasonic.Error.SharedVideoUnavailable"><value>Η κοινή μεταφορά βίντεο δεν είναι διαθέσιμη.</value></data>
+  <data name="Emulation.Panasonic.Error.StateIncompatible"><value>Η αποθηκευμένη κατάσταση είναι ασύμβατη με την τρέχουσα μηχανή.</value></data>
+  <data name="Emulation.Panasonic.Error.StateInvalid"><value>Η αποθηκευμένη κατάσταση είναι άκυρη.</value></data>
+  <data name="Emulation.Panasonic.Error.StateUnavailable"><value>Ο εξομοιωτής δεν υποστηρίζει σωζόμενα κράτη.</value></data>
+  <data name="Emulation.Panasonic.Error.UnknownCommandFormat"><value>Άγνωστη εντολή υπολογιστή εξομοίωσης: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.UnsupportedControllerDevice"><value>Η συσκευή ελέγχου δεν υποστηρίζεται.</value></data>
+</root>

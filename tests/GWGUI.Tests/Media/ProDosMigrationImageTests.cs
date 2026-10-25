@@ -25,10 +25,7 @@ public sealed class ProDosMigrationImageTests
         AssertFile(image, FileSystemIds.Sos);
     }
 
-    private static FileSystemVolume CreateSource() => new(
-        "VOLUME", FileSystemIds.Fat12, 0, 0, null, null,
-        [new FileSystemEntry("HELLO", FileSystemEntryKind.File, 3, null, string.Empty,
-            0, 0, true, [], new byte[] { 1, 2, 3 })], []);
+    private static FileSystemVolume CreateSource() => new("VOLUME", FileSystemIds.Fat12, 0, 0, null, null, [new FileSystemEntry("HELLO", FileSystemEntryKind.File, 3, null, string.Empty, 0, 0, true, [], new byte[] { 1, 2, 3 })], []);
 
     private static void AssertFile(GWGUI.MediaEngine.Images.Models.Sectors.SectorImage image, string expectedFileSystemId)
     {

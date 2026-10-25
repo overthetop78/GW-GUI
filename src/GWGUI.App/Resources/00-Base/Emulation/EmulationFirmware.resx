@@ -17,4 +17,5 @@
   <data name="Emulation.Firmware.Rom.Basic"><value>BASIC ROM</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>XEGS ROM</value></data>
   <data name="Emulation.Firmware" xml:space="preserve"><value>Firmware</value></data>
+  <data name="Emulation.Firmware.VoiceSamples"><value>Voice samples</value></data>
 </root>

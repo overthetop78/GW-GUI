@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Content.Initial" xml:space="preserve"><value>Μέσα παιχνιδιού</value></data>
+  <data name="Emulation.Snk.Memory.Display" xml:space="preserve"><value>μνήμη βίντεο</value></data>
+  <data name="Emulation.Snk.Audio.Native" xml:space="preserve"><value>Υλικό ήχου</value></data>
+  <data name="Emulation.Snk.Video.Native" xml:space="preserve"><value>hardware βίντεο</value></data>
+  <data name="Emulation.Snk.Controls.Native" xml:space="preserve"><value>⁇  ελεγκτή</value></data>
+  <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>⁇  συστήματος</value></data>
+  <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>Σύστημα BIOS</value></data>
+  <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>Βοηθητικό BIOS</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>Εξομοιώνει Neo Geo CD και Neo Geo CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>Εξομοιώνει συστήματα Neo Geo που χρησιμοποιούν κασέτες παιχνιδιών και CD.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Εξομοιώνει συμβατά συστήματα SNK.</value></data>
+  <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>Γλώσσα</value></data>
+  <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>Ιαπωνική γλώσσα</value></data>
+  <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>Αγγλική γλώσσα</value></data>
+  <data name="Emulation.Snk.Help.DarkFilterLevel" xml:space="preserve"><value>Ενεργοποίηση μείωσης φωτεινότητας με βάση τη φωτεινότητα. Μπορεί να χρησιμοποιηθεί για την αποφυγή της στρώσης λάμψης/μάτι όταν παίζετε παιχνίδια με λευκό φόντο.</value></data>
+  <data name="Emulation.Snk.Value.Manual" xml:space="preserve"><value>Χειροκίνητο</value></data>
+  <data name="Emulation.Snk.Setting.RealTimeClock" xml:space="preserve"><value>Ρολόι πραγματικού χρόνου</value></data>
+  <data name="Emulation.Snk.Help.RealTimeClock" xml:space="preserve"><value>Επιλογή του τρόπου με τον οποίο το προσομοιωμένο ρολόι σε πραγματικό χρόνο προχωρεί. RTC Τα αναγνώσιμα είναι αναπαραγώγιμα και ασφαλή για netplay, rewind και run-ahead. Το 'Real Time' διαβάζει το ρολόι του υπολογιστή άμεσα (ένα ζωντανό ρολόι, αλλά μη-deterministic).</value></data>
+  <data name="Emulation.Snk.Value.Deterministic" xml:space="preserve"><value>Αποφασιστικό</value></data>
+  <data name="Emulation.Snk.Value.RealTime" xml:space="preserve"><value>Πραγματικός χρόνος</value></data>
+  <data name="Emulation.Snk.Setting.AudioQuality" xml:space="preserve"><value>Ποιότητα ήχου</value></data>
+  <data name="Emulation.Snk.Setting.AudioSampleRate" xml:space="preserve"><value>Ρυθμός δείγματος ήχου</value></data>
+  <data name="Emulation.Snk.Value.Game" xml:space="preserve"><value>παιχνίδι</value></data>
+  <data name="Emulation.Snk.Value.System" xml:space="preserve"><value>σύστημα</value></data>
+  <data name="Emulation.Snk.Setting.MainProcessorSpeed" xml:space="preserve"><value>Κύρια ταχύτητα του επεξεργαστή (%)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderMethod" xml:space="preserve"><value>Μέθοδος εναλλακτικής απόδοσης</value></data>
+  <data name="Emulation.Snk.Setting.VideoApproach1Enabled" xml:space="preserve"><value>Ενεργοποίηση προσέγγισης βίντεο 1</value></data>
+  <data name="Emulation.Snk.Setting.HideGameInfoScreen" xml:space="preserve"><value>Απόκρυψη οθόνης πληροφοριών παιχνιδιού</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningScreen" xml:space="preserve"><value>Απόκρυψη οθόνης προειδοποίησης</value></data>
+  <data name="Emulation.Snk.Setting.EnableMultithreading" xml:space="preserve"><value>Ενεργοποίηση πολυδιάβασης</value></data>
+  <data name="Emulation.Snk.Setting.SetBrightness" xml:space="preserve"><value>Ορισμός φωτεινότητας</value></data>
+  <data name="Emulation.Snk.Setting.SetContrast" xml:space="preserve"><value>Ορισμός αντίθεσης</value></data>
+  <data name="Emulation.Snk.Setting.SetGamma" xml:space="preserve"><value>Ορισμός γάμμα</value></data>
+  <data name="Emulation.Snk.Setting.SkipDisclaimer" xml:space="preserve"><value>Παράλειψη αποποίησης ευθυνών</value></data>
+  <data name="Emulation.Snk.Setting.SkipWarnings" xml:space="preserve"><value>Παράλειψη προειδοποιήσεων</value></data>
+  <data name="Emulation.Snk.Help.DisplayMAMEMenu" xml:space="preserve"><value>Εναλλάσσει την ορατότητα του εσωτερικού MAME μενού.</value></data>
+  <data name="Emulation.Snk.Setting.Brightness" xml:space="preserve"><value>Φωτεινότητα</value></data>
+  <data name="Emulation.Snk.Help.Brightness" xml:space="preserve"><value>Τροποποιεί το επίπεδο φωτεινότητας που χρησιμοποιείται.</value></data>
+  <data name="Emulation.Snk.Setting.GammaCorrection" xml:space="preserve"><value>Διόρθωση γάμμα</value></data>
+  <data name="Emulation.Snk.Help.GammaCorrection" xml:space="preserve"><value>Τροποποιεί το επίπεδο γάμμα που χρησιμοποιείται.</value></data>
+  <data name="Emulation.Snk.Help.DisplayArtwork" xml:space="preserve"><value>Χρησιμοποιείται για την εμφάνιση προσαρμοσμένων έργων τέχνης όταν είναι διαθέσιμα.</value></data>
+  <data name="Emulation.Snk.Help.ArtworkResolutionMultiplier" xml:space="preserve"><value>Αυξάνει την ανάλυση έργων τέχνης με την επιλεγμένη τιμή πολλαπλασιαστή.</value></data>
+  <data name="Emulation.Snk.Setting.SpecifyNeoGeoBIOS" xml:space="preserve"><value>Καθορίστε το Neo Geo BIOS</value></data>
+  <data name="Emulation.Snk.Help.SpecifyNeoGeoBIOS" xml:space="preserve"><value>Επιλέξτε εναλλακτικά αρχεία βιολογικού.</value></data>
+  <data name="Emulation.Snk.Value.Asia" xml:space="preserve"><value>Ασιάτης</value></data>
+  <data name="Emulation.Snk.Value.Japan" xml:space="preserve"><value>Ιαπάνη</value></data>
+  <data name="Emulation.Snk.Setting.UseSamples" xml:space="preserve"><value>Χρήση δειγμάτων</value></data>
+  <data name="Emulation.Snk.Help.UseSamples" xml:space="preserve"><value>Επίτρεψε τη φόρτωση αρχείων δειγμάτων ήχου όταν παρέχονται στον κατάλογο δειγμάτων.</value></data>
+  <data name="Emulation.Snk.Help.AutosaveHiscore" xml:space="preserve"><value>Συνιστάται η χρήση προεπιλεγμένης γλώσσας που θα αποθηκεύει το hicore κατά το κλείσιμο του περιεχομένου. Επαναληπτικά θα αποθηκεύει επανειλημμένα όλο το χρόνο κατά τη διάρκεια του παιχνιδιού. Απενεργοποιημένο θα παρακάμψει τη χρήση του hiscore.dat - Εντάξει, εντάξει.</value></data>
+  <data name="Emulation.Snk.Help.CPUClockScale" xml:space="preserve"><value>Χρησιμοποιείται για να υπολείπεται ή να υπερβαίνει το ρολόι το εικονιζόμενο CPU κατά καθορισμένο ποσοστό.</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningsScreen" xml:space="preserve"><value>Απόκρυψη οθόνης προειδοποιήσεων</value></data>
+  <data name="Emulation.Snk.Setting.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>Χρήση βάθους χρώματος 32-bit όταν είναι διαθέσιμο</value></data>
+  <data name="Emulation.Snk.Help.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>Αλλαγή μορφής εικονοστοιχείου, μερικά παιχνίδια απαιτούν αυτό να γίνει σωστά, θα μπορούσε να επηρεάσει τις επιδόσεις σε ορισμένες πλατφόρμες</value></data>
+  <data name="Emulation.Snk.Setting.VerticalMode" xml:space="preserve"><value>Κατακόρυφη λειτουργία</value></data>
+  <data name="Emulation.Snk.Help.VerticalMode" xml:space="preserve"><value>Περιστροφή της απεικόνισης για κάθετες οθόνες</value></data>
+  <data name="Emulation.Snk.Value.Alternate" xml:space="preserve"><value>αναπληρωματικό</value></data>
+  <data name="Emulation.Snk.Value.TATEAlternate" xml:space="preserve"><value>TATE αναπληρωματικό</value></data>
+  <data name="Emulation.Snk.Setting.UseA60HzRefreshRate" xml:space="preserve"><value>Χρήση ρυθμού ανανέωσης 60 Hz</value></data>
+  <data name="Emulation.Snk.Help.UseA60HzRefreshRate" xml:space="preserve"><value>Χρησιμοποιήστε 60 Hz αντί του αρχικού ρυθμού ανανέωσης. Αυτό μπορεί να αλλάξει την ταχύτητα του παιχνιδιού και να προκαλέσει ανομοιογενή κινούμενα σχέδια.</value></data>
+  <data name="Emulation.Snk.Setting.Resolution" xml:space="preserve"><value>Ανάλυση</value></data>
+  <data name="Emulation.Snk.Help.Resolution" xml:space="preserve"><value>Ορισμός ανάλυσης σε ορισμένα παιχνίδια (vector)</value></data>
+  <data name="Emulation.Snk.Help.FixedFrameskip" xml:space="preserve"><value>Όταν το 'Frameskip' έχει οριστεί σε 'Fixed' ή αν το περιβάλλον δεν υποστηρίζει την εναλλακτική λειτουργία 'Frameskip', παραλείψτε την απόδοση με σταθερό ρυθμό των πλαισίων X από το X+1</value></data>
+  <data name="Emulation.Snk.Value.NoSkipping" xml:space="preserve"><value>Χωρίς παρακάμψεις</value></data>
+  <data name="Emulation.Snk.Setting.CPUClock" xml:space="preserve"><value>CPU ρολόι</value></data>
+  <data name="Emulation.Snk.Help.CPUClock" xml:space="preserve"><value>Αλλαγή της συχνότητας εικονιζόμενης cpu για διάφορα συστήματα, αυξάνοντας μπορείτε να διορθώσετε εγγενείς επιβραδύνσεις σε μερικά παιχνίδια, μειώνοντας μπορείτε να βοηθήσετε στην απόδοση σε συσκευές χαμηλού επιπέδου</value></data>
+  <data name="Emulation.Snk.Setting.DiagnosticInput" xml:space="preserve"><value>Διαγνωστική είσοδος</value></data>
+  <data name="Emulation.Snk.Help.DiagnosticInput" xml:space="preserve"><value>⁇  συνδυασμού κουμπιών για την εισαγωγή του μενού υπηρεσιών ντουλαπιών</value></data>
+  <data name="Emulation.Snk.Help.Hiscores" xml:space="preserve"><value>Ενεργοποίηση υψηλής υποστήριξης βαθμολογιών, χρειάζεστε επίσης το αρχείο hiscore.dat στο σύστημά σας/ fbneo/ φάκελος</value></data>
+  <data name="Emulation.Snk.Help.AllowPatchedRomsets" xml:space="preserve"><value>Επιτρέπετε romsets από το σύστημά σας/ fbneo/ patted/ φάκελος για να παρακάμψετε τα romsets σας, crcs θα αγνοηθούν αλλά τα μεγέθη και τα ονόματα πρέπει να ταιριάζουν, επιπλέον αυτό είναι επίσης το κύριο διακόπτη για το αν IPS Τα Patch και RomData εκτελούνται ή όχι, πρέπει να κλείσετε το περιεχόμενο για να τεθεί σε ισχύ αυτή η ρύθμιση</value></data>
+  <data name="Emulation.Snk.Setting.SampleInterpolation" xml:space="preserve"><value>Δείγμα παρεμβολής</value></data>
+  <data name="Emulation.Snk.Help.SampleInterpolation" xml:space="preserve"><value>⁇  παρεμβολής δείγματος, θα μπορούσε να επηρεάσει τις επιδόσεις</value></data>
+  <data name="Emulation.Snk.Setting.FMInterpolation" xml:space="preserve"><value>FM Παρεμβολή</value></data>
+  <data name="Emulation.Snk.Help.FMInterpolation" xml:space="preserve"><value>⁇ FM παρεμβολή, θα μπορούσε να επηρεάσει τις παραστάσεις</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilter" xml:space="preserve"><value>Φίλτρο χαμηλής απόδοσηςName</value></data>
+  <data name="Emulation.Snk.Help.LowPassFilter" xml:space="preserve"><value>Ενεργοποίηση φίλτρου lowpass</value></data>
+  <data name="Emulation.Snk.Setting.AnalogSpeed" xml:space="preserve"><value>Ταχύτητα αναλογικής</value></data>
+  <data name="Emulation.Snk.Help.AnalogSpeed" xml:space="preserve"><value>Mitigate αναλογική ταχύτητα ελέγχου, μερικά παιχνίδια μπορεί να απαιτούν χαμηλές τιμές για να είναι playable</value></data>
+  <data name="Emulation.Snk.Setting.SOCDMode" xml:space="preserve"><value>SOCD Λειτουργία</value></data>
+  <data name="Emulation.Snk.Help.SOCDMode" xml:space="preserve"><value>Αλλαγή ULDR χειρισμός προτεραιότητας</value></data>
+  <data name="Emulation.Snk.Value.Disabled" xml:space="preserve"><value>απενεργοποιημένο</value></data>
+  <data name="Emulation.Snk.Value.SimultaneousNeutral" xml:space="preserve"><value>Ταυτόχρονη Ουδέτερη</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority4Way" xml:space="preserve"><value>Τελευταία προτεραιότητα εισόδου (4 τρόπος)</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority8Way" xml:space="preserve"><value>Τελευταία προτεραιότητα εισόδου (8 τρόπος)</value></data>
+  <data name="Emulation.Snk.Value.FirstInputPriority" xml:space="preserve"><value>Πρώτη προτεραιότητα εισόδου</value></data>
+  <data name="Emulation.Snk.Setting.CrosshairEmulation" xml:space="preserve"><value>Εξομοίωση σταυρού</value></data>
+  <data name="Emulation.Snk.Value.HideWithLightgunDevice" xml:space="preserve"><value>απόκρυψη με συσκευή lightgun</value></data>
+  <data name="Emulation.Snk.Value.AlwaysHide" xml:space="preserve"><value>Πάντα να κρύβεσαι.</value></data>
+  <data name="Emulation.Snk.Value.AlwaysShow" xml:space="preserve"><value>πάντα εμφάνιση</value></data>
+  <data name="Emulation.Snk.Setting.NeoGeoMode" xml:space="preserve"><value>Λειτουργία Neo- Geo</value></data>
+  <data name="Emulation.Snk.Help.NeoGeoMode" xml:space="preserve"><value>Φορτώστε τα κατάλληλα βιογραφικά ανάλογα με την επιλογή σας, υπό την προϋπόθεση ότι ένα τέτοιο βιο είναι συμβατό με το τρέχον παιχνίδι</value></data>
+  <data name="Emulation.Snk.Value.MVSEuropeAsiaEnglish" xml:space="preserve"><value>MVS Ευρώπη/Ασία (Αγγλικά)</value></data>
+  <data name="Emulation.Snk.Value.MVSUSAEnglishCensored" xml:space="preserve"><value>MVS USA (Αγγλικά - Censored)</value></data>
+  <data name="Emulation.Snk.Value.MVSJapanJapanese" xml:space="preserve"><value>MVS Ιαπωνία (Ιαπωνικά)</value></data>
+  <data name="Emulation.Snk.Value.AESEuropeAsiaEnglish" xml:space="preserve"><value>AES Ευρώπη/Ασία (Αγγλικά)</value></data>
+  <data name="Emulation.Snk.Value.AESJapanJapanese" xml:space="preserve"><value>AES Ιαπωνία (Ιαπωνικά)</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardMode" xml:space="preserve"><value>Λειτουργία κάρτας μνήμης</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardMode" xml:space="preserve"><value>Αλλάξτε τη συμπεριφορά για την κάρτα μνήμης</value></data>
+  <data name="Emulation.Snk.Value.Shared" xml:space="preserve"><value>κοινή χρήση</value></data>
+  <data name="Emulation.Snk.Value.PerGame" xml:space="preserve"><value>ανά παιχνίδι</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip11" xml:space="preserve"><value>Αποσφαλμάτωση στο σημείο 1 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip11" xml:space="preserve"><value>Ενεργοποίηση αποσφαλμάτωσης 1 1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip12" xml:space="preserve"><value>Αποσφαλμάτωση στο σημείο 1 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip12" xml:space="preserve"><value>Ενεργοποίηση αποσφαλμάτωσης 1 2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip13" xml:space="preserve"><value>Αποσφαλμάτωση στο σημείο 1 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip13" xml:space="preserve"><value>Ενεργοποίηση αποσφαλμάτωσης 1 3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip14" xml:space="preserve"><value>Αποσφαλμάτωση 1 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip14" xml:space="preserve"><value>Ενεργοποίηση αποσφαλμάτωσης 1 4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip15" xml:space="preserve"><value>Αποσφαλμάτωση 1 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip15" xml:space="preserve"><value>Ενεργοποίηση αποσφαλμάτωσης 1 5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip16" xml:space="preserve"><value>Αποσφαλμάτωση 1 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip16" xml:space="preserve"><value>Ενεργοποίηση αποσφαλμάτωσης 1 6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip17" xml:space="preserve"><value>Αποσφαλμάτωση στο σημείο 1 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip17" xml:space="preserve"><value>Ενεργοποίηση αποσφαλμάτωσης 1 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip18" xml:space="preserve"><value>Αποσφαλμάτωση 1 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip18" xml:space="preserve"><value>Ενεργοποίηση αποσφαλμάτωσης 1 8</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip21" xml:space="preserve"><value>Αποσφαλμάτωση 2 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip21" xml:space="preserve"><value>Ενεργοποίηση αποσφαλμάτωσης 2 1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip22" xml:space="preserve"><value>Αποσφαλμάτωση 2 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip22" xml:space="preserve"><value>Ενεργοποίηση αποσφαλμάτωσης 2 2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip23" xml:space="preserve"><value>Αποσφαλμάτωση 2 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip23" xml:space="preserve"><value>Ενεργοποίηση αποσφαλμάτωσης 2 3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip24" xml:space="preserve"><value>Αποσφαλμάτωση 2 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip24" xml:space="preserve"><value>Ενεργοποίηση αποσφαλμάτωσης 2 4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip25" xml:space="preserve"><value>Αποσφαλμάτωση 2 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip25" xml:space="preserve"><value>Ενεργοποίηση αποσφαλμάτωσης 2 5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip26" xml:space="preserve"><value>Αποσφαλμάτωση 2 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip26" xml:space="preserve"><value>Ενεργοποίηση αποσφαλμάτωσης 2 6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip27" xml:space="preserve"><value>Αποσφαλμάτωση 2 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip27" xml:space="preserve"><value>Ενεργοποίηση αποσφαλμάτωσης 2 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip28" xml:space="preserve"><value>Αποσφαλμάτωση 2 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip28" xml:space="preserve"><value>Ενεργοποίηση αποσφαλμάτωσης 2 8</value></data>
+  <data name="Emulation.Snk.Setting.Layer1" xml:space="preserve"><value>Στρώμα 1</value></data>
+  <data name="Emulation.Snk.Help.Layer1" xml:space="preserve"><value>Για αποσφαλμάτωση</value></data>
+  <data name="Emulation.Snk.Setting.Layer2" xml:space="preserve"><value>Στρώμα 2</value></data>
+  <data name="Emulation.Snk.Setting.Layer3" xml:space="preserve"><value>Στρώμα 3</value></data>
+  <data name="Emulation.Snk.Setting.Layer4" xml:space="preserve"><value>Στρώμα 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite1" xml:space="preserve"><value>Σπρίτης 1</value></data>
+  <data name="Emulation.Snk.Setting.Sprite2" xml:space="preserve"><value>Σπρίτης 2</value></data>
+  <data name="Emulation.Snk.Setting.Sprite3" xml:space="preserve"><value>Σπρίτης 3</value></data>
+  <data name="Emulation.Snk.Setting.Sprite4" xml:space="preserve"><value>Σπρίτης 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite5" xml:space="preserve"><value>Σπρίτης 5</value></data>
+  <data name="Emulation.Snk.Setting.Sprite6" xml:space="preserve"><value>Σπρίτης 6</value></data>
+  <data name="Emulation.Snk.Setting.Sprite7" xml:space="preserve"><value>Σπρίτης 7</value></data>
+  <data name="Emulation.Snk.Setting.Sprite8" xml:space="preserve"><value>Σπρίτης 8</value></data>
+  <data name="Emulation.Snk.Setting.ThreadMode" xml:space="preserve"><value>Λειτουργία νήματος</value></data>
+  <data name="Emulation.Snk.Setting.Cheats" xml:space="preserve"><value>Απατεώνες</value></data>
+  <data name="Emulation.Snk.Setting.Throttle" xml:space="preserve"><value>Βραχίονας</value></data>
+  <data name="Emulation.Snk.Setting.BootToBIOS" xml:space="preserve"><value>Εκκίνηση προς BIOS</value></data>
+  <data name="Emulation.Snk.Setting.BootToOSD" xml:space="preserve"><value>Εκκίνηση προς OSD</value></data>
+  <data name="Emulation.Snk.Setting.ReadConfiguration" xml:space="preserve"><value>⁇  ανάγνωσης</value></data>
+  <data name="Emulation.Snk.Setting.WriteConfiguration" xml:space="preserve"><value>⁇  εγγραφής</value></data>
+  <data name="Emulation.Snk.Setting.MAMEINIPaths" xml:space="preserve"><value>MAME INI Διαδρομές</value></data>
+  <data name="Emulation.Snk.Setting.Softlists" xml:space="preserve"><value>Μαλακές λίστες</value></data>
+  <data name="Emulation.Snk.Setting.MediaType" xml:space="preserve"><value>Τύπος μέσου</value></data>
+  <data name="Emulation.Snk.Value.Cart" xml:space="preserve"><value>καρότσι</value></data>
+  <data name="Emulation.Snk.Value.Cass" xml:space="preserve"><value>Κασσός</value></data>
+  <data name="Emulation.Snk.Value.Cdrm" xml:space="preserve"><value>cibrm (δισφαινόλη)</value></data>
+  <data name="Emulation.Snk.Value.Flop"><value>flop</value></data>
+  <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>σκληρό</value></data>
+  <data name="Emulation.Snk.Value.Prin" xml:space="preserve"><value>πρίνος</value></data>
+  <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>σερλ</value></data>
+  <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS Ενεργοποιημένο</value></data>
+  <data name="Emulation.Snk.Setting.JoystickDeadzone" xml:space="preserve"><value>Νεκροζώνη του Τζόυστικ</value></data>
+  <data name="Emulation.Snk.Setting.JoystickSaturation" xml:space="preserve"><value>Κορεσμός του Joystick</value></data>
+  <data name="Emulation.Snk.Setting.JoystickThreshold" xml:space="preserve"><value>Κατώφλι του Χαρακτήρα</value></data>
+  <data name="Emulation.Snk.Setting.Joystick4WaySimulation" xml:space="preserve"><value>Προσομοίωση 4 δρόμων Joystick</value></data>
+  <data name="Emulation.Snk.Value.4way" xml:space="preserve"><value>4ο δρόμος</value></data>
+  <data name="Emulation.Snk.Value.Strict" xml:space="preserve"><value>αυστηρό</value></data>
+  <data name="Emulation.Snk.Value.Qbert" xml:space="preserve"><value>qbert (Κιβέτ)</value></data>
+  <data name="Emulation.Snk.Setting.ProfileButtonsPerGame" xml:space="preserve"><value>Κουμπιά προφίλ ανά παιχνίδι</value></data>
+  <data name="Emulation.Snk.Setting.Mouse" xml:space="preserve"><value>Ποντίκι</value></data>
+  <data name="Emulation.Snk.Setting.LightgunMode" xml:space="preserve"><value>Λειτουργία Lightgun</value></data>
+  <data name="Emulation.Snk.Value.Lightgun" xml:space="preserve"><value>Ελαφρόκαννο</value></data>
+  <data name="Emulation.Snk.Value.Touchscreen" xml:space="preserve"><value>Οθόνη αφής</value></data>
+  <data name="Emulation.Snk.Setting.LightgunOffscreenPosition" xml:space="preserve"><value>Θέση του φωτοβόλου εκτός οθόνης</value></data>
+  <data name="Emulation.Snk.Value.Free" xml:space="preserve"><value>Δωρεάν</value></data>
+  <data name="Emulation.Snk.Value.FixedTopLeft" xml:space="preserve"><value>Σταθερό (Κάτω αριστερά)</value></data>
+  <data name="Emulation.Snk.Value.FixedBottomRight" xml:space="preserve"><value>Σταθερά (Bottom δεξιά)</value></data>
+  <data name="Emulation.Snk.Setting.ScreenRotationMode" xml:space="preserve"><value>Λειτουργία περιστροφής οθόνης</value></data>
+  <data name="Emulation.Snk.Value.Internal" xml:space="preserve"><value>Εσωτερικό</value></data>
+  <data name="Emulation.Snk.Setting.AudioProcessorSpeed" xml:space="preserve"><value>Ταχύτητα επεξεργαστή ήχου (%)</value></data>
+  <data name="Emulation.Snk.Help.AutomaticLoadFastForward" xml:space="preserve"><value>Πειραματική λειτουργία για αυτόματη γρήγορη μετάβαση κατά τη διάρκεια CD πρόσβαση.&#xA;Εργασίες με:&#xA;- Γενόσημο SCSI&#xA;- Σίγκα. CD και Neo Geo CD</value></data>
+  <data name="Emulation.Snk.Setting.CoinLimit" xml:space="preserve"><value>Όριο κερμάτων</value></data>
+  <data name="Emulation.Snk.Setting.SampleRate" xml:space="preserve"><value>Ρυθμός δείγματος</value></data>
+  <data name="Emulation.Snk.Help.SampleRate" xml:space="preserve"><value>Αριθμός δειγμάτων ήχου που λαμβάνονται ανά δευτερόλεπτο. Υψηλότερες τιμές παρέχουν καλύτερη ποιότητα ήχου.</value></data>
+  <data name="Emulation.Snk.Value.Threshold" xml:space="preserve"><value>όριο</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipInterval" xml:space="preserve"><value>Διάστημα Frameskip</value></data>
+  <data name="Emulation.Snk.Help.FrameskipInterval" xml:space="preserve"><value>Μέγιστος αριθμός διαδοχικών πλαισίων που μπορεί να παραλειφθούν. Χαμηλότερες τιμές διατηρούν τις οπτικές ενημερώσεις ομαλότερες με κόστος περισσότερες σταγόνες ήχου όταν ο υπολογιστής υπερφορτώνεται.</value></data>
+  <data name="Emulation.Snk.Setting.ShowGameInformation" xml:space="preserve"><value>Εμφάνιση πληροφοριών παιχνιδιού</value></data>
+  <data name="Emulation.Snk.Help.ShowGameInformation" xml:space="preserve"><value>Εμφάνιση MAMEΗ κατάσταση του οδηγού και οι οθόνες πληροφοριών παιχνιδιού κατά την εκκίνηση πριν το παιχνίδι αρχίσει να εκτελείται.</value></data>
+  <data name="Emulation.Snk.Setting.Stereo" xml:space="preserve"><value>Στερεό</value></data>
+  <data name="Emulation.Snk.Help.Stereo" xml:space="preserve"><value>Έξοδος στερεοφωνικού ήχου. Απενεργοποίηση για ελαφρώς χαμηλότερη CPU σε παιχνίδια που δεν χρησιμοποιούν στερεοφωνική μίξη.</value></data>
+  <data name="Emulation.Snk.Setting.SystemType" xml:space="preserve"><value>Τύπος συστήματος</value></data>
+  <data name="Emulation.Snk.Help.SystemType" xml:space="preserve"><value>Προσδιορίστε τον τύπο συστήματος: AES, MVS, ή Σύμπαν BIOS Σύστημα</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoAESHomeConsole" xml:space="preserve"><value>Νέο Geo AES (Σπίτι Κονσόλα)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoMVSArcade" xml:space="preserve"><value>Νέο Geo MVS (Αρκαδία)</value></data>
+  <data name="Emulation.Snk.Value.UniverseBIOSCommunityEnhancedBIOS" xml:space="preserve"><value>Σύμπαν BIOS (Ενισχυμένη κοινοτική BIOS)</value></data>
+  <data name="Emulation.Snk.Setting.CDSystemType" xml:space="preserve"><value>CD Τύπος συστήματος</value></data>
+  <data name="Emulation.Snk.Help.CDSystemType" xml:space="preserve"><value>Προσδιορίστε το CD Τύπος συστήματος κατά τη φόρτωση του Neo Geo CD εικόνες δίσκου</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDFrontLoader" xml:space="preserve"><value>Νέο Geo CD (Εγχειρίδιο φόρτωσης)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDTopLoader" xml:space="preserve"><value>Νέο Geo CD (Κορυφή φορτωτή)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDZUniverseBIOS" xml:space="preserve"><value>Νέο Geo CDZ (Επενδύσεις) BIOS)</value></data>
+  <data name="Emulation.Snk.Setting.Region" xml:space="preserve"><value>Περιφέρεια</value></data>
+  <data name="Emulation.Snk.Help.Region" xml:space="preserve"><value>Προσδιορίστε την περιοχή: USA, Ιαπωνία, Ασία, Ευρώπη</value></data>
+  <data name="Emulation.Snk.Value.Europe" xml:space="preserve"><value>Ευρώπη</value></data>
+  <data name="Emulation.Snk.Help.MemoryCard" xml:space="preserve"><value>Ενεργοποίηση ή απενεργοποίηση της κάρτας μνήμης</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardWriteProtect" xml:space="preserve"><value>Αποτρέπονται οι αλλαγές στην κάρτα μνήμης.</value></data>
+  <data name="Emulation.Snk.Setting.SettingMode" xml:space="preserve"><value>Λειτουργία ρύθμισης</value></data>
+  <data name="Emulation.Snk.Help.SettingMode" xml:space="preserve"><value>Φέρτε το Σύστημα ROM μενού κατά την εκκίνηση στα συστήματα arcade</value></data>
+  <data name="Emulation.Snk.Help.FourPlayerMode" xml:space="preserve"><value>Ορισμός τεσσάρων παικτών (διπλή) MVS ντουλάπι) mode για Ασία/Ιαπωνία MVS συστήματα</value></data>
+  <data name="Emulation.Snk.Help.Freeplay" xml:space="preserve"><value>Αναπαραγωγή MVS παιχνίδια χωρίς την ανάγκη να εισάγετε κέρματα</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanTop" xml:space="preserve"><value>Μάσκα μακριά εικονοστοιχεία κρυμμένα από ένα μπέζελ ή σύνορα με το αρχικό CRTs (πάνω)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanBottom" xml:space="preserve"><value>Μάσκα μακριά εικονοστοιχεία κρυμμένα από ένα μπουζέλ ή σύνορα με το αρχικό CRTs (κάτω)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanLeft" xml:space="preserve"><value>Μάσκα μακριά εικονοστοιχεία κρυμμένα από ένα μπέζελ ή σύνορα με το αρχικό CRTs (αριστερά)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanRight" xml:space="preserve"><value>Μάσκα μακριά εικονοστοιχεία κρυμμένα από ένα μπέζελ ή σύνορα με το αρχικό CRTs (δεξιά)</value></data>
+  <data name="Emulation.Snk.Setting.Palette" xml:space="preserve"><value>Παλέτα</value></data>
+  <data name="Emulation.Snk.Help.Palette" xml:space="preserve"><value>Ορισμός παλέτας</value></data>
+  <data name="Emulation.Snk.Setting.AspectRatio" xml:space="preserve"><value>Λόγος διαστάσεων</value></data>
+  <data name="Emulation.Snk.Help.AspectRatio" xml:space="preserve"><value>Ορισμός του λόγου διαστάσεων</value></data>
+  <data name="Emulation.Snk.Value.PerfectlySquarePixels11PAR" xml:space="preserve"><value>Τέλεια τετραγωνικά εικονοστοιχεία (1:1 PAR)</value></data>
+  <data name="Emulation.Snk.Value.OstensiblyAccurateNTSCAspectRatio4544PAR" xml:space="preserve"><value>Ελάχιστα ακριβής NTSC Λόγος διαστάσεων (45:44 PAR)</value></data>
+  <data name="Emulation.Snk.Value.VeryTraditionalNTSCAspectRatio43DAR" xml:space="preserve"><value>Πολύ παραδοσιακό NTSC Λόγος διαστάσεων (4:3 DAR)</value></data>
+  <data name="Emulation.Snk.Setting.SpritesPerLineLimit" xml:space="preserve"><value>Όριο ανά γραμμή σπριτ</value></data>
+  <data name="Emulation.Snk.Help.SpritesPerLineLimit" xml:space="preserve"><value>Ορισμός του ορίου sprites-per-line - αύξηση προκαλεί δυσλειτουργίες σε ορισμένα παιχνίδια</value></data>
+  <data name="Emulation.Snk.Setting.ProcessorSpeed" xml:space="preserve"><value>Ταχύτητα επεξεργαστή</value></data>
+  <data name="Emulation.Snk.Help.ProcessorSpeed" xml:space="preserve"><value>Εκτέλεση του επεξεργαστή στα 24 MHz. Αυτή η ταχύτητα μπορεί να προκαλέσει σφάλματα στα παιχνίδια.</value></data>
+  <data name="Emulation.Snk.Setting.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>Απενεργοποίηση ADPCM Περιτύλιξη συσσωρευτή</value></data>
+  <data name="Emulation.Snk.Help.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>Αλλαγή του ADPCM Η συμπεριφορά του συσσωρευτή για τη διόρθωση των ηχητικών σφαλμάτων σε ορισμένα παιχνίδια. Αφήστε αυτή τη ρύθμιση απενεργοποιημένη για άλλα παιχνίδια.</value></data>
+  <data name="Emulation.Snk.Help.CDSpeedHack" xml:space="preserve"><value>Διόρθωση BIOS busy-wait βρόχοι για τη μείωση των χρόνων φόρτωσης (Δεν λειτουργεί για το Σύμπαν BIOS)</value></data>
+  <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>Διόρθωση BIOS αποστολή δεικτών όταν a CD ⁇ ιαλύτης DMA είναι μεγαλύτερο από έναν τομέα, τη διόρθωση αλλοιωμένου ήχου στο στάδιο μπόνους της Τέχνης της καταπολέμησης. Αυτό είναι ένα hack, και η πραγματική συμπεριφορά υλικού είναι ανεπιβεβαίωτη.</value></data>
+  <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>Πρόσω ολοταχώς CD Οθόνες φόρτωσης</value></data>
+  <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>Τριτοταγής παρεμβολή (4 βαθμοί)</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>Εξομοιώνει Neo Geo Pocket και Neo Geo Pocket Color.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Εξομοιώνει Neo Geo Pocket και Neo Geo Pocket Color.</value></data>
+  <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>Επιλέξτε τη γλώσσα που χρησιμοποιείται από συμβατά παιχνίδια.</value></data>
+  <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Παράλειψη πλαισίου βίντεο</value></data>
+  <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>Παράλειψη ορισμένων πλαισίων βίντεο όταν η απόδοση είναι ανεπαρκής, για να μειώσει τις διακοπές στην έξοδο ήχου.</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipThreshold" xml:space="preserve"><value>Κατώφλι ηχορύπανσης (%)</value></data>
+  <data name="Emulation.Snk.Help.FrameskipThreshold" xml:space="preserve"><value>Παράλειψη πλαισίων βίντεο όταν η ενδιάμεση μνήμη ήχου περιέχει λιγότερα δεδομένα από αυτό το ποσοστό της χωρητικότητάς της.</value></data>
+  <data name="Emulation.Snk.Help.AudioQuality" xml:space="preserve"><value>Επιλέξτε ανάμεσα στην ταχύτερη σύνθεση ήχου και την ακριβέστερη σύνθεση ήχου.</value></data>
+  <data name="Emulation.Snk.Help.AudioSampleRate" xml:space="preserve"><value>Επιλέξτε την έξοδο συχνότητα δειγματοληψίας ήχου. Υψηλότερες συχνότητες μπορούν να βελτιώσουν την ποιότητα του ήχου και απαιτούν περισσότερη ισχύ επεξεργασίας.</value></data>
+  <data name="Emulation.Snk.Setting.AutoSaveLoadStates" xml:space="preserve"><value>Αποθήκευση και επαναφορά καταστάσεων αυτόματα</value></data>
+  <data name="Emulation.Snk.Help.SkipDisclaimer" xml:space="preserve"><value>Απόκρυψη της νόμιμης ειδοποίησης όταν ένα παιχνίδι ξεκινά.</value></data>
+  <data name="Emulation.Snk.Help.SkipWarnings" xml:space="preserve"><value>Απόκρυψη προειδοποιήσεων σχετικά με γνωστά προβλήματα όταν ένα παιχνίδι ξεκινά.</value></data>
+  <data name="Emulation.Snk.Help.SampleRateHint" xml:space="preserve"><value>Επιλέξτε την έξοδο συχνότητα δειγματοληψίας ήχου. Αυτόματη λειτουργία χρησιμοποιεί την προτιμώμενη συχνότητα εξόδου.</value></data>
+  <data name="Emulation.Snk.Value.UpPriorityUpOverrideDown" xml:space="preserve"><value>Δώστε προτεραιότητα στην ανοδική κατεύθυνση</value></data>
+  <data name="Emulation.Snk.Value.DownPriorityLeftRightLastInputPriority" xml:space="preserve"><value>Να δοθεί προτεραιότητα στην κατεύθυνση προς τα κάτω· να χρησιμοποιηθεί η τελευταία οριζόντια είσοδος</value></data>
+  <data name="Emulation.Snk.Help.CrosshairEmulation" xml:space="preserve"><value>Επιλέξτε αν θα εμφανίζεται ο δείκτης στόχευσης. Η αυτόματη λειτουργία το κρύβει όταν χρησιμοποιείται ελαφρύ όπλο ή οθόνη αφής.</value></data>
+  <data name="Emulation.Snk.Value.UseBiosSetInBIOSDipswitch" xml:space="preserve"><value>Χρήση του BIOS επιλεγμένος από τους διακόπτες υλικού</value></data>
+  <data name="Emulation.Snk.Setting.SoftlistAutomaticMediaType" xml:space="preserve"><value>Αυτόματη ανίχνευση του τύπου μέσων</value></data>
+  <data name="Emulation.Snk.Help.VFSEnabled" xml:space="preserve"><value>Χρησιμοποιήστε το εικονικό σύστημα αρχείων που παρέχεται από την εφαρμογή. Έκδοση 4 ή αργότερα απαιτείται.</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkHardcodedOverlayOpacity" xml:space="preserve"><value>Ενσωματωμένη αδιαφάνεια επικάλυψης</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardWriteProtect" xml:space="preserve"><value>Προστατέψτε την κάρτα μνήμης από τις αλλαγές</value></data>
+  <data name="Emulation.Snk.Setting.DarkFilterLevel" xml:space="preserve"><value>Σκούρο οθόνης (%)</value></data>
+  <data name="Emulation.Snk.Value.Fast" xml:space="preserve"><value>Γρήγορη σύνθεση ήχου</value></data>
+  <data name="Emulation.Snk.Value.AccurateBandLimited" xml:space="preserve"><value>Ακριβής σύνθεση ήχου</value></data>
+  <data name="Emulation.Snk.Setting.SaveStateNaming" xml:space="preserve"><value>Αποθηκευμένα ονόματα αρχείων κατάστασης</value></data>
+  <data name="Emulation.Snk.Setting.EnableCheats" xml:space="preserve"><value>Ενεργοποίηση κωδικών εξαπατήσεως</value></data>
+  <data name="Emulation.Snk.Setting.HideNagScreen" xml:space="preserve"><value>Απόκρυψη της οθόνης ειδοποίησης</value></data>
+  <data name="Emulation.Snk.Setting.CoreProvidedAspectRatio" xml:space="preserve"><value>Λόγος διαστάσεων απεικόνισης που παρέχεται από τον εξομοιωτή</value></data>
+  <data name="Emulation.Snk.Setting.SetFrameskip" xml:space="preserve"><value>Σκελετοί βίντεο για παραλείψεις</value></data>
+  <data name="Emulation.Snk.Setting.SampleRateHint" xml:space="preserve"><value>Προτεινόμενη συχνότητα δειγματοληψίας ήχου</value></data>
+  <data name="Emulation.Snk.Setting.UseExternalHiscoreDat" xml:space="preserve"><value>Χρήση του εξωτερικού αρχείου high-score hiscore.dat</value></data>
+  <data name="Emulation.Snk.Setting.DisplayMAMEMenu" xml:space="preserve"><value>Εμφάνιση του MAME μενού</value></data>
+  <data name="Emulation.Snk.Setting.DisplayArtwork" xml:space="preserve"><value>Εμφάνιση διακοσμητικών έργων</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkResolutionMultiplier" xml:space="preserve"><value>Πολλαπλασιαστής ανάλυσης διακοσμητικών έργων</value></data>
+  <data name="Emulation.Snk.Value.AutoAggressive" xml:space="preserve"><value>Επιθετική αυτόματη λειτουργία</value></data>
+  <data name="Emulation.Snk.Value.AutoMax" xml:space="preserve"><value>Μέγιστη αυτόματη λειτουργία</value></data>
+  <data name="Emulation.Snk.Setting.AutosaveHiscore" xml:space="preserve"><value>Αυτόματη αποθήκευση υψηλών βαθμολογιών</value></data>
+  <data name="Emulation.Snk.Value.Recursively" xml:space="preserve"><value>Αναζήτηση υποφακέλων</value></data>
+  <data name="Emulation.Snk.Setting.BypassTimingSkew" xml:space="preserve"><value>Παράκαμψη της αντιστάθμισης χρόνου</value></data>
+  <data name="Emulation.Snk.Setting.CPUClockScale" xml:space="preserve"><value>Πολλαπλασιαστής ταχύτητας επεξεργαστή</value></data>
+  <data name="Emulation.Snk.Setting.FixedFrameskip" xml:space="preserve"><value>Σταθερός αριθμός πλαισίων βίντεο για παραλείψεις</value></data>
+  <data name="Emulation.Snk.Value.Fixed" xml:space="preserve"><value>Σταθερός αριθμός</value></data>
+  <data name="Emulation.Snk.Setting.Hiscores" xml:space="preserve"><value>Υψηλές βαθμολογίες</value></data>
+  <data name="Emulation.Snk.Setting.AllowPatchedRomsets" xml:space="preserve"><value>Επίτρεψε τροποποιημένα αρχεία παιχνιδιών</value></data>
+  <data name="Emulation.Snk.Value.2Point1stOrder" xml:space="preserve"><value>Πρώτης τάξεως παρεμβολή (2 βαθμοί)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderer" xml:space="preserve"><value>Εναλλακτική μέθοδος απόδοσης</value></data>
+  <data name="Emulation.Snk.Value.Cropped" xml:space="preserve"><value>Εικόνα με κοπή</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRendererResolution" xml:space="preserve"><value>Εναλλακτική ανάλυση απόδοσης</value></data>
+  <data name="Emulation.Snk.Setting.AutomaticLoadFastForward" xml:space="preserve"><value>Αυτόματη επιτάχυνση φόρτωσης δίσκου</value></data>
+  <data name="Emulation.Snk.Setting.FourPlayerMode" xml:space="preserve"><value>Λειτουργία τεσσάρων παικτών</value></data>
+  <data name="Emulation.Snk.Setting.Freeplay" xml:space="preserve"><value>Αναπαραγωγή χωρίς εισαγωγή κερμάτων</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanTop" xml:space="preserve"><value>Απόκρυψη εικονοστοιχείων κατά μήκος της πάνω πλευράς οθόνης</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanBottom" xml:space="preserve"><value>Απόκρυψη εικονοστοιχείων κατά μήκος της κάτω άκρης οθόνης</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanLeft" xml:space="preserve"><value>Απόκρυψη εικονοστοιχείων κατά μήκος της αριστερής οθόνης</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanRight" xml:space="preserve"><value>Απόκρυψη εικονοστοιχείων κατά μήκος της δεξιάς οθόνης</value></data>
+  <data name="Emulation.Snk.Value.ResistorNetwork" xml:space="preserve"><value>Προσομοίωση χρώματος δικτύου αντιστάσεων</value></data>
+  <data name="Emulation.Snk.Value.Raw" xml:space="preserve"><value>Μη τροποποιημένα χρώματα</value></data>
+  <data name="Emulation.Snk.Value.HardwareAccurate96" xml:space="preserve"><value>Αρχικό όριο υλικού (96)</value></data>
+  <data name="Emulation.Snk.Value.Double192" xml:space="preserve"><value>Διπλασιάστε το αρχικό όριο (192)</value></data>
+  <data name="Emulation.Snk.Value.Triple288" xml:space="preserve"><value>Τριπλασίασε το αρχικό όριο (288)</value></data>
+  <data name="Emulation.Snk.Setting.CDSpeedHack" xml:space="preserve"><value>Μείωση των καθυστερήσεων φόρτωσης του δίσκου</value></data>
+  <data name="Emulation.Snk.Setting.CDDMALengthLimit" xml:space="preserve"><value>Περιορισμός του μεγέθους των μεταφορών δεδομένων δίσκου</value></data>
+  <data name="Emulation.Snk.Setting.SkipCDLoading" xml:space="preserve"><value>Παράλειψη του δίσκου φόρτωσης animation</value></data>
+  <data name="Emulation.Snk.Setting.HorizontalOverscan"><value>Απόκρυψη εικονοστοιχείων κατά μήκος των άκρων της αριστερής και δεξιάς οθόνης</value></data>
+  <data name="Emulation.Snk.Setting.PerGameSaves"><value>Ξεχωριστές αποθήκες για κάθε παιχνίδι</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilterLevel"><value>Επίπεδο φίλτρου ήχου (%)</value></data>
+</root>

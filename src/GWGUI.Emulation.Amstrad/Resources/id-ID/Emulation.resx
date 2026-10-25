@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.caprice32.Description"><value>Emulasi Amstrad CPC, CPC Ditambah dan GX4000 sistem.</value></data>
+  <data name="Emulation.Amstrad.Language"><value>CPC bahasa sistem</value></data>
+  <data name="Emulation.Amstrad.Language.English"><value>Bahasa Inggris</value></data>
+  <data name="Emulation.Amstrad.Language.French"><value>Perancis</value></data>
+  <data name="Emulation.Amstrad.Language.Spanish"><value>Spanyol</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor"><value>Jenis monitor</value></data>
+  <data name="Emulation.Amstrad.Video.Intensity"><value>Intensitas Monitor</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Color"><value>Warna</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Green"><value>Monokrom hijau</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.White"><value>Monokrom putih</value></data>
+  <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM dibangun ke emulator</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>Emulating the Amstrad CPC 6128 with built-in ROM and support for disk image and snapshots.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Jenis monitor</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Gambar framing</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Peretasan kecepatan</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Otomatis</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>Overccan</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Diaktifkan</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Dinonaktifkan</value></data>
+</root>

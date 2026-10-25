@@ -28,9 +28,7 @@ public static class UiLanguageResolver
         if (!string.IsNullOrWhiteSpace(savedLanguage))
             return ResolveCultureName(savedLanguage) ?? UiLanguageCatalog.FallbackCode;
 
-        return windowsUiCulture is null
-            ? UiLanguageCatalog.FallbackCode
-            : ResolveCultureName(windowsUiCulture.Name) ?? ResolveLanguageFamily(windowsUiCulture) ?? UiLanguageCatalog.FallbackCode;
+        return windowsUiCulture is null ? UiLanguageCatalog.FallbackCode : ResolveCultureName(windowsUiCulture.Name) ?? ResolveLanguageFamily(windowsUiCulture) ?? UiLanguageCatalog.FallbackCode;
     }
 
     public static CultureInfo GetCulture(string languageCode)
@@ -40,8 +38,7 @@ public static class UiLanguageResolver
         return CultureInfo.GetCultureInfo(language.CultureName);
     }
 
-    public static CultureInfo GetUiCulture(string languageCode) =>
-        CultureInfo.GetCultureInfo(Resolve(languageCode, null));
+    public static CultureInfo GetUiCulture(string languageCode) => CultureInfo.GetCultureInfo(Resolve(languageCode, null));
 
     private static string? ResolveCultureName(string cultureName)
     {
@@ -62,6 +59,5 @@ public static class UiLanguageResolver
         }
     }
 
-    private static string? ResolveLanguageFamily(CultureInfo culture) =>
-        LanguageDefaults.GetValueOrDefault(culture.TwoLetterISOLanguageName);
+    private static string? ResolveLanguageFamily(CultureInfo culture) => LanguageDefaults.GetValueOrDefault(culture.TwoLetterISOLanguageName);
 }

@@ -6,12 +6,9 @@ namespace GWGUI.MediaEngine.Contracts.Explorer;
 /// <summary>Convertit les volumes entre la lecture interne et les données échangées par MediaEngine.</summary>
 public static class FileSystemVolumeMapper
 {
-    public static FileSystemVolume ConvertVolume(GWGUI.MediaFileSystems.FileSystemVolume volume, string formatId) =>
-        ConvertVolume(volume, GWGUI.MediaFileSystems.Exploration.FileSystemEntryAnalyzer.AnalyzeEntries(formatId, volume));
+    public static FileSystemVolume ConvertVolume(GWGUI.MediaFileSystems.FileSystemVolume volume, string formatId) => ConvertVolume(volume, GWGUI.MediaFileSystems.Exploration.FileSystemEntryAnalyzer.AnalyzeEntries(formatId, volume));
 
-    public static FileSystemVolume ConvertVolume(
-        GWGUI.MediaFileSystems.FileSystemVolume volume,
-        IReadOnlyList<GWGUI.MediaFileSystems.FileSystemEntry>? analyzedEntries = null)
+    public static FileSystemVolume ConvertVolume(GWGUI.MediaFileSystems.FileSystemVolume volume, IReadOnlyList<GWGUI.MediaFileSystems.FileSystemEntry>? analyzedEntries = null)
     {
         ArgumentNullException.ThrowIfNull(volume);
         return new FileSystemVolume(
@@ -87,11 +84,6 @@ public static class FileSystemVolumeMapper
             entry.Diagnostics,
             entry.Metadata)
         {
-            Analysis = entry.Analysis is { } analysis
-                ? new FileSystemEntryAnalysis(
-                    analysis.CategoryId, analysis.IconId, analysis.TypeResourceKey,
-                    analysis.Extension, analysis.ExecutionKindId, analysis.ContentFormatId,
-                    analysis.TextEncodingId, analysis.PreviewKindId)
-                : null
+            Analysis = entry.Analysis is { } analysis ? new FileSystemEntryAnalysis(analysis.CategoryId, analysis.IconId, analysis.TypeResourceKey, analysis.Extension, analysis.ExecutionKindId, analysis.ContentFormatId, analysis.TextEncodingId, analysis.PreviewKindId) : null
         };
 }

@@ -49,12 +49,9 @@ internal static class SignalConnectionComposite
             inPhase /= chromaSamples;
             quadrature /= chromaSamples;
             var center = (y * width + x) * 3;
-            var originalY = source[center] * 0.299f + source[center + 1] * 0.587f
-                + source[center + 2] * 0.114f;
-            var originalI = source[center] * 0.596f - source[center + 1] * 0.274f
-                - source[center + 2] * 0.322f;
-            var originalQ = source[center] * 0.211f - source[center + 1] * 0.523f
-                + source[center + 2] * 0.312f;
+            var originalY = source[center] * 0.299f + source[center + 1] * 0.587f + source[center + 2] * 0.114f;
+            var originalI = source[center] * 0.596f - source[center + 1] * 0.274f - source[center + 2] * 0.322f;
+            var originalQ = source[center] * 0.211f - source[center + 1] * 0.523f + source[center + 2] * 0.312f;
             var crawl = (((x + y + sequence) & 1) == 0 ? 1f : -1f) * amount * 0.10f;
             var yValue = Lerp(originalY, luminance, amount * 0.62f);
             var iValue = Lerp(originalI, inPhase, amount * 0.92f) + crawl;

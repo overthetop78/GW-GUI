@@ -14,23 +14,17 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <summary>
         /// format partition with fast file system
         /// </summary>
-        public static async Task FormatPartition(Stream stream, PartitionBlock partitionBlock,
-            string diskName)
+        public static async Task FormatPartition(Stream stream, PartitionBlock partitionBlock, string diskName)
         {
-            await Format(stream, partitionBlock.LowCyl, partitionBlock.HighCyl, partitionBlock.Reserved,
-                partitionBlock.Surfaces, partitionBlock.BlocksPerTrack, partitionBlock.BlockSize,
-                partitionBlock.FileSystemBlockSize, partitionBlock.DosType, diskName);
+            await Format(stream, partitionBlock.LowCyl, partitionBlock.HighCyl, partitionBlock.Reserved, partitionBlock.Surfaces, partitionBlock.BlocksPerTrack, partitionBlock.BlockSize, partitionBlock.FileSystemBlockSize, partitionBlock.DosType, diskName);
         }
 
         /// <summary>
         /// format disk with fast file system
         /// </summary>
-        public static async Task Format(Stream stream, uint lowCyl, uint highCyl, uint reserved, uint surfaces,
-            uint blocksPerTrack, uint blockSize, uint fileSystemBlockSize, byte[] dosType, string diskName)
+        public static async Task Format(Stream stream, uint lowCyl, uint highCyl, uint reserved, uint surfaces, uint blocksPerTrack, uint blockSize, uint fileSystemBlockSize, byte[] dosType, string diskName)
         {
-            var rootBlockOffset =
-                FastFileSystemOffsetHelper.CalculateRootBlockOffset(lowCyl, highCyl,
-                    reserved, surfaces, blocksPerTrack, fileSystemBlockSize);
+            var rootBlockOffset = FastFileSystemOffsetHelper.CalculateRootBlockOffset(lowCyl, highCyl, reserved, surfaces, blocksPerTrack, fileSystemBlockSize);
 
             // create root block
             var rootBlock = new FastFileSystemRootBlock((int)fileSystemBlockSize)
@@ -40,13 +34,8 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
                 Extension = rootBlockOffset
             };
 
-            var bitmapBlocks = FastFileSystemBlockHelper.CreateBitmapBlocks(lowCyl, highCyl, surfaces, blocksPerTrack,
-                blockSize, fileSystemBlockSize).ToList();
-            var bitmapExtensionBlocks =
-            FastFileSystemBlockHelper.CreateBitmapExtensionBlocks(
-                        bitmapBlocks.Skip(FastFileSystemConstants.MaxBitmapBlockPointersInRootBlock).ToList(),
-                        fileSystemBlockSize)
-                    .ToList();
+            var bitmapBlocks = FastFileSystemBlockHelper.CreateBitmapBlocks(lowCyl, highCyl, surfaces, blocksPerTrack, blockSize, fileSystemBlockSize).ToList();
+            var bitmapExtensionBlocks = FastFileSystemBlockHelper.CreateBitmapExtensionBlocks(bitmapBlocks.Skip(FastFileSystemConstants.MaxBitmapBlockPointersInRootBlock).ToList(), fileSystemBlockSize).ToList();
 
             rootBlock.BitmapBlocks = bitmapBlocks.Take(FastFileSystemConstants.MaxBitmapBlockPointersInRootBlock).ToList();
             rootBlock.BitmapExtensionBlocks = bitmapExtensionBlocks;
@@ -92,8 +81,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
             foreach (var bitmapBlock in rootBlock.BitmapBlocks)
             {
                 // seek bitmap block offset
-                var bitmapBlockByteOffset = partitionStartByteOffset +
-                                            (long)bitmapBlock.Offset * fileSystemBlockSize;
+                var bitmapBlockByteOffset = partitionStartByteOffset + (long)bitmapBlock.Offset * fileSystemBlockSize;
                 stream.Seek(bitmapBlockByteOffset, SeekOrigin.Begin);
 
                 // build and write bitmap block
@@ -110,24 +98,18 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
             foreach (var bitmapExtensionBlock in rootBlock.BitmapExtensionBlocks)
             {
                 // seek bitmap extension block offset
-                var bitmapExtensionBlockByteOffset = partitionStartByteOffset +
-                                                     (long)bitmapExtensionBlock.Offset *
-                                                     fileSystemBlockSize;
+                var bitmapExtensionBlockByteOffset = partitionStartByteOffset + (long)bitmapExtensionBlock.Offset * fileSystemBlockSize;
                 stream.Seek(bitmapExtensionBlockByteOffset, SeekOrigin.Begin);
 
                 // build and write bitmap extension block
-                var bitmapExtensionBlockBytes =
-                    FastFileSystemBitmapExtensionBlockBuilder.Build(bitmapExtensionBlock,
-                        fileSystemBlockSize);
+                var bitmapExtensionBlockBytes = FastFileSystemBitmapExtensionBlockBuilder.Build(bitmapExtensionBlock, fileSystemBlockSize);
                 await stream.WriteBytes(bitmapExtensionBlockBytes);
 
                 // write bitmap blocks
                 foreach (var bitmapBlock in bitmapExtensionBlock.BitmapBlocks)
                 {
                     // seek bitmap block offset
-                    var bitmapBlockByteOffset = partitionStartByteOffset +
-                                                (long)bitmapBlock.Offset *
-                                                fileSystemBlockSize;
+                    var bitmapBlockByteOffset = partitionStartByteOffset + (long)bitmapBlock.Offset * fileSystemBlockSize;
                     stream.Seek(bitmapBlockByteOffset, SeekOrigin.Begin);
 
                     // build and write bitmap block

@@ -23,6 +23,10 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         var selectors = CreateSelectors();
         if (_displaySettings is null)
             return FramedGroup(EmulationResourceKeys.VideoGwGuiProcessing, selectors);
+        if (_displayOwnsFrames)
+        {
+            return SideBySideGroups(_displaySettings, FramedGroup(EmulationResourceKeys.VideoGwGuiProcessing, selectors));
+        }
         var grid = new Grid();
         grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
         grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
@@ -37,7 +41,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
     }
 
     private FrameworkElement CreateImageGroups() => SideBySideGroups(
-        FramedSection(EmulationImageParametersSettingsBlock.Create(_configuration.Adjustments, update => SetAdjustments(update(_configuration.Adjustments)))),
+        FramedSection(EmulationImageParametersSettingsBlock.Create(_configuration.Adjustments, update => SetAdjustments(update(_configuration.Adjustments)), _imageSettings)),
         FramedSection(EmulationImageRestorationSettingsBlock.Create(_configuration.Restoration, update => SetRestoration(update(_configuration.Restoration)))));
 
     private FrameworkElement CreateEffectGroups()
@@ -50,20 +54,18 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         {
             FramedSection(EmulationTemporalEffectsSettingsBlock.Create(_configuration.Temporal, update => SetTemporal(update(_configuration.Temporal)))),
             FramedSection(CreateSignalSimulation()),
-            FramedSection(CreateStylistic())
+            FramedSection(AppendModuleSettings(CreateStylistic(), _effectSettings))
         };
         for (var index = 0; index < groups.Length; index++)
         {
-            groups[index].Margin = new Thickness(index == 0 ? 0 : 6, 0,
-                index == groups.Length - 1 ? 0 : 6, 0);
+            groups[index].Margin = new Thickness(index == 0 ? 0 : 6, 0, index == groups.Length - 1 ? 0 : 6, 0);
             Grid.SetColumn(groups[index], index);
             grid.Children.Add(groups[index]);
         }
         return grid;
     }
 
-    private static FrameworkElement SideBySideGroups(FrameworkElement left,
-        FrameworkElement right)
+    private static FrameworkElement SideBySideGroups(FrameworkElement left, FrameworkElement right)
     {
         var grid = new Grid();
         grid.ColumnDefinitions.Add(new ColumnDefinition());
@@ -76,15 +78,22 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         return grid;
     }
 
+    private static FrameworkElement AppendModuleSettings(FrameworkElement common, FrameworkElement? additional)
+    {
+        if (additional is null) return common;
+        var panel = new StackPanel();
+        panel.Children.Add(common);
+        panel.Children.Add(additional);
+        return panel;
+    }
+
     private FrameworkElement CreateSelectors()
     {
         var panel = new StackPanel();
         _shaderLoadingIndicator = CreateShaderLoadingIndicator();
         panel.Children.Add(_shaderLoadingIndicator);
         if (_rendererChoice is not null) panel.Children.Add(_rendererChoice);
-        panel.Children.Add(ChoiceField(EmulationResourceKeys.VideoSampling,
-            EmulationVideoProcessingCatalog.SamplingResourceKeys, _configuration.Sampling,
-            value => Update(configuration => configuration with { Sampling = value })));
+        panel.Children.Add(ChoiceField(EmulationResourceKeys.VideoSampling, EmulationVideoProcessingCatalog.SamplingResourceKeys, _configuration.Sampling, value => Update(configuration => configuration with { Sampling = value })));
         panel.Children.Add(ChoiceField(EmulationResourceKeys.VideoTechnology,
             EmulationVideoProcessingCatalog.DisplayTechnologyResourceKeys,
             _configuration.DisplayTechnology, value =>
@@ -113,8 +122,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
             Height = 4,
             Margin = new Thickness(0, 7, 0, 0)
         });
-        AutomationProperties.SetAutomationId(loading,
-            EmulationVideoSettingsLayoutConstants.VideoShaderLoadingAutomationId);
+        AutomationProperties.SetAutomationId(loading, EmulationVideoSettingsLayoutConstants.VideoShaderLoadingAutomationId);
         return loading;
     }
 
@@ -132,8 +140,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         {
             AddIntensity(panel, EmulationVideoProcessingCatalog.SignalConnectionIntensity,
                 _configuration.SignalSimulation.ConnectionIntensity,
-                value => SetSignalSimulation(_configuration.SignalSimulation with
-                { ConnectionIntensity = value }));
+                value => SetSignalSimulation(_configuration.SignalSimulation with { ConnectionIntensity = value }));
             panel.Children.Add(ChoiceField(ParameterKey(EmulationVideoProcessingCatalog.SignalStandard),
                 EmulationVideoProcessingCatalog.SignalStandardResourceKeys,
                 _configuration.SignalSimulation.Standard, value =>
@@ -141,10 +148,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
                     SetSignalSimulation(_configuration.SignalSimulation with { Standard = value });
                     RebuildContent();
                 }, EmulationVideoProcessingCatalog.SignalStandard));
-            AddIntensity(panel, EmulationVideoProcessingCatalog.SignalStandardIntensity,
-                _configuration.SignalSimulation.StandardIntensity,
-                value => SetSignalSimulation(_configuration.SignalSimulation with
-                { StandardIntensity = value }));
+            AddIntensity(panel, EmulationVideoProcessingCatalog.SignalStandardIntensity, _configuration.SignalSimulation.StandardIntensity, value => SetSignalSimulation(_configuration.SignalSimulation with { StandardIntensity = value }));
         }
         return panel;
     }
@@ -152,17 +156,11 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
     private FrameworkElement CreateStylistic()
     {
         var panel = Section(EmulationResourceKeys.VideoStylisticSettings);
-        AddIntensity(panel, EmulationVideoProcessingCatalog.Grain, _configuration.Stylistic.Grain,
-            value => SetStylistic(_configuration.Stylistic with { Grain = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.Vhs, _configuration.Stylistic.Vhs,
-            value => SetStylistic(_configuration.Stylistic with { Vhs = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.ChromaticAberration,
-            _configuration.Stylistic.ChromaticAberration,
-            value => SetStylistic(_configuration.Stylistic with { ChromaticAberration = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.Bloom, _configuration.Stylistic.Bloom,
-            value => SetStylistic(_configuration.Stylistic with { Bloom = value }));
-        AddToggle(panel, EmulationVideoProcessingCatalog.Sepia, _configuration.Stylistic.Sepia,
-            value => SetStylistic(_configuration.Stylistic with { Sepia = value }));
+        AddIntensity(panel, EmulationVideoProcessingCatalog.Grain, _configuration.Stylistic.Grain, value => SetStylistic(_configuration.Stylistic with { Grain = value }));
+        AddIntensity(panel, EmulationVideoProcessingCatalog.Vhs, _configuration.Stylistic.Vhs, value => SetStylistic(_configuration.Stylistic with { Vhs = value }));
+        AddIntensity(panel, EmulationVideoProcessingCatalog.ChromaticAberration, _configuration.Stylistic.ChromaticAberration, value => SetStylistic(_configuration.Stylistic with { ChromaticAberration = value }));
+        AddIntensity(panel, EmulationVideoProcessingCatalog.Bloom, _configuration.Stylistic.Bloom, value => SetStylistic(_configuration.Stylistic with { Bloom = value }));
+        AddToggle(panel, EmulationVideoProcessingCatalog.Sepia, _configuration.Stylistic.Sepia, value => SetStylistic(_configuration.Stylistic with { Sepia = value }));
         return panel;
     }
 
@@ -181,9 +179,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         _ => null
     };
 
-    private static TabItem Tab(string id, string headerResourceKey, FrameworkElement content,
-        double maximumWidth = EmulationVideoSettingsLayoutConstants.TabContentMaximumWidth,
-        bool compactFields = true, bool frameContent = true)
+    private static TabItem Tab(string id, string headerResourceKey, FrameworkElement content, double maximumWidth = EmulationVideoSettingsLayoutConstants.TabContentMaximumWidth, bool compactFields = true, bool frameContent = true)
     {
         if (compactFields) content = CompactSection(content);
         var container = new Border
@@ -195,8 +191,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
             Margin = new Thickness(12)
         };
         if (frameContent)
-            container.SetResourceReference(StyleProperty,
-                ControlVisualConstants.CardStyleResource);
+            container.SetResourceReference(StyleProperty, ControlVisualConstants.CardStyleResource);
         var scroller = new ScrollViewer
         {
             Content = container,
@@ -219,8 +214,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         return frame;
     }
 
-    private static Border FramedGroup(string titleResourceKey, FrameworkElement content,
-        bool compact = false)
+    private static Border FramedGroup(string titleResourceKey, FrameworkElement content, bool compact = false)
     {
         var panel = new StackPanel();
         panel.Children.Add(new TextBlock
@@ -245,8 +239,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         {
             var child = children[index];
             if (child is FrameworkElement element)
-                element.Margin = new Thickness(index % 2 == 0 ? 0 : 8, 0,
-                    index % 2 == 0 ? 8 : 0, 0);
+                element.Margin = new Thickness(index % 2 == 0 ? 0 : 8, 0, index % 2 == 0 ? 8 : 0, 0);
             Grid.SetColumn(child, index % 2);
             Grid.SetRow(child, index / 2);
             grid.Children.Add(child);
@@ -271,8 +264,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
             var field = children[index];
             var cell = index - 1;
             if (field is FrameworkElement element)
-                element.Margin = new Thickness(cell % 2 == 0 ? 0 : 10, 2,
-                    cell % 2 == 0 ? 10 : 0, 6);
+                element.Margin = new Thickness(cell % 2 == 0 ? 0 : 10, 2, cell % 2 == 0 ? 10 : 0, 6);
             columns[cell % 2].Children.Add(field);
         }
         fields.Children.Add(columns[0]);

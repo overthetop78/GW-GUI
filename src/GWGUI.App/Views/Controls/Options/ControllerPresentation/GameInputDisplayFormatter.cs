@@ -16,14 +16,9 @@ internal static class GameInputDisplayFormatter
 
     internal static string ControlDefinition(GameInputControlDescriptor control)
     {
-        var name = ControlName(new GameInputControlValue(
-            control.Type, control.Index, control.Label, 0f));
+        var name = ControlName(new GameInputControlValue(control.Type, control.Index, control.Label, 0f));
         if (control.Type != GameInputControlType.Switch) return name;
-        var labels = control.SwitchLabels?
-            .Select(Label)
-            .Where(value => !string.IsNullOrWhiteSpace(value))
-            .Distinct(StringComparer.CurrentCulture)
-            .ToArray() ?? [];
+        var labels = control.SwitchLabels?.Select(Label).Where(value => !string.IsNullOrWhiteSpace(value)).Distinct(StringComparer.CurrentCulture).ToArray() ?? [];
         var suffix = labels.Length == 0 ? string.Empty : $" · {string.Join(" ", labels)}";
         return $"{name} · {SwitchKind(control.SwitchKind)}{suffix}";
     }
@@ -142,14 +137,11 @@ internal static class GameInputDisplayFormatter
     {
         var bits = Convert.ToUInt64(value, CultureInfo.InvariantCulture);
         if (bits == 0) return LocExtension.Get("Controllers.None");
-        var parts = Enum.GetValues<T>()
-            .Select(item => (Item: item, Bits: Convert.ToUInt64(item, CultureInfo.InvariantCulture)))
-            .Where(item => item.Bits != 0 && IsSingleBit(item.Bits) && (bits & item.Bits) == item.Bits)
+        var parts = Enum.GetValues<T>().Select(item => (Item: item, Bits: Convert.ToUInt64(item, CultureInfo.InvariantCulture))).Where(item => item.Bits != 0 && IsSingleBit(item.Bits) && (bits & item.Bits) == item.Bits)
             .Select(item => EnumValue(item.Item))
             .Distinct(StringComparer.CurrentCultureIgnoreCase)
             .ToList();
-        var known = Enum.GetValues<T>().Select(item => Convert.ToUInt64(item, CultureInfo.InvariantCulture))
-            .Where(IsSingleBit).Aggregate(0UL, (current, item) => current | item);
+        var known = Enum.GetValues<T>().Select(item => Convert.ToUInt64(item, CultureInfo.InvariantCulture)).Where(IsSingleBit).Aggregate(0UL, (current, item) => current | item);
         var unknown = bits & ~known;
         if (unknown != 0) parts.Add($"0x{unknown:X}");
         return parts.Count == 0 ? EnumValue(value) : string.Join(" · ", parts);
@@ -182,9 +174,7 @@ internal static class GameInputDisplayFormatter
 
     internal static string FeedbackMotor(GameInputForceFeedbackMotorDescriptor motor)
     {
-        var effects = motor.SupportedEffects.Count == 0
-            ? LocExtension.Get("Controllers.None")
-            : string.Join(", ", motor.SupportedEffects.Select(EnumValue));
+        var effects = motor.SupportedEffects.Count == 0 ? LocExtension.Get("Controllers.None") : string.Join(", ", motor.SupportedEffects.Select(EnumValue));
         var power = motor.PoweredOn ? LocExtension.Get("Controllers.Yes") : LocExtension.Get("Controllers.No");
         return $"#{motor.Index + 1}: ⏻ {power} · {Flags(motor.SupportedAxes)} · {effects}";
     }

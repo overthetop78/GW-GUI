@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft" xml:space="preserve"><value>Przycisk lewego boku</value></data>
+  <data name="Emulation.Epoch.Input.FireRight" xml:space="preserve"><value>Przycisk z prawej strony</value></data>
+  <data name="Emulation.Epoch.Input.Power" xml:space="preserve"><value>Przycisk zasilania</value></data>
+  <data name="Emulation.Epoch.Input.Reset" xml:space="preserve"><value>Przycisk resetuj</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft" xml:space="preserve"><value>Przesuń dźwignię w lewo</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight" xml:space="preserve"><value>Przesuń dźwignię w prawo</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease" xml:space="preserve"><value>Wybierz następny kurs gry</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease" xml:space="preserve"><value>Wybierz poprzedni kurs gry</value></data>
+  <data name="Emulation.Epoch.Input.GunFire" xml:space="preserve"><value>Wyłącznik do broni lekkiej</value></data>
+  <data name="Emulation.Epoch.Input.GunReload" xml:space="preserve"><value>Przeładowanie broni lekkiej</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease" xml:space="preserve"><value>Łożysko 1: obrócić w kierunku przeciwnym do ruchu wskazówek zegara</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase" xml:space="preserve"><value>Łożysko 1: skręcić zgodnie z ruchem wskazówek zegara</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease" xml:space="preserve"><value>Łożysko 2: obrócić w kierunku przeciwnym do ruchu wskazówek zegara</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase" xml:space="preserve"><value>Łożysko 2: skręcić zgodnie z ruchem wskazówek zegara</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease" xml:space="preserve"><value>Łożysko 3: obrócić w kierunku przeciwnym do ruchu wskazówek zegara</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase" xml:space="preserve"><value>Łożysko 3: skręcić zgodnie z ruchem wskazówek zegara</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease" xml:space="preserve"><value>Łożysko 4: obrócić w kierunku przeciwnym do ruchu wskazówek zegara</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase" xml:space="preserve"><value>Łożysko 4: skręcić zgodnie z ruchem wskazówek zegara</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease" xml:space="preserve"><value>Wyceluj w lewo.</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease" xml:space="preserve"><value>Wyceluj w broń.</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease" xml:space="preserve"><value>Wyceluj w górę.</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease" xml:space="preserve"><value>Wyceluj w dół.</value></data>
+</root>

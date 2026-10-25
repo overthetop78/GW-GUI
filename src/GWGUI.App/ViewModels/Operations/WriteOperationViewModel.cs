@@ -1,11 +1,10 @@
-using EnabledOption = global::GWGUI.MediaEngine.Contracts.Options.EnabledOption;
+using GWGUI.App.ViewModels;
+using EnabledOption = GWGUI.MediaEngine.Contracts.Options.EnabledOption;
 using GWGUI.App.ViewModels.Operations.Options;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace GWGUI.App.ViewModels.Operations;
 
-public sealed class WriteOperationViewModel : INotifyPropertyChanged
+public sealed class WriteOperationViewModel : ObservableObject
 {
     private string _sourcePath = "";
     private string _expertArguments = "";
@@ -26,30 +25,18 @@ public sealed class WriteOperationViewModel : INotifyPropertyChanged
     public ValueOptionViewModel DiskDefs { get; } = new("--diskdefs", "");
 
     public bool DisableVerification => NoVerify.Enabled;
-    public IReadOnlyList<EnabledOption> BuildOptions() => AllOptions().Where(x => x.Enabled && x != NoVerify).Select(x => x.ToEnabledOption()).ToArray();
+    public IReadOnlyList<EnabledOption> BuildOptions() => OperationOptionViewModelBase.BuildOptions(AllOptions(), NoVerify);
     public void EnableFakeIndex() { FakeIndex.Enabled = true; HardSectors.Enabled = false; }
     public void EnableHardSectors() { HardSectors.Enabled = true; FakeIndex.Enabled = false; }
     public void EnableDensel() { Densel.Enabled = true; Tg43.Enabled = false; }
     public void EnableTg43() { Tg43.Enabled = true; Densel.Enabled = false; }
 
     public void ApplyOptions(IReadOnlySet<string> enabled, IReadOnlyDictionary<string, string> values)
-    {
-        foreach (var option in AllOptions())
-        {
-            var key = option.Argument.TrimStart('-'); option.Enabled = enabled.Contains(key);
-            if (option is ValueOptionViewModel valued && values.TryGetValue(key, out var value)) valued.Value = value;
-        }
-        ExpertArguments = values.GetValueOrDefault("expert", "");
-    }
+        => ExpertArguments = OperationOptionViewModelBase.ApplyOptions(AllOptions(), enabled, values);
 
-    public HashSet<string> CaptureEnabledOptions() => AllOptions().Where(x => x.Enabled).Select(x => x.Argument.TrimStart('-')).ToHashSet();
+    public HashSet<string> CaptureEnabledOptions() => OperationOptionViewModelBase.CaptureEnabledOptions(AllOptions());
     public Dictionary<string, string> CaptureValues()
-    {
-        var result = AllOptions().OfType<ValueOptionViewModel>().ToDictionary(x => x.Argument.TrimStart('-'), x => x.Value);
-        result["expert"] = ExpertArguments; return result;
-    }
+        => OperationOptionViewModelBase.CaptureValues(AllOptions(), ExpertArguments);
 
     private IEnumerable<OperationOptionViewModelBase> AllOptions() => [NoVerify, EraseEmpty, Retries, Tracks, PreErase, FakeIndex, HardSectors, Precomp, Reverse, Densel, Tg43, DiskDefs];
-    public event PropertyChangedEventHandler? PropertyChanged;
-    private void Set<T>(ref T field, T value, [CallerMemberName] string? name = null) { if (EqualityComparer<T>.Default.Equals(field, value)) return; field = value; PropertyChanged?.Invoke(this, new(name)); }
 }

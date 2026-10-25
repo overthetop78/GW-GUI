@@ -13,7 +13,7 @@
   <data name="HostTools.Latest"><value>Dernière version disponible : {0}</value></data>
   <data name="HostTools.Installed"><value>Version {0} installée.</value></data>
   <data name="HostTools.DownloadConfirm"><value>Télécharger et installer Greaseweazle Host Tools {0} pour Windows x64 ?</value></data>
-  <data name="HostTools.Title"><value>Outils d&apos;hôte Greaseweazle</value></data>
+  <data name="HostTools.Title"><value>Outils d'hôte Greaseweazle</value></data>
   <data name="HostTools.NoPrevious"><value>Aucun chemin précédent valide n’est mémorisé.</value></data>
   <data name="HostTools.UpdateAvailable"><value>Host Tools {0} disponible</value></data>
 </root>

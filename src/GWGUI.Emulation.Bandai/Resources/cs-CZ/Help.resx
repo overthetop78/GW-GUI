@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Setting.DisplayRotation.Help" xml:space="preserve"><value>Vyberte orientaci krajiny nebo portrétu. Ruční režim používá přiřazené tlačítko rotace.</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation.Help" xml:space="preserve"><value>Automatický režim následuje po orientaci displeje. Ostatní režimy udržují ovládání ve zvolené orientaci.</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Vyberte barvy používané pro hry s monochromem.</value></data>
+  <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Vyberte hloubku výstupu. Režim 24- bit vyžaduje větší výkon zpracování.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Přeskočit video rámy pro snížení šustění zvuku. Automatický režim následuje zvukový buffer. Ruční režim používá zvolený práh.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help"><value>Ruční režim: vynechávat snímky, když zaplnění zvukové vyrovnávací paměti klesne pod zvolenou úroveň.</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Přeskočte každý pátý snímek na zobrazení při 60 Hz. Tím se snižuje plynulost pohybu.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Vyšší vzorkovací frekvence mírně zlepšují kvalitu zvuku a vyžadují větší výkon zpracování.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Aplikujte filtr pro změkčení zvuku.</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Vyměňte činnost tlačítek A a B.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.DetailedHelp"><value>Při 33 % se snímky vynechávají, když je zvuková vyrovnávací paměť zaplněna z méně než 33 %, aby se omezilo praskání. Vyšší hodnoty spouštějí vynechávání dříve. Zpoždění zvuku ani velikost vyrovnávací paměti se nemění.</value></data>
+</root>

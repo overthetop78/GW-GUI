@@ -25,7 +25,6 @@ internal static class ScpHfeEncodingResolver
         ScpDiskType.Other1200 or
         ScpDiskType.Other720 or
         ScpDiskType.Other1440 => HfeFormat.IsoMfmEncoding,
-        _ => throw new NotSupportedException(
-            $"Le type SCP 0x{diskType:X2} ne possède pas de mode HFE v1 sans perte.")
+        _ => throw new NotSupportedException($"Le type SCP 0x{diskType:X2} ne possède pas de mode HFE v1 sans perte.")
     };
 }

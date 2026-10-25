@@ -23,10 +23,7 @@ internal sealed class AtariVisualizationPolicy : SectorImageVisualizationPolicy
     {
         if (!image.FormatId.StartsWith(DiskImageFormatIds.AtariPrefix, StringComparison.OrdinalIgnoreCase) ||
             image.SectorsPerTrack != Atari8BitGeometry.LinearSectorsPerCylinder || image.Cylinders <= DiskGeometryConstants.EightyTrackCylinderCount) return address;
-        var sectorsPerTrack = image.FormatId.Equals(DiskImageFormatIds.Atari130, StringComparison.OrdinalIgnoreCase)
-            || image.FormatId.Equals(DiskImageFormatIds.AtariXfd130, StringComparison.OrdinalIgnoreCase)
-                ? Atari8BitGeometry.EnhancedSectorsPerTrack
-                : Atari8BitGeometry.StandardSectorsPerTrack;
+        var sectorsPerTrack = image.FormatId.Equals(DiskImageFormatIds.Atari130, StringComparison.OrdinalIgnoreCase) || image.FormatId.Equals(DiskImageFormatIds.AtariXfd130, StringComparison.OrdinalIgnoreCase) ? Atari8BitGeometry.EnhancedSectorsPerTrack : Atari8BitGeometry.StandardSectorsPerTrack;
         var logical = address.Cylinder;
         return new(logical / sectorsPerTrack, Atari8BitGeometry.FirstHead, logical % sectorsPerTrack + Atari8BitGeometry.FirstSectorNumber);
     }

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>Szybki boot</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Pomija BIOS Otwórz ekran startowy i uruchom grę bezpośrednio. Wyłącz to, aby otworzyć ustawienia konsoli lub menedżera kart pamięci.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Automatyczny</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU Core</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Szybka pamięć</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Włącz szybszy dostęp do pamięci. Może to spowodować niestabilność niektórych gier.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Ignoruj złe dostępu do pamięci</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>Synchronizacja dostępu do nośnika</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>Komputer hosta</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>Opóźnienia odczytu płyt UMD</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>Synchronizuj z zegarem czasu rzeczywistego</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>Synchronizuje emulację z zegarem czasu rzeczywistego, aby zmniejszyć opóźnienie wejścia. Może to obniżyć wydajność.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>Zamknięte CPU Prędkość</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>Cache Full ISO w pamięci RAM</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>Wewnętrzne wsparcie dla oszustw</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Label"><value>Język gry</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Help"><value>"Automatyczny" będzie używał języka frontend.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>Chiński tradycyjny</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>Chiński uproszczony</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>Model PSP</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>Renderowanie oprogramowania</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Użyj renderowania programowego dla większej dokładności kosztem wyższego zapotrzebowania na moc obliczeniową.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>Rozdzielczość renderowania</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>Wybierz wewnętrzną rozdzielczość renderowania.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>Antyaliasing MSAA</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Zastosuj wygładzanie krawędzi MSAA za pomocą Vulkan.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>Uprawy do 16x9</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>Przytnij górną i dolną część obrazu, aby uzyskać proporcje 16:9.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>Frameskip</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Label"><value>Typ frameskipu</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.0"><value>Liczba klatek wideo</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>Procent częstotliwości klatek wideo</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>Auto Frameskip</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>Render Duplicate Ramki do 60 Hz</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>Powiela klatki wideo, aby poprawić płynność ruchu w grach z niską liczbą klatek na sekundę.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Wykrywaj zmiany częstotliwości klatek wideo</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Powiadamiaj aplikację o zmianach częstotliwości klatek wideo w grze.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Buforowanie poleceń graficznych</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>Ogranicz buforowanie poleceń graficznych, aby zmniejszyć opóźnienie wejścia. Może to obniżyć wydajność. Tylko OpenGL i Vulkan.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Bez dodatkowego buforowania grafiki</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>Buforuj maksymalnie jedną klatkę wideo</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Przycisk potwierdzenia</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Kompensacja kołowego i kwadratowego zakresu drążka analogowego</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Termin analogowy</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Zastosuj dodatkową martwą strefę drążka analogowego po przetworzeniu wejścia przez aplikację.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>skala osi analogowej</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Help"><value>Zastosuj dodatkową regulację czułości drążka analogowego po przetworzeniu wejścia przez aplikację.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Label"><value>Pomiń efekty bufora</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Pomiń efekty bufora klatek, aby poprawić wydajność. W niektórych grach obraz może się nie wyświetlać.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Pomiń GPU Readbacks</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Pomiń kopiowanie danych graficznych z GPU do CPU. Niektóre gry potrzebują tych kopii do poprawnego wyświetlania obrazu.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Opóźnione buforowanie tekstur (przyspieszenie)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Szybciej, ale może powodować problemy tekstowe w kilku grach.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>Jakość krzywych Spline / Bezier</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Używane tylko przez niektóre gry, kontroluje gładkość krzywych.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Label"><value>Dolna rozdzielczość dla skutków</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Help"><value>Zmniejsz rozdzielczość niektórych efektów wizualnych, aby uniknąć błędów renderowania.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Value.2"><value>Zbalansowany</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_gpu_hardware_transform.Label"><value>Hardware Transform</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Label"><value>Skinning oprogramowania</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Help"><value>Przetwarzaj i łącz na CPU operacje rysowania animowanych modeli 3D. Poprawia to wydajność w większości gier.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Label"><value>Testulacja sprzętu</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Help"><value>Używaj GPU do renderowania gładkich krzywych.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Label"><value>Typ aktualizacji tekstury</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Value.3"><value>Hybryd + Bicubic</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Label"><value>Poziom aktualizacji tekstury</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Help"><value>Powiększanie tekstur zwiększa obciążenie CPU. Niektóre tekstury są powiększane później, aby uniknąć zacięć.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Label"><value>Tekstura Depositerize</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Help"><value>Ogranicz widoczne pasma kolorów na powiększonych teksturach.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_replacement.Label"><value>Wymiana tekstury</value></data>
+  </root>

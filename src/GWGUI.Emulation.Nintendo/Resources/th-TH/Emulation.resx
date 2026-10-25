@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Language"><value>Nintendo ภาษาระบบ</value></data>
+  <data name="Emulation.Nintendo.Language.English"><value>ภาษาอังกฤษName</value></data>
+  <data name="Emulation.Nintendo.Language.French"><value>ฝรั่งเศส</value></data>
+  <data name="Emulation.Nintendo.Language.Spanish"><value>สเปน</value></data>
+  <data name="Emulation.Nintendo.Firmware.Integrated"><value>ROM ของระบบ</value></data>
+  <data name="Emulation.Emulator.mesen.Description"><value>จำลองระบบ Nintendo Entertainment System และ Famicom Disk System</value></data>
+  <data name="Emulation.Emulator.gw.Description"><value>จำลองเครื่อง Nintendo Game &amp; Watch</value></data>
+  <data name="Emulation.Emulator.beetle_vb.Description"><value>จำลองเครื่อง Nintendo Virtual Boy</value></data>
+  <data name="Emulation.Emulator.mupen64plus-next.Description"><value>จำลองระบบ Nintendo 64</value></data>
+  <data name="Emulation.Emulator.melonds.Description"><value>จำลองระบบ Nintendo DS และ DSi</value></data>
+  <data name="Emulation.Emulator.snes9x.Description"><value>จำลองระบบ Super Nintendo และ Super Famicom</value></data>
+  <data name="Emulation.Emulator.gambatte.Description"><value>จำลองระบบ Nintendo Game Boy และ Game Boy Color</value></data>
+  <data name="Emulation.Emulator.mgba.Description"><value>จำลองระบบ Nintendo Game Boy Advance</value></data>
+  <data name="Emulation.Emulator.citra.Description"><value>จำลองระบบ Nintendo 3DS ด้วย Citra</value></data>
+  <data name="Emulation.Emulator.dolphin.Description"><value>จำลองระบบ Nintendo GameCube และ Wii ด้วย Dolphin</value></data>
+</root>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Controller.CyberstickAnalog" xml:space="preserve"><value>CYBERSTICK (Tiếng cười)</value></data>
+  <data name="Emulation.Sharp.Controller.CyberstickDigital" xml:space="preserve"><value>CYBERSTICK (số)</value></data>
+  <data name="Emulation.Sharp.Controller.X1Joystick" xml:space="preserve"><value>X1 Cần điều khiển</value></data>
+  <data name="Emulation.Sharp.Input.Fire1" xml:space="preserve"><value>Nút khai hỏa 1</value></data>
+  <data name="Emulation.Sharp.Input.Fire2" xml:space="preserve"><value>Nút chữa cháy 2</value></data>
+  <data name="Emulation.Sharp.Input.Fire3" xml:space="preserve"><value>Nút khai hỏa 3</value></data>
+  <data name="Emulation.Sharp.Input.Fire4" xml:space="preserve"><value>Nút phóng hỏa 4</value></data>
+  <data name="Emulation.Sharp.Input.Fire5" xml:space="preserve"><value>Nút phóng hỏa 5</value></data>
+  <data name="Emulation.Sharp.Input.Fire6" xml:space="preserve"><value>Nút phóng hỏa 6</value></data>
+  <data name="Emulation.Sharp.Input.Fire7" xml:space="preserve"><value>Nút Đỏ 7</value></data>
+  <data name="Emulation.Sharp.Input.Fire8" xml:space="preserve"><value>Nút chữa cháy 8</value></data>
+  <data name="Emulation.Sharp.Input.ThrottleDecrease" xml:space="preserve"><value>Giảm tốc</value></data>
+  <data name="Emulation.Sharp.Input.ThrottleIncrease" xml:space="preserve"><value>Tăng tốc</value></data>
+</root>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Megjeleníti a processzor névleges óra frekvenciáját a kiválasztott Sony gépben.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Eredeti processzor óra frekvencia.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Megjeleníti a kiválasztott Sony gép által biztosított processzor modellt.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>A processzor erre a gépre telepített.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>Megjeleníti a rendszer ROM állapotát a kiválasztott gép és emulátor.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>Rendszer ROM.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Azonosítja a gép konfigurációjának futtatásához használt emulátor-implementációt.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>Emulátor kiválasztva ehhez a géphez.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Azonosítja a Sony modellt, amelynek hardverkonfigurációját szerkesztik.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony machine modell konfigurálva.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Megjeleníti a kiválasztott Sony gép által biztosított RAM-ot.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Az emulált gép rendelkezésére álló RAM-mennyiség.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Az emulált CPU gyakorisága a kiválasztott óra százalékos arányának alkalmazása után.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>A névleges konzolfrekvenciát megszorozzuk a kiválasztott százalékkal. Ez az emulált processzort változtatja meg, nem a host processzorét. A magasabb értékek csökkenthetik a lassulásokat, de megtörhetik a játék időzítését. Automatikus használata az emulátor alapértelmezett.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>A kiválasztott gép eredeti grafikus hardvere.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Megjeleníti a kiválasztott gép eredeti grafikus hardverét. Az emulátor renderelési beállításai módosítják az előállított képet. A GW GUI szűrői ezután kerülnek alkalmazásra.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>A kiválasztott gép eredeti hanghardvere.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Megjeleníti a kiválasztott gép eredeti hanghardverét. A hangkimenet és a késleltetés beállításai szabályozzák a lejátszást a számítógépen.</value></data>
+</root>

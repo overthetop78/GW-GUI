@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Selectaţi sincronizarea automată sau standardul video.</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Selectaţi cipul video emulat.</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Selectaţi raportul de aspect imagine. Selecţie automată utilizează regiunea de joc.</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>Selectaţi graniţele vizibile ale ecranului.</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>Eliminați limita de pe sprite pe linie de ecran. Acest lucru poate provoca erori grafice.</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>Permiteţi ca direcţiile opuse să fie presate împreună.</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>Reglați sensibilitatea dispozitivului de comandă rotativ.</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>Alege paleta de culori.</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>Ascundeţi graniţa de sus.</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>Ascundeţi graniţa de jos a ecranului.</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>Ascundeţi graniţa ecranului din stânga.</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Ascundeţi graniţa cu ecranul din dreapta.</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Ascunde pixeli la marginile imaginii afișate.</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Sări peste întârziere.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp"><value>Circuitul de memorie al cartușului. Păstrați Automat dacă ROM-ul este detectat corect.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeDetails"><value>Standard: până la 32 KiB. MegaCart și Activision: circuite diferite de comutare a băncilor ROM. OCM: comutare de bănci și salvări EEPROM. Activision desemnează un circuit, nu editorul jocului. Un tip greșit poate împiedica pornirea sau provoca erori.</value></data>
+</root>

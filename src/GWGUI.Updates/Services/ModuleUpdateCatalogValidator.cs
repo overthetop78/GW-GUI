@@ -29,8 +29,7 @@ public sealed class ModuleUpdateCatalogValidator
         if (component.Kind != UpdateComponentKind.Module)
             throw new InvalidDataException("A module update catalog can contain only a module component.");
         if (!component.Id.Equals(expectedModuleId, StringComparison.OrdinalIgnoreCase))
-            throw new InvalidDataException(
-                $"Module update catalog id '{component.Id}' does not match installed module '{expectedModuleId}'.");
+            throw new InvalidDataException($"Module update catalog id '{component.Id}' does not match installed module '{expectedModuleId}'.");
         if (component.Releases.Count == 0)
             throw new InvalidDataException($"Module update catalog '{component.Id}' contains no release.");
 

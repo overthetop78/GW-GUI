@@ -16,12 +16,9 @@ namespace GWGUI.MediaEngine.Images.Formats.HardDisk.Chd;
 /// <summary>Reads autonomous, uncompressed CHD V5 hard disk images with GDDD geometry metadata.</summary>
 public sealed partial class ChdHardDiskReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { HardDiskImageFormatIds.Chd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.HardDisk }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { HardDiskImageFormatIds.Chd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.HardDisk }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => ChdHardDiskFormat.Extensions;
@@ -31,27 +28,11 @@ public sealed partial class ChdHardDiskReader : IMediaImageReader
     IReadOnlySet<MediaRepresentationKind> IMediaImageReader.RepresentationKinds => SupportedRepresentationKinds;
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
-    {
-        if (context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId)) return false;
-        try
-        {
-            await ReadLayoutAsync(context, cancellationToken).ConfigureAwait(false);
-            return true;
-        }
-        catch (InvalidDataException)
-        {
-            return false;
-        }
-        catch (NotSupportedException)
-        {
-            return false;
-        }
-    }
+    ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
+        => MediaRecognitionRegistry.CanReadAsync(context, SupportedFormatIds,
+            ReadLayoutAsync, cancellationToken);
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var layout = await ReadLayoutAsync(context, cancellationToken).ConfigureAwait(false);
         var source = new FileRandomAccessData(context.Source.PrimaryPath);
@@ -65,25 +46,21 @@ public sealed partial class ChdHardDiskReader : IMediaImageReader
             var length = Math.Min((long)layout.HunkBytes, layout.LogicalBytes - logicalOffset);
             if (storedHunk == 0)
             {
-                AddRange(ranges, logicalOffset, length, MediaDataRangeKind.Zero);
+                BlockMediaImageRepresentation.AddRange(ranges, logicalOffset, length, MediaDataRangeKind.Zero);
                 continue;
             }
 
             var sourceOffset = checked((long)storedHunk * layout.HunkBytes);
             if (sourceOffset > context.Length - layout.HunkBytes)
                 throw new InvalidDataException($"CHD hunk {hunkIndex} points outside the file.");
-            AddRange(ranges, logicalOffset, length, MediaDataRangeKind.Stored, source, sourceOffset);
+            BlockMediaImageRepresentation.AddRange(ranges, logicalOffset, length, MediaDataRangeKind.Stored, source, sourceOffset);
         }
 
         return new MediaImageDocument(
             context.Source,
             HardDiskImageFormatIds.Chd,
             MediaKind.HardDisk,
-            new BlockMediaImageRepresentation(
-                layout.LogicalBytes,
-                layout.UnitBytes,
-                ranges,
-                layout.Geometry),
+            new BlockMediaImageRepresentation(layout.LogicalBytes, layout.UnitBytes, ranges, layout.Geometry),
             [],
             [],
             new Dictionary<string, string>(StringComparer.Ordinal)
@@ -94,16 +71,11 @@ public sealed partial class ChdHardDiskReader : IMediaImageReader
             });
     }
 
-    private static async ValueTask<ChdLayout> ReadLayoutAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    private static async ValueTask<ChdLayout> ReadLayoutAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.Length < ChdConstants.Version5HeaderSize)
             throw new InvalidDataException("The file is too short to contain a CHD V5 header.");
-        var headerMemory = await context.ReadAsync(
-            0,
-            ChdConstants.Version5HeaderSize,
-            cancellationToken).ConfigureAwait(false);
+        var headerMemory = await context.ReadAsync(0, ChdConstants.Version5HeaderSize, cancellationToken).ConfigureAwait(false);
         var header = headerMemory.Span;
         if (!header[..ChdHardDiskFormat.Signature.Length].SequenceEqual(ChdHardDiskFormat.Signature.Span))
             throw new InvalidDataException("The CHD signature is missing.");
@@ -148,10 +120,7 @@ public sealed partial class ChdHardDiskReader : IMediaImageReader
         return new ChdLayout(logicalBytes, hunkBytes, unitBytes, hunkCount, map, geometry);
     }
 
-    private static async ValueTask<HardDiskGeometry> ReadHardDiskMetadataAsync(
-        MediaRecognitionContext context,
-        long firstOffset,
-        CancellationToken cancellationToken)
+    private static async ValueTask<HardDiskGeometry> ReadHardDiskMetadataAsync(MediaRecognitionContext context, long firstOffset, CancellationToken cancellationToken)
     {
         if (firstOffset <= 0) throw new InvalidDataException("The CHD has no hard disk metadata.");
         var visited = new HashSet<long>();
@@ -162,10 +131,7 @@ public sealed partial class ChdHardDiskReader : IMediaImageReader
             if (offset < ChdConstants.Version5HeaderSize
                 || offset > context.Length - ChdConstants.MetadataHeaderSize)
                 throw new InvalidDataException("A CHD metadata header is outside the file.");
-            var headerMemory = await context.ReadAsync(
-                offset,
-                ChdConstants.MetadataHeaderSize,
-                cancellationToken).ConfigureAwait(false);
+            var headerMemory = await context.ReadAsync(offset, ChdConstants.MetadataHeaderSize, cancellationToken).ConfigureAwait(false);
             var header = headerMemory.Span;
             var tag = BinaryPrimitives.ReadUInt32BigEndian(header[..4]);
             var lengthAndFlags = BinaryPrimitives.ReadUInt32BigEndian(header[4..8]);
@@ -192,36 +158,8 @@ public sealed partial class ChdHardDiskReader : IMediaImageReader
         throw new InvalidDataException("The CHD metadata does not classify the image as a hard disk.");
     }
 
-    private static void AddRange(
-        List<MediaDataRange> ranges,
-        long address,
-        long length,
-        MediaDataRangeKind kind,
-        FileRandomAccessData? source = null,
-        long sourceOffset = 0)
-    {
-        if (ranges.Count > 0)
-        {
-            var previous = ranges[^1];
-            var sourceContinues = kind != MediaDataRangeKind.Stored
-                || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
-            if (previous.Kind == kind && previous.Address + previous.Length == address && sourceContinues)
-            {
-                ranges[^1] = new MediaDataRange(previous.Address, previous.Length + length, kind, previous.Source, previous.SourceOffset);
-                return;
-            }
-        }
-        ranges.Add(new MediaDataRange(address, length, kind, source, sourceOffset));
-    }
-
     [GeneratedRegex(@"^CYLS:(\d+),HEADS:(\d+),SECS:(\d+),BPS:(\d+)$", RegexOptions.CultureInvariant)]
     private static partial Regex HardDiskMetadataRegex();
 
-    private sealed record ChdLayout(
-        long LogicalBytes,
-        int HunkBytes,
-        int UnitBytes,
-        long HunkCount,
-        ReadOnlyMemory<byte> Map,
-        HardDiskGeometry Geometry);
+    private sealed record ChdLayout(long LogicalBytes, int HunkBytes, int UnitBytes, long HunkCount, ReadOnlyMemory<byte> Map, HardDiskGeometry Geometry);
 }

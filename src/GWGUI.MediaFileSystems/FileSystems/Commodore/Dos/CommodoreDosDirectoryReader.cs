@@ -1,10 +1,8 @@
 using GWGUI.MediaFileSystems.Primitives;
 using System.Buffers.Binary;
-
-using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
+using IMediaSectorImage = GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Commodore.Dos;
-
 /// <summary>Valide et lit les chaînes de répertoire Commodore DOS.</summary>
 internal static class CommodoreDosDirectoryReader
 {
@@ -18,23 +16,31 @@ internal static class CommodoreDosDirectoryReader
         var invalid = 0;
         while (track != 0 && visited.Count < CommodoreDosLayout.MaximumDirectoryChainLength && visited.Add((track, sector)))
         {
-            if (!CommodoreDosSectorReader.TryRead(image, track, sector, out var data)) return false;
+            if (!CommodoreDosSectorReader.TryRead(image, track, sector, out var data))
+                return false;
             for (var slot = 0; slot < CommodoreDosLayout.DirectoryEntryCount; slot++)
             {
                 var offset = slot * CommodoreDosLayout.DirectoryEntrySize;
-                if (offset < 0 || offset > data.Count - CommodoreDosLayout.DirectoryEntrySize) return false;
+                if (offset < 0 || offset > data.Count - CommodoreDosLayout.DirectoryEntrySize)
+                    return false;
                 var rawType = (CommodoreDosFileType)data[offset + CommodoreDosLayout.FileTypeOffset];
                 var type = rawType & CommodoreDosFileType.BaseTypeMask;
-                if (type == CommodoreDosFileType.Del) continue;
+                if (type == CommodoreDosFileType.Del)
+                    continue;
                 var name = PetsciiCodec.Decode(Copy(data, offset + CommodoreDosLayout.FileNameOffset, CommodoreDosLayout.NameLength));
                 var dataTrack = data[offset + CommodoreDosLayout.FirstDataTrackOffset];
                 var dataSector = data[offset + CommodoreDosLayout.FirstDataSectorOffset];
                 var plausible = type is >= CommodoreDosFileType.Seq and <= CommodoreDosFileType.Cbm && name.Length > 0 && !name.Contains('\ufffd') && (dataTrack == 0 || CommodoreDosGeometry.TryToLogicalBlock(image, dataTrack, dataSector, out _));
-                if (plausible) valid++; else invalid++;
+                if (plausible)
+                    valid++;
+                else
+                    invalid++;
             }
+
             track = data[CommodoreDosLayout.NextTrackOffset];
             sector = data[CommodoreDosLayout.NextSectorOffset];
         }
+
         return invalid == 0 && (valid > 0 || visited.Count == 1);
     }
 
@@ -52,16 +58,24 @@ internal static class CommodoreDosDirectoryReader
                 warnings.Add(CommodoreDosWarnings.DirectoryCycle(track, sector));
                 break;
             }
+
             var sectorStatus = CommodoreDosSectorReader.Read(image, track, sector, out var data);
             if (sectorStatus != CommodoreDosSectorReadStatus.Success)
             {
-                warnings.Add(sectorStatus switch { CommodoreDosSectorReadStatus.Truncated => CommodoreDosWarnings.DirectorySectorTruncated(track, sector, data.Count), CommodoreDosSectorReadStatus.InvalidCoordinate => CommodoreDosWarnings.DirectoryCoordinateInvalid(track, sector), _ => CommodoreDosWarnings.DirectorySectorMissing(track, sector) });
+                warnings.Add(sectorStatus switch
+                {
+                    CommodoreDosSectorReadStatus.Truncated => CommodoreDosWarnings.DirectorySectorTruncated(track, sector, data.Count),
+                    CommodoreDosSectorReadStatus.InvalidCoordinate => CommodoreDosWarnings.DirectoryCoordinateInvalid(track, sector),
+                    _ => CommodoreDosWarnings.DirectorySectorMissing(track, sector)
+                });
                 break;
             }
+
             ReadEntries(image, data, entries, warnings);
             track = data[CommodoreDosLayout.NextTrackOffset];
             sector = data[CommodoreDosLayout.NextSectorOffset];
         }
+
         return entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray();
     }
 
@@ -71,11 +85,14 @@ internal static class CommodoreDosDirectoryReader
         for (var slot = 0; slot < CommodoreDosLayout.DirectoryEntryCount; slot++)
         {
             var offset = slot * CommodoreDosLayout.DirectoryEntrySize;
-            if (offset < 0 || offset > data.Count - CommodoreDosLayout.DirectoryEntrySize) continue;
+            if (offset < 0 || offset > data.Count - CommodoreDosLayout.DirectoryEntrySize)
+                continue;
             var rawType = (CommodoreDosFileType)data[offset + CommodoreDosLayout.FileTypeOffset];
-            if ((rawType & CommodoreDosFileType.BaseTypeMask) == CommodoreDosFileType.Del) continue;
+            if ((rawType & CommodoreDosFileType.BaseTypeMask) == CommodoreDosFileType.Del)
+                continue;
             var name = PetsciiCodec.Decode(Copy(data, offset + CommodoreDosLayout.FileNameOffset, CommodoreDosLayout.NameLength));
-            if (name.Length == 0) continue;
+            if (name.Length == 0)
+                continue;
             var firstDataTrack = data[offset + CommodoreDosLayout.FirstDataTrackOffset];
             var firstDataSector = data[offset + CommodoreDosLayout.FirstDataSectorOffset];
             var countBytes = Copy(data, offset + CommodoreDosLayout.DeclaredBlockCountOffset, sizeof(ushort));
@@ -83,16 +100,13 @@ internal static class CommodoreDosDirectoryReader
             var file = CommodoreDosFileReader.Read(image, firstDataTrack, firstDataSector, warnings, name);
             var size = file.IsValid ? file.Content.Count : declaredBlocks * CommodoreDosLayout.DataBytesPerSector;
             var rawAttributes = (uint)(byte)rawType;
-            if ((rawType & CommodoreDosFileType.BaseTypeMask) == CommodoreDosFileType.Rel) rawAttributes |= (uint)data[offset + CommodoreDosLayout.RelativeRecordLengthOffset] << CommodoreDosLayout.RelativeRecordLengthAttributeShift;
+            if ((rawType & CommodoreDosFileType.BaseTypeMask) == CommodoreDosFileType.Rel)
+                rawAttributes |= (uint)data[offset + CommodoreDosLayout.RelativeRecordLengthOffset] << CommodoreDosLayout.RelativeRecordLengthAttributeShift;
             entries.Add(new(name, FileSystemEntryKind.File, size, null, CommodoreDosFileTypeNames.GetComment(rawType), rawAttributes, file.FirstLogicalBlock.GetValueOrDefault(), file.IsValid, [], file.Content));
         }
     }
 
     /// <summary>Copie une petite plage bornée destinée à un codec ou une primitive binaire.</summary>
     private static byte[] Copy(IReadOnlyList<byte> source, int offset, int length)
-    {
-        var result = new byte[length];
-        for (var index = 0; index < length; index++) result[index] = source[offset + index];
-        return result;
-    }
+        => ByteListCopy.Copy(source, offset, length);
 }

@@ -2,12 +2,7 @@ namespace GWGUI.Emulation.HardDisks;
 
 public sealed record DiskImagePlan
 {
-    public DiskImagePlan(
-        long capacityBytes,
-        string containerId,
-        string partitionTableId,
-        IReadOnlyList<DiskVolumePlan> volumes,
-        bool fixedSize = false)
+    public DiskImagePlan(long capacityBytes, string containerId, string partitionTableId, IReadOnlyList<DiskVolumePlan> volumes, bool fixedSize = false)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(capacityBytes);
         ArgumentException.ThrowIfNullOrWhiteSpace(containerId);

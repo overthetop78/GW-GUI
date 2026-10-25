@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft" xml:space="preserve"><value>Αριστερό πλευρικό κουμπί</value></data>
+  <data name="Emulation.Epoch.Input.FireRight" xml:space="preserve"><value>Κουμπί δεξιάς πλευράς</value></data>
+  <data name="Emulation.Epoch.Input.Power" xml:space="preserve"><value>Κουμπί ισχύος</value></data>
+  <data name="Emulation.Epoch.Input.Reset" xml:space="preserve"><value>Επαναφορά κουμπιού</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft" xml:space="preserve"><value>Μετακίνηση του μοχλού στα αριστερά</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight" xml:space="preserve"><value>Μετακίνηση του μοχλού στα δεξιά</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease" xml:space="preserve"><value>Επιλέξτε την επόμενη σειρά παιχνιδιών</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease" xml:space="preserve"><value>Επιλέξτε την προηγούμενη σειρά παιχνιδιών</value></data>
+  <data name="Emulation.Epoch.Input.GunFire" xml:space="preserve"><value>Πυροκροτητής ελαφρού όπλου</value></data>
+  <data name="Emulation.Epoch.Input.GunReload" xml:space="preserve"><value>Ελαφριά επαναφόρτωση όπλου</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease" xml:space="preserve"><value>Κουπί 1: στροφή αριστερόστροφα</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase" xml:space="preserve"><value>Κουπί 1: στροφή δεξιόστροφα</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease" xml:space="preserve"><value>Κουπί 2: στροφή αριστερόστροφα</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase" xml:space="preserve"><value>Κουπί 2: στροφή δεξιόστροφα</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease" xml:space="preserve"><value>Κουπί 3: στρίψτε αριστερόστροφα</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase" xml:space="preserve"><value>Κουπί 3: στροφή δεξιόστροφα</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease" xml:space="preserve"><value>Κουπί 4: στροφή αριστερόστροφα</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase" xml:space="preserve"><value>Κουπί 4: στροφή δεξιόστροφα</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease" xml:space="preserve"><value>Σημάδεψε το όπλο αριστερά.</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease" xml:space="preserve"><value>Σημάδεψε το όπλο δεξιά.</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease" xml:space="preserve"><value>Σημάδεψε το όπλο προς τα πάνω.</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease" xml:space="preserve"><value>Σημάδεψε το όπλο προς τα κάτω.</value></data>
+</root>

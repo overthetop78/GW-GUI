@@ -2,7 +2,7 @@ using FileSystemEntryKind = GWGUI.MediaEngine.Enums.FileSystemEntryKind;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text.Json;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Contracts.Explorer;
 using GWGUI.MediaEngine.Images.Reading.Recognition;
@@ -25,18 +25,13 @@ internal static class Program
             var source = new MediaSourceDescriptor(Path.GetFullPath(imagePath), []);
             var recognized = await engine.Recognition.Registry.RecognizeAsync(new MediaRecognitionContext(source));
             var explored = await engine.Explorer.ExploreAsync(recognized.Document);
-            var entries = explored.Volumes
-                .Where(volume => volume.FileSystem is not null)
-                .SelectMany(volume => Flatten(volume.FileSystem!.Entries))
-                .Where(entry => entry.Kind == FileSystemEntryKind.File)
-                .ToArray();
+            var entries = explored.Volumes.Where(volume => volume.FileSystem is not null).SelectMany(volume => GWGUI.MediaAudit.MediaAuditTree.Flatten(volume.FileSystem!.Entries, entry => entry.Children)).Where(entry => entry.Kind == FileSystemEntryKind.File).ToArray();
 
             Directory.CreateDirectory(outputDirectory);
             var manifest = new List<object>();
             foreach (var requestedName in requestedNames)
             {
-                var matches = entries.Where(entry => string.Equals(entry.Name, requestedName,
-                    StringComparison.OrdinalIgnoreCase)).ToArray();
+                var matches = entries.Where(entry => string.Equals(entry.Name, requestedName, StringComparison.OrdinalIgnoreCase)).ToArray();
                 if (matches.Length == 0)
                     throw new InvalidDataException($"Media file '{requestedName}' was not found.");
                 if (matches.Length > 1)
@@ -73,8 +68,7 @@ internal static class Program
             }
 
             var manifestPath = Path.Combine(outputDirectory, "manifest.json");
-            await File.WriteAllTextAsync(manifestPath, JsonSerializer.Serialize(manifest,
-                new JsonSerializerOptions { WriteIndented = true }));
+            await File.WriteAllTextAsync(manifestPath, JsonSerializer.Serialize(manifest, new JsonSerializerOptions { WriteIndented = true }));
             Console.WriteLine(Path.GetFullPath(manifestPath));
             return 0;
         }
@@ -85,19 +79,7 @@ internal static class Program
         }
     }
 
-    private static IEnumerable<FileSystemEntry> Flatten(IEnumerable<FileSystemEntry> entries)
-    {
-        foreach (var entry in entries)
-        {
-            yield return entry;
-            foreach (var child in Flatten(entry.Children))
-                yield return child;
-        }
-    }
-
-    private static string RequiredArgument(IReadOnlyList<string> args, string name) =>
-        Arguments(args, name).FirstOrDefault()
-        ?? throw new ArgumentException($"{name} is required.");
+    private static string RequiredArgument(IReadOnlyList<string> args, string name) => Arguments(args, name).FirstOrDefault() ?? throw new ArgumentException($"{name} is required.");
 
     private static IReadOnlyList<string> Arguments(IReadOnlyList<string> args, string name)
     {

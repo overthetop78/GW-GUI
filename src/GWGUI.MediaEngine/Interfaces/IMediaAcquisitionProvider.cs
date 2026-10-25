@@ -1,5 +1,5 @@
-using MediaAcquisitionProgress = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionProgress;
-using MediaAcquisitionResult = global::GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
+using MediaAcquisitionProgress = GWGUI.MediaEngine.Contracts.MediaAcquisitionProgress;
+using MediaAcquisitionResult = GWGUI.MediaEngine.Contracts.MediaAcquisitionResult;
 using GWGUI.MediaEngine.Enums;
 
 namespace GWGUI.MediaEngine.Interfaces;
@@ -15,10 +15,5 @@ public interface IMediaAcquisitionProvider
 
     bool CanAcquire(MediaKind mediaKind, string deviceId);
 
-    Task<MediaAcquisitionResult> AcquireAsync(
-        MediaKind mediaKind,
-        string deviceId,
-        IReadOnlyDictionary<string, string> options,
-        IProgress<MediaAcquisitionProgress>? progress = null,
-        CancellationToken cancellationToken = default);
+    Task<MediaAcquisitionResult> AcquireAsync(MediaKind mediaKind, string deviceId, IReadOnlyDictionary<string, string> options, IProgress<MediaAcquisitionProgress>? progress = null, CancellationToken cancellationToken = default);
 }

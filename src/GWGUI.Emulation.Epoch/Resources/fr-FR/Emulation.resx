@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.emuscv.Description" xml:space="preserve"><value>Émule les consoles SUPER CASSETTE VISION.</value></data>
+  <data name="Emulation.Emulator.pd777.Description" xml:space="preserve"><value>Émule les consoles CASSETTE VISION.</value></data>
+  <data name="Emulation.Epoch.Memory.Display" xml:space="preserve"><value>Mémoire vidéo</value></data>
+  <data name="Emulation.Epoch.Video.Native" xml:space="preserve"><value>Vidéo de la console</value></data>
+  <data name="Emulation.Epoch.Controls.Native" xml:space="preserve"><value>Commandes de la console</value></data>
+  <data name="Emulation.Epoch.Setting.DisplayArea" xml:space="preserve"><value>Zone d’affichage</value></data>
+  <data name="Emulation.Epoch.Setting.PixelAspect" xml:space="preserve"><value>Forme des pixels</value></data>
+  <data name="Emulation.Epoch.Setting.ColorPalette" xml:space="preserve"><value>Palette de couleurs</value></data>
+  <data name="Emulation.Epoch.Setting.RefreshRate" xml:space="preserve"><value>Taux de rafraîchissement</value></data>
+  <data name="Emulation.Epoch.Setting.ShowVideoMemory" xml:space="preserve"><value>Afficher la mémoire vidéo complète</value></data>
+  <data name="Emulation.Epoch.Setting.ShowInputs" xml:space="preserve"><value>Afficher l’état des manettes</value></data>
+  <data name="Emulation.Epoch.Setting.ValidateFirmware" xml:space="preserve"><value>Vérifier l’empreinte du BIOS</value></data>
+  <data name="Emulation.Epoch.Setting.ShowKeypadAtStart" xml:space="preserve"><value>Afficher le pavé numérique au démarrage</value></data>
+  <data name="Emulation.Epoch.Setting.AnnounceCourseSwitch" xml:space="preserve"><value>Afficher la sélection du parcours de jeu</value></data>
+  <data name="Emulation.Epoch.Value.Rectangular" xml:space="preserve"><value>Rectangulaire</value></data>
+  <data name="Emulation.Epoch.Value.Low" xml:space="preserve"><value>Faible</value></data>
+  <data name="Emulation.Epoch.Value.High" xml:space="preserve"><value>Élevé</value></data>
+</root>

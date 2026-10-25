@@ -6,10 +6,7 @@ namespace GWGUI.MediaEngine.Contracts;
 /// <summary>Keeps a decoded signal timeline separate from the retained container blocks used for lossless writing.</summary>
 public sealed class SequentialSignalDecodeResult
 {
-    public SequentialSignalDecodeResult(
-        SequentialMediaImageRepresentation timeline,
-        IReadOnlyList<SequentialMediaSegment> sourceSegments,
-        IReadOnlyList<string>? diagnostics = null)
+    public SequentialSignalDecodeResult(SequentialMediaImageRepresentation timeline, IReadOnlyList<SequentialMediaSegment> sourceSegments, IReadOnlyList<string>? diagnostics = null)
     {
         ArgumentNullException.ThrowIfNull(timeline);
         ArgumentNullException.ThrowIfNull(sourceSegments);

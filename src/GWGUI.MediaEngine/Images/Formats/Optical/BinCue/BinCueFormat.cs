@@ -13,7 +13,8 @@ internal static class BinCueFormat
 
     public static readonly IReadOnlySet<string> AssociatedFileExtensions = new[]
     {
-        DiskImageFileExtensions.Bin
+        DiskImageFileExtensions.Bin,
+        DiskImageFileExtensions.Wav
     }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public static string FormatId => OpticalImageFormatIds.BinCue;

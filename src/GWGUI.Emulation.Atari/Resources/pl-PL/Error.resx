@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Error.CoreNotFound"><value>Nie znaleziono wymaganego rdzenia Atari.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected"><value>Wybrany rdzeń Atari nie mógł być załadowany.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing"><value>Brakuje wymaganego firmware Atari.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid"><value>Oprogramowanie firmowe Atari jest nieważne lub niezgodne.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound"><value>Nie znaleziono skonfigurowanych mediów Atari.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported"><value>Konfigurowane media nie są obsługiwane przez tę maszynę Atari.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid"><value>Opcja Atari ma niepoprawną wartość.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure"><value>Komunikacja z gospodarzem Atari nie powiodła się.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid"><value>Stan zapisany przez Atari jest nieważny.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible"><value>Stan zapisany przez Atari jest niezgodny z obecną maszyną.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected"><value>Wystąpił nieoczekiwany błąd emulacyjny Atari.</value></data>
+  <data name="Emulation.Atari.Error.Details"><value>Szczegóły: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration"><value>Aktywna konfiguracja Atari nie może zostać zmieniona ani usunięta.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>Wymagane oprogramowanie firmowe Atari nie jest skonfigurowane. Oprogramowanie firmowe: {0}. Urządzenie: {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing"><value>Nie znaleziono skonfigurowanego pliku firmware Atari. Oprogramowanie firmowe: {0}. Plik: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing"><value>Skonfigurowane media Atari nie zostały znalezione: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing"><value>Ścieżka wykonywalna hosta Atari jest niedostępna.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled"><value>Rdzeń emulacyjny Atari nie jest zainstalowany. Bazowa: {0}</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.UnsupportedCore"><value>Wybrany emulator Atari nie korzysta ze sterownika dzielonego wkładu.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.Required"><value>Wybrana maszyna Atari wymaga wkładek.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ExtensionUnsupported"><value>Wydłużenie wkładu nie jest obsługiwane przez wybrany emulator Atari.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.FileUnreadable"><value>Wkład Atari nie może być otwierany do odczytu.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.ReplacementFailed"><value>Emulator Atari odrzucił wkład zastępczy.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RollbackFailed"><value>Emulator Atari odrzucił zarówno wymianę jak i poprzedni wkład.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.EjectionUnsupported"><value>Emulator Atari nie może pozostać włączony bez wkładu.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.RegionUnsupported"><value>Wybrany emulator Atari nie ujawnia doboru rejonów wkładów.</value></data>
+  <data name="Emulation.Atari.Error.Cartridge.SecamUnsupported"><value>Ten emulator Atari nie może używać trybu rozłożenia wkładu o nazwie SECAM.</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel"><value>Wartość ta jest określana przez wybrany model.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>Dla tego modelu nie jest dostępny kompatybilny FPU.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory"><value>Dla tego modelu nie ma alternatywnej pamięci.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware"><value>Ten model nie ma konfigurowalnego oprogramowania firmowego.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard"><value>Ten model nie ma klawiatury.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse"><value>Ten model nie ma myszy.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage"><value>Ten model nie ma nośników pamięci.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Aby korzystać z kompaktowych mediów dyskowych, wybierz ten model: Jaguar CD.</value></data>
+</root>

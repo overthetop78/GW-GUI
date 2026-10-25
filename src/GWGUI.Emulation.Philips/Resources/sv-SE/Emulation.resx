@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.m2000.Description" xml:space="preserve"><value>Emulerar den PHILIPS P2000T dator.</value></data>
+  <data name="Emulation.Emulator.o2em.Description" xml:space="preserve"><value>Emulerar MAGNAVOX ODYSSEY2 och PHILIPS VIDEOPAC G7000 konsoler.</value></data>
+  <data name="Emulation.Emulator.same_cdi.Description" xml:space="preserve"><value>Emulerar PHILIPS CD-I konsoler.</value></data>
+  <data name="Emulation.Philips.Audio.Native" xml:space="preserve"><value>Emulator ljud</value></data>
+  <data name="Emulation.Philips.Keyboard.Native" xml:space="preserve"><value>Tangentbordstolkning</value></data>
+  <data name="Emulation.Philips.Memory.Display" xml:space="preserve"><value>Videominne</value></data>
+  <data name="Emulation.Philips.Setting.AlternateRenderer" xml:space="preserve"><value>Alternativ video rendering</value></data>
+  <data name="Emulation.Philips.Setting.AudioVolume" xml:space="preserve"><value>Audio volym av konsolen</value></data>
+  <data name="Emulation.Philips.Setting.AutoSave" xml:space="preserve"><value>Automatiska sparade stater</value></data>
+  <data name="Emulation.Philips.Setting.Cheats" xml:space="preserve"><value>Game cheat koder</value></data>
+  <data name="Emulation.Philips.Setting.CropOverscan" xml:space="preserve"><value>Ta bort videogränsen</value></data>
+  <data name="Emulation.Philips.Setting.KeyboardMapping" xml:space="preserve"><value>Keyboard Key mapping</value></data>
+  <data name="Emulation.Philips.Setting.LowPassFilter" xml:space="preserve"><value>Low-pass ljudfilter</value></data>
+  <data name="Emulation.Philips.Setting.LowPassRange" xml:space="preserve"><value>Audio filter cutoff frekvens</value></data>
+  <data name="Emulation.Philips.Setting.MixFrames" xml:space="preserve"><value>Blanda videoramar</value></data>
+  <data name="Emulation.Philips.Setting.NvramPerGame" xml:space="preserve"><value>Separat ihållande minne för varje spel</value></data>
+  <data name="Emulation.Philips.Setting.StateNaming" xml:space="preserve"><value>Saved State Fil Naming</value></data>
+  <data name="Emulation.Philips.Setting.Throttle" xml:space="preserve"><value>Begränsa emuleringshastigheten</value></data>
+  <data name="Emulation.Philips.Setting.VoiceVolume" xml:space="preserve"><value>Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice Voice</value></data>
+  <data name="Emulation.Philips.System.Native" xml:space="preserve"><value>Emulator alternativ</value></data>
+  <data name="Emulation.Philips.Value.Game" xml:space="preserve"><value>Per spel</value></data>
+  <data name="Emulation.Philips.Value.Positional" xml:space="preserve"><value>Fysiska nyckelpositioner</value></data>
+  <data name="Emulation.Philips.Value.Simple" xml:space="preserve"><value>Enkel blandning</value></data>
+  <data name="Emulation.Philips.Value.Symbolic" xml:space="preserve"><value>Tryckta tecken</value></data>
+  <data name="Emulation.Philips.Value.System" xml:space="preserve"><value>Per system</value></data>
+  <data name="Emulation.Philips.Video.Native" xml:space="preserve"><value>Emulator video</value></data>
+</root>

@@ -5,9 +5,10 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 using GWGUI.App.Functions.Explorer;
 using GWGUI.App.ViewModels.Explorer;
-using MediaSourceDescriptor = global::GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Images.Formats;
 using GWGUI.MediaEngine;
@@ -34,6 +35,11 @@ internal static partial class Program
         Converters = { new JsonStringEnumConverter() }
     };
 
+    private static readonly JsonSerializerOptions LineJsonOptions = new(JsonOptions)
+    {
+        WriteIndented = false
+    };
+
     public static async Task<int> Main(string[] args)
     {
         try
@@ -57,9 +63,7 @@ internal static partial class Program
                         explorerImagePath,
                         args.Contains("--require-files", StringComparer.OrdinalIgnoreCase),
                         Argument(args, "--expected-format"),
-                        Argument(args, "--minimum-formats") is { } minimumFormats
-                            ? int.Parse(minimumFormats)
-                            : 0);
+                        Argument(args, "--minimum-formats") is { } minimumFormats ? int.Parse(minimumFormats) : 0);
                     return 0;
                 }
                 catch (Exception error)
@@ -71,8 +75,7 @@ internal static partial class Program
             var engine = MediaEngineComposition.CreateDefault();
             if (args.Contains("--list-extensions", StringComparer.OrdinalIgnoreCase))
             {
-                var extensions = engine.Recognition.Readers.SelectMany(reader => reader.Extensions)
-                    .Distinct(StringComparer.OrdinalIgnoreCase).Order(StringComparer.OrdinalIgnoreCase).ToArray();
+                var extensions = engine.Recognition.Readers.SelectMany(reader => reader.Extensions).Distinct(StringComparer.OrdinalIgnoreCase).Order(StringComparer.OrdinalIgnoreCase).ToArray();
                 Console.WriteLine(JsonSerializer.Serialize(extensions, JsonOptions));
                 return 0;
             }
@@ -82,6 +85,15 @@ internal static partial class Program
             {
                 Console.WriteLine(JsonSerializer.Serialize(ListMediaImages(engine, Path.GetFullPath(listRoot)), JsonOptions));
                 return 0;
+            }
+
+            var scanRoot = Argument(args, "--scan-corpus");
+            if (!string.IsNullOrWhiteSpace(scanRoot))
+            {
+                var scanOutput = Argument(args, "--output") ?? throw new ArgumentException("--output is required.");
+                var timeoutMilliseconds = Argument(args, "--timeout-ms") is { } timeout ? int.Parse(timeout, CultureInfo.InvariantCulture) : 2_000;
+                var samplesPerExtension = Argument(args, "--samples-per-extension") is { } sampleCount ? int.Parse(sampleCount, CultureInfo.InvariantCulture) : 20;
+                return await ScanCorpusAsync(engine, Path.GetFullPath(scanRoot), Path.GetFullPath(scanOutput), timeoutMilliseconds, samplesPerExtension);
             }
 
             var imagePath = Argument(args, "--image") ?? throw new ArgumentException("--image is required.");
@@ -129,10 +141,7 @@ internal static partial class Program
         var recognized = await engine.Recognition.Registry.RecognizeAsync(context);
         var document = recognized.Document;
         var associatedFiles = new List<AssociatedSourceFileAudit>();
-        foreach (var associatedPath in document.Source.AssociatedPaths
-                     .Where(File.Exists)
-                     .Where(candidate => !Path.GetFullPath(candidate).Equals(path, StringComparison.OrdinalIgnoreCase))
-                     .Distinct(StringComparer.OrdinalIgnoreCase))
+        foreach (var associatedPath in document.Source.AssociatedPaths.Where(File.Exists).Where(candidate => !Path.GetFullPath(candidate).Equals(path, StringComparison.OrdinalIgnoreCase)).Distinct(StringComparer.OrdinalIgnoreCase))
         {
             var associated = new FileInfo(associatedPath);
             var associatedHash = await HashFileAsync(associated.FullName);
@@ -141,11 +150,8 @@ internal static partial class Program
         var explored = await ExploreFileSystemsAsync(engine, document);
         TemporaryNamedMediaFormatIdentification.ThrowIfIdentificationIsRequired(document, explored);
         var visualization = engine.Visualization.Registry.CreateDescriptor(explored.Document);
-        var catalogFormat = new BuiltInImageFormatCatalog().Formats.FirstOrDefault(format =>
-            format.Id.Equals(document.FormatId, StringComparison.OrdinalIgnoreCase));
-        var destinations = engine.ConversionService.GetAvailableDestinations(document)
-            .Select(destination => new ConversionAudit(destination.FormatId, destination.Extension, destination.WriterId, destination.ProducesMultipleFiles))
-            .ToArray();
+        var catalogFormat = new BuiltInImageFormatCatalog().Formats.FirstOrDefault(format => format.Id.Equals(document.FormatId, StringComparison.OrdinalIgnoreCase));
+        var destinations = engine.ConversionService.GetAvailableDestinations(document).Select(destination => new ConversionAudit(destination.FormatId, destination.Extension, destination.WriterId, destination.ProducesMultipleFiles)) .ToArray();
 
         var writePlan = false;
         string? writeDiagnostic = null;
@@ -171,9 +177,7 @@ internal static partial class Program
         return new MediaAuditReport(
             4,
             DateTimeOffset.UtcNow,
-            new SourceAudit(
-                path, file.Name, file.Extension.ToLowerInvariant(), file.Length, file.CreationTimeUtc, file.LastWriteTimeUtc,
-                sha256, sourceEdges.Start, sourceEdges.End, ExpectedFormatHint(path), associatedFiles),
+            new SourceAudit(path, file.Name, file.Extension.ToLowerInvariant(), file.Length, file.CreationTimeUtc, file.LastWriteTimeUtc, sha256, sourceEdges.Start, sourceEdges.End, ExpectedFormatHint(path), associatedFiles),
             new RecognitionAudit(
                 true, recognized.Reader.GetType().FullName ?? recognized.Reader.GetType().Name, document.FormatId,
                 document.MediaKind.ToString(), document.Representation.RepresentationKind.ToString(), document.Metadata,
@@ -182,8 +186,7 @@ internal static partial class Program
                 document.Representation.SupportsSequentialAccess, declaredCapacity > 0 ? declaredCapacity : document.Representation.LogicalLength,
                 usedBytes, declaredCapacity > 0 ? freeBytes : null),
             volumes,
-            new VisualizationAudit(true, visualization.RepresentationKind.ToString(), visualization.ProgressUnit.ToString(),
-                visualization.Direction.ToString(), visualization.Surfaces, visualization.Layers, visualization.Elements.Count),
+            new VisualizationAudit(true, visualization.RepresentationKind.ToString(), visualization.ProgressUnit.ToString(), visualization.Direction.ToString(), visualization.Surfaces, visualization.Layers, visualization.Elements.Count),
             new SupportAudit(
                 volumes.Any(volume => volume.FileSystemId is not null), true, catalogFormat?.SupportsPhysicalRead,
                 writePlan, writeDiagnostic, catalogFormat?.Family, catalogFormat?.FormFactor.ToString(), catalogFormat?.Density.ToString(),
@@ -192,9 +195,165 @@ internal static partial class Program
             validation);
     }
 
-    private static async Task<ExploredMediaImage> ExploreFileSystemsAsync(
-        MediaEngineComposition engine,
-        MediaImageDocument document)
+    private static async Task<int> ScanCorpusAsync(MediaEngineComposition engine, string root, string outputDirectory, int timeoutMilliseconds, int samplesPerExtension)
+    {
+        if (timeoutMilliseconds <= 0) throw new ArgumentOutOfRangeException(nameof(timeoutMilliseconds));
+        if (samplesPerExtension <= 0) throw new ArgumentOutOfRangeException(nameof(samplesPerExtension));
+        Directory.CreateDirectory(outputDirectory);
+        var resultPath = Path.Combine(outputDirectory, "corpus-scan.ndjson");
+        var summaryPath = Path.Combine(outputDirectory, "corpus-scan-summary.json");
+        var mediaPaths = ListMediaImages(engine, root);
+        var allFiles = Directory.EnumerateFiles(root, "*", new EnumerationOptions
+            {
+                RecurseSubdirectories = true,
+                IgnoreInaccessible = false,
+                ReturnSpecialDirectories = false
+            })
+            .ToArray();
+        var supportedExtensions = engine.Recognition.Readers.SelectMany(reader => reader.Extensions).ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var sampledPaths = BuildSamplePaths(mediaPaths, samplesPerExtension);
+        var statusCounts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        var formatCounts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        var extensionCounts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        var stopwatch = Stopwatch.StartNew();
+
+        await using var output = new FileStream(resultPath, FileMode.Create, FileAccess.Write, FileShare.Read, 65_536, FileOptions.Asynchronous);
+        await using var writer = new StreamWriter(output, new UTF8Encoding(false)) { AutoFlush = true };
+        for (var index = 0; index < mediaPaths.Count; index++)
+        {
+            var path = mediaPaths[index];
+            var extension = Path.GetExtension(path).ToLowerInvariant();
+            Increment(extensionCounts, extension);
+            var itemStopwatch = Stopwatch.StartNew();
+            if (!sampledPaths.Contains(path))
+            {
+                const string cataloguedStatus = "catalogued";
+                Increment(statusCounts, cataloguedStatus);
+                await writer.WriteLineAsync(JsonSerializer.Serialize(new { index = index + 1, path, extension, status = cataloguedStatus, length = new FileInfo(path).Length }, LineJsonOptions)).ConfigureAwait(false);
+                continue;
+            }
+
+            using var timeout = new CancellationTokenSource(timeoutMilliseconds);
+            string status;
+            string? formatId = null;
+            string? mediaKind = null;
+            string? representation = null;
+            int? volumeCount = null;
+            int? fileCount = null;
+            int? visualizationElementCount = null;
+            int? conversionCount = null;
+            string? errorType = null;
+            string? errorMessage = null;
+            try
+            {
+                var source = new MediaSourceDescriptor(path, []);
+                var recognized = await engine.Recognition.Registry.RecognizeAsync(new MediaRecognitionContext(source), timeout.Token).ConfigureAwait(false);
+                var explored = await engine.Explorer.ExploreAsync(recognized.Document, timeout.Token).ConfigureAwait(false);
+                var visualization = engine.Visualization.Registry.CreateDescriptor(explored.Document);
+                formatId = explored.Document.FormatId;
+                mediaKind = explored.Document.MediaKind.ToString();
+                representation = explored.Document.Representation.RepresentationKind.ToString();
+                volumeCount = explored.Volumes.Count;
+                fileCount = explored.Volumes.Sum(volume => CountEntries(volume.FileSystem?.Entries ?? []));
+                visualizationElementCount = visualization.Elements.Count;
+                conversionCount = engine.ConversionService.GetAvailableDestinations(explored.Document).Count;
+                status = "success";
+                Increment(formatCounts, formatId);
+            }
+            catch (OperationCanceledException) when (timeout.IsCancellationRequested)
+            {
+                status = "timeout";
+            }
+            catch (Exception error)
+            {
+                status = "error";
+                errorType = error.GetType().FullName;
+                errorMessage = error.Message;
+            }
+
+            Increment(statusCounts, status);
+            await writer.WriteLineAsync(JsonSerializer.Serialize(new
+            {
+                index = index + 1,
+                path,
+                extension,
+                status,
+                formatId,
+                mediaKind,
+                representation,
+                volumeCount,
+                fileCount,
+                visualizationElementCount,
+                conversionCount,
+                elapsedMilliseconds = itemStopwatch.ElapsedMilliseconds,
+                errorType,
+                errorMessage
+            }, LineJsonOptions)).ConfigureAwait(false);
+
+            if ((index + 1) % 1_000 == 0 || index + 1 == mediaPaths.Count)
+                Console.WriteLine($"{index + 1}/{mediaPaths.Count} - {statusCounts.GetValueOrDefault("success")} success, {statusCounts.GetValueOrDefault("error")} errors, {statusCounts.GetValueOrDefault("timeout")} timeouts");
+        }
+
+        stopwatch.Stop();
+        var unsupportedExtensions = allFiles.Select(Path.GetExtension).Where(extension => !string.IsNullOrWhiteSpace(extension) && !supportedExtensions.Contains(extension))
+            .GroupBy(extension => extension!.ToLowerInvariant(), StringComparer.OrdinalIgnoreCase)
+            .OrderByDescending(group => group.Count())
+            .ThenBy(group => group.Key, StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(group => group.Key, group => group.Count(), StringComparer.OrdinalIgnoreCase);
+        await WriteJsonAsync(summaryPath, new
+        {
+            root,
+            completedAt = DateTimeOffset.UtcNow,
+            elapsed = stopwatch.Elapsed,
+            timeoutMilliseconds,
+            samplesPerExtension,
+            decodedSampleCount = sampledPaths.Count,
+            allFileCount = allFiles.Length,
+            mediaFileCount = mediaPaths.Count,
+            statusCounts,
+            extensionCounts,
+            formatCounts,
+            unsupportedExtensions
+        }).ConfigureAwait(false);
+        return statusCounts.GetValueOrDefault("error") == 0 && statusCounts.GetValueOrDefault("timeout") == 0 ? 0 : 1;
+    }
+
+    private static HashSet<string> BuildSamplePaths(IReadOnlyList<string> mediaPaths, int samplesPerExtension)
+    {
+        var samples = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var paths in mediaPaths.GroupBy(Path.GetExtension, StringComparer.OrdinalIgnoreCase))
+        {
+            var group = paths.ToArray();
+            var count = Math.Min(samplesPerExtension, group.Length);
+            if (count == 1)
+            {
+                samples.Add(group[0]);
+                continue;
+            }
+
+            for (var index = 0; index < count; index++)
+            {
+                var position = (int)Math.Round(index * (group.Length - 1d) / (count - 1d));
+                samples.Add(group[position]);
+            }
+        }
+        return samples;
+    }
+
+    private static int CountEntries(IEnumerable<FileSystemEntry> entries)
+    {
+        var count = 0;
+        foreach (var entry in entries)
+        {
+            count++;
+            count += CountEntries(entry.Children);
+        }
+        return count;
+    }
+
+    private static void Increment(IDictionary<string, int> counts, string key) => counts[key] = counts.TryGetValue(key, out var count) ? count + 1 : 1;
+
+    private static async Task<ExploredMediaImage> ExploreFileSystemsAsync(MediaEngineComposition engine, MediaImageDocument document)
     {
         if (document.Representation is not FluxMediaImageRepresentation)
             return await engine.Explorer.ExploreAsync(document);
@@ -203,14 +362,7 @@ internal static partial class Program
         if (decoded.Image.FormatId.Equals(DiskImageFormatIds.Unknown, StringComparison.OrdinalIgnoreCase))
             return await engine.Explorer.ExploreAsync(document);
 
-        var sectorDocument = new MediaImageDocument(
-            document.Source,
-            decoded.Image.FormatId,
-            document.MediaKind,
-            new SectorMediaImageRepresentation(decoded.Image),
-            [],
-            document.Diagnostics,
-            document.Metadata);
+        var sectorDocument = new MediaImageDocument(document.Source, decoded.Image.FormatId, document.MediaKind, new SectorMediaImageRepresentation(decoded.Image), [], document.Diagnostics, document.Metadata);
         return await engine.Explorer.ExploreAsync(sectorDocument);
     }
 
@@ -218,7 +370,7 @@ internal static partial class Program
     {
         var fileSystem = volume.FileSystem;
         var entries = fileSystem is null ? [] : CreateEntries(fileSystem.Entries);
-        var flattened = Flatten(entries).ToArray();
+        var flattened = GWGUI.MediaAudit.MediaAuditTree.Flatten(entries, entry => entry.Children).ToArray();
         var files = flattened.Where(entry => entry.Kind == FileSystemEntryKind.File.ToString()).ToArray();
         var occupiedSizes = files.Select(entry => entry.OccupiedSize).ToArray();
         return new VolumeAudit(
@@ -262,10 +414,7 @@ internal static partial class Program
         var item = new ExplorerContentItem(entry);
         var content = entry.Content?.ToArray();
         var children = CreateEntries(entry.Children);
-        var contentHex = content is { Length: > 0 }
-            && item.Definition.ContentFormat == GWGUI.App.Enums.Explorer.ExplorerContentFormat.Unknown
-                ? Convert.ToHexString(content)
-                : null;
+        var contentHex = content is { Length: > 0 } && item.Definition.ContentFormat == GWGUI.App.Enums.Explorer.ExplorerContentFormat.Unknown ? Convert.ToHexString(content) : null;
         return new FileEntryAudit(
             entry.Name, item.Name, entry.Kind.ToString(), item.TypeText, item.Definition.Category.ToString(),
             item.Definition.ContentFormat.ToString(), item.Definition.TextEncoding.ToString(), item.Definition.ExecutionKind.ToString(),
@@ -330,10 +479,7 @@ internal static partial class Program
                 track.Cylinder, track.Head,
                 bits = track.Bits is null ? null : string.Concat(track.Bits.Select(bit => bit ? '1' : '0')),
                 track.Timing, track.Structures, track.Features,
-                revolutions = track.Revolutions.Select(revolution => new
-                {
-                    revolution.ResolutionNanoseconds, revolution.Flux.IndexTimeTicks, revolution.Flux.FluxIntervals
-                }).ToArray()
+                revolutions = track.Revolutions.Select(revolution => new { revolution.ResolutionNanoseconds, revolution.Flux.IndexTimeTicks, revolution.Flux.FluxIntervals }).ToArray()
             }).ToArray()
         },
         SequentialMediaImageRepresentation sequential => new
@@ -362,15 +508,6 @@ internal static partial class Program
         _ => new { kind = document.Representation.RepresentationKind.ToString(), document.Representation.LogicalLength }
     };
 
-    private static IEnumerable<FileEntryAudit> Flatten(IEnumerable<FileEntryAudit> entries)
-    {
-        foreach (var entry in entries)
-        {
-            yield return entry;
-            foreach (var child in Flatten(entry.Children)) yield return child;
-        }
-    }
-
     private static async Task<string> HashFileAsync(string sourcePath)
     {
         await using var source = new FileStream(sourcePath, FileMode.Open, FileAccess.Read, FileShare.Read, 1024 * 1024, FileOptions.SequentialScan);
@@ -382,14 +519,12 @@ internal static partial class Program
         return Convert.ToHexString(hash.GetHashAndReset());
     }
 
-    private static async Task WriteJsonAsync(string path, object value)
-        => await File.WriteAllTextAsync(path, JsonSerializer.Serialize(value, JsonOptions), new UTF8Encoding(false));
+    private static async Task WriteJsonAsync(string path, object value) => await File.WriteAllTextAsync(path, JsonSerializer.Serialize(value, JsonOptions), new UTF8Encoding(false));
 
     private static IReadOnlyList<string> ListMediaImages(MediaEngineComposition engine, string root)
     {
         if (!Directory.Exists(root)) throw new DirectoryNotFoundException($"Media root not found: {root}");
-        var extensions = engine.Recognition.Readers.SelectMany(reader => reader.Extensions)
-            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var extensions = engine.Recognition.Readers.SelectMany(reader => reader.Extensions).ToHashSet(StringComparer.OrdinalIgnoreCase);
         var paths = Directory.EnumerateFiles(root, "*", new EnumerationOptions
             {
                 RecurseSubdirectories = true,
@@ -424,16 +559,10 @@ internal static partial class Program
             }
         }
 
-        return paths
-            .Where(path => !associatedPaths.Contains(path))
-            .Where(path => !IsNonMediaBinaryCollection(path))
-            .ToArray();
+        return paths.Where(path => !associatedPaths.Contains(path)).Where(path => !IsNonMediaBinaryCollection(path)).ToArray();
     }
 
-    private static bool IsNonMediaBinaryCollection(string path) =>
-        Path.GetExtension(path).Equals(".bin", StringComparison.OrdinalIgnoreCase)
-        && BracketValue().Matches(path).Any(match =>
-            match.Groups[1].Value.Equals("BIN", StringComparison.OrdinalIgnoreCase));
+    private static bool IsNonMediaBinaryCollection(string path) => Path.GetExtension(path).Equals(".bin", StringComparison.OrdinalIgnoreCase) && BracketValue().Matches(path).Any(match => match.Groups[1].Value.Equals("BIN", StringComparison.OrdinalIgnoreCase));
 
     private static string? Argument(IReadOnlyList<string> args, string name)
     {
@@ -476,8 +605,7 @@ internal sealed class NaturalPathComparer : IComparer<string>
                 continue;
             }
 
-            var characterComparison = CultureInfo.CurrentCulture.CompareInfo.Compare(
-                left, leftIndex, 1, right, rightIndex, 1, CompareOptions.IgnoreCase);
+            var characterComparison = CultureInfo.CurrentCulture.CompareInfo.Compare(left, leftIndex, 1, right, rightIndex, 1, CompareOptions.IgnoreCase);
             if (characterComparison != 0) return characterComparison;
             leftIndex++;
             rightIndex++;

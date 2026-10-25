@@ -1,7 +1,7 @@
 using GWGUI.MediaFileSystems.Formats.Commodore;
-using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
-using MediaSectorWriteBlock = global::GWGUI.MediaFileSystems.Contracts.MediaSectorWriteBlock;
-using MediaSectorWritePlan = global::GWGUI.MediaFileSystems.Contracts.MediaSectorWritePlan;
+using MediaImageFormatIds = GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
+using MediaSectorWriteBlock = GWGUI.MediaFileSystems.Contracts.MediaSectorWriteBlock;
+using MediaSectorWritePlan = GWGUI.MediaFileSystems.Contracts.MediaSectorWritePlan;
 using GWGUI.MediaFileSystems.Primitives;
 using System.Buffers.Binary;
 using GWGUI.MediaFileSystems.Definitions;

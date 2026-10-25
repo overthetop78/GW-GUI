@@ -12,6 +12,8 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.D71;
 using GWGUI.MediaEngine.Images.Formats.Floppy.D81;
 using GWGUI.MediaEngine.Images.Formats.Floppy.I86f;
 using GWGUI.MediaEngine.Images.Formats.Floppy.ImageDisk;
+using GWGUI.MediaEngine.Images.Formats.Floppy.HxcStream;
+using GWGUI.MediaEngine.Images.Formats.Floppy.KryoFlux;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Msa;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Raw;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Rx02;
@@ -19,6 +21,10 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 using GWGUI.MediaEngine.Images.Formats.Floppy.St;
 using GWGUI.MediaEngine.Images.Formats.Floppy.TeleDisk;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Xfd;
+using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradCpr;
+using GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradRom;
+using GWGUI.MediaEngine.Images.Formats.Cartridge.Console;
+using GWGUI.MediaEngine.Images.Formats.Floppy.FamicomFds;
 using GWGUI.MediaEngine.Images.Formats.HardDisk.Raw;
 using GWGUI.MediaEngine.Images.Formats.HardDisk.Chd;
 using GWGUI.MediaEngine.Images.Formats.HardDisk.Qcow2;
@@ -31,17 +37,23 @@ using GWGUI.MediaEngine.Images.Formats.Optical.CloneCd;
 using GWGUI.MediaEngine.Images.Formats.Optical.Chd;
 using GWGUI.MediaEngine.Images.Formats.Optical.Iso;
 using GWGUI.MediaEngine.Images.Formats.Optical.Alcohol;
+using GWGUI.MediaEngine.Images.Formats.Optical.Gdi;
+using GWGUI.MediaEngine.Images.Formats.Optical.Xdvdfs;
+using GWGUI.MediaEngine.Images.Formats.Optical.WiiU;
 using GWGUI.MediaEngine.Images.Formats.Tape.AtariCas;
+using GWGUI.MediaEngine.Images.Formats.Tape.Audio;
 using GWGUI.MediaEngine.Images.Formats.Tape.CommodoreTap;
 using GWGUI.MediaEngine.Images.Formats.Tape.MsxCas;
 using GWGUI.MediaEngine.Images.Formats.Tape.Simh;
 using GWGUI.MediaEngine.Images.Formats.Tape.SpectrumTap;
 using GWGUI.MediaEngine.Images.Formats.Tape.Tzx;
 using GWGUI.MediaEngine.Images.Formats.Tape.Uef;
+using GWGUI.MediaEngine.Images.Formats.Tape.Voc;
 using GWGUI.MediaEngine.Images.Formats.Tape.Wav;
 using GWGUI.MediaEngine.Interfaces.Reading;
 using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.MediaEngine.Images.Reading.Recognition;
+using System.Collections.Frozen;
 
 namespace GWGUI.MediaEngine.Images.Reading;
 
@@ -52,6 +64,7 @@ public sealed class MediaRecognitionComposition
     {
         ScpReader = scpReader;
         Readers = readers;
+        SupportedExtensions = readers.SelectMany(reader => reader.Extensions).ToFrozenSet(StringComparer.OrdinalIgnoreCase);
         Registry = new MediaRecognitionRegistry(readers);
         ReadingService = new MediaImageReadingService(Registry);
     }
@@ -59,6 +72,8 @@ public sealed class MediaRecognitionComposition
     public ScpReader ScpReader { get; }
 
     public IReadOnlyList<IMediaImageReader> Readers { get; }
+
+    public IReadOnlySet<string> SupportedExtensions { get; }
 
     public MediaRecognitionRegistry Registry { get; }
 
@@ -71,8 +86,13 @@ public sealed class MediaRecognitionComposition
             scpReader,
             [
                 new GWGUI.MediaEngine.Images.Formats.Floppy.Adf.AdfReader(),
+                new AmstradCprReader(),
+                new AmstradRomReader(),
+                new ConsoleCartridgeReader(),
+                new FamicomFdsReader(),
                 new AcornAtomDskReader(),
                 new ApridiskReader(),
+                new DefinedRawImageReader(),
                 new BbcDfsReader(),
                 new CoherentRawImageReader(),
                 new DecRx02Reader(),
@@ -96,13 +116,20 @@ public sealed class MediaRecognitionComposition
                 new EpsonQx10RawImageReader(),
                 new UcsdRawImageReader(),
                 new GWGUI.MediaEngine.Images.Formats.Floppy.Hfe.HfeReader(),
+                new HxcStreamReader(),
+                new KryoFluxReader(),
                 scpReader,
                 new BinCueReader(),
                 new CloneCdReader(),
                 new AlcoholMdsReader(),
                 new ChdOpticalReader(),
+                new GdiReader(),
+                new XdvdfsReader(),
+                new WiiUReader(),
                 new IsoReader(),
                 new WavTapeReader(),
+                new AudioTapeReader(),
+                new VocReader(),
                 new UefReader(),
                 new AtariCasReader(),
                 new TzxReader(),

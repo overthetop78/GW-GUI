@@ -47,8 +47,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             /* Check if too large (QUAD) or overflowed (ULONG)? */
             if (newfileoffset > Pfs3Constants.MAX_FILE_SIZE || newfileoffset < file.offset)
             {
-                throw new Hst.Amiga.FileSystems.Exceptions.DiskFullException(
-                    Pfs3ErrorMessages.DiskFull);
+                throw new Hst.Amiga.FileSystems.Exceptions.DiskFullException(Pfs3ErrorMessages.DiskFull);
             }
 
             oldblocksinfile = (oldfilesize + BLOCKSIZEMASK) >> BLOCKSHIFT;
@@ -59,8 +58,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
                     if (!await Pfs3Allocation.AllocateBlocksAC(file.anodechain, t, file.le.info.file, g))
                 {
                     file.le.info.file.direntry = Pfs3Directory.SetDEFileSize(file.le.info.file.dirblock.dirblock, file.le.info.file.direntry, oldfilesize, g);
-                    throw new Hst.Amiga.FileSystems.Exceptions.DiskFullException(
-                        Pfs3ErrorMessages.DiskFull);
+                    throw new Hst.Amiga.FileSystems.Exceptions.DiskFullException(Pfs3ErrorMessages.DiskFull);
                 }
             }
 

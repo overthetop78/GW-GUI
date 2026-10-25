@@ -20,11 +20,11 @@ public sealed class ApridiskReader : IMediaImageReader
     internal const int SectorsPerTrack = 9;
     internal const int BlockCount = Cylinders * Heads * SectorsPerTrack;
 
-    private const uint SectorRecord = 0xE31D0001;
-    private const ushort Uncompressed = 0x9E90;
+    internal const uint SectorRecord = 0xE31D0001;
+    internal const ushort Uncompressed = 0x9E90;
     private const ushort Compressed = 0x3E5A;
-    private const int RecordHeaderSize = 16;
-    private static readonly byte[] Signature = "ACT Apricot disk image\u001a\u0004"u8.ToArray();
+    internal const int RecordHeaderSize = 16;
+    internal static readonly byte[] Signature = "ACT Apricot disk image\u001a\u0004"u8.ToArray();
     private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { DiskImageFormatIds.ApricotPcXi315 }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<string> SupportedExtensions = new[] { DiskImageFileExtensions.Dsk }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlyList<ReadOnlyMemory<byte>> SupportedSignatures = [Signature];
@@ -34,8 +34,7 @@ public sealed class ApridiskReader : IMediaImageReader
 
     public ApridiskReader() : this(File.ReadAllBytesAsync) { }
 
-    internal ApridiskReader(Func<string, CancellationToken, Task<byte[]>> readBytes) =>
-        this.readBytes = readBytes ?? throw new ArgumentNullException(nameof(readBytes));
+    internal ApridiskReader(Func<string, CancellationToken, Task<byte[]>> readBytes) => this.readBytes = readBytes ?? throw new ArgumentNullException(nameof(readBytes));
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => SupportedExtensions;
@@ -45,8 +44,7 @@ public sealed class ApridiskReader : IMediaImageReader
     IReadOnlySet<MediaRepresentationKind> IMediaImageReader.RepresentationKinds => SupportedRepresentations;
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default) =>
-        Read(await readBytes(path, cancellationToken).ConfigureAwait(false), cancellationToken);
+    public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default) => Read(await readBytes(path, cancellationToken).ConfigureAwait(false), cancellationToken);
 
     async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {

@@ -1,6 +1,6 @@
 namespace GWGUI.Emulation.Interfaces;
 
-public interface IEmulationRuntime
+public interface IEmulationRuntime : IEmulationCoreRuntimeStatus
 {
     IReadOnlyDictionary<EmulationMediaSlot, bool> MediaActivity { get; }
     string EmulatorName { get; }

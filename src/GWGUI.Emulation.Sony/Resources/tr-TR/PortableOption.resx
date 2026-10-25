@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>Hızlı Parmak</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>Skips the the Skips the BIOS Başlangıç ekranı ve oyunu doğrudan başlatır. konsol ayarlarını veya hafıza kartı yöneticisini açmak için bunu ayırt edin.</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>Otomatik</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>CPU Core Core Core</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>Hızlı bellek</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>Daha hızlı bellek erişimini etkinleştirin. Bu, bazı oyunların kararsız çalışmasına neden olabilir.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>Kötü hafıza erişimlerini görmezden gelir</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>Depolama erişim zamanlaması</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>Ana bilgisayar</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>UMD disk okuma gecikmeleri</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>Gerçek zamanlı saatle eşitle</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>Giriş gecikmesini azaltmak için emülasyonu gerçek zamanlı saatle eşitler. Bu, performansı düşürebilir.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>Locked CPU Hız</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>Tam ISO RAM</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>İç Hileler Destekliyor</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Label"><value>Oyun Dili</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Help"><value>'Automatic' ön dili kullanacak.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>Çin Geleneksel</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>Çin Basitleştirilmiş</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>PSP Model Modeli</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>Software Rendering</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>Daha fazla işlem gücü kullanarak doğruluğu artırmak için yazılım tabanlı işleme kullanın.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>Rendering Decision</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>İç işleme kararını seçin.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA Antialiasing</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Vulkan ile MSAA kenar yumuşatma uygulayın.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>16x9'a ekin</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>16:9 görüntü elde etmek için görüntünün üstünü ve altını kırpın.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>Frameskip</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Label"><value>Frameskip Type</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.0"><value>Video karesi sayısı</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>Video kare hızının yüzdesi</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>Auto Frameskip</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>Tekrarlanan çerçeveler 60 Hz</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>Kare hızı düşük oyunlarda hareketleri daha akıcı hale getirmek için video karelerini çoğaltır.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>Video kare hızı değişikliklerini algıla</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>Oyunun video kare hızındaki değişiklikleri uygulamaya bildirin.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>Grafik komutlarını arabelleğe alma</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>Giriş gecikmesini azaltmak için grafik komutlarının arabelleğe alınmasını azaltın. Bu, performansı düşürebilir. Yalnızca OpenGL ve Vulkan.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>Ek grafik arabelleği yok</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>En fazla bir video karesini arabelleğe al</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>Onay Düğmesini Doğrulama</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>Analog çubuğun dairesel ve kare hareket aralığı telafisi</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>Analog Deadzone</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>Uygulamanın giriş işlemesinden sonra analog çubuğa ek ölü bölge ayarı uygulayın.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>Analog Axis Scale</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Help"><value>Uygulamanın giriş işlemesinden sonra analog çubuğa ek hassasiyet ayarı uygulayın.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Label"><value>Skip Buffer Effects</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>Performansı artırmak için kare arabelleği efektlerini atlayın. Bazı oyunlarda görüntü kaybolabilir.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>Skip Skip Skip GPU Readbacks</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>Grafik verilerinin GPU&apos;dan CPU&apos;ya kopyalanmasını atlayın. Bazı oyunlar düzgün görüntüleme için bu kopyalara ihtiyaç duyar.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>Ertelenmiş doku önbellekleme (hızlandırma)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>Faster, ancak birkaç oyundaki metin problemlerine neden olabilir.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>spline/bezier eğrileri kaliteli</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>Sadece bazı oyunlar tarafından kullanılır, eğrilerin düzgünliğini kontrol eder.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Label"><value>Etkilerin Daha Düşük Çözümü</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Help"><value>Görüntüleme hatalarını önlemek için bazı görsel efektlerin çözünürlüğünü azaltın.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Value.2"><value>Dengeli</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_gpu_hardware_transform.Label"><value>Donanım Dönüştürme Dönüşümü</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Label"><value>Software Skinning</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Help"><value>Animasyonlu 3D modellerin çizim işlemlerini CPU üzerinde işleyin ve birleştirin. Bu, çoğu oyunda performansı artırır.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Label"><value>Donanım Tesselasyon</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Help"><value>Pürüzsüz eğrileri işlemek için GPU&apos;yu kullanın.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Label"><value>doku upscale type</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Value.3"><value>Hybrid + Bicubic</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Label"><value>doku yukarıscaling seviyesi</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Help"><value>Dokuların büyütülmesi CPU kullanımını artırır. Takılmaları önlemek için bazı dokular daha sonra büyütülür.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Label"><value>Texture Deposterize</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Help"><value>Büyütülmüş dokularda görünen renk şeritlerini azaltın.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_replacement.Label"><value>TextureChange</value></data>
+  </root>

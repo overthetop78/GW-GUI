@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>شريط فيديو كونسول</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>صوت الكونسول</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>ضوابط Console</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description"><value>يحاكي WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description"><value>يشغّل أقراص Playdia باستخدام PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description"><value>يحاكي Tamagotchi P1 باستخدام TamaLIBretro.</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>هذا اللبّ يُعمّرُ دونَ تَنْشيط المُجهزين.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>ذكري</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>التوجه</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>التوجه نحو الرقابة</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>شلل مونكرومي</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold"><value>عتبة بدء تخطي الإطارات</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60 Hz</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>معدل أخذ العينات الصوتية</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>مرشح الصوت</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>أزرار السوائب ألف وباء</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>الآلية</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>الدليل</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>أفقي</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>عمودي</value></data>
+</root>

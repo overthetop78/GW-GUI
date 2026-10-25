@@ -13,8 +13,27 @@ public static class MediaIconExtensions
     public const string A52 = ".a52";
     public const string A78 = ".a78";
     public const string Nes = ".nes";
+    public const string Mgw = ".mgw";
+    public const string ThreeDs = ".3ds";
+    public const string Cia = ".cia";
+    public const string ThreeDsx = ".3dsx";
+    public const string Cci = ".cci";
+    public const string Cxi = ".cxi";
+    public const string Axf = ".axf";
+    public const string Elf = ".elf";
+    public const string App = ".app";
+    public const string Mv = ".mv";
+    public const string Mdx = ".mdx";
+    public const string Sgd = ".sgd";
+    public const string Smd = ".smd";
+    public const string Bms = ".bms";
+    public const string SixtyEightK = ".68k";
+    public const string Sgx = ".sgx";
     public const string Iso = ".iso";
+    public const string Gcm = ".gcm";
     public const string Cue = ".cue";
     public const string Ccd = ".ccd";
     public const string Mds = ".mds";
+    public const string Chd = ".chd";
+    public const string Gdi = ".gdi";
 }

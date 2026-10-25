@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.m2000.Description" xml:space="preserve"><value>Emulasi PHILIPS P2000T komputer.</value></data>
+  <data name="Emulation.Emulator.o2em.Description" xml:space="preserve"><value>Emulasi MAGNAVOX ODYSSEY2 dan PHILIPS VIDEOPAC G7000 konsol.</value></data>
+  <data name="Emulation.Emulator.same_cdi.Description" xml:space="preserve"><value>Emulasi PHILIPS CD-I konsol.</value></data>
+  <data name="Emulation.Philips.Audio.Native" xml:space="preserve"><value>Audio emulator</value></data>
+  <data name="Emulation.Philips.Keyboard.Native" xml:space="preserve"><value>Interpretasi papan tik</value></data>
+  <data name="Emulation.Philips.Memory.Display" xml:space="preserve"><value>Memori video</value></data>
+  <data name="Emulation.Philips.Setting.AlternateRenderer" xml:space="preserve"><value>Redering video alternatif</value></data>
+  <data name="Emulation.Philips.Setting.AudioVolume" xml:space="preserve"><value>Volume audio dari konsol</value></data>
+  <data name="Emulation.Philips.Setting.AutoSave" xml:space="preserve"><value>Keadaan disimpan otomatis</value></data>
+  <data name="Emulation.Philips.Setting.Cheats" xml:space="preserve"><value>Kode permainan curang</value></data>
+  <data name="Emulation.Philips.Setting.CropOverscan" xml:space="preserve"><value>Hapus batas video</value></data>
+  <data name="Emulation.Philips.Setting.KeyboardMapping" xml:space="preserve"><value>Pemetaan tombol papan tik</value></data>
+  <data name="Emulation.Philips.Setting.LowPassFilter" xml:space="preserve"><value>Filter audio Lower-pass</value></data>
+  <data name="Emulation.Philips.Setting.LowPassRange" xml:space="preserve"><value>Frekuensi pembeku filter audio</value></data>
+  <data name="Emulation.Philips.Setting.MixFrames" xml:space="preserve"><value>blend frame video</value></data>
+  <data name="Emulation.Philips.Setting.NvramPerGame" xml:space="preserve"><value>Pisahkan memori persisten untuk setiap permainan</value></data>
+  <data name="Emulation.Philips.Setting.StateNaming" xml:space="preserve"><value>Penamaan berkas keadaan tersimpan</value></data>
+  <data name="Emulation.Philips.Setting.Throttle" xml:space="preserve"><value>Batas kecepatan emulasi</value></data>
+  <data name="Emulation.Philips.Setting.VoiceVolume" xml:space="preserve"><value>Volume suara</value></data>
+  <data name="Emulation.Philips.System.Native" xml:space="preserve"><value>Opsi emulator</value></data>
+  <data name="Emulation.Philips.Value.Game" xml:space="preserve"><value>Per permainan</value></data>
+  <data name="Emulation.Philips.Value.Positional" xml:space="preserve"><value>Posisi kunci fisik</value></data>
+  <data name="Emulation.Philips.Value.Simple" xml:space="preserve"><value>Campuran sederhana</value></data>
+  <data name="Emulation.Philips.Value.Symbolic" xml:space="preserve"><value>Karakter yang dicetak</value></data>
+  <data name="Emulation.Philips.Value.System" xml:space="preserve"><value>Per sistem</value></data>
+  <data name="Emulation.Philips.Video.Native" xml:space="preserve"><value>Video emulator</value></data>
+</root>

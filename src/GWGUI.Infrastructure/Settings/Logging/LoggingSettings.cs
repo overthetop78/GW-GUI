@@ -7,9 +7,7 @@ public sealed class OperationLogSettings
     public bool KeepArchives { get; set; }
     public Dictionary<string, ActionLogSettings> Actions { get; set; } = new(StringComparer.OrdinalIgnoreCase);
 
-    public ActionLogSettings ForAction(string action) => Actions.TryGetValue(action, out var settings)
-        ? settings
-        : new ActionLogSettings { Enabled = Enabled, MaximumKilobytes = MaximumKilobytes, KeepArchives = KeepArchives };
+    public ActionLogSettings ForAction(string action) => Actions.TryGetValue(action, out var settings) ? settings : new ActionLogSettings { Enabled = Enabled, MaximumKilobytes = MaximumKilobytes, KeepArchives = KeepArchives };
 
     public ActionLogSettings GetOrCreate(string action)
     {

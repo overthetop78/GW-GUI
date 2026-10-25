@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Help.AdpcmVolume" xml:space="preserve"><value>调整 ADPCM 声道.</value></data>
+  <data name="Emulation.Sharp.Help.AudioDesynchronization" xml:space="preserve"><value>丢弃多余的音频样本来减少声音同步出错.</value></data>
+  <data name="Emulation.Sharp.Help.AudioSampleRate" xml:space="preserve"><value>选择声音采样频率 。</value></data>
+  <data name="Emulation.Sharp.Help.ButtonOrder" xml:space="preserve"><value>选择控制器按钮的顺序 。</value></data>
+  <data name="Emulation.Sharp.Help.CpuSpeed" xml:space="preserve"><value>选择处理器频率 。</value></data>
+  <data name="Emulation.Sharp.Help.DiskSeekSound" xml:space="preserve"><value>播放软盘头移动的声音.</value></data>
+  <data name="Emulation.Sharp.Help.FmBoard" xml:space="preserve"><value>启用 FM 音板,声音板</value></data>
+  <data name="Emulation.Sharp.Help.FmVolume" xml:space="preserve"><value>调整 FM 声道.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRate" xml:space="preserve"><value>选择每秒视频帧数 。</value></data>
+  <data name="Emulation.Sharp.Help.FrameRateAdjustment" xml:space="preserve"><value>调整现代显示的视频时间,以减少声音的分解.</value></data>
+  <data name="Emulation.Sharp.Help.FrameSkip" xml:space="preserve"><value>选择要跳过的视频图像的分数。 将图像中一个跳过 。</value></data>
+  <data name="Emulation.Sharp.Help.HideGraphics" xml:space="preserve"><value>隐藏视频图像的图形层 。</value></data>
+  <data name="Emulation.Sharp.Help.HideSprites" xml:space="preserve"><value>隐藏视频图像的图示和背景层.</value></data>
+  <data name="Emulation.Sharp.Help.HideText" xml:space="preserve"><value>隐藏视频图像的文本层 。</value></data>
+  <data name="Emulation.Sharp.Help.MemorySize" xml:space="preserve"><value>选择已模拟的量 RAM.</value></data>
+  <data name="Emulation.Sharp.Help.RapidFire" xml:space="preserve"><value>重复控制器按钮自动按下 。</value></data>
+  <data name="Emulation.Sharp.Help.Raster" xml:space="preserve"><value>在模拟视频图像中启用光栅效果 。</value></data>
+  <data name="Emulation.Sharp.Help.Resolution" xml:space="preserve"><value>选择低或高输出分辨率 。</value></data>
+  <data name="Emulation.Sharp.Help.ReverseJoystick" xml:space="preserve"><value>反转模拟器提供的控制器输入 。</value></data>
+  <data name="Emulation.Sharp.Help.UnlimitedSpeed" xml:space="preserve"><value>运行机器的速度尽可能快,声音可能会变得不同步.</value></data>
+  <data name="Emulation.Sharp.Help.VerticalSync" xml:space="preserve"><value>垂直同步模拟显示 。</value></data>
+  <data name="Emulation.Sharp.Help.VideoBeforeAudio" xml:space="preserve"><value>减少视频在音频延迟前的延迟.</value></data>
+</root>

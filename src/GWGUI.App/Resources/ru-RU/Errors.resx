@@ -73,4 +73,5 @@
   <data name="Error.Description.FileSystem.SeekError"><value>Запрашиваемая позиция недействительна для данного объекта файловой системы.</value></data>
   <data name="Error.Description.FileSystem.AnodeOperationFailed"><value>Операция по выделению узла провалилась.</value></data>
   <data name="Error.Description.FileSystem.AnodeBitmapIndexBlockMissing"><value>Блок растрового индекса Аллокации узлов {0}/{1} Не мог быть прочитан.</value></data>
+  <data name="Error.Description.GreaseweazlePosition"><value>Головка привода не находится в запрашиваемом цилиндре ({0}Перенастройка привода перед чтением.</value></data>
 </root>

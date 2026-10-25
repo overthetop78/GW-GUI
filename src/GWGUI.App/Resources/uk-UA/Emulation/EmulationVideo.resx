@@ -44,7 +44,7 @@
   <data name="Emulation.Video.Crt.Color.White"><value>Монохромний білий</value></data>
   <data name="Emulation.Video.Crt.Color.Gray"><value>Монохромний сірий</value></data>
   <data name="Emulation.Video.Crt.Color.Custom"><value>Спеціальний монохромний</value></data>
-  <data name="Emulation.Video.Crt.Mask.None"><value>Ні</value></data>
+  <data name="Emulation.Video.Crt.Mask.None"><value>Немає</value></data>
   <data name="Emulation.Video.Crt.Mask.ApertureGrille"><value>Апертура гриль</value></data>
   <data name="Emulation.Video.Crt.Mask.ShadowMask"><value>Тінь маска</value></data>
   <data name="Emulation.Video.Crt.Mask.SlotMask"><value>Маска для слотів</value></data>
@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>Зниження смуги</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>Відновлення деталей</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>Демонтаж</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>Відправити</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>Вимкнено</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Боб - навіть лінії</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Боб - непарні лінії</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Вертикальне поєднання</value></data>
@@ -239,11 +239,11 @@
   <data name="Emulation.Video.Parameter.InterlacingVisibility"><value>видимість поля</value></data>
   <data name="Emulation.Video.Temporal.CadenceAutomatic"><value>Автоматичний вихідний корпус (50/60 Гц)</value></data>
   <data name="Emulation.Video.Parameter.SignalConnection"><value>Якість підключення</value></data>
-  <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>Зняття з&apos;єднання</value></data>
+  <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>Зняття з'єднання</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>Колір стандарт</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>Частота дії</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>Автоматична</value></data>
-  <data name="Emulation.Video.Signal.Connection.None"><value>Ні</value></data>
+  <data name="Emulation.Video.Signal.Standard.Automatic"><value>Автоматичний</value></data>
+  <data name="Emulation.Video.Signal.Connection.None"><value>Немає</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>Горизонтальні викривлення</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>Вертикальне заготовка</value></data>
   <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>Трапецієподібна</value></data>
@@ -290,7 +290,7 @@
   <data name="Emulation.Video.Parameter.EPaperPaperWarmth"><value>Папір тепло</value></data>
   <data name="Emulation.Video.Parameter.EPaperColorSaturation"><value>Колірна насиченість</value></data>
   <data name="Emulation.Video.Parameter.EPaperSurfaceTexture"><value>текстура паперу</value></data>
-  <data name="Emulation.Video.Parameter.EPaperEdgeSoftness"><value>М&apos;якість краю чорнила</value></data>
+  <data name="Emulation.Video.Parameter.EPaperEdgeSoftness"><value>М'якість краю чорнила</value></data>
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>Фарби і фарби</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>Поверхня паперу</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>Рефреш і залишковий образ</value></data>
@@ -299,4 +299,7 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Край темний</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Оптики і світло</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Екран проекції</value></data>
+  <data name="Emulation.Option.Common.Value.HardwareRendering"><value>Апаратний рендеринг</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Label"><value>Режим рендерингу</value></data>
+  <data name="Emulation.Option.Common.RenderingMode.Help"><value>Апаратний рендеринг використовує графічний API, вибраний для програми, якщо емулятор його підтримує.</value></data>
 </root>

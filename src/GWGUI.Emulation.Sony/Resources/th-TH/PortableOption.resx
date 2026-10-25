@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Label"><value>บูตแบบเร็ว</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_fastboot.Help"><value>ข้าม BIOS เริ่มการทํางานหน้าจอและเริ่มเกมโดยตรง ปิดการใช้งานตัวเลือกนี้เพื่อเปิดการตั้งค่าคอนโซลหรือตัวจัดการการ์ดหน่วยความจํา</value></data>
+  <data name="Emulation.Option.pcsx2.pcsx2_renderer.Value.0"><value>อัตโนมัติ</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cpu_core.Label"><value>แกน CPU</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Label"><value>หน่วยความจําด่วน</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_fast_memory.Help"><value>เปิดใช้การเข้าถึงหน่วยความจำที่เร็วขึ้น ซึ่งอาจทำให้บางเกมไม่เสถียร</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_ignore_bad_memory_access.Label"><value>ไม่สนใจการเข้าใช้งานหน่วยความจําที่ไม่ดี</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Label"><value>การกำหนดเวลาการเข้าถึงที่เก็บข้อมูล</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.1" xml:space="preserve"><value>คอมพิวเตอร์โฮสต์</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_io_timing_method.Value.2"><value>ความหน่วงในการอ่านแผ่น UMD</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Label"><value>ซิงโครไนซ์กับนาฬิกาเวลาจริง</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_force_lag_sync.Help" xml:space="preserve"><value>ซิงโครไนซ์การจำลองกับนาฬิกาเวลาจริงเพื่อลดความหน่วงของอินพุต แต่อาจทำให้ประสิทธิภาพลดลง</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_locked_cpu_speed.Label"><value>ความเร็ว CPU ที่ถูกล็อค</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cache_iso.Label"><value>แคชเชียร์เต็ม ISO ใน RAM</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cheats.Label"><value>สนับสนุนการทุจริตภายใน</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Label"><value>ภาษาเกม</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Help"><value>'อัตโนมัติ' จะใช้ภาษากองหน้า</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.11"><value>ภาษาจีนดั้งเดิม</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_language.Value.12"><value>ภาษาจีนประยุกต์Name</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_psp_model.Label"><value>PSP แบบ</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Label"><value>การเรนเดอร์ซอฟต์แวร์</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_rendering.Help"><value>ใช้การเรนเดอร์ด้วยซอฟต์แวร์เพื่อเพิ่มความแม่นยำ โดยต้องใช้กำลังประมวลผลมากขึ้น</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Label"><value>ความละเอียดการแสดงผล</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>เลือกความละเอียดการแสดงผลภายใน</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA การต่อต้านการก่อกบฏ พ.ศ.</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>ใช้การลบรอยหยักแบบ MSAA ด้วย Vulkan</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>ตัด เหลือ 16x9</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>ครอบตัดด้านบนและด้านล่างของภาพเพื่อแสดงภาพในอัตราส่วน 16:9</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>กรอบภาพName</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Label"><value>ชนิดเฟรมสคอป</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.0"><value>จำนวนเฟรมวิดีโอ</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frameskiptype.Value.1"><value>เปอร์เซ็นต์ของอัตราเฟรมวิดีโอ</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_auto_frameskip.Label"><value>เฟรมสคีปอัตโนมัติ</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Label"><value>สร้างกรอบภาพซ้ําเป็น 60 Hz</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_frame_duplication.Help" xml:space="preserve"><value>ทำซ้ำเฟรมวิดีโอเพื่อให้การเคลื่อนไหวราบรื่นขึ้นในเกมที่มีอัตราเฟรมต่ำ</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Label"><value>ตรวจจับการเปลี่ยนแปลงอัตราเฟรมวิดีโอ</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_detect_vsync_swap_interval.Help"><value>แจ้งการเปลี่ยนแปลงอัตราเฟรมวิดีโอของเกมให้แอปพลิเคชันทราบ</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Label"><value>การบัฟเฟอร์คำสั่งกราฟิก</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Help"><value>ลดการบัฟเฟอร์คำสั่งกราฟิกเพื่อลดความหน่วงของอินพุต ซึ่งอาจลดประสิทธิภาพ ใช้ได้เฉพาะ OpenGL และ Vulkan</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.0"><value>ไม่มีการบัฟเฟอร์กราฟิกเพิ่มเติม</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_inflight_frames.Value.1"><value>บัฟเฟอร์วิดีโอสูงสุดหนึ่งเฟรม</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_button_preference.Label"><value>ปุ่มยืนยัน</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_is_circular.Label"><value>ชดเชยช่วงการเคลื่อนที่แบบวงกลมและสี่เหลี่ยมของก้านอนาล็อก</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Label"><value>อนาล็อกโซนตาย</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_deadzone.Help"><value>ใช้การตั้งค่าเดดโซนเพิ่มเติมกับก้านอนาล็อกหลังจากแอปพลิเคชันประมวลผลอินพุตแล้ว</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Label"><value>ขนาด Analog Axis</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_analog_sensitivity.Help"><value>ปรับความไวของก้านอนาล็อกเพิ่มเติมหลังจากแอปพลิเคชันประมวลผลอินพุตแล้ว</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Label"><value>ข้ามลูกเล่นบัฟเฟอร์</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_buffer_effects.Help"><value>ข้ามเอฟเฟกต์เฟรมบัฟเฟอร์เพื่อเพิ่มประสิทธิภาพ บางเกมอาจไม่แสดงภาพ</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Label"><value>ข้ามการอ่านข้อมูล GPU</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_skip_gpu_readbacks.Help"><value>ข้ามการคัดลอกข้อมูลกราฟิกจาก GPU ไปยัง CPU บางเกมต้องใช้การคัดลอกนี้เพื่อแสดงผลอย่างถูกต้อง</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Label"><value>แคชพื้นผิวแบบหน่วงเวลา (เพิ่มความเร็ว)</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lazy_texture_caching.Help"><value>เร็วขึ้น แต่อาจทําให้เกิดปัญหาในการส่งข้อความในไม่กี่เกม</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Label"><value>คุณภาพเส้นโค้งแบบสเปกไลน์/ bezier</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_spline_quality.Help"><value>ใช้เฉพาะเกมบางเกมส์เท่านั้น ที่ควบคุมความคมชัดของเส้นโค้ง</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Label"><value>ความละเอียดต่ําสําหรับลูกเล่น</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Help"><value>ลดความละเอียดของเอฟเฟกต์ภาพบางอย่างเพื่อหลีกเลี่ยงข้อผิดพลาดในการแสดงผล</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_lower_resolution_for_effects.Value.2"><value>สมดุล</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_gpu_hardware_transform.Label"><value>การแปลงฮาร์ดแวร์</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Label"><value>ชุดตกแต่งซอฟต์แวร์</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_software_skinning.Help"><value>ประมวลผลและรวมคำสั่งวาดโมเดล 3D ที่เคลื่อนไหวบน CPU ซึ่งช่วยเพิ่มประสิทธิภาพในเกมส่วนใหญ่</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Label"><value>ส่วนประกอบฮาร์ดแวร์</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_hardware_tesselation.Help"><value>ใช้ GPU เรนเดอร์เส้นโค้งที่เรียบเนียน</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Label"><value>ขนาดพื้นผิว:</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_type.Value.3"><value>ผสม + ไบซิบิก</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Label"><value>ระดับการเลื่อนพื้นผิวขึ้น</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_scaling_level.Help"><value>การขยายพื้นผิวเพิ่มการใช้งาน CPU พื้นผิวบางส่วนจะถูกขยายในภายหลังเพื่อหลีกเลี่ยงอาการกระตุก</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Label"><value>พื้นผิว</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_deposterize.Help"><value>ลดแถบสีที่มองเห็นได้ในพื้นผิวที่ขยาย</value></data>
+  <data name="Emulation.Option.ppsspp.ppsspp_texture_replacement.Label"><value>การแทนที่พื้นผิว</value></data>
+  </root>

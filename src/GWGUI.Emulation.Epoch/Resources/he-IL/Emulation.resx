@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.emuscv.Description" xml:space="preserve"><value>⁇ SUPER CASSETTE VISION הקונסולות</value></data>
+  <data name="Emulation.Emulator.pd777.Description" xml:space="preserve"><value>⁇ CASSETTE VISION הקונסולות</value></data>
+  <data name="Emulation.Epoch.Memory.Display" xml:space="preserve"><value>זיכרון וידאו</value></data>
+  <data name="Emulation.Epoch.Video.Native" xml:space="preserve"><value>וידאו Console</value></data>
+  <data name="Emulation.Epoch.Controls.Native" xml:space="preserve"><value>בקרת הקונסולה</value></data>
+  <data name="Emulation.Epoch.Setting.DisplayArea" xml:space="preserve"><value>אזור תצוגה</value></data>
+  <data name="Emulation.Epoch.Setting.PixelAspect" xml:space="preserve"><value>Pixel shape</value></data>
+  <data name="Emulation.Epoch.Setting.ColorPalette" xml:space="preserve"><value>צבעים</value></data>
+  <data name="Emulation.Epoch.Setting.RefreshRate" xml:space="preserve"><value>מרעננים</value></data>
+  <data name="Emulation.Epoch.Setting.ShowVideoMemory" xml:space="preserve"><value>וידאו מלא זיכרון וידאו</value></data>
+  <data name="Emulation.Epoch.Setting.ShowInputs" xml:space="preserve"><value>המונחים: Controller</value></data>
+  <data name="Emulation.Epoch.Setting.ValidateFirmware" xml:space="preserve"><value>לבדוק BIOS בדיקות</value></data>
+  <data name="Emulation.Epoch.Setting.ShowKeypadAtStart" xml:space="preserve"><value>הצגת מפתח ב-Startation</value></data>
+  <data name="Emulation.Epoch.Setting.AnnounceCourseSwitch" xml:space="preserve"><value>בחירת קורס</value></data>
+  <data name="Emulation.Epoch.Value.Rectangular" xml:space="preserve"><value>Rectangular</value></data>
+  <data name="Emulation.Epoch.Value.Low" xml:space="preserve"><value>נמוך</value></data>
+  <data name="Emulation.Epoch.Value.High" xml:space="preserve"><value>גבוה גבוה</value></data>
+</root>

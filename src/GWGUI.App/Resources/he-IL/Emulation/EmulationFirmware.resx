@@ -11,4 +11,5 @@
   <data name="Emulation.Firmware.PartiallyCompatible"><value>תואמת חלקית</value></data>
   <data name="Emulation.Firmware.Official"><value>רשמי</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>לא תואם</value></data>
+  <data name="Emulation.Firmware.VoiceSamples"><value>דוגמאות קוליות</value></data>
 </root>

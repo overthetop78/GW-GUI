@@ -12,26 +12,17 @@ public static class AtariDosVtocReader
     {
         if (data.Count < AtariDosFileSystemLayout.MinimumSectorSize) return false;
         var code = data[0];
-        var isStandard = code is AtariDosFileSystemLayout.LegacyVtocMarker
-            or AtariDosFileSystemLayout.VtocMarker
-            or AtariDosFileSystemLayout.DoubleDensityVtocMarker;
+        var isStandard = code is AtariDosFileSystemLayout.LegacyVtocMarker or AtariDosFileSystemLayout.VtocMarker or AtariDosFileSystemLayout.DoubleDensityVtocMarker;
         var isExtended = code >= AtariDosFileSystemLayout.MinimumExtendedVtocCode;
         if (!isStandard && !isExtended) return false;
-        var usable = data[AtariDosFileSystemLayout.UsableSectorCountOffset] |
-            data[AtariDosFileSystemLayout.UsableSectorCountOffset + 1] << 8;
-        var free = data[AtariDosFileSystemLayout.FreeSectorCountOffset] |
-            data[AtariDosFileSystemLayout.FreeSectorCountOffset + 1] << 8;
+        var usable = data[AtariDosFileSystemLayout.UsableSectorCountOffset] | data[AtariDosFileSystemLayout.UsableSectorCountOffset + 1] << 8;
+        var free = data[AtariDosFileSystemLayout.FreeSectorCountOffset] | data[AtariDosFileSystemLayout.FreeSectorCountOffset + 1] << 8;
         if (usable <= 0 || usable > maximumSectorCount || free > usable) return false;
         if (!isExtended) return true;
 
         var vtocSectorCount = AtariDosFileSystemLayout.ExtendedVtocSectorCount(code, data.Count);
-        var expectedUsable = maximumSectorCount
-            - 3
-            - AtariDosFileSystemLayout.DirectorySectorCount
-            - vtocSectorCount;
-        return vtocSectorCount > 0
-            && vtocSectorCount < AtariDosFileSystemLayout.VtocSector
-            && usable == expectedUsable;
+        var expectedUsable = maximumSectorCount - 3 - AtariDosFileSystemLayout.DirectorySectorCount - vtocSectorCount;
+        return vtocSectorCount > 0 && vtocSectorCount < AtariDosFileSystemLayout.VtocSector && usable == expectedUsable;
     }
     /// <summary>Lit le compteur libre lorsqu'il est disponible.</summary>
     public static int? ReadFreeSectors(IMediaSectorImage image)

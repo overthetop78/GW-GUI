@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.caprice32.Description"><value>эмулировать Amstrad CPC, CPC Плюс и еще GX4000 систем.</value></data>
+  <data name="Emulation.Amstrad.Language"><value>CPC Язык системного языка</value></data>
+  <data name="Emulation.Amstrad.Language.English"><value>Английский язык</value></data>
+  <data name="Emulation.Amstrad.Language.French"><value>французский</value></data>
+  <data name="Emulation.Amstrad.Language.Spanish"><value>испанский</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor"><value>Тип монитора</value></data>
+  <data name="Emulation.Amstrad.Video.Intensity"><value>Интенсивность мониторинга</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Color"><value>цвет</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.Green"><value>Зеленый монохром</value></data>
+  <data name="Emulation.Amstrad.Video.Monitor.White"><value>Белый монохром</value></data>
+  <data name="Emulation.Amstrad.Firmware.Integrated"><value>ROM встроенный в эмулятор</value></data>
+  <data name="Emulation.Emulator.crocods.Description"><value>Имитирует Amstrad CPC 6128 со встроенным ROM и поддержкой образов диска и снимков.</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Тип монитора</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Обрамление изображения</value></data>
+  <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Скоростной взлом</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Автоматический</value></data>
+  <data name="Emulation.CrocoDS.Value.Overscan"><value>Оверскэн</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Включено</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Отключено</value></data>
+</root>

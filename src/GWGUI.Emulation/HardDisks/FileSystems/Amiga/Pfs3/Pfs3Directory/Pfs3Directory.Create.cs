@@ -10,8 +10,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 
     public static partial class Pfs3Directory
     {
-        public static async Task NewFile(bool found, Pfs3ObjectInfo directory, string filename, Pfs3ObjectInfo newfile,
-            bool overwrite, Pfs3GlobalData g)
+        public static async Task NewFile(bool found, Pfs3ObjectInfo directory, string filename, Pfs3ObjectInfo newfile, bool overwrite, Pfs3GlobalData g)
         {
             Pfs3ObjectInfo info = new Pfs3ObjectInfo();
             uint anodenr;

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Wenquxing.Error.AlreadyInitialized"><value>Emulationsvärden är redan initierat.</value></data>
+  <data name="Emulation.Wenquxing.Error.CommunicationFailed"><value>Emulationsvärd kommunikation misslyckades.</value></data>
+  <data name="Emulation.Wenquxing.Error.ContentFileMissing"><value>Det konfigurerade mediet kunde inte hittas.</value></data>
+  <data name="Emulation.Wenquxing.Error.DynamicMediaUnsupported"><value>Emuleringssessionen kan inte utbyta detta medium.</value></data>
+  <data name="Emulation.Wenquxing.Error.ExecutableMissing"><value>Emulation värd executable saknas.</value></data>
+  <data name="Emulation.Wenquxing.Error.InstalledLibraryLockedFormat"><value>Det installerade biblioteket kan inte ersättas: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidArchitecture"><value>Den nedladdade kärnan är inte Windows x64.</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidConfiguration"><value>Emuleringskonfigurationen är ogiltig.</value></data>
+  <data name="Emulation.Wenquxing.Error.InvalidResponseLengthFormat"><value>Ogiltig emulering värd svarslängd: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.MachineInvalidState"><value>Emuleringssessionen är inte i det nödvändiga tillståndet.</value></data>
+  <data name="Emulation.Wenquxing.Error.MachineStopped"><value>Emuleringssessionen har slutat.</value></data>
+  <data name="Emulation.Wenquxing.Error.MissingExpectedLibraryFormat"><value>Det nedladdade arkivet innehåller inte {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.MissingPublishedDate"><value>Det officiella svaret identifierar inte sitt publiceringsdatum.</value></data>
+  <data name="Emulation.Wenquxing.Error.NotInitialized"><value>Emulationsvärden initieras inte.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessExitSuffixFormat"><value> Exit-kod: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessNotInitialized"><value>Emulationsvärdprocessen initieras inte.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessStartFailed"><value>Emulationsvärdprocessen kunde inte starta.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProcessUnavailable"><value>Emulationsvärdprocessen är inte tillgänglig.</value></data>
+  <data name="Emulation.Wenquxing.Error.ProtocolVersionMismatchFormat"><value>Protokollversion {0} matchar inte {1}.</value></data>
+  <data name="Emulation.Wenquxing.Error.RequestCancelled"><value>Emulation värd begäran avbröts.</value></data>
+  <data name="Emulation.Wenquxing.Error.ResponseTimeout"><value>Emulation värd svar tidsinställd.</value></data>
+  <data name="Emulation.Wenquxing.Error.ResponseUnavailable"><value>Emulation värd svar är otillgängligt.</value></data>
+  <data name="Emulation.Wenquxing.Error.SharedVideoUnavailable"><value>Den delade videotransporten är inte tillgänglig.</value></data>
+  <data name="Emulation.Wenquxing.Error.StateIncompatible"><value>Det sparade tillståndet är oförenligt med den nuvarande maskinen.</value></data>
+  <data name="Emulation.Wenquxing.Error.StateInvalid"><value>Det räddade tillståndet är ogiltigt.</value></data>
+  <data name="Emulation.Wenquxing.Error.StateUnavailable"><value>Emulatorn stöder inte sparade stater.</value></data>
+  <data name="Emulation.Wenquxing.Error.UnknownCommandFormat"><value>Okänd emulering värdkommando: {0}.</value></data>
+  <data name="Emulation.Wenquxing.Error.UnsupportedControllerDevice"><value>Kontrollenheten stöds inte.</value></data>
+</root>

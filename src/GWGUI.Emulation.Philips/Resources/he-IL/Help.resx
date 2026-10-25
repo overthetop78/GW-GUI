@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Help.AlternateRenderer" xml:space="preserve"><value>השתמש בשיטת ההגשה חלופית המסופקת על ידי החיקוי.</value></data>
+  <data name="Emulation.Philips.Help.AudioVolume" xml:space="preserve"><value>הגדר את נפח הצלילים שנוצרים על ידי הקונסולה, כאחוז.</value></data>
+  <data name="Emulation.Philips.Help.AutoSave" xml:space="preserve"><value>שמור את מצב המכונה בעת סגירתו ולשחזר אותו כאשר אותו התוכן מתחיל שוב.</value></data>
+  <data name="Emulation.Philips.Help.Cheats" xml:space="preserve"><value>קודים מפוקפקים הניתנים על ידי החיקוי.</value></data>
+  <data name="Emulation.Philips.Help.CpuOverclock" xml:space="preserve"><value>מהירות מעבד מכוונן כאחוז מהתדירות המקורית שלו.</value></data>
+  <data name="Emulation.Philips.Help.CropOverscan" xml:space="preserve"><value>להסיר את הגבול החיצוני מדימוי הוידאו.</value></data>
+  <data name="Emulation.Philips.Help.KeyboardMapping" xml:space="preserve"><value>בחר אם מקשי מקלדת מארחים לעקוב אחר הדמויות המודפסות שלהם או את המיקום הפיזי שלהם.</value></data>
+  <data name="Emulation.Philips.Help.LowPassFilter" xml:space="preserve"><value>להפחית תדרים גבוהים בסאונד הקונסולה.</value></data>
+  <data name="Emulation.Philips.Help.LowPassRange" xml:space="preserve"><value>הגדר את הפילטר הנמוך-pass לחתוך כאחוז של תדירות הדגימה של אודיו.</value></data>
+  <data name="Emulation.Philips.Help.MixFrames" xml:space="preserve"><value>יצירת מסגרות וידאו רצופות.פשוט משתמשת במשקל שווה; אחוז שולט כמה התמונה הקודמת נותרת גלויה.</value></data>
+  <data name="Emulation.Philips.Help.NvramPerGame" xml:space="preserve"><value>לשמור על זיכרון מתמשך בנפרד לכל משחק.</value></data>
+  <data name="Emulation.Philips.Help.Resolution" xml:space="preserve"><value>בחרו את רזולוציה הפלט של וידאו</value></data>
+  <data name="Emulation.Philips.Help.StateNaming" xml:space="preserve"><value>החנות הצילה מדינות בנפרד עבור כל משחק או לשתף אותם עבור כל המערכת.</value></data>
+  <data name="Emulation.Philips.Help.Throttle" xml:space="preserve"><value>הגבלת מהירות החיקוי למהירויות המכונות המקוריות.</value></data>
+  <data name="Emulation.Philips.Help.VideoStandard" xml:space="preserve"><value>בחרו את תקן הטלוויזיה המשמש את המכונה החיקוי.</value></data>
+  <data name="Emulation.Philips.Help.VoiceVolume" xml:space="preserve"><value>להתאים את נפח הדיבור כאחוז.</value></data>
+</root>

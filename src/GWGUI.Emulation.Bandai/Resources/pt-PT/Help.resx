@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Setting.DisplayRotation.Help" xml:space="preserve"><value>Selecione a orientação da paisagem ou do retrato. O modo manual usa o botão de rotação atribuído.</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation.Help" xml:space="preserve"><value>O modo automático segue a orientação do ecrã. Os outros modos mantêm os comandos na orientação seleccionada.</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Selecione as cores usadas para jogos monocromáticos.</value></data>
+  <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Selecione a profundidade de cor de saída. O modo de 24 bits requer mais poder de processamento.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Ignorar quadros de vídeo para reduzir o ruído de áudio. O modo automático segue o buffer de áudio. O modo manual usa o limiar seleccionado.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help"><value>Modo manual: omitir fotogramas quando o preenchimento da memória intermédia de áudio descer abaixo do nível selecionado.</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Saltar cada quinta moldura para exibir a 60 Hz. Isto reduz a suavidade do movimento.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Taxas de amostragem mais elevadas melhorar ligeiramente a qualidade do áudio e exigir mais poder de processamento.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Aplicar um filtro passa-baixo para suavizar o som.</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Trocar as acções dos botões A e B.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.DetailedHelp"><value>A 33%, os fotogramas são omitidos quando a memória intermédia de áudio está preenchida a menos de 33%, para reduzir estalidos. Valores mais altos ativam a omissão mais cedo. A latência de áudio e o tamanho da memória intermédia não mudam.</value></data>
+</root>

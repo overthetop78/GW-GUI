@@ -43,7 +43,7 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>ハードディスク</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>インターフェイス</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>ファイルを事前割り当て</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>フレッピーとCDは、ランニングマシンからインサートまたは交換されます。</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>エミュレータビューを使用して、メディアをインサートまたは変更します。</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>メディアを取り外す</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>ディスクイメージは既に存在します: {0}\n置き換えますか？</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>利用可能な種類、モデル、識別子は選択したマシンによって異なります。</value></data>
@@ -75,4 +75,13 @@
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>カートリッジスロット</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>最初の4ディスクを取付けて下さい DF0–DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>ディスク {0}</value></data>
+  <data name="Emulation.Storage.MemoryCard.Use"><value>カードの使用</value></data>
+  <data name="Emulation.Storage.MemoryCard.ExistingHint"><value>選択したファイルは、この仮想ストレージデバイスに添付されます。</value></data>
+  <data name="Emulation.Storage.MemoryCard.ImageRequired"><value>既存のカードファイルを選択します。</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidSize"><value>カードファイルが無効なサイズです。</value></data>
+  <data name="Emulation.Storage.MemoryCard.InvalidFormat"><value>このデバイスでサポートされているファイル形式を選択します。</value></data>
+  <data name="Emulation.Storage.Cache.Unlimited"><value>無制限</value></data>
+  <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>ゲーム終了時に消去</value></data>
+  <data name="Emulation.Storage.MemoryCard.Device"><value>メモリカード</value></data>
+  <data name="Emulation.Storage.MemoryCard.Name"><value>カード名</value></data>
 </root>

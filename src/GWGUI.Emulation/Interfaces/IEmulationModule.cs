@@ -4,6 +4,7 @@ public interface IEmulationModule
 {
     string Id { get; }
     string DisplayResourceKey { get; }
+    string BrandImageResourceName { get; }
     IReadOnlyList<EmulationMachineDefinition> Machines { get; }
     EmulationSettingsVisibility DefaultVisibility { get; }
     bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode);
@@ -11,16 +12,11 @@ public interface IEmulationModule
     EmulationMachineSettings Describe(string machineId, IEmulationConfiguration? configuration = null);
     IEmulationConfiguration CreateConfiguration(string machineId);
     IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration, string machineId);
-    IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration,
-        IReadOnlyDictionary<string, string?> values);
+    IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration, IReadOnlyDictionary<string, string?> values);
     IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration);
     EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration);
-    ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration,
-        EmulationRuntimeServices services, CancellationToken cancellationToken = default);
-    ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(
-        CancellationToken cancellationToken = default);
-    ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration,
-        CancellationToken cancellationToken = default);
-    ValueTask DeleteConfigurationAsync(Guid configurationId,
-        CancellationToken cancellationToken = default);
+    ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration, EmulationRuntimeServices services, CancellationToken cancellationToken = default);
+    ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(CancellationToken cancellationToken = default);
+    ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default);
+    ValueTask DeleteConfigurationAsync(Guid configurationId, CancellationToken cancellationToken = default);
 }

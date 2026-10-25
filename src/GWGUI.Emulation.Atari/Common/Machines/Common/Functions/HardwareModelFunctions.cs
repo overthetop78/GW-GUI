@@ -1,0 +1,33 @@
+using GWGUI.Emulation;
+
+namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
+
+internal static class HardwareModelFunctions
+{
+    internal static IReadOnlyList<T> Values<T>(params T[] values) => Array.AsReadOnly(values);
+
+    internal static IReadOnlyDictionary<MachineModel, HardwareModelDefinition> Index(IReadOnlyList<HardwareModelDefinition> definitions)
+    {
+        var result = definitions.ToDictionary(definition => definition.Model);
+        if (result.Count != definitions.Count)
+            throw new InvalidOperationException(ErrorMessages.DuplicateHardwareModelDefinition);
+        return result;
+    }
+
+    internal static HardwareModelDefinition Create(
+        MachineModel model,
+        string stableModelId,
+        string displayNameResourceKey,
+        Emulator emulator,
+        long cpuFrequencyHz,
+        long mainMemoryBytes,
+        IReadOnlyList<HardwareCpu> cpus,
+        IReadOnlyList<HardwareRegion> regions,
+        IReadOnlyList<HardwareVideoCapability> video,
+        IReadOnlyList<HardwareAudioCapability> audio,
+        IReadOnlyList<HardwareStorageCapability> storage,
+        IReadOnlyList<HardwarePortDefinition> ports,
+        IReadOnlyList<FirmwareCategory> firmware,
+        IReadOnlyList<MediaCategory> media) =>
+        new(model, stableModelId, displayNameResourceKey, emulator, cpus, cpuFrequencyHz, mainMemoryBytes, regions, video, audio, storage, ports, firmware, media);
+}

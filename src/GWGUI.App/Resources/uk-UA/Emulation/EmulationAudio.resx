@@ -19,7 +19,7 @@
   <data name="Emulation.Audio.Floppy.Sound"><value>Гучність звуку дисковода</value></data>
   <data name="Emulation.Audio.Floppy.SoundType"><value>Тип звуку дисковода</value></data>
   <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Вимкнути звук порожніх дисководів</value></data>
-  <data name="Emulation.Audio.Cd.Volume"><value>CD аудіо об&apos;єм</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>CD аудіо об'єм</value></data>
   <data name="Emulation.Audio.Device"><value>Пристрій</value></data>
   <data name="Emulation.Audio.LatencyLabel"><value>Затримка</value></data>
   <data name="Emulation.Audio.Quality"><value>Якість</value></data>

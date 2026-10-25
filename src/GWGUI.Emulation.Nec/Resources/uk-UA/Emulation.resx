@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.beetle_pcfx_fast.Description"><value>Налагоджує системи NEC PC-FX.</value></data>
+  <data name="Emulation.Nec.Language"><value>NEC мова системи</value></data>
+  <data name="Emulation.Nec.Language.English"><value>Англійська мова</value></data>
+  <data name="Emulation.Nec.Language.French"><value>Французька</value></data>
+  <data name="Emulation.Nec.Language.Spanish"><value>Іспанка</value></data>
+  <data name="Emulation.Nec.Firmware.Integrated"><value>ROM вбудований в емулятор</value></data>
+  <data name="Emulation.Emulator.beetle_pce_fast.Description"><value>Утеплювачі PC Engine, CoreGrafx TurboGrafx-16, PC Engine Duo та TurboExpress системи.</value></data>
+  <data name="Emulation.Nec.Firmware.NotRequired"><value>Немає зовнішніх BIOS не потрібно</value></data>
+  <data name="Emulation.Nec.Audio.CdVolume"><value>CD аудіо об'єм</value></data>
+  <data name="Emulation.Nec.Audio.SoundQuality"><value>Якість звуку</value></data>
+  <data name="Emulation.Nec.Mouse.Sensitivity"><value>Чутливість миші</value></data>
+  <data name="Emulation.Nec.Memory.CdRam"><value>CD робота RAM</value></data>
+  <data name="Emulation.Nec.Audio.AdpcmVolume"><value>Об'єм CD ADPCM</value></data>
+  <data name="Emulation.Nec.Audio.CdPsgVolume"><value>Об'єм CD PSG</value></data>
+  <data name="Emulation.Nec.Audio.AdpcmLowPass"><value>CD ADPCM низькочастотний фільтр</value></data>
+  <data name="Emulation.Nec.Audio.SuppressClicks"><value>Саппрес канал скидання кліків</value></data>
+  <data name="Emulation.Nec.Audio.BuggyCodec"><value>Емуляція помилок ADPCM кодека</value></data>
+  <data name="Emulation.Nec.Storage.CdImageCache"><value>Завантаження CD зображення в пам'ять</value></data>
+  <data name="Emulation.Nec.Storage.CdIgnoreErrors"><value>Ігнорувати помилки виправлення CD</value></data>
+  <data name="Emulation.Emulator.beetle_sgx.Description"><value>Емулятори PC Engine SuperGrafx ігри, HuCards і CD-ROM2 медіа.</value></data>
+  <data name="Emulation.Emulator.geargrafx.Description"><value>Налагоджує PC Engine, SuperGrafx і NEC LaserActive системи.</value></data>
+  <data name="Emulation.Nec.Cpu.Region"><value>Земельна область</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Auto"><value>Автоматичний</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Japan"><value>Японія</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Usa"><value>Сполучені Штати</value></data>
+</root>

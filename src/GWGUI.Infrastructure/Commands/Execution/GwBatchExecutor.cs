@@ -11,11 +11,7 @@ public sealed record GwBatchExecutionResult(IReadOnlyList<GwBatchItemResult> Ite
 
 public sealed class GwBatchExecutor(IGreaseweazleRunner runner)
 {
-    public async Task<GwBatchExecutionResult> RunAsync(
-        IReadOnlyList<GwBatchItem> items,
-        IProgress<GwOutputLine>? output = null,
-        Action<GwBatchItem>? itemStarting = null,
-        CancellationToken cancellationToken = default)
+    public async Task<GwBatchExecutionResult> RunAsync(IReadOnlyList<GwBatchItem> items, IProgress<GwOutputLine>? output = null, Action<GwBatchItem>? itemStarting = null, CancellationToken cancellationToken = default)
     {
         var completed = new List<GwBatchItemResult>(items.Count);
         var cancelled = false;

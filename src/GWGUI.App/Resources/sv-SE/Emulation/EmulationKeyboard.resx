@@ -12,4 +12,5 @@
   <data name="Emulation.Keyboard.Priority.Description"><value>Kortkommandon för GW GUI och Windows förblir aktiva och fångas inte av maskinen.</value></data>
   <data name="Emulation.Keyboard.EmulatedKey"><value>Maskintangent</value></data>
   <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Bokstäver, siffror och vanliga modifieringstangenter överförs direkt. Endast Amigas funktions- och specialtangenter behöver tilldelas här.</value></data>
+  <data name="Emulation.Keyboard.Modifier.Shift"><value>Skift</value></data>
 </root>

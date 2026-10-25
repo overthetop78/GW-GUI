@@ -14,10 +14,8 @@ namespace GWGUI.MediaEngine.Images.Formats.HardDisk.Vdi;
 /// <summary>Writes autonomous fixed and dynamic VDI 1.1 images.</summary>
 public sealed class VdiWriter : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { HardDiskImageFormatIds.Vdi }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { HardDiskImageFormatIds.Vdi }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
     public VdiWriter(IAtomicImageFileWriter? files = null)
@@ -40,32 +38,21 @@ public sealed class VdiWriter : IMediaImageWriter
             && document.Representation is BlockMediaImageRepresentation blocks
             && blocks.Capacity > 0
             && blocks.LogicalBlockSize == HardDiskFormatConstants.LegacyLogicalSectorSize
-            && HasCompleteReadableCoverage(blocks);
+            && blocks.HasCompleteReadableCoverage();
     }
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!CanWrite(document, targetFormatId, extension)
             || document.Representation is not BlockMediaImageRepresentation blocks)
             throw new InvalidDataException("The media document cannot be written as a complete VDI image.");
         var fixedImage = SelectVariant(document, blocks) == HardDiskImageVariant.Fixed;
-        await files.WriteAsync(
-            outputPath,
-            (output, token) => WriteContainerAsync(blocks, fixedImage, output, token),
-            cancellationToken).ConfigureAwait(false);
+        await files.WriteAsync(outputPath, (output, token) => WriteContainerAsync(blocks, fixedImage, output, token), cancellationToken).ConfigureAwait(false);
         return [outputPath];
     }
 
-    private static async Task WriteContainerAsync(
-        BlockMediaImageRepresentation blocks,
-        bool fixedImage,
-        Stream output,
-        CancellationToken cancellationToken)
+    private static async Task WriteContainerAsync(BlockMediaImageRepresentation blocks, bool fixedImage, Stream output, CancellationToken cancellationToken)
     {
         var blockSize = HardDiskFormatConstants.VdiDefaultBlockSize;
         var blockCountLong = checked((blocks.Capacity + blockSize - 1) / blockSize);
@@ -84,11 +71,7 @@ public sealed class VdiWriter : IMediaImageWriter
             block.AsSpan().Clear();
             var address = checked((long)logicalBlock * blockSize);
             var logicalLength = (int)Math.Min(blockSize, blocks.Capacity - address);
-            await BlockMediaDataReader.ReadExactlyAsync(
-                blocks,
-                address,
-                block.AsMemory(0, logicalLength),
-                cancellationToken).ConfigureAwait(false);
+            await BlockMediaDataReader.ReadExactlyAsync(blocks, address, block.AsMemory(0, logicalLength), cancellationToken).ConfigureAwait(false);
             if (!fixedImage && block.AsSpan(0, logicalLength).IndexOfAnyExcept((byte)0) < 0)
             {
                 map[logicalBlock] = HardDiskFormatConstants.VdiDiscardedBlock;
@@ -109,21 +92,14 @@ public sealed class VdiWriter : IMediaImageWriter
         output.Position = end;
     }
 
-    private static byte[] CreateHeader(
-        BlockMediaImageRepresentation blocks,
-        bool fixedImage,
-        int dataOffset,
-        int blockCount,
-        int allocatedCount,
-        int blockSize)
+    private static byte[] CreateHeader(BlockMediaImageRepresentation blocks, bool fixedImage, int dataOffset, int blockCount, int allocatedCount, int blockSize)
     {
         var header = new byte[HardDiskFormatConstants.VdiHeaderSize];
         System.Text.Encoding.ASCII.GetBytes("<<< GW GUI Virtual Disk Image >>>\n").CopyTo(header, 0);
         BinaryPrimitives.WriteUInt32LittleEndian(header.AsSpan(0x40, 4), HardDiskFormatConstants.VdiSignature);
         BinaryPrimitives.WriteUInt32LittleEndian(header.AsSpan(0x44, 4), HardDiskFormatConstants.VdiVersion1_1);
         BinaryPrimitives.WriteUInt32LittleEndian(header.AsSpan(0x48, 4), 0x180);
-        BinaryPrimitives.WriteUInt32LittleEndian(header.AsSpan(0x4C, 4),
-            fixedImage ? HardDiskFormatConstants.VdiFixedImageType : HardDiskFormatConstants.VdiDynamicImageType);
+        BinaryPrimitives.WriteUInt32LittleEndian(header.AsSpan(0x4C, 4), fixedImage ? HardDiskFormatConstants.VdiFixedImageType : HardDiskFormatConstants.VdiDynamicImageType);
         System.Text.Encoding.ASCII.GetBytes("GW GUI MediaEngine").CopyTo(header, 0x54);
         BinaryPrimitives.WriteUInt32LittleEndian(header.AsSpan(0x154, 4), HardDiskFormatConstants.VdiHeaderSize);
         BinaryPrimitives.WriteUInt32LittleEndian(header.AsSpan(0x158, 4), (uint)dataOffset);
@@ -150,20 +126,7 @@ public sealed class VdiWriter : IMediaImageWriter
             && Enum.TryParse<HardDiskImageVariant>(value, true, out var variant)
             && variant is HardDiskImageVariant.Fixed or HardDiskImageVariant.Dynamic)
             return variant;
-        return blocks.Ranges.Any(range => range.Kind is MediaDataRangeKind.Zero or MediaDataRangeKind.Unallocated)
-            ? HardDiskImageVariant.Dynamic
-            : HardDiskImageVariant.Fixed;
-    }
-
-    private static bool HasCompleteReadableCoverage(BlockMediaImageRepresentation blocks)
-    {
-        long cursor = 0;
-        foreach (var range in blocks.Ranges)
-        {
-            if (range.Address != cursor || range.Kind == MediaDataRangeKind.Unavailable) return false;
-            cursor = checked(cursor + range.Length);
-        }
-        return cursor == blocks.Capacity;
+        return blocks.Ranges.Any(range => range.Kind is MediaDataRangeKind.Zero or MediaDataRangeKind.Unallocated) ? HardDiskImageVariant.Dynamic : HardDiskImageVariant.Fixed;
     }
 
     private static int Align(int value, int alignment) => checked((value + alignment - 1) / alignment * alignment);

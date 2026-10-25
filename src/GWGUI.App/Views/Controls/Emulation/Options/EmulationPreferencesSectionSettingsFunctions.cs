@@ -30,9 +30,8 @@ public sealed partial class EmulationPreferencesSection
 
     private async Task SaveShortcutsAsync()
     {
-        if (_settings is null) return;
-        _settings.EmulationShortcuts = _shortcuts.Rows.ToDictionary(item => item.Id,
-            item => item.Binding, StringComparer.Ordinal);
+        if (_settings is null || _shortcuts.HasErrors) return;
+        _settings.EmulationShortcuts = _shortcuts.Rows.ToDictionary(item => item.Id, item => item.Binding, StringComparer.Ordinal);
         if (_persistSettings is not null) await _persistSettings();
     }
 
@@ -53,7 +52,6 @@ public sealed partial class EmulationPreferencesSection
         Shortcut(EmulationShortcutDefaults.EjectMedia, "Emulation.Media.Eject")
     ];
 
-    private static InputBindingDefinition Shortcut(string id, string resourceKey) =>
-        new(id, resourceKey, EmulationShortcutDefaults.Values[id]);
+    private static InputBindingDefinition Shortcut(string id, string resourceKey) => new(id, resourceKey, EmulationShortcutDefaults.Values[id]);
 }
 

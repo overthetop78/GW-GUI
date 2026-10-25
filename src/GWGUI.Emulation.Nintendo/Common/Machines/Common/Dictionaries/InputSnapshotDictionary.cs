@@ -1,0 +1,59 @@
+namespace GWGUI.Emulation.Nintendo.Common.Machines.Common.Dictionaries;
+
+internal static class InputSnapshotDictionary
+{
+    internal static readonly IReadOnlyDictionary<string, int> ButtonIndexes =
+        new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+        {
+            [InputSnapshotFunctionsConstants.B] = 0,
+            [InputSnapshotFunctionsConstants.Y] = 1,
+            [InputSnapshotFunctionsConstants.Select] = 2,
+            [InputSnapshotFunctionsConstants.Start] = 3,
+            [InputSnapshotFunctionsConstants.Up] = 4,
+            [InputSnapshotFunctionsConstants.Down] = 5,
+            [InputSnapshotFunctionsConstants.Left] = 6,
+            [InputSnapshotFunctionsConstants.Right] = 7,
+            [InputSnapshotFunctionsConstants.A] = 8,
+            [InputSnapshotFunctionsConstants.X] = 9,
+            [InputSnapshotFunctionsConstants.L] = 10,
+            [InputSnapshotFunctionsConstants.R] = 11,
+            [InputSnapshotFunctionsConstants.L2] = 12,
+            [InputSnapshotFunctionsConstants.R2] = 13,
+            [InputSnapshotFunctionsConstants.L3] = 14,
+            [InputSnapshotFunctionsConstants.R3] = 15
+        };
+
+    internal static readonly IReadOnlyDictionary<string, int> NesButtonIndexes =
+        new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+        {
+            [InputSettingsFunctionsConstants.A] = ButtonIndexes[InputSnapshotFunctionsConstants.B],
+            [InputSettingsFunctionsConstants.B] = ButtonIndexes[InputSnapshotFunctionsConstants.Y],
+            [InputSettingsFunctionsConstants.NesTurboA] = ButtonIndexes[InputSnapshotFunctionsConstants.A],
+            [InputSettingsFunctionsConstants.NesTurboB] = ButtonIndexes[InputSnapshotFunctionsConstants.X]
+        };
+
+    internal static readonly IReadOnlyDictionary<string, int> Nintendo64ButtonIndexes =
+        new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+        {
+            [InputSettingsFunctionsConstants.Nintendo64A] = ButtonIndexes[InputSnapshotFunctionsConstants.B],
+            [InputSettingsFunctionsConstants.Nintendo64B] = ButtonIndexes[InputSnapshotFunctionsConstants.Y]
+        };
+
+    internal static readonly IReadOnlyDictionary<string, int> GameCubeButtonIndexes =
+        new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+        {
+            [InputSettingsFunctionsConstants.GameCubeZ] = ButtonIndexes[InputSnapshotFunctionsConstants.R],
+            [InputSettingsFunctionsConstants.GameCubeL] = ButtonIndexes[InputSnapshotFunctionsConstants.L2],
+            [InputSettingsFunctionsConstants.GameCubeR] = ButtonIndexes[InputSnapshotFunctionsConstants.R2],
+            [InputSettingsFunctionsConstants.GameCubeLHalf] = ButtonIndexes[InputSnapshotFunctionsConstants.L3],
+            [InputSettingsFunctionsConstants.GameCubeRHalf] = ButtonIndexes[InputSnapshotFunctionsConstants.R3]
+        };
+
+    internal static readonly IReadOnlyDictionary<string, MouseAction> DefaultMouseMappings =
+        new Dictionary<string, MouseAction>(StringComparer.OrdinalIgnoreCase)
+        {
+            [InputSnapshotFunctionsConstants.MouseLeft] = MouseAction.LeftButton,
+            [InputSnapshotFunctionsConstants.MouseRight] = MouseAction.RightButton,
+            [InputSnapshotFunctionsConstants.MouseMiddle] = MouseAction.MiddleButton
+        };
+}

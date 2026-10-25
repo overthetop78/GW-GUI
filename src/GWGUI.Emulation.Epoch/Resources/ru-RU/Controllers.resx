@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft" xml:space="preserve"><value>Левая боковая кнопка</value></data>
+  <data name="Emulation.Epoch.Input.FireRight" xml:space="preserve"><value>Правая боковая кнопка</value></data>
+  <data name="Emulation.Epoch.Input.Power" xml:space="preserve"><value>Кнопка питания</value></data>
+  <data name="Emulation.Epoch.Input.Reset" xml:space="preserve"><value>Кнопка сброса</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft" xml:space="preserve"><value>Переместите рычаг влево</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight" xml:space="preserve"><value>Переведите рычаг вправо</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease" xml:space="preserve"><value>Выберите следующий игровой курс</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease" xml:space="preserve"><value>Выберите предыдущий игровой курс</value></data>
+  <data name="Emulation.Epoch.Input.GunFire" xml:space="preserve"><value>Легкий пистолет</value></data>
+  <data name="Emulation.Epoch.Input.GunReload" xml:space="preserve"><value>Легкая пушка перезарядка</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease" xml:space="preserve"><value>Столешница 1: повернуть против часовой стрелки</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase" xml:space="preserve"><value>Столп 1: повернуть по часовой стрелке</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease" xml:space="preserve"><value>Paddle 2: повернуть против часовой стрелки</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase" xml:space="preserve"><value>Столп 2: Повернуть по часовой стрелке</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease" xml:space="preserve"><value>Paddle 3: повернуть против часовой стрелки</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase" xml:space="preserve"><value>Стол 3: Повернуть по часовой стрелке</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease" xml:space="preserve"><value>Paddle 4: повернуть против часовой стрелки</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase" xml:space="preserve"><value>Стол 4: Повернуть по часовой стрелке</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease" xml:space="preserve"><value>Направь пистолет налево.</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease" xml:space="preserve"><value>Направо, направо.</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease" xml:space="preserve"><value>Направьте пистолет вверх.</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease" xml:space="preserve"><value>Направьте пистолет вниз.</value></data>
+</root>

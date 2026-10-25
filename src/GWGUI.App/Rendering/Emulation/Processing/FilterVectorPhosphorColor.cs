@@ -28,8 +28,7 @@ internal static class FilterVectorPhosphorColor
         };
         for (var index = 0; index < colors.Length; index += 3)
         {
-            var luminance = colors[index] * 0.2126f + colors[index + 1] * 0.7152f
-                + colors[index + 2] * 0.0722f;
+            var luminance = colors[index] * 0.2126f + colors[index + 1] * 0.7152f + colors[index + 2] * 0.0722f;
             colors[index] = luminance * tint.Item1;
             colors[index + 1] = luminance * tint.Item2;
             colors[index + 2] = luminance * tint.Item3;

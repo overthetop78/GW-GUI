@@ -4,5 +4,39 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-
+  <data name="Emulation.Atari.Video.Region"><value>Region</value></data>
+  <data name="Emulation.Atari.Firmware.Multilingual"><value>Multilingual</value></data>
+  <data name="Emulation.Atari.Video.RegionFree"><value>Region-free</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|All files|*.*</value></data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Fast boot</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Mosaic RAM expansion</value></data>
+  <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Axlon RAM expansion</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Axlon $0F bank shadow</value></data>
+  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Hi-res artifacting</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>SIO acceleration</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Boot from cassette</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Operating system revision</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Hue</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Saturation</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Contrast</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Brightness</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>GTIA color delay</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>External palette</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Show emulation speed on screen</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Show sector/block counter</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>R-Time 8 real-time clock</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>P: printer device</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>R: serial device</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Blue/brown 1</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Blue/brown 2</value></data>
+  <data name="Emulation.Emulator.atari-st.Description" xml:space="preserve"><value>Emulates Atari ST, STE, TT and Falcon computers.</value></data>
+  <data name="Emulation.Emulator.atari800.Description" xml:space="preserve"><value>Emulates Atari 8-bit computers and the Atari 5200 console.</value></data>
+  <data name="Emulation.Emulator.atari2600.Description" xml:space="preserve"><value>Emulates the Atari 2600 console.</value></data>
+  <data name="Emulation.Emulator.prosystem.Description" xml:space="preserve"><value>Emulates the Atari 7800 console.</value></data>
+  <data name="Emulation.Emulator.atari-lynx.Description"><value>Emulates the portable Atari Lynx game system.</value></data>
+  <data name="Emulation.Emulator.virtual-jaguar.Description" xml:space="preserve"><value>Emulates Atari Jaguar and Jaguar CD consoles.</value></data>
+  <data name="Emulation.Summary.AudioEnabled"><value>Sound playback is enabled</value></data>
+  <data name="Emulation.Summary.AudioDisabled"><value>Sound playback is disabled</value></data>
+  <data name="Emulation.Emulator.a5200.Description"><value>Emulates the Atari 5200 console.</value></data>
 </root>

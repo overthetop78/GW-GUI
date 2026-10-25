@@ -29,6 +29,7 @@ public partial class App : Application
 {
     private AppTheme _theme;
     private UpdateStartupCoordinator? _updateStartup;
+    private GWGUI.App.Services.Input.Keyboard.ForegroundKeyboardShortcutGuard? _keyboardShortcutGuard;
     protected override void OnStartup(StartupEventArgs e)
     {
         _updateStartup = UpdateStartupCoordinator.FromArguments(e.Args);
@@ -55,8 +56,7 @@ public partial class App : Application
         settings.PreviousGwExecutablePath = StoragePaths.NormalizeHostToolsPath(settings.PreviousGwExecutablePath);
         using (var httpClient = new HttpClient())
         {
-            var installations = new GwInstallationManager(httpClient, StoragePaths.HostToolsDirectory)
-                .Detect(settings.GwExecutablePath);
+            var installations = new GwInstallationManager(httpClient, StoragePaths.HostToolsDirectory).Detect(settings.GwExecutablePath);
             var configuredInstallation = installations.FirstOrDefault(installation =>
                 !string.IsNullOrWhiteSpace(settings.GwExecutablePath)
                 && string.Equals(installation.ExecutablePath, Path.GetFullPath(settings.GwExecutablePath), StringComparison.OrdinalIgnoreCase));
@@ -64,9 +64,7 @@ public partial class App : Application
                 settings.InstalledHostToolsVersion = configuredInstallation.Version;
             if (!string.IsNullOrWhiteSpace(settings.InstalledHostToolsVersion))
             {
-                var managedInstallation = installations.FirstOrDefault(installation =>
-                    installation.Managed
-                    && string.Equals(installation.Version, settings.InstalledHostToolsVersion, StringComparison.OrdinalIgnoreCase));
+                var managedInstallation = installations.FirstOrDefault(installation => installation.Managed && string.Equals(installation.Version, settings.InstalledHostToolsVersion, StringComparison.OrdinalIgnoreCase));
                 if (managedInstallation is not null) settings.GwExecutablePath = managedInstallation.ExecutablePath;
             }
         }
@@ -92,7 +90,21 @@ public partial class App : Application
         SystemEvents.UserPreferenceChanged += SystemPreferenceChanged;
         GameInputControllerSource.Instance.StartMonitoring();
         MainWindow = new MainWindow(null, initialSettings: settings);
-        MainWindow.Show();
+        try
+        {
+            _keyboardShortcutGuard = new GWGUI.App.Services.Input.Keyboard.ForegroundKeyboardShortcutGuard();
+            MainWindow.Show();
+        }
+        catch
+        {
+            try { MainWindow.Close(); }
+            finally
+            {
+                try { _keyboardShortcutGuard?.Dispose(); }
+                finally { _keyboardShortcutGuard = null; }
+            }
+            throw;
+        }
     }
 
     private void SystemPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
@@ -102,6 +114,8 @@ public partial class App : Application
 
     protected override void OnExit(ExitEventArgs e)
     {
+        try
+        {
         ReleaseRemainingWindows();
         try { GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.FlushPending(); }
         catch (Exception error) { System.Diagnostics.Trace.TraceError(error.ToString()); }
@@ -110,7 +124,16 @@ public partial class App : Application
         DispatcherUnhandledException -= OnDispatcherUnhandledException;
         AppDomain.CurrentDomain.UnhandledException -= OnDomainUnhandledException;
         TaskScheduler.UnobservedTaskException -= OnUnobservedTaskException;
-        base.OnExit(e);
+        }
+        finally
+        {
+            try { _keyboardShortcutGuard?.Dispose(); }
+            finally
+            {
+                _keyboardShortcutGuard = null;
+                base.OnExit(e);
+            }
+        }
     }
 
     private void ReleaseRemainingWindows()
@@ -138,8 +161,7 @@ public partial class App : Application
     {
         ErrorLog.Write(e.Exception, "WPF dispatcher");
         var detail = ExceptionDescriptionFunctions.Describe(e.Exception);
-        MessageBox.Show(WpfDialogOwner.Resolve(), LocExtension.Get("Error.Unexpected", detail),
-            LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Error);
+        MessageBox.Show(WpfDialogOwner.Resolve(), LocExtension.Get("Error.Unexpected", detail), LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Error);
         e.Handled = true;
     }
 

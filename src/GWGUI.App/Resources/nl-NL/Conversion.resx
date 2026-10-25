@@ -34,4 +34,6 @@
   <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Interne conversie mislukt voor {0}: {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>Potentiële gegevensverlies</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>Deze conversie kan niet alle brongegevens behouden:&#xA;&#xA;{0}&#xA;&#xA;Wil je doorgaan?</value></data>
+  <data name="Conversion.OutputCollision"><value>Verschillende conversies zouden hetzelfde bestand maken '{0}"Deze selectie is niet mogelijk tenzij "{1}' is gecontroleerd.</value></data>
+  <data name="Conversion.Failed"><value>Conversie mislukt voor {0}: {1}</value></data>
 </root>

@@ -68,14 +68,12 @@ namespace Hst.Amiga.FileSystems.Pfs3
                     break;
 
                 default:
-                    throw new FileSystemDiagnosticException(FileSystemErrorCode.SeekError,
-                        Pfs3ErrorMessages.SeekError);
+                    throw new FileSystemDiagnosticException(FileSystemErrorCode.SeekError, Pfs3ErrorMessages.SeekError);
             }
 
             if (virtualoffset > extrafields.virtualsize || virtualoffset < 0)
             {
-                throw new FileSystemDiagnosticException(FileSystemErrorCode.SeekError,
-                    Pfs3ErrorMessages.SeekError);
+                throw new FileSystemDiagnosticException(FileSystemErrorCode.SeekError, Pfs3ErrorMessages.SeekError);
             }
 
             /* calculate real offset */

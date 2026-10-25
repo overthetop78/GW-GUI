@@ -93,8 +93,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
                 {
                     entry.LinkEntryBlock = await FastFileSystemDisk.ReadEntryBlock(volume, entry.Real);
                     var linkPath = await GetPath(volume, entry.LinkEntryBlock.Parent, entry.Parent);
-                    entry.LinkPath = string.Concat(linkPath, string.IsNullOrEmpty(linkPath) ? string.Empty : "/",
-                        entry.LinkEntryBlock.Name);
+                    entry.LinkPath = string.Concat(linkPath, string.IsNullOrEmpty(linkPath) ? string.Empty : "/", entry.LinkEntryBlock.Name);
                 }
 
                 entry.Sector = hashTable[i];
@@ -102,8 +101,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
 
                 if (recursive && entry.IsDirectory())
                 {
-                    entry.SubDir = (await ReadEntries(volume,
-                        FastFileSystemHelper.GetSector(volume, entryBlock), true)).ToList();
+                    entry.SubDir = (await ReadEntries(volume, FastFileSystemHelper.GetSector(volume, entryBlock), true)).ToList();
                 }
 
                 //         /* same hashcode linked list */
@@ -121,8 +119,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
 
                     if (recursive && entry.IsDirectory())
                     {
-                        entry.SubDir = (await ReadEntries(volume,
-                            FastFileSystemHelper.GetSector(volume, entryBlock), true)).ToList();
+                        entry.SubDir = (await ReadEntries(volume, FastFileSystemHelper.GetSector(volume, entryBlock), true)).ToList();
                     }
 
                     nextSector = entryBlock.NextSameHash;
@@ -180,14 +177,10 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         }
 
         public static char ToUpper(char c)
-        {
-            return (char)(c >= 'a' && c <= 'z' ? c - ('a' - 'A') : c);
-        }
+        => Hst.Amiga.AmigaTextHelper.ToUpper(c);
 
         public static char IntlToUpper(char c)
-        {
-            return (char)((c >= 'a' && c <= 'z') || (c >= 224 && c <= 254 && c != 247) ? c - ('a' - 'A') : c);
-        }
+        => Hst.Amiga.AmigaTextHelper.InternationalToUpper(c);
 
         private static string TrimName(FastFileSystemVolumeState volume, string name)
         {
@@ -209,18 +202,9 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         }
 
         public static string MyToUpper(string str, bool intl)
-        {
-            var nstr = str.ToCharArray();
-            for (var i = 0; i < str.Length; i++)
-            {
-                nstr[i] = intl ? IntlToUpper(str[i]) : ToUpper(str[i]);
-            }
+        => Hst.Amiga.AmigaTextHelper.ToUpper(str, intl);
 
-            return new string(nstr);
-        }
-
-        public static async Task<FastFileSystemNameToEntryBlockResult> GetEntryBlock(FastFileSystemVolumeState volume, uint[] ht, string name,
-            bool nUpdSect)
+        public static async Task<FastFileSystemNameToEntryBlockResult> GetEntryBlock(FastFileSystemVolumeState volume, uint[] ht, string name, bool nUpdSect)
         {
             name = TrimName(volume, name);
 

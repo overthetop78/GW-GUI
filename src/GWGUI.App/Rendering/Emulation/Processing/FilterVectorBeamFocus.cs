@@ -20,13 +20,10 @@ internal static class FilterVectorBeamFocus
             var average = 0f;
             for (var offsetY = -1; offsetY <= 1; offsetY++)
             for (var offsetX = -1; offsetX <= 1; offsetX++)
-                average += Sample(emission, width, height, x + offsetX, y + offsetY);
+                average += FilterSampling.ReadScalar(emission, width, height, x + offsetX, y + offsetY);
             var center = emission[y * width + x];
             result[y * width + x] = center + (average / 9f - center) * blur;
         }
         return result;
     }
-
-    private static float Sample(float[] values, int width, int height, int x, int y) =>
-        values[Math.Clamp(y, 0, height - 1) * width + Math.Clamp(x, 0, width - 1)];
 }

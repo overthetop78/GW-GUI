@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>แสดงความถี่ของนาฬิกาที่ระบุในตัวประมวลผล ในเครื่อง Sony</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>ความถี่ของตัวประมวลผลดั้งเดิม</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>แสดงรุ่นของตัวประมวลผลที่ถูกสร้างโดยเครื่อง Sony ที่เลือกไว้</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>ตัวประมวลผลเลียนแบบเครื่องจักรนี้</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>แสดงสถานะของระบบ ROM สําหรับเครื่องและตัวจําลองที่เลือก</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>ระบบ ROM.</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>ปรับค่าโปรแกรมจําลองที่จะใช้ในการใช้งานปรับแต่งเครื่องนี้</value></data>
+  <data name="Emulation.Sony.Help.General.Emulator.Short"><value>ตัวจําลองที่เลือกใช้เครื่องจักรนี้</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>ระบุรุ่น Sony ที่ปรับแต่งฮาร์ดแวร์</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony เครื่องจําลองได้ถูกปรับแต่ง</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>แสดง RAM ของเครื่อง Sony ที่เลือกไว้</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>ยอดของ RAM ที่ใช้ได้กับเครื่องเลียนแบบ</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>ความถี่ของ CPU แบบย่อ หลังจากใช้หน่วยนาฬิกาที่เลือกไว้แล้ว</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>ความถี่ของคอนโซลระบุ ถูกคูณด้วยเปอร์เซ็นต์ที่เลือก นี่เป็นการเปลี่ยนตัวประมวลผลที่คัดลอกมา ไม่ใช่ตัวประมวลผลของโฮสต์ ค่าที่สูงขึ้นสามารถลดความเร็วลง แต่อาจทําลายจังหวะเกมได้ ใช้ค่าปริยายของตัวจําลองโดยอัตโนมัติ</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>ฮาร์ดแวร์กราฟิกดั้งเดิมของเครื่องที่เลือก</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>แสดงฮาร์ดแวร์กราฟิกดั้งเดิมของเครื่องที่เลือก การตั้งค่าการเรนเดอร์ของอีมูเลเตอร์จะเปลี่ยนภาพที่สร้างขึ้น จากนั้นจึงใช้ตัวกรองของ GW GUI</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>ฮาร์ดแวร์เสียงดั้งเดิมของเครื่องที่เลือก</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>แสดงฮาร์ดแวร์เสียงดั้งเดิมของเครื่องที่เลือก การตั้งค่าเอาต์พุตเสียงและความหน่วงจะควบคุมการเล่นเสียงบนคอมพิวเตอร์ของคุณ</value></data>
+</root>

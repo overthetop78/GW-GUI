@@ -12,21 +12,13 @@ namespace GWGUI.MediaFileSystems.FileSystems.Atari.BootDisk;
 /// <summary>Identifie une disquette Atari contenant directement un programme de démarrage sans catalogue.</summary>
 public sealed class AtariBootDiskFileSystemReader : IFileSystemReader
 {
-    private static readonly IReadOnlyList<IFileSystemReader> CataloguedReaders =
-    [
-        new AtariDosFileSystemReader(),
-        new AtariKFileFileSystemReader(),
-        new AtariClkGraphicsLibraryFileSystemReader()
-    ];
+    private static readonly IReadOnlyList<IFileSystemReader> CataloguedReaders = [new AtariDosFileSystemReader(), new AtariKFileFileSystemReader(), new AtariClkGraphicsLibraryFileSystemReader()];
 
     public string Id => FileSystemIds.AtariBootDisk;
 
     public IReadOnlySet<string> CatalogFormatIds => AtariBootDiskFormatCatalog.FormatIds;
 
-    public bool CanRead(IMediaSectorImage image) =>
-        CatalogFormatIds.Contains(image.FormatId)
-        && AtariBootDiskFunctions.IsCompleteBootProgram(image)
-        && CataloguedReaders.All(reader => !reader.CanRead(image));
+    public bool CanRead(IMediaSectorImage image) => CatalogFormatIds.Contains(image.FormatId) && AtariBootDiskFunctions.IsCompleteBootProgram(image) && CataloguedReaders.All(reader => !reader.CanRead(image));
 
     public FileSystemVolume Read(IMediaSectorImage image)
     {

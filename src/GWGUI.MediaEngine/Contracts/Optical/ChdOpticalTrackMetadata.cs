@@ -5,15 +5,7 @@ namespace GWGUI.MediaEngine.Contracts;
 /// <summary>Contains one validated CHD optical track declaration decoded from CHTR or CHT2 metadata.</summary>
 internal sealed class ChdOpticalTrackMetadata
 {
-    public ChdOpticalTrackMetadata(
-        int trackNumber,
-        OpticalTrackMode mode,
-        int dataSize,
-        int subchannelSize,
-        long frameCount,
-        long pregapFrames,
-        long postgapFrames,
-        bool pregapStored)
+    public ChdOpticalTrackMetadata(int trackNumber, OpticalTrackMode mode, int dataSize, int subchannelSize, long frameCount, long pregapFrames, long postgapFrames, bool pregapStored)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(trackNumber);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(dataSize);

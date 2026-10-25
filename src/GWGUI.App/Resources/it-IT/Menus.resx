@@ -19,7 +19,7 @@
   <data name="Menu.Help"><value>Aiuto</value></data>
   <data name="Menu.Documentation"><value>Documentazione</value></data>
   <data name="Menu.About"><value>Di</value></data>
-  <data name="Menu.Align"><value>Guidare l&apos;allineamento...</value></data>
+  <data name="Menu.Align"><value>Guidare l'allineamento...</value></data>
   <data name="Menu.Emulation"><value>Emiciclo</value></data>
   <data name="Menu.EmulationPreferences"><value>Preferenze di emulazione...</value></data>
 </root>

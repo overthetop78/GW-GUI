@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nec.Video.Monitor"><value>Jenis monitor</value></data>
+  <data name="Emulation.Nec.Video.Intensity"><value>Intensitas Monitor</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Color"><value>Warna</value></data>
+  <data name="Emulation.Nec.Video.Monitor.Green"><value>Monokrom hijau</value></data>
+  <data name="Emulation.Nec.Video.Monitor.White"><value>Monokrom putih</value></data>
+  <data name="Emulation.Nec.Video.Palette"><value>palet warna</value></data>
+  <data name="Emulation.Nec.Video.Palette.Composite"><value>Komposit</value></data>
+  <data name="Emulation.Nec.Video.HorizontalWidth"><value>Lebar horisontal</value></data>
+  <data name="Emulation.Nec.Video.DotClockWidth"><value>Lebar jam titik</value></data>
+  <data name="Emulation.Nec.Video.ChromaInterpolation"><value>Interpolasi kroma</value></data>
+  <data name="Emulation.Nec.Video.NoSpriteLimit"><value>Hapus batas sprite</value></data>
+  <data name="Emulation.Nec.Video.InitialScanline"><value>Scanline pertama yang terlihat</value></data>
+  <data name="Emulation.Nec.Video.LastScanline"><value>Scanline terakhir yang terlihat</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip"><value>Frame skip</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>Dinonaktifkan</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Otomatis</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>Manual</value></data>
+  <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>Bingkai melewati ambang batas</value></data>
+  <data name="Emulation.Nec.Video.Overscan"><value>Tampilkan batas gambar</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming"><value>Tinggi gambar yang ditampilkan</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming"><value>Lebar gambar yang ditampilkan</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Cropped"><value>Gambar terlihat (240 baris)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Full"><value>Semua 263 baris</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Cropped"><value>Gambar terlihat (348 piksel)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Full"><value>Semua 392 piksel</value></data>
+</root>

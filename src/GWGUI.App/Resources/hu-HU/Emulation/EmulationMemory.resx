@@ -7,8 +7,8 @@
   <data name="Emulation.Memory.Main"><value>Főmemória</value></data>
   <data name="Emulation.Memory.Extensions"><value>Memóriabővítések</value></data>
   <data name="Emulation.Memory.None"><value>Nincs</value></data>
-  <data name="Emulation.Memory.CompatibleWithModel"><value>A memóriabeállítás kompatibilis ezzel: {0}.</value></data>
-  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>A memóriabővítések kompatibilisek ezzel: {0}.</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>Kompatibilis konfiguráció: {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Kompatibilis memória kiterjesztések: {0}.</value></data>
   <data name="Emulation.Memory.Z3UnavailableForModel"><value>A Zorro III RAM nem érhető el ezen: {0}.</value></data>
   <data name="Emulation.Memory.TotalConfigured"><value>Összes beállított memória: {0} {1}</value></data>
 </root>

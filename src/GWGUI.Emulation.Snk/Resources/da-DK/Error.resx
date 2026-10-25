@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Error.StateIncompatible" xml:space="preserve"><value>Den SNK gemt tilstand er uforenelig med den nuværende maskine.</value></data>
+  <data name="Emulation.Snk.Error.Unexpected" xml:space="preserve"><value>En uventet SNK der opstod en emuleringsfejl.</value></data>
+  <data name="Emulation.Snk.Error.FirmwareMissing" xml:space="preserve"><value>A påkrævet SNK firmware mangler.</value></data>
+  <data name="Emulation.Snk.Error.FirmwareInvalid" xml:space="preserve"><value>Systemet ROM er ugyldig eller inkompatibel.</value></data>
+  <data name="Emulation.Snk.Error.ContentNotFound" xml:space="preserve"><value>Den indstillede SNK Medierne blev ikke fundet.</value></data>
+  <data name="Emulation.Snk.Error.ContentUnsupported" xml:space="preserve"><value>Denne maskine understøtter ikke de valgte medier.</value></data>
+  <data name="Emulation.Snk.Error.OptionInvalid" xml:space="preserve"><value>A SNK option har en ugyldig værdi.</value></data>
+  <data name="Emulation.Snk.Error.CoreNotFound" xml:space="preserve"><value>Det krævede SNK Kernen blev ikke fundet.</value></data>
+  <data name="Emulation.Snk.Error.CoreRejected" xml:space="preserve"><value>Det valgte SNK kerne kunne ikke læsses.</value></data>
+  <data name="Emulation.Snk.Error.StateInvalid" xml:space="preserve"><value>Den SNK gemet tilstand er ugyldig.</value></data>
+  <data name="Emulation.Snk.Error.HostExecutableMissing" xml:space="preserve"><value>Den SNK værts- kørbar sti er ikke tilgængelig.</value></data>
+  <data name="Emulation.Snk.Error.Details" xml:space="preserve"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Snk.Error.HostProtocolFailure" xml:space="preserve"><value>Kommissionen har i øvrigt besluttet at indlede proceduren efter artikel 93, stk. 2, i traktaten om Den Europæiske Union. SNK Værten mislykkedes.</value></data>
+  <data name="Emulation.Snk.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Ukendt miljøkommando: {0}</value></data>
+</root>

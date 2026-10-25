@@ -6,14 +6,10 @@ namespace GWGUI.App.Services.Input.GameInput;
 internal static class WindowsDeviceNameResolver
 {
     private const uint CrSuccess = 0;
-    private static readonly DevPropKey DeviceDescription =
-        new(new Guid("A45C254E-DF1C-4EFD-8020-67D146A850E0"), 2);
-    private static readonly DevPropKey Manufacturer =
-        new(new Guid("A45C254E-DF1C-4EFD-8020-67D146A850E0"), 13);
-    private static readonly DevPropKey FriendlyName =
-        new(new Guid("A45C254E-DF1C-4EFD-8020-67D146A850E0"), 14);
-    private static readonly DevPropKey BusReportedDescription =
-        new(new Guid("540B947E-8B40-45BC-A8A2-6A0B894CBDA2"), 4);
+    private static readonly DevPropKey DeviceDescription = new(new Guid("A45C254E-DF1C-4EFD-8020-67D146A850E0"), 2);
+    private static readonly DevPropKey Manufacturer = new(new Guid("A45C254E-DF1C-4EFD-8020-67D146A850E0"), 13);
+    private static readonly DevPropKey FriendlyName = new(new Guid("A45C254E-DF1C-4EFD-8020-67D146A850E0"), 14);
+    private static readonly DevPropKey BusReportedDescription = new(new Guid("540B947E-8B40-45BC-A8A2-6A0B894CBDA2"), 4);
 
     internal static string? ResolveProductName(string devicePath)
     {
@@ -84,9 +80,7 @@ internal static class WindowsDeviceNameResolver
     {
         const string prefix = @"\\?\";
         var end = path.LastIndexOf("#{", StringComparison.Ordinal);
-        return path.StartsWith(prefix, StringComparison.OrdinalIgnoreCase) && end > prefix.Length
-            ? path[prefix.Length..end].Replace('#', '\\')
-            : null;
+        return path.StartsWith(prefix, StringComparison.OrdinalIgnoreCase) && end > prefix.Length ? path[prefix.Length..end].Replace('#', '\\') : null;
     }
 
     private static string? GetString(uint node, DevPropKey key)
@@ -104,9 +98,7 @@ internal static class WindowsDeviceNameResolver
     private static string? GetDeviceId(uint node)
     {
         var buffer = new StringBuilder(1024);
-        return CM_Get_Device_IDW(node, buffer, (uint)buffer.Capacity, 0) == CrSuccess
-            ? buffer.ToString()
-            : null;
+        return CM_Get_Device_IDW(node, buffer, (uint)buffer.Capacity, 0) == CrSuccess ? buffer.ToString() : null;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -128,10 +120,8 @@ internal static class WindowsDeviceNameResolver
     private static extern uint CM_Get_Parent(out uint parent, uint child, uint flags);
 
     [DllImport("cfgmgr32.dll", CharSet = CharSet.Unicode)]
-    private static extern uint CM_Get_DevNode_PropertyW(uint deviceInstance, ref DevPropKey propertyKey,
-        out uint propertyType, byte[]? propertyBuffer, ref uint propertyBufferSize, uint flags);
+    private static extern uint CM_Get_DevNode_PropertyW(uint deviceInstance, ref DevPropKey propertyKey, out uint propertyType, byte[]? propertyBuffer, ref uint propertyBufferSize, uint flags);
 
     [DllImport("cfgmgr32.dll", CharSet = CharSet.Unicode)]
-    private static extern uint CM_Get_Device_IDW(uint deviceInstance, StringBuilder buffer,
-        uint bufferLength, uint flags);
+    private static extern uint CM_Get_Device_IDW(uint deviceInstance, StringBuilder buffer, uint bufferLength, uint flags);
 }

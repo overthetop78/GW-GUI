@@ -7,7 +7,7 @@
   <data name="Profiles.ByOperation" xml:space="preserve"><value>Profiler etter operasjon</value></data>
   <data name="Profiles.Tab" xml:space="preserve"><value>Fane</value></data>
   <data name="Profiles.Name" xml:space="preserve"><value>Navn</value></data>
-  <data name="Profiles.System" xml:space="preserve"><value>System</value></data>
+  <data name="Profiles.System"><value>System</value></data>
   <data name="Profiles.Rename" xml:space="preserve"><value>Gi nytt navn …</value></data>
   <data name="Profile.SaveTitle"><value>Lagre profil</value></data>
   <data name="Profile.Name"><value>Profilnavn</value></data>

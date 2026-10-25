@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.81.Description"><value>Sinclair ZX81 시스템을 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>오디오 하드웨어</value></data>
+  <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>초기 내용</value></data>
+  <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>영상 기억</value></data>
+  <data name="Emulation.Sinclair.Setting.AyStereoSeparation" xml:space="preserve"><value>AY 입체 음향 채널 순서</value></data>
+  <data name="Emulation.Sinclair.Setting.AyVolume" xml:space="preserve"><value>AY 의논하기</value></data>
+  <data name="Emulation.Sinclair.Setting.BorderSize" xml:space="preserve"><value>스크린 국경 크기</value></data>
+  <data name="Emulation.Sinclair.Setting.EmulationSpeed" xml:space="preserve"><value>공급 능력</value></data>
+  <data name="Emulation.Sinclair.Setting.HighResolution" xml:space="preserve"><value>고해상도 그래픽</value></data>
+  <data name="Emulation.Sinclair.Setting.MemoryBankContent" xml:space="preserve"><value>8–16 KiB 메모리 은행</value></data>
+  <data name="Emulation.Sinclair.Setting.MouseSwapButtons" xml:space="preserve"><value>마우스 단추를 교환</value></data>
+  <data name="Emulation.Sinclair.Setting.Palette" xml:space="preserve"><value>색깔 팔레트</value></data>
+  <data name="Emulation.Sinclair.Setting.SoundHardware" xml:space="preserve"><value>음향 하드웨어</value></data>
+  <data name="Emulation.Sinclair.Setting.SpeakerType" xml:space="preserve"><value>스피커 유형</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeAutoLoad" xml:space="preserve"><value>자동 카세트 적재</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeFastLoad" xml:space="preserve"><value>빠른 카세트 선적</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeLoadSound" xml:space="preserve"><value>카세트 적재 소리</value></data>
+  <data name="Emulation.Sinclair.Setting.VideoPreset" xml:space="preserve"><value>비디오 preset</value></data>
+  <data name="Emulation.Sinclair.Value.AmberMonochrome" xml:space="preserve"><value>호박색 monochrome</value></data>
+  <data name="Emulation.Sinclair.Value.Beeper" xml:space="preserve"><value>내장형 음향 발전기</value></data>
+  <data name="Emulation.Sinclair.Value.GreenMonochrome" xml:space="preserve"><value>녹색 monochrome</value></data>
+  <data name="Emulation.Sinclair.Value.InvertedColours" xml:space="preserve"><value>색을 덮어</value></data>
+  <data name="Emulation.Sinclair.Value.Monochrome" xml:space="preserve"><value>검정과 흰색</value></data>
+  <data name="Emulation.Sinclair.Value.None" xml:space="preserve"><value>ᄋᄋᄋ</value></data>
+  <data name="Emulation.Sinclair.Value.Normal" xml:space="preserve"><value>의 의</value></data>
+  <data name="Emulation.Sinclair.Value.RomShadow" xml:space="preserve"><value>ROM 의 특징</value></data>
+  <data name="Emulation.Sinclair.Value.Television" xml:space="preserve"><value>TV 시청</value></data>
+  <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>텔레비전 확성기</value></data>
+  <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>뚱 베어</value></data>
+  <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>영상 표시</value></data>
+  <data name="Emulation.Emulator.fuse.Description"><value>호환되는 ZX Spectrum 시스템을 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>내장 사운드 볼륨</value></data>
+  <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>개정 2 키보드</value></data>
+  <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>맑음</value></data>
+  <data name="Emulation.Sinclair.Value.Full" xml:space="preserve"><value>풀 스크린 국경</value></data>
+  <data name="Emulation.Sinclair.Value.Noisy" xml:space="preserve"><value>이미지와 소음</value></data>
+</root>

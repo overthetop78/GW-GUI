@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Голоси SHARP X68000 комп'ютери.</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Голоси SHARP X1 комп'ютери.</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Машинний аудіо</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Параметри контролера</value></data>
+  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>АРАКТЕР ROM</value></data>
+  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Відображення пам'яті</value></data>
+  <data name="Emulation.Sharp.Setting.AdpcmVolume" xml:space="preserve"><value>ADPCM об'єм</value></data>
+  <data name="Emulation.Sharp.Setting.AudioDesynchronization" xml:space="preserve"><value>Відеоспостереження надлишок аудіо</value></data>
+  <data name="Emulation.Sharp.Setting.AudioSampleRate" xml:space="preserve"><value>Швидкість вибірки аудіо</value></data>
+  <data name="Emulation.Sharp.Setting.ButtonOrder" xml:space="preserve"><value>Замовити кнопку</value></data>
+  <data name="Emulation.Sharp.Setting.DiskSeekSound" xml:space="preserve"><value>Відмова від звуку</value></data>
+  <data name="Emulation.Sharp.Setting.FmBoard" xml:space="preserve"><value>FM звукова дошка</value></data>
+  <data name="Emulation.Sharp.Setting.FmVolume" xml:space="preserve"><value>FM об'єм</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRate" xml:space="preserve"><value>Відеокарта швидкість</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRateAdjustment" xml:space="preserve"><value>Налаштування частоти обертання каркасу</value></data>
+  <data name="Emulation.Sharp.Setting.FrameSkip" xml:space="preserve"><value>Випробувано відеорамка</value></data>
+  <data name="Emulation.Sharp.Setting.HideGraphics" xml:space="preserve"><value>Приховати графіку</value></data>
+  <data name="Emulation.Sharp.Setting.HideSprites" xml:space="preserve"><value>Приховувати спрайти і фони</value></data>
+  <data name="Emulation.Sharp.Setting.HideText" xml:space="preserve"><value>Приховати текстовий шар</value></data>
+  <data name="Emulation.Sharp.Setting.MemorySize" xml:space="preserve"><value>RAM потужність</value></data>
+  <data name="Emulation.Sharp.Setting.RapidFire" xml:space="preserve"><value>Швидкий вогонь</value></data>
+  <data name="Emulation.Sharp.Setting.Raster" xml:space="preserve"><value>Растрові ефекти</value></data>
+  <data name="Emulation.Sharp.Setting.ReverseJoystick" xml:space="preserve"><value>Вхід контролера</value></data>
+  <data name="Emulation.Sharp.Setting.UnlimitedSpeed" xml:space="preserve"><value>Необмежена швидкість емульсії</value></data>
+  <data name="Emulation.Sharp.Setting.VerticalSync" xml:space="preserve"><value>Вертикальна синхронізація</value></data>
+  <data name="Emulation.Sharp.Setting.VideoBeforeAudio" xml:space="preserve"><value>Передвизначити відео</value></data>
+  <data name="Emulation.Sharp.Value.High" xml:space="preserve"><value>Висока якість</value></data>
+  <data name="Emulation.Sharp.Value.Low" xml:space="preserve"><value>Низькі</value></data>
+  <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>Машинний дисплей</value></data>
+</root>

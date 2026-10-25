@@ -22,8 +22,7 @@ internal sealed class EmulationModuleLoadContext : AssemblyLoadContext
         : base($"GWGUI.Emulation.Module:{Path.GetFileNameWithoutExtension(entryAssemblyPath)}", isCollectible: false)
     {
         _entryAssemblyPath = Path.GetFullPath(entryAssemblyPath);
-        _moduleDirectory = Path.GetDirectoryName(_entryAssemblyPath)
-            ?? throw new ArgumentException("The module entry assembly has no parent directory.", nameof(entryAssemblyPath));
+        _moduleDirectory = Path.GetDirectoryName(_entryAssemblyPath) ?? throw new ArgumentException("The module entry assembly has no parent directory.", nameof(entryAssemblyPath));
         _resolver = new AssemblyDependencyResolver(_entryAssemblyPath);
     }
 

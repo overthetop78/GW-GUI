@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft" xml:space="preserve"><value>左サイドボタン</value></data>
+  <data name="Emulation.Epoch.Input.FireRight" xml:space="preserve"><value>右側のボタン</value></data>
+  <data name="Emulation.Epoch.Input.Power" xml:space="preserve"><value>電源ボタン</value></data>
+  <data name="Emulation.Epoch.Input.Reset" xml:space="preserve"><value>リセットボタン</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft" xml:space="preserve"><value>レバーを左に移動</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight" xml:space="preserve"><value>レバーを右に移動</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease" xml:space="preserve"><value>次のゲームコースを選択</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease" xml:space="preserve"><value>前のゲームコースを選択</value></data>
+  <data name="Emulation.Epoch.Input.GunFire" xml:space="preserve"><value>軽銃トリガー</value></data>
+  <data name="Emulation.Epoch.Input.GunReload" xml:space="preserve"><value>軽銃のリロード</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease" xml:space="preserve"><value>パドル1:反時計を回して下さい</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase" xml:space="preserve"><value>パドル1:時計回りに回して下さい</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease" xml:space="preserve"><value>パドル2:反時計をオンにする</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase" xml:space="preserve"><value>パドル2:時計回りに回る</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease" xml:space="preserve"><value>パドル3:逆時計回りに回して下さい</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase" xml:space="preserve"><value>パドル3:時計回りに回して下さい</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease" xml:space="preserve"><value>パドル4:逆時計回りに回して下さい</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase" xml:space="preserve"><value>パドル4:時計回りに回して下さい</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease" xml:space="preserve"><value>銃を左にすると、</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease" xml:space="preserve"><value>銃を右に向ける。</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease" xml:space="preserve"><value>銃を上方に向けます。</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease" xml:space="preserve"><value>銃を下方に向ける。</value></data>
+</root>

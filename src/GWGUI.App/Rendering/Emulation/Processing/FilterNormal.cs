@@ -2,14 +2,13 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 
 internal static class FilterNormal
 {
-        internal static float Sample(float[] source, int width, int height,
-        float x, float y, int channel)
+    internal static float Sample(float[] source, int width, int height, float x, float y, int channel)
     {
         var sampleX = Math.Clamp((int)MathF.Round(x), 0, width - 1);
         var sampleY = Math.Clamp((int)MathF.Round(y), 0, height - 1);
         return source[(sampleY * width + sampleX) * 3 + channel];
     }
-internal const string OpenGlShader = """
+    internal const string OpenGlShader = """
         vec4 pointSample(vec2 uv)
         {
             vec2 coordinate = clamp(floor(uv * Processing.zw), vec2(0.0), Processing.zw - 1.0);

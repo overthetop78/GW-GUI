@@ -1,4 +1,9 @@
-<UserControl x:Class="GWGUI.App.Views.Controls.Tools.ToolsTabSection" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:l="clr-namespace:GWGUI.App.Localization.Extensions" xmlns:automation="clr-namespace:System.Windows.Automation;assembly=PresentationCore">
+<UserControl
+    x:Class="GWGUI.App.Views.Controls.Tools.ToolsTabSection"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:l="clr-namespace:GWGUI.App.Localization.Extensions"
+    xmlns:automation="clr-namespace:System.Windows.Automation;assembly=PresentationCore">
     <Grid Margin="16">
         <Grid.ColumnDefinitions><ColumnDefinition Width="230"/><ColumnDefinition/></Grid.ColumnDefinitions>
         <ListBox x:Name="ToolSelector" SelectedIndex="0" SelectionChanged="ToolSelector_SelectionChanged" AutomationProperties.AutomationId="ToolsList">

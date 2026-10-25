@@ -28,8 +28,7 @@ internal static class EmulationModuleManifestReader
         foreach (var property in document.RootElement.EnumerateObject())
             if (!names.Add(property.Name))
                 throw new InvalidDataException($"Duplicate manifest field '{property.Name}'.");
-        var manifest = document.RootElement.Deserialize<EmulationModuleManifest>(JsonOptions)
-            ?? throw new InvalidDataException("The emulation module manifest is empty.");
+        var manifest = document.RootElement.Deserialize<EmulationModuleManifest>(JsonOptions) ?? throw new InvalidDataException("The emulation module manifest is empty.");
         if (manifest.SchemaVersion != EmulationHostApi.ManifestSchemaVersion)
             throw new InvalidDataException($"Unsupported module manifest schema '{manifest.SchemaVersion}'.");
         ValidateFileName(manifest.Id, "id");
@@ -48,8 +47,7 @@ internal static class EmulationModuleManifestReader
             throw new InvalidDataException("Manifest field 'updateCatalogUrl' must contain an absolute HTTPS URL.");
         var current = hostApiVersion ?? EmulationHostApi.CurrentVersion;
         if (current < minimum || current > maximum)
-            throw new InvalidDataException($"Module '{manifest.Id}' version {manifest.ModuleVersion} requires host API " +
-                $"{minimum} to {maximum}; available API is {current}.");
+            throw new InvalidDataException($"Module '{manifest.Id}' version {manifest.ModuleVersion} requires host API " + $"{minimum} to {maximum}; available API is {current}.");
         return manifest;
     }
 

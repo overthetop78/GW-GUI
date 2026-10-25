@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Example.Error.ContentNotFound"><value>Nakonfigurované médium nebylo nalezeno.</value></data>
+  <data name="Emulation.Example.Error.ContentUnsupported"><value>Stroj nepodporuje zvolené médium.</value></data>
+  <data name="Emulation.Example.Error.CoreNotFound"><value>Požadované emulační jádro nebylo nalezeno.</value></data>
+  <data name="Emulation.Example.Error.CoreRejected"><value>Zvolené emulační jádro nebylo možné načíst.</value></data>
+  <data name="Emulation.Example.Error.Details"><value>Podrobnosti: {0}</value></data>
+  <data name="Emulation.Example.Error.FirmwareInvalid"><value>Firmware je neplatný nebo nekompatibilní.</value></data>
+  <data name="Emulation.Example.Error.FirmwareMissing"><value>Chybí požadovaný firmware.</value></data>
+  <data name="Emulation.Example.Error.HostExecutableMissing"><value>Cesta k programu emulace hostitelů není k dispozici.</value></data>
+  <data name="Emulation.Example.Error.HostProtocolFailure"><value>Komunikace s hostitelem emulace selhala.</value></data>
+  <data name="Emulation.Example.Error.OptionInvalid"><value>Volba má neplatnou hodnotu.</value></data>
+  <data name="Emulation.Example.Error.StateIncompatible"><value>Uložený stav je neslučitelný se stávajícím strojem.</value></data>
+  <data name="Emulation.Example.Error.StateInvalid"><value>Uložený stav je neplatný.</value></data>
+  <data name="Emulation.Example.Error.Unexpected"><value>Nastala neočekávaná emulační chyba.</value></data>
+</root>

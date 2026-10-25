@@ -33,17 +33,12 @@ public partial class OptionsControllersSection : UserControl
 
     public OptionsControllersSection() : this(GameInputControllerSource.Instance) { }
 
-    internal OptionsControllersSection(
-        IGameInputControllerSource source,
-        Action<Exception, string>? errorLogger = null,
-        IControllerProfileStore? profiles = null,
-        Func<int, Task>? delay = null)
+    internal OptionsControllersSection(IGameInputControllerSource source, Action<Exception, string>? errorLogger = null, IControllerProfileStore? profiles = null, Func<int, Task>? delay = null)
     {
         _source = source;
         _profiles = profiles ?? new ControllerProfileStore();
         _delay = delay ?? Task.Delay;
-        _visualOverrides = _profiles.GetModels().ToDictionary(item => item.Key, item => item.Value,
-            StringComparer.OrdinalIgnoreCase);
+        _visualOverrides = _profiles.GetModels().ToDictionary(item => item.Key, item => item.Value, StringComparer.OrdinalIgnoreCase);
         _errorLogger = errorLogger ?? ((exception, context) => ErrorLog.Write(exception, context));
         InitializeComponent();
         ControlsGrid.ItemsSource = _controlRows;
@@ -109,8 +104,7 @@ public partial class OptionsControllersSection : UserControl
         await RefreshLiveStateAsync();
     }
 
-    private async void Detect_Click(object sender, RoutedEventArgs e) =>
-        await RefreshDevicesAsync(force: true);
+    private async void Detect_Click(object sender, RoutedEventArgs e) => await RefreshDevicesAsync(force: true);
 
     private sealed record ModelChoice(ControllerVisualModel? Model, string DisplayName);
 }

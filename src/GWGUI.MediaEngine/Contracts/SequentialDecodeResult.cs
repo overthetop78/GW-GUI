@@ -5,12 +5,7 @@ namespace GWGUI.MediaEngine.Contracts;
 /// <summary>Returns decoded protocol blocks while retaining every source segment that was not decoded.</summary>
 public sealed class SequentialDecodeResult
 {
-    public SequentialDecodeResult(
-        string decoderId,
-        double confidence,
-        IReadOnlyList<SequentialDecodedBlock> blocks,
-        IReadOnlyList<SequentialMediaSegment> undecodedSegments,
-        IReadOnlyList<string>? diagnostics = null)
+    public SequentialDecodeResult(string decoderId, double confidence, IReadOnlyList<SequentialDecodedBlock> blocks, IReadOnlyList<SequentialMediaSegment> undecodedSegments, IReadOnlyList<string>? diagnostics = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(decoderId);
         if (double.IsNaN(confidence) || confidence is < 0 or > 1)

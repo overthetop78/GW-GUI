@@ -1,3 +1,4 @@
+using GWGUI.MediaEngine.Functions;
 using System.Buffers.Binary;
 using System.Collections.Frozen;
 using System.Globalization;
@@ -14,36 +15,23 @@ namespace GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Commodore;
 /// <summary>Encodes validated Commodore bytes into standard ROM pulse frames for TAP or PCM WAV output.</summary>
 public sealed class CommodoreTapeEncoder : ISequentialMediaEncoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.CommodoreTap, TapeImageFormatIds.Wav }
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedMachines =
-        new[] { DiskSystemIds.Commodore }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.CommodoreTap, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Commodore }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => CommodoreTapConstants.EncoderId;
     public IReadOnlySet<string> FormatIds => SupportedFormats;
     public IReadOnlySet<string> MachineIds => SupportedMachines;
 
-    public bool CanEncode(SequentialEncodeRequest request) =>
-        SupportedFormats.Contains(request.TargetFormatId)
-        && SupportedMachines.Contains(request.MachineId)
-        && request.Blocks.Count > 0
-        && request.Blocks.All(block => block.IntegrityValid == true && block.Data.Length > 0)
-        && request.RetainedSegments.Count == 0
-        && (!request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase)
-            || TryReadSampleRate(request.Parameters, out _));
+    public bool CanEncode(SequentialEncodeRequest request)
+        => SequentialEncodeFunctions.CanEncodeValidatedBytes(request, SupportedFormats, SupportedMachines);
 
-    public Task<SequentialMediaImageRepresentation> EncodeAsync(
-        SequentialEncodeRequest request,
-        CancellationToken cancellationToken = default)
+    public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)
     {
         if (!CanEncode(request))
             throw new InvalidDataException("Commodore tape encoding requires validated blocks without retained undecoded segments.");
         cancellationToken.ThrowIfCancellationRequested();
         var cycles = EncodePulseCycles(request.Blocks);
-        return Task.FromResult(request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase)
-            ? EncodeWave(cycles, request.Parameters)
-            : EncodeTap(cycles));
+        return Task.FromResult(request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase) ? EncodeWave(cycles, request.Parameters) : EncodeTap(cycles));
     }
 
     private static IReadOnlyList<int> EncodePulseCycles(IReadOnlyList<SequentialDecodedBlock> blocks)
@@ -93,17 +81,14 @@ public sealed class CommodoreTapeEncoder : ISequentialMediaEncoder
         return new SequentialMediaImageRepresentation(cycles.Count, elapsed, segments);
     }
 
-    private static SequentialMediaImageRepresentation EncodeWave(
-        IReadOnlyList<int> cycles,
-        IReadOnlyDictionary<string, string> parameters)
+    private static SequentialMediaImageRepresentation EncodeWave(IReadOnlyList<int> cycles, IReadOnlyDictionary<string, string> parameters)
     {
-        TryReadSampleRate(parameters, out var sampleRate);
+        PcmSampleFunctions.TryReadSampleRate(parameters, out var sampleRate);
         var samples = new List<short>();
         var level = CommodoreTapConstants.PcmAmplitude;
         foreach (var pulseCycles in cycles)
         {
-            var sampleCount = Math.Max(1, (int)Math.Round(
-                pulseCycles * (double)sampleRate / CommodoreTapConstants.DefaultC64PalClockRate));
+            var sampleCount = Math.Max(1, (int)Math.Round(pulseCycles * (double)sampleRate / CommodoreTapConstants.DefaultC64PalClockRate));
             for (var sample = 0; sample < sampleCount; sample++) samples.Add(level);
             level = (short)-level;
         }
@@ -137,13 +122,5 @@ public sealed class CommodoreTapeEncoder : ISequentialMediaEncoder
     {
         pulses.Add(value ? CommodoreTapConstants.MediumPulseCycles : CommodoreTapConstants.ShortPulseCycles);
         pulses.Add(value ? CommodoreTapConstants.ShortPulseCycles : CommodoreTapConstants.MediumPulseCycles);
-    }
-
-    private static bool TryReadSampleRate(IReadOnlyDictionary<string, string> parameters, out int sampleRate)
-    {
-        sampleRate = 0;
-        return parameters.TryGetValue("sampleRate", out var text)
-            && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out sampleRate)
-            && sampleRate >= 8000;
     }
 }

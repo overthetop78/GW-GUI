@@ -25,6 +25,5 @@ public sealed class ExplorerViewsTests(StaExecutionScenarios sta)
     [Fact] public Task FolderAndFileSelection() => sta.Run(ExplorerTreeScenarios.Select);
     [Fact] public Task ClearAndLoading() => sta.Run(ExplorerFailureScenarios.Clear);
     [Fact] public Task ManualFormatFailureUsesInformationalDialog() => sta.Run(ExplorerFailureScenarios.ManualFormatFailureUsesInformationalDialog);
-    [Theory] [InlineData(false)] [InlineData(true)]
-    public Task PendingFailureAndRetry(bool staleFailure) => sta.RunAsync(() => ExplorerFailureScenarios.LoadingAndRetry(staleFailure));
+    [Theory] [InlineData(false)] [InlineData(true)] public Task PendingFailureAndRetry(bool staleFailure) => sta.RunAsync(() => ExplorerFailureScenarios.LoadingAndRetry(staleFailure));
 }

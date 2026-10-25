@@ -9,9 +9,7 @@
 
         public static string GetString(byte[] bytes)
         {
-            return bytes.Length == 0
-                ? string.Empty
-                : Iso88591.GetString(bytes, 0, bytes.Length);
+            return bytes.Length == 0 ? string.Empty : Iso88591.GetString(bytes, 0, bytes.Length);
         }
         
         public static string GetString(byte[] bytes, int index, int count)
@@ -26,9 +24,7 @@
                 return string.Empty;
             }
 
-            return bytes.Length == 0
-                ? string.Empty
-                : Iso88591.GetString(bytes, index, index + count >= bytes.Length ? bytes.Length - index : count);
+            return bytes.Length == 0 ? string.Empty : Iso88591.GetString(bytes, index, index + count >= bytes.Length ? bytes.Length - index : count);
         }
 
         public static string GetNullTerminatedString(byte[] bytes, int index, int maxLength)

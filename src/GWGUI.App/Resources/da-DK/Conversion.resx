@@ -34,4 +34,6 @@
   <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Intern konvertering mislykkedes for {0}: {1}</value></data>
   <data name="Conversion.SequentialLossesTitle"><value>Potentielt tab af data</value></data>
   <data name="Conversion.SequentialLossesConfirm"><value>Denne konvertering kan ikke bevare alle kildeoplysninger:&#xA;&#xA;{0}&#xA;&#xA;Vil du fortsætte?</value></data>
+  <data name="Conversion.OutputCollision"><value>Flere konverteringer ville skabe den samme fil '{0}'. Denne udvælgelse er ikke mulig medmindre'{1}'er tjekket.</value></data>
+  <data name="Conversion.Failed"><value>Konvertering mislykkedes for {0}: {1}</value></data>
 </root>

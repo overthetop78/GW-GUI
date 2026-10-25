@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Short"><value>Az emulált gép rendelkezésére álló RAM-mennyiség.</value></data>
+  <data name="Emulation.Nintendo.Help.Memory.Ram.Detailed"><value>Megjeleníti a kiválasztott Nintendo gép által biztosított RAM-ot.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Short"><value>Rendszer ROM.</value></data>
+  <data name="Emulation.Nintendo.Help.Firmware.Integrated.Detailed"><value>Megjeleníti a rendszer ROM állapotát a kiválasztott géphez és emulátorhoz.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Short"><value>Nintendo gépmodell konfigurálva.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Short"><value>Emulátor kiválasztva ehhez a géphez.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Emulator.Detailed"><value>Azonosítja a gép konfigurációjának futtatásához használt emulátor-implementációt.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Short"><value>A processzor erre a gépre telepített.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Model.Detailed"><value>Megjeleníti a kiválasztott Nintendo gép által biztosított processzormodellt.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Short"><value>Eredeti processzor óra frekvencia.</value></data>
+  <data name="Emulation.Nintendo.Help.Cpu.Frequency.Detailed"><value>Megjeleníti a processzor névleges óráfrekvenciáját a kiválasztott Nintendo gépben.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Short"><value>Emulált hang engedélyezése vagy letiltása.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Enabled.Detailed"><value>Ellenőrzi, hogy a GW GUI lejátszja-e az emulátor által létrehozott hangmintákat.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Short"><value>A GW GUI által használt hangkimenet.</value></data>
+  <data name="Emulation.Nintendo.Help.Audio.Output.Detailed"><value>Kiválasztja a Windows audio kimenetet használt játszani hang ebből az emulált gép.</value></data>
+  <data name="Emulation.Nintendo.Help.General.Model.Detailed"><value>Azonosítja a Nintendo modellt, amelynek hardverkonfigurációját szerkesztik.</value></data>
+</root>

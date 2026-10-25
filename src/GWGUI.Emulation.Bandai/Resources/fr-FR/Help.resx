@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Setting.DisplayRotation.Help" xml:space="preserve"><value>Choisir l’orientation paysage ou portrait. Le mode manuel utilise le bouton de rotation affecté.</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation.Help" xml:space="preserve"><value>Le mode automatique suit l'orientation de l'affichage. D'autres modes maintiennent les commandes dans l'orientation sélectionnée.</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Sélectionnez les couleurs utilisées pour les jeux monochromes.</value></data>
+  <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Sélectionnez la profondeur de couleur de sortie. Le mode 24 bits nécessite plus de puissance de traitement.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Ignorer certaines images vidéo pour réduire les craquements audio. Le mode automatique suit le tampon audio. Le mode manuel utilise le seuil sélectionné.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help"><value>En mode manuel, sauter des images lorsque le remplissage du tampon audio descend sous le seuil choisi.</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Ignorer une image sur cinq pour afficher à 60 Hz. Cela réduit la fluidité des mouvements.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Les taux d'échantillonnage plus élevés améliorent légèrement la qualité audio et exigent plus de puissance de traitement.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Appliquer un filtre passe-bas pour adoucir le son.</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Échanger les actions des boutons A et B.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.DetailedHelp"><value>À 33 %, des images sont sautées lorsque le tampon audio est rempli à moins de 33 %, afin de réduire les craquements. Une valeur plus élevée déclenche le saut plus tôt. La latence audio et la taille du tampon restent inchangées.</value></data>
+</root>

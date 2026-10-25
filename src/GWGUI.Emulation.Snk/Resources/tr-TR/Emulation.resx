@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Content.Initial" xml:space="preserve"><value>Oyun medyası</value></data>
+  <data name="Emulation.Snk.Memory.Display" xml:space="preserve"><value>Video hafıza</value></data>
+  <data name="Emulation.Snk.Audio.Native" xml:space="preserve"><value>Ses donanım</value></data>
+  <data name="Emulation.Snk.Video.Native" xml:space="preserve"><value>Video Donanım</value></data>
+  <data name="Emulation.Snk.Controls.Native" xml:space="preserve"><value>Controller ayarları</value></data>
+  <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>Sistem ayarları</value></data>
+  <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>Sistem Sistem Sistemi BIOS</value></data>
+  <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>Yardımcı BIOS</value></data>
+  <data name="Emulation.Emulator.neocd.Description"><value>Neo Geo CD ve Neo Geo CDZ konsollarını emüle eder.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.geolith.Description"><value>Oyun kartuşu ve CD kullanan Neo Geo sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Uyumlu SNK sistemlerini emüle eder.</value></data>
+  <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>Dili Dili Dili</value></data>
+  <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>Japonca dil dili</value></data>
+  <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>İngilizce dil dili İngilizce</value></data>
+  <data name="Emulation.Snk.Help.DarkFilterLevel" xml:space="preserve"><value>Enable luminosity tabanlı parlaklık azaltımı.Beyaz arka planlarla oyunlar oynarken glare/gözlü güçten kaçınmak için kullanılabilir.</value></data>
+  <data name="Emulation.Snk.Value.Manual" xml:space="preserve"><value>Manual Manual</value></data>
+  <data name="Emulation.Snk.Setting.RealTimeClock" xml:space="preserve"><value>Gerçek Zaman Saati</value></data>
+  <data name="Emulation.Snk.Help.RealTimeClock" xml:space="preserve"><value>Gerçek zamanlı saat ilerlemelerinin nasıl yapıldığını seçin. 'Deterministic', sabit bir temelden yapılmış çerçeveler sayar, bu yüzden RTC Okunuşu net, rewind ve run-ahead için geri dönüşümlü ve güvenli. 'Real Time' doğrudan ev sahibi saati okur (yaşam saati, ancak non-deterministic).</value></data>
+  <data name="Emulation.Snk.Value.Deterministic"><value>Deterministic</value></data>
+  <data name="Emulation.Snk.Value.RealTime" xml:space="preserve"><value>Gerçek Zaman</value></data>
+  <data name="Emulation.Snk.Setting.AudioQuality" xml:space="preserve"><value>Ses Kalitesi</value></data>
+  <data name="Emulation.Snk.Setting.AudioSampleRate" xml:space="preserve"><value>Ses Örnek Oranı</value></data>
+  <data name="Emulation.Snk.Value.Game" xml:space="preserve"><value>Oyun oyunu</value></data>
+  <data name="Emulation.Snk.Value.System" xml:space="preserve"><value>Sistem sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi sistemi</value></data>
+  <data name="Emulation.Snk.Setting.MainProcessorSpeed" xml:space="preserve"><value>Main işlemci hızı (%)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderMethod" xml:space="preserve"><value>Alternatif form yöntemi</value></data>
+  <data name="Emulation.Snk.Setting.VideoApproach1Enabled" xml:space="preserve"><value>Video yaklaşımı 1 Enabled</value></data>
+  <data name="Emulation.Snk.Setting.HideGameInfoScreen" xml:space="preserve"><value>Gizle oyunu info ekran</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningScreen" xml:space="preserve"><value>Gizle uyarı ekran</value></data>
+  <data name="Emulation.Snk.Setting.EnableMultithreading"><value>Enable multithreading</value></data>
+  <data name="Emulation.Snk.Setting.SetBrightness" xml:space="preserve"><value>Anlamlılık</value></data>
+  <data name="Emulation.Snk.Setting.SetContrast" xml:space="preserve"><value>Set kontrast</value></data>
+  <data name="Emulation.Snk.Setting.SetGamma"><value>Set gamma</value></data>
+  <data name="Emulation.Snk.Setting.SkipDisclaimer"><value>Skip Disclaimer</value></data>
+  <data name="Emulation.Snk.Setting.SkipWarnings" xml:space="preserve"><value>Skip Uyarılar</value></data>
+  <data name="Emulation.Snk.Help.DisplayMAMEMenu" xml:space="preserve"><value>İçteki iç görünüşü göz önünde bulundurun MAME menü.</value></data>
+  <data name="Emulation.Snk.Setting.Brightness" xml:space="preserve"><value>Katalol</value></data>
+  <data name="Emulation.Snk.Help.Brightness" xml:space="preserve"><value>Işık seviyesini değiştir.</value></data>
+  <data name="Emulation.Snk.Setting.GammaCorrection" xml:space="preserve"><value>Gamma Düzeltme</value></data>
+  <data name="Emulation.Snk.Help.GammaCorrection" xml:space="preserve"><value>Spama seviyesini değiştir.</value></data>
+  <data name="Emulation.Snk.Help.DisplayArtwork" xml:space="preserve"><value>Mevcut olduğunda özel sanat görüntülemek için kullanılır.</value></data>
+  <data name="Emulation.Snk.Help.ArtworkResolutionMultiplier" xml:space="preserve"><value>Seçilen multiplier değeri tarafından sanat çözünürlüğünü artırır.</value></data>
+  <data name="Emulation.Snk.Setting.SpecifyNeoGeoBIOS" xml:space="preserve"><value>Neo Geo Geo'u gezmek için BIOS</value></data>
+  <data name="Emulation.Snk.Help.SpecifyNeoGeoBIOS" xml:space="preserve"><value>Alternatif biyos dosyaları seçin.</value></data>
+  <data name="Emulation.Snk.Value.Asia" xml:space="preserve"><value>Asia</value></data>
+  <data name="Emulation.Snk.Value.Japan" xml:space="preserve"><value>japanpan</value></data>
+  <data name="Emulation.Snk.Setting.UseSamples" xml:space="preserve"><value>Örnekleri kullanın</value></data>
+  <data name="Emulation.Snk.Help.UseSamples" xml:space="preserve"><value>Örnekler dizinde verildiğinde ses örneği dosyaları yüklemenize izin verin.</value></data>
+  <data name="Emulation.Snk.Help.AutosaveHiscore" xml:space="preserve"><value>Anahtarını kapanış içeriği sırasında kurtaracak varsayılan kullanımı önerilir. Recursally oyun sırasında defalarca tasarruf edecektir. Engelliler oyun kullanımını atacaktır. hiscore.dat Tamamen dosya.</value></data>
+  <data name="Emulation.Snk.Help.CPUClockScale" xml:space="preserve"><value>Alt veya fazla saat boyunca kullanılan emated to under or over hours the emated to under or over hours the emated to under or over hours the emated to under or over hours CPU Belirtilen bir yüzde ile.</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningsScreen" xml:space="preserve"><value>Gizle Uyarı ekran</value></data>
+  <data name="Emulation.Snk.Setting.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>Mevcut olduğunda 32-bits renk derinliğini kullanın</value></data>
+  <data name="Emulation.Snk.Help.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>Change Pixel format, bazı oyunlar bunu doğru bir şekilde yapmak için gerektirir, bazı platformlarda performansları etkileyebilir</value></data>
+  <data name="Emulation.Snk.Setting.VerticalMode" xml:space="preserve"><value>Dikey mod</value></data>
+  <data name="Emulation.Snk.Help.VerticalMode" xml:space="preserve"><value>Dikey ekranlar için Rotate display for dikey ekran</value></data>
+  <data name="Emulation.Snk.Value.Alternate" xml:space="preserve"><value>Alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif</value></data>
+  <data name="Emulation.Snk.Value.TATEAlternate" xml:space="preserve"><value>TATE Alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif alternatif</value></data>
+  <data name="Emulation.Snk.Setting.UseA60HzRefreshRate" xml:space="preserve"><value>60 Hz yeni bir hız kullanın</value></data>
+  <data name="Emulation.Snk.Help.UseA60HzRefreshRate" xml:space="preserve"><value>Orijinal yenileme oranı yerine 60 Hz kullanın. Bu oyun hızını değiştirebilir ve eşitsiz animasyona neden olabilir.</value></data>
+  <data name="Emulation.Snk.Setting.Resolution" xml:space="preserve"><value>Karar Karar</value></data>
+  <data name="Emulation.Snk.Help.Resolution" xml:space="preserve"><value>Bazı oyunlarda çözüm oluşturun (vector)</value></data>
+  <data name="Emulation.Snk.Help.FixedFrameskip" xml:space="preserve"><value>‘Frameskip’ ‘Fixed’e ayarlandığında veya ön uç alternatif ‘Frameskip’ modu desteklemezse, X çerçevelerinin sabit bir oranına X çerçevelerini atlayın X+1</value></data>
+  <data name="Emulation.Snk.Value.NoSkipping" xml:space="preserve"><value>Hiçbir atlama</value></data>
+  <data name="Emulation.Snk.Setting.CPUClock" xml:space="preserve"><value>CPU Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat Saat</value></data>
+  <data name="Emulation.Snk.Help.CPUClock" xml:space="preserve"><value>Çeşitli sistemler için amplit cpu frekansı değiştirin, artan bir şekilde, bazı oyunlarda yerli yavaşlamaları düzeltebilirsiniz, düşük uç cihazlarda performansa yardımcı olabilirsiniz</value></data>
+  <data name="Emulation.Snk.Setting.DiagnosticInput" xml:space="preserve"><value>Tanı Girişi</value></data>
+  <data name="Emulation.Snk.Help.DiagnosticInput" xml:space="preserve"><value>Kabin servisi menüsüne girmek için yapılandırılan düğme kombinasyonu</value></data>
+  <data name="Emulation.Snk.Help.Hiscores" xml:space="preserve"><value>Enable yüksek puan desteği, dosyaya da ihtiyacınız var hiscore.dat sisteminiz /fbneo / klasör</value></data>
+  <data name="Emulation.Snk.Help.AllowPatchedRomsets" xml:space="preserve"><value>Sisteminizden / bneo / geri dönüşümlü / klasörden romsetlerinizi aşırıya indirmenize izin verin, crcs görmezden gelinecek, ancak boyutlarda ve isimler hala maç olmalıdır, ek olarak bu aynı zamanda master geçiştir. IPS Patch ve RomData idam edilir veya değil, bu ayar için etkisi almak için yakın içeriğe ihtiyacınız var</value></data>
+  <data name="Emulation.Snk.Setting.SampleInterpolation" xml:space="preserve"><value>Örnek Interpolasyon</value></data>
+  <data name="Emulation.Snk.Help.SampleInterpolation" xml:space="preserve"><value>Örnek interpolasyon yapılandırın, performans performansları etkileyebilir</value></data>
+  <data name="Emulation.Snk.Setting.FMInterpolation"><value>FM Interpolation</value></data>
+  <data name="Emulation.Snk.Help.FMInterpolation" xml:space="preserve"><value>Configure FM Interpolasyon, performans performanslarını etkileyebilir</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilter" xml:space="preserve"><value>LowPass Filtre</value></data>
+  <data name="Emulation.Snk.Help.LowPassFilter" xml:space="preserve"><value>Enable LowPass Filtre</value></data>
+  <data name="Emulation.Snk.Setting.AnalogSpeed" xml:space="preserve"><value>Analog Hız</value></data>
+  <data name="Emulation.Snk.Help.AnalogSpeed" xml:space="preserve"><value>Mitigate analog kontrol hızı, bazı oyunlar oynanabilir düşük değerlerin oyunlanabilir olması gerekebilir</value></data>
+  <data name="Emulation.Snk.Setting.SOCDMode" xml:space="preserve"><value>SOCD Mode Mode Mode Mode Mode</value></data>
+  <data name="Emulation.Snk.Help.SOCDMode" xml:space="preserve"><value>Değişim Değişim Değişimi Değişim Değişim Değişim Değişimi ULDR Öncelikli kullanım</value></data>
+  <data name="Emulation.Snk.Value.Disabled" xml:space="preserve"><value>Evsiz devre dışı bırak</value></data>
+  <data name="Emulation.Snk.Value.SimultaneousNeutral" xml:space="preserve"><value>Simultane Neutral</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority4Way" xml:space="preserve"><value>Son Giriş Öncekiliği (4 Way)</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority8Way" xml:space="preserve"><value>Son Giriş Öncekiliği (8 Way)</value></data>
+  <data name="Emulation.Snk.Value.FirstInputPriority" xml:space="preserve"><value>İlk giriş Önceliği</value></data>
+  <data name="Emulation.Snk.Setting.CrosshairEmulation"><value>Crosshair emulation</value></data>
+  <data name="Emulation.Snk.Value.HideWithLightgunDevice" xml:space="preserve"><value>Işıklı cihaz ile saklan</value></data>
+  <data name="Emulation.Snk.Value.AlwaysHide" xml:space="preserve"><value>Her zaman gizleyin</value></data>
+  <data name="Emulation.Snk.Value.AlwaysShow" xml:space="preserve"><value>Her zaman gösteri her zaman göster</value></data>
+  <data name="Emulation.Snk.Setting.NeoGeoMode" xml:space="preserve"><value>Neo-Geo modu</value></data>
+  <data name="Emulation.Snk.Help.NeoGeoMode" xml:space="preserve"><value>Seçiminize bağlı olarak uygun biyos yükü, böyle bir bios, koşu oyunla uyumlu</value></data>
+  <data name="Emulation.Snk.Value.MVSEuropeAsiaEnglish" xml:space="preserve"><value>MVS Avrupa/Asya (İngilizce)</value></data>
+  <data name="Emulation.Snk.Value.MVSUSAEnglishCensored" xml:space="preserve"><value>MVS USA (İngilizce - Censored)</value></data>
+  <data name="Emulation.Snk.Value.MVSJapanJapanese" xml:space="preserve"><value>MVS Japonya (Japon)</value></data>
+  <data name="Emulation.Snk.Value.AESEuropeAsiaEnglish" xml:space="preserve"><value>AES Avrupa/Asya (İngilizce)</value></data>
+  <data name="Emulation.Snk.Value.AESJapanJapanese" xml:space="preserve"><value>AES Japonya (Japon)</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardMode" xml:space="preserve"><value>Memory kart modu modu</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardMode" xml:space="preserve"><value>hafıza kartı için davranışı değiştirin</value></data>
+  <data name="Emulation.Snk.Value.Shared" xml:space="preserve"><value>Paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan paylaşılan</value></data>
+  <data name="Emulation.Snk.Value.PerGame"><value>per-game</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip11" xml:space="preserve"><value>Debug Dip 1 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip11" xml:space="preserve"><value>Enable Debug Dip 1 1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip12" xml:space="preserve"><value>Debug Dip 1 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip12" xml:space="preserve"><value>Enable Debug Dip 1 2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip13" xml:space="preserve"><value>Debug Dip 1 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip13" xml:space="preserve"><value>Enable Debug Dip 1 3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip14" xml:space="preserve"><value>Debug Dip 1 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip14" xml:space="preserve"><value>Enable Debug Dip 1 4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip15" xml:space="preserve"><value>Debug Dip 1 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip15" xml:space="preserve"><value>Enable Debug Dip 1 5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip16" xml:space="preserve"><value>Debug Dip 1 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip16" xml:space="preserve"><value>Enable Debug Dip 1 6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip17" xml:space="preserve"><value>Debug Dip 1 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip17" xml:space="preserve"><value>Enable Debug Dip 1 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip18" xml:space="preserve"><value>Debug Dip 1 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip18" xml:space="preserve"><value>Enable Debug Dip 1 8</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip21" xml:space="preserve"><value>Debug Dip 2 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip21" xml:space="preserve"><value>Enable Debug Dip 2 1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip22" xml:space="preserve"><value>Debug Dip 2 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip22" xml:space="preserve"><value>Enable Debug Dip 2 2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip23" xml:space="preserve"><value>Debug Dip 2 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip23" xml:space="preserve"><value>Enable Debug Dip 2 3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip24" xml:space="preserve"><value>Debug Dip 2 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip24" xml:space="preserve"><value>Enable Debug Dip 2 4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip25" xml:space="preserve"><value>Debug Dip 2 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip25" xml:space="preserve"><value>Enable Debug Dip 2 5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip26" xml:space="preserve"><value>Debug Dip 2 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip26" xml:space="preserve"><value>Enable Debug Dip 2 6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip27" xml:space="preserve"><value>Debug Dip 2 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip27" xml:space="preserve"><value>Enable Debug Dip 2 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip28" xml:space="preserve"><value>Debug Dip 2 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip28" xml:space="preserve"><value>Enable Debug Dip 2 8</value></data>
+  <data name="Emulation.Snk.Setting.Layer1" xml:space="preserve"><value>1.</value></data>
+  <data name="Emulation.Snk.Help.Layer1" xml:space="preserve"><value>Çünkü</value></data>
+  <data name="Emulation.Snk.Setting.Layer2" xml:space="preserve"><value>2.</value></data>
+  <data name="Emulation.Snk.Setting.Layer3" xml:space="preserve"><value>Katman 3</value></data>
+  <data name="Emulation.Snk.Setting.Layer4" xml:space="preserve"><value>Katman 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite1"><value>Sprite 1</value></data>
+  <data name="Emulation.Snk.Setting.Sprite2"><value>Sprite 2</value></data>
+  <data name="Emulation.Snk.Setting.Sprite3"><value>Sprite 3</value></data>
+  <data name="Emulation.Snk.Setting.Sprite4"><value>Sprite 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite5"><value>Sprite 5</value></data>
+  <data name="Emulation.Snk.Setting.Sprite6"><value>Sprite 6</value></data>
+  <data name="Emulation.Snk.Setting.Sprite7"><value>Sprite 7</value></data>
+  <data name="Emulation.Snk.Setting.Sprite8"><value>Sprite 8</value></data>
+  <data name="Emulation.Snk.Setting.ThreadMode"><value>Thread Mode</value></data>
+  <data name="Emulation.Snk.Setting.Cheats" xml:space="preserve"><value>Hileler</value></data>
+  <data name="Emulation.Snk.Setting.Throttle"><value>Throttle</value></data>
+  <data name="Emulation.Snk.Setting.BootToBIOS" xml:space="preserve"><value>Çığ BIOS</value></data>
+  <data name="Emulation.Snk.Setting.BootToOSD" xml:space="preserve"><value>Çığ OSD</value></data>
+  <data name="Emulation.Snk.Setting.ReadConfiguration" xml:space="preserve"><value>Dersi Oku</value></data>
+  <data name="Emulation.Snk.Setting.WriteConfiguration" xml:space="preserve"><value>Write Build</value></data>
+  <data name="Emulation.Snk.Setting.MAMEINIPaths" xml:space="preserve"><value>MAME INI Yollar</value></data>
+  <data name="Emulation.Snk.Setting.Softlists" xml:space="preserve"><value>Yumuşak listeler</value></data>
+  <data name="Emulation.Snk.Setting.MediaType"><value>Media Type</value></data>
+  <data name="Emulation.Snk.Value.Cart" xml:space="preserve"><value>Araba</value></data>
+  <data name="Emulation.Snk.Value.Cass" xml:space="preserve"><value>casss</value></data>
+  <data name="Emulation.Snk.Value.Cdrm"><value>cdrm</value></data>
+  <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>Fren</value></data>
+  <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>Sert zor zor zor zor zor zor</value></data>
+  <data name="Emulation.Snk.Value.Prin"><value>prin</value></data>
+  <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>serll</value></data>
+  <data name="Emulation.Snk.Setting.VFSEnabled"><value>VFS Enabled</value></data>
+  <data name="Emulation.Snk.Setting.JoystickDeadzone"><value>Joystick Deadzone</value></data>
+  <data name="Emulation.Snk.Setting.JoystickSaturation"><value>Joystick Saturation</value></data>
+  <data name="Emulation.Snk.Setting.JoystickThreshold"><value>Joystick Threshold</value></data>
+  <data name="Emulation.Snk.Setting.Joystick4WaySimulation" xml:space="preserve"><value>Joystick 4-way Simülasyon</value></data>
+  <data name="Emulation.Snk.Value.4way"><value>4way</value></data>
+  <data name="Emulation.Snk.Value.Strict" xml:space="preserve"><value>katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı katı</value></data>
+  <data name="Emulation.Snk.Value.Qbert"><value>qbert</value></data>
+  <data name="Emulation.Snk.Setting.ProfileButtonsPerGame" xml:space="preserve"><value>Profil Düğmeleri Game</value></data>
+  <data name="Emulation.Snk.Setting.Mouse"><value>Mouse</value></data>
+  <data name="Emulation.Snk.Setting.LightgunMode" xml:space="preserve"><value>Işık Modu</value></data>
+  <data name="Emulation.Snk.Value.Lightgun" xml:space="preserve"><value>Işık</value></data>
+  <data name="Emulation.Snk.Value.Touchscreen"><value>Touchscreen</value></data>
+  <data name="Emulation.Snk.Setting.LightgunOffscreenPosition" xml:space="preserve"><value>Işık Offscreen Position</value></data>
+  <data name="Emulation.Snk.Value.Free" xml:space="preserve"><value>Ücretsiz Ücretsiz Ücretsiz</value></data>
+  <data name="Emulation.Snk.Value.FixedTopLeft" xml:space="preserve"><value>Sabit (Top Left)</value></data>
+  <data name="Emulation.Snk.Value.FixedBottomRight" xml:space="preserve"><value>Sabit (Bottom Right)</value></data>
+  <data name="Emulation.Snk.Setting.ScreenRotationMode" xml:space="preserve"><value>Ekran Rotation Mode</value></data>
+  <data name="Emulation.Snk.Value.Internal" xml:space="preserve"><value>İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç İç</value></data>
+  <data name="Emulation.Snk.Setting.AudioProcessorSpeed" xml:space="preserve"><value>Audio işlemci hızı (%)</value></data>
+  <data name="Emulation.Snk.Help.AutomaticLoadFastForward" xml:space="preserve"><value>Deneysel özellik otomatik olarak hızlı ileri doğru gidiyor CD Erişim.&#xA;İşlerle:&#xA;- Genric SCSI&#xA;- Sega CD Neo Geo CD</value></data>
+  <data name="Emulation.Snk.Setting.CoinLimit"><value>Coin Limit</value></data>
+  <data name="Emulation.Snk.Setting.SampleRate" xml:space="preserve"><value>Örnek Puan</value></data>
+  <data name="Emulation.Snk.Help.SampleRate" xml:space="preserve"><value>İkinci olarak alınan ses örnekleri sayısı daha iyi kaliteli ses sağlar.</value></data>
+  <data name="Emulation.Snk.Value.Threshold" xml:space="preserve"><value>eşik eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş eş</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipInterval"><value>Frameskip Interval</value></data>
+  <data name="Emulation.Snk.Help.FrameskipInterval" xml:space="preserve"><value>Atlanılan en fazla sayıda ardışık çerçeve. Aşağı değerler, ev sahibi aşırı olduğunda daha fazla ses damla pahasına görsel güncelleştirmeleri düz tutar.</value></data>
+  <data name="Emulation.Snk.Setting.ShowGameInformation" xml:space="preserve"><value>Game Information</value></data>
+  <data name="Emulation.Snk.Help.ShowGameInformation" xml:space="preserve"><value>Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show Show MAME'Oyun başlamadan önce başlangıçta sürücü-status ve oyun-bilgi ekranları koşmaya başlar.</value></data>
+  <data name="Emulation.Snk.Setting.Stereo" xml:space="preserve"><value>Stereo Stereo</value></data>
+  <data name="Emulation.Snk.Help.Stereo" xml:space="preserve"><value>Çıkış stereo ses. Biraz daha düşük için hayal edilebilir CPU stereo karıştırmayı kullanmayan oyunlarda.</value></data>
+  <data name="Emulation.Snk.Setting.SystemType" xml:space="preserve"><value>Sistem Türü</value></data>
+  <data name="Emulation.Snk.Help.SystemType" xml:space="preserve"><value>Sistem Türü'ni belirtin: AES, MVSYa da Evren BIOS Sistem Sistem Sistemi</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoAESHomeConsole" xml:space="preserve"><value>Neo Geo Geo AES (Ev Konsolu)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoMVSArcade" xml:space="preserve"><value>Neo Geo Geo MVS (Arcade)</value></data>
+  <data name="Emulation.Snk.Value.UniverseBIOSCommunityEnhancedBIOS" xml:space="preserve"><value>Evren Evren Evren Evren Evren Evren Evren BIOS (Toplum-enhanced BIOS)</value></data>
+  <data name="Emulation.Snk.Setting.CDSystemType" xml:space="preserve"><value>CD Sistem Türü</value></data>
+  <data name="Emulation.Snk.Help.CDSystemType" xml:space="preserve"><value>The € the € the CD Neo Geo Geo'u yüklemede Sistem Türü CD disk görüntüleri</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDFrontLoader" xml:space="preserve"><value>Neo Geo Geo CD (FrontVPN)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDTopLoader" xml:space="preserve"><value>Neo Geo Geo CD (Top parameter)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDZUniverseBIOS" xml:space="preserve"><value>Neo Geo Geo CDZ (Universe BIOS)</value></data>
+  <data name="Emulation.Snk.Setting.Region" xml:space="preserve"><value>Bölge Bölge</value></data>
+  <data name="Emulation.Snk.Help.Region" xml:space="preserve"><value>Bölgeyi açın: USAJaponya, Asya, Avrupa</value></data>
+  <data name="Emulation.Snk.Value.Europe" xml:space="preserve"><value>Avrupa Avrupa Avrupa Avrupa Avrupa</value></data>
+  <data name="Emulation.Snk.Help.MemoryCard" xml:space="preserve"><value>Enable veya Memory Card Card</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardWriteProtect" xml:space="preserve"><value>Bellek kartına değişiklikler önlemek.</value></data>
+  <data name="Emulation.Snk.Setting.SettingMode" xml:space="preserve"><value>Ayarlama Modu</value></data>
+  <data name="Emulation.Snk.Help.SettingMode" xml:space="preserve"><value>Sistemin kurulması ROM Jump at boot on thepost systems</value></data>
+  <data name="Emulation.Snk.Help.FourPlayerMode" xml:space="preserve"><value>Set Four Player (dual MVS Kabin) Asya/Japonya için mod MVS sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri sistemleri</value></data>
+  <data name="Emulation.Snk.Help.Freeplay" xml:space="preserve"><value>Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play Play MVS Paraları eklemeye gerek kalmadan oyunlar</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanTop" xml:space="preserve"><value>Orijinal CRT'lerde bir bezel veya sınır tarafından gizlenmiş olan hologramı (top)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanBottom" xml:space="preserve"><value>Orijinal CRT'lerde bir bezel veya sınır tarafından gizlenmiş olan maske (düşün)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanLeft" xml:space="preserve"><value>Orijinal CRT'lerde bir bezel veya sınır tarafından gizlenmiş olan maske (sol)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanRight" xml:space="preserve"><value>Orijinal CRT'lerde bir bezel veya sınır tarafından gizlenmiş olan piksel (sağ)</value></data>
+  <data name="Emulation.Snk.Setting.Palette" xml:space="preserve"><value>Cöte</value></data>
+  <data name="Emulation.Snk.Help.Palette" xml:space="preserve"><value>Taklitleri ayarlayın</value></data>
+  <data name="Emulation.Snk.Setting.AspectRatio" xml:space="preserve"><value>Aspect Orantılı</value></data>
+  <data name="Emulation.Snk.Help.AspectRatio" xml:space="preserve"><value>Aspect Oranını Belirle</value></data>
+  <data name="Emulation.Snk.Value.PerfectlySquarePixels11PAR" xml:space="preserve"><value>Mükemmel Square Pixels (1:1 PAR)</value></data>
+  <data name="Emulation.Snk.Value.OstensiblyAccurateNTSCAspectRatio4544PAR" xml:space="preserve"><value>Ostensibly Doğru NTSC Aspect Oran (45:44) PAR)</value></data>
+  <data name="Emulation.Snk.Value.VeryTraditionalNTSCAspectRatio43DAR" xml:space="preserve"><value>Çok Geleneksel NTSC Aspect Oran (4:3:3 DAR)</value></data>
+  <data name="Emulation.Snk.Setting.SpritesPerLineLimit"><value>Sprites-per-line Limit</value></data>
+  <data name="Emulation.Snk.Help.SpritesPerLineLimit" xml:space="preserve"><value>sprites-per-line limitini ayarlayın - bazı oyunlarda glitches neden olur</value></data>
+  <data name="Emulation.Snk.Setting.ProcessorSpeed"><value>Processor speed</value></data>
+  <data name="Emulation.Snk.Help.ProcessorSpeed" xml:space="preserve"><value>işlemciyi 24 MHz'de çalıştırın. Bu hız oyunlarda hatalarına neden olabilir.</value></data>
+  <data name="Emulation.Snk.Setting.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>Engelliler ADPCM Accumulator</value></data>
+  <data name="Emulation.Snk.Help.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>Değişimi Değiştirin ADPCM Bazı oyunlarda ses hataları doğrulamak için yardımcı edici davranışlar. Bu ayar diğer oyunlar için devre dışı bırak.</value></data>
+  <data name="Emulation.Snk.Help.CDSpeedHack" xml:space="preserve"><value>Patch Patch BIOS Yükleme süresini azaltmak için yoğun beklenen döngüler ( Evren için çalışmıyor BIOS)</value></data>
+  <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>Doğruyu düzeltin BIOS Yükleme noktası, bir zaman CD Buffer DMA Bir sektörden daha büyük, Mücadelenin bonus aşamasındaki Art of Fighting'ın bozulması. Bu bir hack ve gerçek donanım davranışı teyit edilmez.</value></data>
+  <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>Hızlı ileri CD yükleme ekran ekranları yükleme ekran ekran ekran ekranları</value></data>
+  <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>Üçüncü sipariş interpolasyon (4 puan)</value></data>
+  <data name="Emulation.Emulator.race.Description"><value>Neo Geo Pocket ve Neo Geo Pocket Color konsollarını emüle eder.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Neo Geo Pocket ve Neo Geo Pocket Color konsollarını emüle eder.</value></data>
+  <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>Uyumlu oyunlar tarafından kullanılan dili seçin.</value></data>
+  <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Video çerçeve atping</value></data>
+  <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>Performans yetersiz olduğunda bazı video çerçevelerini girin, ses çıkışında kesintileri azaltmak için.</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipThreshold" xml:space="preserve"><value>Audio buffer eşi (%)</value></data>
+  <data name="Emulation.Snk.Help.FrameskipThreshold" xml:space="preserve"><value>Video çerçevelerini ses tamponunun kapasitesinin bu yüzdesinden daha az veri içerdiğinde keşfedin.</value></data>
+  <data name="Emulation.Snk.Help.AudioQuality" xml:space="preserve"><value>Daha hızlı ses sentezi ve daha doğru ses sentezi arasında seçim yapın.</value></data>
+  <data name="Emulation.Snk.Help.AudioSampleRate" xml:space="preserve"><value>Çıktı ses örnekleme frekansı seçin. Yüksek frekanslar ses kalitesini artırabilir ve daha fazla işleme gücü gerektirir.</value></data>
+  <data name="Emulation.Snk.Setting.AutoSaveLoadStates" xml:space="preserve"><value>Kaydet ve restore devletler otomatik olarak otomatik olarak geri yükleyin</value></data>
+  <data name="Emulation.Snk.Help.SkipDisclaimer" xml:space="preserve"><value>Bir oyun başladığında yasal farkı Gizlen.</value></data>
+  <data name="Emulation.Snk.Help.SkipWarnings" xml:space="preserve"><value>Bir oyun başladığında bilinen sorunlar hakkında uyarılar.</value></data>
+  <data name="Emulation.Snk.Help.SampleRateHint" xml:space="preserve"><value>Çıktı ses örnekleme frekansı seçin. Otomatik mod tercih edilen çıktı frekansı kullanır.</value></data>
+  <data name="Emulation.Snk.Value.UpPriorityUpOverrideDown" xml:space="preserve"><value>Öncelikli yönüne dön</value></data>
+  <data name="Emulation.Snk.Value.DownPriorityLeftRightLastInputPriority" xml:space="preserve"><value>Aşağı yönde öncelik verin; en son yatay giriş kullanın</value></data>
+  <data name="Emulation.Snk.Help.CrosshairEmulation" xml:space="preserve"><value>Hedef işaretleyiciyi gösterip gösterip gösterip gösterip gösterip, otomatik mod onu ışık tabancası veya dokunmatik ekran kullanıldığında saklar.</value></data>
+  <data name="Emulation.Snk.Value.UseBiosSetInBIOSDipswitch" xml:space="preserve"><value>Kullanımı kullanın BIOS Donanım anahtarları tarafından seçilenler</value></data>
+  <data name="Emulation.Snk.Setting.SoftlistAutomaticMediaType" xml:space="preserve"><value>Medya türü otomatik olarak otomatik olarak otomatik olarak otomatik olarak tespit edilen tespit tespit tespiti</value></data>
+  <data name="Emulation.Snk.Help.VFSEnabled" xml:space="preserve"><value>Uygulama tarafından sağlanan sanal dosya sistemini kullanın. Version 4 veya daha sonra gereklidir.</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkHardcodedOverlayOpacity" xml:space="preserve"><value>İnşa Edilmiş - Overlay opacity</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardWriteProtect" xml:space="preserve"><value>Değişim kartının değişikliklerine karşı korumasını sağlayın</value></data>
+  <data name="Emulation.Snk.Setting.DarkFilterLevel" xml:space="preserve"><value>Ekran karanlıklama (%)</value></data>
+  <data name="Emulation.Snk.Value.Fast" xml:space="preserve"><value>Hızlı ses sentezi</value></data>
+  <data name="Emulation.Snk.Value.AccurateBandLimited" xml:space="preserve"><value>Doğru ses sentezi</value></data>
+  <data name="Emulation.Snk.Setting.SaveStateNaming" xml:space="preserve"><value>Kaydetilen devlet dosyası isimleri</value></data>
+  <data name="Emulation.Snk.Setting.EnableCheats" xml:space="preserve"><value>Enable hile kodları</value></data>
+  <data name="Emulation.Snk.Setting.HideNagScreen" xml:space="preserve"><value>Gizleniyorum Yasal Açıklama Ekran</value></data>
+  <data name="Emulation.Snk.Setting.CoreProvidedAspectRatio" xml:space="preserve"><value>Ekran yönü oranı, emülatör tarafından sağlanan</value></data>
+  <data name="Emulation.Snk.Setting.SetFrameskip" xml:space="preserve"><value>Video çerçeveleri atlamak için</value></data>
+  <data name="Emulation.Snk.Setting.SampleRateHint" xml:space="preserve"><value>Tercih edilen ses örneklemesi frekans frekans frekans</value></data>
+  <data name="Emulation.Snk.Setting.UseExternalHiscoreDat" xml:space="preserve"><value>Dış yüksek işaret dosyasını kullanın hiscore.dat</value></data>
+  <data name="Emulation.Snk.Setting.DisplayMAMEMenu" xml:space="preserve"><value>Gösterin MAME Menü menü menü</value></data>
+  <data name="Emulation.Snk.Setting.DisplayArtwork" xml:space="preserve"><value>dekoratif sanat sanat sanat sanatını göster</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkResolutionMultiplier" xml:space="preserve"><value>Dekoratif sanat çözümü multiplier</value></data>
+  <data name="Emulation.Snk.Value.AutoAggressive" xml:space="preserve"><value>Aggressive otomatik mod</value></data>
+  <data name="Emulation.Snk.Value.AutoMax" xml:space="preserve"><value>En fazla otomatik mod</value></data>
+  <data name="Emulation.Snk.Setting.AutosaveHiscore" xml:space="preserve"><value>Yüksek puanları otomatik olarak kurtarın</value></data>
+  <data name="Emulation.Snk.Value.Recursively" xml:space="preserve"><value>Arama subfolders</value></data>
+  <data name="Emulation.Snk.Setting.BypassTimingSkew" xml:space="preserve"><value>Zamanlamayın</value></data>
+  <data name="Emulation.Snk.Setting.CPUClockScale"><value>Processor speed multiplier</value></data>
+  <data name="Emulation.Snk.Setting.FixedFrameskip" xml:space="preserve"><value>Sabit video çerçevelerinin sayısı atlamak için</value></data>
+  <data name="Emulation.Snk.Value.Fixed" xml:space="preserve"><value>Sabit sayı sayısı</value></data>
+  <data name="Emulation.Snk.Setting.Hiscores" xml:space="preserve"><value>Yüksek puanlar</value></data>
+  <data name="Emulation.Snk.Setting.AllowPatchedRomsets" xml:space="preserve"><value>Değiştirilen oyun arşivlerine İzin Ver</value></data>
+  <data name="Emulation.Snk.Value.2Point1stOrder" xml:space="preserve"><value>İlk sipariş interpolasyon (2 puan)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderer" xml:space="preserve"><value>Alternatif uygulama yöntemi</value></data>
+  <data name="Emulation.Snk.Value.Cropped"><value>Cropped image</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRendererResolution" xml:space="preserve"><value>Alternatif uygulama çözümü</value></data>
+  <data name="Emulation.Snk.Setting.AutomaticLoadFastForward" xml:space="preserve"><value>Hız yukarı disk yükleme otomatik olarak otomatik olarak</value></data>
+  <data name="Emulation.Snk.Setting.FourPlayerMode" xml:space="preserve"><value>Four-player modu</value></data>
+  <data name="Emulation.Snk.Setting.Freeplay" xml:space="preserve"><value>Para eklemeden oynayın</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanTop" xml:space="preserve"><value>Hide piksel üst ekran kenarı boyunca</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanBottom" xml:space="preserve"><value>Ekran kenar boyunca Hide piksel</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanLeft" xml:space="preserve"><value>sol ekran kenar boyunca Hide piksel</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanRight" xml:space="preserve"><value>Doğru ekran kenarı boyunca Hide piksel</value></data>
+  <data name="Emulation.Snk.Value.ResistorNetwork" xml:space="preserve"><value>Diren veya ağ renkli simülasyon</value></data>
+  <data name="Emulation.Snk.Value.Raw" xml:space="preserve"><value>Unmodified color</value></data>
+  <data name="Emulation.Snk.Value.HardwareAccurate96" xml:space="preserve"><value>Orijinal donanım limiti (96)</value></data>
+  <data name="Emulation.Snk.Value.Double192" xml:space="preserve"><value>Orijinal limiti (192)</value></data>
+  <data name="Emulation.Snk.Value.Triple288" xml:space="preserve"><value>Özgün sınırın üç katı (288)</value></data>
+  <data name="Emulation.Snk.Setting.CDSpeedHack" xml:space="preserve"><value>Disk yükleme gecikme gecikme gecikme gecikme gecikme gecikme gecikme gecikmeleri</value></data>
+  <data name="Emulation.Snk.Setting.CDDMALengthLimit" xml:space="preserve"><value>Disk veri transferlerinin boyutunu sınırlayın</value></data>
+  <data name="Emulation.Snk.Setting.SkipCDLoading" xml:space="preserve"><value>Disk yükleme animasyonunu Skip the diskload animasyon</value></data>
+  <data name="Emulation.Snk.Setting.HorizontalOverscan"><value>Sol ve sağ ekran kenarları boyunca Hide piksel</value></data>
+  <data name="Emulation.Snk.Setting.PerGameSaves"><value>Ayrı her oyun için tasarruflar</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilterLevel"><value>Ses filtresi seviyesi (%)</value></data>
+</root>

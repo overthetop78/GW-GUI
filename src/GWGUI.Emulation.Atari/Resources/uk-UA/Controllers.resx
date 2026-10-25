@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Atari джойстик</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Нумерична клавіатура</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed"><value>Швидкість руху свічок</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton"><value>В той час як кнопка пожежі проводиться вниз</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways"><value>Зареєструватися</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility"><value>сумісність контролера</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity"><value>Цифрова чутливість</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity"><value>Аналоговий чутливість</value></data>
+  <data name="Emulation.Atari.Controller.DualStick"><value>Два джойстики, які використовуються разом</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts"><value>Обмін портами</value></data>
+</root>

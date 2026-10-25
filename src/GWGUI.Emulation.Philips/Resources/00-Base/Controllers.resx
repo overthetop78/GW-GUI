@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Controller.CdiGamepad" xml:space="preserve"><value>CD-I gamepad</value></data>
+  <data name="Emulation.Philips.Controller.LightGun" xml:space="preserve"><value>Lightgun</value></data>
+  <data name="Emulation.Philips.Input.Action1" xml:space="preserve"><value>Button 1</value></data>
+  <data name="Emulation.Philips.Input.Action2" xml:space="preserve"><value>Button 2</value></data>
+  <data name="Emulation.Philips.Input.Action3" xml:space="preserve"><value>Button 3</value></data>
+  <data name="Emulation.Philips.Input.Auxiliary" xml:space="preserve"><value>Auxiliary button</value></data>
+  <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Shoot</value></data>
+  <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Reload</value></data>
+  <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Gun trigger</value></data>
+  <data name="Emulation.Philips.Keyboard.PhilipsP2000ClearLine" xml:space="preserve"><value>CLR LN</value></data>
+  <data name="Emulation.Philips.Keyboard.PhilipsP2000Code" xml:space="preserve"><value>CODE</value></data>
+  <data name="Emulation.Philips.Keyboard.PhilipsP2000DoubleZero" xml:space="preserve"><value>00</value></data>
+  <data name="Emulation.Philips.Keyboard.PhilipsP2000Start" xml:space="preserve"><value>START</value></data>
+  <data name="Emulation.Philips.Keyboard.PhilipsP2000Stop" xml:space="preserve"><value>STOP</value></data>
+  <data name="Emulation.Philips.Keyboard.PhilipsP2000Zoek" xml:space="preserve"><value>ZOEK</value></data>
+  <data name="Emulation.Philips.Setting.SwapGamepads"><value>Swap controller ports 1 and 2</value></data>
+</root>

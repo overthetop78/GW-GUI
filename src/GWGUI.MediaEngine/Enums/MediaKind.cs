@@ -7,5 +7,6 @@ public enum MediaKind
     Floppy,
     HardDisk,
     Optical,
-    Tape
+    Tape,
+    Cartridge
 }

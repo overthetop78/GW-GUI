@@ -1,4 +1,4 @@
-﻿using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
+﻿using MediaImageFormatIds = GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
 
 using GWGUI.MediaEngine.Functions;
 using GWGUI.MediaEngine.Images.Models.Sectors;

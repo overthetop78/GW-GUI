@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft" xml:space="preserve"><value>Nút trái</value></data>
+  <data name="Emulation.Epoch.Input.FireRight" xml:space="preserve"><value>Nút Phải</value></data>
+  <data name="Emulation.Epoch.Input.Power" xml:space="preserve"><value>Nút nguồn điện</value></data>
+  <data name="Emulation.Epoch.Input.Reset" xml:space="preserve"><value>Nút Đặt lại</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft" xml:space="preserve"><value>Chuyển cái cần gạt sang trái</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight" xml:space="preserve"><value>Chuyển cái cần gạt sang phải</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease" xml:space="preserve"><value>Chọn khóa học tiếp theo</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease" xml:space="preserve"><value>Chọn khóa học trò chơi trước</value></data>
+  <data name="Emulation.Epoch.Input.GunFire" xml:space="preserve"><value>Súng ánh sáng gây nên</value></data>
+  <data name="Emulation.Epoch.Input.GunReload" xml:space="preserve"><value>Tải lại súng ánh sáng</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease" xml:space="preserve"><value>Con lắc 1: Quay ngược chiều kim đồng hồ</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase" xml:space="preserve"><value>Con lắc 1: Quay theo chiều kim đồng hồ</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease" xml:space="preserve"><value>Chèo 2: Quay ngược chiều kim đồng hồ</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase" xml:space="preserve"><value>Chèo 2: Quay theo chiều kim đồng hồ</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease" xml:space="preserve"><value>Chèo 3: Quay ngược chiều kim đồng hồ</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase" xml:space="preserve"><value>Khoảng 3 chiều kim đồng hồ</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease" xml:space="preserve"><value>Chèo 4: Quay ngược chiều kim đồng hồ</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase" xml:space="preserve"><value>Con lắc 4: Quay theo chiều kim đồng hồ</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease" xml:space="preserve"><value>Nhắm vào khẩu súng bên trái.</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease" xml:space="preserve"><value>Nhắm phải khẩu súng.</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease" xml:space="preserve"><value>Nhắm súng lên trên.</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease" xml:space="preserve"><value>Nhắm súng xuống.</value></data>
+</root>

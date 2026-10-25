@@ -12,5 +12,6 @@
   </PropertyGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="GWGUI.Tests" />
+    <InternalsVisibleTo Include="GWGUI.LocalEmulationTests" />
   </ItemGroup>
 </Project>

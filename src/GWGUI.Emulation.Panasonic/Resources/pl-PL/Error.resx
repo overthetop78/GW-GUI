@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Panasonic.Error.AlreadyInitialized"><value>Host emulacyjny jest już zainicjowany.</value></data>
+  <data name="Emulation.Panasonic.Error.CommunicationFailed"><value>Komunikacja hosta emulacyjnego nie powiodła się.</value></data>
+  <data name="Emulation.Panasonic.Error.ContentFileMissing"><value>Nie można znaleźć skonfigurowanego medium.</value></data>
+  <data name="Emulation.Panasonic.Error.DynamicMediaUnsupported"><value>Sesja emulacyjna nie może wymienić tego medium.</value></data>
+  <data name="Emulation.Panasonic.Error.ExecutableMissing"><value>Brak pliku wykonywalnego hosta emulacyjnego.</value></data>
+  <data name="Emulation.Panasonic.Error.InstalledLibraryLockedFormat"><value>Zainstalowana biblioteka nie może zostać zastąpiona: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.InvalidArchitecture"><value>Ściągnięty rdzeń nie jest Windows x64.</value></data>
+  <data name="Emulation.Panasonic.Error.InvalidConfiguration"><value>Konfiguracja emulacji jest nieprawidłowa.</value></data>
+  <data name="Emulation.Panasonic.Error.InvalidResponseLengthFormat"><value>Nieprawidłowa długość odpowiedzi hosta emulacyjnego: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.MachineInvalidState"><value>Sesja emulacyjna nie jest w wymaganym stanie.</value></data>
+  <data name="Emulation.Panasonic.Error.MachineStopped"><value>Sesja emulacji się skończyła.</value></data>
+  <data name="Emulation.Panasonic.Error.MissingExpectedLibraryFormat"><value>Pobierane archiwum nie zawiera {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.MissingPublishedDate"><value>Oficjalna odpowiedź nie określa daty jej publikacji.</value></data>
+  <data name="Emulation.Panasonic.Error.NotInitialized"><value>Host emulacyjny nie jest inicjalizowany.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessExitSuffixFormat"><value> Kod wyjścia: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessNotInitialized"><value>Proces emulacyjny hosta nie jest inicjalizowany.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessStartFailed"><value>Proces emulacyjny hosta nie mógł się rozpocząć.</value></data>
+  <data name="Emulation.Panasonic.Error.ProcessUnavailable"><value>Proces emulacyjny hosta jest niedostępny.</value></data>
+  <data name="Emulation.Panasonic.Error.ProtocolVersionMismatchFormat"><value>Wersja protokołu {0} nie pasuje {1}.</value></data>
+  <data name="Emulation.Panasonic.Error.RequestCancelled"><value>Zapytanie o emulację zostało anulowane.</value></data>
+  <data name="Emulation.Panasonic.Error.ResponseTimeout"><value>Reakcja gospodarza emulacji minęła.</value></data>
+  <data name="Emulation.Panasonic.Error.ResponseUnavailable"><value>Odpowiedź gospodarza emulacji jest niedostępna.</value></data>
+  <data name="Emulation.Panasonic.Error.SharedVideoUnavailable"><value>Wspólny transport wideo jest niedostępny.</value></data>
+  <data name="Emulation.Panasonic.Error.StateIncompatible"><value>Zapisany stan jest niezgodny z obecną maszyną.</value></data>
+  <data name="Emulation.Panasonic.Error.StateInvalid"><value>Zapisany stan jest niepoprawny.</value></data>
+  <data name="Emulation.Panasonic.Error.StateUnavailable"><value>Emulator nie obsługuje zapisanych stanów.</value></data>
+  <data name="Emulation.Panasonic.Error.UnknownCommandFormat"><value>Nieznane polecenie emulacyjnego hosta: {0}.</value></data>
+  <data name="Emulation.Panasonic.Error.UnsupportedControllerDevice"><value>Urządzenie sterujące nie jest obsługiwane.</value></data>
+</root>

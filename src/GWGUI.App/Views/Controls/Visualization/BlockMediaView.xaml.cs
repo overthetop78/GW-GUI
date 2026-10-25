@@ -43,11 +43,7 @@ public partial class BlockMediaView : UserControl, IMediaVisualizationView
         _selectedSurface = null;
         _pan = new Point();
         GeometryTab.Visibility = model.Geometry is null ? Visibility.Collapsed : Visibility.Visible;
-        var surfaces = model.Geometry is null
-            ? []
-            : Enumerable.Range(0, model.Geometry.Heads)
-                .Select(index => new KeyValuePair<int, string>(index, LocExtension.Get("Visual.Surface", index)))
-                .ToArray();
+        var surfaces = model.Geometry is null ? [] : Enumerable.Range(0, model.Geometry.Heads).Select(index => new KeyValuePair<int, string>(index, LocExtension.Get("Visual.Surface", index))).ToArray();
         SurfaceSelector.ItemsSource = surfaces;
         SurfaceSelector.SelectedIndex = surfaces.Length > 0 ? 0 : -1;
         UpdateSelectionLabel();
@@ -64,22 +60,18 @@ public partial class BlockMediaView : UserControl, IMediaVisualizationView
     private void LogicalCanvas_PaintSurface(object? sender, SKPaintSurfaceEventArgs e)
     {
         _logicalRenderSize = (e.Info.Width, e.Info.Height);
-        RenderTranslated(e.Surface.Canvas, LogicalCanvas, e.Info.Width, e.Info.Height,
-            () => _logicalRenderer.Render(e.Surface.Canvas, _model, _selectedRange, e.Info.Width, e.Info.Height, _zoom));
+        RenderTranslated(e.Surface.Canvas, LogicalCanvas, e.Info.Width, e.Info.Height, () => _logicalRenderer.Render(e.Surface.Canvas, _model, _selectedRange, e.Info.Width, e.Info.Height, _zoom));
     }
 
     private void GeometryCanvas_PaintSurface(object? sender, SKPaintSurfaceEventArgs e)
     {
         _geometryRenderSize = (e.Info.Width, e.Info.Height);
-        RenderTranslated(e.Surface.Canvas, GeometryCanvas, e.Info.Width, e.Info.Height,
-            () => _geometryRenderer.Render(e.Surface.Canvas, _model, e.Info.Width, e.Info.Height, _selectedSurface, _zoom));
+        RenderTranslated(e.Surface.Canvas, GeometryCanvas, e.Info.Width, e.Info.Height, () => _geometryRenderer.Render(e.Surface.Canvas, _model, e.Info.Width, e.Info.Height, _selectedSurface, _zoom));
     }
 
-    private void LogicalCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
-        SelectLogicalAt(e.GetPosition(LogicalCanvas));
+    private void LogicalCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) => SelectLogicalAt(e.GetPosition(LogicalCanvas));
 
-    private void GeometryCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) =>
-        SelectGeometryAt(e.GetPosition(GeometryCanvas));
+    private void GeometryCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) => SelectGeometryAt(e.GetPosition(GeometryCanvas));
 
     private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
     {
@@ -114,12 +106,7 @@ public partial class BlockMediaView : UserControl, IMediaVisualizationView
     private void SelectLogicalAt(Point pointer)
     {
         var point = MapPointer(LogicalCanvas, _logicalRenderSize, pointer);
-        var range = _logicalRenderer.HitTest(
-            _model,
-            Math.Max(1, _logicalRenderSize.Width),
-            Math.Max(1, _logicalRenderSize.Height),
-            point,
-            _zoom);
+        var range = _logicalRenderer.HitTest(_model, Math.Max(1, _logicalRenderSize.Width), Math.Max(1, _logicalRenderSize.Height), point, _zoom);
         if (range is null) return;
         _selectedRange = range;
         UpdateSelectionLabel();
@@ -131,15 +118,10 @@ public partial class BlockMediaView : UserControl, IMediaVisualizationView
     private void SelectGeometryAt(Point pointer)
     {
         var point = MapPointer(GeometryCanvas, _geometryRenderSize, pointer);
-        var surface = _geometryRenderer.HitTest(
-            _model,
-            Math.Max(1, _geometryRenderSize.Width),
-            Math.Max(1, _geometryRenderSize.Height),
-            point);
+        var surface = _geometryRenderer.HitTest(_model, Math.Max(1, _geometryRenderSize.Width), Math.Max(1, _geometryRenderSize.Height), point);
         if (surface is null) return;
         _selectedSurface = surface;
-        SurfaceSelector.SelectedItem = SurfaceSelector.Items.Cast<KeyValuePair<int, string>>()
-            .FirstOrDefault(item => item.Key == surface);
+        SurfaceSelector.SelectedItem = SurfaceSelector.Items.Cast<KeyValuePair<int, string>>().FirstOrDefault(item => item.Key == surface);
         GeometryCanvas.InvalidateVisual();
         SurfaceSelected?.Invoke(surface);
     }
@@ -167,18 +149,14 @@ public partial class BlockMediaView : UserControl, IMediaVisualizationView
     {
         var maxX = Math.Max(0, canvas.ActualWidth * (_zoom - 1) / 2);
         var maxY = Math.Max(0, canvas.ActualHeight * (_zoom - 1) / 2);
-        _pan = new Point(
-            Math.Clamp(_pan.X + deltaX, -maxX, maxX),
-            Math.Clamp(_pan.Y + deltaY, -maxY, maxY));
+        _pan = new Point(Math.Clamp(_pan.X + deltaX, -maxX, maxX), Math.Clamp(_pan.Y + deltaY, -maxY, maxY));
         InvalidateCanvases();
     }
 
     private void RenderTranslated(SKCanvas canvas, SKElement element, int width, int height, Action render)
     {
         canvas.Save();
-        canvas.Translate(
-            (float)(_pan.X * width / Math.Max(1, element.ActualWidth)),
-            (float)(_pan.Y * height / Math.Max(1, element.ActualHeight)));
+        canvas.Translate((float)(_pan.X * width / Math.Max(1, element.ActualWidth)), (float)(_pan.Y * height / Math.Max(1, element.ActualHeight)));
         render();
         canvas.Restore();
     }
@@ -187,14 +165,10 @@ public partial class BlockMediaView : UserControl, IMediaVisualizationView
     {
         var width = Math.Max(1, renderSize.Width);
         var height = Math.Max(1, renderSize.Height);
-        return new SKPoint(
-            (float)((pointer.X - _pan.X) * width / Math.Max(1, canvas.ActualWidth)),
-            (float)((pointer.Y - _pan.Y) * height / Math.Max(1, canvas.ActualHeight)));
+        return new SKPoint((float)((pointer.X - _pan.X) * width / Math.Max(1, canvas.ActualWidth)), (float)((pointer.Y - _pan.Y) * height / Math.Max(1, canvas.ActualHeight)));
     }
 
-    private void UpdateSelectionLabel() => SelectionLabel.Text = _selectedRange is null
-        ? string.Empty
-        : $"LBA {_selectedRange.Start:N0} · {_selectedRange.Length:N0}";
+    private void UpdateSelectionLabel() => SelectionLabel.Text = _selectedRange is null ? string.Empty : _selectedRange.Label ?? $"LBA {_selectedRange.Start:N0} · {_selectedRange.Length:N0}";
 
     private void InvalidateCanvases()
     {

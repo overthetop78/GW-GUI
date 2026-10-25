@@ -13,8 +13,7 @@ public sealed class AtariKFileFileSystemReader : IFileSystemReader
 
     public IReadOnlySet<string> CatalogFormatIds => AtariKFileFormatCatalog.FormatIds;
 
-    public bool CanRead(IMediaSectorImage image) =>
-        CatalogFormatIds.Contains(image.FormatId) && AtariKFileFunctions.IsKBootFile(image);
+    public bool CanRead(IMediaSectorImage image) => CatalogFormatIds.Contains(image.FormatId) && AtariKFileFunctions.IsKBootFile(image);
 
     public FileSystemVolume Read(IMediaSectorImage image)
     {

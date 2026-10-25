@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.81.Description"><value>Emulerer Sinclair ZX81.</value></data>
+  <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>Lydhardware</value></data>
+  <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>Oprindelig indhold</value></data>
+  <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>Videohukommelse</value></data>
+  <data name="Emulation.Sinclair.Setting.AyStereoSeparation" xml:space="preserve"><value>AY stereokanalrækkefølge</value></data>
+  <data name="Emulation.Sinclair.Setting.AyVolume" xml:space="preserve"><value>AY volumen</value></data>
+  <data name="Emulation.Sinclair.Setting.BorderSize" xml:space="preserve"><value>Skærmgrænsemål</value></data>
+  <data name="Emulation.Sinclair.Setting.EmulationSpeed" xml:space="preserve"><value>Emuleringshastighed</value></data>
+  <data name="Emulation.Sinclair.Setting.HighResolution" xml:space="preserve"><value>Højdeopløsnings grafik</value></data>
+  <data name="Emulation.Sinclair.Setting.MemoryBankContent" xml:space="preserve"><value>8- 16 KiB-hukommelsesbank</value></data>
+  <data name="Emulation.Sinclair.Setting.MouseSwapButtons" xml:space="preserve"><value>Swap- museknapper</value></data>
+  <data name="Emulation.Sinclair.Setting.Palette" xml:space="preserve"><value>Farvepalet</value></data>
+  <data name="Emulation.Sinclair.Setting.SoundHardware" xml:space="preserve"><value>Lydhardware</value></data>
+  <data name="Emulation.Sinclair.Setting.SpeakerType" xml:space="preserve"><value>Taletype</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeAutoLoad" xml:space="preserve"><value>Automatisk indlæsning af kassette</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeFastLoad" xml:space="preserve"><value>Hurtig indlæsning af kassette</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeLoadSound" xml:space="preserve"><value>Belastningslyd fra kassette</value></data>
+  <data name="Emulation.Sinclair.Setting.VideoPreset" xml:space="preserve"><value>Videoforudindstillet</value></data>
+  <data name="Emulation.Sinclair.Value.AmberMonochrome" xml:space="preserve"><value>Amber monokrom</value></data>
+  <data name="Emulation.Sinclair.Value.Beeper" xml:space="preserve"><value>Bygning - i lyd generator</value></data>
+  <data name="Emulation.Sinclair.Value.GreenMonochrome" xml:space="preserve"><value>Grøn monokrom</value></data>
+  <data name="Emulation.Sinclair.Value.InvertedColours" xml:space="preserve"><value>Omvendt farve</value></data>
+  <data name="Emulation.Sinclair.Value.Monochrome" xml:space="preserve"><value>Sort og hvid</value></data>
+  <data name="Emulation.Sinclair.Value.None" xml:space="preserve"><value>Ingen</value></data>
+  <data name="Emulation.Sinclair.Value.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Emulation.Sinclair.Value.RomShadow" xml:space="preserve"><value>ROM spejl</value></data>
+  <data name="Emulation.Sinclair.Value.Television" xml:space="preserve"><value>Fjernsyn</value></data>
+  <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>Fjernsynstelefoner</value></data>
+  <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>Ufiltrerede</value></data>
+  <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>Videovisning</value></data>
+  <data name="Emulation.Emulator.fuse.Description"><value>Emulerer kompatible ZX Spectrum-systemer.</value></data>
+  <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>Bygning i lydvolumen</value></data>
+  <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>Revision 2 tastatur</value></data>
+  <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>Ryd billede</value></data>
+  <data name="Emulation.Sinclair.Value.Full" xml:space="preserve"><value>Fuldskærmsgrænse</value></data>
+  <data name="Emulation.Sinclair.Value.Noisy" xml:space="preserve"><value>Billede med støj</value></data>
+</root>

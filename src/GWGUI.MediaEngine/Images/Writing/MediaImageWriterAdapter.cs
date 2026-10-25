@@ -37,9 +37,7 @@ internal abstract class MediaImageWriterAdapter<TImage> : IMediaImageWriter
         Id = id;
         RepresentationKinds = new[] { representationKind }.ToFrozenSet();
         FormatIds = formats.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-        ProducedFileExtensions = extensions
-            .Select(MediaFileExtensionFunctions.Normalize)
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+        ProducedFileExtensions = extensions.Select(MediaFileExtensionFunctions.Normalize).ToFrozenSet(StringComparer.OrdinalIgnoreCase);
         this.canWrite = canWrite;
         this.write = write;
         ProducesMultipleFiles = producesMultipleFiles;
@@ -59,17 +57,10 @@ internal abstract class MediaImageWriterAdapter<TImage> : IMediaImageWriter
     {
         ArgumentNullException.ThrowIfNull(document);
         var extension = MediaFileExtensionFunctions.Normalize(targetExtension);
-        return TryGetImage(document, out var image) &&
-               FormatIds.Contains(targetFormatId) &&
-               ProducedFileExtensions.Contains(extension) &&
-               canWrite(image, document, targetFormatId, extension);
+        return TryGetImage(document, out var image) && FormatIds.Contains(targetFormatId) && ProducedFileExtensions.Contains(extension) && canWrite(image, document, targetFormatId, extension);
     }
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
@@ -77,14 +68,8 @@ internal abstract class MediaImageWriterAdapter<TImage> : IMediaImageWriter
             throw new NotSupportedException($"Writer '{Id}' cannot extract its required media representation.");
         var extension = Path.GetExtension(outputPath);
         if (!CanWrite(document, targetFormatId, extension))
-            throw new NotSupportedException(
-                $"Writer '{Id}' does not accept target '{targetFormatId}' with extension '{extension}'.");
-        var produced = await write(
-            image,
-            document,
-            outputPath,
-            targetFormatId,
-            cancellationToken).ConfigureAwait(false);
+            throw new NotSupportedException($"Writer '{Id}' does not accept target '{targetFormatId}' with extension '{extension}'.");
+        var produced = await write(image, document, outputPath, targetFormatId, cancellationToken).ConfigureAwait(false);
         if (produced.Count == 0 || produced.Any(string.IsNullOrWhiteSpace))
             throw new InvalidDataException($"Writer '{Id}' did not report valid produced files.");
         return produced.ToArray();

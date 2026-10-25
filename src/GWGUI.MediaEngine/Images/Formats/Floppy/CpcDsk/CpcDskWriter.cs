@@ -1,7 +1,6 @@
 using System.Buffers.Binary;
 
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.CpcDsk;
-
 /// <summary>Écrit les conteneurs CPCEMU DSK standard et EDSK en conservant leurs descripteurs.</summary>
 public sealed class CpcDskWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWriter? fileSystem = null)
 {
@@ -16,9 +15,11 @@ public sealed class CpcDskWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWr
     private static byte[] Build(CpcDskImage image)
     {
         var trackCount = checked(image.Cylinders * image.Heads);
-        if (image.Cylinders is < CpcDskLayout.MinimumCylinderCount or > CpcDskLayout.MaximumCylinderCount || image.Heads is < CpcDskLayout.MinimumHeadCount or > CpcDskLayout.MaximumHeadCount || image.Tracks.Count != trackCount) throw CpcDskExceptions.InvalidContainer("the declared geometry and track collection disagree");
+        if (image.Cylinders is < CpcDskLayout.MinimumCylinderCount or > CpcDskLayout.MaximumCylinderCount || image.Heads is < CpcDskLayout.MinimumHeadCount or > CpcDskLayout.MaximumHeadCount || image.Tracks.Count != trackCount)
+            throw CpcDskExceptions.InvalidContainer("the declared geometry and track collection disagree");
         var serializedTracks = image.Tracks.Select((track, index) => SerializeTrack(track, index, image.Kind)).ToArray();
-        if (image.Kind == CpcDskContainerKind.Standard) ValidateStandardTracks(serializedTracks);
+        if (image.Kind == CpcDskContainerKind.Standard)
+            ValidateStandardTracks(serializedTracks);
         var header = new byte[CpcDskLayout.DiskInformationBlockSize];
         (image.Kind == CpcDskContainerKind.Extended ? CpcDskFormat.ExtendedHeaderBytes : CpcDskFormat.StandardHeaderBytes).CopyTo(header);
         System.Text.Encoding.ASCII.GetBytes(CpcDskFormat.Creator).CopyTo(header, CpcDskLayout.CreatorOffset);
@@ -27,7 +28,8 @@ public sealed class CpcDskWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWr
         if (image.Kind == CpcDskContainerKind.Standard)
             BinaryPrimitives.WriteUInt16LittleEndian(header.AsSpan(CpcDskLayout.StandardTrackSizeOffset), checked((ushort)serializedTracks[0].Length));
         else
-            for (var index = 0; index < serializedTracks.Length; index++) header[CpcDskLayout.ExtendedTrackSizeTableOffset + index] = checked((byte)(serializedTracks[index].Length / CpcDskLayout.ExtendedTrackSizeUnit));
+            for (var index = 0; index < serializedTracks.Length; index++)
+                header[CpcDskLayout.ExtendedTrackSizeTableOffset + index] = checked((byte)(serializedTracks[index].Length / CpcDskLayout.ExtendedTrackSizeUnit));
         var output = new byte[header.Length + serializedTracks.Sum(track => track.Length)];
         header.CopyTo(output, 0);
         var position = header.Length;
@@ -36,21 +38,27 @@ public sealed class CpcDskWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWr
             track.CopyTo(output, position);
             position += track.Length;
         }
+
         return output;
     }
 
     private static byte[] SerializeTrack(CpcDskTrack track, int expectedIndex, CpcDskContainerKind kind)
     {
-        if (track.Index != expectedIndex) throw CpcDskExceptions.InvalidContainer($"track index {track.Index} appears at position {expectedIndex}");
+        if (track.Index != expectedIndex)
+            throw CpcDskExceptions.InvalidContainer($"track index {track.Index} appears at position {expectedIndex}");
         if (!track.IsPresent)
         {
-            if (kind == CpcDskContainerKind.Standard) throw CpcDskExceptions.StandardTrackNotRepresentable(track.Index);
-            return [];
+            if (kind == CpcDskContainerKind.Standard)
+                throw CpcDskExceptions.StandardTrackNotRepresentable(track.Index);
+            return[];
         }
-        if (track.Sectors.Count > CpcDskLayout.MaximumSectorsPerTrack) throw CpcDskExceptions.InvalidContainer($"track {track.Index} contains too many sector descriptors");
+
+        if (track.Sectors.Count > CpcDskLayout.MaximumSectorsPerTrack)
+            throw CpcDskExceptions.InvalidContainer($"track {track.Index} contains too many sector descriptors");
         var unpaddedSize = checked(CpcDskLayout.TrackInformationBlockSize + track.Sectors.Sum(sector => sector.Data.Count));
         var trackSize = kind == CpcDskContainerKind.Extended ? RoundToExtendedUnit(unpaddedSize) : unpaddedSize;
-        if (kind == CpcDskContainerKind.Extended && trackSize / CpcDskLayout.ExtendedTrackSizeUnit > byte.MaxValue) throw CpcDskExceptions.ExtendedTrackTooLarge(track.Index, trackSize);
+        if (kind == CpcDskContainerKind.Extended && trackSize / CpcDskLayout.ExtendedTrackSizeUnit > byte.MaxValue)
+            throw CpcDskExceptions.ExtendedTrackTooLarge(track.Index, trackSize);
         var bytes = new byte[trackSize];
         CpcDskFormat.TrackHeaderBytes.CopyTo(bytes);
         bytes[CpcDskLayout.TrackCylinderOffset] = track.Cylinder;
@@ -64,7 +72,8 @@ public sealed class CpcDskWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWr
         {
             var sector = track.Sectors[sectorIndex];
             var nominalSize = CpcDskLayout.MinimumSectorSize << (sector.SizeCode & CpcDskLayout.SectorSizeCodeMask);
-            if (kind == CpcDskContainerKind.Standard && sector.Data.Count != nominalSize) throw CpcDskExceptions.StandardTrackNotRepresentable(track.Index);
+            if (kind == CpcDskContainerKind.Standard && sector.Data.Count != nominalSize)
+                throw CpcDskExceptions.StandardTrackNotRepresentable(track.Index);
             var descriptor = CpcDskLayout.SectorDescriptorTableOffset + sectorIndex * CpcDskLayout.SectorDescriptorSize;
             bytes[descriptor + CpcDskLayout.SectorCylinderOffset] = sector.Cylinder;
             bytes[descriptor + CpcDskLayout.SectorHeadOffset] = sector.Head;
@@ -72,17 +81,20 @@ public sealed class CpcDskWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWr
             bytes[descriptor + CpcDskLayout.SectorSizeCodeOffset] = sector.SizeCode;
             bytes[descriptor + CpcDskLayout.SectorStatus1Offset] = sector.Status1;
             bytes[descriptor + CpcDskLayout.SectorStatus2Offset] = sector.Status2;
-            if (kind == CpcDskContainerKind.Extended) BinaryPrimitives.WriteUInt16LittleEndian(bytes.AsSpan(descriptor + CpcDskLayout.SectorStoredSizeOffset), checked((ushort)sector.Data.Count));
+            if (kind == CpcDskContainerKind.Extended)
+                BinaryPrimitives.WriteUInt16LittleEndian(bytes.AsSpan(descriptor + CpcDskLayout.SectorStoredSizeOffset), checked((ushort)sector.Data.Count));
             sector.Data.ToArray().CopyTo(bytes, dataPosition);
             dataPosition += sector.Data.Count;
         }
+
         return bytes;
     }
 
     private static void ValidateStandardTracks(IReadOnlyList<byte[]> tracks)
     {
         var size = tracks[0].Length;
-        if (size > ushort.MaxValue || tracks.Any(track => track.Length != size)) throw CpcDskExceptions.InvalidContainer("standard DSK requires one uniform track size");
+        if (size > ushort.MaxValue || tracks.Any(track => track.Length != size))
+            throw CpcDskExceptions.InvalidContainer("standard DSK requires one uniform track size");
     }
 
     private static int RoundToExtendedUnit(int value) => checked((value + CpcDskLayout.ExtendedTrackSizeUnit - 1) / CpcDskLayout.ExtendedTrackSizeUnit * CpcDskLayout.ExtendedTrackSizeUnit);

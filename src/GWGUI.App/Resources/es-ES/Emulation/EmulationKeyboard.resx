@@ -12,4 +12,5 @@
   <data name="Emulation.Keyboard.Priority.Description"><value>Los atajos de GW GUI y Windows permanecen activos y la máquina no los captura.</value></data>
   <data name="Emulation.Keyboard.EmulatedKey"><value>Tecla de la máquina</value></data>
   <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Las letras, los números y los modificadores normales se transmiten directamente. Aquí solo deben asignarse las teclas de función y especiales del Amiga.</value></data>
+  <data name="Emulation.Keyboard.Modifier.Shift"><value>Mayús</value></data>
 </root>

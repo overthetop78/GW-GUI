@@ -26,9 +26,6 @@ public partial class ApplicationStatusBar : UserControl
     public Ellipse OperationLight => OperationStatusLight;
     public TextBlock OperationText => OperationStatusText;
     public StatusBarItem ProgressItem => ProgressStatusItem;
-    public Grid GlobalProgress => GlobalProgressPanel;
-    public ProgressBar ProgressBar => OperationProgress;
-    public TextBlock ProgressText => OperationProgressText;
     public TrackProgressStrip Face0Progress => Face0TrackProgress;
     public TrackProgressStrip Face1Progress => Face1TrackProgress;
     public StatusBarItem HostToolsItem => HostToolsUpdateItem;
