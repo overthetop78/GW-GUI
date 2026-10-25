@@ -18,7 +18,7 @@ internal static partial class StorageSettingsFunctions
             .SelectMany(rule => rule.Slots.Select(slot => new EmulationMediaDevice(slot,
                 ToMediaType(rule.Category), rule.Category == MediaCategory.HardDisk ? HardDiskFormats.For(configuration.Model).Select(format => format.Extension).ToArray() : rule.Category == MediaCategory.Cartridge ? CartridgeExtensions(configuration) : Extensions(rule.Category),
                 StorageConfigurationFunctions.IsRemovable(rule.Category),
-                rule.Category == MediaCategory.Cartridge && compatibility.Core == Emulator.Atari800,
+                rule.Category == MediaCategory.Cartridge && configuration.Family is MachineFamily.EightBit or MachineFamily.Atari5200,
                 DisplayLabel(configuration.Model, slot),
                 rule.Category == MediaCategory.Floppy ? FloppyOptions(configuration.Model, configuration.Folders.Floppies) : null,
                 Interfaces(configuration.Model, rule.Category),

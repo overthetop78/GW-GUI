@@ -242,10 +242,12 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             // désactivé ne reçoit aucune insertion, même si le profil matériel sait le prendre en charge.
             if (!Configuration.ConfiguredSlots.Contains(media.Slot)) throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(media));
             var inserted = media with { IsInserted = true };
+            var replaces = _runtimePolicy?.ReplacesMountedMediaOnInsert(Configuration) == true;
             if (_mediaSuspended || NeedsMediaRestart(inserted.Slot, inserted.Path))
-                RestartCore(CurrentConfiguration() with { Media = _mountedMedia.Where(item => item.Slot != inserted.Slot).Append(inserted).ToArray() });
+                RestartCore(CurrentConfiguration() with { Media = _mountedMedia.Where(item => item.Slot != inserted.Slot && (!replaces || !item.IsInserted)).Append(inserted).ToArray() });
             else
                 _core.InsertMedia(inserted);
+            if (replaces) _mountedMedia.RemoveAll(item => item.IsInserted);
             MediaRuntimeFunctions.Register(_mountedMedia, inserted);
         }, cancellationToken, EmulationMessageCategory.Media, EmulationMessageCode.MediaOperationFailed);
 

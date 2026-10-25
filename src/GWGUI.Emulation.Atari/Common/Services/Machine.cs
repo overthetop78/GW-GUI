@@ -61,7 +61,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _mediaCapabilities = _inputMapper as IEmulatorMediaCapabilities;
         _sessionDirectory = sessionDirectory;
         _audio = new AudioOutputController(audioOutput, audioOutputFactory);
-        _cassetteInput = new CassetteInputController(configuration);
+        _cassetteInput = new CassetteInputController(configuration, runtimePolicy);
         _audio.SetMuted(!configuration.AudioEnabled);
         if (configuration.Options.TryGetValue(VideoAudioSettingsConstants.AudioVolumeOption, out var volume)
             && int.TryParse(volume, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volumePercent))
@@ -81,7 +81,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public IEmulationAudio Audio => this;
     public IEmulationSavedStates SavedStates => this;
     public IEmulationRuntime Runtime => this;
-    public IEmulationCassetteTransport? CassetteTransport => Configuration.Core == Emulator.Atari800 ? this : null;
+    public IEmulationCassetteTransport? CassetteTransport => _cassetteInput.AvailableCommands.Count > 0 ? this : null;
     bool IEmulationInput.SupportsPointerCapture => CompatibilityCatalog.Get(Configuration.Model).VisibleTabs.Contains(SettingsTab.Mouse);
     bool IEmulationInput.CapturePointerOnClick => Configuration.Input?.CaptureMouse ?? true;
     IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings => Configuration.Input?.KeyboardBindings ?? Configuration.Input?.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal) ?? new Dictionary<string, string>();
@@ -103,7 +103,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public event EventHandler<AudioChunk>? AudioChunkReady;
     EmulationCassetteState IEmulationCassetteTransport.State => CassetteStateFunctions.From(_mountedMedia.Any(media => media.Category == MediaCategory.Cassette && media.IsInserted), ((IEmulationRuntime)this).MediaActivity.GetValueOrDefault(EmulationMediaSlot.Cassette0));
     EmulationCassetteCommand? IEmulationCassetteTransport.ActiveOperation => ((IEmulationCassetteTransport)this).State == EmulationCassetteState.Playing ? EmulationCassetteCommand.Play : null;
-    IReadOnlySet<EmulationCassetteCommand> IEmulationCassetteTransport.AvailableCommands => CassetteInputController.AvailableCommands;
+    IReadOnlySet<EmulationCassetteCommand> IEmulationCassetteTransport.AvailableCommands => _cassetteInput.AvailableCommands;
     IReadOnlyList<EmulationMedia> IEmulationMedia.MountedMedia => _mountedMedia.Select(EmulationMediaConversionFunctions.ToCommon).OfType<EmulationMedia>().ToArray();
     ValueTask IEmulationMedia.InsertAsync(EmulationMedia media, CancellationToken cancellationToken) => InsertMediaAsync(EmulationMediaConversionFunctions.ToModule(media, _mountedMedia), cancellationToken);
     ValueTask IEmulationMedia.EjectAsync(EmulationMediaSlot slot, CancellationToken cancellationToken) => EjectMediaAsync(slot, cancellationToken);

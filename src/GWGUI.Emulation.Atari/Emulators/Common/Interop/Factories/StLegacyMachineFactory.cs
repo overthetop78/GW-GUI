@@ -1,6 +1,6 @@
 namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Factories;
 
-internal abstract class StLegacyMachineFactory(EmulatorCatalogEntry entry) : MachineFactory(entry)
+internal abstract class StLegacyMachineFactory(EmulatorCatalogEntry entry) : MachineFactory(entry), IEmulatorRuntimePolicy
 {
     public override IReadOnlyDictionary<string, string> GetConfiguredOptions(MachineConfiguration configuration) => StLegacyOptionFunctions.Apply(configuration);
 
@@ -19,4 +19,7 @@ internal abstract class StLegacyMachineFactory(EmulatorCatalogEntry entry) : Mac
     public override bool SupportsDiskControlOperations => true;
 
     public override void CleanupPreparedContent(EmulatorPreparedContent? preparedContent) => StContentFunctions.Cleanup(preparedContent?.State as StContent);
+
+    /// <inheritdoc/>
+    public void PrepareReset(MachineConfiguration configuration, bool hardReset, Action<string, string> setOption) => setOption(MachineValues.ResetType, hardReset ? MachineValues.Value1 : MachineValues.Value0);
 }

@@ -4,18 +4,19 @@ namespace GWGUI.Emulation.Atari.Common.Services;
 
 internal sealed class CassetteInputController
 {
-    internal const int AutomaticReturnDelayFrames = 75;
-    internal static IReadOnlySet<EmulationCassetteCommand> AvailableCommands { get; } =
-        new HashSet<EmulationCassetteCommand> { EmulationCassetteCommand.Play };
-
     private readonly object _gate = new();
     private readonly Queue<EmulationKey> _pulses = new();
+    private readonly IReadOnlyDictionary<EmulationCassetteCommand, IReadOnlyList<EmulationKey>> _keyCommands;
     private EmulationInputSnapshot _physicalInput = EmulationInputSnapshot.Empty;
     private int _automaticReturnFrames;
 
-    internal CassetteInputController(MachineConfiguration configuration)
+    internal IReadOnlySet<EmulationCassetteCommand> AvailableCommands => _keyCommands.Keys.ToHashSet();
+
+    internal CassetteInputController(MachineConfiguration configuration, IEmulatorRuntimePolicy? runtimePolicy = null)
     {
-        _automaticReturnFrames = CassetteBootFunctions.RequiresDelayedReturn(configuration) ? AutomaticReturnDelayFrames : -1;
+        var policy = runtimePolicy ?? new Engine().SelectedAdapter(configuration);
+        _keyCommands = policy?.GetCassetteKeyCommands(configuration) ?? new Dictionary<EmulationCassetteCommand, IReadOnlyList<EmulationKey>>();
+        _automaticReturnFrames = _keyCommands.ContainsKey(EmulationCassetteCommand.Play) ? policy?.GetCassetteBootReturnDelayFrames(configuration) ?? -1 : -1;
     }
 
     internal void SetPhysicalInput(EmulationInputSnapshot snapshot)
@@ -23,9 +24,13 @@ internal sealed class CassetteInputController
         lock (_gate) _physicalInput = snapshot;
     }
 
-    internal void Play()
+    internal void Execute(EmulationCassetteCommand command)
     {
-        lock (_gate) _pulses.Enqueue(EmulationKey.Return);
+        lock (_gate)
+        {
+            if (!_keyCommands.TryGetValue(command, out var keys)) throw new NotSupportedException(command.ToString());
+            foreach (var key in keys) _pulses.Enqueue(key);
+        }
     }
 
     internal EmulationInputSnapshot NextFrame()
@@ -35,7 +40,7 @@ internal sealed class CassetteInputController
             if (_automaticReturnFrames > 0) _automaticReturnFrames--;
             else if (_automaticReturnFrames == 0)
             {
-                _pulses.Enqueue(EmulationKey.Return);
+                Execute(EmulationCassetteCommand.Play);
                 _automaticReturnFrames = -1;
             }
 

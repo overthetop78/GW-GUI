@@ -6,7 +6,7 @@ using GWGUI.Emulation.Atari.Emulators.Atari800.Functions;
 
 namespace GWGUI.Emulation.Atari.Emulators.Atari800.Factories;
 
-internal sealed class Atari800MachineFactory() : MachineFactory(EmulatorConstants.Entry)
+internal sealed class Atari800MachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorRuntimePolicy
 {
     public override IReadOnlySet<string> GetCartridgeExtensions(MachineConfiguration configuration) => configuration.Model == MachineModel.Atari5200 ? Atari800MediaConstants.ConsoleCartridgeExtensions : Atari800MediaConstants.ComputerCartridgeExtensions;
 
@@ -40,4 +40,11 @@ internal sealed class Atari800MachineFactory() : MachineFactory(EmulatorConstant
     public override bool SupportsDiskControl(MediaConfiguration media) => media.Category is MediaCategory.Floppy or MediaCategory.Cassette;
 
     public override bool SupportsDiskControlOperations => true;
+
+    /// <inheritdoc/>
+    public IReadOnlyDictionary<EmulationCassetteCommand, IReadOnlyList<EmulationKey>> GetCassetteKeyCommands(MachineConfiguration configuration) => EmulatorConstants.CassetteKeyCommands;
+
+    /// <inheritdoc/>
+    public int? GetCassetteBootReturnDelayFrames(MachineConfiguration configuration) => configuration.Model is MachineModel.Atari400 or MachineModel.Atari800
+        && configuration.Media.Any(media => media.Category == MediaCategory.Cassette && media.IsInserted) && CassetteBootFunctions.IsRequested(configuration) ? EmulatorConstants.CassetteAutoReturnDelayFrames : null;
 }

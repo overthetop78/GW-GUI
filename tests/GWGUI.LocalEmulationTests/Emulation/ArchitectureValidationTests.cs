@@ -3986,7 +3986,11 @@ public sealed class ArchitectureValidationTests
             Assert.True(contract.IsInterface);
             Assert.False(contract.IsVisible);
             var methods = contract.GetMethods();
-            Assert.Equal(5, methods.Length);
+            Assert.Equal(9, methods.Length);
+            Assert.Equal(typeof(bool), contract.GetMethod("ReplacesMountedMediaOnInsert")!.ReturnType);
+            Assert.Equal(typeof(void), contract.GetMethod("PrepareReset")!.ReturnType);
+            Assert.Equal(typeof(int?), contract.GetMethod("GetCassetteBootReturnDelayFrames")!.ReturnType);
+            Assert.Equal(typeof(IReadOnlyDictionary<EmulationCassetteCommand, IReadOnlyList<EmulationKey>>), contract.GetMethod("GetCassetteKeyCommands")!.ReturnType);
             var media = Assert.Single(methods, method => method.Name == "RequiresMediaRestart");
             var option = Assert.Single(methods, method => method.Name == "RequiresOptionRestart");
             var configuration = assembly.GetType(root + ".Common.Machines.Common.Contracts.MachineConfiguration", throwOnError: true)!;
@@ -3994,10 +3998,18 @@ public sealed class ArchitectureValidationTests
             Assert.Equal(new[] { "configuration", "slot", "path" }, media.GetParameters().Select(parameter => parameter.Name));
             Assert.Equal(new[] { configuration, typeof(string) }, option.GetParameters().Select(parameter => parameter.ParameterType));
             Assert.Equal(new[] { "configuration", "key" }, option.GetParameters().Select(parameter => parameter.Name));
-            Assert.All(methods.Where(method => method.Name is not ("NormalizeRuntimeOptions" or "GetHostCommandTimeout")), method => Assert.True(method.IsAbstract));
-            Assert.All(methods.Where(method => method.Name is "NormalizeRuntimeOptions" or "GetHostCommandTimeout"), method => Assert.False(method.IsAbstract));
+            Assert.All(methods.Where(method => method.Name is not ("NormalizeRuntimeOptions" or "GetHostCommandTimeout" or "ReplacesMountedMediaOnInsert" or "PrepareReset" or "GetCassetteKeyCommands" or "GetCassetteBootReturnDelayFrames")), method => Assert.True(method.IsAbstract));
+            Assert.All(methods.Where(method => method.Name is "NormalizeRuntimeOptions" or "GetHostCommandTimeout" or "ReplacesMountedMediaOnInsert" or "PrepareReset" or "GetCassetteKeyCommands" or "GetCassetteBootReturnDelayFrames"), method => Assert.False(method.IsAbstract));
             Assert.All(new[] { media, option }, method => Assert.Equal(typeof(bool), method.ReturnType));
             var machine = assembly.GetType(root + ".Common.Services.Machine", throwOnError: true)!;
+            if (root is "GWGUI.Emulation.Atari" or "GWGUI.Emulation.Example")
+            {
+                var resetCalls = GetCompiledCalls(machine.GetMethod("ResetCore", BindingFlags.Instance | BindingFlags.NonPublic)!).Select(call => call.Method.Name).ToArray();
+                var preparation = Array.IndexOf(resetCalls, "PrepareReset");
+                Assert.True(preparation >= 0);
+                Assert.True(preparation < Array.IndexOf(resetCalls, "SoftReset"));
+                Assert.True(preparation < Array.IndexOf(resetCalls, "HardReset"));
+            }
             var constructor = Assert.Single(machine.GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic));
             var policyParameter = Assert.Single(constructor.GetParameters(), parameter => parameter.Name == "runtimePolicy");
             Assert.Equal(contract, policyParameter.ParameterType);

@@ -92,8 +92,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private void ResetCore(string resetType)
     {
         _audio.Reset();
-        if (Configuration.Core is Emulator.Hatari or Emulator.Hatari2014 or Emulator.HatariB)
-            _core.SetOption(MachineValues.ResetType, resetType);
+        (_runtimePolicy ?? new Engine().SelectedAdapter(Configuration))?.PrepareReset(Configuration, resetType != MachineValues.Value0, _core.SetOption);
         if (resetType == MachineValues.Value0) CommonCoreHostFunctions.MachineExecution.SoftReset(_runtimePolicy?.SoftResetKeys ?? new HashSet<EmulationKey>(), _core.SetInput, _core.RunFrame, _core.SoftReset); else _core.HardReset();
     }
 

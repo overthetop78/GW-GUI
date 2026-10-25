@@ -22,6 +22,7 @@ public sealed class AppleModuleTests
     {
         var selected = new MachineConfiguration(model, core: emulator);
         var adapter = new GWGUI.Emulation.Apple.Common.Services.Engine().Adapter(selected);
+        Assert.Equal(emulator == Emulator.MiniVmac, adapter.ReplacesMountedMediaOnInsert(selected));
         Assert.Empty(adapter.GetHardDiskFormats(selected, EmulationMediaSlot.Floppy0));
         Assert.Empty(adapter.GetHardDiskFormats(selected, new EmulationMediaSlot(EmulationMediaSlot.HardDisk0.Category, 1)));
         foreach (var configuration in new[] { selected, selected with { Core = Emulator.None } })

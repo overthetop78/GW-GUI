@@ -172,9 +172,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     ValueTask IEmulationCassetteTransport.ExecuteAsync(EmulationCassetteCommand command, CancellationToken cancellationToken) => QueueCommand(() =>
         {
-            if (command != EmulationCassetteCommand.Play)
-                throw new NotSupportedException(command.ToString());
-            _cassetteInput.Play();
+            _cassetteInput.Execute(command);
         }, cancellationToken);
     /// <inheritdoc/>
     /// <remarks>La commande rejoint la file du cœur ; les politiques de copie, de protection et de

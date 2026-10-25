@@ -18,6 +18,23 @@ namespace GWGUI.Tests.Emulation.Atari;
 public sealed class AtariEmulatorAdapterTests
 {
     [Theory]
+    [InlineData(Emulator.Hatari, false, "0")]
+    [InlineData(Emulator.Hatari, true, "1")]
+    [InlineData(Emulator.Hatari2014, false, "0")]
+    [InlineData(Emulator.Hatari2014, true, "1")]
+    [InlineData(Emulator.HatariB, false, "0")]
+    [InlineData(Emulator.HatariB, true, "1")]
+    public void ResetPreparationKeepsBothNativeModes(Emulator emulator, bool hardReset, string expected)
+    {
+        var configuration = new MachineConfiguration(MachineModel.St, core: emulator);
+        var policy = new GWGUI.Emulation.Atari.Common.Services.Engine().Adapter(configuration);
+        var options = new Dictionary<string, string>();
+        policy.PrepareReset(configuration, hardReset, (key, value) => options.Add(key, value));
+        Assert.Equal(expected, Assert.Single(options).Value);
+        Assert.Equal("gwgui_atari_reset_type", Assert.Single(options).Key);
+    }
+
+    [Theory]
     [InlineData(Emulator.BeetleLynx, "beetle-lynx", "mednafen_lynx_libretro.dll")]
     [InlineData(Emulator.GearLynx, "gearlynx", "gearlynx_libretro.dll")]
     [InlineData(Emulator.Handy, "handy", "handy_libretro.dll")]

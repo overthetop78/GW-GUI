@@ -135,13 +135,14 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         QueueCommand(() =>
         {
             var inserted = media with { IsInserted = true };
+            var replaces = _runtimePolicy?.ReplacesMountedMediaOnInsert(Configuration) == true;
             if (NeedsMediaRestart(inserted.Slot, inserted.Path))
                 RestartCore(CurrentConfiguration() with
                 {
-                    Media = (Configuration.Core == Emulator.MiniVmac ? [] : _mountedMedia.Where(item => item.Slot != inserted.Slot)).Append(inserted).ToArray()
+                    Media = (replaces ? [] : _mountedMedia.Where(item => item.Slot != inserted.Slot)).Append(inserted).ToArray()
                 });
             else _core.InsertMedia(inserted);
-            if (Configuration.Core == Emulator.MiniVmac) _mountedMedia.Clear();
+            if (replaces) _mountedMedia.Clear();
             MediaRuntimeFunctions.Register(_mountedMedia, inserted);
         }, cancellationToken);
 

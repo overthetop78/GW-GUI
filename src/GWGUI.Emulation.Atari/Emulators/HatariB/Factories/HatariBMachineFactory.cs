@@ -3,7 +3,7 @@ using GWGUI.Emulation.Atari.Emulators.HatariB.Functions;
 
 namespace GWGUI.Emulation.Atari.Emulators.HatariB.Factories;
 
-internal sealed class HatariBMachineFactory() : MachineFactory(EmulatorConstants.Entry)
+internal sealed class HatariBMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorRuntimePolicy
 {
     public override IReadOnlyDictionary<string, string> GetConfiguredOptions(MachineConfiguration configuration) => OptionFunctions.Apply(configuration);
 
@@ -23,4 +23,7 @@ internal sealed class HatariBMachineFactory() : MachineFactory(EmulatorConstants
     public override bool SupportsDiskControlOperations => true;
 
     public override void CleanupPreparedContent(EmulatorPreparedContent? preparedContent) => StContentFunctions.Cleanup(preparedContent?.State as StContent);
+
+    /// <inheritdoc/>
+    public void PrepareReset(MachineConfiguration configuration, bool hardReset, Action<string, string> setOption) => setOption(MachineValues.ResetType, hardReset ? MachineValues.Value1 : MachineValues.Value0);
 }

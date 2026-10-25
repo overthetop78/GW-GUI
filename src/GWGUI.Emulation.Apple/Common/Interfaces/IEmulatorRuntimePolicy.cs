@@ -41,4 +41,34 @@ internal interface IEmulatorRuntimePolicy
     /// <param name="fallback">Délai déjà choisi par le transport, conservé par défaut.</param>
     /// <returns>Délai applicable à cette attente, sans lancer ni interrompre de commande.</returns>
     TimeSpan GetHostCommandTimeout(MachineConfiguration configuration, byte command, TimeSpan fallback) => fallback;
+
+    /// <summary>Indique si l'insertion d'un média remplace les autres médias insérés de la session.</summary>
+    /// <param name="configuration">Configuration empruntée du modèle et des lecteurs courants.</param>
+    /// <returns>False pour conserver les autres lecteurs ; true si le cœur ne peut charger qu'un contenu à la fois.</returns>
+    /// <remarks>Common prépare la liste et ne la publie qu'après réussite du cœur. Les emplacements configurés
+    /// restent distincts des médias insérés ; cette consultation ne possède ni fichier ni session.</remarks>
+    bool ReplacesMountedMediaOnInsert(MachineConfiguration configuration) => false;
+
+    /// <summary>Prépare les options du cœur avant sa réinitialisation.</summary>
+    /// <param name="configuration">Configuration courante empruntée, conservée intacte.</param>
+    /// <param name="hardReset">True pour une réinitialisation matérielle ; false pour la commande logicielle ou sa séquence de touches.</param>
+    /// <param name="setOption">Commande synchrone empruntée au propriétaire du cœur, à utiliser uniquement pendant cet appel.</param>
+    /// <remarks>Le comportement de base ne modifie aucune option. Un adaptateur peut reprendre son sélecteur
+    /// natif avant la commande, y compris lorsque des touches remplacent SoftReset. Le callback ne doit pas
+    /// être conservé ; la politique ne prend possession ni du cœur ni de sa file d'exécution.</remarks>
+    void PrepareReset(MachineConfiguration configuration, bool hardReset, Action<string, string> setOption) { }
+
+    /// <summary>Décrit les commandes de cassette réalisées par des impulsions de touches émulées.</summary>
+    /// <param name="configuration">Configuration empruntée déterminant le protocole du profil.</param>
+    /// <returns>Une séquence de touches par commande, à raison d'une touche par frame ; dictionnaire vide sans transport clavier.</returns>
+    /// <remarks>Cette description est distincte d'un transport commandé directement par l'API native.
+    /// Common emprunte les collections et sérialise les impulsions avec les frames, sans capturer de clavier physique.</remarks>
+    IReadOnlyDictionary<EmulationCassetteCommand, IReadOnlyList<EmulationKey>> GetCassetteKeyCommands(MachineConfiguration configuration) => new Dictionary<EmulationCassetteCommand, IReadOnlyList<EmulationKey>>();
+
+    /// <summary>Indique le délai de déclenchement automatique de la commande Play du transport clavier.</summary>
+    /// <param name="configuration">Configuration empruntée contenant le modèle, les médias et le choix d'amorçage.</param>
+    /// <returns>Nombre de frames à attendre, ou null sans commande automatique ; zéro déclenche à la prochaine frame.</returns>
+    /// <remarks>Le compteur appartient à la session Common. Le profil fournit seulement son délai ; il ne crée
+    /// ni thread ni entrée physique et ne déclenche pas la commande pendant cette consultation.</remarks>
+    int? GetCassetteBootReturnDelayFrames(MachineConfiguration configuration) => null;
 }

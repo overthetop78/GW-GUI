@@ -14,18 +14,20 @@ internal static class AtariCassetteScenarios
 {
     internal static void PlaybackSendsOneReturnPulse()
     {
-        Assert.Equal([EmulationCassetteCommand.Play], CassetteInputController.AvailableCommands);
         Assert.Equal(EmulationCassetteState.Empty, CassetteStateFunctions.From(mounted: false, motorActive: false));
         Assert.Equal(EmulationCassetteState.Stopped, CassetteStateFunctions.From(mounted: true, motorActive: false));
         Assert.Equal(EmulationCassetteState.Playing, CassetteStateFunctions.From(mounted: true, motorActive: true));
 
         var controller = new CassetteInputController(Configuration(MachineModel.Atari800, Cassette(autoBoot: false), cassetteBoot: false));
+        Assert.Equal([EmulationCassetteCommand.Play], controller.AvailableCommands);
+        var unavailable = new CassetteInputController(new MachineConfiguration(MachineModel.Atari5200, core: Emulator.A5200));
+        Assert.Empty(unavailable.AvailableCommands);
         controller.SetPhysicalInput(EmulationInputSnapshot.Empty with
         {
             Keys = new HashSet<EmulationKey> { EmulationKey.A }
         });
 
-        controller.Play();
+        controller.Execute(EmulationCassetteCommand.Play);
         var pulse = controller.NextFrame();
         Assert.Equal(2, pulse.Keys.Count);
         Assert.Contains(EmulationKey.A, pulse.Keys);
@@ -69,7 +71,7 @@ internal static class AtariCassetteScenarios
                 Keys = new HashSet<EmulationKey> { EmulationKey.A }
             });
 
-            for (var frame = 0; frame < CassetteInputController.AutomaticReturnDelayFrames; frame++)
+            for (var frame = 0; frame < 75; frame++)
                 Assert.Equal([EmulationKey.A], controller.NextFrame().Keys);
 
             var pulse = controller.NextFrame();
@@ -86,7 +88,7 @@ internal static class AtariCassetteScenarios
                  })
         {
             var controller = new CassetteInputController(Configuration(model, Cassette(autoBoot: true), cassetteBoot: false));
-            for (var frame = 0; frame <= CassetteInputController.AutomaticReturnDelayFrames; frame++)
+            for (var frame = 0; frame <= 75; frame++)
                 Assert.DoesNotContain(EmulationKey.Return, controller.NextFrame().Keys);
         }
     }

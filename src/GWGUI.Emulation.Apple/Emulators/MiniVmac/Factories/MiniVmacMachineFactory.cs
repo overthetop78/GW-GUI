@@ -21,4 +21,7 @@ internal sealed class MiniVmacMachineFactory() : MachineFactory(EmulatorConstant
     /// <inheritdoc/>
     public IReadOnlyList<HardDiskImageFormat> GetHardDiskFormats(MachineConfiguration configuration, EmulationMediaSlot slot) => slot == EmulationMediaSlot.HardDisk0
         ? [CommonHardDiskFormats.Describe(new(EmulatorConstants.HardDiskFormatId, EmulatorConstants.HardDiskExtension, EmulatorConstants.HardDiskInterface, EmulatorConstants.HardDiskMaximumBytes, EmulatorConstants.HardDiskDefaultBytes, [HardDiskPreparation.Blank]))] : [];
+
+    /// <inheritdoc/>
+    public bool ReplacesMountedMediaOnInsert(MachineConfiguration configuration) => true;
 }
