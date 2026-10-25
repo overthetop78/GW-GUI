@@ -53,6 +53,25 @@ the [module authoring guide](https://github.com/overthetop78/GW-GUI/blob/main/do
 SDK compatibility and version changes are documented in the
 [versioning policy](https://github.com/overthetop78/GW-GUI/blob/main/docs/architecture/emulation-sdk-versioning.md).
 
+## Shared services (host API 1.2)
+
+`EmulationSdk` exposes shared operations through public interfaces. A module routes its emulator
+adapters through its own `Common` layer, which uses these contracts; the SDK implementations remain
+internal. No registration of the module assembly as a friend of the SDK is required.
+
+The services cover adapter discovery, core releases and diagnostics, configuration files, saved
+states, input processing, audio and video processing, runtime commands and media preparation.
+Media operations are relayed by the SDK to MediaEngine; a module only references the SDK.
+
+Use `ConfigurationFiles` for configuration persistence and path storage/resolution, and `StateFiles`
+for the common saved-state envelope. State restoration validates the core identity and the
+configuration, content and state hashes. Adapting an older module may require changes to its state
+format; compatibility with previous saved-state files is not guaranteed.
+
+Objects returned by the resource factories belong to the caller and must be disposed after their
+work has stopped, including on failure. Services and resources borrowed from the host remain owned
+by the host.
+
 ## Version compatibility
 
 The NuGet package follows semantic versioning. Every module declares an inclusive host API range in
