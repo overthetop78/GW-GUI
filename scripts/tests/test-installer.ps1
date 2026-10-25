@@ -80,7 +80,8 @@ finally {
             $install.WaitForExit()
         }
         if (Test-Path -LiteralPath $uninstaller -PathType Leaf) {
-            $uninstall = Start-Process -FilePath $uninstaller -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART') -PassThru
+            # Attendre aussi le processus enfant qui termine la suppression du désinstalleur.
+            $uninstall = Start-Process -FilePath $uninstaller -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART') -WindowStyle Hidden -Wait -PassThru
             $uninstall.WaitForExit()
             if ($uninstall.ExitCode -ne 0) { throw "Uninstaller exited with code $($uninstall.ExitCode)." }
         }
