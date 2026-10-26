@@ -9,8 +9,6 @@ internal static class RecordedMechanicalSoundConstants
     /// <summary>Nom du sous-dossier contenant la banque de bruitages mécaniques.</summary>
     internal const string BankDirectory = "MechanicalAudio";
 
-    /// <summary>Nom du fichier JSON décrivant les profils et leurs enregistrements.</summary>
-    internal const string CatalogFileName = "catalog.json";
     /// <summary>Identifiant de l’opération de démarrage du moteur.</summary>
     internal const string Start = "Start";
     /// <summary>Profil Alps Electric DF354H148F utilisé en l’absence de son spécifique de disquette.</summary>

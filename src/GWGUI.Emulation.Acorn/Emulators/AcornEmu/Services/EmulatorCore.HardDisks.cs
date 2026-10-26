@@ -17,6 +17,7 @@ internal sealed partial class EmulatorCore
     {
         for (var unit = 0; unit < C.HardDiskCount; unit++)
         {
+            _hardDiskMechanics[unit] ??= GWGUI.Emulation.Acorn.Common.Functions.CoreHostFunctions.MediaProcessing.CreateDriveMechanics(S.HardDisk);
             _hardDiskConnected[unit] = NativeStorage.HardDiskConnected(configuration, unit);
             var settings = _hardDiskSettings[unit] = NativeStorage.HardDiskSettings(configuration, unit);
             _hardDiskSoundEnabled[unit] = bool.Parse(configuration.Options.GetValueOrDefault(C.HardDiskKey(unit, C.MechanicalSoundOption), bool.TrueString));
@@ -31,7 +32,7 @@ internal sealed partial class EmulatorCore
         var unit = media.Slot.Index;
         if (media.Category != MediaCategory.HardDisk || unit is < 0 or >= C.HardDiskCount || !_hardDiskConnected[unit] || !C.HardDiskExtensions.Contains(Path.GetExtension(media.Path), StringComparer.OrdinalIgnoreCase)) throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(media));
         var settings = _hardDiskSettings[unit];
-        var image = BbcMicroDiskFunctions.Open(media.Path, !media.IsReadOnly && !settings.Protected);
+        var image = BbcMicroDiskFunctions.Open(media.Path, !media.IsReadOnly && !settings.Protected, mechanics: _hardDiskMechanics[unit]);
         var transferred = false;
         try
         {
@@ -48,7 +49,8 @@ internal sealed partial class EmulatorCore
     {
         if (unit is < 0 or >= C.HardDiskCount) throw new ArgumentOutOfRangeException(nameof(unit));
         SaveHardDisk(unit); _machine?.AttachHardDisk(unit, null);
-        var image = _hardDisks[unit]; _hardDisks[unit] = null; image?.Dispose();
+        var image = _hardDisks[unit]; _hardDisks[unit] = null;
+        try { image?.Dispose(); } finally { _hardDiskMechanics[unit]?.SetMotor(false); }
     }
     private void DisposeHardDisks()
     {
@@ -58,7 +60,7 @@ internal sealed partial class EmulatorCore
             var image = _hardDisks[unit]; _hardDisks[unit] = null;
             try { _machine?.AttachHardDisk(unit, null); }
             catch (Exception error) { errors.Add(error); }
-            finally { try { image?.Dispose(); } catch (Exception error) { errors.Add(error); } }
+            finally { try { image?.Dispose(); } catch (Exception error) { errors.Add(error); } finally { _hardDiskMechanics[unit]?.Reset(); _hardDiskMechanics[unit] = null; } }
         }
         if (errors.Count > 0) throw new AggregateException(errors);
     }

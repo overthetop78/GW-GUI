@@ -210,6 +210,7 @@ internal sealed partial class EmulatorCore : IEmulatorCore, IEmulatorCassetteTra
             _runtimeOptions = options; _cassetteSettings = settings; _cassettePcm = pcm; machine.ConfigureCassette(settings);
             return;
         }
+        if (ApplyMechanicalSoundOption(key, value)) return;
         machine.SetOption(key, value);
         _videoOutput = value;
     }

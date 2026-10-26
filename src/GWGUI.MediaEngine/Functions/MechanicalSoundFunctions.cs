@@ -8,13 +8,14 @@ namespace GWGUI.MediaEngine.Functions;
 internal static partial class MechanicalSoundFunctions
 {
     internal static IReadOnlyList<string> Profiles(string device) => MechanicalSoundProfiles.ForDevice(device);
-    internal static short[] Render(string device, string operation, int sampleRate, int sampleCount, long offset, string? profile = null, double volumePercent = C.DefaultVolumePercent)
+    internal static short[] Render(string device, string operation, int sampleRate, int sampleCount, long offset, string? profile = null,
+        double volumePercent = C.DefaultVolumePercent, int distance = 1, int direction = 1, int cylinder = -1)
     {
         var recordings = RecordedMechanicalSoundFunctions.Shared;
         var fallback = RecordedMechanicalSoundFunctions.BaseProfile(device);
         if (fallback is not null)
             return recordings.Render(device, operation, sampleRate, sampleCount, offset,
-                profile is not null && recordings.Contains(profile) ? profile : fallback, volumePercent);
+                profile is not null && recordings.Contains(profile) ? profile : fallback, volumePercent, distance, direction, cylinder);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(sampleRate);
         ArgumentOutOfRangeException.ThrowIfNegative(sampleCount);
         ArgumentOutOfRangeException.ThrowIfNegative(offset);
@@ -35,13 +36,13 @@ internal static partial class MechanicalSoundFunctions
         for (var index = 0; index < result.Length; index++) result[index] = Sample(result[index] * volumePercent / C.MaximumVolumePercent);
         return result;
     }
-    internal static double Duration(string device, string profile, string operation)
+    internal static double Duration(string device, string? profile, string operation, int distance = 1, int direction = 1, int cylinder = -1)
     {
         var recordings = RecordedMechanicalSoundFunctions.Shared;
         var fallback = RecordedMechanicalSoundFunctions.BaseProfile(device);
         if (fallback is not null)
-            return recordings.Duration(recordings.Contains(profile) ? profile : fallback, operation);
-        if (recordings.Contains(profile)) return recordings.Duration(profile, operation);
+            return recordings.Duration(profile is not null && recordings.Contains(profile) ? profile : fallback, operation, distance, direction, cylinder);
+        if (profile is not null && recordings.Contains(profile)) return recordings.Duration(profile, operation, distance, direction, cylinder);
         return device switch
         {
             C.Cassette => operation == C.Eject ? C.CassetteEjectSeconds : C.CassetteStopSeconds,

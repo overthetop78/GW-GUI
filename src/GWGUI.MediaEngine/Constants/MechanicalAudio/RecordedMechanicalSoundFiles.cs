@@ -1,25 +1,21 @@
 using System.Collections.Generic;
+using System.Linq;
+using GWGUI.MediaEngine.Contracts;
 
 namespace GWGUI.MediaEngine.Constants;
 
+/// <summary>Catalogues typés des enregistrements mécaniques, regroupés par type et matériel.</summary>
 internal static partial class RecordedMechanicalSoundFiles
 {
-    internal static IReadOnlyList<IReadOnlyList<IReadOnlyDictionary<string, string>>> Catalogs { get; } =
+    /// <summary>Catalogues des trois catégories de lecteurs enregistrées.</summary>
+    internal static IReadOnlyList<IReadOnlyList<RecordedMechanicalSoundProfile>> Catalogs { get; } =
     [
         Floppy.Catalogs,
         HardDisk.Catalogs,
         Optical.Catalogs,
     ];
 
-    internal static IReadOnlyDictionary<string, string> BySampleId { get; } = Aggregate();
+    /// <summary>Définitions audio utilisées directement par le lecteur, sans catalogue externe.</summary>
+    internal static RecordedMechanicalSoundCatalog All { get; } = new(Catalogs.SelectMany(profiles => profiles).ToArray());
 
-    private static IReadOnlyDictionary<string, string> Aggregate()
-    {
-        var result = new Dictionary<string, string>();
-        foreach (var device in Catalogs)
-            foreach (var model in device)
-                foreach (var sample in model)
-                    result.Add(sample.Key, sample.Value);
-        return result;
-    }
 }

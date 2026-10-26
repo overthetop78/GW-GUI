@@ -3,6 +3,7 @@ using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Images.Models.Flux;
 using GWGUI.MediaEngine.Images.Models.Sectors;
 using GWGUI.MediaEngine.Images.Visualization;
+using GWGUI.MediaEngine.Services;
 
 namespace GWGUI.MediaEngine.Images.Writing;
 
@@ -12,6 +13,9 @@ public sealed class MediaImageWritingService
     private static readonly MediaVisualizationProviderRegistry VisualizationProviders = MediaVisualizationComposition.CreateDefault().Registry;
 
     private readonly MediaImageWriterRegistry writers;
+
+    /// <summary>Mécaniques des lecteurs de destination, empruntées à la composition du moteur.</summary>
+    public MediaDriveService Drives { get; set; } = new();
 
     public MediaImageWritingService(MediaImageWriterRegistry writers)
     {
@@ -33,6 +37,15 @@ public sealed class MediaImageWritingService
             throw new ArgumentException("The media output path requires a file extension.", nameof(outputPath));
         var writer = writers.Resolve(document, targetFormatId, extension) ?? throw new NotSupportedException(
             $"No media image writer accepts representation '{document.Representation.RepresentationKind}' for target '{targetFormatId}' and extension '{extension}'.");
+        using var inputActivity = new MediaDriveOperationScope(document.Source.Drive);
+        var outputDrive = Drives.Create(document.MediaKind);
+        using var outputActivity = new MediaDriveOperationScope(outputDrive);
+        if (outputDrive is not null)
+        {
+            outputDrive.Insert();
+            document = new(document.Source with { Drive = outputDrive, DriveWriting = true }, document.FormatId,
+                document.MediaKind, document.Representation, document.FileSystemVolumes, document.Diagnostics, document.Metadata);
+        }
         await ReportInputUnitsAsync(document, targetFormatId, progress, cancellationToken).ConfigureAwait(false);
         var produced = await writer.WriteAsync(document, outputPath, targetFormatId, cancellationToken).ConfigureAwait(false);
         if (produced.Count == 0) throw new InvalidDataException($"Media image writer '{writer.Id}' did not report any produced file.");

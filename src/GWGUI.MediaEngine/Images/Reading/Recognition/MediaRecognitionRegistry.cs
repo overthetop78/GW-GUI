@@ -24,6 +24,10 @@ public sealed class MediaRecognitionRegistry
         foreach (var candidate in candidates)
         {
             cancellationToken.ThrowIfCancellationRequested();
+            if (candidate.Reader.MediaKinds.Count == 1) context.EnsureDrive(candidate.Reader.MediaKinds.Single());
+            var drive = context.OwnsDrive ? context.Source.Drive : null;
+            using var activity = new GWGUI.MediaEngine.Services.MediaDriveOperationScope(drive);
+            if (drive is not null) drive.BeginRead(drive.State.Position);
             try
             {
                 var document = await candidate.Reader.ReadAsync(context, cancellationToken).ConfigureAwait(false);
@@ -33,6 +37,7 @@ public sealed class MediaRecognitionRegistry
             {
                 failures[candidate.Reader] = exception;
             }
+            finally { drive?.EndAccess(); }
         }
 
         if (failures.Count > 0) throw new AggregateException("All selected media image readers rejected the source.", failures.Values);

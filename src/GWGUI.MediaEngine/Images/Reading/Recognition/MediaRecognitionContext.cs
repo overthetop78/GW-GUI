@@ -1,6 +1,8 @@
 using System.Collections.Concurrent;
+using System.IO;
 using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Services;
 
 namespace GWGUI.MediaEngine.Images.Reading.Recognition;
 
@@ -9,6 +11,8 @@ public sealed class MediaRecognitionContext
 {
     private readonly ConcurrentDictionary<long, Lazy<Task<byte[]>>> pages = new();
     private readonly int pageSize;
+    private readonly bool _driveWasProvided;
+    private GWGUI.MediaEngine.Enums.MediaKind? _driveKind;
 
     public MediaRecognitionContext(MediaSourceDescriptor source, int pageSize = 64 * DataSizeConstants.BytesPerKibibyte)
     {
@@ -17,13 +21,30 @@ public sealed class MediaRecognitionContext
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(pageSize);
 
         Source = source;
+        _driveWasProvided = source.Drive is not null;
         Length = source.KnownLength ?? new FileInfo(source.PrimaryPath).Length;
         if (Length < 0) throw new ArgumentOutOfRangeException(nameof(source), "The known source length cannot be negative.");
         Extension = Path.GetExtension(source.PrimaryPath).ToLowerInvariant();
         this.pageSize = pageSize;
     }
 
-    public MediaSourceDescriptor Source { get; }
+    public MediaSourceDescriptor Source { get; private set; }
+
+    /// <summary>Fabrique empruntée au service de lecture, sans sortie audio possédée par le contexte.</summary>
+    internal MediaDriveService? Drives { get; init; }
+
+    internal bool OwnsDrive => !_driveWasProvided;
+
+    /// <summary>Associe la catégorie proposée par un lecteur spécialisé avant ses accès au fichier.</summary>
+    internal void EnsureDrive(GWGUI.MediaEngine.Enums.MediaKind kind)
+    {
+        if (Drives is null || Source.Drive is not null && (_driveWasProvided || _driveKind == kind)) return;
+        if (Source.Drive is not null) Source.Drive.Reset();
+        var drive = Drives.Create(kind);
+        _driveKind = kind;
+        Source = Source with { Drive = drive };
+        drive?.Insert();
+    }
 
     public long Length { get; }
 
@@ -74,15 +95,21 @@ public sealed class MediaRecognitionContext
         var offset = checked(pageIndex * pageSize);
         var count = (int)Math.Min(pageSize, Length - offset);
         var buffer = new byte[count];
-        await using var stream = new FileStream(Source.PrimaryPath, FileMode.Open, FileAccess.Read, FileShare.Read, pageSize, FileOptions.Asynchronous | FileOptions.RandomAccess);
-        stream.Seek(offset, SeekOrigin.Begin);
-        var totalRead = 0;
-        while (totalRead < count)
+        var drive = _driveWasProvided ? null : Source.Drive;
+        if (drive is not null) drive.BeginRead(drive.State.Position);
+        try
         {
-            var read = await stream.ReadAsync(buffer.AsMemory(totalRead, count - totalRead), cancellationToken).ConfigureAwait(false);
-            if (read == 0) throw new EndOfStreamException($"The media source ended at byte {offset + totalRead} while reading a cached page.");
-            totalRead += read;
+            await using var stream = new FileStream(Source.PrimaryPath, FileMode.Open, FileAccess.Read, FileShare.Read, pageSize, FileOptions.Asynchronous | FileOptions.RandomAccess);
+            stream.Seek(offset, SeekOrigin.Begin);
+            var totalRead = 0;
+            while (totalRead < count)
+            {
+                var read = await stream.ReadAsync(buffer.AsMemory(totalRead, count - totalRead), cancellationToken).ConfigureAwait(false);
+                if (read == 0) throw new EndOfStreamException($"The media source ended at byte {offset + totalRead} while reading a cached page.");
+                totalRead += read;
+            }
         }
+        finally { drive?.EndAccess(); }
 
         return buffer;
     }

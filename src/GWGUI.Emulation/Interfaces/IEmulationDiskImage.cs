@@ -5,6 +5,8 @@ namespace GWGUI.Emulation.Interfaces;
 /// Une géométrie nulle est représentée par zéro ; elle n'est pas déduite d'une simple capacité.</remarks>
 public interface IEmulationDiskImage : IDisposable
 {
+    /// <summary>Mécanique du lecteur emprunté ; fermer cette image ne détruit pas un lecteur fourni.</summary>
+    IEmulationDriveMechanics Mechanics { get; }
     string FormatId { get; }
     int SectorSize { get; }
     long SectorCount { get; }

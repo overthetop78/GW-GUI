@@ -14,7 +14,10 @@ public interface IMediaRuntimePreparation
     /// <summary>Crée le conteneur HDD et ses annexes, sans écraser une destination existante.</summary>
     Task CreateHardDiskAsync(string path, string formatId, GWGUI.MediaEngine.Contracts.HardDiskGeometry geometry, string? fileSystemId = null, CancellationToken cancellationToken = default);
     /// <summary>Ouvre une image disque par ses lecteurs existants ; le consommateur possède et libère le résultat.</summary>
-    Task<IMediaRuntimeDisk> OpenDiskAsync(string path, bool writable = false, string? formatId = null, CancellationToken cancellationToken = default);
+    Task<IMediaRuntimeDisk> OpenDiskAsync(string path, bool writable = false, string? formatId = null, CancellationToken cancellationToken = default, IMediaDriveMechanics? mechanics = null);
+
+    /// <summary>Crée la mécanique possédée par un lecteur émulé, indépendamment de son image montée.</summary>
+    IMediaDriveMechanics CreateDriveMechanics(string device);
     /// <summary>Lit le signal mono d'une cassette UEF, CSW, WAV ou RAW avec son profil explicite, sans modifier sa source.</summary>
     Task<GWGUI.MediaEngine.Contracts.MediaCassetteSignal> ReadCassetteAsync(string path, CancellationToken cancellationToken = default, string? machineId = null, IReadOnlyDictionary<string, string>? parameters = null);
     /// <summary>Formats de sortie qui conservent le signal complet d'un magnétophone.</summary>

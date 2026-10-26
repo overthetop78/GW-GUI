@@ -21,6 +21,8 @@ internal sealed class MediaRuntimeDisk : IMediaRuntimeDisk
     private readonly SortedDictionary<long, byte[]> _changes = new();
     private bool _disposed;
     private bool _metadataChanged;
+    private readonly bool _ownsMechanics;
+    public IMediaDriveMechanics Mechanics => _document.Source.Drive!;
     private SectorImage? Sectors => (_document.Representation as SectorMediaImageRepresentation)?.Image;
     private BlockMediaImageRepresentation? Blocks => _document.Representation as BlockMediaImageRepresentation;
     public string FormatId => _document.FormatId;
@@ -55,10 +57,10 @@ internal sealed class MediaRuntimeDisk : IMediaRuntimeDisk
         _metadataChanged = true;
     }
 
-    internal MediaRuntimeDisk(MediaEngineComposition engine, MediaImageDocument document, bool writable)
+    internal MediaRuntimeDisk(MediaEngineComposition engine, MediaImageDocument document, bool writable, bool ownsMechanics = true)
     {
         if (document.MediaKind is not (MediaKind.Floppy or MediaKind.HardDisk) || document.Representation is not (SectorMediaImageRepresentation or BlockMediaImageRepresentation)) throw new NotSupportedException("A decoded sector or block disk image is required.");
-        _engine = engine; _document = document;
+        _engine = engine; _document = document; _ownsMechanics = ownsMechanics;
         IsReadOnly = !writable || new FileInfo(document.Source.PrimaryPath).IsReadOnly || !engine.Writing.Writers.Any(writer => writer.CanWrite(document, document.FormatId, Path.GetExtension(document.Source.PrimaryPath)));
     }
 
@@ -76,12 +78,17 @@ internal sealed class MediaRuntimeDisk : IMediaRuntimeDisk
         SectorBlock? sector = null;
         if (Sectors is { } image) image.TryGetBlock(checked((int)index), out sector!);
         var address = sector?.Address ?? Address(index);
+        Mechanics.BeginRead(Position(index, address));
+        try
+        {
         if (_changes.TryGetValue(index, out var changed)) return new(index, changed.ToArray(), address.Cylinder, address.Head, address.Number, true);
         if (sector is not null) return new(index, sector.Data.ToArray(), address.Cylinder, address.Head, address.Number, sector.IntegrityValid, sector.DiagnosticCode);
         if (Blocks is not { } blocks) throw new InvalidDataException($"Sector {index} is unavailable in the source image.");
         var data = new byte[SectorSize];
         await BlockMediaDataReader.ReadExactlyAsync(blocks, checked(index * SectorSize), data, cancellationToken).ConfigureAwait(false);
         return new(index, data, address.Cylinder, address.Head, address.Number);
+        }
+        finally { Mechanics.EndAccess(); }
     }
 
     public void WriteSector(long index, ReadOnlySpan<byte> data)
@@ -90,7 +97,10 @@ internal sealed class MediaRuntimeDisk : IMediaRuntimeDisk
         if (IsReadOnly) throw new UnauthorizedAccessException("The disk image is write protected.");
         var size = Sectors is { } sectors && sectors.TryGetBlock(checked((int)index), out var original) ? original.Data.Count : SectorSize;
         if (data.Length != size) throw new ArgumentException("The data must contain exactly one sector.", nameof(data));
-        _changes[index] = data.ToArray();
+        var address = Sectors is { } image && image.TryGetBlock(checked((int)index), out var sector) ? sector.Address : Address(index);
+        Mechanics.BeginWrite(Position(index, address));
+        try { _changes[index] = data.ToArray(); }
+        finally { Mechanics.EndAccess(); }
     }
 
     public async Task FlushAsync(CancellationToken cancellationToken = default)
@@ -98,6 +108,8 @@ internal sealed class MediaRuntimeDisk : IMediaRuntimeDisk
         ObjectDisposedException.ThrowIf(_disposed, this);
         if (!HasChanges) return;
         var document = UpdatedDocument();
+        document = new(document.Source with { Drive = null }, document.FormatId, document.MediaKind,
+            document.Representation, document.FileSystemVolumes, document.Diagnostics, document.Metadata);
         await _engine.Writing.WritingService.WriteAsync(document, _document.Source.PrimaryPath, FormatId, cancellationToken: cancellationToken).ConfigureAwait(false);
         _document = await _engine.ReadingService.ReadAsync(_document.Source with { KnownLength = null, RequestedFormatId = FormatId }, cancellationToken).ConfigureAwait(false);
         _changes.Clear();
@@ -140,12 +152,18 @@ internal sealed class MediaRuntimeDisk : IMediaRuntimeDisk
     }
 
     private SectorAddress Address(long index) => Heads > 0 && SectorsPerTrack > 0 ? new(checked((int)(index / (Heads * (long)SectorsPerTrack))), (int)(index / SectorsPerTrack % Heads), (int)(index % SectorsPerTrack)) : new(-1, -1, -1);
+    private static MediaDrivePosition Position(long index, SectorAddress address) => address.Cylinder >= 0 && address.Head >= 0
+        ? new(address.Cylinder, address.Head, address.Number) : new(0, 0, LogicalBlock: index);
     private void Validate(long index) { ObjectDisposedException.ThrowIf(_disposed, this); if (index < 0 || index >= SectorCount) throw new ArgumentOutOfRangeException(nameof(index)); }
 
     public void Dispose()
     {
         if (_disposed) return;
         try { FlushAsync().GetAwaiter().GetResult(); }
-        finally { _changes.Clear(); _disposed = true; }
+        finally
+        {
+            try { if (_ownsMechanics) Mechanics.Reset(); }
+            finally { _changes.Clear(); _disposed = true; }
+        }
     }
 }

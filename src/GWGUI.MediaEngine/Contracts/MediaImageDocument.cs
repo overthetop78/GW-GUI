@@ -37,7 +37,7 @@ public sealed class MediaImageDocument : IMediaImageDocument
         Source = source;
         FormatId = formatId;
         MediaKind = mediaKind;
-        Representation = representation;
+        Representation = source.TrackDriveAccesses ? GWGUI.MediaEngine.Functions.MediaDriveBindingFunctions.Bind(source.Drive, representation, source.DriveWriting) : representation;
         FileSystemVolumes = new ReadOnlyCollection<MediaVolumeDescriptor>(volumes.ToArray());
         Volumes = new ReadOnlyCollection<MediaVolumeInfo>(volumes.Select(volume => new MediaVolumeInfo(volume)).ToArray());
         Diagnostics = new ReadOnlyCollection<string>(diagnostics.ToArray());

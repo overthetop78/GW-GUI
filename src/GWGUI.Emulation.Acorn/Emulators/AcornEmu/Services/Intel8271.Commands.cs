@@ -77,6 +77,7 @@ internal sealed partial class Intel8271
     {
         _seekSteps[_drive] += Math.Abs(_tracks[_drive] - _parameters[0]);
         _tracks[_drive] = _parameters[0];
+        _disk(_drive)?.Mechanics.Seek(_tracks[_drive], Side);
         if (_command == C.Seek) { Complete(0); return; }
         if (_command == C.Format)
         {

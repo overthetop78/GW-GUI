@@ -28,6 +28,7 @@ internal interface IAcornMachine
     void AttachHardDisk(int unit, IEmulationDiskImage? image);
     bool HardDiskActive(int unit);
     bool HardDiskMotor(int unit);
+    bool HardDiskWriting(int unit);
     long HardDiskSeekCount(int unit);
     long HardDiskReadBlocks(int unit);
     long HardDiskWrittenBlocks(int unit);

@@ -71,7 +71,7 @@ La banque distribuée est `src/GWGUI.MediaEngine/Assets/MechanicalAudio/<type>/<
 
 Les 1 749 FLAC occupent 48 146 242 octets contre 103 320 114 octets pour les WAV sources. Le PCM décodé a été comparé bit à bit aux originaux lors de la conversion. Les niveaux des enregistrements récupérés sont conservés. La réserve utilisateur sur la normalisation concerne les sons à créer, afin de préserver les différences entre lecteurs silencieux et bruyants.
 
-`catalog.json` est conservé. Les fichiers `provenance.json` et `preparation-report.json` ont été supprimés et leur génération retirée. Le manifeste de recherche existant conserve les sources originales. Le préparateur génère trois catalogues dans `Constants/MechanicalAudio/` : `RecordedMechanicalSoundFiles.Floppy.cs`, `.HardDisk.cs` et `.Optical.cs`. Chacun contient les dictionnaires des matériels, regroupés par marque/modèle et ordonnés par nom de bruitage, avec identité et chemin complet du fichier sur la même ligne. Les fichiers de constantes séparés par modèle ont été supprimés. `RecordedMechanicalSoundFiles.cs` ne contient plus de liste d’empreintes : il réunit les catalogues par type et construit l’index utilisé par le chargeur. Le catalogue JSON décrit les opérations et caractéristiques des échantillons.
+`catalog.json` a ensuite été supprimé : le chargement utilise directement les catalogues C# typés. Les fichiers `provenance.json` et `preparation-report.json` ont été supprimés et leur génération retirée. Le manifeste de recherche existant conserve les sources originales. Le préparateur génère trois catalogues dans `Constants/MechanicalAudio/` : `RecordedMechanicalSoundFiles.Floppy.cs`, `.HardDisk.cs` et `.Optical.cs`. Chacun contient les dictionnaires des matériels, regroupés par marque/modèle et ordonnés par nom de bruitage, avec identité et chemin complet du fichier sur la même ligne. Les fichiers de constantes séparés par modèle ont été supprimés. `RecordedMechanicalSoundFiles.cs` ne contient plus de liste d’empreintes : il réunit les catalogues par type et construit l’index utilisé par le chargeur. Les catalogues C# associent les fichiers aux opérations ; les caractéristiques audio sont lues dans les FLAC.
 
 La lecture utilise NAudio 2.3.0 déjà référencé et `StreamMediaFoundationReader`, avec le décodeur FLAC de Windows Media Foundation ; l’encodeur FLAC externe sert uniquement à préparer les assets. App distribue une seule banque externe, sans intégration des sons dans une DLL ni duplication dans chaque module.
 
@@ -106,3 +106,33 @@ Le service commun utilise les bases suivantes, explicitement choisies plutôt qu
 Le profil de base est placé en tête des choix et utilisé lorsque le profil demandé est absent ou non renseigné. Pour un profil enregistré spécifique, chaque opération disponible reste issue de ce profil ; une opération manquante utilise celle de la base de sa catégorie. La durée de l’événement utilise le même repli que le rendu. Si la base ne possède pas non plus cette opération, aucun son supplémentaire n’est inventé. Les réglages d’activation et de volume restent appliqués par leurs consommateurs habituels.
 
 Validation isolée sur les sources réelles : les trois bases, le rendu sans profil et avec profil absent, les durées correspondantes, le repli de l’arrêt Epson SD-800 vers Alps et la conservation de son déplacement spécifique ont réussi. Le script temporaire a été supprimé ; aucun build de GW GUI.
+
+## Lecture directe des FLAC et raccordement mécanique en cours
+
+Cette section décrit le fonctionnement actuel ; les descriptions précédentes du JSON et des scripts de préparation décrivent les étapes remplacées. Les scripts temporaires sous `scripts/tools` ont été supprimés à la demande de l’utilisateur.
+
+`CreateSample` a été supprimé. Chaque définition C# contient le chemin externe, les opérations et la provenance du son. La fréquence, les canaux et la durée ne sont plus saisis dans les catalogues. Le décodeur existant NAudio/Media Foundation ouvre le FLAC ; sa durée est comptée sur les échantillons décodés, car `Length` retourne zéro pour certains flux FLAC. Les durées et échantillons rééchantillonnés sont conservés en mémoire après leur première lecture. Aucun exécutable de conversion n’est utilisé pendant la lecture et aucun JSON ne pilote les sons.
+
+La mécanique commune de MediaEngine suit les accès des représentations sectorielles, blocs et pistes optiques : moteur, insertion/éjection, position, sens et distance du déplacement. La sélection de face reste distincte du déplacement des têtes. Les transferts continus actualisent leur position finale sans inventer un nouveau seek. Les opérations de lecture, exploration, conversion et écriture disposent de scopes de fin d’activité. Le raccordement au mixeur App et aux consommateurs SDK/Acorn reste en cours et n’est pas déclaré terminé.
+
+Validation isolée des sources actuelles : compilation de MediaEngine en mémoire avec ses générateurs, lecture directe des FLAC, catalogue de 24 profils et 1 749 fichiers, conservation des octets sectoriels et blocs, positions atteintes et fin d’activité après erreur/annulation. Le démarrage unique, la continuité de rotation entre deux fragments audio et la fin du son d’arrêt ont également été vérifiés. Les fichiers de validation temporaires ont été supprimés. Aucun build de GW GUI, arrêt ou remplacement de l’application.
+
+## Raccordement disque Acorn et volume à chaud vérifiés
+
+Les lecteurs Acorn possèdent maintenant chacun une mécanique commune relayée par le SDK. Les contrôleurs Intel 8271 et WD1770 y transmettent leurs mouvements physiques ; le Winchester transmet aussi les commandes de positionnement sans transfert. Les anciennes files et compteurs de bruitages propres au cœur Acorn ont été retirés. Les compteurs matériels de diagnostic restent dans les contrôleurs.
+
+Le runtime signale les lectures et écritures de secteurs, y compris les données déjà modifiées en mémoire. La publication du conteneur ne déplace pas artificiellement la tête et ne coupe pas le moteur du lecteur emprunté. Une image libère seulement la mécanique qu’elle a créée ; le lecteur fourni par le cœur conserve sa durée de vie indépendante du support monté.
+
+Les options sonores du lecteur — volume, activation et profil — sont appliquées sans redémarrage. Les paramètres matériels restent soumis à leur politique habituelle. Le volume nul rend du silence ; 20 % conserve la forme du signal et applique son atténuation sans remettre la rotation au début.
+
+Contrôles réalisés sur les sources actuelles : compilation isolée de MediaEngine, du SDK et d’Acorn ; 77 cas de commandes/configuration/audio existants ; contrôle du volume 100/20/0 %, changements à chaud dans le cœur, adresse physique atteinte, écriture et relecture persistée d’une image DFS, conservation du lecteur emprunté après fermeture de l’image. Les validations et leurs DLL, ressources et images temporaires ont été supprimées après utilisation. Le build de livraison reste à faire après les compléments suivants.
+
+Restent à terminer : sortie audio commune des usages App hors émulation, couverture réelle du magnétophone, exploitation correcte des séquences de mouvements rapides produisant les bourdonnements, nouveaux WAV d’écoute, vérification du build Debug Acorn.
+
+## Sources cassette complémentaires repérées
+
+- [BigSoundBank — Cassette Player: Rewind and End](https://bigsoundbank.com/cassette-player-rewind-and-end-s0567.html) : capture de Joseph Sardin, mono 48 kHz, 16 bits, deux retours rapides jusqu’à l’arrêt. Téléchargement annoncé sans compte ; référence commerciale non précisée, à conserver comme inconnue.
+- [Freesound — TEAC W-860R](https://freesound.org/people/charonfaustinus/sounds/751057/) : capture stéréo 48 kHz, 24 bits, avec repères décrivant lecture, retour, avance rapide et manipulation du compartiment. Le téléchargement de l’original demande une connexion au site ; aucun original n’a encore été importé.
+- [Freesound — Casio AS-51R](https://freesound.org/people/OneKellyOrdered/sounds/624636/) : capture mono 44,1 kHz, 16 bits, lecture puis arrêt ; original non importé.
+
+Ces pistes sont des sources à préparer, pas des sons déjà intégrés. Une préécoute MP3 ne constitue pas un original PCM sans perte et ne doit pas être présentée comme telle.

@@ -16,7 +16,9 @@ public interface IEmulationMediaProcessing
     /// <summary>Crée un disque et ses fichiers associés avec la géométrie déclarée et une préparation de volume facultative.</summary>
     Task CreateHardDiskAsync(string path, string formatId, GWGUI.Emulation.HardDisks.DiskImageGeometry geometry, string? fileSystemId = null, CancellationToken cancellationToken = default);
     /// <summary>Ouvre un disque pour un cœur ; le propriétaire libère le résultat après sauvegarde et détachement.</summary>
-    Task<IEmulationDiskImage> OpenDiskAsync(string path, bool writable = false, string? formatId = null, CancellationToken cancellationToken = default);
+    Task<IEmulationDiskImage> OpenDiskAsync(string path, bool writable = false, string? formatId = null, CancellationToken cancellationToken = default, IEmulationDriveMechanics? mechanics = null);
+    /// <summary>Crée la mécanique commune d’un lecteur, indépendante de l’image qui y sera montée.</summary>
+    IEmulationDriveMechanics CreateDriveMechanics(string device);
     /// <summary>Prépare le signal d'une cassette UEF, CSW, WAV ou RAW sans exposer les types de MediaEngine au module.</summary>
     Task<EmulationCassetteSignal> ReadCassetteAsync(string path, CancellationToken cancellationToken = default, string? machineId = null, IReadOnlyDictionary<string, string>? parameters = null);
     /// <summary>Extensions d'images dans lesquelles le signal d'un enregistreur peut être conservé intégralement.</summary>

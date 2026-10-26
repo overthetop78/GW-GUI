@@ -170,6 +170,7 @@ public sealed class AcornEmuWd1770Tests
     private sealed class Disk(byte seed = 0) : IEmulationDiskImage
     {
         private readonly Dictionary<long, byte[]> _data = new();
+        public IEmulationDriveMechanics Mechanics { get; } = GWGUI.Emulation.EmulationSdk.MediaProcessing.CreateDriveMechanics(GWGUI.Emulation.Constants.EmulationMechanicalSoundConstants.Floppy);
         public string FormatId => "acorn.adfs.640";
         public int SectorSize => 256;
         public long SectorCount => 96;

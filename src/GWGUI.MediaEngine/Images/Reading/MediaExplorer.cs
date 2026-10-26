@@ -12,6 +12,7 @@ public sealed class MediaExplorer(FileSystemsMediaExplorer fileSystems)
     public async ValueTask<ExploredMediaImage> ExploreAsync(MediaImageDocument document, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
+        using var activity = new GWGUI.MediaEngine.Services.MediaDriveOperationScope(document.Source.Drive);
         var result = await fileSystems.ExploreAsync(document, cancellationToken).ConfigureAwait(false);
         var enrichedDocument = document.FileSystemVolumes.SequenceEqual(result.Volumes) ? document : new MediaImageDocument(document.Source, document.FormatId, document.MediaKind, document.Representation, result.Volumes, document.Diagnostics, document.Metadata);
         var volumes = result.ExploredVolumes

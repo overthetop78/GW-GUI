@@ -37,7 +37,7 @@ public sealed class AcornEmuScsiTests
         var available = factory.DescribeStorage(empty);
         Assert.Empty(available.ConfiguredSlots); Assert.Equal(4, available.AvailableDevices.Count(device => device.Slot.Category == EmulationMediaCategory.HardDisk));
         var slot = new EmulationMediaSlot(EmulationMediaCategory.HardDisk, unit);
-        var settings = available with { ConfiguredSlots = [slot], MountedMedia = [new("unit.dat", slot, EmulationMediaType.HardDisk, false, true)], DeviceSettings = [new(slot, InterfaceId: "scsi", Options: new Dictionary<string, string> { ["protected"] = bool.TrueString, ["redirect"] = bool.TrueString, ["speed"] = "200", ["readLatency"] = "3", ["writeLatency"] = "7" })] };
+        var settings = available with { ConfiguredSlots = [slot], MountedMedia = [new("unit.dat", slot, EmulationMediaType.HardDisk, false, true)], DeviceSettings = [new(slot, InterfaceId: "scsi", Options: new Dictionary<string, string> { ["protected"] = bool.TrueString, ["speed"] = "200", ["readLatency"] = "3", ["writeLatency"] = "7" })] };
         var configuration = factory.ApplyStorage(empty, settings);
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(configuration))!;
         var stored = factory.DescribeStorage(restored); Assert.Equal(slot, Assert.Single(stored.ConfiguredSlots));
@@ -244,6 +244,7 @@ public sealed class AcornEmuScsiTests
         private readonly Dictionary<long, byte[]> _data = new();
         private readonly Dictionary<string, string> _metadata = new();
         private int _cylinders = 3, _heads = 2;
+        public IEmulationDriveMechanics Mechanics { get; } = GWGUI.Emulation.EmulationSdk.MediaProcessing.CreateDriveMechanics(GWGUI.Emulation.Constants.EmulationMechanicalSoundConstants.HardDisk);
         public string FormatId => "hdd.acorn-winchester";
         public int SectorSize => sectorSize;
         public long SectorCount => 198 * 256 / SectorSize;

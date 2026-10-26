@@ -176,4 +176,25 @@ public static class MechanicalSoundConstants
 
     /// <summary>Cadence de référence des déplacements de disque dur, en événements par seconde.</summary>
     public const int HardDiskSeekEventsPerSecond = 25;
+    /// <summary>Ouverture du mécanisme du lecteur.</summary>
+    public const string Open = "Open";
+
+    /// <summary>Fermeture du mécanisme du lecteur.</summary>
+    public const string Close = "Close";
+
+    /// <summary>Enfoncement du support dans le mécanisme.</summary>
+    public const string Push = "Push";
+
+    /// <summary>Retrait du support du mécanisme.</summary>
+    public const string Pull = "Pull";
+
+    /// <summary>Séquence mécanique de mise sous tension.</summary>
+    public const string Boot = "Boot";
+
+    /// <summary>Engagement de la tête sur le support.</summary>
+    public const string HeadEngage = "HeadEngage";
+
+    /// <summary>Séquence enregistrée de déplacements des têtes.</summary>
+    public const string SeekSequence = "SeekSequence";
+
 }

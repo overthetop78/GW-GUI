@@ -27,12 +27,27 @@ internal static partial class StorageFunctions
         var device = hardDisk ? S.HardDisk : S.Floppy;
         var key = hardDisk ? C.HardDiskKey(index, C.SoundProfileOption) : C.Key(index, C.SoundProfileOption);
         var profiles = CommonHost.MediaProcessing.MechanicalSoundProfiles(device);
-        return new(C.SoundProfileOption, EmulationMachineTab.Storage, device, C.SoundProfileResource, EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(key, profiles[0]), profiles.Select(profile => new EmulationSettingsChoice(profile, string.Empty, CommonHost.MediaProcessing.MechanicalSoundProfileDisplayName(profile))).ToArray(), RequiresRestart: true);
+        return new(C.SoundProfileOption, EmulationMachineTab.Storage, device, C.SoundProfileResource, EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(key, profiles[0]), profiles.Select(profile => new EmulationSettingsChoice(profile, string.Empty, CommonHost.MediaProcessing.MechanicalSoundProfileDisplayName(profile))).ToArray());
     }
 
     /// <summary>Le dialogue du lecteur règle la carte de contrôle commune aux deux lecteurs BBC.</summary>
     private static EmulationSettingsField ControllerField(MachineConfiguration configuration) => new(C.ControllerOption, EmulationMachineTab.Storage, C.ControllerOption, C.InterfaceResource, EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(C.ControllerOption, C.Intel8271), [new(C.Intel8271, string.Empty, C.Intel8271Display), new(C.AcornWd1770, string.Empty, C.Wd1770Display)], RequiresRestart: true, RefreshSettingsOnChange: true);
 
+    /// <summary>Identifie les réglages d’écoute sans inclure les paramètres matériels du lecteur.</summary>
+    internal static bool IsMechanicalSoundOption(string key) => TryGetMechanicalSoundOption(key, out _, out _, out _);
+
+    /// <summary>Résout le lecteur et la clé locale de son réglage sonore persistant.</summary>
+    internal static bool TryGetMechanicalSoundOption(string key, out bool hardDisk, out int index, out string option)
+    {
+        foreach (var device in new[] { false, true })
+        for (var drive = 0; drive < (device ? C.HardDiskCount : C.DriveCount); drive++)
+        foreach (var name in new[] { C.MechanicalSoundOption, C.SoundProfileOption, C.SoundVolumeOption })
+            if (key == (device ? C.HardDiskKey(drive, name) : C.Key(drive, name)))
+            {
+                hardDisk = device; index = drive; option = name; return true;
+            }
+        hardDisk = false; index = default; option = string.Empty; return false;
+    }
     private static IReadOnlyList<FloppyDriveModelChoice> CreationModels(MachineConfiguration configuration) => CommonHost.MediaProcessing.FloppyDriveModels(C.FloppyFamily, UsesWd1770(configuration));
     internal static IReadOnlyList<EmulationStorageDeviceSettings> DescribeSettings(MachineConfiguration configuration) => Enumerable.Range(0, C.DriveCount).Where(drive => Connected(configuration, drive)).Select(drive => new EmulationStorageDeviceSettings(new(EmulationMediaCategory.FloppyDrive, drive), Settings(configuration, drive))).ToArray();
 

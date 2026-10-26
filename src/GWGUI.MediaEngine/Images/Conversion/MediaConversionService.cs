@@ -47,6 +47,7 @@ public sealed class MediaConversionService
     {
         ArgumentNullException.ThrowIfNull(request);
         cancellationToken.ThrowIfCancellationRequested();
+        using var activity = new GWGUI.MediaEngine.Services.MediaDriveOperationScope(request.Source.Source.Drive);
         request.Progress?.Invoke(new(MediaExplorationProgressStage.ReadingMedia, Path.GetFileName(request.Source.Source.PrimaryPath), 0, request.Source.MediaKind));
 
         var extension = Path.GetExtension(request.OutputPath);

@@ -10,6 +10,12 @@ namespace GWGUI.MediaEngine.Images.Models.Blocks;
 /// <summary>Describes the 64-bit address ranges available in a block-addressed media image.</summary>
 public sealed class BlockMediaImageRepresentation : IMediaBlockRepresentation, IMediaImageRepresentation
 {
+    /// <summary>Lecteur emprunté associé aux accès logiques de cette représentation.</summary>
+    internal IMediaDriveMechanics? Drive { get; init; }
+
+    /// <summary>Indique que les octets sont consommés pour une écriture du média.</summary>
+    internal bool DriveWriting { get; init; }
+
     public BlockMediaImageRepresentation(long logicalLength, IReadOnlyList<(long Address, long Length)> ranges)
         : this(
             logicalLength,

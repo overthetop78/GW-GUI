@@ -19,6 +19,7 @@ internal sealed partial class EmulatorCore
         _diskExtensions = NativeStorage.Extensions(configuration);
         for (var drive = 0; drive < C.DriveCount; drive++)
         {
+            _floppyMechanics[drive] ??= GWGUI.Emulation.Acorn.Common.Functions.CoreHostFunctions.MediaProcessing.CreateDriveMechanics(S.Floppy);
             _floppyConnected[drive] = NativeStorage.Connected(configuration, drive);
             var settings = _floppySettings[drive] = NativeStorage.Settings(configuration, drive);
             _machine!.ConfigureFloppySpeed(drive, int.Parse(settings.Speed, System.Globalization.CultureInfo.InvariantCulture));
@@ -30,14 +31,14 @@ internal sealed partial class EmulatorCore
         var drive = media.Slot.Index;
         if (media.Category != MediaCategory.Floppy || drive is < 0 or >= C.DriveCount || !_floppyConnected[drive] || !_diskExtensions.Contains(Path.GetExtension(media.Path), StringComparer.OrdinalIgnoreCase)) throw new ArgumentException(nameof(media));
         var settings = _floppySettings[drive]!;
-        var image = BbcMicroDiskFunctions.Open(media.Path, !media.IsReadOnly && !settings.WriteProtected);
+        var image = BbcMicroDiskFunctions.Open(media.Path, !media.IsReadOnly && !settings.WriteProtected, mechanics: _floppyMechanics[drive]);
         var transferred = false;
         try
         {
             NativeStorage.ValidateMedia(image, settings);
             EjectFloppy(drive);
             _machine!.AttachFloppy(drive, image); _floppyImages[drive] = image; transferred = true;
-            QueueFloppySound(drive, S.Insert);
+            _floppyMechanics[drive]!.Insert();
         }
         finally { if (!transferred) image.Dispose(); }
     }
@@ -49,8 +50,8 @@ internal sealed partial class EmulatorCore
         SaveFloppy(drive);
         _machine?.AttachFloppy(drive, null);
         var image = _floppyImages[drive]; _floppyImages[drive] = null;
-        image?.Dispose();
-        if (image is not null) QueueFloppySound(drive, S.Eject);
+        try { image?.Dispose(); }
+        finally { if (image is not null) _floppyMechanics[drive]?.Eject(); }
     }
 
     /// <summary>Libère toutes les images même si une publication échoue ; le propriétaire libère ensuite la carte.</summary>
@@ -61,7 +62,7 @@ internal sealed partial class EmulatorCore
         {
             var image = _floppyImages[drive]; _floppyImages[drive] = null;
             try { _machine?.AttachFloppy(drive, null); }
-            finally { try { image?.Dispose(); } catch (Exception error) { errors.Add(error); } }
+            finally { try { image?.Dispose(); } catch (Exception error) { errors.Add(error); } finally { _floppyMechanics[drive]?.Reset(); _floppyMechanics[drive] = null; } }
         }
         if (errors.Count > 0) throw new AggregateException(errors);
     }

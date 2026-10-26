@@ -50,6 +50,7 @@ internal sealed class ModelAMachine : ICpuBus, IAcornMachine
     public void AttachHardDisk(int unit, IEmulationDiskImage? image) => _winchester.Attach(unit, image);
     public bool HardDiskActive(int unit) => _winchester.Active(unit);
     public bool HardDiskMotor(int unit) => _winchester.Motor(unit);
+    public bool HardDiskWriting(int unit) => _winchester.Writing(unit);
     public long HardDiskSeekCount(int unit) => _winchester.SeekCount(unit);
     public long HardDiskReadBlocks(int unit) => _winchester.ReadBlocks(unit);
     public long HardDiskWrittenBlocks(int unit) => _winchester.WrittenBlocks(unit);

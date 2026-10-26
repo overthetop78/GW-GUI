@@ -15,11 +15,13 @@ internal sealed class MediaRuntimePreparationService : IMediaRuntimePreparation
 {
     public IReadOnlyList<MediaFloppyDriveModel> FloppyDriveModels(string family, bool doubleDensity) => GWGUI.MediaEngine.Dictionaries.FloppyDriveCatalog.Models(family, doubleDensity);
     public bool SupportsFloppyImage(string model, long cylinders, int heads, int sectorSize, int sectorsPerTrack, long sectorCount) => GWGUI.MediaEngine.Dictionaries.FloppyDriveCatalog.Supports(model, cylinders, heads, sectorSize, sectorsPerTrack, sectorCount);
-    public async Task<IMediaRuntimeDisk> OpenDiskAsync(string path, bool writable = false, string? formatId = null, CancellationToken cancellationToken = default)
+    public IMediaDriveMechanics CreateDriveMechanics(string device) => new MediaDriveMechanics(device);
+
+    public async Task<IMediaRuntimeDisk> OpenDiskAsync(string path, bool writable = false, string? formatId = null, CancellationToken cancellationToken = default, IMediaDriveMechanics? mechanics = null)
     {
         var engine = Conversion.Value;
-        var document = await engine.ReadingService.ReadAsync(new(path, [], RequestedFormatId: formatId), cancellationToken).ConfigureAwait(false);
-        return new MediaRuntimeDisk(engine, document, writable);
+        var document = await engine.ReadingService.ReadAsync(new(path, [], RequestedFormatId: formatId) { Drive = mechanics, TrackDriveAccesses = false }, cancellationToken).ConfigureAwait(false);
+        return new MediaRuntimeDisk(engine, document, writable, mechanics is null);
     }
     public Task<GWGUI.MediaEngine.Contracts.MediaCassetteSignal> ReadCassetteAsync(string path, CancellationToken cancellationToken = default, string? machineId = null, IReadOnlyDictionary<string, string>? parameters = null) => GWGUI.MediaEngine.Functions.CassetteSignalFunctions.ReadAsync(path, cancellationToken, machineId, parameters);
     public IReadOnlyList<string> CassetteRecordingExtensions => GWGUI.MediaEngine.Functions.CassetteSignalFunctions.WritableExtensions;

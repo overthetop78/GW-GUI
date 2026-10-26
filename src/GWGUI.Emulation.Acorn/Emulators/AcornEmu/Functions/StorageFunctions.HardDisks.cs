@@ -27,7 +27,7 @@ internal static partial class StorageFunctions
     private static IReadOnlyList<EmulationSettingsField> HardDiskFields(MachineConfiguration configuration, int unit)
     {
         var settings = HardDiskSettings(configuration, unit);
-        EmulationSettingsField Flag(string id, string key, bool value) => new(id, EmulationMachineTab.Storage, S.HardDisk, key, EmulationSettingsEditor.Toggle, value.ToString(), EnabledValue: bool.TrueString, DisabledValue: bool.FalseString, RequiresRestart: true);
+        EmulationSettingsField Flag(string id, string key, bool value) => new(id, EmulationMachineTab.Storage, S.HardDisk, key, EmulationSettingsEditor.Toggle, value.ToString(), EnabledValue: bool.TrueString, DisabledValue: bool.FalseString, RequiresRestart: id != C.MechanicalSoundOption);
         EmulationSettingsField Delay(string id, string key, int value) => new(id, EmulationMachineTab.Storage, S.HardDisk, key, EmulationSettingsEditor.Slider, value.ToString(CultureInfo.InvariantCulture), RequiresRestart: true, NumericRange: new(0, C.MaximumLatencyMilliseconds, 1, C.MillisecondsSuffix));
         return
         [

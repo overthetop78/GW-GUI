@@ -1,4 +1,4 @@
-﻿using GWGUI.MediaEngine.Images.Formats.Tape;
+using GWGUI.MediaEngine.Images.Formats.Tape;
 using GWGUI.MediaEngine.Images.Visualization;
 using GWGUI.MediaEngine.Images.Writing;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding;
@@ -35,6 +35,7 @@ public sealed class MediaEngineComposition
         Explorer = explorer;
         Conversion = conversion;
         Writing = writing;
+        Writing.WritingService.Drives = recognition.ReadingService.Drives;
         Visualization = visualization;
         FloppyFluxAcquisitionService = new FloppyFluxAcquisitionService();
         FloppyMediaWritePlanningService = new FloppyMediaWritePlanningService(DiskImageExplorer.CreateDefault());
@@ -56,6 +57,9 @@ public sealed class MediaEngineComposition
     public FloppyMediaWritePlanningService FloppyMediaWritePlanningService { get; }
 
     public MediaImageReadingService ReadingService => Recognition.ReadingService;
+
+    /// <summary>Activité mécanique des lecteurs d’images, commune à la lecture et à ses consommateurs.</summary>
+    public MediaDriveService Drives => ReadingService.Drives;
 
     public MediaExplorer Explorer { get; }
 

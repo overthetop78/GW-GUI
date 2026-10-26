@@ -13,11 +13,16 @@ internal sealed partial class EmulationMediaProcessingService
         ArgumentNullException.ThrowIfNull(geometry);
         return Preparation.CreateHardDiskAsync(path, formatId, new GWGUI.MediaEngine.Contracts.HardDiskGeometry(geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, geometry.SectorSize), fileSystemId, cancellationToken);
     }
-    public async Task<IEmulationDiskImage> OpenDiskAsync(string path, bool writable = false, string? formatId = null, CancellationToken cancellationToken = default) => new DiskImage(await Preparation.OpenDiskAsync(path, writable, formatId, cancellationToken).ConfigureAwait(false));
+    public async Task<IEmulationDiskImage> OpenDiskAsync(string path, bool writable = false, string? formatId = null, CancellationToken cancellationToken = default, IEmulationDriveMechanics? mechanics = null)
+    {
+        var source = mechanics is null ? null : mechanics is DriveMechanics bridge ? bridge.Source : throw new ArgumentException(nameof(mechanics));
+        return new DiskImage(await Preparation.OpenDiskAsync(path, writable, formatId, cancellationToken, source).ConfigureAwait(false), mechanics);
+    }
 
     /// <summary>Possède l'image reçue de MediaEngine et lui transfère exactement les mêmes opérations.</summary>
-    private sealed class DiskImage(IMediaRuntimeDisk image) : IEmulationDiskImage
+    private sealed class DiskImage(IMediaRuntimeDisk image, IEmulationDriveMechanics? mechanics) : IEmulationDiskImage
     {
+        public IEmulationDriveMechanics Mechanics { get; } = mechanics ?? new DriveMechanics(image.Mechanics);
         public string FormatId => image.FormatId;
         public int SectorSize => image.SectorSize;
         public long SectorCount => image.SectorCount;

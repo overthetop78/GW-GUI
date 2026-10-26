@@ -1,6 +1,5 @@
 using System.Collections.Concurrent;
 using System.IO;
-using System.Text.Json;
 using GWGUI.MediaEngine.Contracts;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
@@ -15,13 +14,13 @@ internal sealed class RecordedMechanicalSoundFunctions
     private readonly Func<RecordedMechanicalSoundSample, Stream> _openSample;
     private readonly IReadOnlyDictionary<string, RecordedMechanicalSoundSample> _sampleDefinitions;
     private readonly ConcurrentDictionary<(string Sample, int Rate), Lazy<float[]>> _samples = new();
+    private readonly ConcurrentDictionary<string, Lazy<double>> _durations = new(StringComparer.Ordinal);
     private static readonly Lazy<RecordedMechanicalSoundFunctions> External = new(LoadAssets);
     internal static RecordedMechanicalSoundFunctions Shared => External.Value;
 
-    internal RecordedMechanicalSoundFunctions(Stream catalog, Func<RecordedMechanicalSoundSample, Stream> openSample)
+    internal RecordedMechanicalSoundFunctions(RecordedMechanicalSoundCatalog document, Func<RecordedMechanicalSoundSample, Stream> openSample)
     {
-        var document = JsonSerializer.Deserialize<RecordedMechanicalSoundCatalog>(catalog, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
-            ?? throw new InvalidDataException(nameof(catalog));
+        ArgumentNullException.ThrowIfNull(document);
         _profiles = document.Profiles.ToDictionary(profile => profile.Id, StringComparer.Ordinal);
         _openSample = openSample;
         _sampleDefinitions = document.Profiles.SelectMany(profile => profile.Samples).GroupBy(sample => sample.Id, StringComparer.Ordinal).ToDictionary(group => group.Key, group => group.First(), StringComparer.Ordinal);
@@ -41,14 +40,13 @@ internal sealed class RecordedMechanicalSoundFunctions
     private static RecordedMechanicalSoundFunctions LoadAssets()
     {
         var directory = Path.Combine(AppContext.BaseDirectory, C.AssetsDirectory, C.BankDirectory);
-        using var catalog = File.OpenRead(Path.Combine(directory, C.CatalogFileName));
-        return new(catalog, sample => File.OpenRead(Path.Combine(directory, GWGUI.MediaEngine.Constants.RecordedMechanicalSoundFiles.BySampleId[sample.Id])));
+        return new(Constants.RecordedMechanicalSoundFiles.All, sample => File.OpenRead(Path.Combine(directory, sample.FilePath)));
     }
 
     internal double Duration(string profileId, string operation, int distance = 1, int direction = 1, int cylinder = -1)
     {
         var sample = SelectWithFallback(Profile(profileId), operation, distance, direction, cylinder);
-        return sample is null ? 0 : (double)sample.Frames / sample.SampleRate;
+        return sample is null ? 0 : _durations.GetOrAdd(sample.Id, id => new Lazy<double>(() => ReadDuration(id))).Value;
     }
 
     internal short[] Render(string device, string operation, int sampleRate, int count, long offset, string profileId,
@@ -106,13 +104,31 @@ internal sealed class RecordedMechanicalSoundFunctions
 
     private float[] Samples(string id, int rate) => _samples.GetOrAdd((id, rate), key => new Lazy<float[]>(() => Read(key.Sample, key.Rate))).Value;
 
+    /// <summary>Lit la durée du signal décodé dans le fichier, sans métadonnée de catalogue.</summary>
+    private double ReadDuration(string id)
+    {
+        var definition = _sampleDefinitions[id];
+        using var stream = _openSample(definition);
+        using var reader = OpenReader(stream, definition.FilePath);
+        var source = reader.ToSampleProvider();
+        var buffer = new float[C.ReadBufferLength];
+        long sampleCount = 0;
+        int read;
+        while ((read = source.Read(buffer, 0, buffer.Length)) > 0) sampleCount += read;
+        return (double)sampleCount / source.WaveFormat.Channels / source.WaveFormat.SampleRate;
+    }
+
+    /// <summary>Ouvre le décodeur du fichier ; l'appelant possède le lecteur retourné et son flux.</summary>
+    private static WaveStream OpenReader(Stream stream, string path) =>
+        path.EndsWith(Constants.DiskImageFileExtensions.Flac, StringComparison.OrdinalIgnoreCase)
+            ? new StreamMediaFoundationReader(stream, new MediaFoundationReader.MediaFoundationReaderSettings { RequestFloatOutput = true })
+            : new WaveFileReader(stream);
+
     private float[] Read(string id, int sampleRate)
     {
         var definition = _sampleDefinitions[id];
         using var stream = _openSample(definition);
-        using WaveStream reader = definition.FilePath.EndsWith(Constants.DiskImageFileExtensions.Flac, StringComparison.OrdinalIgnoreCase)
-            ? new StreamMediaFoundationReader(stream, new MediaFoundationReader.MediaFoundationReaderSettings { RequestFloatOutput = true })
-            : new WaveFileReader(stream);
+        using var reader = OpenReader(stream, definition.FilePath);
         ISampleProvider source = reader.ToSampleProvider();
         if (source.WaveFormat.Channels == 2) source = new StereoToMonoSampleProvider(source) { LeftVolume = (float)C.StereoChannelGain, RightVolume = (float)C.StereoChannelGain };
         if (source.WaveFormat.Channels != 1) throw new InvalidDataException(id);

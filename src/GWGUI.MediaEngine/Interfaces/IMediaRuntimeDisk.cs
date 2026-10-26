@@ -7,6 +7,8 @@ namespace GWGUI.MediaEngine.Interfaces;
 /// jusqu'à FlushAsync ; une erreur conserve les changements pour une nouvelle tentative.</remarks>
 public interface IMediaRuntimeDisk : IDisposable
 {
+    /// <summary>Mécanique du lecteur, empruntée lorsqu’elle est fournie par l’appelant.</summary>
+    IMediaDriveMechanics Mechanics { get; }
     string FormatId { get; }
     int SectorSize { get; }
     long SectorCount { get; }

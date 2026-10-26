@@ -68,22 +68,27 @@ public sealed class AcornEmuDiskControllerTests
         var rest = service.RenderMechanicalSound(device, operation, 48000, 4663, 137);
         Assert.Contains(complete, sample => sample != 0);
         Assert.Equal(complete, first.Concat(rest).ToArray());
-        if (operation is "Seek" or "Insert" or "Eject") Assert.All(service.RenderMechanicalSound(device, operation, 48000, 100, 48000), sample => Assert.Equal(0, sample));
+        if (operation is "Seek" or "Insert" or "Eject")
+        {
+            var duration = service.MechanicalSoundDurationSeconds(device, service.MechanicalSoundProfiles(device)[0], operation);
+            Assert.All(service.RenderMechanicalSound(device, operation, 48000, 100, (long)Math.Ceiling(duration * 48000) + 1), sample => Assert.Equal(0, sample));
+        }
     }
 
     [Theory]
     [InlineData("Floppy")]
     [InlineData("HardDisk")]
     [InlineData("Optical")]
-    public void EachMechanicalProfileProducesItsOwnSignalAndRejectsAnotherDeviceProfile(string device)
+    public void RecordedMechanicalBaseAndWrongDeviceProfileAreResolvedExplicitly(string device)
     {
         var service = GWGUI.Emulation.EmulationSdk.MediaProcessing;
         var profiles = service.MechanicalSoundProfiles(device);
-        Assert.True(profiles.Count > 1);
-        var first = service.RenderMechanicalSound(device, "Motor", 48000, 4800, 0, profiles[0]);
-        var second = service.RenderMechanicalSound(device, "Motor", 48000, 4800, 0, profiles[1]);
-        Assert.False(first.SequenceEqual(second));
-        Assert.Throws<ArgumentOutOfRangeException>(() => service.RenderMechanicalSound(device, "Motor", 48000, 10, 0, "Standard"));
+        Assert.NotEmpty(profiles);
+        var selected = service.RenderMechanicalSound(device, "Motor", 48000, 4800, 0, profiles[0]);
+        Assert.Equal(selected, service.RenderMechanicalSound(device, "Motor", 48000, 4800, 0));
+        Assert.Equal(selected, service.RenderMechanicalSound(device, "Motor", 48000, 4800, 0, "unavailable-profile"));
+        var otherDevice = device == "Floppy" ? GWGUI.Emulation.Constants.EmulationMechanicalSoundConstants.HardDisk35 : GWGUI.Emulation.Constants.EmulationMechanicalSoundConstants.Floppy35;
+        Assert.Throws<ArgumentException>(() => service.RenderMechanicalSound(device, "Motor", 48000, 10, 0, otherDevice));
     }
     [Fact]
     public void DiskDriveConfigurationUsesTheExistingStorageContractAndRemainsOptional()
@@ -100,7 +105,7 @@ public sealed class AcornEmuDiskControllerTests
         var restored = new MachineConfiguration(MachineModel.BbcMicroModelA, options: selected.Options, core: Emulator.AcornEmu);
         Assert.Equal(2, factory.DescribeStorage(restored).ConfiguredSlots.Count);
         var first = Assert.Single(factory.DescribeDeviceSettings(restored), item => item.Slot == EmulationMediaSlot.Floppy0).Floppy!;
-        Assert.Equal("ss40", first.Model); Assert.Equal("400", first.Speed); Assert.True(first.WriteProtected); Assert.True(first.RedirectWrites);
+        Assert.Equal("ss40", first.Model); Assert.Equal("400", first.Speed); Assert.True(first.WriteProtected); Assert.False(first.RedirectWrites);
         Assert.Contains(factory.GetFirmwareSlots(restored), slot => slot.FieldId == "acornemu.dfs" && slot.IsRequired);
         Assert.True(factory.RequiresOptionRestart(restored, "acornemu.floppy.0.model"));
         var removed = factory.ApplyStorage(restored, factory.DescribeStorage(restored) with { ConfiguredSlots = [], DeviceSettings = [] });
@@ -247,6 +252,7 @@ public sealed class AcornEmuDiskControllerTests
     private sealed class MemoryDisk(byte seed = 0) : IEmulationDiskImage
     {
         private readonly Dictionary<long, byte[]> _data = new();
+        public IEmulationDriveMechanics Mechanics { get; } = GWGUI.Emulation.EmulationSdk.MediaProcessing.CreateDriveMechanics(GWGUI.Emulation.Constants.EmulationMechanicalSoundConstants.Floppy);
         public string FormatId => "acorn.dfs.ds";
         public int SectorSize => 256;
         public long SectorCount => DeclaredSectorCount ?? Cylinders * Heads * SectorsPerTrack;

@@ -2,6 +2,7 @@ using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
 using System.IO;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Images.Reading.Recognition;
+using GWGUI.MediaEngine.Services;
 
 namespace GWGUI.MediaEngine.Images.Reading;
 
@@ -9,6 +10,9 @@ namespace GWGUI.MediaEngine.Images.Reading;
 public sealed class MediaImageReadingService
 {
     private readonly MediaRecognitionRegistry recognitionRegistry;
+
+    /// <summary>Mécaniques des lecteurs utilisés par ce service de lecture.</summary>
+    public MediaDriveService Drives { get; } = new();
 
     public MediaImageReadingService(MediaRecognitionRegistry recognitionRegistry)
     {
@@ -19,11 +23,11 @@ public sealed class MediaImageReadingService
     public async Task<MediaImageDocument> ReadAsync(MediaSourceDescriptor source, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(source);
-        var context = new MediaRecognitionContext(source);
+        var context = new MediaRecognitionContext(source) { Drives = Drives };
         try
         {
             var result = await recognitionRegistry.RecognizeAsync(context, cancellationToken).ConfigureAwait(false);
-            return result.Document;
+            return Drives.Attach(result.Document);
         }
         catch (Exception error) when (source.RequestedFormatId is null && context.Extension == ".raw" && (error is NotSupportedException || error is AggregateException aggregate && aggregate.InnerExceptions.All(inner => inner is InvalidDataException or NotSupportedException)))
         {

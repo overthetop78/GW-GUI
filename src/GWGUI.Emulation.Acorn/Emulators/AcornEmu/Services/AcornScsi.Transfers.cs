@@ -41,6 +41,12 @@ internal sealed partial class AcornScsi
     {
         var image = Image!;
         var position = image.Heads > 0 && image.SectorsPerTrack > 0 && image.SectorSize > 0 ? _lba * C.SectorSize / image.SectorSize / image.Heads / image.SectorsPerTrack : _lba;
+        if (image.Heads > 0 && image.SectorsPerTrack > 0)
+        {
+            var sector = _lba * C.SectorSize / image.SectorSize;
+            image.Mechanics.Seek(checked((int)position), (int)(sector / image.SectorsPerTrack % image.Heads), (int)(sector % image.SectorsPerTrack));
+        }
+        else image.Mechanics.Seek(0, 0, logicalBlock: _lba);
         if (_headPositions[_unit] != position) { _seekCount[_unit]++; _headPositions[_unit] = position; }
     }
 

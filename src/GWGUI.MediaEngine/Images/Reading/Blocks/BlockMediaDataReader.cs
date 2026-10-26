@@ -33,9 +33,20 @@ internal static class BlockMediaDataReader
 
             var offsetInRange = logicalAddress - range.Address;
             var count = (int)Math.Min(destination.Length - destinationOffset, range.Length - offsetInRange);
+            if (image.Drive is not null)
+                count = (int)Math.Min(count, GWGUI.MediaEngine.Functions.MediaDriveBindingFunctions.BlockContiguousLength(image, logicalAddress));
             var slice = destination.Slice(destinationOffset, count);
-            switch (range.Kind)
+            var directAccess = image.Drive is not null && (range.Kind is MediaDataRangeKind.Zero or MediaDataRangeKind.Unallocated);
+            if (directAccess)
             {
+                var position = GWGUI.MediaEngine.Functions.MediaDriveBindingFunctions.BlockPosition(image, logicalAddress);
+                if (image.DriveWriting) image.Drive!.BeginWrite(position);
+                else image.Drive!.BeginRead(position);
+            }
+            try
+            {
+                switch (range.Kind)
+                {
                 case MediaDataRangeKind.Stored:
                     await range.Source!.ReadExactlyAsync(checked(range.SourceOffset + offsetInRange), slice, cancellationToken).ConfigureAwait(false);
                     break;
@@ -47,7 +58,10 @@ internal static class BlockMediaDataReader
                     throw new InvalidDataException($"Logical address {logicalAddress} is unavailable in the source image.");
                 default:
                     throw new InvalidDataException($"Unsupported media data range kind {range.Kind}.");
+                }
+                if (directAccess) image.Drive!.Advance(GWGUI.MediaEngine.Functions.MediaDriveBindingFunctions.BlockPosition(image, checked(logicalAddress + count - 1)));
             }
+            finally { if (directAccess) image.Drive!.EndAccess(); }
 
             logicalAddress += count;
             destinationOffset += count;
