@@ -11,6 +11,8 @@ internal static class RecordedMechanicalSoundConstants
 
     /// <summary>Identifiant de l’opération de démarrage du moteur.</summary>
     internal const string Start = "Start";
+    /// <summary>Profil du magnétophone enregistré dont la référence commerciale est inconnue.</summary>
+    internal const string DefaultTapeProfile = MechanicalSoundConstants.Standard;
     /// <summary>Profil Alps Electric DF354H148F utilisé en l’absence de son spécifique de disquette.</summary>
     internal const string DefaultFloppyProfile = MechanicalSoundConstants.Floppy35;
     /// <summary>Profil Seagate ST3120A utilisé en l’absence de son spécifique de disque dur.</summary>

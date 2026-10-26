@@ -31,6 +31,8 @@ public static class MechanicalSoundConstants
 
     /// <summary>Identifiant de l’arrêt du mécanisme.</summary>
     public const string Stop = "Stop";
+    /// <summary>Identifiant de la commande de pause du magnétophone.</summary>
+    public const string Pause = "Pause";
 
     /// <summary>Identifiant de l’éjection du support.</summary>
     public const string Eject = "Eject";
@@ -49,7 +51,7 @@ public static class MechanicalSoundConstants
 
     /// <summary>Identifiant de l’insertion du support.</summary>
     public const string Insert = "Insert";
-    /// <summary>Identifiant du profil synthétique standard de lecteur de bande.</summary>
+    /// <summary>Identifiant du profil enregistré standard de lecteur de bande.</summary>
     public const string Standard = "Standard";
 
     /// <summary>Identifiant du profil de disquette 5,25 pouces, associé aux enregistrements Panasonic JU-475-5.</summary>

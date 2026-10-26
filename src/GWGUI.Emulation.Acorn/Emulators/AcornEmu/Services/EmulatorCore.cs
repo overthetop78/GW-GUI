@@ -80,7 +80,8 @@ internal sealed partial class EmulatorCore : IEmulatorCore, IEmulatorCassetteTra
         var machine = _machine ?? throw new InvalidOperationException();
         if (command != EmulationCassetteCommand.Record) SaveMediaChanges(EmulationMediaSlot.Cassette0);
         machine.CassetteTransport.ExecuteCassette(command);
-        if (command == EmulationCassetteCommand.Stop) _mechanicalEvent = S.Stop;
+        if (command == EmulationCassetteCommand.Stop) SetCassetteSoundEvent(S.Stop);
+        else if (command == EmulationCassetteCommand.Pause) SetCassetteSoundEvent(S.Pause);
     }
 
     public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
@@ -136,18 +137,6 @@ internal sealed partial class EmulatorCore : IEmulatorCore, IEmulatorCassetteTra
     public bool TryDequeueAudio(out AudioChunk? chunk) => _audio.TryDequeue(out chunk);
     /// <summary>Détache les blocs non lus pour ne pas rejouer d'ancien son après arrêt ou reset.</summary>
     private void ClearAudio() { _audio.Clear(); LatestAudioChunk = null; }
-    /// <summary>Mélange les seuls bruits de mécanisme à la présentation audio en temps réel, sans les enregistrer sur la bande.</summary>
-    private void MixCassetteSound(double[] samples)
-    {
-        if (!_cassetteSettings.MechanicalSound || _cassetteSettings.Mode != EmulationCassettePlaybackMode.RealTime) return;
-        var operation = _mechanicalEvent ?? (CassetteActive ? CassetteOperation?.ToString() : null) ?? S.None;
-        if (operation == S.None && _mechanicalOperation is S.Play or S.Record or S.FastForward or S.Rewind) operation = _mechanicalEvent = S.Stop;
-        if (operation != _mechanicalOperation) { _mechanicalOperation = operation; _mechanicalOffset = 0; }
-        var noise = BbcMicroCassetteFunctions.Sound(operation, SampleRate, samples.Length, _mechanicalOffset, _cassetteSettings.MechanicalVolumePercent);
-        for (var index = 0; index < samples.Length; index++) samples[index] += noise[index];
-        _mechanicalOffset += samples.Length;
-        if (_mechanicalOffset > SampleRate / 5) _mechanicalEvent = null;
-    }
     public DiskStatus GetDiskStatus() => new(0, -1, true, []);
     public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) => slot.Category switch
     {
@@ -177,6 +166,7 @@ internal sealed partial class EmulatorCore : IEmulatorCore, IEmulatorCassetteTra
         (_machine ?? throw new InvalidOperationException()).InsertCassette(signal, !media.IsReadOnly && BbcMicroCassetteFunctions.RecordingExtensions.Contains(Path.GetExtension(media.Path), StringComparer.OrdinalIgnoreCase));
         _cassettePath = media.Path;
         _mountedCassetteParameters = parameters;
+        SetCassetteSoundEvent(S.Insert);
     }
     public void EjectMedia(EmulationMediaSlot slot)
     {
@@ -184,7 +174,7 @@ internal sealed partial class EmulatorCore : IEmulatorCore, IEmulatorCassetteTra
         if (slot.Category == EmulationMediaCategory.HardDisk) { EjectHardDisk(slot.Index); return; }
         if (slot != EmulationMediaSlot.Cassette0) throw new ArgumentOutOfRangeException(nameof(slot));
         SaveMediaChanges(slot);
-        _machine?.EjectCassette(); _cassettePath = null; _mechanicalEvent = S.Eject;
+        _machine?.EjectCassette(); _cassettePath = null; SetCassetteSoundEvent(S.Eject);
     }
     public void SelectDisk(int index) => throw new NotSupportedException();
     public byte[] SaveState() => throw new NotSupportedException();

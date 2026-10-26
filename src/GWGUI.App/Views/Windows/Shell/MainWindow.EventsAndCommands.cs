@@ -102,7 +102,8 @@ public partial class MainWindow : Window
         {
             ErrorLog.EntryWritten -= AppendErrorToConsole;
             ErrorLog.WarningWritten -= AppendWarningToConsole;
-            _scpInspectorController.Dispose();
+            try { _scpInspectorController.Dispose(); }
+            finally { _mediaDriveAudio.Dispose(); }
         }
     }
 

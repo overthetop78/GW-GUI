@@ -26,17 +26,11 @@ internal static class MediaDriveBindingFunctions
     {
         var image = representation.Image;
         if (image.AvailableBlocks.All(block => block.Data is MediaDriveSectorData data && data.Drive == drive && data.Writing == writing)) return representation;
-        var blocks = image.AvailableBlocks.Select(block => block with
-        {
-            Data = new MediaDriveSectorData(block.Data, drive,
-                block.Address.Cylinder >= 0 && block.Address.Head >= 0
-                    ? new(block.Address.Cylinder, block.Address.Head, block.Address.Number)
-                    : new(0, 0, LogicalBlock: block.LogicalBlock), writing)
-        });
-        return new(new SectorImage(image.FormatId, image.BlockSize, image.Cylinders, image.Heads, image.SectorsPerTrack,
-            blocks, image.AllowsVariableBlockSize, image.Capacity, image.BlockCount, image.AddressingKind));
+        return new(image.WithDataAccess(block => new MediaDriveSectorData(block.Data, drive,
+            block.Address.Cylinder >= 0 && block.Address.Head >= 0
+                ? new(block.Address.Cylinder, block.Address.Head, block.Address.Number)
+                : new(0, 0, LogicalBlock: block.LogicalBlock), writing)));
     }
-
     private static BlockMediaImageRepresentation BindBlocks(IMediaDriveMechanics drive, BlockMediaImageRepresentation image, bool writing)
     {
         if (image.Drive == drive && image.DriveWriting == writing) return image;

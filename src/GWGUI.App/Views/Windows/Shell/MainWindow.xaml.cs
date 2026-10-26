@@ -1,3 +1,4 @@
+using GWGUI.App.Services.Audio;
 using GWGUI.Infrastructure.Commands.Building;
 using GWGUI.Infrastructure.Commands.Execution;
 using GWGUI.MediaEngine.Images.Formats;
@@ -89,6 +90,7 @@ public partial class MainWindow : Window
     private readonly ConversionFormatPresenter _conversionFormatPresenter = new();
     private readonly FluxDecoderRegistry _fluxDecoders = new();
     private readonly MediaEngineComposition _mediaEngine;
+    private readonly MediaDriveAudioController _mediaDriveAudio;
     private readonly ScpInspectorController _scpInspectorController;
     private readonly DiskImageWorkspaceController _diskImageWorkspace;
     private readonly ExplorerReadController _explorerRead;
@@ -443,5 +445,6 @@ public partial class MainWindow : Window
         );
         ErrorLog.EntryWritten += AppendErrorToConsole;
         ErrorLog.WarningWritten += AppendWarningToConsole;
+        _mediaDriveAudio = new MediaDriveAudioController(_mediaEngine.Drives, _writeError);
     }
 }

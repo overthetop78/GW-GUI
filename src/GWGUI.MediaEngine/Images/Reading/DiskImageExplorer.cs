@@ -80,6 +80,7 @@ public sealed class DiskImageExplorer
         Action<ScpImage>? scpImageLoaded = null)
     {
         ArgumentNullException.ThrowIfNull(document);
+        using var activity = new GWGUI.MediaEngine.Services.MediaDriveOperationScope(document.Source.Drive);
         var path = document.Source.PrimaryPath;
 
         if (document.Representation is FluxMediaImageRepresentation flux)

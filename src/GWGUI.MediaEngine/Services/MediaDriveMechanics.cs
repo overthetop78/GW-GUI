@@ -20,6 +20,7 @@ public sealed partial class MediaDriveMechanics : IMediaDriveMechanics
     private long _eventOffset;
     private int _activeOperations;
     private int _activeAccesses;
+    private bool _stopAfterAccess;
 
     /// <summary>Notifie le propriétaire audio après une nouvelle activité mécanique.</summary>
     public event Action<IMediaDriveMechanics>? AudioAvailable;
@@ -39,12 +40,12 @@ public sealed partial class MediaDriveMechanics : IMediaDriveMechanics
     public bool HasPendingAudio { get { lock (_sync) return _soundEnabled && (_events.Count > 0 || _audibleMotor || _state.MotorRunning); } }
 
     /// <inheritdoc/>
-    public bool IsInUse { get { lock (_sync) return _activeOperations > 0 || _state.Reading || _state.Writing; } }
+    public bool IsInUse { get { lock (_sync) return _activeOperations > 0 || _activeAccesses > 0 || _state.Reading || _state.Writing; } }
 
     /// <inheritdoc/>
     public void BeginOperation()
     {
-        lock (_sync) _activeOperations++;
+        lock (_sync) { _activeOperations++; _stopAfterAccess = false; }
     }
 
     /// <inheritdoc/>
@@ -53,7 +54,11 @@ public sealed partial class MediaDriveMechanics : IMediaDriveMechanics
         lock (_sync)
         {
             if (_activeOperations > 0) _activeOperations--;
-            if (_activeOperations == 0) SetMotorCore(false);
+            if (_activeOperations == 0)
+            {
+                if (_activeAccesses == 0) SetMotorCore(false);
+                else _stopAfterAccess = true;
+            }
         }
         NotifyAudio();
     }
@@ -107,7 +112,7 @@ public sealed partial class MediaDriveMechanics : IMediaDriveMechanics
     /// <inheritdoc/>
     public void SetMotor(bool running)
     {
-        lock (_sync) SetMotorCore(running);
+        lock (_sync) { _stopAfterAccess = false; SetMotorCore(running); }
         NotifyAudio();
     }
 
@@ -180,13 +185,23 @@ public sealed partial class MediaDriveMechanics : IMediaDriveMechanics
     /// <inheritdoc/>
     public void EndAccess()
     {
+        var stopped = false;
         lock (_sync)
         {
             if (_activeAccesses > 0) _activeAccesses--;
-            if (_activeAccesses == 0) _state = _state with { Reading = false, Writing = false };
+            if (_activeAccesses == 0)
+            {
+                _state = _state with { Reading = false, Writing = false };
+                if (_stopAfterAccess)
+                {
+                    _stopAfterAccess = false;
+                    SetMotorCore(false);
+                    stopped = true;
+                }
+            }
         }
+        if (stopped) NotifyAudio();
     }
-
     /// <inheritdoc/>
     public void Reset()
     {
@@ -195,6 +210,7 @@ public sealed partial class MediaDriveMechanics : IMediaDriveMechanics
             _state = default;
             _activeOperations = 0;
             _activeAccesses = 0;
+            _stopAfterAccess = false;
             ClearAudio();
         }
     }

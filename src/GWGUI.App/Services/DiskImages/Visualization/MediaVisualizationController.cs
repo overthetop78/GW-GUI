@@ -90,6 +90,7 @@ internal sealed class MediaVisualizationController
 
     internal async Task<bool> PresentAsync(MediaImageDocument document, CancellationToken cancellationToken)
     {
+        using var activity = new GWGUI.MediaEngine.Services.MediaDriveOperationScope(document.Source.Drive);
         var descriptor = _visualizationProviders?.CreateDescriptor(document);
         if (descriptor is null) return false;
 

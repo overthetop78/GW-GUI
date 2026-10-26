@@ -7,9 +7,10 @@ namespace GWGUI.MediaEngine.Constants;
 /// <summary>Catalogues typés des enregistrements mécaniques, regroupés par type et matériel.</summary>
 internal static partial class RecordedMechanicalSoundFiles
 {
-    /// <summary>Catalogues des trois catégories de lecteurs enregistrées.</summary>
+    /// <summary>Catalogues des catégories de lecteurs enregistrées.</summary>
     internal static IReadOnlyList<IReadOnlyList<RecordedMechanicalSoundProfile>> Catalogs { get; } =
     [
+        Tape.Catalogs,
         Floppy.Catalogs,
         HardDisk.Catalogs,
         Optical.Catalogs,

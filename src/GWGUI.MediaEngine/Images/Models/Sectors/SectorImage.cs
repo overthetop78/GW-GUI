@@ -78,6 +78,27 @@ public sealed class SectorImage : IMediaSectorImage
         _blocks = blockGroups.ToDictionary(group => group.Key, group => group.First());
     }
 
+    /// <summary>Adapte les accès à partir des blocs déjà validés et immuables, sans les relire.</summary>
+    private SectorImage(SectorImage image, Func<SectorBlock, IReadOnlyList<byte>> bindData)
+    {
+        FormatId = image.FormatId;
+        BlockSize = image.BlockSize;
+        Cylinders = image.Cylinders;
+        Heads = image.Heads;
+        SectorsPerTrack = image.SectorsPerTrack;
+        AddressingKind = image.AddressingKind;
+        _allowVariableBlockSize = image._allowVariableBlockSize;
+        _capacity = image._capacity;
+        _logicalBlockCount = image._logicalBlockCount;
+        _blocks = image._blocks.ToDictionary(pair => pair.Key, pair => pair.Value with { Data = bindData(pair.Value) });
+    }
+
+    /// <summary>Relie un consommateur aux lectures des blocs sans modifier leur contenu ni leur validation.</summary>
+    internal SectorImage WithDataAccess(Func<SectorBlock, IReadOnlyList<byte>> bindData)
+    {
+        ArgumentNullException.ThrowIfNull(bindData);
+        return new(this, bindData);
+    }
     /// <summary>Identifiant technique du format.</summary>
     public string FormatId { get; }
     /// <summary>Taille nominale d'un bloc, en octets.</summary>

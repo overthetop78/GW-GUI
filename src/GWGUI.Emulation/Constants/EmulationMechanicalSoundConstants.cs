@@ -25,6 +25,8 @@ public static class EmulationMechanicalSoundConstants
     public const string Rewind = M.Rewind;
     /// <summary>Identifiant de l’arrêt du mécanisme.</summary>
     public const string Stop = M.Stop;
+    /// <summary>Identifiant de la commande de pause du magnétophone.</summary>
+    public const string Pause = M.Pause;
     /// <summary>Identifiant de l’éjection du support.</summary>
     public const string Eject = M.Eject;
     /// <summary>Identifiant de la rotation continue du moteur.</summary>

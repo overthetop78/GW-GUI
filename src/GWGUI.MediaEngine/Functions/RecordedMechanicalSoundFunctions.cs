@@ -30,6 +30,7 @@ internal sealed class RecordedMechanicalSoundFunctions
     internal bool Contains(string id) => _profiles.ContainsKey(id);
     internal static string? BaseProfile(string device) => device switch
     {
+        Constants.MechanicalSoundConstants.Cassette => C.DefaultTapeProfile,
         Constants.MechanicalSoundConstants.Floppy => C.DefaultFloppyProfile,
         Constants.MechanicalSoundConstants.HardDisk => C.DefaultHardDiskProfile,
         Constants.MechanicalSoundConstants.Optical => C.DefaultOpticalProfile,
@@ -63,8 +64,9 @@ internal sealed class RecordedMechanicalSoundFunctions
         if (sample is null || volumePercent == 0) return result;
         var source = Samples(sample.Id, sampleRate);
         if (source.Length == 0) return result;
-        var looping = sample.Operations.Any(item => item.Operation == operation && item.Loop);
-        var startSample = looping ? SelectWithFallback(profile, C.Start, distance, direction, cylinder) : null;
+        var action = sample.Operations.First(item => item.Operation == operation);
+        var looping = action.Loop;
+        var startSample = looping ? SelectWithFallback(profile, action.StartOperation ?? C.Start, distance, direction, cylinder) : null;
         var start = startSample is null ? [] : Samples(startSample.Id, sampleRate);
         var gain = volumePercent / C.MaximumVolumePercent;
         for (var index = 0; index < count; index++)

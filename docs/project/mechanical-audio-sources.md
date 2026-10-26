@@ -144,3 +144,39 @@ Restent à terminer : sortie audio commune des usages App hors émulation, couve
 - [Freesound — Casio AS-51R](https://freesound.org/people/OneKellyOrdered/sounds/624636/) : capture mono 44,1 kHz, 16 bits, lecture puis arrêt ; original non importé.
 
 Ces pistes sont des sources à préparer, pas des sons déjà intégrés. Une préécoute MP3 ne constitue pas un original PCM sans perte et ne doit pas être présentée comme telle.
+
+## Sortie commune des outils App raccordée
+
+Le contrôleur MediaDriveAudioController écoute les activités du service de mécanique utilisé par les lecteurs et écrivains d’images. Il mélange les fragments mono et utilise WasapiAudioOutput, déjà employé par les émulateurs avec NAudio 2.3.0 ; aucune nouvelle dépendance audio n’a été ajoutée. Une sortie est créée pendant une période d’activité puis libérée après vidage du tampon. La tâche possédée est annulée et attendue à la fermeture ; les mécaniques empruntées ne sont pas détruites par le contrôleur.
+
+Les scopes d’exploration et de visualisation encadrent les accès aux représentations. Un arrêt demandé pendant un transfert attend la fin du dernier accès. Le raccordement sectoriel conserve les données immuables existantes au lieu de reconstruire une image dont la copie défensive consommait puis retirait le relais de mécanique.
+
+Validation isolée des sources MediaEngine, SDK et du contrôleur App avec la classe WASAPI existante compilée et une sortie de contrôle injectée : lecteurs simultanés dans un même mélange, reprise après inactivité, format mono 44,1 kHz, conservation du lecteur emprunté, libération après erreur du périphérique, erreur d’un lecteur, annulation et exception d’un rappel d’annulation. Un véritable fichier DFS a été créé, lu et exploré ; les accès de secteurs actualisent la position du lecteur et produisent des fragments non silencieux. La copie immuable et l’absence d’accès anticipé pendant le raccordement ont été contrôlées.
+
+Les fichiers de validation, DLL et image temporaire ont été supprimés. Ce contrôle n’ouvre pas de périphérique audio Windows et ne constitue pas encore une validation du build WPF complet ou de l’écoute native ; ces contrôles restent prévus avec le build de livraison après les sons cassette et séquences rapides.
+
+### Magnétophone : originaux disponibles
+
+Les sept WAV de la série BigSoundBank 0565–0571 sont présents sous `artifacts/mechanical-audio-research/recordings/Tape/Unidentified/Cassette-player/`. Les en-têtes confirment du PCM signé 16 bits, mono, 48 000 Hz. Cette série provient du même magnétophone sans référence commerciale identifiée : aucune marque ni modèle précis ne lui est attribué.
+
+Sources originales : [lecture et arrêt](https://bigsoundbank.com/cassette-player-play-s0565.html), [retour et arrêt](https://bigsoundbank.com/cassette-player-rewind-and-stop-s0566.html), [retour et fin](https://bigsoundbank.com/cassette-player-rewind-and-end-s0567.html), [avance et arrêt](https://bigsoundbank.com/cassette-player-forward-and-stop-s0568.html), [avance et fin](https://bigsoundbank.com/cassette-player-forward-and-end-s0569.html), [lecture et pause](https://bigsoundbank.com/cassette-player-play-and-pause-s0570.html), [ouverture, insertion et fermeture](https://bigsoundbank.com/cassette-player-cassette-s0571.html).
+
+Les originaux sont téléchargés via les formulaires WAV du site. Le découpage et le raccordement ne sont pas encore validés ; les fichiers complets ne doivent pas être bouclés comme un bruit moteur.
+
+### Clips réels du magnétophone et contrôles isolés
+
+Dix FLAC externes sont définis sous `Tape/Unidentified/Cassette-player/`. Les démarrages sont propres à chaque commande (lecture, avance rapide et retour) ; les boucles proviennent des parties continues de ces mêmes prises. La jonction de chaque boucle comporte un fondu croisé de 5 ms, sans normalisation ni égalisation. Lecture et enregistrement utilisent le même défilement mécanique ; aucune prise distincte du bouton REC ne figure dans cette source.
+
+Découpes en secondes dans les originaux : lecture, démarrage 0–0,5 et rotation 1–10 ; arrêt 11,4–12,05. Avance : démarrage 0–0,45 et rotation 0,6–2,4. Retour : démarrage 0–0,5 et rotation 0,7–2,3. Pause : 2,85–3,45. Ouverture/éjection : 0–0,55. Insertion : manipulation 3,25–4,9 puis fermeture 6–6,85, en retirant uniquement l’attente entre ces gestes.
+
+Les dix clips ont été encodés puis redécodés avec FLAC : PCM identique. Leurs crêtes vont de −46,12 à −0,09 dBFS ; les différences de niveau du magnétophone sont conservées. Un contrôle isolé compile les définitions et le lecteur audio effectifs, puis décode les huit opérations publiques à 44 100 Hz. Il vérifie les volumes 100/20/0 %, l’identité entre rendu continu et vingt fragments, les boucles persistantes et les fins silencieuses des actions ponctuelles. Les 1 759 fichiers référencés existent. Ce contrôle ne prouve pas encore le fonctionnement du module compilé dans App.
+
+Acorn utilise désormais les durées réelles des commandes, et produit aussi les événements insertion et pause. Les modes accéléré et direct restent silencieux pour les bruitages. La compilation complète et l’écoute via la sortie Windows restent à contrôler avant livraison.
+
+### Build et sortie Windows contrôlés
+
+`scripts/local-building.cmd --building=debug --modules=acorn` a terminé avec succès. La livraison contient `build/Debug/GW GUI/gwgui.exe` et `Modules/acorn/gwgui.emulation.acorn.dll`. Le script inclut également son module Exemple systématique. Les dix FLAC Tape ont les mêmes empreintes dans la livraison et dans les sources externes.
+
+Un exécutable temporaire a référencé les DLL livrées, décodé les FLAC via `EmulationSdk.MediaProcessing`, puis alimenté la vraie classe `WasapiAudioOutput` en mono à 44 100 Hz. La sortie était active, son tampon a été vidé et `Dispose` exécuté dans un `finally` a supprimé son tampon. Aucune fenêtre GW GUI n’a été lancée par ce contrôle. Les fichiers et artefacts des deux validations temporaires ont été supprimés. La fidélité subjective au magnétophone précis de l’utilisateur n’est pas démontrée : la référence commerciale du magnétophone enregistré reste inconnue.
+
+Un avertissement XML CS1573 signale la documentation absente du paramètre `MechanicalVolumePercent` du contrat cassette ; aucune erreur de compilation. Les déplacements rapides et les WAV d’écoute définitifs restent à terminer avant de déclarer l’objectif complet.

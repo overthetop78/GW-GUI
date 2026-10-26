@@ -12,4 +12,6 @@ internal static class BbcMicroCassetteFunctions
     internal static void Write(string path, EmulationCassetteSignal signal, IReadOnlyDictionary<string, string>? parameters = null) => CommonHost.MediaProcessing.WriteCassetteAsync(path, signal, parameters: parameters).GetAwaiter().GetResult();
     internal static IReadOnlyList<string> RecordingExtensions => CommonHost.MediaProcessing.CassetteRecordingExtensions;
     internal static short[] Sound(string operation, int sampleRate, int count, long offset, int volumePercent) => CommonHost.MediaProcessing.RenderMechanicalSound(S.Cassette, operation, sampleRate, count, offset, volumePercent: volumePercent);
+    /// <summary>Durée du fichier réel pour terminer une action sans tronquer son bruitage.</summary>
+    internal static double SoundDuration(string operation) => CommonHost.MediaProcessing.MechanicalSoundDurationSeconds(S.Cassette, S.Standard, operation);
 }
