@@ -11,6 +11,7 @@ public sealed partial class MediaDriveMechanics : IMediaDriveMechanics
     private readonly object _sync = new();
     private readonly string _device;
     private readonly Queue<MediaDriveSoundEvent> _events = new();
+    private readonly List<(MediaDriveSoundEvent Sound, long Offset)> _seekVoices = [];
     private MediaDriveState _state;
     private string? _profile;
     private double _volumePercent;
@@ -37,7 +38,7 @@ public sealed partial class MediaDriveMechanics : IMediaDriveMechanics
     public MediaDriveState State { get { lock (_sync) return _state; } }
 
     /// <inheritdoc/>
-    public bool HasPendingAudio { get { lock (_sync) return _soundEnabled && (_events.Count > 0 || _audibleMotor || _state.MotorRunning); } }
+    public bool HasPendingAudio { get { lock (_sync) return _soundEnabled && (_events.Count > 0 || _seekVoices.Count > 0 || _audibleMotor || _state.MotorRunning); } }
 
     /// <inheritdoc/>
     public bool IsInUse { get { lock (_sync) return _activeOperations > 0 || _activeAccesses > 0 || _state.Reading || _state.Writing; } }
@@ -217,7 +218,13 @@ public sealed partial class MediaDriveMechanics : IMediaDriveMechanics
 
     private void Enqueue(MediaDriveSoundEvent sound)
     {
-        if (_soundEnabled) _events.Enqueue(sound);
+        if (!_soundEnabled) return;
+        if (sound.Operation == C.Seek)
+        {
+            if (_seekVoices.Count == C.MaximumConcurrentSeekSounds) _seekVoices.RemoveAt(0);
+            _seekVoices.Add((sound, 0));
+        }
+        else _events.Enqueue(sound);
     }
 
     private void NotifyAudio()
@@ -228,6 +235,7 @@ public sealed partial class MediaDriveMechanics : IMediaDriveMechanics
     private void ClearAudio()
     {
         _events.Clear();
+        _seekVoices.Clear();
         _audibleMotor = false;
         _eventOffset = 0;
         _motorOffset = 0;

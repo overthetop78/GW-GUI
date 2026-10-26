@@ -1,6 +1,15 @@
 # Sources de bruitages mécaniques réels
 
-Demande du 26 octobre 2026 : remplacer la synthèse approximative, couvrir toutes les opérations et fournir des WAV audibles avec atténuation utilisateur. Les anciens exports seront remplacés après réalisation complète ; ils sont encore présents et ne constituent pas des sons validés.
+## État fonctionnel livré le 27 octobre 2026
+
+Le build Debug Acorn est prêt dans `build/Debug/GW GUI/gwgui.exe`. Les moteurs, déplacements de têtes, accès, arrêts et manipulations de supports utilisent les FLAC externes communs, avec réglage du volume des lecteurs. Les résonances des seeks rapides se chevauchent sans retard cumulatif. Le mécanisme du magnétophone utilise désormais dix clips réels ; lecture et enregistrement partagent le défilement, sans prise distincte du bouton REC.
+
+Validation finale : build réussi sans avertissement XML après documentation du volume ; 104 tests réussis contre les DLL livrées (contrôleurs 8271/WD1770/SCSI, audio, cassette et contrôles supplémentaires des volumes et événements dans le cœur). Les 1 759 FLAC livrés ont les mêmes empreintes que les sources. Les 1 759 WAV d’écoute sont dans `artifacts/audio-preview`, rangés par type/marque/modèle. Les sorties et scripts de validation temporaires ont été supprimés. La sortie native WASAPI a également été contrôlée avec le SDK et les clips livrés, sans ouvrir de fenêtre GW GUI.
+
+La couverture fonctionnelle BBC Model A et la réutilisation commune sont vérifiées. L’association exhaustive des références commerciales aux machines des 24 modules n’est pas démontrée par ces tests. Les mécanismes dont la référence est inconnue restent explicitement sous `Unidentified`. Les sections suivantes conservent les sources et les étapes de recherche ; les mentions de travail restant dans les étapes anciennes sont à lire avec cet état livré.
+
+
+Demande du 26 octobre 2026 : remplacer la synthèse approximative, couvrir toutes les opérations et fournir des WAV audibles avec atténuation utilisateur. Les anciens exports ont été remplacés par les WAV décodés des FLAC définitifs décrits dans l’état livré.
 
 ## Références primaires consultées
 
@@ -67,7 +76,7 @@ L’utilisateur a précisé que les lecteurs silencieux doivent rester plus sile
 
 ## Banque externe : classement et lecture FLAC
 
-La banque distribuée est `src/GWGUI.MediaEngine/Assets/MechanicalAudio/<type>/<marque>/<modèle>/<bruitage>.flac` : types `Floppy`, `HardDisk`, `Optical` pour les enregistrements actuellement disponibles. Les sons Tape restent à compléter. Insertion, éjection et moteur restent dans le dossier du modèle ; les séries Seek et Buzz ont leurs sous-dossiers. Les mécanismes non identifiés restent sous `Unidentified`, sans inventer leur marque. Les fichiers ne répètent pas la marque et le modèle.
+La banque distribuée est `src/GWGUI.MediaEngine/Assets/MechanicalAudio/<type>/<marque>/<modèle>/<bruitage>.flac` : types `Floppy`, `HardDisk`, `Optical` et `Tape` pour les enregistrements désormais disponibles. Insertion, éjection et moteur restent dans le dossier du modèle ; les séries Seek et Buzz ont leurs sous-dossiers. Les mécanismes non identifiés restent sous `Unidentified`, sans inventer leur marque. Les fichiers ne répètent pas la marque et le modèle.
 
 Les 1 749 FLAC occupent 48 146 242 octets contre 103 320 114 octets pour les WAV sources. Le PCM décodé a été comparé bit à bit aux originaux lors de la conversion. Les niveaux des enregistrements récupérés sont conservés. La réserve utilisateur sur la normalisation concerne les sons à créer, afin de préserver les différences entre lecteurs silencieux et bruyants.
 
@@ -180,3 +189,15 @@ Acorn utilise désormais les durées réelles des commandes, et produit aussi le
 Un exécutable temporaire a référencé les DLL livrées, décodé les FLAC via `EmulationSdk.MediaProcessing`, puis alimenté la vraie classe `WasapiAudioOutput` en mono à 44 100 Hz. La sortie était active, son tampon a été vidé et `Dispose` exécuté dans un `finally` a supprimé son tampon. Aucune fenêtre GW GUI n’a été lancée par ce contrôle. Les fichiers et artefacts des deux validations temporaires ont été supprimés. La fidélité subjective au magnétophone précis de l’utilisateur n’est pas démontrée : la référence commerciale du magnétophone enregistré reste inconnue.
 
 Un avertissement XML CS1573 signale la documentation absente du paramètre `MechanicalVolumePercent` du contrat cassette ; aucune erreur de compilation. Les déplacements rapides et les WAV d’écoute définitifs restent à terminer avant de déclarer l’objectif complet.
+
+### Déplacements rapides et résonances des têtes
+
+Les sons des commandes Seek ne passent plus par la file des manipulations insertion/arrêt/éjection. Chaque déplacement réel démarre sa voix avec sa distance, son sens et sa piste ; les résonances encore audibles des commandes précédentes peuvent finir en parallèle. Le nombre de voix est borné à 32 ; la voix la plus ancienne est retirée si cette borne est atteinte, au lieu de retarder les commandes suivantes. La rotation reste une voix distincte. La protection commune atténue seulement un mélange qui dépasserait le PCM.
+
+Cette séparation correspond au principe des [voix de seek simultanées de 86Box](https://github.com/86Box/86Box/blob/master/src/floppy/fdd_audio.c). Il ne s’agit pas de jouer une séquence musicale arbitraire du dossier Buzz lors de n’importe quel accès : le cliquetis répété provient des déplacements réellement déclarés. Les enregistrements de séquences complètes restent disponibles comme fichiers, sans leur attribuer une commande matérielle inexistante.
+
+Le contrôle isolé, exécuté sur les sources actuelles et les FLAC externes, vérifie pour disquette et HDD : premier déplacement à la distance exacte ; nouvelle commande en sens inverse mélangée immédiatement à la résonance précédente ; mille déplacements bornés à 32 voix et totalement terminés après trois secondes de rendu, sans attente cumulée ; volume modifié à chaud ; sourdine ; désactivation et reset. Tous ces contrôles ont réussi. Les fichiers temporaires ont été supprimés.
+
+### WAV d’écoute régénérés
+
+Le contenu précédent de `artifacts/audio-preview` a été supprimé, puis les 1 759 FLAC définitifs ont été décodés en 1 759 WAV valides. L’arborescence conserve type de lecteur, marque, modèle, action, sens et distance. Les WAV ne sont pas normalisés ; ils permettent d’écouter les prises utilisées par le moteur. Le script temporaire de génération a été supprimé après réussite.

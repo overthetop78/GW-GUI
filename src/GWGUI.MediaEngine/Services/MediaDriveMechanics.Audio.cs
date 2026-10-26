@@ -48,6 +48,21 @@ public sealed partial class MediaDriveMechanics
                     Mix(MechanicalSoundFunctions.Render(_device, operation, sampleRate, count, _motorOffset, _profile, _volumePercent));
                     _motorOffset += count;
                 }
+                // Une nouvelle commande peut commencer pendant la résonance du mouvement précédent.
+                // Les sons ne doivent pas attendre dans une file après la fin des accès matériels.
+                for (var voice = _seekVoices.Count - 1; voice >= 0; voice--)
+                {
+                    var (seek, offset) = _seekVoices[voice];
+                    var frames = checked((long)Math.Ceiling(MechanicalSoundFunctions.Duration(_device, _profile,
+                        seek.Operation, seek.Distance, seek.Direction, seek.Cylinder) * sampleRate));
+                    var remaining = (int)Math.Min(count, Math.Max(0, frames - offset));
+                    if (remaining > 0)
+                        Mix(MechanicalSoundFunctions.Render(_device, seek.Operation, sampleRate, remaining, offset,
+                            _profile, _volumePercent, seek.Distance, seek.Direction, seek.Cylinder));
+                    offset += count;
+                    if (offset >= frames) _seekVoices.RemoveAt(voice);
+                    else _seekVoices[voice] = (seek, offset);
+                }
                 destination += count;
             }
             return MechanicalSoundFunctions.ProtectMix(mixed);

@@ -199,4 +199,6 @@ public static class MechanicalSoundConstants
     /// <summary>Séquence enregistrée de déplacements des têtes.</summary>
     public const string SeekSequence = "SeekSequence";
 
+    /// <summary>Limite les résonances simultanées de déplacements sans accumuler un retard de lecture sonore.</summary>
+    public const int MaximumConcurrentSeekSounds = 32;
 }

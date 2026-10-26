@@ -12,6 +12,7 @@ namespace GWGUI.Emulation.Contracts;
 /// <param name="WriteLatencyMilliseconds">Temps d'établissement du moteur avant l'enregistrement.</param>
 /// <param name="MechanicalSound">Active les sons mécaniques uniquement en mode réel.</param>
 /// <param name="WriteProtected">Interdit l'enregistrement indépendamment de la protection de l'image montée.</param>
+/// <param name="MechanicalVolumePercent">Volume des seuls bruitages mécaniques, de zéro à cent pour cent.</param>
 public sealed record EmulationCassetteSettings(int BaudRate = 0, EmulationCassettePlaybackMode Mode = EmulationCassettePlaybackMode.RealTime, int SpeedPercent = 100, int WindMultiplier = 20, int ReadLatencyMilliseconds = 0, int WriteLatencyMilliseconds = 0, bool MechanicalSound = true, bool WriteProtected = false, int MechanicalVolumePercent = GWGUI.Emulation.Constants.EmulationMechanicalSoundConstants.DefaultVolumePercent)
 {
     public const string Prefix = "cassette.";
