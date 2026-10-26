@@ -87,4 +87,9 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>سرعة النقل</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>اقرأي البطولة</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>طقوس البطولة</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>نبذة صوتية ميكانيكية</value></data>
+  <data name="Emulation.Storage.Media.CreateAndMount"><value>الخلق والمنط</value></data>
+  <data name="Emulation.Storage.Media.Created"><value>تم خلق الصورة: {0}</value></data>
+  <data name="Emulation.Storage.Media.AlreadyExists"><value>هذا الملف موجود بالفعل، اختر ملفاً جديداً للصورة {0}</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>الصوت الميكانيكي</value></data>
 </root>

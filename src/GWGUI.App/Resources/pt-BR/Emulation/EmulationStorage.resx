@@ -87,4 +87,9 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>Velocidade de transferência</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>Latência de leitura</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>Latência de gravação</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>Perfil sonoro mecânico</value></data>
+  <data name="Emulation.Storage.Media.CreateAndMount"><value>Criar e montar</value></data>
+  <data name="Emulation.Storage.Media.Created"><value>Imagem criada: {0}</value></data>
+  <data name="Emulation.Storage.Media.AlreadyExists"><value>Este ficheiro já existe. Escolha um novo ficheiro de imagem: {0}</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>Volume de som mecânico</value></data>
 </root>

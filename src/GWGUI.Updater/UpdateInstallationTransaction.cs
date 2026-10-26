@@ -1,3 +1,5 @@
+using System.IO;
+using GWGUI.Emulation.Constants;
 using GWGUI.Updates.Contracts;
 
 namespace GWGUI.Updater;
@@ -7,6 +9,7 @@ internal sealed class UpdateInstallationTransaction
     private readonly UpdateExecutionPlan _plan;
     private readonly string _backupDirectory;
     private readonly Dictionary<string, bool> _changedModules = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, bool> _changedAssets = new(StringComparer.OrdinalIgnoreCase);
     private bool _applicationChanged;
 
     internal UpdateInstallationTransaction(UpdateExecutionPlan plan, string workDirectory)
@@ -38,6 +41,7 @@ internal sealed class UpdateInstallationTransaction
         if (Directory.Exists(_backupDirectory)) Directory.Delete(_backupDirectory, recursive: true);
         _applicationChanged = false;
         _changedModules.Clear();
+        _changedAssets.Clear();
     }
 
     internal void Restore()
@@ -57,17 +61,28 @@ internal sealed class UpdateInstallationTransaction
             var backup = Path.Combine(modulesBackup, module.ComponentId);
             if (_changedModules[module.ComponentId] && Directory.Exists(backup)) CopyDirectory(backup, target);
         }
+        foreach (var assets in _changedAssets)
+        {
+            var target = ModuleAssetsDirectory(_plan.InstallationDirectory, assets.Key);
+            if (Directory.Exists(target)) Directory.Delete(target, recursive: true);
+            var backup = ModuleAssetsDirectory(_backupDirectory, assets.Key);
+            if (assets.Value && Directory.Exists(backup)) CopyDirectory(backup, target);
+        }
         if (Directory.Exists(_backupDirectory)) Directory.Delete(_backupDirectory, recursive: true);
         _applicationChanged = false;
         _changedModules.Clear();
+        _changedAssets.Clear();
     }
+
+    private static string ModuleAssetsDirectory(string root, string moduleId) =>
+        Path.Combine(root, EmulationAssetPaths.AssetsDirectory, EmulationAssetPaths.ModulesDirectory, moduleId);
 
     private void ReplaceApplication(string source)
     {
         var backup = Path.Combine(_backupDirectory, "application");
         Directory.CreateDirectory(backup);
         foreach (var entry in ApplicationEntries())
-            CopyEntry(entry, Path.Combine(backup, Path.GetFileName(entry)));
+            CopyEntry(entry, Path.Combine(backup, Path.GetRelativePath(_plan.InstallationDirectory, entry)));
         var preservePortable = File.Exists(Path.Combine(_plan.InstallationDirectory, "portable.flag"));
         _applicationChanged = true;
         DeleteApplicationEntries();
@@ -84,15 +99,27 @@ internal sealed class UpdateInstallationTransaction
         if (module.Operation == UpdateComponentOperation.UpdateModule && !existed)
             throw new DirectoryNotFoundException($"Installed module '{module.ComponentId}' was not found.");
         if (existed) CopyDirectory(target, backup);
+        var assetTarget = ModuleAssetsDirectory(_plan.InstallationDirectory, module.ComponentId);
+        var assetsExisted = Directory.Exists(assetTarget);
+        if (assetsExisted) CopyDirectory(assetTarget, ModuleAssetsDirectory(_backupDirectory, module.ComponentId));
+        _changedAssets.Add(module.ComponentId, assetsExisted);
         _changedModules.Add(module.ComponentId, existed);
         if (existed) Directory.Delete(target, recursive: true);
         CopyDirectory(module.PreparedDirectory, target);
+        if (Directory.Exists(assetTarget)) Directory.Delete(assetTarget, recursive: true);
+        var assetSource = ModuleAssetsDirectory(module.PreparedDirectory, module.ComponentId);
+        if (Directory.Exists(assetSource)) CopyDirectory(assetSource, assetTarget);
+        var stagedAssets = Path.Combine(target, EmulationAssetPaths.AssetsDirectory);
+        if (Directory.Exists(stagedAssets)) Directory.Delete(stagedAssets, recursive: true);
     }
 
     private IEnumerable<string> ApplicationEntries() => Directory.EnumerateFileSystemEntries(_plan.InstallationDirectory)
         .Where(path => !Path.GetFileName(path).Equals("Data", StringComparison.OrdinalIgnoreCase)
             && !Path.GetFileName(path).Equals("Modules", StringComparison.OrdinalIgnoreCase)
-            && !path.Equals(_backupDirectory, StringComparison.OrdinalIgnoreCase));
+            && !path.Equals(_backupDirectory, StringComparison.OrdinalIgnoreCase))
+        .SelectMany(path => Directory.Exists(path) && Path.GetFileName(path).Equals(EmulationAssetPaths.AssetsDirectory, StringComparison.OrdinalIgnoreCase)
+            ? Directory.EnumerateFileSystemEntries(path).Where(asset => !Path.GetFileName(asset).Equals(EmulationAssetPaths.ModulesDirectory, StringComparison.OrdinalIgnoreCase))
+            : new[] { path });
 
     private void DeleteApplicationEntries()
     {
@@ -111,7 +138,13 @@ internal sealed class UpdateInstallationTransaction
             if (name.Equals("Data", StringComparison.OrdinalIgnoreCase)
                 || name.Equals("Modules", StringComparison.OrdinalIgnoreCase)
                 || name.Equals("portable.flag", StringComparison.OrdinalIgnoreCase) && !preservePortable) continue;
-            CopyEntry(entry, Path.Combine(_plan.InstallationDirectory, name));
+            if (Directory.Exists(entry) && name.Equals(EmulationAssetPaths.AssetsDirectory, StringComparison.OrdinalIgnoreCase))
+            {
+                foreach (var asset in Directory.EnumerateFileSystemEntries(entry))
+                    if (!Path.GetFileName(asset).Equals(EmulationAssetPaths.ModulesDirectory, StringComparison.OrdinalIgnoreCase))
+                        CopyEntry(asset, Path.Combine(_plan.InstallationDirectory, name, Path.GetFileName(asset)));
+            }
+            else CopyEntry(entry, Path.Combine(_plan.InstallationDirectory, name));
         }
     }
 

@@ -149,7 +149,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl, IAsy
     }
 
     private EmulationMachineChoice CreateMachineChoice(EmulationMachineDefinition machine) =>
-        new(machine, LocExtension.GetForModule(_module, machine.DisplayResourceKey), _saved.Any(configuration => configuration.MachineId == machine.Id), EmulationAssetFunctions.Load(_module, machine.ImageResourceName));
+        new(machine, LocExtension.GetForModule(_module, machine.DisplayResourceKey), _saved.Any(configuration => configuration.MachineId == machine.Id), EmulationAssetFunctions.Load(machine.ImagePath));
 
     private async Task ReloadAsync()
     {

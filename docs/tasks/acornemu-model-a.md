@@ -294,3 +294,126 @@ Le premier jalon vise le démarrage réel sur MOS/BASIC et l'interaction clavier
     - [x] Créer les tests synthétiques nécessaires dans `tests/GWGUI.LocalEmulationTests/Emulation` et `tests/GWGUI.Tests/Media` : vérifier configurations, contrôleurs, lecture/écriture, géométrie, scan et exploration ; supprimer après usage tout test utilisant des fichiers externes et ses artefacts.
     - [x] Modifier `docs/project/emulations/Acorn/BBC Micro/Model A/model-a-reference.md` et ce document : décrire les fichiers, leurs liaisons, les capacités et les résultats réellement vérifiés.
     - [x] Produire `build/Debug/GW GUI/gwgui.exe` avec le seul module Acorn demandé via `scripts/local-building.cmd --building=debug --modules=acorn`, et vérifier les sorties pour les essais utilisateur.
+
+- [x] Corriger les lecteurs absents affichés dans la barre de la machine.
+  - [x] Modifier `src/GWGUI.Emulation.Acorn/Common/Services/Engine.cs` : transmettre au runtime uniquement les lecteurs des emplacements configurés, en conservant le catalogue disponible pour Ajouter.
+  - [x] Modifier `tests/GWGUI.LocalEmulationTests/Emulation/AcornEmuTests.cs` : vérifier le runtime sans lecteur puis avec un seul lecteur configuré.
+  - [x] Modifier ce document : 165 contrôles AcornEmu réussis, dont le runtime sans lecteur et l'ajout/retrait de chacun des sept lecteurs ; build Debug `--modules=acorn` réussi, exécutable et modules Acorn/Example présents dans `build/Debug/GW GUI`.
+
+- [x] Ranger les réglages de stockage dans leurs dialogues de lecteurs.
+  - [x] Modifier `src/GWGUI.Emulation.Acorn/Emulators/AcornEmu/Functions/StorageFunctions.cs` et `Factories/AcornEmuMachineFactory.cs` : déplacer le contrôleur de disquettes dans les champs du lecteur et enregistrer son choix par les options existantes, en conservant le contrôleur partagé entre les deux lecteurs.
+  - [x] Modifier `tests/GWGUI.LocalEmulationTests/Emulation/AcornEmuWd1770Tests.cs` : vérifier le choix depuis le lecteur, sa persistance et les formats disponibles.
+  - [x] Modifier `src/GWGUI.App/Views/Dialogs/Emulation/Storage/ManagedStorageConfigurationDialog.cs` : présenter la cassette en groupes compacts avec listes et cases, curseurs courts à crans et présélections pour la mécanique visible seulement en temps réel ; limiter la hauteur avec défilement.
+  - [x] Modifier `src/GWGUI.App/Resources/00-Base/Emulation/EmulationCassette.resx` et toutes ses traductions via Argos : clarifier protection, démarrage du moteur, paramètres RAW et groupes ; conserver les termes invariants dans la base.
+  - [x] Modifier `src/GWGUI.Emulation.Acorn/Emulators/AcornEmu/Constants/StorageConstants.cs`, `Functions/StorageFunctions.cs` et `Services/EmulatorCore.Disks.cs` : présenter faces, densité et capacité, filtrer les modèles selon le contrôleur et refuser les images hors géométrie ou densité autorisée avant montage.
+  - [x] Renommer `src/GWGUI.MediaEngine/Functions/CassetteSoundFunctions.cs` en `MechanicalSoundFunctions.cs`, créer `MechanicalSoundFunctions.Floppy.cs` et modifier `Interfaces/IMediaRuntimePreparation.cs`, `Services/MediaRuntimePreparationService.cs`, les relais correspondants dans `src/GWGUI.Emulation` et `Common/Machines/BbcMicro/Functions/CassetteFunctions.cs` : exposer un rendu mécanique commun cassette/disquette utilisable par les consommateurs de MediaEngine et les modules via Emulation.
+  - [x] Modifier les contrôleurs `Intel8271.cs`, `Intel8271.Commands.cs`, `Wd1770.cs`, `Wd1770.Commands.cs`, le câblage `Machines/BbcMicro/Common/Services/Disks.cs`, `Interfaces/IAcornMachine.cs`, `Machines/BbcMicro/ModelA/Services/ModelAMachine.cs`, créer `Services/EmulatorCore.FloppySound.cs` et modifier `EmulatorCore.cs` : transmettre moteur, lecture/écriture et déplacements des têtes au rendu commun, avec activation par les options du lecteur.
+  - [x] Modifier `StorageFunctions.cs` et les tests WD1770 pour filtrer aussi les extensions annoncées selon le modèle ; modifier les contrôleurs, le câblage BBC et `EmulatorCore.FloppySound.cs` pour conserver les accès lecture/écriture terminés entre deux images vidéo.
+  - [x] Modifier `MechanicalSoundFunctions.cs`, `MechanicalSoundFunctions.Floppy.cs`, créer `MechanicalSoundFunctions.HardDisk.cs` et modifier les interfaces/relais MediaEngine et Emulation : exposer des profils sonores distincts par type de lecteur, dont les disques durs.
+  - [x] Modifier `StorageFunctions.cs`, `StorageFunctions.HardDisks.cs`, `AcornScsi.cs`, `AcornScsi.Commands.cs`, `AcornScsi.Transfers.cs`, `Winchester.cs`, `IAcornMachine.cs`, `ModelAMachine.cs`, créer `EmulatorCore.HardDiskSound.cs` et modifier les mélanges audio du cœur : choisir le profil par lecteur et restituer rotation, accès et déplacements de têtes HDD.
+  - [x] Créer dans `src/GWGUI.MediaEngine` les constantes et descriptions de lecteurs réutilisant `BbcDfsGeometry`, `AcornAdfGeometry`, `DiskImageFileExtensions` et les identifiants existants ; modifier les relais Emulation et `StorageFunctions.cs`/`StorageConstants.cs` pour obtenir modèles, extensions et compatibilité depuis MediaEngine.
+  - [x] Créer `src/GWGUI.MediaEngine/Constants/MechanicalSoundConstants.cs`, les définitions de profils associées et `Functions/MechanicalSoundFunctions.Optical.cs` ; modifier les synthèses et relais pour fournir aussi rotation, accès, recherche et éjection CD ; déplacer les identifiants et données sonores fixes dans ces fichiers dédiés.
+  - [x] Créer les constantes des présélections cassette dans `src/GWGUI.App/Constants/Emulation` et déplacer l'énumération cassette dans son fichier dédié ; modifier les consommateurs pour retirer les valeurs fixes du code de traitement.
+  - [x] Modifier `StorageConstants.cs`, les fonctions de réglages et les mélanges audio : regrouper les clés, libellés techniques et valeurs fixes restantes ; réutiliser les icônes existantes du dialogue cassette.
+  - [x] Créer `Enums/Intel8271Phase.cs`, `Enums/Wd1770Phase.cs` et `Enums/AcornScsiPhase.cs` dans AcornEmu ; retirer les énumérations imbriquées des contrôleurs et adapter leurs fichiers partiels.
+  - [x] Modifier les ressources cassette/stockage de base et toutes les langues via Argos, les tests Acorn de stockage et la référence Model A : expliquer les capacités et le réglage des sons ; consigner les corrections sans lancer de compilation ni modifier le build.
+  - [x] Modifier ce document : consigner les contrôles effectués et ceux restant à exécuter ; compilation et remplacement du build suspendus à la demande utilisateur.
+
+
+- [ ] Corriger la responsabilité des champs et reprendre les ajouts autour de Tape.
+  - [x] Modifier `docs/directives/emulation-development.md` : noter les responsabilités MediaEngine/Emulation/modules/App, les données fixes dédiées, les sons par mécanisme et la présentation des lecteurs.
+  - [x] Modifier les descriptions de réglages du SDK, leurs constantes et les dialogues de stockage App : déclarer champs, groupes, présélections et conditions depuis les contrats du module ; retirer `CassetteConfigurationConstants.cs` et la logique métier cassette du dialogue.
+    - [x] Modifier `EmulationSettingsField.cs`, `EmulationSettingsBlock.cs`, `EmulationMediaDevice.cs`, les descriptions de réglages SDK et `AcornEmuMachineFactory.cs` : fournir les groupes, conditions et contrôles déclarés, puis transmettre les blocs au dialogue.
+    - [x] Modifier `ManagedStorageConfigurationDialog.cs`, `StorageConfigurationFieldFunctions.cs`, créer `StorageConfigurationFieldFunctions.Presets.cs` et remplacer `CassetteConfigurationConstants.cs` par `StorageConfigurationLayoutConstants.cs` : rendre les blocs et présélections génériquement, avec seulement des constantes de présentation dans App.
+
+  - [ ] Modifier les contrats, fonctions et fichiers ajoutés pour les bandes dans MediaEngine, Emulation et Acorn : réutiliser les traitements Tape existants, réunir les doublons identifiés, retirer les ajouts Cassette redondants et adapter les références, traductions, tests et documents concernés.
+    - [ ] Renommer les nouveaux contrats de signal, réglages, profils et fonctions de bande en Tape dans `src/GWGUI.MediaEngine`, `src/GWGUI.Emulation` et `src/GWGUI.Emulation.Acorn` ; adapter les consommateurs et conserver les interfaces de transport préexistantes.
+    - [ ] Modifier `EmulationTapeSettings.cs`, `EmulationTapeSettingsConstants.cs` et `ConfigurationContracts.cs` : normaliser les anciennes clés de configuration ajoutées vers les clés Tape, en conservant les valeurs de l'utilisateur.
+    - [ ] Déplacer les nouvelles ressources de réglages/PCM vers `Resources/*/Emulation/EmulationTape.resx`, adapter `LocalizationCatalogNames.cs`, les références, les tests et les documents ; conserver les clés de commandes/états préexistantes.
+
+- [ ] Valider le dernier ensemble lorsque la compilation est reprise.
+  - [ ] Modifier `docs/project/emulations/Acorn/BBC Micro/Model A/model-a-reference.md` et ce document après exécution des contrôles AcornEmu et du build Debug Acorn autorisé : inscrire les résultats réels et le chemin de sortie. Les derniers contrôles exécutés avant les ajouts de géométrie/profils sont les 165 AcornEmu réussis ; les catalogues XML cassette/stockage ont été vérifiés dans 29 langues et `git diff --check` réussit.
+
+
+- [x] Corriger les destinations d’écriture et la validation de création des médias.
+  - [x] Modifier `docs/directives/emulation-development.md` : consigner l’écriture dans le média monté et les actions explicites de création/montage, y compris depuis REC.
+  - [x] Modifier `Common/Machines/BbcMicro/Functions/DiskFunctions.cs`, `Common/Constants/MediaConstants.cs`, les services `EmulatorCore.Disks.cs` / `EmulatorCore.HardDisks.cs` et les descriptions de stockage AcornEmu : supprimer les copies imposées HardDisks/Floppies ; écrire dans le fichier monté et retirer les options de redirection propres à AcornEmu ; conserver les dialogues communs pour les autres émulateurs.
+  - [x] Créer `src/GWGUI.App/Views/Dialogs/Emulation/Storage/MediaCreationDialog.cs`, ses constantes de présentation et modifier `FloppyDriveConfigurationDialog.cs` / `EmulationStorageSettingsController.cs` : confirmer la destination et proposer Créer et monter, Créer, Fermer, Annuler ; transmettre le montage à la configuration existante seulement sur demande.
+  - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/MachineController.cs` : ouvrir le dialogue de création depuis REC, garder le choix du format et du profil RAW et ne monter/enregistrer que sur demande explicite.
+  - [x] Modifier les ressources `Resources/*/Emulation/EmulationStorage.resx` via Argos et la référence Model A : traduire les actions dans toutes les langues, décrire le parcours et consigner les vérifications statiques sans compiler ni remplacer le build.
+
+
+- [x] Exporter les bruitages actuels en WAV pour écoute utilisateur.
+  - [x] Créer `artifacts/audio-preview/export-current-sounds.ps1` : charger uniquement les sources autonomes de synthèse dans un processus PowerShell temporaire et écrire les sorties exactes en WAV mono PCM 16 bits, 48 kHz, sans normalisation ni build de l’application.
+  - [x] Créer `artifacts/audio-preview/*.wav`, `README.txt` et `bruitages-actuels.zip` : fournir chaque opération pour les huit profils actuels ainsi qu’une séquence d’écoute par profil, documenter l’ordre et conserver les niveaux d’origine.
+  - [x] Supprimer `artifacts/audio-preview/export-current-sounds.ps1` après export et modifier ce document pour consigner la vérification des en-têtes et des sorties ; ne pas modifier le build.
+
+Export vérifié : 57 fichiers WAV PCM mono 16 bits / 48 kHz (49 opérations individuelles et huit séquences), archive de 58 entrées valide ; script temporaire supprimé. Sources de synthèse inchangées et aucun build de GW GUI.
+
+
+- [ ] Refaire tous les bruitages mécaniques à partir de lecteurs réels identifiés.
+  - [x] Modifier `docs/directives/emulation-development.md` : consigner la fidélité au modèle réel, la couverture complète des opérations et un niveau sonore suffisant avec atténuation utilisateur.
+  - [x] Créer `docs/project/mechanical-audio-sources.md` : conserver les sources primaires trouvées, les opérations à couvrir et les références matérielles restant à préciser avant remplacement des profils.
+  - [x] Modifier `docs/directives/emulation-development.md` et `docs/project/mechanical-audio-sources.md` : noter le périmètre des 24 modules, toutes leurs variantes de lecteurs, et la référence de volume utilisateur à 50 %, avec amplification au-delà sans saturation.
+  - [x] Créer `docs/project/mechanical-audio-machine-inventory.md` : inventorier les machines et les déclarations de lecteurs depuis les catalogues et contrats de chaque module, sans inventer de référence de mécanisme absente du code.
+  - [x] Créer `artifacts/mechanical-audio-research/86box-assets-tree.json`, `fdd_audio_profiles.cfg`, `hdd_audio_profiles.cfg` et `readme.txt` : conserver l’inventaire et les profils officiels des enregistrements de lecteurs disponibles ; modifier le document de sources pour relever leur couverture et les manques.
+  - [x] Modifier `docs/directives/emulation-development.md` et `docs/project/mechanical-audio-sources.md` : corriger la distinction entre le niveau fort des WAV sources (plage demandée −50 à 0/−10 dB) et l’atténuation classique du lecteur ; retirer l’interprétation erronée de la plage du curseur.
+  - [x] Créer `scripts/tools/import-mechanical-audio-recordings.py` et `artifacts/mechanical-audio-research/recordings/` : importer les WAV réels des sources publiques 86Box, RetroDriveSounds, jsbeeb et WinUAE, avec version, chemin source, intégrité et niveau mesuré ; préserver les originaux avant tout traitement.
+  - [x] Modifier `docs/project/mechanical-audio-sources.md` et créer `artifacts/mechanical-audio-research/recordings-manifest.json` : décrire tous les échantillons importés et leurs opérations, préciser les références matérielles attestées et les opérations sans enregistrement.
+  - [x] Créer `scripts/tools/prepare-mechanical-audio-bank.py`, `src/GWGUI.MediaEngine/Resources/MechanicalAudio/catalog.json`, `provenance.json` et `Samples/*.wav` : préparer une banque d’échantillons réels, identifier les opérations et variantes, conserver les niveaux sources sans normalisation, préserver les écarts entre lecteurs et vérifier uniquement leurs crêtes.
+  - [x] Modifier `GWGUI.MediaEngine.csproj`, créer `Contracts/RecordedMechanicalSoundProfile.cs`, `Functions/RecordedMechanicalSoundFunctions.cs` et modifier `MechanicalSoundFunctions.cs` / `MechanicalSoundProfiles.cs` : intégrer les échantillons et leurs durées dans le service commun, sans produire de son inventé pour une opération sans enregistrement.
+  - [x] Modifier les interfaces et services MediaEngine/Emulation, les constantes et champs de réglage des lecteurs Acorn et leurs mélanges audio : exposer le volume classique et les durées réelles des événements, utiliser les profils enregistrés disponibles, préserver les signaux du circuit audio et éviter la saturation lors du mélange.
+  - [ ] Modifier les ressources de stockage dans toutes les langues via Argos et les documents de référence : libeller volume et profils réels ; consigner les mécanismes et opérations encore dépourvus d’enregistrements attestés.
+  - [ ] Créer puis supprimer un exporteur isolé dans `artifacts/mechanical-audio-research/` et ses fichiers de validation : vérifier les sources C# autonomes et les WAV produits sans compiler ni remplacer GW GUI ; conserver les ressources audio et rapports utiles.
+
+  - [ ] Modifier `artifacts/audio-preview/README.txt`, supprimer les anciens WAV et ZIP de ce seul dossier puis créer leurs remplaçants après réalisation complète : exporter tous les sons et profils refaits, avec leur niveau réel vérifié, sans reconstruire GW GUI.
+
+
+- [ ] Rendre la banque audio directement identifiable dans les fichiers.
+  - [x] Modifier `scripts/tools/prepare-mechanical-audio-bank.py` : ranger les WAV sous `Resources/MechanicalAudio/Samples/<type>/<marque>/<modèle>/<bruitage>.wav`, conserver les noms sources et les empreintes dans les métadonnées, générer les ressources MSBuild correspondantes. Cette étape est remplacée par la distribution externe demandée ensuite.
+  - [ ] Déplacer `src/GWGUI.MediaEngine/Resources/MechanicalAudio` vers `src/GWGUI.MediaEngine/Assets/MechanicalAudio`, modifier le préparateur, `RecordedMechanicalSoundSample.cs`, `RecordedMechanicalSoundFunctions.cs`, `GWGUI.MediaEngine.csproj`, `GWGUI.App.csproj` et le validateur temporaire : lire les assets externes par leurs chemins descriptifs, retirer l’embarquement et le fichier MSBuild généré ; distribuer une seule banque depuis App, sans copie dans les modules.
+  - [ ] Modifier les directives et le document de sources, puis les rapports de vérification : consigner le classement type/marque/modèle et vérifier chaque fichier après réorganisation.
+
+
+- [ ] Appliquer le rangement et le format définitifs des assets audio.
+  - [x] Modifier `scripts/tools/prepare-mechanical-audio-bank.py` : produire `Assets/MechanicalAudio/<marque>/<modèle>/<nom>.flac`, supprimer les numéros de liste et les répétitions marque/modèle, garder Insert/Eject/Motor ensemble et placer les séries Seek/Buzz dans leurs sous-dossiers ; encoder avec le FLAC existant d’Exact Audio Copy et vérifier le PCM décodé bit à bit.
+  - [ ] Modifier `RecordedMechanicalSoundFunctions.cs` et le validateur temporaire : décoder les FLAC externes via NAudio/Media Foundation déjà référencés, conserver les durées originales et vérifier le rendu, le volume et l’absence d’écrêtage.
+  - [ ] Modifier les directives, la documentation des sources et les rapports : noter l’organisation retenue, les références inconnues sans attribution inventée et les gains de place mesurés ; retirer seulement les anciens WAV générés après validation des FLAC.
+
+- [x] Corriger le classement des bruitages et leurs références selon la demande du 26 octobre.
+  - [x] Modifier `scripts/tools/prepare-mechanical-audio-bank.py`, déplacer les FLAC dans `src/GWGUI.MediaEngine/Assets/MechanicalAudio/<type>/<marque>/<modèle>/` et modifier `catalog.json` ; supprimer `provenance.json` et `preparation-report.json` et arrêter leur génération.
+  - [x] Générer `src/GWGUI.MediaEngine/Constants/MechanicalAudio/RecordedMechanicalSoundFiles*.cs` : constantes nommées par matériel et bruitage, index par identité ; modifier `RecordedMechanicalSoundFunctions.cs` pour utiliser cet index.
+  - [x] Modifier le validateur isolé, vérifier les chemins, identités et décodages FLAC, puis supprimer son script temporaire ; modifier les directives et la documentation pour consigner le classement final et la lecture FLAC existante, sans build de GW GUI.
+
+- [x] Découper l’index des sons en catalogues hiérarchiques.
+  - [x] Modifier `scripts/tools/prepare-mechanical-audio-bank.py` et régénérer `src/GWGUI.MediaEngine/Constants/MechanicalAudio/RecordedMechanicalSoundFiles*.cs` : réunir directement identité et nom/chemin de fichier dans des dictionnaires regroupés par marque et modèle au sein d’un catalogue par type ; supprimer les anciens fichiers de constantes par modèle, puis agréger les catalogues dans le fichier principal ; ordonner par matériel et bruitage, jamais par empreinte.
+  - [x] Modifier `docs/project/mechanical-audio-sources.md` après contrôle isolé des constantes et de l’index agrégé : documenter la hiérarchie et vérifier que chaque identité conserve son chemin, sans build de l’application.
+
+- [x] Recommencer la banque audio après suppression de la génération erronée.
+  - [x] Supprimer les fichiers générés de `src/GWGUI.MediaEngine/Assets/MechanicalAudio/` et `src/GWGUI.MediaEngine/Constants/MechanicalAudio/RecordedMechanicalSoundFiles*.cs` après contrôle des chemins absolus ; conserver les enregistrements originaux du dossier de recherche pour repartir de leurs noms attestés.
+  - [x] Réécrire `scripts/tools/prepare-mechanical-audio-bank.py` et créer ses définitions matérielles explicites : associer chaque ensemble source à sa référence attestée, conserver la signification exacte des noms, séparer les ensembles non identifiés sans fusion automatique et utiliser des identifiants lisibles au lieu des empreintes.
+  - [x] Recréer les FLAC et catalogues sous `Assets/MechanicalAudio/<type>/<marque>/<modèle>/` depuis les originaux ; adapter le chargement aux identifiants lisibles et vérifier les correspondances et le PCM sans normalisation.
+  - [x] Modifier la documentation et les directives pour décrire la nouvelle banque ; créer puis supprimer les outils et artefacts temporaires de validation, sans build de GW GUI.
+
+- [x] Définir les sons de base pour les lecteurs sans enregistrement spécifique disponible.
+  - [x] Modifier `RecordedMechanicalSoundConstants.cs`, `RecordedMechanicalSoundFunctions.cs`, `MechanicalSoundFunctions.cs` et `MechanicalSoundProfiles.cs` : utiliser Alps Electric DF354H148F pour Floppy, Seagate ST3120A pour HDD, le profil à tiroir disponible pour Optical ; appliquer le repli par opération et à sa durée, conserver les sons spécifiques disponibles et placer les profils de base en tête des choix.
+  - [x] Créer puis supprimer `artifacts/verify-audio-fallbacks.ps1` : vérifier isolément le rendu et les durées des replis, la conservation d’un son spécifique et les trois profils par défaut, sans build de GW GUI.
+  - [x] Modifier `docs/project/mechanical-audio-sources.md`, les directives et ce document pour consigner les trois bases et les résultats réels.
+
+- [x] Corriger la déclaration des extensions Acorn dans `DiskImageFileExtensions.cs`.
+  - [x] Modifier `src/GWGUI.MediaEngine/Constants/DiskImageFileExtensions.cs` : séparer Dat/Dsc et Ads/Adm/Adl, documenter chaque constante par un summary XML précis et conserver les valeurs.
+
+- [x] Corriger les déclarations de `FloppyDriveModelIds.cs`.
+  - [x] Modifier `src/GWGUI.MediaEngine/Constants/FloppyDriveModelIds.cs` : une déclaration par constante et un summary XML pour chaque identifiant, format d’affichage et abréviation ; conserver les noms et valeurs existants.
+
+- [x] Corriger les déclarations de `MechanicalSoundConstants.cs`.
+  - [x] Modifier `src/GWGUI.MediaEngine/Constants/MechanicalSoundConstants.cs` : une déclaration par constante et un summary XML décrivant chaque identifiant, paramètre, unité et réglage ; conserver les noms et valeurs existants.
+
+- [x] Corriger les déclarations de `RecordedMechanicalSoundConstants.cs`.
+  - [x] Modifier `src/GWGUI.MediaEngine/Constants/RecordedMechanicalSoundConstants.cs` : séparer les déclarations et documenter chaque chemin, profil de base et paramètre audio, sans changer les valeurs.
+
+- [x] Nettoyer les outils temporaires avant le commit demandé.
+  - [x] Supprimer `scripts/tools/import-mechanical-audio-recordings.py`, `scripts/tools/prepare-mechanical-audio-bank.py`, `scripts/tools/mechanical-audio/source-sets.json` et `scripts/tools/mechanical-audio/sound-names.json`, puis leur dossier vide ; retirer la référence au script temporaire de l’en-tête des quatre fichiers `src/GWGUI.MediaEngine/Constants/MechanicalAudio/RecordedMechanicalSoundFiles*.cs`.
+  - [x] Modifier ce document après vérification des suppressions : consigner le nettoyage et inclure tous les changements restants dans le commit autorisé.
+
+Les deux scripts temporaires et leurs deux fichiers de préparation ont été supprimés de scripts/tools avant le commit. Les catalogues audio et leurs références sources sont conservés ; aucun build ni push demandé.

@@ -87,4 +87,9 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>Tốc độ truyền:</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>Đọc độ chịu đựng</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>Ghi độ trễ</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>Hồ sơ âm thanh cơ khí</value></data>
+  <data name="Emulation.Storage.Media.CreateAndMount"><value>Tạo và gắn kết</value></data>
+  <data name="Emulation.Storage.Media.Created"><value>Ảnh được tạo: {0}</value></data>
+  <data name="Emulation.Storage.Media.AlreadyExists"><value>Tập tin này đã có. Hãy chọn một tập tin ảnh mới: {0}</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>Âm thanh cơ khí</value></data>
 </root>

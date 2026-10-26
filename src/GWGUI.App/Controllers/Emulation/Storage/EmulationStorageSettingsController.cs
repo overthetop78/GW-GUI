@@ -146,7 +146,7 @@ internal sealed class EmulationStorageSettingsController
         var dialog = new ManagedStorageConfigurationDialog(DeviceLabel(device), DeviceModel(device, device.Slot),
             _moduleId, device.ConfigurationFields ?? [], current?.Options,
             device.ConfigurationOptionDetailedResourceKey is { Length: > 0 } helpKey
-                ? LocExtension.GetForModule(_moduleId, helpKey) : null);
+                ? LocExtension.GetForModule(_moduleId, helpKey) : null, device.ConfigurationBlocks);
         IReadOnlyDictionary<string, string> selected;
         try
         {
@@ -299,17 +299,24 @@ internal sealed class EmulationStorageSettingsController
             _configuration?.MachineId ?? string.Empty, current, device.FloppyOptions!,
             EmulationMediaDialogFunctions.ClientGuid(_moduleId, _configuration?.MachineId ?? string.Empty, device.Slot), _moduleId, device.ConfigurationFields);
         FloppyDriveSettings selectedSettings;
+        string? createdMediaToMount;
         try
         {
             if (dialog.ShowDialog() != true) return;
             selectedSettings = dialog.Settings;
+            createdMediaToMount = dialog.CreatedMediaToMount;
         }
         finally
         {
             dialog.Close();
         }
         var settings = (_settings.DeviceSettings ?? []).Where(item => item.Slot != device.Slot).Append(new EmulationStorageDeviceSettings(device.Slot, selectedSettings)).ToArray();
-        _settings = _settings with { DeviceSettings = settings };
+        _settings = _settings with
+        {
+            DeviceSettings = settings,
+            MountedMedia = createdMediaToMount is null ? _settings.MountedMedia : _settings.MountedMedia.Where(media => media.Slot != device.Slot)
+                .Append(new EmulationMedia(createdMediaToMount, device.Slot, device.MediaType, false, true)).ToArray()
+        };
         Rebuild();
         SettingsChanged?.Invoke(this, EventArgs.Empty);
     }

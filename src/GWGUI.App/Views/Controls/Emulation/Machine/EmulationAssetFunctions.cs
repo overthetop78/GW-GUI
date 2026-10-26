@@ -1,17 +1,17 @@
 using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using GWGUI.Emulation;
 
 namespace GWGUI.App.Views.Controls.Emulation.Machine;
 
 internal static class EmulationAssetFunctions
 {
-    internal static ImageSource? Load(IEmulationModule module, string? resourceName)
+    internal static ImageSource? Load(string? relativePath)
     {
-        if (string.IsNullOrWhiteSpace(resourceName)) return null;
-        using var stream = module.GetType().Assembly.GetManifestResourceStream(resourceName);
-        if (stream is null) return null;
+        if (string.IsNullOrWhiteSpace(relativePath)) return null;
+        var path = Path.Combine(AppContext.BaseDirectory, relativePath);
+        if (!File.Exists(path)) return null;
+        using var stream = File.OpenRead(path);
         var image = new BitmapImage();
         image.BeginInit();
         image.CacheOption = BitmapCacheOption.OnLoad;

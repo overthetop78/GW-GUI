@@ -87,4 +87,9 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>Átviteli sebesség</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>Olvass latenciát</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>Késedelmi dátum</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>Mechanikus hangprofil</value></data>
+  <data name="Emulation.Storage.Media.CreateAndMount"><value>Létrehozás és csatlakoztatás</value></data>
+  <data name="Emulation.Storage.Media.Created"><value>A kép létrehozása: {0}</value></data>
+  <data name="Emulation.Storage.Media.AlreadyExists"><value>Ez a fájl már létezik. Válasszon ki egy új képfájlt: {0}</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>Mechanikus hangtérfogat</value></data>
 </root>

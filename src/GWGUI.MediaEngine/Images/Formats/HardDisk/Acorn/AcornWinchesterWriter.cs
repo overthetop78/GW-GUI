@@ -36,7 +36,7 @@ public sealed class AcornWinchesterWriter : IMediaImageWriter
         if (descriptor.Length < AcornWinchesterFormat.DescriptorSize) Array.Resize(ref descriptor, AcornWinchesterFormat.DescriptorSize);
         var geometry = blocks.Geometry!;
         descriptor[13] = (byte)(geometry.Cylinders >> 8); descriptor[14] = (byte)geometry.Cylinders; descriptor[15] = (byte)geometry.Heads;
-        var dat = Path.GetFullPath(outputPath); var dsc = Path.ChangeExtension(dat, ".dsc");
+        var dat = Path.GetFullPath(outputPath); var dsc = Path.ChangeExtension(dat, DiskImageFileExtensions.Dsc);
         await AtomicMediaFileSetWriter.WriteAsync(new Dictionary<string, Func<Stream, CancellationToken, Task>>(StringComparer.OrdinalIgnoreCase)
         {
             [dat] = (stream, cancellation) => BlockMediaDataReader.CopyToAsync(blocks, stream, cancellation),

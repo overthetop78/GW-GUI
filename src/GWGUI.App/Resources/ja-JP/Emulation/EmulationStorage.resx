@@ -87,4 +87,9 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>転送速度</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>レイテンシを読む</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>レイテンシを書く</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>機械的音響プロフィール</value></data>
+  <data name="Emulation.Storage.Media.CreateAndMount"><value>作成とマウント</value></data>
+  <data name="Emulation.Storage.Media.Created"><value>作成したイメージ: {0}</value></data>
+  <data name="Emulation.Storage.Media.AlreadyExists"><value>既に存在するファイル。新しいイメージファイルを選択します。 {0}</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>機械的な音の容積</value></data>
 </root>

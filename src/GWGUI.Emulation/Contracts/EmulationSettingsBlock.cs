@@ -9,4 +9,6 @@ public sealed record EmulationSettingsBlock(
     int Columns = 1,
     bool IsVisible = true,
     bool IsCollapsible = false,
-    bool IsCompact = false);
+    bool IsCompact = false,
+    string? VisibleWhenFieldId = null,
+    string? VisibleWhenValue = null);

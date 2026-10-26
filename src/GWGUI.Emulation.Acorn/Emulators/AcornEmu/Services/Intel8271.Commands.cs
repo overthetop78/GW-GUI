@@ -1,3 +1,4 @@
+using Phase = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Enums.Intel8271Phase;
 using C = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants.Intel8271Constants;
 
 namespace GWGUI.Emulation.Acorn.Emulators.AcornEmu.Services;
@@ -74,6 +75,7 @@ internal sealed partial class Intel8271
 
     private void Positioned()
     {
+        _seekSteps[_drive] += Math.Abs(_tracks[_drive] - _parameters[0]);
         _tracks[_drive] = _parameters[0];
         if (_command == C.Seek) { Complete(0); return; }
         if (_command == C.Format)

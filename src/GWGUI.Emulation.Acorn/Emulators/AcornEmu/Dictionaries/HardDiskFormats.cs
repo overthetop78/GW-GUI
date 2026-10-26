@@ -8,7 +8,7 @@ namespace GWGUI.Emulation.Acorn.Emulators.AcornEmu.Dictionaries;
 internal static class HardDiskFormats
 {
     internal static IReadOnlyList<HardDiskImageFormat> All { get; } = Array.AsReadOnly<HardDiskImageFormat>([
-        new("acorn-winchester", ".dat", "SCSI", C.MaximumHardDiskBytes, 40L * 1024 * 1024, [HardDiskPreparation.AcornAdfs, HardDiskPreparation.Blank])
+        new("acorn-winchester", C.HardDiskExtensions[0], "SCSI", C.MaximumHardDiskBytes, 40L * 1024 * 1024, [HardDiskPreparation.AcornAdfs, HardDiskPreparation.Blank])
         {
             MinimumBytes = 33 * 256, LogicalSectorSizes = new HashSet<int> { 256 }, Geometry = new DiskChsGeometry(4, 33),
             SupportsExplicitGeometry = true, SupportsFixedAllocation = false,

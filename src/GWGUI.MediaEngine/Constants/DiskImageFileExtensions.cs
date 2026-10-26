@@ -5,6 +5,12 @@ namespace GWGUI.MediaEngine.Constants;
 /// </summary>
 public static class DiskImageFileExtensions
 {
+    /// <summary>Extension des fichiers de données des images de disque dur Acorn Winchester.</summary>
+    public const string Dat = ".dat";
+
+    /// <summary>Extension des descripteurs de géométrie associés aux images Acorn Winchester.</summary>
+    public const string Dsc = ".dsc";
+
     /// <summary>Extension des conteneurs Apple 2IMG.</summary>
     public const string TwoMg = ".2mg";
 
@@ -13,7 +19,15 @@ public static class DiskImageFileExtensions
 
     /// <summary>Extension des images ADF Acorn ou Amiga.</summary>
     public const string Adf = ".adf";
-    public const string Ads = ".ads", Adm = ".adm", Adl = ".adl";
+
+    /// <summary>Extension des images Acorn ADFS au format S de 160 Kio.</summary>
+    public const string Ads = ".ads";
+
+    /// <summary>Extension des images Acorn ADFS au format M de 320 Kio.</summary>
+    public const string Adm = ".adm";
+
+    /// <summary>Extension des images Acorn ADFS au format L de 640 Kio.</summary>
+    public const string Adl = ".adl";
 
     /// <summary>Extension des images Atari ATR.</summary>
     public const string Atr = ".atr";
@@ -159,13 +173,21 @@ public static class DiskImageFileExtensions
     /// <summary>Extension des descripteurs de pistes optiques Dreamcast GDI.</summary>
     public const string Gdi = ".gdi";
 
+    /// <summary>Extension des fichiers audio Waveform Audio.</summary>
     public const string Wav = ".wav";
+    /// <summary>Extension CAS partagée par plusieurs formats d’images de cassette.</summary>
     public const string Cas = ".cas";
+    /// <summary>Extension des images de cassette TZX.</summary>
     public const string Tzx = ".tzx";
+    /// <summary>Extension des images de cassette Amstrad CPC au format CDT.</summary>
     public const string Cdt = ".cdt";
+    /// <summary>Extension des images de cassette TSX.</summary>
     public const string Tsx = ".tsx";
+    /// <summary>Extension TAP partagée par plusieurs formats d’images de cassette.</summary>
     public const string Tap = ".tap";
+    /// <summary>Extension des conteneurs Unified Emulator Format, notamment utilisés pour les cassettes Acorn.</summary>
     public const string Uef = ".uef";
+    /// <summary>Extension des enregistrements de signal cassette Compressed Square Wave.</summary>
     public const string Csw = ".csw";
 
     /// <summary>Extension des cartouches Amstrad Plus/GX4000.</summary>
@@ -174,22 +196,35 @@ public static class DiskImageFileExtensions
     /// <summary>Extension des ROM brutes Amstrad CPC.</summary>
     public const string Rom = ".rom";
 
+    /// <summary>Extension des images de cartouche Nintendo Entertainment System.</summary>
     public const string Nes = ".nes";
     /// <summary>Extension des images de disquette Famicom Disk System.</summary>
     public const string Fds = ".fds";
+    /// <summary>Extension SFC des images de cartouche Super Nintendo.</summary>
     public const string Sfc = ".sfc";
+    /// <summary>Extension SMC des images de cartouche Super Nintendo.</summary>
     public const string Smc = ".smc";
+    /// <summary>Extension des images de cartouche Nintendo 64 au format N64.</summary>
     public const string N64 = ".n64";
+    /// <summary>Extension des images de cartouche Nintendo 64 au format Z64.</summary>
     public const string Z64 = ".z64";
+    /// <summary>Extension des images de cartouche Nintendo 64 au format V64.</summary>
     public const string V64 = ".v64";
+    /// <summary>Extension des images de cartouche Nintendo Game Boy.</summary>
     public const string Gb = ".gb";
+    /// <summary>Extension GBC des images de cartouche Nintendo Game Boy Color.</summary>
     public const string Gbc = ".gbc";
+    /// <summary>Extension des images de cartouche Nintendo Game Boy Advance.</summary>
     public const string Gba = ".gba";
+    /// <summary>Extension des images de cartouche Nintendo DS.</summary>
     public const string Nds = ".nds";
     /// <summary>Extension des simulations Nintendo Game &amp; Watch.</summary>
     public const string Mgw = ".mgw";
+    /// <summary>Extension des images de cartouche Nintendo 3DS.</summary>
     public const string ThreeDs = ".3ds";
+    /// <summary>Extension des archives installables Nintendo 3DS au format CIA.</summary>
     public const string Cia = ".cia";
+    /// <summary>Extension des exécutables homebrew Nintendo 3DS au format 3DSX.</summary>
     public const string ThreeDsx = ".3dsx";
     /// <summary>Extension des images CCI Nintendo 3DS.</summary>
     public const string Cci = ".cci";
@@ -201,10 +236,13 @@ public static class DiskImageFileExtensions
     public const string Elf = ".elf";
     /// <summary>Extension des contenus APP Nintendo 3DS.</summary>
     public const string App = ".app";
+    /// <summary>Extension des ROM Sega Master System.</summary>
     public const string Sms = ".sms";
+    /// <summary>Extension SG des ROM Sega SG-1000.</summary>
     public const string Sg = ".sg";
     /// <summary>Extension des ROM SG-1000 et Sega My Card.</summary>
     public const string Mv = ".mv";
+    /// <summary>Extension MD des ROM Sega Mega Drive.</summary>
     public const string Md = ".md";
     /// <summary>Extension des ROM Mega Drive au format MDX.</summary>
     public const string Mdx = ".mdx";
@@ -216,26 +254,42 @@ public static class DiskImageFileExtensions
     public const string Bms = ".bms";
     /// <summary>Extension des ROM Mega Drive au format 68K.</summary>
     public const string SixtyEightK = ".68k";
+    /// <summary>Extension GEN des ROM Sega Mega Drive.</summary>
     public const string Gen = ".gen";
+    /// <summary>Extension des ROM Sega Game Gear.</summary>
     public const string Gg = ".gg";
+    /// <summary>Extension des ROM Sega 32X.</summary>
     public const string ThirtyTwoX = ".32x";
+    /// <summary>Extension des ROM Atari 2600.</summary>
     public const string A26 = ".a26";
+    /// <summary>Extension des ROM Atari 5200.</summary>
     public const string A52 = ".a52";
+    /// <summary>Extension des ROM Atari 7800.</summary>
     public const string A78 = ".a78";
+    /// <summary>Extension des ROM NEC PC Engine.</summary>
     public const string Pce = ".pce";
     /// <summary>Extension des ROM NEC SuperGrafx.</summary>
     public const string Sgx = ".sgx";
+    /// <summary>Extension des ROM Nintendo Virtual Boy.</summary>
     public const string Vb = ".vb";
+    /// <summary>Extension des ROM Bandai WonderSwan.</summary>
     public const string Ws = ".ws";
+    /// <summary>Extension des ROM Bandai WonderSwan Color.</summary>
     public const string Wsc = ".wsc";
+    /// <summary>Extension CGB des ROM Nintendo Game Boy Color.</summary>
     public const string Cgb = ".cgb";
 
     /// <summary>Extension des fichiers Creative Voice.</summary>
     public const string Voc = ".voc";
 
+    /// <summary>Extension des fichiers audio MPEG Audio Layer III.</summary>
     public const string Mp3 = ".mp3";
+    /// <summary>Extension des fichiers audio Free Lossless Audio Codec.</summary>
     public const string Flac = ".flac";
+    /// <summary>Extension des fichiers audio Advanced Audio Coding.</summary>
     public const string Aac = ".aac";
+    /// <summary>Extension des conteneurs MPEG-4 destinés à l’audio.</summary>
     public const string M4a = ".m4a";
+    /// <summary>Extension des fichiers Windows Media Audio.</summary>
     public const string Wma = ".wma";
 }

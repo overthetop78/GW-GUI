@@ -137,7 +137,7 @@ function New-GwGuiBuild {
                 throw "Module entry assembly was not produced: $entryAssembly"
             }
             Copy-GwGuiComponentFiles -SourceDirectory $publish -DestinationDirectory $destination `
-                -SharedHashes $applicationHashes -RequiredFiles @('module.json', $moduleDefinition.EntryAssembly,
+                -AssetsDestinationDirectory $applicationPublish -SharedHashes $applicationHashes -RequiredFiles @('module.json', $moduleDefinition.EntryAssembly,
                     ($moduleDefinition.AssemblyName + '.pdb'), ($moduleDefinition.AssemblyName + '.deps.json'))
         }
     }

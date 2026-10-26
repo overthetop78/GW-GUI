@@ -1,3 +1,4 @@
 namespace GWGUI.Emulation.Contracts;
 
-public sealed record EmulationMachineDefinition(string Id, string DisplayResourceKey, string? ImageResourceName = null);
+/// <summary>Machine et chemin d’image externe relatif au dossier de l’application.</summary>
+public sealed record EmulationMachineDefinition(string Id, string DisplayResourceKey, string? ImagePath = null);

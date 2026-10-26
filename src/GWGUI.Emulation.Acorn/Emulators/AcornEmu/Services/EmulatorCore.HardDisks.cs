@@ -1,3 +1,4 @@
+using S = GWGUI.Emulation.Constants.EmulationMechanicalSoundConstants;
 using System.IO;
 using GWGUI.Emulation.Acorn.Common.Machines.BbcMicro.Functions;
 using NativeStorage = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Functions.StorageFunctions;
@@ -10,7 +11,7 @@ internal sealed partial class EmulatorCore
 {
     private readonly IEmulationDiskImage?[] _hardDisks = new IEmulationDiskImage?[C.HardDiskCount];
     private readonly bool[] _hardDiskConnected = new bool[C.HardDiskCount];
-    private readonly (bool Protected, bool Redirect, int ReadLatency, int WriteLatency, int Speed)[] _hardDiskSettings = new (bool, bool, int, int, int)[C.HardDiskCount];
+    private readonly (bool Protected, int ReadLatency, int WriteLatency, int Speed)[] _hardDiskSettings = new (bool, int, int, int)[C.HardDiskCount];
 
     private void ConfigureHardDisks(MachineConfiguration configuration)
     {
@@ -18,6 +19,9 @@ internal sealed partial class EmulatorCore
         {
             _hardDiskConnected[unit] = NativeStorage.HardDiskConnected(configuration, unit);
             var settings = _hardDiskSettings[unit] = NativeStorage.HardDiskSettings(configuration, unit);
+            _hardDiskSoundEnabled[unit] = bool.Parse(configuration.Options.GetValueOrDefault(C.HardDiskKey(unit, C.MechanicalSoundOption), bool.TrueString));
+            _hardDiskSoundVolume[unit] = EmulationMechanicalSoundSettings.ReadVolume(configuration.Options, C.HardDiskKey(unit, C.SoundVolumeOption));
+            _hardDiskSoundProfiles[unit] = configuration.Options.GetValueOrDefault(C.HardDiskKey(unit, C.SoundProfileOption), S.Winchester);
             _machine!.ConfigureHardDisk(unit, settings.ReadLatency, settings.Speed, settings.WriteLatency);
         }
     }
@@ -27,8 +31,7 @@ internal sealed partial class EmulatorCore
         var unit = media.Slot.Index;
         if (media.Category != MediaCategory.HardDisk || unit is < 0 or >= C.HardDiskCount || !_hardDiskConnected[unit] || !C.HardDiskExtensions.Contains(Path.GetExtension(media.Path), StringComparer.OrdinalIgnoreCase)) throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(media));
         var settings = _hardDiskSettings[unit];
-        var path = settings.Redirect && !media.IsReadOnly && !settings.Protected ? BbcMicroDiskFunctions.RedirectHardDisk(media.Path, _diskSaveDirectory!, unit) : media.Path;
-        var image = BbcMicroDiskFunctions.Open(path, !media.IsReadOnly && !settings.Protected);
+        var image = BbcMicroDiskFunctions.Open(media.Path, !media.IsReadOnly && !settings.Protected);
         var transferred = false;
         try
         {

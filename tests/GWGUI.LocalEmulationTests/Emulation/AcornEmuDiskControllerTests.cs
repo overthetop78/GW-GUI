@@ -6,12 +6,85 @@ using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Factories;
 using GWGUI.Emulation.Acorn.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Acorn.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Enums;
+using System.IO;
+using NativeStorage = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Functions.StorageFunctions;
 
 namespace GWGUI.Tests.Emulation;
 
 /// <summary>Exerce le protocole matériel sur des secteurs en mémoire, sans fichiers ni firmware externes.</summary>
 public sealed class AcornEmuDiskControllerTests
 {
+    [Theory]
+    [InlineData("ss40", 40, 1, 10, true)]
+    [InlineData("ss40", 80, 1, 10, false)]
+    [InlineData("ss40", 40, 2, 10, false)]
+    [InlineData("ss40", 40, 1, 16, false)]
+    [InlineData("ds80", 80, 2, 10, true)]
+    [InlineData("ds80", 80, 2, 16, false)]
+    [InlineData("ds80-dd", 80, 2, 16, true)]
+    [InlineData("ds80-dd", 40, 1, 10, true)]
+    [InlineData("ss80-dd", 80, 2, 16, false)]
+    [InlineData("ds40-dd", 80, 1, 16, false)]
+    [InlineData("ds40-dd", 40, 2, 16, true)]
+    [InlineData("ds80-dd", 0, 2, 16, false)]
+    public void DriveRejectsUnsupportedFacesDensityOrGeometry(string model, int cylinders, int heads, int sectors, bool accepted)
+    {
+        using var image = new MemoryDisk { Cylinders = cylinders, Heads = heads, SectorsPerTrack = sectors };
+        var settings = new FloppyDriveSettings(model, "100", false, false);
+        if (accepted) NativeStorage.ValidateMedia(image, settings);
+        else Assert.Throws<InvalidDataException>(() => NativeStorage.ValidateMedia(image, settings));
+    }
+
+    [Fact]
+    public void DriveRejectsInconsistentImageCapacity()
+    {
+        using var image = new MemoryDisk { Cylinders = 40, Heads = 1, SectorsPerTrack = 10, DeclaredSectorCount = 399 };
+        Assert.Throws<InvalidDataException>(() => NativeStorage.ValidateMedia(image, new("ss40", "100", false, false)));
+    }
+
+    [Theory]
+    [InlineData("Cassette", "Play")]
+    [InlineData("Floppy", "Motor")]
+    [InlineData("Floppy", "Read")]
+    [InlineData("Floppy", "Write")]
+    [InlineData("Floppy", "Seek")]
+    [InlineData("Floppy", "Insert")]
+    [InlineData("Floppy", "Eject")]
+    [InlineData("HardDisk", "Motor")]
+    [InlineData("HardDisk", "Read")]
+    [InlineData("HardDisk", "Write")]
+    [InlineData("HardDisk", "Seek")]
+    [InlineData("Optical", "Motor")]
+    [InlineData("Optical", "Read")]
+    [InlineData("Optical", "Write")]
+    [InlineData("Optical", "Seek")]
+    [InlineData("Optical", "Insert")]
+    [InlineData("Optical", "Eject")]
+    public void SharedMechanicalSoundIsIndependentOfAudioChunkBoundaries(string device, string operation)
+    {
+        var service = GWGUI.Emulation.EmulationSdk.MediaProcessing;
+        var complete = service.RenderMechanicalSound(device, operation, 48000, 4800, 0);
+        var first = service.RenderMechanicalSound(device, operation, 48000, 137, 0);
+        var rest = service.RenderMechanicalSound(device, operation, 48000, 4663, 137);
+        Assert.Contains(complete, sample => sample != 0);
+        Assert.Equal(complete, first.Concat(rest).ToArray());
+        if (operation is "Seek" or "Insert" or "Eject") Assert.All(service.RenderMechanicalSound(device, operation, 48000, 100, 48000), sample => Assert.Equal(0, sample));
+    }
+
+    [Theory]
+    [InlineData("Floppy")]
+    [InlineData("HardDisk")]
+    [InlineData("Optical")]
+    public void EachMechanicalProfileProducesItsOwnSignalAndRejectsAnotherDeviceProfile(string device)
+    {
+        var service = GWGUI.Emulation.EmulationSdk.MediaProcessing;
+        var profiles = service.MechanicalSoundProfiles(device);
+        Assert.True(profiles.Count > 1);
+        var first = service.RenderMechanicalSound(device, "Motor", 48000, 4800, 0, profiles[0]);
+        var second = service.RenderMechanicalSound(device, "Motor", 48000, 4800, 0, profiles[1]);
+        Assert.False(first.SequenceEqual(second));
+        Assert.Throws<ArgumentOutOfRangeException>(() => service.RenderMechanicalSound(device, "Motor", 48000, 10, 0, "Standard"));
+    }
     [Fact]
     public void DiskDriveConfigurationUsesTheExistingStorageContractAndRemainsOptional()
     {
@@ -176,10 +249,11 @@ public sealed class AcornEmuDiskControllerTests
         private readonly Dictionary<long, byte[]> _data = new();
         public string FormatId => "acorn.dfs.ds";
         public int SectorSize => 256;
-        public long SectorCount => 40;
-        public long Cylinders => 2;
-        public int Heads => 2;
-        public int SectorsPerTrack => 10;
+        public long SectorCount => DeclaredSectorCount ?? Cylinders * Heads * SectorsPerTrack;
+        internal long? DeclaredSectorCount { get; init; }
+        public long Cylinders { get; init; } = 2;
+        public int Heads { get; init; } = 2;
+        public int SectorsPerTrack { get; init; } = 10;
         public bool IsReadOnly { get; init; }
         public bool HasChanges { get; private set; }
         public IReadOnlyDictionary<string, string> Metadata { get; } = new Dictionary<string, string>();

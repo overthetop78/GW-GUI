@@ -87,4 +87,9 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>Швидкість передачі</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>Читати протримку</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>Написати відгук</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>Механічний звук профілю</value></data>
+  <data name="Emulation.Storage.Media.CreateAndMount"><value>Створення та кріплення</value></data>
+  <data name="Emulation.Storage.Media.Created"><value>Створено зображення: {0}</value></data>
+  <data name="Emulation.Storage.Media.AlreadyExists"><value>Цей файл вже існує. Виберіть новий файл зображення: {0}</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>Механічний об'єм звуку</value></data>
 </root>

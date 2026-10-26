@@ -87,4 +87,9 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>ความเร็วการส่งถ่ายข้อมูล</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>อ่านความหน่วงแสง</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>เขียน Ledcy</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>โพรไฟล์ระบบเสียง</value></data>
+  <data name="Emulation.Storage.Media.CreateAndMount"><value>สร้างและเมานท์</value></data>
+  <data name="Emulation.Storage.Media.Created"><value>สร้างอิมเมจขึ้นมา: {0}</value></data>
+  <data name="Emulation.Storage.Media.AlreadyExists"><value>มีแฟ้มนี้อยู่แล้ว เลือกแฟ้มอิมเมจใหม่: {0}</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>ระดับเสียงของกลไกการเขียน</value></data>
 </root>

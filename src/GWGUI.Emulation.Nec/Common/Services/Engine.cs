@@ -68,7 +68,7 @@ internal sealed class Engine
 
     public string Id => EmulationModuleConstants.ModuleId;
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
-    public string BrandImageResourceName => EmulationModuleConstants.BrandAssetResourceName;
+    public string BrandImagePath => EmulationModuleConstants.BrandAssetPath;
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
 

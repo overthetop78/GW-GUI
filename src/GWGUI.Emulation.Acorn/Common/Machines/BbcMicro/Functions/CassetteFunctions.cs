@@ -1,3 +1,4 @@
+using S = GWGUI.Emulation.Constants.EmulationMechanicalSoundConstants;
 using CommonHost = GWGUI.Emulation.Acorn.Common.Functions.CoreHostFunctions;
 
 namespace GWGUI.Emulation.Acorn.Common.Machines.BbcMicro.Functions;
@@ -10,5 +11,5 @@ internal static class BbcMicroCassetteFunctions
     /// <summary>Conserve le signal complet par l'écrivain du service commun ; aucun fichier n'est ouvert dans le module.</summary>
     internal static void Write(string path, EmulationCassetteSignal signal, IReadOnlyDictionary<string, string>? parameters = null) => CommonHost.MediaProcessing.WriteCassetteAsync(path, signal, parameters: parameters).GetAwaiter().GetResult();
     internal static IReadOnlyList<string> RecordingExtensions => CommonHost.MediaProcessing.CassetteRecordingExtensions;
-    internal static short[] Sound(string operation, int sampleRate, int count, long offset) => CommonHost.MediaProcessing.RenderCassetteSound(operation, sampleRate, count, offset);
+    internal static short[] Sound(string operation, int sampleRate, int count, long offset, int volumePercent) => CommonHost.MediaProcessing.RenderMechanicalSound(S.Cassette, operation, sampleRate, count, offset, volumePercent: volumePercent);
 }

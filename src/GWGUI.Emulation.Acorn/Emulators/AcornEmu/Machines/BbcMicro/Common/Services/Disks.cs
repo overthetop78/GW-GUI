@@ -36,6 +36,11 @@ internal sealed class Disks(bool enabled, bool wd1770 = false)
         Controller.Write(address & 7, value);
     }
     internal bool Active(int drive) => enabled && _images[drive] is not null && (wd1770 ? Wd.Selected && Wd.Motor && Wd.Drive == drive : Controller.Motor && Controller.ActiveDrive == drive);
+    internal bool Motor(int drive) => enabled && (wd1770 ? Wd.Selected && Wd.Motor && Wd.Drive == drive : Controller.Motor && Controller.ActiveDrive == drive);
+    internal bool Reading(int drive) => enabled && (wd1770 ? Wd.Selected && Wd.Drive == drive && Wd.Reading : Controller.ActiveDrive == drive && Controller.Reading);
+    internal long SeekSteps(int drive) => !enabled ? 0 : wd1770 ? Wd.SeekSteps(drive) : Controller.SeekSteps(drive);
+    internal long ReadBytes(int drive) => !enabled ? 0 : wd1770 ? Wd.ReadBytes(drive) : Controller.ReadBytes(drive);
+    internal long WrittenBytes(int drive) => !enabled ? 0 : wd1770 ? Wd.WrittenBytes(drive) : Controller.WrittenBytes(drive);
     internal void SetSpeed(int drive, int percent)
     {
         if (drive is < 0 or >= C.DriveCount || percent < 0) throw new ArgumentOutOfRangeException(nameof(drive));

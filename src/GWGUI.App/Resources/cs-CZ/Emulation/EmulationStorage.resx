@@ -87,4 +87,9 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>Rychlost přenosu</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>Přečíst latenci</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>Napsat latenci</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>Mechanický zvukový profil</value></data>
+  <data name="Emulation.Storage.Media.CreateAndMount"><value>Vytvořit a připojit</value></data>
+  <data name="Emulation.Storage.Media.Created"><value>Vytvořený obrázek: {0}</value></data>
+  <data name="Emulation.Storage.Media.AlreadyExists"><value>Tento soubor již existuje. Vyberte nový soubor obrázků: {0}</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>Mechanický hlasitost zvuku</value></data>
 </root>

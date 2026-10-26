@@ -23,7 +23,7 @@ public sealed class ExampleEmulationModule : IEmulationModule, IEmulationEmulato
     public string DisplayResourceKey => _engine.DisplayResourceKey;
     /// <summary>Expose le nom de la ressource de marque annoncé par Common.</summary>
     /// <remarks><para>Le consommateur charge la ressource de présentation ; consulter son nom ne crée pas de surface graphique.</para></remarks>
-    public string BrandImageResourceName => _engine.BrandImageResourceName;
+    public string BrandImagePath => _engine.BrandImagePath;
     /// <summary>Expose les deux profils matériels décrits par le catalogue Common.</summary>
     /// <remarks><para>Les descriptions servent à la sélection et à la configuration. Elles ne sont pas des sessions d&apos;émulation et n&apos;initialisent aucun cœur.</para></remarks>
     public IReadOnlyList<EmulationMachineDefinition> Machines => _engine.Machines;

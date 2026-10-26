@@ -16,6 +16,10 @@ internal sealed class Winchester(bool enabled)
     internal void Reset() { if (enabled) Controller.Reset(); }
     internal bool Active(int unit) => enabled && unit is >= 0 and < C.UnitCount && _images[unit] is not null && Controller.Active(unit);
     internal bool Writing(int unit) => Active(unit) && Controller.Writing;
+    internal bool Motor(int unit) => enabled && _images[unit] is not null;
+    internal long SeekCount(int unit) => enabled ? Controller.SeekCount(unit) : 0;
+    internal long ReadBlocks(int unit) => enabled ? Controller.ReadBlocks(unit) : 0;
+    internal long WrittenBlocks(int unit) => enabled ? Controller.WrittenBlocks(unit) : 0;
     internal void Configure(int unit, int latencyMilliseconds, int speedPercent, int? writeLatencyMilliseconds = null) { if (enabled) Controller.Configure(unit, latencyMilliseconds, speedPercent, writeLatencyMilliseconds); }
     internal void Attach(int unit, IEmulationDiskImage? image)
     {

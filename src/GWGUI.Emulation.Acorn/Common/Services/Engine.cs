@@ -69,7 +69,7 @@ internal sealed class Engine
 
     public string Id => EmulationModuleConstants.ModuleId;
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
-    public string BrandImageResourceName => $"{EmulationModuleConstants.AssetResourcePrefix}.acorn.png";
+    public string BrandImagePath => $"{EmulationModuleConstants.AssetPathPrefix}/acorn.png";
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, tab => tab != EmulationMachineTab.Mouse));
 
@@ -257,7 +257,7 @@ internal sealed class Engine
                 Media = media.Select(item => EmulationMediaConversionFunctions.ToModule(item, current.Media)).ToArray()
             };
             return this.CreateMachine(selected, context);
-        }, storage.AvailableDevices, storage.MountedMedia,
+        }, storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray(), storage.MountedMedia,
             HardwareModelCatalog.Get(current.Model).DisplayNameResourceKey, adapter.SupportsPointerCapture(current),
             PrepareMediaAsync: (media, token) => { token.ThrowIfCancellationRequested(); return adapter.PrepareMediaAsync(media, services.ConvertedMediaDirectory); });
     }

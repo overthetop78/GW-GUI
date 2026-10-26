@@ -58,7 +58,7 @@ internal sealed class Engine
 
     public string Id => EmulationModuleConstants.ModuleId;
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
-    public string BrandImageResourceName => $"{EmulationModuleConstants.AssetResourcePrefix}.panasonic.png";
+    public string BrandImagePath => $"{EmulationModuleConstants.AssetPathPrefix}/panasonic.png";
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(Enum.GetValues<EmulationMachineTab>().ToDictionary(
             tab => tab,

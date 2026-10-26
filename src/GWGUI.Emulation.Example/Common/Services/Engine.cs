@@ -62,7 +62,7 @@ internal sealed class Engine
     /// <summary>Clé du nom invariant du module.</summary>
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
     /// <summary>Aucune image de marque n’est nécessaire pour utiliser les interfaces de cet exemple.</summary>
-    public string BrandImageResourceName => string.Empty;
+    public string BrandImagePath => string.Empty;
     /// <summary>Deux modèles fictifs décrits par le catalogue Common.</summary>
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     /// <summary>Onglets disponibles, dont la visibilité détaillée dépend ensuite des capacités déclarées.</summary>

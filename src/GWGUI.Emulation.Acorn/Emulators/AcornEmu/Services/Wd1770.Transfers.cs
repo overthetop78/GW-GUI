@@ -1,3 +1,4 @@
+using Phase = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Enums.Wd1770Phase;
 using C = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants.Wd1770Constants;
 
 namespace GWGUI.Emulation.Acorn.Emulators.AcornEmu.Services;

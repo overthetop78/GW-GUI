@@ -64,7 +64,7 @@ internal sealed class Engine
 
     public string Id => EmulationModuleConstants.ModuleId;
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
-    public string BrandImageResourceName => $"{EmulationModuleConstants.AssetResourcePrefix}.sega.png";
+    public string BrandImagePath => $"{EmulationModuleConstants.AssetPathPrefix}/sega.png";
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
 

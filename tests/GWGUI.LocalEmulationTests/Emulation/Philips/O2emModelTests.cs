@@ -47,7 +47,7 @@ public sealed class O2emModelTests
         Assert.Equal(new[] { EmulationMediaSlot.Cartridge0 }, configuration.ConfiguredSlots);
 
         var artwork = Assert.Single(MachineCatalog.All, definition => definition.Id == machine.Id);
-        using var image = typeof(MachineCatalog).Assembly.GetManifestResourceStream(artwork.ImageResourceName!);
+        using var image = File.OpenRead(Path.Combine(AppContext.BaseDirectory, artwork.ImagePath!));
         Assert.NotNull(image);
         Span<byte> header = stackalloc byte[24];
         image.ReadExactly(header);

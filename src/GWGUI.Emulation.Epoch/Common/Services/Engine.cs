@@ -69,7 +69,7 @@ internal sealed class Engine
     public string Id => EmulationModuleConstants.ModuleId;
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
     // Genuine Epoch wordmark; distinct from the console photographs in Assets.Machines.
-    public string BrandImageResourceName => $"{EmulationModuleConstants.AssetResourcePrefix}.epoch.png";
+    public string BrandImagePath => $"{EmulationModuleConstants.AssetPathPrefix}/epoch.png";
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, tab => true));
 

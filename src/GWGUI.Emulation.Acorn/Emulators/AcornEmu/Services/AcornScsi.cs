@@ -1,3 +1,4 @@
+using Phase = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Enums.AcornScsiPhase;
 using System.IO;
 using C = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants.AcornScsiConstants;
 
@@ -8,11 +9,14 @@ namespace GWGUI.Emulation.Acorn.Emulators.AcornEmu.Services;
 /// Les blocs du bus font 256 octets ; les secteurs du conteneur peuvent être plus grands.</remarks>
 internal sealed partial class AcornScsi
 {
-    private enum Phase { Free, Selection, Command, Executing, Read, Write, Formatting, Status, Message }
     private readonly Func<int, IEmulationDiskImage?> _disk;
     private readonly int _clock;
     private readonly byte[] _command = new byte[16], _sense = new byte[C.UnitCount];
     private readonly long[] _senseAddress = new long[C.UnitCount];
+    private readonly long[] _headPositions = new long[C.UnitCount], _seekCount = new long[C.UnitCount], _readBlocks = new long[C.UnitCount], _writtenBlocks = new long[C.UnitCount];
+    internal long SeekCount(int unit) => _seekCount[unit];
+    internal long ReadBlocks(int unit) => _readBlocks[unit];
+    internal long WrittenBlocks(int unit) => _writtenBlocks[unit];
     private readonly int[] _latencies = [2, 2, 2, 2], _speeds = [100, 100, 100, 100];
     private readonly int[] _writeLatencies = [2, 2, 2, 2];
     private Phase _phase;

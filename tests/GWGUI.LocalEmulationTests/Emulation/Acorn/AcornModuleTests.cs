@@ -50,18 +50,18 @@ public sealed class AcornModuleTests
         Assert.DoesNotContain(mapped.Keys.Where(native.ContainsKey).Select(key => native[key]), code => code == native[target]);
     }
     [Fact]
-    public void MachineArtworkUsesExistingSharedResources()
+    public void MachineArtworkUsesExistingSharedFiles()
     {
         var modelA = MachineCatalog.All.Single(machine => machine.Id == nameof(MachineModel.BbcMicroModelA));
         var modelB = MachineCatalog.All.Single(machine => machine.Id == nameof(MachineModel.BbcMicroModelB));
         var master = MachineCatalog.All.Single(machine => machine.Id == nameof(MachineModel.BbcMaster128));
-        Assert.Equal(modelA.ImageResourceName, modelB.ImageResourceName);
-        Assert.NotEqual(modelB.ImageResourceName, master.ImageResourceName);
-        var resources = typeof(MachineCatalog).Assembly.GetManifestResourceNames();
+        Assert.Equal(modelA.ImagePath, modelB.ImagePath);
+        Assert.NotEqual(modelB.ImagePath, master.ImagePath);
+        var resources = MachineCatalog.All.Select(machine => machine.ImagePath!).ToArray();
         foreach (var machine in MachineCatalog.All)
-            Assert.Contains(machine.ImageResourceName!, resources);
-        Assert.DoesNotContain(resources, name => name.EndsWith(".BbcMicroModelA.png", StringComparison.Ordinal));
-        Assert.DoesNotContain(resources, name => name.EndsWith(".BbcMicroModelB.png", StringComparison.Ordinal));
+            Assert.True(File.Exists(Path.Combine(AppContext.BaseDirectory, machine.ImagePath!)), machine.ImagePath);
+        Assert.DoesNotContain(resources, name => name.EndsWith("/BbcMicroModelA.png", StringComparison.Ordinal));
+        Assert.DoesNotContain(resources, name => name.EndsWith("/BbcMicroModelB.png", StringComparison.Ordinal));
     }
 
     [Fact]

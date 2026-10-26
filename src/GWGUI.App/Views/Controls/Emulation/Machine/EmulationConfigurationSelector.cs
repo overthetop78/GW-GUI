@@ -36,7 +36,7 @@ internal sealed class EmulationConfigurationSelector : UserControl
         _machines.Children.Clear();
         foreach (var module in modules)
         {
-            var image = EmulationAssetFunctions.Load(module, module.BrandImageResourceName);
+            var image = EmulationAssetFunctions.Load(module.BrandImagePath);
             if (image is null) continue;
             var button = EmulationSelectorButtonFunctions.Create(
                 LocExtension.GetForModule(module, module.DisplayResourceKey), image, selectedModule?.Id == module.Id);
@@ -46,7 +46,7 @@ internal sealed class EmulationConfigurationSelector : UserControl
         if (selectedModule is null) return;
         foreach (var machine in machines)
         {
-            var image = EmulationAssetFunctions.Load(selectedModule, machine.ImageResourceName);
+            var image = EmulationAssetFunctions.Load(machine.ImagePath);
             if (image is null) continue;
             var button = EmulationSelectorButtonFunctions.Create(
                 LocExtension.GetForModule(selectedModule, machine.DisplayResourceKey), image, machine.Id == selectedMachineId);

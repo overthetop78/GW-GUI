@@ -18,9 +18,19 @@ internal interface IAcornMachine
     void EjectCassette();
     void AttachFloppy(int index, IEmulationDiskImage? image);
     bool FloppyActive(int index);
+    bool FloppyMotor(int index);
+    bool FloppyReading(int index);
+    bool FloppyWriting(int index);
+    long FloppySeekSteps(int index);
+    long FloppyReadBytes(int index);
+    long FloppyWrittenBytes(int index);
     void ConfigureFloppySpeed(int index, int percent);
     void AttachHardDisk(int unit, IEmulationDiskImage? image);
     bool HardDiskActive(int unit);
+    bool HardDiskMotor(int unit);
+    long HardDiskSeekCount(int unit);
+    long HardDiskReadBlocks(int unit);
+    long HardDiskWrittenBlocks(int unit);
     void ConfigureHardDisk(int unit, int latencyMilliseconds, int speedPercent, int? writeLatencyMilliseconds = null);
     /// <summary>Raccorde les trames et l'état de ligne du transport possédé par le cœur.</summary>
     Action<ReadOnlyMemory<byte>>? NetworkFrameTransmitted { get; set; }

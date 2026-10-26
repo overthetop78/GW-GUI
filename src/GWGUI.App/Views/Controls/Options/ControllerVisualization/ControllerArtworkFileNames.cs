@@ -2,6 +2,7 @@
 
 internal static class ControllerArtworkFileNames
 {
+    internal const string DirectoryPath = "Assets/Controllers";
     internal const string SonyBuzzWireless = "sony-buzz-wireless.png";
     internal const string SonySingStarWireless = "sony-singstar-wireless.png";
     internal const string SonySocomHeadset = "sony-socom-headset.png";

@@ -1,3 +1,4 @@
+using System.IO;
 using GWGUI.Emulation.Nintendo.Common.Services;
 using GWGUI.Emulation.Interfaces;
 using GWGUI.Emulation.Enums;
@@ -169,11 +170,11 @@ public sealed class NintendoEmulatorCatalogTests
     [Theory]
     [InlineData("NintendoDsi")]
     [InlineData("PokemonMini")]
-    public void AddedMachinesHaveEmbeddedPngImages(string machine)
+    public void AddedMachinesHaveExternalPngImages(string machine)
     {
         var definition = MachineCatalog.All.Single(item => item.Id == machine);
-        Assert.NotNull(definition.ImageResourceName);
-        Assert.Contains(definition.ImageResourceName, typeof(ModelCatalog).Assembly.GetManifestResourceNames());
+        Assert.NotNull(definition.ImagePath);
+        Assert.True(File.Exists(Path.Combine(AppContext.BaseDirectory, definition.ImagePath)), definition.ImagePath);
     }
 
     [Theory]

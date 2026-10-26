@@ -22,7 +22,7 @@ public sealed class EpochEmulationModule : IEmulationModule, IEmulationEmulatorM
     public string DisplayResourceKey => _engine.DisplayResourceKey;
 
     // Genuine Epoch wordmark; distinct from the console photographs in Assets.Machines.
-    public string BrandImageResourceName => _engine.BrandImageResourceName;
+    public string BrandImagePath => _engine.BrandImagePath;
 
     public IReadOnlyList<EmulationMachineDefinition> Machines => _engine.Machines;
 

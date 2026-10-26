@@ -1,3 +1,4 @@
+using Phase = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Enums.Wd1770Phase;
 using System.IO;
 using C = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants.Wd1770Constants;
 
@@ -8,10 +9,14 @@ namespace GWGUI.Emulation.Acorn.Emulators.AcornEmu.Services;
 /// Le composant ne crée ni fichier ni thread. Chaque Tick représente un cycle de son horloge d'entrée.</remarks>
 internal sealed partial class Wd1770
 {
-    private enum Phase { Idle, Positioning, ReadSector, WriteSector, ReadAddress, ReadTrack, WriteTrack }
     private readonly Func<int, IEmulationDiskImage?> _disk;
     private readonly int _clock;
     private readonly int[] _physicalTracks = new int[2];
+    private readonly long[] _seekSteps = new long[2];
+    private readonly long[] _readBytes = new long[2], _writtenBytes = new long[2];
+    internal long SeekSteps(int drive) => _seekSteps[drive];
+    internal long ReadBytes(int drive) => _readBytes[drive];
+    internal long WrittenBytes(int drive) => _writtenBytes[drive];
     private byte _command, _track, _sector = 1, _data, _errors;
     private int _delay, _offset, _targetTrack, _motorTicks, _rotation, _idIndex, _direction = 1;
     private byte[] _buffer = [];
@@ -28,6 +33,7 @@ internal sealed partial class Wd1770
     internal bool Motor => _motorTicks > 0;
     internal bool Active => _phase != Phase.Idle;
     internal bool Writing => _phase is Phase.WriteSector or Phase.WriteTrack;
+    internal bool Reading => _phase is Phase.ReadSector or Phase.ReadAddress or Phase.ReadTrack;
     private IEmulationDiskImage? Image => Selected && Drive is >= 0 and < 2 ? _disk(Drive) : null;
     private int ByteTicks => Math.Max(1, _clock / (DoubleDensity ? C.DoubleDensityBytesPerSecond : C.SingleDensityBytesPerSecond));
     private int RevolutionTicks => _clock / C.RevolutionsPerSecond;
@@ -64,7 +70,7 @@ internal sealed partial class Wd1770
                 return status;
             case 1: return _track;
             case 2: return _sector;
-            default: _drq = false; return _data;
+            default: if (_drq && Reading) _readBytes[Drive]++; _drq = false; return _data;
         }
     }
 
@@ -77,7 +83,7 @@ internal sealed partial class Wd1770
             case 2: if (!Active) _sector = value; break;
             case 3:
                 _data = value;
-                if (_drq && Writing && _offset < _buffer.Length) _buffer[_offset++] = value;
+                if (_drq && Writing && _offset < _buffer.Length) { _buffer[_offset++] = value; _writtenBytes[Drive]++; }
                 _drq = false; break;
         }
     }

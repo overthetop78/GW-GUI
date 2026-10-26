@@ -403,10 +403,10 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
             };
             if (dialog.ShowDialog() != true) return;
             IReadOnlyDictionary<string, string>? pcm = null;
-            var recordingRate = 48000;
-            if (Path.GetExtension(dialog.FileName).Equals(".raw", StringComparison.OrdinalIgnoreCase))
+            var recordingRate = new EmulationCassettePcmSettings().SampleRate;
+            if (Path.GetExtension(dialog.FileName).Equals(EmulationSdk.MediaProcessing.FileExtensions["Raw"], StringComparison.OrdinalIgnoreCase))
             {
-                var defaults = (device.ConfigurationFields ?? []).Where(field => field.Id.StartsWith(EmulationCassettePcmSettings.Prefix, StringComparison.Ordinal) && field.Value is not null).ToDictionary(field => field.Id, field => field.Value!);
+                var defaults = (device.ConfigurationFields ?? []).Concat((device.ConfigurationBlocks ?? []).SelectMany(block => block.Fields)).Where(field => field.Id.StartsWith(EmulationCassettePcmSettings.Prefix, StringComparison.Ordinal) && field.Value is not null).ToDictionary(field => field.Id, field => field.Value!);
                 var profileDialog = new ManagedStorageConfigurationDialog(CassetteCommandText(command), "RAW", _options.ModuleId, EmulationCassettePcmSettings.Describe(defaults), null);
                 try
                 {
@@ -416,8 +416,11 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
                 }
                 finally { profileDialog.Close(); }
             }
+            var creation = new MediaCreationDialog(Window.GetWindow(this)!, CassetteCommandText(command), dialog.FileName,
+                () => EmulationSdk.MediaProcessing.WriteCassetteAsync(dialog.FileName, new EmulationCassetteSignal(ReadOnlyMemory<short>.Empty, recordingRate), parameters: pcm));
+            try { if (creation.ShowDialog() != true) return; }
+            finally { creation.Close(); }
             if (cassette.AvailableCommands.Contains(EmulationCassetteCommand.Stop)) await cassette.ExecuteAsync(EmulationCassetteCommand.Stop);
-            if (!File.Exists(dialog.FileName)) await EmulationSdk.MediaProcessing.WriteCassetteAsync(dialog.FileName, new EmulationCassetteSignal(ReadOnlyMemory<short>.Empty, recordingRate), parameters: pcm);
             var current = _session.MountedMedia.FirstOrDefault(media => media.Slot == device.Slot);
             var profileChanged = pcm is not null && (current?.Parameters is null || pcm.Any(pair => !current.Parameters.TryGetValue(pair.Key, out var value) || value != pair.Value));
             if (current is null || profileChanged || !Path.GetFullPath(current.Path).Equals(Path.GetFullPath(dialog.FileName), StringComparison.OrdinalIgnoreCase))

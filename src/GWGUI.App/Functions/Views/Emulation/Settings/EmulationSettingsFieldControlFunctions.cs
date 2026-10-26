@@ -25,7 +25,7 @@ internal static partial class EmulationSettingsFieldControlFunctions
 
     internal static FrameworkElement CreateSelection(EmulationSettingsField field, IReadOnlyList<EmulationSettingsChoiceView> choices)
     {
-        if (choices.Count == 2 && field.ChoiceSource == EmulationSettingsChoiceSource.Declared)
+        if (choices.Count > 0 && (field.UseRadioButtons || choices.Count == 2 && field.ChoiceSource == EmulationSettingsChoiceSource.Declared))
         {
             var radios = new WrapPanel();
             var group = Guid.NewGuid().ToString();

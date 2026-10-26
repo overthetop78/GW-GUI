@@ -27,4 +27,5 @@ public sealed record EmulationSettingsField(
     EmulationVideoSettingsSection VideoSection = EmulationVideoSettingsSection.Display,
     string? AutomaticValue = null,
     bool UseChoiceLabelsForSlider = false,
-    string? ValueUnitResourceKey = null);
+    string? ValueUnitResourceKey = null,
+    bool UseRadioButtons = false);

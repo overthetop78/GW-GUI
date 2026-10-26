@@ -59,7 +59,7 @@ internal sealed class Engine
 
     public string Id => EmulationModuleConstants.ModuleId;
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
-    public string BrandImageResourceName => $"{EmulationModuleConstants.AssetResourcePrefix}.watara.png";
+    public string BrandImagePath => $"{EmulationModuleConstants.AssetPathPrefix}/watara.png";
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, tab => tab is not EmulationMachineTab.Rom and not EmulationMachineTab.Keyboard and not EmulationMachineTab.Mouse));
 

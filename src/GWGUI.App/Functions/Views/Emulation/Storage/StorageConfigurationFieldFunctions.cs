@@ -9,7 +9,7 @@ using GWGUI.Emulation.Enums;
 
 namespace GWGUI.App.Functions.Views.Emulation.Storage;
 
-internal static class StorageConfigurationFieldFunctions
+internal static partial class StorageConfigurationFieldFunctions
 {
     internal static string Read(FrameworkElement control) => EmulationSettingsFieldControlFunctions.Read(control) ?? string.Empty;
 
@@ -18,6 +18,7 @@ internal static class StorageConfigurationFieldFunctions
         field = field with { Value = values?.GetValueOrDefault(field.Id) ?? field.Value };
         var choices = (field.Choices ?? []).Select(choice => new EmulationSettingsChoiceView(choice, ChoiceLabel(choice, field, moduleId))).ToArray();
         var control = field.Editor == EmulationSettingsEditor.Toggle ? EmulationSettingsFieldControlFunctions.CreateToggle(field)
+            : field.NumericRange is not null && field.Choices?.Count > 0 && field.AutomaticValue is null ? CreatePresets(field, moduleId)
             : field.NumericRange is not null ? EmulationSettingsFieldControlFunctions.CreateSlider(field, choice => ChoiceLabel(choice, field, moduleId))
             : EmulationSettingsFieldControlFunctions.CreateSelection(field, choices);
         control.IsEnabled = field.IsEnabled;

@@ -1,3 +1,4 @@
+using System.IO;
 using GWGUI.App.Contracts.Input;
 using GWGUI.App.Enums.Input;
 using GWGUI.App.Services.Input.GameInput;
@@ -8,7 +9,7 @@ namespace GWGUI.App.Views.Controls.Options.ControllerVisualization;
 
 internal static partial class ControllerArtworkCatalog
 {
-    private static readonly IReadOnlyDictionary<ControllerVisualModel, string> ModelResources =
+    private static readonly IReadOnlyDictionary<ControllerVisualModel, string> ModelFiles =
         new Dictionary<ControllerVisualModel, string>
         {
             [ControllerVisualModel.GenericGamepad] = ControllerArtworkFileNames.GenericGamepad,
@@ -40,7 +41,7 @@ internal static partial class ControllerArtworkCatalog
     internal static bool TryGet(ControllerVisualModel model, out ImageSource artwork)
     {
         if (ModelCache.TryGetValue(model, out artwork!)) return true;
-        if (!ModelResources.TryGetValue(model, out var fileName))
+        if (!ModelFiles.TryGetValue(model, out var fileName))
         {
             artwork = null!;
             return false;
@@ -79,10 +80,11 @@ internal static partial class ControllerArtworkCatalog
 
     private static ImageSource Load(string fileName)
     {
+        using var stream = File.OpenRead(Path.Combine(AppContext.BaseDirectory, ControllerArtworkFileNames.DirectoryPath, fileName));
         var image = new BitmapImage();
         image.BeginInit();
         image.CacheOption = BitmapCacheOption.OnLoad;
-        image.UriSource = new Uri($"pack://application:,,,/gwgui.app;component/Assets/Controllers/{fileName}", UriKind.Absolute);
+        image.StreamSource = stream;
         image.EndInit();
         image.Freeze();
         return image;

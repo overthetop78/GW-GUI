@@ -1,3 +1,4 @@
+using Phase = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Enums.Intel8271Phase;
 using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants;
 using C = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants.Intel8271Constants;
 
@@ -8,10 +9,14 @@ namespace GWGUI.Emulation.Acorn.Emulators.AcornEmu.Services;
 /// Son horloge est avancée par la carte, sans thread hôte. Les conteneurs sont accessibles uniquement par le SDK.</remarks>
 internal sealed partial class Intel8271
 {
-    private enum Phase { Idle, Positioning, Read, Write, Verify, Id, Format }
     private readonly Func<int, IEmulationDiskImage?> _disk;
     private readonly int _clock, _byteTicks;
     private readonly byte[] _parameters = new byte[C.ParameterCapacity], _tracks = new byte[2];
+    private readonly long[] _seekSteps = new long[2];
+    private readonly long[] _readBytes = new long[2], _writtenBytes = new long[2];
+    internal long SeekSteps(int drive) => _seekSteps[drive];
+    internal long ReadBytes(int drive) => _readBytes[drive];
+    internal long WrittenBytes(int drive) => _writtenBytes[drive];
     private byte _status, _result, _data, _command, _driveOutput, _mode;
     private int _parameterCount, _requiredParameters, _drive, _sector, _remaining, _sectorSize, _offset;
     private int _delay, _stepTicks, _settleTicks, _loadTicks, _unloadTicks, _motorTicks, _rotation;
@@ -52,6 +57,7 @@ internal sealed partial class Intel8271
             case 0: return _status;
             case 1: _status &= unchecked((byte)~(C.ResultFull | C.Interrupt)); return _result;
             case 4:
+                if (_awaitingData && Reading) _readBytes[_drive]++;
                 _status &= unchecked((byte)~(C.Interrupt | C.NonDma)); _awaitingData = false;
                 return _data;
             default: return 0;
@@ -71,7 +77,7 @@ internal sealed partial class Intel8271
             case 2: if ((value & 1) != 0) Reset(); break;
             case 4:
                 _data = value;
-                if (_awaitingData && _phase is Phase.Write or Phase.Format && _offset < _buffer.Length) _buffer[_offset++] = value;
+                if (_awaitingData && _phase is Phase.Write or Phase.Format && _offset < _buffer.Length) { _buffer[_offset++] = value; _writtenBytes[_drive]++; }
                 _status &= unchecked((byte)~(C.Interrupt | C.NonDma)); _awaitingData = false;
                 break;
         }

@@ -8,6 +8,8 @@
     <AssemblyName>gwgui.emulation.example</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Assets\**\*" TargetPath="Assets\Emulation\example\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+
     <None Update="module.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     <!-- Seule l’API publique du SDK est disponible : aucune autorisation InternalsVisibleTo. -->
     <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />

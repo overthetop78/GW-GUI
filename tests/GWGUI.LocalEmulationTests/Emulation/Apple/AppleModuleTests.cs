@@ -395,11 +395,10 @@ public sealed class AppleModuleTests
     }
 
     [Fact]
-    public void EveryPhysicalMachineHasEmbeddedArtwork()
+    public void EveryPhysicalMachineHasExternalArtwork()
     {
-        var resources = typeof(MachineCatalog).Assembly.GetManifestResourceNames();
         foreach (var machine in MachineCatalog.All)
-            Assert.Contains(machine.ImageResourceName!, resources);
+            Assert.True(File.Exists(Path.Combine(AppContext.BaseDirectory, machine.ImagePath!)), machine.ImagePath);
     }
 
     private static EmulationInputSnapshot Pressed(params EmulationKey[] keys) => EmulationInputSnapshot.Empty with { Keys = keys.ToHashSet() };

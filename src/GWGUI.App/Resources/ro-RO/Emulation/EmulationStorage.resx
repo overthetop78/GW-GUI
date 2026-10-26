@@ -87,4 +87,9 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>Viteza de transfer</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>Citiţi latenţa</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>Scrie latenţa</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>Profilul sonor mecanic</value></data>
+  <data name="Emulation.Storage.Media.CreateAndMount"><value>Creează și monta</value></data>
+  <data name="Emulation.Storage.Media.Created"><value>Imagine creată: {0}</value></data>
+  <data name="Emulation.Storage.Media.AlreadyExists"><value>Acest fișier există deja. Alegeți un fișier de imagine nou: {0}</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>Volumul sonor mecanic</value></data>
 </root>

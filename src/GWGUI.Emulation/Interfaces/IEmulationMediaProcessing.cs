@@ -7,6 +7,10 @@ namespace GWGUI.Emulation.Interfaces;
 /// Les types des bibliothèques médias restent encapsulés derrière ces contrats.</remarks>
 public interface IEmulationMediaProcessing
 {
+    /// <summary>Choix de lecteurs fournis par MediaEngine, sans recopier leurs données dans les modules.</summary>
+    IReadOnlyList<FloppyDriveModelChoice> FloppyDriveModels(string family, bool doubleDensity);
+    /// <summary>Relaye la géométrie de l'image au contrôle central avant tout montage ou copie.</summary>
+    bool SupportsFloppyImage(string model, IEmulationDiskImage image);
     /// <summary>Crée l'image vierge correspondant au format déclaré par le modèle du lecteur.</summary>
     Task CreateBlankDiskAsync(string path, string formatId, CancellationToken cancellationToken = default);
     /// <summary>Crée un disque et ses fichiers associés avec la géométrie déclarée et une préparation de volume facultative.</summary>
@@ -17,8 +21,14 @@ public interface IEmulationMediaProcessing
     Task<EmulationCassetteSignal> ReadCassetteAsync(string path, CancellationToken cancellationToken = default, string? machineId = null, IReadOnlyDictionary<string, string>? parameters = null);
     /// <summary>Extensions d'images dans lesquelles le signal d'un enregistreur peut être conservé intégralement.</summary>
     IReadOnlyList<string> CassetteRecordingExtensions { get; }
-    /// <summary>Bruit mécanique Play/Record/FastForward/Rewind/Stop/Eject ; le consommateur possède l'horloge et la sortie audio.</summary>
-    short[] RenderCassetteSound(string operation, int sampleRate, int sampleCount, long offset);
+    /// <summary>Profils de mécanismes cassette, disquette, disque dur et optique, possédés par MediaEngine.</summary>
+    IReadOnlyList<string> MechanicalSoundProfiles(string device);
+    /// <summary>Libellé technique invariant du profil sonore choisi.</summary>
+    string MechanicalSoundProfileDisplayName(string profile);
+    /// <summary>Bruit mécanique rendu par MediaEngine ; le consommateur possède l'horloge et la sortie audio. Les opérations sont définies dans EmulationMechanicalSoundConstants.</summary>
+    short[] RenderMechanicalSound(string device, string operation, int sampleRate, int sampleCount, long offset, string? profile = null, double volumePercent = GWGUI.Emulation.Constants.EmulationMechanicalSoundConstants.DefaultVolumePercent);
+    double MechanicalSoundDurationSeconds(string device, string profile, string operation);
+    short[] ProtectMechanicalAudioMix(IReadOnlyList<double> samples);
     /// <summary>Enregistre la bande complète via MediaEngine ; les échantillons restent empruntés pendant l'appel.</summary>
     Task WriteCassetteAsync(string path, EmulationCassetteSignal signal, CancellationToken cancellationToken = default, IReadOnlyDictionary<string, string>? parameters = null);
     /// <summary>Extensions du catalogue, indexées par leur nom invariant, par exemple Iso ou Scp.</summary>

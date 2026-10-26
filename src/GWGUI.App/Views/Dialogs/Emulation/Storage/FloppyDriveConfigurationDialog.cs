@@ -15,6 +15,8 @@ namespace GWGUI.App.Views.Dialogs.Emulation.Storage;
 
 public sealed class FloppyDriveConfigurationDialog : Window
 {
+    public string? CreatedMediaToMount { get; private set; }
+
     private readonly ComboBox _model = new();
     private readonly ComboBox _speed = new();
     private readonly CheckBox _writeProtected = new();
@@ -24,7 +26,7 @@ public sealed class FloppyDriveConfigurationDialog : Window
     private readonly Dictionary<string, FrameworkElement> _fields = new(StringComparer.Ordinal);
 
     public FloppyDriveSettings Settings => new((_model.SelectedItem as StorageDialogChoice)?.Value ?? "35dd", (_speed.SelectedItem as StorageDialogChoice)?.Value ?? "100",
-        _writeProtected.IsChecked == true, _redirectWrites.IsChecked == true, _fields.ToDictionary(item => item.Key, item => StorageConfigurationFieldFunctions.Read(item.Value), StringComparer.Ordinal));
+        _writeProtected.IsChecked == true, _options.CanRedirectWrites && _redirectWrites.IsChecked == true, _fields.ToDictionary(item => item.Key, item => StorageConfigurationFieldFunctions.Read(item.Value), StringComparer.Ordinal));
 
     public FloppyDriveConfigurationDialog(string identifier, string machineName, FloppyDriveSettings settings, FloppyDriveDialogOptions options, Guid clientGuid,
         string? moduleId = null, IReadOnlyList<EmulationSettingsField>? configurationFields = null)
@@ -62,7 +64,7 @@ public sealed class FloppyDriveConfigurationDialog : Window
         _writeProtected.Margin = new Thickness(0, 8, 0, 4);
         _redirectWrites.Margin = new Thickness(0, 4, 0, 4);
         behavior.Children.Add(_writeProtected);
-        behavior.Children.Add(_redirectWrites);
+        if (options.CanRedirectWrites) behavior.Children.Add(_redirectWrites);
         var body = new StackPanel();
         var driveCard = drive is null ? null : StorageDialogUi.IconCard(IconGlyphs.Memory, LocExtension.Get("Emulation.Storage.Floppy.Drive"), drive);
         if (options.CanConfigureBehavior)
@@ -86,10 +88,10 @@ public sealed class FloppyDriveConfigurationDialog : Window
                 HorizontalAlignment = HorizontalAlignment.Left,
                 Margin = new Thickness(0, 14, 0, 0)
             };
-            create.Click += async (_, _) =>
+            create.Click += (_, _) =>
             {
                 create.IsEnabled = false;
-                try { await CreateBlankFloppyAsync(); }
+                try { CreateBlankFloppy(); }
                 catch (Exception error) when (error is IOException or UnauthorizedAccessException or ArgumentException or NotSupportedException)
                 { MessageBox.Show(this, error.Message, Title, MessageBoxButton.OK, MessageBoxImage.Warning); }
                 finally { create.IsEnabled = true; }
@@ -103,7 +105,7 @@ public sealed class FloppyDriveConfigurationDialog : Window
         Content = StorageDialogUi.DialogLayout( StorageDialogUi.DialogHeader(IconGlyphs.Memory, Title, $"{LocExtension.Get(EmulationResourceKeys.FloppyDevice)} · {machineName}"), body, StorageDialogUi.Footer(this, LocExtension.Get("Common.Save")));
     }
 
-    private async Task CreateBlankFloppyAsync()
+    private void CreateBlankFloppy()
     {
         var model = _options.Models.FirstOrDefault(candidate => candidate.Value == Settings.Model);
         var formats = model?.BlankFormats;
@@ -119,17 +121,28 @@ public sealed class FloppyDriveConfigurationDialog : Window
             FileName = $"blank{extension}"
         };
         if (dialog.ShowDialog(this) != true) return;
-        if (formats?.Count > 0)
+        var creation = new MediaCreationDialog(this, LocExtension.Get("Emulation.Storage.Floppy.CreateBlank"), dialog.FileName, async () =>
         {
-            var choice = formats.FirstOrDefault(format => format.Key.Equals(Path.GetExtension(dialog.FileName), StringComparison.OrdinalIgnoreCase));
-            if (choice.Value is null) throw new ArgumentException(LocExtension.Get("Emulation.Hdd.InvalidFormat"));
-            await EmulationSdk.MediaProcessing.CreateBlankDiskAsync(dialog.FileName, choice.Value);
-        }
-        else
+            if (formats?.Count > 0)
+            {
+                var choice = formats.FirstOrDefault(format => format.Key.Equals(Path.GetExtension(dialog.FileName), StringComparison.OrdinalIgnoreCase));
+                if (choice.Value is null) throw new ArgumentException(LocExtension.Get("Emulation.Hdd.InvalidFormat"));
+                await EmulationSdk.MediaProcessing.CreateBlankDiskAsync(dialog.FileName, choice.Value);
+            }
+            else
+            {
+                using var stream = new FileStream(dialog.FileName, FileMode.CreateNew, FileAccess.Write, FileShare.None);
+                if (model?.BlankImageSize is > 0) stream.SetLength(model.BlankImageSize);
+            }
+        });
+        try
         {
-            using var stream = new FileStream(dialog.FileName, FileMode.Create, FileAccess.Write, FileShare.None);
-            if (model?.BlankImageSize is > 0) stream.SetLength(model.BlankImageSize);
+            if (creation.ShowDialog() == true)
+            {
+                CreatedMediaToMount = dialog.FileName;
+                DialogResult = true;
+            }
         }
-        MessageBox.Show(this, LocExtension.Get("Emulation.Storage.Floppy.BlankCreated", dialog.FileName), Title, MessageBoxButton.OK, MessageBoxImage.Information);
+        finally { creation.Close(); }
     }
 }

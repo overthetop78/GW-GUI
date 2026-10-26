@@ -1,3 +1,3 @@
 namespace GWGUI.Emulation.Contracts;
 
-public sealed record FloppyDriveDialogOptions(IReadOnlyList<FloppyDriveModelChoice> Models, string ImageDirectory, string ImageFilter, string DefaultExtension, bool CanCreateBlankMedia = true, bool CanConfigureBehavior = true);
+public sealed record FloppyDriveDialogOptions(IReadOnlyList<FloppyDriveModelChoice> Models, string ImageDirectory, string ImageFilter, string DefaultExtension, bool CanCreateBlankMedia = true, bool CanConfigureBehavior = true, bool CanRedirectWrites = true);

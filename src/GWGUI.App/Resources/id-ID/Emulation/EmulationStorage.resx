@@ -87,4 +87,9 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>Kecepatan transfer</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>Baca latensi</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>Tulis latensi</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>Profil suara mekanis</value></data>
+  <data name="Emulation.Storage.Media.CreateAndMount"><value>Buat dan kaitkan</value></data>
+  <data name="Emulation.Storage.Media.Created"><value>Gambar dibuat: {0}</value></data>
+  <data name="Emulation.Storage.Media.AlreadyExists"><value>Berkas ini sudah ada. Pilih berkas citra baru: {0}</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>Volume suara mekanis</value></data>
 </root>

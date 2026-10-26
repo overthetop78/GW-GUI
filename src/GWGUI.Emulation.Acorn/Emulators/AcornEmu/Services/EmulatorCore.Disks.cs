@@ -1,3 +1,4 @@
+using S = GWGUI.Emulation.Constants.EmulationMechanicalSoundConstants;
 using System.IO;
 using GWGUI.Emulation.Acorn.Common.Machines.BbcMicro.Functions;
 using NativeStorage = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Functions.StorageFunctions;
@@ -11,12 +12,10 @@ internal sealed partial class EmulatorCore
     private readonly IEmulationDiskImage?[] _floppyImages = new IEmulationDiskImage?[C.DriveCount];
     private readonly FloppyDriveSettings?[] _floppySettings = new FloppyDriveSettings?[C.DriveCount];
     private readonly bool[] _floppyConnected = new bool[C.DriveCount];
-    private string? _diskSaveDirectory;
     private IReadOnlyList<string> _diskExtensions = C.Extensions;
 
-    private void ConfigureDisks(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory)
+    private void ConfigureDisks(MachineConfiguration configuration)
     {
-        _diskSaveDirectory = saveDirectory ?? sessionDirectory;
         _diskExtensions = NativeStorage.Extensions(configuration);
         for (var drive = 0; drive < C.DriveCount; drive++)
         {
@@ -31,14 +30,14 @@ internal sealed partial class EmulatorCore
         var drive = media.Slot.Index;
         if (media.Category != MediaCategory.Floppy || drive is < 0 or >= C.DriveCount || !_floppyConnected[drive] || !_diskExtensions.Contains(Path.GetExtension(media.Path), StringComparer.OrdinalIgnoreCase)) throw new ArgumentException(nameof(media));
         var settings = _floppySettings[drive]!;
-        var path = settings.RedirectWrites ? BbcMicroDiskFunctions.RedirectFloppy(media.Path, _diskSaveDirectory!, drive) : media.Path;
-        var image = BbcMicroDiskFunctions.Open(path, !media.IsReadOnly && !settings.WriteProtected);
+        var image = BbcMicroDiskFunctions.Open(media.Path, !media.IsReadOnly && !settings.WriteProtected);
         var transferred = false;
         try
         {
             NativeStorage.ValidateMedia(image, settings);
             EjectFloppy(drive);
             _machine!.AttachFloppy(drive, image); _floppyImages[drive] = image; transferred = true;
+            QueueFloppySound(drive, S.Insert);
         }
         finally { if (!transferred) image.Dispose(); }
     }
@@ -51,6 +50,7 @@ internal sealed partial class EmulatorCore
         _machine?.AttachFloppy(drive, null);
         var image = _floppyImages[drive]; _floppyImages[drive] = null;
         image?.Dispose();
+        if (image is not null) QueueFloppySound(drive, S.Eject);
     }
 
     /// <summary>Libère toutes les images même si une publication échoue ; le propriétaire libère ensuite la carte.</summary>

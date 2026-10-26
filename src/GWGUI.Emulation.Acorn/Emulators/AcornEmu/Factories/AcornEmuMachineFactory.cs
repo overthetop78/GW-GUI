@@ -48,7 +48,7 @@ internal sealed class AcornEmuMachineFactory : IEmulatorAdapter
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
     /// <summary>Annonce les seuls lecteurs explicitement raccordés, cassette et carte disque optionnelles comprises.</summary>
     public IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => (CassetteConnected(configuration) ? CassetteDevices(configuration) : []).Concat(NativeStorage.Devices(configuration).Where(device => NativeStorage.Connected(configuration, device.Slot.Index))).Concat(NativeStorage.HardDiskDevices(configuration).Where(device => NativeStorage.HardDiskConnected(configuration, device.Slot.Index))).ToArray();
-    private static IReadOnlyList<EmulationMediaDevice> CassetteDevices(MachineConfiguration configuration) => [new(EmulationMediaSlot.Cassette0, EmulationMediaType.Cassette, CassetteConstants.Extensions, ConfigurationKind: EmulationStorageConfigurationKind.CassetteDrive, ConfigurationFields: EmulationCassetteSettings.Describe(configuration.Options, [300, 1200]))];
+    private static IReadOnlyList<EmulationMediaDevice> CassetteDevices(MachineConfiguration configuration) => [new(EmulationMediaSlot.Cassette0, EmulationMediaType.Cassette, CassetteConstants.Extensions, ConfigurationKind: EmulationStorageConfigurationKind.CassetteDrive, ConfigurationBlocks: EmulationCassetteSettings.DescribeBlocks(configuration.Options, [300, 1200]))];
     /// <summary>Un média déjà choisi exprime un branchement explicite ; une configuration vide n'ajoute aucun lecteur.</summary>
     private static bool CassetteConnected(MachineConfiguration configuration) => configuration.Options.TryGetValue(CassetteConstants.ConnectedOption, out var value) ? bool.Parse(value) : configuration.Media.Any(media => media.Slot == EmulationMediaSlot.Cassette0);
     public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options;
@@ -125,10 +125,6 @@ internal sealed class AcornEmuMachineFactory : IEmulatorAdapter
                     configuration.Options.GetValueOrDefault(SettingsConstants.MainMemory, BbcMicroModelAConstants.StandardMemoryKib),
                     [new(BbcMicroModelAConstants.StandardMemoryKib, string.Empty, "16 KiB"), new(BbcMicroModelAConstants.ExpandedMemoryKib, string.Empty, "32 KiB")], RequiresRestart: true, RefreshSettingsOnChange: true)]),
             new("Rom", EmulationMachineTab.Rom, "Emulation.Firmware", fields),
-            new(NativeStorageConstants.ControllerOption, EmulationMachineTab.Storage, "Emulation.Storage.Device.Interface",
-                [new(NativeStorageConstants.ControllerOption, EmulationMachineTab.Storage, NativeStorageConstants.ControllerOption, "Emulation.Storage.Device.Interface", EmulationSettingsEditor.Selection,
-                    configuration.Options.GetValueOrDefault(NativeStorageConstants.ControllerOption, NativeStorageConstants.Intel8271),
-                    [new(NativeStorageConstants.Intel8271, string.Empty, "Intel 8271"), new(NativeStorageConstants.AcornWd1770, string.Empty, "Acorn WD1770")], RequiresRestart: true, RefreshSettingsOnChange: true)]),
             new(EmulatorConstants.VideoOutput, EmulationMachineTab.Video, "Emulation.Acorn.Video.Output",
                 [new(EmulatorConstants.VideoOutput, EmulationMachineTab.Video, EmulatorConstants.VideoOutput, "Emulation.Acorn.Video.Output", EmulationSettingsEditor.Selection,
                     configuration.Options.GetValueOrDefault(EmulatorConstants.VideoOutput, EmulatorConstants.UhfOutput),

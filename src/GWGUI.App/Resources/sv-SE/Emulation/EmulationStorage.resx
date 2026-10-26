@@ -87,4 +87,9 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>Överföringshastighet</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>Läs latens</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>Skriv latens</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>Mekanisk ljudprofil</value></data>
+  <data name="Emulation.Storage.Media.CreateAndMount"><value>Skapa och montera</value></data>
+  <data name="Emulation.Storage.Media.Created"><value>Bild skapad: {0}</value></data>
+  <data name="Emulation.Storage.Media.AlreadyExists"><value>Den här filen finns redan. Välj en ny bildfil: {0}</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>Mekanisk ljudvolym</value></data>
 </root>

@@ -71,7 +71,7 @@ internal sealed class Engine
     public string Id => EmulationModuleConstants.ModuleId;
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
     // Brand image is independent of the machine photographs.
-    public string BrandImageResourceName => $"{EmulationModuleConstants.AssetResourcePrefix}.snk.png";
+    public string BrandImagePath => $"{EmulationModuleConstants.AssetPathPrefix}/snk.png";
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, tab => true));
 

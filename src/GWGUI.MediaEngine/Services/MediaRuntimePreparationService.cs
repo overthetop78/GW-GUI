@@ -13,6 +13,8 @@ namespace GWGUI.MediaEngine.Services;
 /// <summary>Adapte les lecteurs CUE et convertisseurs SCP existants aux contrats de préparation.</summary>
 internal sealed class MediaRuntimePreparationService : IMediaRuntimePreparation
 {
+    public IReadOnlyList<MediaFloppyDriveModel> FloppyDriveModels(string family, bool doubleDensity) => GWGUI.MediaEngine.Dictionaries.FloppyDriveCatalog.Models(family, doubleDensity);
+    public bool SupportsFloppyImage(string model, long cylinders, int heads, int sectorSize, int sectorsPerTrack, long sectorCount) => GWGUI.MediaEngine.Dictionaries.FloppyDriveCatalog.Supports(model, cylinders, heads, sectorSize, sectorsPerTrack, sectorCount);
     public async Task<IMediaRuntimeDisk> OpenDiskAsync(string path, bool writable = false, string? formatId = null, CancellationToken cancellationToken = default)
     {
         var engine = Conversion.Value;
@@ -21,7 +23,11 @@ internal sealed class MediaRuntimePreparationService : IMediaRuntimePreparation
     }
     public Task<GWGUI.MediaEngine.Contracts.MediaCassetteSignal> ReadCassetteAsync(string path, CancellationToken cancellationToken = default, string? machineId = null, IReadOnlyDictionary<string, string>? parameters = null) => GWGUI.MediaEngine.Functions.CassetteSignalFunctions.ReadAsync(path, cancellationToken, machineId, parameters);
     public IReadOnlyList<string> CassetteRecordingExtensions => GWGUI.MediaEngine.Functions.CassetteSignalFunctions.WritableExtensions;
-    public short[] RenderCassetteSound(string operation, int sampleRate, int sampleCount, long offset) => GWGUI.MediaEngine.Functions.CassetteSoundFunctions.Render(operation, sampleRate, sampleCount, offset);
+    public IReadOnlyList<string> MechanicalSoundProfiles(string device) => GWGUI.MediaEngine.Functions.MechanicalSoundFunctions.Profiles(device);
+    public string MechanicalSoundProfileDisplayName(string profile) => GWGUI.MediaEngine.Dictionaries.MechanicalSoundProfiles.DisplayName(profile);
+    public short[] RenderMechanicalSound(string device, string operation, int sampleRate, int sampleCount, long offset, string? profile = null, double volumePercent = GWGUI.MediaEngine.Constants.MechanicalSoundConstants.DefaultVolumePercent) => GWGUI.MediaEngine.Functions.MechanicalSoundFunctions.Render(device, operation, sampleRate, sampleCount, offset, profile, volumePercent);
+    public double MechanicalSoundDurationSeconds(string device, string profile, string operation) => GWGUI.MediaEngine.Functions.MechanicalSoundFunctions.Duration(device, profile, operation);
+    public short[] ProtectMechanicalAudioMix(IReadOnlyList<double> samples) => GWGUI.MediaEngine.Functions.MechanicalSoundFunctions.ProtectMix(samples);
     public Task WriteCassetteAsync(string path, MediaCassetteSignal signal, CancellationToken cancellationToken = default, IReadOnlyDictionary<string, string>? parameters = null) => GWGUI.MediaEngine.Functions.CassetteSignalFunctions.WriteAsync(path, signal, cancellationToken, parameters);
     private static readonly Lazy<MediaEngineComposition> Conversion = new(MediaEngineComposition.CreateDefault);
 

@@ -7,10 +7,16 @@ namespace GWGUI.Emulation.Services;
 /// <summary>Relie les contrats média des modules à MediaEngine, sans exposer ses types dans le SDK public.</summary>
 internal sealed partial class EmulationMediaProcessingService : IEmulationMediaProcessing
 {
+    public IReadOnlyList<FloppyDriveModelChoice> FloppyDriveModels(string family, bool doubleDensity) => Preparation.FloppyDriveModels(family, doubleDensity).Select(model => new FloppyDriveModelChoice(model.Id, string.Empty, model.DisplayName, model.Capacity) { BlankFormats = model.BlankFormats, AcceptedExtensions = model.AcceptedExtensions }).ToArray();
+    public bool SupportsFloppyImage(string model, IEmulationDiskImage image) => Preparation.SupportsFloppyImage(model, image.Cylinders, image.Heads, image.SectorSize, image.SectorsPerTrack, image.SectorCount);
     /// <inheritdoc/>
     public IReadOnlyList<string> CassetteRecordingExtensions => Preparation.CassetteRecordingExtensions;
     /// <inheritdoc/>
-    public short[] RenderCassetteSound(string operation, int sampleRate, int sampleCount, long offset) => Preparation.RenderCassetteSound(operation, sampleRate, sampleCount, offset);
+    public IReadOnlyList<string> MechanicalSoundProfiles(string device) => Preparation.MechanicalSoundProfiles(device);
+    public string MechanicalSoundProfileDisplayName(string profile) => Preparation.MechanicalSoundProfileDisplayName(profile);
+    public short[] RenderMechanicalSound(string device, string operation, int sampleRate, int sampleCount, long offset, string? profile = null, double volumePercent = GWGUI.Emulation.Constants.EmulationMechanicalSoundConstants.DefaultVolumePercent) => Preparation.RenderMechanicalSound(device, operation, sampleRate, sampleCount, offset, profile, volumePercent);
+    public double MechanicalSoundDurationSeconds(string device, string profile, string operation) => Preparation.MechanicalSoundDurationSeconds(device, profile, operation);
+    public short[] ProtectMechanicalAudioMix(IReadOnlyList<double> samples) => Preparation.ProtectMechanicalAudioMix(samples);
     /// <inheritdoc/>
     public Task WriteCassetteAsync(string path, EmulationCassetteSignal signal, CancellationToken cancellationToken = default, IReadOnlyDictionary<string, string>? parameters = null) => Preparation.WriteCassetteAsync(path, new GWGUI.MediaEngine.Contracts.MediaCassetteSignal(signal.Samples, signal.SampleRate), cancellationToken, parameters);
     /// <inheritdoc/>

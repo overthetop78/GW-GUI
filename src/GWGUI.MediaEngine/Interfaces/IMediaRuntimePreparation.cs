@@ -5,6 +5,10 @@ namespace GWGUI.MediaEngine.Interfaces;
 /// <summary>Préparations de contenus pour un consommateur, réalisées par les lecteurs et convertisseurs existants.</summary>
 public interface IMediaRuntimePreparation
 {
+    /// <summary>Décrit les modèles de la famille déclarée, avec leurs formats, capacités et extensions centrales.</summary>
+    IReadOnlyList<GWGUI.MediaEngine.Contracts.MediaFloppyDriveModel> FloppyDriveModels(string family, bool doubleDensity);
+    /// <summary>Vérifie la géométrie réelle d'un support contre les capacités physiques du lecteur choisi.</summary>
+    bool SupportsFloppyImage(string model, long cylinders, int heads, int sectorSize, int sectorsPerTrack, long sectorCount);
     /// <summary>Crée un disque vierge au format demandé par la fabrique et l'écrivain du catalogue.</summary>
     Task CreateBlankDiskAsync(string path, string formatId, CancellationToken cancellationToken = default);
     /// <summary>Crée le conteneur HDD et ses annexes, sans écraser une destination existante.</summary>
@@ -15,8 +19,14 @@ public interface IMediaRuntimePreparation
     Task<GWGUI.MediaEngine.Contracts.MediaCassetteSignal> ReadCassetteAsync(string path, CancellationToken cancellationToken = default, string? machineId = null, IReadOnlyDictionary<string, string>? parameters = null);
     /// <summary>Formats de sortie qui conservent le signal complet d'un magnétophone.</summary>
     IReadOnlyList<string> CassetteRecordingExtensions { get; }
-    /// <summary>Synthétise un fragment de bruit mécanique ; aucune sortie audio n'est ouverte par le service.</summary>
-    short[] RenderCassetteSound(string operation, int sampleRate, int sampleCount, long offset);
+    /// <summary>Identifiants des profils de mécanisme disponibles pour Cassette, Floppy, HardDisk ou Optical.</summary>
+    IReadOnlyList<string> MechanicalSoundProfiles(string device);
+    /// <summary>Nom technique invariant d'un profil connu.</summary>
+    string MechanicalSoundProfileDisplayName(string profile);
+    /// <summary>Synthétise un fragment mono ; le consommateur possède sa sortie audio et son horloge.</summary>
+    short[] RenderMechanicalSound(string device, string operation, int sampleRate, int sampleCount, long offset, string? profile = null, double volumePercent = GWGUI.MediaEngine.Constants.MechanicalSoundConstants.DefaultVolumePercent);
+    double MechanicalSoundDurationSeconds(string device, string profile, string operation);
+    short[] ProtectMechanicalAudioMix(IReadOnlyList<double> samples);
     /// <summary>Écrit atomiquement le signal complet sans décoder les fichiers qu'il contient.</summary>
     Task WriteCassetteAsync(string path, GWGUI.MediaEngine.Contracts.MediaCassetteSignal signal, CancellationToken cancellationToken = default, IReadOnlyDictionary<string, string>? parameters = null);
     /// <summary>Extensions du catalogue MediaEngine, indexées par leur nom technique invariant.</summary>

@@ -1,3 +1,4 @@
+using Phase = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Enums.AcornScsiPhase;
 using System.Buffers.Binary;
 using System.Text;
 using GWGUI.Emulation.Constants;
@@ -58,6 +59,7 @@ internal sealed partial class AcornScsi
                 else { _phase = Phase.Write; _buffer = new byte[C.SectorSize]; _offset = 0; _requestDelay = 0; }
                 return;
             case 0x0b: case 0x2f:
+                if (_lba < VirtualSectorCount) TrackHeadPosition();
                 Finish(_lba < VirtualSectorCount ? (byte)0 : C.InvalidAddress); return;
             case 0x0f: Reply([(byte)_lba, (byte)(_lba >> 8), (byte)(_lba >> 16), 0]); return;
             case 0x15:

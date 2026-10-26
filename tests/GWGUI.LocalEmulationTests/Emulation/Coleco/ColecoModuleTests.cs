@@ -280,7 +280,7 @@ public sealed class ColecoModuleTests
             if (field.LabelResourceKey.StartsWith("Emulation.Coleco.", StringComparison.Ordinal))
                 Assert.True(module.TryGetString(field.LabelResourceKey, CultureInfo.GetCultureInfo("fr-FR"), out _), field.LabelResourceKey);
         foreach(var machine in module.Machines)
-            Assert.NotNull(typeof(ColecoEmulationModule).Assembly.GetManifestResourceInfo(machine.ImageResourceName!));
+            Assert.True(File.Exists(Path.Combine(AppContext.BaseDirectory, machine.ImagePath!)), machine.ImagePath);
     }
 
     [Theory]

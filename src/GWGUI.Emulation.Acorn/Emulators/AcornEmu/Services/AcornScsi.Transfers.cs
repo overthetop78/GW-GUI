@@ -1,3 +1,4 @@
+using Phase = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Enums.AcornScsiPhase;
 using C = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants.AcornScsiConstants;
 using GWGUI.Emulation.Constants;
 
@@ -17,6 +18,7 @@ internal sealed partial class AcornScsi
             var sector = image.ReadSectorAsync(byteOffset / image.SectorSize).GetAwaiter().GetResult();
             if (sector.IntegrityValid == false) { Finish(C.ReadError); return; }
             _buffer = sector.Data.Slice((int)(byteOffset % image.SectorSize), C.SectorSize).ToArray();
+            TrackHeadPosition(); _readBlocks[_unit]++;
             _offset = 0; _phase = Phase.Read; _requestDelay = 2;
         }
         catch (Exception error) when (MediaFailure(error)) { Finish(C.ReadError); }
@@ -32,6 +34,14 @@ internal sealed partial class AcornScsi
             data.CopyTo(original.AsSpan((int)(byteOffset % image.SectorSize), C.SectorSize));
             image.WriteSector(index, original);
         }
+        TrackHeadPosition(); _writtenBlocks[_unit]++;
+    }
+
+    private void TrackHeadPosition()
+    {
+        var image = Image!;
+        var position = image.Heads > 0 && image.SectorsPerTrack > 0 && image.SectorSize > 0 ? _lba * C.SectorSize / image.SectorSize / image.Heads / image.SectorsPerTrack : _lba;
+        if (_headPositions[_unit] != position) { _seekCount[_unit]++; _headPositions[_unit] = position; }
     }
 
     private void WriteBuffer()

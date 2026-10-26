@@ -22,7 +22,7 @@ public sealed class MattelEmulationModule : IEmulationModule, IEmulationEmulator
     public string DisplayResourceKey => _engine.DisplayResourceKey;
 
     // Brand image is independent of the machine photographs.
-    public string BrandImageResourceName => _engine.BrandImageResourceName;
+    public string BrandImagePath => _engine.BrandImagePath;
 
     public IReadOnlyList<EmulationMachineDefinition> Machines => _engine.Machines;
 

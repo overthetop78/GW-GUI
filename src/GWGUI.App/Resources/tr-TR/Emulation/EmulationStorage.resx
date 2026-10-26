@@ -87,4 +87,9 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>Transfer hızı</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>Okunma</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>Geçincy yaz</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>Mekanik ses profili</value></data>
+  <data name="Emulation.Storage.Media.CreateAndMount"><value>Create and deploy</value></data>
+  <data name="Emulation.Storage.Media.Created"><value>Resim yaratıldı: {0}</value></data>
+  <data name="Emulation.Storage.Media.AlreadyExists"><value>Bu dosya zaten var. Yeni bir görüntü dosyası seçin: {0}</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>Mekanik ses hacmi</value></data>
 </root>

@@ -72,7 +72,7 @@ internal sealed class Engine
     public string Id => EmulationModuleConstants.ModuleId;
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
     // Brand image is independent of the machine photographs.
-    public string BrandImageResourceName => $"{EmulationModuleConstants.AssetResourcePrefix}.philips.png";
+    public string BrandImagePath => $"{EmulationModuleConstants.AssetPathPrefix}/philips.png";
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, tab => true));
 

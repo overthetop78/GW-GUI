@@ -87,4 +87,9 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>Скорость передачи</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>Читать латентность</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>Написать латентность</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>Механический звуковой профиль</value></data>
+  <data name="Emulation.Storage.Media.CreateAndMount"><value>Создавать и монтировать</value></data>
+  <data name="Emulation.Storage.Media.Created"><value>Изображение: {0}</value></data>
+  <data name="Emulation.Storage.Media.AlreadyExists"><value>Этот файл уже существует. Выберите новый файл изображения: {0}</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>Механический звуковой объем</value></data>
 </root>

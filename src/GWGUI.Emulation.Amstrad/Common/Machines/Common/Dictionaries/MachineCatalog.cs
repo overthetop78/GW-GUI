@@ -10,7 +10,7 @@ public static class MachineCatalog
     public static IReadOnlyList<EmulationMachineDefinition> All { get; } = ModelCatalog.All
         .Select(model => new EmulationMachineDefinition(model.Id,
             MachineConfigurationConstants.ResourcePrefix + model.Id,
-            $"{EmulationModuleConstants.AssetResourcePrefix}{MachineCatalogConstants.MachineNamespaceMarker}{ImageFileName(model.Id)}"))
+            $"{EmulationModuleConstants.AssetPathPrefix}{MachineCatalogConstants.MachineDirectoryPath}{ImageFileName(model.Id)}"))
         .ToArray();
 
     private static string ImageFileName(string machineId) => machineId switch

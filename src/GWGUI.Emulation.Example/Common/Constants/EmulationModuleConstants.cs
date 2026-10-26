@@ -11,11 +11,11 @@ internal static class EmulationModuleConstants
     /// <summary>Clé de localisation du nom de famille présenté dans l’application.</summary>
     internal const string ResourceFamily = "Emulation.Family.Example";
     /// <summary>Préfixe commun des noms logiques des images et autres ressources embarquées du module.</summary>
-    internal const string AssetResourcePrefix = "GWGUI.Emulation.Example.Assets";
+    internal const string AssetPathPrefix = "Assets/Emulation/example";
     /// <summary>Préfixe des catalogues de traduction utilisé par le service de localisation du module.</summary>
     internal const string LocalizationResourceName = "GWGUI.Emulation.Example.Resources.Emulation";
     /// <summary>Nom logique complet de l’image représentant le module dans le sélecteur de marques.</summary>
     /// <remarks>Cette ressource représente le module ; elle est distincte de l’image d’un modèle de machine.</remarks>
-    internal const string BrandImageResourceName = AssetResourcePrefix + ".example.png";
+    internal const string BrandImagePath = AssetPathPrefix + "/example.png";
 }
 

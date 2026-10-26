@@ -87,4 +87,9 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>מהירות העברה</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>קרא latency</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>לכתוב latency</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>פרופיל סאונד מכני</value></data>
+  <data name="Emulation.Storage.Media.CreateAndMount"><value>ליצור וצמח</value></data>
+  <data name="Emulation.Storage.Media.Created"><value>תמונה: {0}</value></data>
+  <data name="Emulation.Storage.Media.AlreadyExists"><value>קובץ זה כבר קיים.בחר קובץ תמונה חדש: {0}</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>נפח סאונד מכני</value></data>
 </root>

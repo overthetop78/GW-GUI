@@ -18,7 +18,7 @@ public sealed class PanasonicEmulationModule : IEmulationModule, IEmulationEmula
 
     public string DisplayResourceKey => _engine.DisplayResourceKey;
 
-    public string BrandImageResourceName => _engine.BrandImageResourceName;
+    public string BrandImagePath => _engine.BrandImagePath;
 
     public IReadOnlyList<EmulationMachineDefinition> Machines => _engine.Machines;
 

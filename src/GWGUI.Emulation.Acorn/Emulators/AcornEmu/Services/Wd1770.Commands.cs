@@ -1,3 +1,4 @@
+using Phase = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Enums.Wd1770Phase;
 using C = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants.Wd1770Constants;
 
 namespace GWGUI.Emulation.Acorn.Emulators.AcornEmu.Services;
@@ -40,6 +41,7 @@ internal sealed partial class Wd1770
         if (_typeOne)
         {
             var previous = _physicalTracks[Drive]; _physicalTracks[Drive] = _targetTrack;
+            _seekSteps[Drive] += Math.Abs(_targetTrack - previous);
             if ((_command & 0xf0) == 0) _track = 0;
             else if ((_command & 0xf0) == 0x10) _track = _data;
             else if ((_command & 0x10) != 0) _track = (byte)Math.Clamp(_track + _targetTrack - previous, 0, 255);

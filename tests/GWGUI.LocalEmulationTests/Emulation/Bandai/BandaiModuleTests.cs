@@ -145,11 +145,11 @@ public sealed class BandaiModuleTests
         using var http = new HttpClient();
         var path = Path.GetTempPath();
         var module = new BandaiEmulationModule(path, path, http, path);
-        var resources = typeof(BandaiEmulationModule).Assembly.GetManifestResourceNames();
-        Assert.Contains(module.BrandImageResourceName, resources);
+        
+        Assert.True(File.Exists(Path.Combine(AppContext.BaseDirectory, module.BrandImagePath)), module.BrandImagePath);
         foreach (var machine in module.Machines)
         {
-            Assert.Contains(machine.ImageResourceName!, resources);
+            Assert.True(File.Exists(Path.Combine(AppContext.BaseDirectory, machine.ImagePath!)), machine.ImagePath);
             foreach (var culture in new[] { CultureInfo.GetCultureInfo("en-US"), CultureInfo.GetCultureInfo("fr-FR") })
             {
                 Assert.True(module.TryGetString(machine.DisplayResourceKey, culture, out var name));

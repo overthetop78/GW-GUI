@@ -19,6 +19,28 @@ namespace GWGUI.Tests.Emulation;
 public sealed class AcornEmuTests
 {
     [Fact]
+    public async Task RuntimeExposesOnlyAttachedReadersWhileStorageKeepsAvailableReaders()
+    {
+        var engine = new Engine();
+        var configuration = new MachineConfiguration(MachineModel.BbcMicroModelA, core: Emulator.AcornEmu);
+        var services = new EmulationRuntimeServices("sessions", "states", "converted", "host", (_, _) => throw new InvalidOperationException("Aucun cœur ne doit démarrer."));
+        var storage = engine.DescribeStorageSettings(configuration);
+        Assert.Empty(storage.ConfiguredSlots);
+        Assert.NotEmpty(storage.AvailableDevices);
+        var empty = await engine.CreateRuntimeAsync(configuration, services);
+        Assert.Empty(empty.MediaDevices);
+        foreach (var device in storage.AvailableDevices)
+        {
+            var attached = engine.ApplyStorageSettings(configuration, storage with { ConfiguredSlots = [device.Slot] });
+            var runtime = await engine.CreateRuntimeAsync(attached, services);
+            Assert.Equal(device.Slot, Assert.Single(runtime.MediaDevices).Slot);
+            Assert.Equal(storage.AvailableDevices.Count, engine.DescribeStorageSettings(attached).AvailableDevices.Count);
+            var detached = engine.ApplyStorageSettings(attached, engine.DescribeStorageSettings(attached) with { ConfiguredSlots = [], DeviceSettings = [] });
+            Assert.Empty((await engine.CreateRuntimeAsync(detached, services)).MediaDevices);
+        }
+    }
+
+    [Fact]
     public void NmiIsEdgeTriggeredAndReturnsThroughTheNormalStack()
     {
         var bus = new MemoryBus(); Array.Fill(bus.Bytes, (byte)0xea, 0x200, 16);

@@ -4,7 +4,8 @@ public interface IEmulationModule
 {
     string Id { get; }
     string DisplayResourceKey { get; }
-    string BrandImageResourceName { get; }
+    /// <summary>Chemin du fichier image relatif au dossier de l’application, sous Assets/Emulation/&lt;module&gt;/.</summary>
+    string BrandImagePath { get; }
     IReadOnlyList<EmulationMachineDefinition> Machines { get; }
     EmulationSettingsVisibility DefaultVisibility { get; }
     bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode);

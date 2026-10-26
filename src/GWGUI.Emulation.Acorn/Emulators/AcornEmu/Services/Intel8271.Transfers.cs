@@ -1,3 +1,4 @@
+using Phase = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Enums.Intel8271Phase;
 using System.IO;
 using C = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants.Intel8271Constants;
 

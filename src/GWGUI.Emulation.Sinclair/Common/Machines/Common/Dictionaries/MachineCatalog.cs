@@ -3,7 +3,7 @@ public static class MachineCatalog
 {
     public static IReadOnlyList<EmulationMachineDefinition> All { get; } = Array.AsReadOnly(ModelCatalog.All.Select(model => new EmulationMachineDefinition(model.Id,
         model.DisplayResourceKey,
-        $"{EmulationModuleConstants.AssetResourcePrefix}.Machines.{ImageName(ModelCatalog.Parse(model.Id))}.png")).ToArray());
+        $"{EmulationModuleConstants.AssetPathPrefix}/Machines/{ImageName(ModelCatalog.Parse(model.Id))}.png")).ToArray());
 
     private static string ImageName(MachineModel model) => model switch
     {

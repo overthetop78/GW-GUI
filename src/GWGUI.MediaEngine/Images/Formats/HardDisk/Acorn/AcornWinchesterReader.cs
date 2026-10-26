@@ -53,5 +53,5 @@ public sealed class AcornWinchesterReader : IMediaImageReader
             new Dictionary<string, string> { ["logicalBlockSize"] = "256", [AcornWinchesterFormat.DescriptorMetadataKey] = Convert.ToBase64String(descriptor) });
     }
 
-    private static string DescriptorPath(MediaSourceDescriptor source) => source.AssociatedPaths.FirstOrDefault(path => Path.GetExtension(path).Equals(".dsc", StringComparison.OrdinalIgnoreCase)) ?? Path.ChangeExtension(source.PrimaryPath, ".dsc");
+    private static string DescriptorPath(MediaSourceDescriptor source) => source.AssociatedPaths.FirstOrDefault(path => Path.GetExtension(path).Equals(DiskImageFileExtensions.Dsc, StringComparison.OrdinalIgnoreCase)) ?? Path.ChangeExtension(source.PrimaryPath, DiskImageFileExtensions.Dsc);
 }

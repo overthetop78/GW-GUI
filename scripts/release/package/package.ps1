@@ -42,7 +42,7 @@ dotnet publish $example.ProjectPath -c $Configuration -r win-x64 --self-containe
 if ($LASTEXITCODE -ne 0) { throw 'Example module publish failed.' }
 $sharedApplicationHashes = Get-GwGuiFileHashes -Files @(Get-ChildItem -LiteralPath $applicationPublish -Recurse -File)
 Copy-GwGuiComponentFiles -SourceDirectory $examplePublish -DestinationDirectory (Join-Path $applicationPublish "Modules\$($example.Id)") `
-    -SharedHashes $sharedApplicationHashes -RequiredFiles @('module.json', $example.EntryAssembly, ($example.AssemblyName + '.deps.json'))
+    -AssetsDestinationDirectory $applicationPublish -SharedHashes $sharedApplicationHashes -RequiredFiles @('module.json', $example.EntryAssembly, ($example.AssemblyName + '.deps.json'))
 dotnet publish (Join-Path $repository 'src\GWGUI.Launcher\GWGUI.Launcher.csproj') -c $Configuration -r win-x64 --self-contained false -p:Version=$Version -o $publish --disable-build-servers
 if ($LASTEXITCODE -ne 0) { throw 'GW GUI bootstrap publish failed.' }
 Copy-Item -Path (Join-Path $applicationPublish '*') -Destination $publish -Recurse -Force
