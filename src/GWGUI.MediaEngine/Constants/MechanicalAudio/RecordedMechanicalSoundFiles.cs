@@ -16,6 +16,6 @@ internal static partial class RecordedMechanicalSoundFiles
     ];
 
     /// <summary>Définitions audio utilisées directement par le lecteur, sans catalogue externe.</summary>
-    internal static RecordedMechanicalSoundCatalog All { get; } = new(Catalogs.SelectMany(profiles => profiles).ToArray());
+    internal static IReadOnlyList<RecordedMechanicalSoundProfile> All { get; } = System.Array.AsReadOnly(Catalogs.SelectMany(profiles => profiles).ToArray());
 
 }

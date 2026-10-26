@@ -1,0 +1,107 @@
+using GWGUI.MediaEngine.Contracts;
+using M = GWGUI.MediaEngine.Constants.MechanicalSoundConstants;
+using R = GWGUI.MediaEngine.Constants.RecordedMechanicalSoundConstants;
+
+namespace GWGUI.MediaEngine.Constants;
+
+internal static partial class RecordedMechanicalSoundFiles
+{
+    internal static partial class Floppy
+    {
+        /// <summary>Dossier externe des sons de Panasonic JU-475-5.</summary>
+        private const string PanasonicJu4755Directory = "Floppy/Panasonic/JU-475-5/";
+
+        /// <summary>Enregistrements Panasonic JU-475-5.</summary>
+        internal static RecordedMechanicalSoundProfile PanasonicJu4755 { get; } = new(
+            Id: M.Floppy525,
+            Device: M.Floppy,
+            DisplayName: "Panasonic JU-475-5",
+            Samples:
+            [
+                new(PanasonicJu4755Directory + "Disk-eject.flac", [new(M.Eject)]),
+                new(PanasonicJu4755Directory + "Disk-insert.flac", [new(M.Insert)]),
+                new(PanasonicJu4755Directory + "Drive-close.flac", [new(M.Close)]),
+                new(PanasonicJu4755Directory + "Drive-open.flac", [new(M.Open)]),
+                new(PanasonicJu4755Directory + "Motor-running.flac", [new(M.Motor, Loop: true), new(M.Read, Loop: true), new(M.Write, Loop: true)]),
+                new(PanasonicJu4755Directory + "Motor-start.flac", [new(R.Start)]),
+                new(PanasonicJu4755Directory + "Motor-stop.flac", [new(M.Stop)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/1-track.flac", [new(M.Seek, Distance: 1, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/10-tracks.flac", [new(M.Seek, Distance: 10, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/11-tracks.flac", [new(M.Seek, Distance: 11, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/12-tracks.flac", [new(M.Seek, Distance: 12, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/13-tracks.flac", [new(M.Seek, Distance: 13, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/14-tracks.flac", [new(M.Seek, Distance: 14, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/15-tracks.flac", [new(M.Seek, Distance: 15, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/16-tracks.flac", [new(M.Seek, Distance: 16, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/17-tracks.flac", [new(M.Seek, Distance: 17, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/18-tracks.flac", [new(M.Seek, Distance: 18, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/19-tracks.flac", [new(M.Seek, Distance: 19, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/2-tracks.flac", [new(M.Seek, Distance: 2, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/20-tracks.flac", [new(M.Seek, Distance: 20, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/21-tracks.flac", [new(M.Seek, Distance: 21, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/22-tracks.flac", [new(M.Seek, Distance: 22, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/23-tracks.flac", [new(M.Seek, Distance: 23, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/24-tracks.flac", [new(M.Seek, Distance: 24, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/25-tracks.flac", [new(M.Seek, Distance: 25, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/26-tracks.flac", [new(M.Seek, Distance: 26, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/27-tracks.flac", [new(M.Seek, Distance: 27, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/28-tracks.flac", [new(M.Seek, Distance: 28, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/29-tracks.flac", [new(M.Seek, Distance: 29, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/3-tracks.flac", [new(M.Seek, Distance: 3, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/30-tracks.flac", [new(M.Seek, Distance: 30, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/31-tracks.flac", [new(M.Seek, Distance: 31, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/32-tracks.flac", [new(M.Seek, Distance: 32, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/33-tracks.flac", [new(M.Seek, Distance: 33, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/34-tracks.flac", [new(M.Seek, Distance: 34, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/35-tracks.flac", [new(M.Seek, Distance: 35, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/36-tracks.flac", [new(M.Seek, Distance: 36, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/37-tracks.flac", [new(M.Seek, Distance: 37, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/38-tracks.flac", [new(M.Seek, Distance: 38, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/39-tracks.flac", [new(M.Seek, Distance: 39, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/4-tracks.flac", [new(M.Seek, Distance: 4, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/5-tracks.flac", [new(M.Seek, Distance: 5, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/6-tracks.flac", [new(M.Seek, Distance: 6, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/7-tracks.flac", [new(M.Seek, Distance: 7, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/8-tracks.flac", [new(M.Seek, Distance: 8, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-center/9-tracks.flac", [new(M.Seek, Distance: 9, Direction: 1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/1-track.flac", [new(M.Seek, Distance: 1, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/10-tracks.flac", [new(M.Seek, Distance: 10, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/11-tracks.flac", [new(M.Seek, Distance: 11, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/12-tracks.flac", [new(M.Seek, Distance: 12, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/13-tracks.flac", [new(M.Seek, Distance: 13, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/14-tracks.flac", [new(M.Seek, Distance: 14, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/15-tracks.flac", [new(M.Seek, Distance: 15, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/16-tracks.flac", [new(M.Seek, Distance: 16, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/17-tracks.flac", [new(M.Seek, Distance: 17, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/18-tracks.flac", [new(M.Seek, Distance: 18, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/19-tracks.flac", [new(M.Seek, Distance: 19, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/2-tracks.flac", [new(M.Seek, Distance: 2, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/20-tracks.flac", [new(M.Seek, Distance: 20, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/21-tracks.flac", [new(M.Seek, Distance: 21, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/22-tracks.flac", [new(M.Seek, Distance: 22, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/23-tracks.flac", [new(M.Seek, Distance: 23, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/24-tracks.flac", [new(M.Seek, Distance: 24, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/25-tracks.flac", [new(M.Seek, Distance: 25, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/26-tracks.flac", [new(M.Seek, Distance: 26, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/27-tracks.flac", [new(M.Seek, Distance: 27, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/28-tracks.flac", [new(M.Seek, Distance: 28, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/29-tracks.flac", [new(M.Seek, Distance: 29, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/3-tracks.flac", [new(M.Seek, Distance: 3, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/30-tracks.flac", [new(M.Seek, Distance: 30, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/31-tracks.flac", [new(M.Seek, Distance: 31, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/32-tracks.flac", [new(M.Seek, Distance: 32, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/33-tracks.flac", [new(M.Seek, Distance: 33, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/34-tracks.flac", [new(M.Seek, Distance: 34, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/35-tracks.flac", [new(M.Seek, Distance: 35, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/36-tracks.flac", [new(M.Seek, Distance: 36, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/37-tracks.flac", [new(M.Seek, Distance: 37, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/38-tracks.flac", [new(M.Seek, Distance: 38, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/4-tracks.flac", [new(M.Seek, Distance: 4, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/5-tracks.flac", [new(M.Seek, Distance: 5, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/6-tracks.flac", [new(M.Seek, Distance: 6, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/7-tracks.flac", [new(M.Seek, Distance: 7, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/8-tracks.flac", [new(M.Seek, Distance: 8, Direction: -1)]),
+                new(PanasonicJu4755Directory + "Seek/Toward-edge/9-tracks.flac", [new(M.Seek, Distance: 9, Direction: -1)]),
+            ]);
+    }
+}

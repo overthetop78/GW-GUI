@@ -18,12 +18,12 @@ internal sealed class RecordedMechanicalSoundFunctions
     private static readonly Lazy<RecordedMechanicalSoundFunctions> External = new(LoadAssets);
     internal static RecordedMechanicalSoundFunctions Shared => External.Value;
 
-    internal RecordedMechanicalSoundFunctions(RecordedMechanicalSoundCatalog document, Func<RecordedMechanicalSoundSample, Stream> openSample)
+    internal RecordedMechanicalSoundFunctions(IReadOnlyList<RecordedMechanicalSoundProfile> profiles, Func<RecordedMechanicalSoundSample, Stream> openSample)
     {
-        ArgumentNullException.ThrowIfNull(document);
-        _profiles = document.Profiles.ToDictionary(profile => profile.Id, StringComparer.Ordinal);
+        ArgumentNullException.ThrowIfNull(profiles);
+        _profiles = profiles.ToDictionary(profile => profile.Id, StringComparer.Ordinal);
         _openSample = openSample;
-        _sampleDefinitions = document.Profiles.SelectMany(profile => profile.Samples).GroupBy(sample => sample.Id, StringComparer.Ordinal).ToDictionary(group => group.Key, group => group.First(), StringComparer.Ordinal);
+        _sampleDefinitions = profiles.SelectMany(profile => profile.Samples).GroupBy(sample => sample.Id, StringComparer.Ordinal).ToDictionary(group => group.Key, group => group.First(), StringComparer.Ordinal);
     }
 
     internal IReadOnlyList<RecordedMechanicalSoundProfile> Profiles => _profiles.Values.ToArray();
