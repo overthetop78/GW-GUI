@@ -16,4 +16,23 @@
   <data name="Emulation.Cassette.State.Paused"><value>Sat på pause</value></data>
   <data name="Emulation.Cassette.State.Recording"><value>Optager</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>Slut på bånd</value></data>
+  <data name="Emulation.Cassette.Settings.Baud"><value>Datahastighed (baud)</value></data>
+  <data name="Emulation.Cassette.Settings.Automatic"><value>Automatisk</value></data>
+  <data name="Emulation.Cassette.Settings.Mode"><value>Indlæser tilstand</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.RealTime"><value>Real- time læsning</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Accelerated"><value>Accelereret læsning</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Direct"><value>Direkte lastning</value></data>
+  <data name="Emulation.Cassette.Settings.Speed"><value>Båndhastighed</value></data>
+  <data name="Emulation.Cassette.Settings.Wind"><value>Hurtig oprulning</value></data>
+  <data name="Emulation.Cassette.Settings.ReadLatency"><value>Læsemaskinens forsinkelse</value></data>
+  <data name="Emulation.Cassette.Settings.WriteLatency"><value>Optagelse af motorforsinkelse</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Mekaniske lyde</value></data>
+  <data name="Emulation.Cassette.Settings.Protected"><value>Skriv beskyttelse</value></data>
+  <data name="Emulation.Cassette.Pcm.SampleRate"><value>RAW prøvetagningshastighed (Hz)</value></data>
+  <data name="Emulation.Cassette.Pcm.Channels"><value>RAW kanaler</value></data>
+  <data name="Emulation.Cassette.Pcm.Bits"><value>RAW bits pr. prøve</value></data>
+  <data name="Emulation.Cassette.Pcm.Signed"><value>RAW Underskrevne prøver</value></data>
+  <data name="Emulation.Cassette.Pcm.LittleEndian"><value>RAW little- endian prøver</value></data>
+  <data name="Emulation.Cassette.Pcm.Input"><value>RAW kassetteindgangsprofil</value></data>
+  <data name="Emulation.Cassette.Pcm.Output"><value>RAW kassetteoptageprofil</value></data>
 </root>

@@ -27,8 +27,8 @@ public static class AcornAdfsFileReader
                 metadataValid = false;
                 return null;
             }
-            var blockNumber = checked((int)(byteOffset / AcornAdfsLayout.BlockSize));
-            var offsetInBlock = checked((int)(byteOffset % AcornAdfsLayout.BlockSize));
+            var blockNumber = checked((int)(byteOffset / image.BlockSize));
+            var offsetInBlock = checked((int)(byteOffset % image.BlockSize));
             if (!image.TryGetBlock(blockNumber, out var block) || offsetInBlock >= block.Data.Count)
             {
                 warnings.Add(AcornAdfsWarnings.MissingBlock(name, address, copied, blockNumber));

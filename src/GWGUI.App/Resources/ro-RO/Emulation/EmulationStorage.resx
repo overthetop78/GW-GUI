@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Golește la închiderea jocului</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>Card de memorie</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>Nume card</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>Viteza de transfer</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>Citiţi latenţa</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>Scrie latenţa</value></data>
 </root>

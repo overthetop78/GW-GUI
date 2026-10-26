@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>ล้างเมื่อปิดเกม</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>เมมโมรี่การ์ด</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>ชื่อไพ่</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>ความเร็วการส่งถ่ายข้อมูล</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>อ่านความหน่วงแสง</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>เขียน Ledcy</value></data>
 </root>

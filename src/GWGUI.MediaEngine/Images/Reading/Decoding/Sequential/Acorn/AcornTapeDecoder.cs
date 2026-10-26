@@ -19,7 +19,7 @@ namespace GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Acorn;
 /// <summary>Decodes Acorn cassette filing system blocks from UEF byte streams or compatible PCM FSK signals.</summary>
 public sealed class AcornTapeDecoder : ISequentialMediaDecoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.Uef, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.Uef, TapeImageFormatIds.Wav, TapeImageFormatIds.Csw, TapeImageFormatIds.Raw }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.AcornBbc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => UefConstants.DecoderId;
@@ -37,10 +37,10 @@ public sealed class AcornTapeDecoder : ISequentialMediaDecoder
         if (!CanDecode(document, machineId))
             throw new InvalidDataException("The media document is not compatible with the Acorn cassette decoder.");
         var representation = (SequentialMediaImageRepresentation)document.Representation;
-        return document.FormatId.Equals(TapeImageFormatIds.Uef, StringComparison.OrdinalIgnoreCase) ? await DecodeUefAsync(representation, cancellationToken).ConfigureAwait(false) : await DecodeWaveAsync(document, representation, cancellationToken).ConfigureAwait(false);
+        return document.FormatId.Equals(TapeImageFormatIds.Uef, StringComparison.OrdinalIgnoreCase) && !document.Metadata.ContainsKey("sampleRate") ? await DecodeUefAsync(document, representation, cancellationToken).ConfigureAwait(false) : await DecodeWaveAsync(document, representation, cancellationToken).ConfigureAwait(false);
     }
 
-    private static async Task<SequentialDecodeResult> DecodeUefAsync(SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)
+    private static async Task<SequentialDecodeResult> DecodeUefAsync(MediaImageDocument document, SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)
     {
         var blocks = new List<SequentialDecodedBlock>();
         var consumed = new HashSet<long>();
@@ -56,6 +56,12 @@ public sealed class AcornTapeDecoder : ISequentialMediaDecoder
             blocks.AddRange(decoded);
             consumed.Add(segment.Position);
         }
+        if ((representation.Segments ?? []).Any(segment => segment.Metadata.GetValueOrDefault(UefConstants.ChunkIdMetadataKey) is "0102" or "0104" or "0105" or "0114"))
+        {
+            var signal = await CassetteSignalFunctions.UefAsync(representation, new Dictionary<long, int>(), cancellationToken).ConfigureAwait(false);
+            var wave = CassettePcmFunctions.Document(document.Source, TapeImageFormatIds.Wav, signal);
+            return await DecodeWaveAsync(wave, (SequentialMediaImageRepresentation)wave.Representation, cancellationToken).ConfigureAwait(false);
+        }
         return CreateResult(representation, blocks, consumed, "No valid Acorn cassette block was found in the UEF byte streams.");
     }
 
@@ -66,8 +72,9 @@ public sealed class AcornTapeDecoder : ISequentialMediaDecoder
 
         var decodedBytes = new List<byte>();
         var sourcePositions = new List<long>();
-        var validFrames = 0;
-        var testedFrames = 0;
+        var byteSamples = new List<int>();
+        var slowBytes = new List<byte>();
+        var slowSamples = new List<int>();
         foreach (var segment in (representation.Segments ?? []).Where(segment => segment.Kind == SequentialSegmentKind.Samples && segment.ChannelNumber == 0).OrderBy(segment => segment.Position))
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -83,23 +90,28 @@ public sealed class AcornTapeDecoder : ISequentialMediaDecoder
                 UefConstants.AcornDataBitsPerFrame,
                 UefConstants.AcornStopBitsPerFrame,
                 UefConstants.MinimumSamplesPerBit);
+            var slower = FskSerialFunctions.Decode(samples, sampleRate, 300, UefConstants.AcornZeroFrequency, UefConstants.AcornOneFrequency, UefConstants.AcornDataBitsPerFrame, UefConstants.AcornStopBitsPerFrame, UefConstants.MinimumSamplesPerBit);
             decodedBytes.AddRange(serial.Bytes);
-            validFrames += serial.ValidFrames;
-            testedFrames += serial.TestedFrames;
-            if (serial.Bytes.Count > 0) sourcePositions.Add(segment.Position);
+            slowBytes.AddRange(slower.Bytes);
+            var segmentStart = checked((int)Math.Round((segment.Start ?? TimeSpan.Zero).TotalSeconds * sampleRate));
+            byteSamples.AddRange(serial.Positions.Select(position => position + segmentStart));
+            slowSamples.AddRange(slower.Positions.Select(position => position + segmentStart));
+            if (serial.Bytes.Count > 0 || slower.Bytes.Count > 0) sourcePositions.Add(segment.Position);
         }
 
-        var blocks = DecodeBlocks(decodedBytes, sourcePositions, "wav-fsk", 0);
+        var fastBlocks = DecodeBlocks(decodedBytes, sourcePositions, "wav-fsk", 0, byteSamples);
+        var slowBlocks = DecodeBlocks(slowBytes, sourcePositions, "wav-fsk", 0, slowSamples);
+        // Le CRC valide les blocs à chaque débit ; une même bande peut changer de débit entre deux fichiers.
+        var valid = fastBlocks.Concat(slowBlocks).Where(block => block.IntegrityValid == true).OrderBy(block => int.Parse(block.Metadata["samplePosition"], CultureInfo.InvariantCulture)).DistinctBy(block => (block.Metadata["samplePosition"], block.Metadata["fileName"], block.Metadata["blockNumber"])).ToArray();
+        IReadOnlyList<SequentialDecodedBlock> blocks = valid.Length == 0 ? fastBlocks.Count >= slowBlocks.Count ? fastBlocks : slowBlocks : valid.Select((block, index) => new SequentialDecodedBlock(index, block.Data, block.SourceSegmentPositions, block.IntegrityValid, block.Metadata)).ToArray();
         var consumed = blocks.Count == 0 ? [] : sourcePositions.ToHashSet();
         var result = CreateResult(representation, blocks, consumed, "No valid Acorn cassette block was found in the decoded WAV serial stream.");
-        if (blocks.Count == 0 || testedFrames == 0) return result;
-        var serialConfidence = validFrames / (double)testedFrames;
-        return new SequentialDecodeResult(result.DecoderId, Math.Min(result.Confidence, serialConfidence), result.Blocks, result.UndecodedSegments, result.Diagnostics);
+        return result;
     }
 
     private static IReadOnlyList<SequentialDecodedBlock> DecodeBlocks(IReadOnlyList<byte> bytes, long sourcePosition, string sourceKind, int firstPosition) => DecodeBlocks(bytes, [sourcePosition], sourceKind, firstPosition);
 
-    private static IReadOnlyList<SequentialDecodedBlock> DecodeBlocks(IReadOnlyList<byte> bytes, IReadOnlyList<long> sourcePositions, string sourceKind, int firstPosition)
+    private static IReadOnlyList<SequentialDecodedBlock> DecodeBlocks(IReadOnlyList<byte> bytes, IReadOnlyList<long> sourcePositions, string sourceKind, int firstPosition, IReadOnlyList<int>? byteSamples = null)
     {
         var blocks = new List<SequentialDecodedBlock>();
         for (var offset = 0; offset < bytes.Count; offset++)
@@ -158,6 +170,8 @@ public sealed class AcornTapeDecoder : ISequentialMediaDecoder
                 [UefConstants.FlagsMetadataKey] = flags.ToString("x2", CultureInfo.InvariantCulture),
                 [UefConstants.NextAddressMetadataKey] = nextAddress.ToString("x8", CultureInfo.InvariantCulture)
             };
+            metadata["byteOffset"] = offset.ToString(CultureInfo.InvariantCulture);
+            if (byteSamples is not null && offset < byteSamples.Count) metadata["samplePosition"] = byteSamples[offset].ToString(CultureInfo.InvariantCulture);
             blocks.Add(new SequentialDecodedBlock(firstPosition + blocks.Count, dataBytes, sourcePositions, headerValid && dataValid, metadata));
             offset = blockEnd - 1;
         }

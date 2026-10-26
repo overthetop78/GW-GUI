@@ -16,6 +16,12 @@ public sealed record HardDiskImageFormat(string Id, string Extension, string Int
     public IReadOnlySet<int> LogicalSectorSizes { get; init; } = new[] { 512 }.ToFrozenSet();
 
     public DiskChsGeometry? Geometry { get; init; }
+    /// <summary>Autorise le dialogue à transmettre une géométrie complète et à dimensionner des cylindres entiers.</summary>
+    public bool SupportsExplicitGeometry { get; init; }
+
+    /// <summary>Créateur du profil lorsque son conteneur nécessite une publication particulière, notamment multifichier.</summary>
+    /// <remarks>Le créateur publie ses fichiers sans remplacer de destination existante et libère ses ressources.</remarks>
+    public Action<string, long, bool, HardDiskPreparation, DiskImageGeometry?>? ImageCreator { get; init; }
 
     public DiskFormatOperations Operations { get; init; } = DiskFormatOperations.Create | DiskFormatOperations.Read;
 

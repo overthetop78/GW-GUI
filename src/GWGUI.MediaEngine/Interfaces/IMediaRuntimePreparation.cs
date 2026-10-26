@@ -5,6 +5,20 @@ namespace GWGUI.MediaEngine.Interfaces;
 /// <summary>Préparations de contenus pour un consommateur, réalisées par les lecteurs et convertisseurs existants.</summary>
 public interface IMediaRuntimePreparation
 {
+    /// <summary>Crée un disque vierge au format demandé par la fabrique et l'écrivain du catalogue.</summary>
+    Task CreateBlankDiskAsync(string path, string formatId, CancellationToken cancellationToken = default);
+    /// <summary>Crée le conteneur HDD et ses annexes, sans écraser une destination existante.</summary>
+    Task CreateHardDiskAsync(string path, string formatId, GWGUI.MediaEngine.Contracts.HardDiskGeometry geometry, string? fileSystemId = null, CancellationToken cancellationToken = default);
+    /// <summary>Ouvre une image disque par ses lecteurs existants ; le consommateur possède et libère le résultat.</summary>
+    Task<IMediaRuntimeDisk> OpenDiskAsync(string path, bool writable = false, string? formatId = null, CancellationToken cancellationToken = default);
+    /// <summary>Lit le signal mono d'une cassette UEF, CSW, WAV ou RAW avec son profil explicite, sans modifier sa source.</summary>
+    Task<GWGUI.MediaEngine.Contracts.MediaCassetteSignal> ReadCassetteAsync(string path, CancellationToken cancellationToken = default, string? machineId = null, IReadOnlyDictionary<string, string>? parameters = null);
+    /// <summary>Formats de sortie qui conservent le signal complet d'un magnétophone.</summary>
+    IReadOnlyList<string> CassetteRecordingExtensions { get; }
+    /// <summary>Synthétise un fragment de bruit mécanique ; aucune sortie audio n'est ouverte par le service.</summary>
+    short[] RenderCassetteSound(string operation, int sampleRate, int sampleCount, long offset);
+    /// <summary>Écrit atomiquement le signal complet sans décoder les fichiers qu'il contient.</summary>
+    Task WriteCassetteAsync(string path, GWGUI.MediaEngine.Contracts.MediaCassetteSignal signal, CancellationToken cancellationToken = default, IReadOnlyDictionary<string, string>? parameters = null);
     /// <summary>Extensions du catalogue MediaEngine, indexées par leur nom technique invariant.</summary>
     IReadOnlyDictionary<string, string> FileExtensions { get; }
     /// <summary>Taille en octets d'un secteur optique brut.</summary>

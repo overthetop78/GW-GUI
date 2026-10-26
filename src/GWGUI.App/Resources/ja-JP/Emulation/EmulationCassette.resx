@@ -16,4 +16,23 @@
   <data name="Emulation.Cassette.State.Paused"><value>一時停止中</value></data>
   <data name="Emulation.Cassette.State.Recording"><value>録音中</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>テープ終端</value></data>
+  <data name="Emulation.Cassette.Settings.Baud"><value>データのレート(有料)</value></data>
+  <data name="Emulation.Cassette.Settings.Automatic"><value>オートマチック</value></data>
+  <data name="Emulation.Cassette.Settings.Mode"><value>ローディングモード</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.RealTime"><value>リアルタイム読み出し</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Accelerated"><value>加速読書</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Direct"><value>直接ローディング</value></data>
+  <data name="Emulation.Cassette.Settings.Speed"><value>テープ速度</value></data>
+  <data name="Emulation.Cassette.Settings.Wind"><value>速い巻上げ速度</value></data>
+  <data name="Emulation.Cassette.Settings.ReadLatency"><value>モータ遅延を読み取り</value></data>
+  <data name="Emulation.Cassette.Settings.WriteLatency"><value>記録モーター遅れ</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>メカニカルな音</value></data>
+  <data name="Emulation.Cassette.Settings.Protected"><value>保護書を書く</value></data>
+  <data name="Emulation.Cassette.Pcm.SampleRate"><value>RAW サンプルレート(Hz)</value></data>
+  <data name="Emulation.Cassette.Pcm.Channels"><value>RAW チャンネル</value></data>
+  <data name="Emulation.Cassette.Pcm.Bits"><value>RAW サンプルごとのビット</value></data>
+  <data name="Emulation.Cassette.Pcm.Signed"><value>RAW 署名されたサンプル</value></data>
+  <data name="Emulation.Cassette.Pcm.LittleEndian"><value>RAW 小さなエンドウ豆のサンプル</value></data>
+  <data name="Emulation.Cassette.Pcm.Input"><value>RAW カセット入力プロフィール</value></data>
+  <data name="Emulation.Cassette.Pcm.Output"><value>RAW カセット録画プロファイル</value></data>
 </root>

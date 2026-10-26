@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Tyhjennä, kun peli suljetaan</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>Muistikortti</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>Kortin nimi</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>Siirtonopeus</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>Lue latenssi</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>Kirjoita viive</value></data>
 </root>

@@ -5,8 +5,20 @@ using GWGUI.MediaEngine.Interfaces;
 namespace GWGUI.Emulation.Services;
 
 /// <summary>Relie les contrats média des modules à MediaEngine, sans exposer ses types dans le SDK public.</summary>
-internal sealed class EmulationMediaProcessingService : IEmulationMediaProcessing
+internal sealed partial class EmulationMediaProcessingService : IEmulationMediaProcessing
 {
+    /// <inheritdoc/>
+    public IReadOnlyList<string> CassetteRecordingExtensions => Preparation.CassetteRecordingExtensions;
+    /// <inheritdoc/>
+    public short[] RenderCassetteSound(string operation, int sampleRate, int sampleCount, long offset) => Preparation.RenderCassetteSound(operation, sampleRate, sampleCount, offset);
+    /// <inheritdoc/>
+    public Task WriteCassetteAsync(string path, EmulationCassetteSignal signal, CancellationToken cancellationToken = default, IReadOnlyDictionary<string, string>? parameters = null) => Preparation.WriteCassetteAsync(path, new GWGUI.MediaEngine.Contracts.MediaCassetteSignal(signal.Samples, signal.SampleRate), cancellationToken, parameters);
+    /// <inheritdoc/>
+    public async Task<EmulationCassetteSignal> ReadCassetteAsync(string path, CancellationToken cancellationToken = default, string? machineId = null, IReadOnlyDictionary<string, string>? parameters = null)
+    {
+        var signal = await Preparation.ReadCassetteAsync(path, cancellationToken, machineId, parameters).ConfigureAwait(false);
+        return new EmulationCassetteSignal(signal.Samples, signal.SampleRate, signal.BlockPositions, signal.Blocks?.Select(block => new EmulationCassetteBlock(block.SamplePosition, block.Data, block.IntegrityValid, block.Metadata)).ToArray());
+    }
     private static IMediaRuntimePreparation Preparation => MediaEngineComposition.RuntimePreparation;
     /// <inheritdoc/>
     public IReadOnlyDictionary<string, string> FileExtensions => Preparation.FileExtensions;

@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Törlés a játék bezárásakor</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>Memóriakártya</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>Kártya neve</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>Átviteli sebesség</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>Olvass latenciát</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>Késedelmi dátum</value></data>
 </root>

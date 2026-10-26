@@ -4,7 +4,7 @@ using GWGUI.MediaFileSystems.Interfaces;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Acorn.BbcDfs;
 /// <summary>Lit les catalogues BBC DFS simple et double face.</summary>
-public sealed class BbcDfsFileSystemReader : IFileSystemReader
+public sealed partial class BbcDfsFileSystemReader : IFileSystemReader
 {
     /// <summary>Identifiant technique du lecteur.</summary>
     public string Id => Definitions.FileSystemIds.AcornDfs;
@@ -20,6 +20,7 @@ public sealed class BbcDfsFileSystemReader : IFileSystemReader
 
     public bool CanRead(IMediaSectorImage image)
     {
+        if (IsDoubleSided(image)) return Enumerable.Range(0, image.Heads).Any(head => CanRead(new SideImage(image, head)));
         if (!CatalogFormatIds.Contains(image.FormatId) 
             || image.BlockSize 
             != BbcDfsFileSystemLayout.SectorSize 
@@ -48,6 +49,7 @@ public sealed class BbcDfsFileSystemReader : IFileSystemReader
 
     public FileSystemVolume Read(IMediaSectorImage image)
     {
+        if (IsDoubleSided(image)) return ReadSides(image);
         if (!CanRead(image))
         {
             var count = image.TryGetBlock(BbcDfsFileSystemLayout.MetadataSector, out var block) && block.Data.Count > BbcDfsFileSystemLayout.EntryCountOffset ? block.Data[BbcDfsFileSystemLayout.EntryCountOffset] / BbcDfsFileSystemLayout.EntryPartSize : -1;

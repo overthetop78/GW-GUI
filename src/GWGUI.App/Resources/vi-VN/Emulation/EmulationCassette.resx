@@ -16,4 +16,23 @@
   <data name="Emulation.Cassette.State.Paused"><value>Tạm dừng</value></data>
   <data name="Emulation.Cassette.State.Recording"><value>Đang ghi</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>Hết băng</value></data>
+  <data name="Emulation.Cassette.Settings.Baud"><value>Tốc độ dữ liệu (baud)</value></data>
+  <data name="Emulation.Cassette.Settings.Automatic"><value>Tự động</value></data>
+  <data name="Emulation.Cassette.Settings.Mode"><value>Đang nạp chế độ</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.RealTime"><value>Đọc thời gian thực</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Accelerated"><value>Đọc tăng tốc</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Direct"><value>Tải trực tiếp</value></data>
+  <data name="Emulation.Cassette.Settings.Speed"><value>Tốc độ băng</value></data>
+  <data name="Emulation.Cassette.Settings.Wind"><value>Tốc độ Gió Nhanh</value></data>
+  <data name="Emulation.Cassette.Settings.ReadLatency"><value>Đọc &amp; trễ máy</value></data>
+  <data name="Emulation.Cassette.Settings.WriteLatency"><value>Đang thu lại sự trễ của động cơ</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Giọng cơ khí</value></data>
+  <data name="Emulation.Cassette.Settings.Protected"><value>Ghi sự bảo vệ</value></data>
+  <data name="Emulation.Cassette.Pcm.SampleRate"><value>RAW Tốc độ mẫu (Hz)</value></data>
+  <data name="Emulation.Cassette.Pcm.Channels"><value>RAW kênh</value></data>
+  <data name="Emulation.Cassette.Pcm.Bits"><value>RAW bit trên mỗi mẫu</value></data>
+  <data name="Emulation.Cassette.Pcm.Signed"><value>RAW Đã ký mẫu</value></data>
+  <data name="Emulation.Cassette.Pcm.LittleEndian"><value>RAW Mẫu nhỏ</value></data>
+  <data name="Emulation.Cassette.Pcm.Input"><value>RAW Hồ sơ nhập băng</value></data>
+  <data name="Emulation.Cassette.Pcm.Output"><value>RAW Hồ sơ thu âm</value></data>
 </root>

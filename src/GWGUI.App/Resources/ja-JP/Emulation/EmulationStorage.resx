@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>ゲーム終了時に消去</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>メモリカード</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>カード名</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>転送速度</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>レイテンシを読む</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>レイテンシを書く</value></data>
 </root>

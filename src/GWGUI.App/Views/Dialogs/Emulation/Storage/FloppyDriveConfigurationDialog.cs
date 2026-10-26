@@ -86,7 +86,14 @@ public sealed class FloppyDriveConfigurationDialog : Window
                 HorizontalAlignment = HorizontalAlignment.Left,
                 Margin = new Thickness(0, 14, 0, 0)
             };
-            create.Click += (_, _) => CreateBlankFloppy();
+            create.Click += async (_, _) =>
+            {
+                create.IsEnabled = false;
+                try { await CreateBlankFloppyAsync(); }
+                catch (Exception error) when (error is IOException or UnauthorizedAccessException or ArgumentException or NotSupportedException)
+                { MessageBox.Show(this, error.Message, Title, MessageBoxButton.OK, MessageBoxImage.Warning); }
+                finally { create.IsEnabled = true; }
+            };
             var blankMedia = new StackPanel();
             blankMedia.Children.Add(create);
             blankMedia.Children.Add(StorageDialogUi.Info(LocExtension.Get(EmulationResourceKeys.StorageRuntimeHint)));
@@ -96,22 +103,33 @@ public sealed class FloppyDriveConfigurationDialog : Window
         Content = StorageDialogUi.DialogLayout( StorageDialogUi.DialogHeader(IconGlyphs.Memory, Title, $"{LocExtension.Get(EmulationResourceKeys.FloppyDevice)} · {machineName}"), body, StorageDialogUi.Footer(this, LocExtension.Get("Common.Save")));
     }
 
-    private void CreateBlankFloppy()
+    private async Task CreateBlankFloppyAsync()
     {
+        var model = _options.Models.FirstOrDefault(candidate => candidate.Value == Settings.Model);
+        var formats = model?.BlankFormats;
+        var extension = formats?.Keys.FirstOrDefault() ?? _options.DefaultExtension;
         Directory.CreateDirectory(_options.ImageDirectory);
         var dialog = new SaveFileDialog
         {
-            Filter = _options.ImageFilter,
-            DefaultExt = _options.DefaultExtension,
+            Filter = formats?.Count > 0 ? string.Join("|", formats.Keys.Select(suffix => $"{suffix.TrimStart('.').ToUpperInvariant()}|*{suffix}")) : _options.ImageFilter,
+            DefaultExt = extension,
             AddExtension = true,
             InitialDirectory = _options.ImageDirectory,
             ClientGuid = _clientGuid,
-            FileName = $"blank{_options.DefaultExtension}"
+            FileName = $"blank{extension}"
         };
         if (dialog.ShowDialog(this) != true) return;
-        using var stream = new FileStream(dialog.FileName, FileMode.Create, FileAccess.Write, FileShare.None);
-        var size = _options.Models.FirstOrDefault(model => model.Value == Settings.Model)?.BlankImageSize ?? 0;
-        if (size > 0) stream.SetLength(size);
+        if (formats?.Count > 0)
+        {
+            var choice = formats.FirstOrDefault(format => format.Key.Equals(Path.GetExtension(dialog.FileName), StringComparison.OrdinalIgnoreCase));
+            if (choice.Value is null) throw new ArgumentException(LocExtension.Get("Emulation.Hdd.InvalidFormat"));
+            await EmulationSdk.MediaProcessing.CreateBlankDiskAsync(dialog.FileName, choice.Value);
+        }
+        else
+        {
+            using var stream = new FileStream(dialog.FileName, FileMode.Create, FileAccess.Write, FileShare.None);
+            if (model?.BlankImageSize is > 0) stream.SetLength(model.BlankImageSize);
+        }
         MessageBox.Show(this, LocExtension.Get("Emulation.Storage.Floppy.BlankCreated", dialog.FileName), Title, MessageBoxButton.OK, MessageBoxImage.Information);
     }
 }

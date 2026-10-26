@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Очищати під час закриття гри</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>Карта пам'яті</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>Назва картки</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>Швидкість передачі</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>Читати протримку</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>Написати відгук</value></data>
 </root>

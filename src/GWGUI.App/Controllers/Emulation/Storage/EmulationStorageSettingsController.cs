@@ -116,6 +116,9 @@ internal sealed class EmulationStorageSettingsController
         if (!TryFind(args.Device, out var device)) return;
         switch (device.ConfigurationKind)
         {
+            case EmulationStorageConfigurationKind.CassetteDrive:
+                ConfigureManagedStorage(device);
+                break;
             case EmulationStorageConfigurationKind.FloppyDrive:
                 ConfigureFloppy(device);
                 break;
@@ -259,18 +262,21 @@ internal sealed class EmulationStorageSettingsController
     private void ConfigureHardDisk(EmulationMediaDevice device)
     {
         var current = _settings.MountedMedia.FirstOrDefault(item => item.Slot == device.Slot);
+        var currentSettings = (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == device.Slot);
         var dialog = new HardDiskDriveConfigurationDialog(device.DisplayLabel ?? device.Slot.ToString(),
             _configuration?.MachineId ?? string.Empty, current?.Path,
             device.ImageDirectory ?? _defaultFolder(EmulationDefaultFolderCategory.HardDisk),
             device.HardDiskFormats ?? [], EmulationMediaDialogFunctions.ClientGuid(_moduleId, _configuration?.MachineId ?? string.Empty, device.Slot),
-            path => HardDiskDeletionService.DeleteAsync(path, _configuration!));
+            path => HardDiskDeletionService.DeleteAsync(path, _configuration!), configurationFields: device.ConfigurationFields, options: currentSettings?.Options, moduleId: _moduleId);
         string? supportPath;
         string? interfaceId;
+        IReadOnlyDictionary<string, string> options;
         try
         {
             if (dialog.ShowDialog() != true) return;
             supportPath = dialog.SupportPath;
             interfaceId = dialog.InterfaceId;
+            options = dialog.Options;
         }
         finally
         {
@@ -280,7 +286,7 @@ internal sealed class EmulationStorageSettingsController
         _settings = _settings with
         {
             MountedMedia = _settings.MountedMedia.Where(item => item.Slot != device.Slot).Concat(media is null ? [] : new[] { media }).ToArray(),
-            DeviceSettings = (_settings.DeviceSettings ?? []).Where(item => item.Slot != device.Slot).Append(new EmulationStorageDeviceSettings(device.Slot, InterfaceId: media is null ? null : interfaceId?.ToLowerInvariant())).ToArray()
+            DeviceSettings = (_settings.DeviceSettings ?? []).Where(item => item.Slot != device.Slot).Append(new EmulationStorageDeviceSettings(device.Slot, InterfaceId: media is null ? null : interfaceId?.ToLowerInvariant(), Options: options)).ToArray()
         };
         Rebuild();
         SettingsChanged?.Invoke(this, EventArgs.Empty);

@@ -17,7 +17,7 @@ namespace GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Amstrad;
 /// <summary>Decodes CPC firmware cassette records retained in CDT/TZX or captured as PCM audio.</summary>
 public sealed class AmstradCpcTapeDecoder : ISequentialMediaDecoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.Tzx, TapeImageFormatIds.Wav, TapeImageFormatIds.Audio, TapeImageFormatIds.Voc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.Tzx, TapeImageFormatIds.Wav, TapeImageFormatIds.Csw, TapeImageFormatIds.Raw, TapeImageFormatIds.Audio, TapeImageFormatIds.Voc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Amstrad }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => AmstradCpcTapeConstants.DecoderId;

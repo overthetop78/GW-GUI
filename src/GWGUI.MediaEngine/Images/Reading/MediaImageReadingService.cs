@@ -1,4 +1,5 @@
 using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using System.IO;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Images.Reading.Recognition;
 
@@ -19,7 +20,15 @@ public sealed class MediaImageReadingService
     {
         ArgumentNullException.ThrowIfNull(source);
         var context = new MediaRecognitionContext(source);
-        var result = await recognitionRegistry.RecognizeAsync(context, cancellationToken).ConfigureAwait(false);
-        return result.Document;
+        try
+        {
+            var result = await recognitionRegistry.RecognizeAsync(context, cancellationToken).ConfigureAwait(false);
+            return result.Document;
+        }
+        catch (Exception error) when (source.RequestedFormatId is null && context.Extension == ".raw" && (error is NotSupportedException || error is AggregateException aggregate && aggregate.InnerExceptions.All(inner => inner is InvalidDataException or NotSupportedException)))
+        {
+            // Un disque RAW reconnu reste un disque ; l'audio sans en-tête est proposé seulement en dernier recours.
+            return await new GWGUI.MediaEngine.Images.Formats.Tape.Raw.RawTapeReader().ReadAsync(new MediaRecognitionContext(source with { RequestedFormatId = GWGUI.MediaEngine.Constants.TapeImageFormatIds.Raw }), cancellationToken).ConfigureAwait(false);
+        }
     }
 }

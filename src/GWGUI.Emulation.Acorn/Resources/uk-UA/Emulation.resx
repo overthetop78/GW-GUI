@@ -14,4 +14,12 @@
   <data name="Emulation.Acorn.Video.Output"><value>Відеовиставка</value></data>
   <data name="Emulation.Acorn.Video.Output.Monochrome"><value>Композитний (монохромний)</value></data>
   <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>Композитний (холодний, S39) , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , ,</value></data>
+  <data name="Emulation.Acorn.Network.Enabled"><value>Встановіть інтерфейс Econet</value></data>
+  <data name="Emulation.Acorn.Network.Station"><value>Номер станції</value></data>
+  <data name="Emulation.Acorn.Network.Clock"><value>Мережевий годинник</value></data>
+  <data name="Emulation.Acorn.Network.Mode"><value>Підключення мережі</value></data>
+  <data name="Emulation.Acorn.Network.Disconnected"><value>Відключені</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress"><value>Адреса електронної пошти</value></data>
+  <data name="Emulation.Acorn.Network.Port"><value>UDP абзац</value></data>
+  <data name="Emulation.Acorn.Network.Peers"><value>Віддалені станції</value></data>
 </root>

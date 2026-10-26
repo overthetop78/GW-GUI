@@ -16,4 +16,23 @@
   <data name="Emulation.Cassette.State.Paused"><value>Paused</value></data>
   <data name="Emulation.Cassette.State.Recording"><value>Recording</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>End of tape</value></data>
+  <data name="Emulation.Cassette.Settings.Baud"><value>Data rate (baud)</value></data>
+  <data name="Emulation.Cassette.Settings.Automatic"><value>Automatic</value></data>
+  <data name="Emulation.Cassette.Settings.Mode"><value>Loading mode</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.RealTime"><value>Real-time reading</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Accelerated"><value>Accelerated reading</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Direct"><value>Direct loading</value></data>
+  <data name="Emulation.Cassette.Settings.Speed"><value>Tape speed</value></data>
+  <data name="Emulation.Cassette.Settings.Wind"><value>Fast winding speed</value></data>
+  <data name="Emulation.Cassette.Settings.ReadLatency"><value>Read motor delay</value></data>
+  <data name="Emulation.Cassette.Settings.WriteLatency"><value>Recording motor delay</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Mechanical sounds</value></data>
+  <data name="Emulation.Cassette.Settings.Protected"><value>Write protection</value></data>
+  <data name="Emulation.Cassette.Pcm.SampleRate"><value>RAW sample rate (Hz)</value></data>
+  <data name="Emulation.Cassette.Pcm.Channels"><value>RAW channels</value></data>
+  <data name="Emulation.Cassette.Pcm.Bits"><value>RAW bits per sample</value></data>
+  <data name="Emulation.Cassette.Pcm.Signed"><value>RAW signed samples</value></data>
+  <data name="Emulation.Cassette.Pcm.LittleEndian"><value>RAW little-endian samples</value></data>
+  <data name="Emulation.Cassette.Pcm.Input"><value>RAW cassette input profile</value></data>
+  <data name="Emulation.Cassette.Pcm.Output"><value>RAW cassette recording profile</value></data>
 </root>

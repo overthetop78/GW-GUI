@@ -8,4 +8,5 @@ internal interface ICpuBus
     void Write(ushort address, byte value);
     void Tick();
     bool Irq { get; }
+    bool Nmi { get; }
 }

@@ -50,7 +50,11 @@ internal static class BbcMicroFirmwareFunctions
         if (FirmwareCatalog.BySha1.TryGetValue(Convert.ToHexString(SHA1.HashData(bytes)), out var known)) return known.Combined ? null : known.Category;
         if (bytes.Length is not (BbcMicroFirmwareConstants.BankSize or BbcMicroFirmwareConstants.BankSize / 2)) return null;
         var copyright = bytes[7];
-        if (copyright + 2 < bytes.Length && bytes[copyright] == '(' && bytes[copyright + 1] == 'C' && bytes[copyright + 2] == ')') return FirmwareCategory.Language;
+        if (copyright + 3 < bytes.Length && bytes[copyright] == 0 && bytes[copyright + 1] == '(' && bytes[copyright + 2] == 'C' && bytes[copyright + 3] == ')')
+        {
+            if ((bytes[6] & 0x40) != 0) return FirmwareCategory.Language;
+            if ((bytes[6] & 0x80) != 0) return FirmwareCategory.Application;
+        }
         if (bytes.Length == BbcMicroFirmwareConstants.BankSize && (bytes[^4] | bytes[^3] << 8) is >= 0xc000 and < 0xfc00) return FirmwareCategory.OperatingSystem;
         return null;
     }
@@ -60,9 +64,9 @@ internal static class BbcMicroFirmwareFunctions
     {
         if (role == FirmwareCategory.CharacterGenerator)
             return bytes.Length == BbcMicroFirmwareConstants.CharacterRomSize ? bytes.ToArray() : throw new InvalidDataException(role.ToString());
-        if (role is not (FirmwareCategory.OperatingSystem or FirmwareCategory.Basic or FirmwareCategory.Language)) throw new ArgumentOutOfRangeException(nameof(role));
+        if (role is not (FirmwareCategory.OperatingSystem or FirmwareCategory.Basic or FirmwareCategory.Language or FirmwareCategory.DiscFilingSystem or FirmwareCategory.Network)) throw new ArgumentOutOfRangeException(nameof(role));
         if (bytes.Length == BbcMicroFirmwareConstants.BankSize) return bytes.ToArray();
-        if (bytes.Length == BbcMicroFirmwareConstants.BankSize * 2) return bytes.Slice(role == FirmwareCategory.OperatingSystem ? BbcMicroFirmwareConstants.BankSize : 0, BbcMicroFirmwareConstants.BankSize).ToArray();
+        if (bytes.Length == BbcMicroFirmwareConstants.BankSize * 2 && role is not (FirmwareCategory.DiscFilingSystem or FirmwareCategory.Network)) return bytes.Slice(role == FirmwareCategory.OperatingSystem ? BbcMicroFirmwareConstants.BankSize : 0, BbcMicroFirmwareConstants.BankSize).ToArray();
         if (bytes.Length == BbcMicroFirmwareConstants.BankSize / 2 && role != FirmwareCategory.OperatingSystem)
         {
             var image = new byte[BbcMicroFirmwareConstants.BankSize];

@@ -86,4 +86,7 @@
   <data name="Emulation.Storage.Cache.Unlimited"><value>Unlimited</value></data>
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Clear when the game closes</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>Card name</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>Transfer speed</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>Read latency</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>Write latency</value></data>
 </root>

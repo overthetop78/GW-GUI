@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Εκκαθάριση όταν κλείνει το παιχνίδι</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>Κάρτα μνήμης</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>Όνομα κάρτας</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>Ταχύτητα μεταφοράς</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>Λήθη ανάγνωσης</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>Λήθη εγγραφής</value></data>
 </root>

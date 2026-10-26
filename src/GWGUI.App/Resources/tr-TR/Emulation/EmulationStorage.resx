@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Oyun kapatıldığında temizle</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>Memory kartvizit</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>Card name name name</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>Transfer hızı</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>Okunma</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>Geçincy yaz</value></data>
 </root>

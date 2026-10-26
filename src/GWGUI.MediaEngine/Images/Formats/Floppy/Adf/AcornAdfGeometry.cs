@@ -26,4 +26,7 @@ public static class AcornAdfGeometry
     public static RegularSectorGeometry Geometry { get; } = new(DiskImageFormatIds.AcornAdfs800, BlockSize, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, SectorsPerTrack);
     /// <summary>Géométrie Archimedes haute densité de 1600 Kio.</summary>
     public static RegularSectorGeometry HighDensityGeometry { get; } = new(DiskImageFormatIds.AcornAdfs1600, BlockSize, DiskGeometryConstants.EightyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, HighDensitySectorsPerTrack);
+    /// <summary>Géométries BBC ADFS S/M/L, rangées par cylindre, face puis secteur à base zéro.</summary>
+    public static IReadOnlyList<RegularSectorGeometry> BbcGeometries { get; } = Array.AsReadOnly<RegularSectorGeometry>([new(DiskImageFormatIds.AcornAdfs160, 256, 40, 1, 16), new(DiskImageFormatIds.AcornAdfs320, 256, 80, 1, 16), new(DiskImageFormatIds.AcornAdfs640, 256, 80, 2, 16)]);
+    public static IReadOnlyList<RegularSectorGeometry> All { get; } = Array.AsReadOnly(BbcGeometries.Concat([Geometry, HighDensityGeometry]).ToArray());
 }

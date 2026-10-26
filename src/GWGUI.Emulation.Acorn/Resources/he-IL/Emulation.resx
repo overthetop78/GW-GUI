@@ -14,4 +14,12 @@
   <data name="Emulation.Acorn.Video.Output"><value>וידאו הפקה</value></data>
   <data name="Emulation.Acorn.Video.Output.Monochrome"><value>אתר (monochrome)</value></data>
   <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>אתר (Colour, S39) )</value></data>
+  <data name="Emulation.Acorn.Network.Enabled"><value>ממשק Econet</value></data>
+  <data name="Emulation.Acorn.Network.Station"><value>מספר התחנה</value></data>
+  <data name="Emulation.Acorn.Network.Clock"><value>שעון רשת</value></data>
+  <data name="Emulation.Acorn.Network.Mode"><value>חיבור רשת</value></data>
+  <data name="Emulation.Acorn.Network.Disconnected"><value>דיסוציא</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress"><value>כתובת IPv4</value></data>
+  <data name="Emulation.Acorn.Network.Port"><value>UDP נמל הנמל הנמל</value></data>
+  <data name="Emulation.Acorn.Network.Peers"><value>תחנות מרוחקות</value></data>
 </root>

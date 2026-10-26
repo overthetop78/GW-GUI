@@ -7,6 +7,8 @@ public static partial class DiskImageFormatIds
 {
     /// <summary>Préfixe des formats Acorn ADFS.</summary>
     public const string AcornAdfsPrefix = "acorn.adfs.";
+    /// <summary>ADFS BBC S, M et L : secteurs de 256 octets.</summary>
+    public const string AcornAdfs160 = "acorn.adfs.160", AcornAdfs320 = "acorn.adfs.320", AcornAdfs640 = "acorn.adfs.640";
     /// <summary>Image Acorn ADFS de 800 Kio.</summary>
     public const string AcornAdfs800 = MediaImageFormatIds.AcornAdfs800;
     /// <summary>Image Acorn ADFS de 1600 Kio.</summary>

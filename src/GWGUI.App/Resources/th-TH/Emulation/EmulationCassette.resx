@@ -16,4 +16,23 @@
   <data name="Emulation.Cassette.State.Paused"><value>หยุดชั่วคราว</value></data>
   <data name="Emulation.Cassette.State.Recording"><value>กำลังบันทึก</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>สุดปลายเทป</value></data>
+  <data name="Emulation.Cassette.Settings.Baud"><value>อัตราข้อมูล (เบา)</value></data>
+  <data name="Emulation.Cassette.Settings.Automatic"><value>อัตโนมัติ</value></data>
+  <data name="Emulation.Cassette.Settings.Mode"><value>โหมดการโหลด</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.RealTime"><value>การอ่านแบบเรียลไทม์</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Accelerated"><value>การอ่านแบบเร่งความเร็ว</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Direct"><value>การโหลดโดยตรง</value></data>
+  <data name="Emulation.Cassette.Settings.Speed"><value>ความเร็วของเทป</value></data>
+  <data name="Emulation.Cassette.Settings.Wind"><value>ความเร็วลม</value></data>
+  <data name="Emulation.Cassette.Settings.ReadLatency"><value>อ่านการหน่วงของมอเตอร์</value></data>
+  <data name="Emulation.Cassette.Settings.WriteLatency"><value>บันทึกการล่าช้ามอเตอร์</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>เสียงจักรกล</value></data>
+  <data name="Emulation.Cassette.Settings.Protected"><value>ป้องกัน การ เขียน</value></data>
+  <data name="Emulation.Cassette.Pcm.SampleRate"><value>RAW อัตราสุ่มตัวอย่าง (Hz)</value></data>
+  <data name="Emulation.Cassette.Pcm.Channels"><value>RAW ช่อง</value></data>
+  <data name="Emulation.Cassette.Pcm.Bits"><value>RAW บิตต่อตัวอย่าง</value></data>
+  <data name="Emulation.Cassette.Pcm.Signed"><value>RAW ลายเซ็น</value></data>
+  <data name="Emulation.Cassette.Pcm.LittleEndian"><value>RAW ตัวอย่างเล็ก ๆ น้อย ๆ</value></data>
+  <data name="Emulation.Cassette.Pcm.Input"><value>RAW โพรไฟล์การนําเข้า</value></data>
+  <data name="Emulation.Cassette.Pcm.Output"><value>RAW โพรไฟล์การบันทึกเสียง</value></data>
 </root>

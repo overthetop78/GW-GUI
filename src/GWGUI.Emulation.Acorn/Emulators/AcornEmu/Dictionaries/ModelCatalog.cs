@@ -17,11 +17,17 @@ internal static class ModelCatalog
     [
         new(MachineModel.BbcMicroModelA, (double)BbcMicroModelConstants.CpuFrequencyHz / BbcMicroModelAConstants.CyclesPerFrame,
             VideoConstants.Width, VideoConstants.Height, 4, EmulationPixelFormat.Xrgb8888, 4f / 3, EmulationVideoStandard.Pal,
-            configuration => new ModelAMachine(FirmwareFunctions.Read(configuration, EmulatorConstants.SystemFirmware), FirmwareFunctions.Read(configuration, EmulatorConstants.BasicFirmware), BbcMicroMemoryFunctions.ModelABytes(configuration), FirmwareFunctions.Read(configuration, EmulatorConstants.CharacterFirmware))
-            {
-                Video = { Monochrome = configuration.Options.GetValueOrDefault(EmulatorConstants.VideoOutput, EmulatorConstants.UhfOutput) == EmulatorConstants.MonochromeOutput }
-            })
+            CreateModelA)
     ];
+
+    private static ModelAMachine CreateModelA(MachineConfiguration configuration)
+    {
+        var network = NetworkFunctions.Read(configuration);
+        return new ModelAMachine(FirmwareFunctions.Read(configuration, EmulatorConstants.SystemFirmware), FirmwareFunctions.Read(configuration, EmulatorConstants.BasicFirmware), BbcMicroMemoryFunctions.ModelABytes(configuration), FirmwareFunctions.Read(configuration, EmulatorConstants.CharacterFirmware), StorageFunctions.HasInterface(configuration), FirmwareFunctions.OptionRoms(configuration), StorageFunctions.UsesWd1770(configuration), StorageFunctions.HasWinchester(configuration), network.Enabled, network.Station, network.CyclesPerByte)
+        {
+            Video = { Monochrome = configuration.Options.GetValueOrDefault(EmulatorConstants.VideoOutput, EmulatorConstants.UhfOutput) == EmulatorConstants.MonochromeOutput }
+        };
+    }
 
     internal static AcornEmuModelDefinition Get(MachineModel model) => All.SingleOrDefault(item => item.Model == model) ?? throw new NotSupportedException(model.ToString());
 }

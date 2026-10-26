@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>關閉遊戲時清空</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>记忆卡</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>名牌名称</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>传输速度</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>读取延迟</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>写长空</value></data>
 </root>

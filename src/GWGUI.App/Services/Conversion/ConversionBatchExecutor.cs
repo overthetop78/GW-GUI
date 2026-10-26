@@ -38,7 +38,9 @@ public sealed class ConversionBatchExecutor(IGreaseweazleRunner runner, MediaIma
         Action<GwBatchItem>? itemStarting = null,
         CancellationToken cancellationToken = default,
         OperationEngine engine = OperationEngine.Internal,
-        bool acceptSequentialLosses = false)
+        bool acceptSequentialLosses = false,
+        IReadOnlyDictionary<string, string>? sourceParameters = null,
+        IReadOnlyDictionary<string, string>? targetParameters = null)
     {
         var completed = new List<GwBatchItemResult>(items.Count);
         MediaImageDocument? sourceDocument = null;
@@ -58,14 +60,14 @@ public sealed class ConversionBatchExecutor(IGreaseweazleRunner runner, MediaIma
                     continue;
                 }
 
-                sourceDocument ??= await mediaReader.ReadAsync(new MediaSourceDescriptor(sourcePath, []), cancellationToken).ConfigureAwait(false);
+                sourceDocument ??= await mediaReader.ReadAsync(new MediaSourceDescriptor(sourcePath, [], RequestedFormatId: sourceParameters is not null && Path.GetExtension(sourcePath).Equals(".raw", StringComparison.OrdinalIgnoreCase) ? GWGUI.MediaEngine.Constants.TapeImageFormatIds.Raw : null) { Parameters = sourceParameters }, cancellationToken).ConfigureAwait(false);
                 var isDirectMediaEngineDestination = conversionService.GetAvailableDestinations(sourceDocument).Any(destination =>
                     destination.FormatId.Equals(output.FormatId, StringComparison.OrdinalIgnoreCase)
                     && destination.Extension.Equals(output.Extension, StringComparison.OrdinalIgnoreCase));
                 var isSequentialDestination = false;
                 if (!isDirectMediaEngineDestination)
                 {
-                    var sequentialDestinations = await sequentialConversionService.GetAvailableDestinationsAsync(sourceDocument, cancellationToken: cancellationToken).ConfigureAwait(false);
+                    var sequentialDestinations = await sequentialConversionService.GetAvailableDestinationsAsync(sourceDocument, parameters: targetParameters, cancellationToken: cancellationToken).ConfigureAwait(false);
                     isSequentialDestination = sequentialDestinations.Any(destination => destination.FormatId.Equals(output.FormatId, StringComparison.OrdinalIgnoreCase) && destination.Extension.Equals(output.Extension, StringComparison.OrdinalIgnoreCase));
                 }
                 if (!isDirectMediaEngineDestination && !isSequentialDestination)
@@ -77,11 +79,13 @@ public sealed class ConversionBatchExecutor(IGreaseweazleRunner runner, MediaIma
                 Report(progress, GwOutputStream.Standard, LocExtension.Get("Conversion.EngineInternalStart", Path.GetFileName(sourcePath), item.Label));
                 if (isSequentialDestination)
                 {
-                    await sequentialConversionService.ConvertAsync(sourcePath, output.OutputPath, output.FormatId, acceptLosses: acceptSequentialLosses, progress: conversionProgress, cancellationToken: cancellationToken).ConfigureAwait(false);
+                    var parameters = new Dictionary<string, string>(targetParameters ?? new Dictionary<string, string>());
+                    foreach (var pair in sourceParameters ?? new Dictionary<string, string>()) parameters["source." + pair.Key] = pair.Value;
+                    await sequentialConversionService.ConvertAsync(sourcePath, output.OutputPath, output.FormatId, parameters: parameters, acceptLosses: acceptSequentialLosses, progress: conversionProgress, cancellationToken: cancellationToken).ConfigureAwait(false);
                 }
                 else
                 {
-                    await conversionService.ConvertAsync(new MediaConversionRequest(sourceDocument, output.OutputPath, output.FormatId, progress: conversionProgress), cancellationToken).ConfigureAwait(false);
+                    await conversionService.ConvertAsync(new MediaConversionRequest(sourceDocument, output.OutputPath, output.FormatId, options: targetParameters, progress: conversionProgress), cancellationToken).ConfigureAwait(false);
                 }
                 Report(progress, GwOutputStream.Standard, LocExtension.Get("Conversion.EngineInternalComplete", item.Label));
                 completed.Add(new(item, new(0, false, stopwatch.Elapsed, [])));

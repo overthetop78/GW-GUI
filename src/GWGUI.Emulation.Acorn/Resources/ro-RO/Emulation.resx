@@ -14,4 +14,12 @@
   <data name="Emulation.Acorn.Video.Output"><value>Ieșire video</value></data>
   <data name="Emulation.Acorn.Video.Output.Monochrome"><value>Compus (monocrom)</value></data>
   <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>Compus (colorat, S39)</value></data>
+  <data name="Emulation.Acorn.Network.Enabled"><value>Instalează interfața Econet</value></data>
+  <data name="Emulation.Acorn.Network.Station"><value>Numărul postului</value></data>
+  <data name="Emulation.Acorn.Network.Clock"><value>Ceasul rețelei</value></data>
+  <data name="Emulation.Acorn.Network.Mode"><value>Conexiune rețea</value></data>
+  <data name="Emulation.Acorn.Network.Disconnected"><value>Deconectat</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress"><value>Adresa IPv4 locală</value></data>
+  <data name="Emulation.Acorn.Network.Port"><value>UDP port</value></data>
+  <data name="Emulation.Acorn.Network.Peers"><value>Stații la distanță</value></data>
 </root>

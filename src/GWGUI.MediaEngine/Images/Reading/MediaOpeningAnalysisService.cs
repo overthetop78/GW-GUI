@@ -41,6 +41,7 @@ public sealed class MediaOpeningAnalysisService(MediaImageReadingService reader,
         }
 
         cancellationToken.ThrowIfCancellationRequested();
+        document = await GWGUI.MediaEngine.Functions.CassetteBlockFunctions.IndexAsync(document, cancellationToken).ConfigureAwait(false);
         if (!includeFileSystems)
             return new(document, null, null);
 

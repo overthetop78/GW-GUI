@@ -16,4 +16,23 @@
   <data name="Emulation.Cassette.State.Paused"><value>Szüneteltetve</value></data>
   <data name="Emulation.Cassette.State.Recording"><value>Felvétel</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>Szalag vége</value></data>
+  <data name="Emulation.Cassette.Settings.Baud"><value>Adatsebesség (baud)</value></data>
+  <data name="Emulation.Cassette.Settings.Automatic"><value>Automatikus</value></data>
+  <data name="Emulation.Cassette.Settings.Mode"><value>Berakodási mód</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.RealTime"><value>Real- time reading</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Accelerated"><value>Gyorsított leolvasás</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Direct"><value>Közvetlen berakodás</value></data>
+  <data name="Emulation.Cassette.Settings.Speed"><value>A szalag sebessége</value></data>
+  <data name="Emulation.Cassette.Settings.Wind"><value>Gyors tekercselési sebesség</value></data>
+  <data name="Emulation.Cassette.Settings.ReadLatency"><value>A motor késleltetése olvasása</value></data>
+  <data name="Emulation.Cassette.Settings.WriteLatency"><value>A motor rögzítésének késleltetése</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Mechanikus hangok</value></data>
+  <data name="Emulation.Cassette.Settings.Protected"><value>Írásvédelem</value></data>
+  <data name="Emulation.Cassette.Pcm.SampleRate"><value>RAW mintaarány (Hz)</value></data>
+  <data name="Emulation.Cassette.Pcm.Channels"><value>RAW csatornák</value></data>
+  <data name="Emulation.Cassette.Pcm.Bits"><value>RAW minta-bit</value></data>
+  <data name="Emulation.Cassette.Pcm.Signed"><value>RAW aláírt minták</value></data>
+  <data name="Emulation.Cassette.Pcm.LittleEndian"><value>RAW kis-endi minták</value></data>
+  <data name="Emulation.Cassette.Pcm.Input"><value>RAW kazetta bemenő profilja</value></data>
+  <data name="Emulation.Cassette.Pcm.Output"><value>RAW kazetta-felvevő profil</value></data>
 </root>

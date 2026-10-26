@@ -17,7 +17,7 @@ namespace GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Acorn;
 /// <summary>Rebuilds validated Acorn cassette blocks as UEF implicit data chunks or standard PCM FSK.</summary>
 public sealed class AcornTapeEncoder : ISequentialMediaEncoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.Uef, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.Uef, TapeImageFormatIds.Wav, TapeImageFormatIds.Csw, TapeImageFormatIds.Raw }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.AcornBbc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => UefConstants.EncoderId;
@@ -46,7 +46,7 @@ public sealed class AcornTapeEncoder : ISequentialMediaEncoder
             TryBuildBlock(block, out var bytes);
             return bytes;
         }).ToArray();
-        return Task.FromResult(request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase) ? EncodeWave(encodedBlocks, request.Parameters) : EncodeUef(encodedBlocks));
+        return Task.FromResult(request.TargetFormatId.Equals(TapeImageFormatIds.Uef, StringComparison.OrdinalIgnoreCase) ? EncodeUef(encodedBlocks) : EncodeWave(encodedBlocks, request.Parameters));
     }
 
     private static SequentialMediaImageRepresentation EncodeUef(IReadOnlyList<byte[]> blocks)
@@ -56,10 +56,14 @@ public sealed class AcornTapeEncoder : ISequentialMediaEncoder
         for (var index = 0; index < blocks.Count; index++)
         {
             var bytes = blocks[index];
+            var carrierSeconds = index == 0 ? UefConstants.InitialCarrierSeconds : UefConstants.InterBlockCarrierSeconds;
+            var carrier = new byte[2]; BinaryPrimitives.WriteUInt16LittleEndian(carrier, checked((ushort)Math.Round(carrierSeconds * 2 * UefConstants.DefaultBaseFrequency)));
+            segments.Add(new(segments.Count, SequentialSegmentKind.Carrier, start: elapsed, duration: TimeSpan.FromSeconds(carrierSeconds), dataRange: new MediaDataRange(0, carrier.Length, MediaDataRangeKind.Stored, new MemoryRandomAccessData(carrier)), metadata: new Dictionary<string, string> { [UefConstants.ChunkIdMetadataKey] = UefConstants.CarrierTone.ToString("x4", CultureInfo.InvariantCulture) }));
+            elapsed += TimeSpan.FromSeconds(carrierSeconds);
             var duration = TimeSpan.FromSeconds(bytes.Length * (1 + UefConstants.AcornDataBitsPerFrame + UefConstants.AcornStopBitsPerFrame) / (double)UefConstants.DefaultBaudRate);
             var source = new MemoryRandomAccessData(bytes);
             segments.Add(new SequentialMediaSegment(
-                index,
+                segments.Count,
                 SequentialSegmentKind.DataBlock,
                 bytes.Length,
                 elapsed,
@@ -72,6 +76,9 @@ public sealed class AcornTapeEncoder : ISequentialMediaEncoder
                     [UefConstants.ReconstructionMetadataKey] = bool.TrueString
                 }));
             elapsed += duration;
+            var gap = new byte[4]; BinaryPrimitives.WriteSingleLittleEndian(gap, (float)UefConstants.InterBlockGapSeconds);
+            segments.Add(new(segments.Count, SequentialSegmentKind.Silence, start: elapsed, duration: TimeSpan.FromSeconds(UefConstants.InterBlockGapSeconds), dataRange: new MediaDataRange(0, gap.Length, MediaDataRangeKind.Stored, new MemoryRandomAccessData(gap)), metadata: new Dictionary<string, string> { [UefConstants.ChunkIdMetadataKey] = UefConstants.FloatingGap.ToString("x4", CultureInfo.InvariantCulture) }));
+            elapsed += TimeSpan.FromSeconds(UefConstants.InterBlockGapSeconds);
         }
         return new SequentialMediaImageRepresentation(blocks.Sum(block => (long)block.Length), elapsed, segments);
     }

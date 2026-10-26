@@ -15,4 +15,5 @@
   <data name="Emulation.Tab.Advanced"><value>Дополнительно</value></data>
   <data name="Emulation.Tab.Shortcuts"><value>Горячие клавиши</value></data>
   <data name="Emulation.Tab.Audio"><value>Аудио</value></data>
+  <data name="Emulation.Tab.Ethernet"><value>Сеть</value></data>
 </root>

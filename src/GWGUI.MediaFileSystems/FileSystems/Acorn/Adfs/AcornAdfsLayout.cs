@@ -9,6 +9,8 @@ public static class AcornAdfsLayout
     public const int FileCoreUnitSize = 256;
     /// <summary>Taille d'un répertoire.</summary>
     public const int DirectorySize = 2048;
+    /// <summary>Répertoires BBC ADFS S/M/L et Winchester : cinq secteurs, 47 entrées.</summary>
+    public const int BbcDirectorySize = 1280, BbcEntryCount = 47, BbcDirectoryNameOffset = 1228, BbcTitleOffset = 1241;
     /// <summary>Nombre attendu de blocs de l'image ADFS prise en charge.</summary>
     public const int ImageBlockCount = 800;
     /// <summary>Nombre maximal d'entrées.</summary>

@@ -16,4 +16,23 @@
   <data name="Emulation.Cassette.State.Paused"><value>Пауза</value></data>
   <data name="Emulation.Cassette.State.Recording"><value>Запис</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>Кінець стрічки</value></data>
+  <data name="Emulation.Cassette.Settings.Baud"><value>Курс даних (бадь)</value></data>
+  <data name="Emulation.Cassette.Settings.Automatic"><value>Автоматична</value></data>
+  <data name="Emulation.Cassette.Settings.Mode"><value>Режим завантаження</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.RealTime"><value>Реальне читання</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Accelerated"><value>Прискорене читання</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Direct"><value>Пряма завантаження</value></data>
+  <data name="Emulation.Cassette.Settings.Speed"><value>Швидкість стрічки</value></data>
+  <data name="Emulation.Cassette.Settings.Wind"><value>Швидка швидкість вимотування</value></data>
+  <data name="Emulation.Cassette.Settings.ReadLatency"><value>Затримка двигуна</value></data>
+  <data name="Emulation.Cassette.Settings.WriteLatency"><value>Затримка двигуна</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Механічні звуки</value></data>
+  <data name="Emulation.Cassette.Settings.Protected"><value>Захист від відповідальності</value></data>
+  <data name="Emulation.Cassette.Pcm.SampleRate"><value>RAW швидкість зразка (Хз)</value></data>
+  <data name="Emulation.Cassette.Pcm.Channels"><value>RAW магазини</value></data>
+  <data name="Emulation.Cassette.Pcm.Bits"><value>RAW біти на зразок</value></data>
+  <data name="Emulation.Cassette.Pcm.Signed"><value>RAW зразки</value></data>
+  <data name="Emulation.Cassette.Pcm.LittleEndian"><value>RAW малокінцеві зразки</value></data>
+  <data name="Emulation.Cassette.Pcm.Input"><value>RAW касетний профіль введення</value></data>
+  <data name="Emulation.Cassette.Pcm.Output"><value>RAW касетний профіль запису</value></data>
 </root>

@@ -4,7 +4,7 @@ namespace GWGUI.App.Functions.Emulation.Machine;
 
 internal static class CassetteTransportPresentationFunctions
 {
-    internal static bool IsEnabled(bool powered, bool supported, EmulationCassetteState state, EmulationCassetteCommand? activeOperation, EmulationCassetteCommand command) => powered && supported && state != EmulationCassetteState.Empty && !IsRunning(state, activeOperation, command);
+    internal static bool IsEnabled(bool powered, bool supported, EmulationCassetteState state, EmulationCassetteCommand? activeOperation, EmulationCassetteCommand command) => powered && supported && (state != EmulationCassetteState.Empty || command == EmulationCassetteCommand.Record) && !IsRunning(state, activeOperation, command);
 
     internal static bool IsActive(EmulationCassetteState state, EmulationCassetteCommand? activeOperation, EmulationCassetteCommand command) => command switch
     {
@@ -13,6 +13,7 @@ internal static class CassetteTransportPresentationFunctions
         EmulationCassetteCommand.Record => activeOperation == command
             && state is EmulationCassetteState.Recording or EmulationCassetteState.Paused,
         EmulationCassetteCommand.Pause => state == EmulationCassetteState.Paused,
+        EmulationCassetteCommand.Rewind or EmulationCassetteCommand.FastForward => activeOperation == command,
         _ => false
     };
 

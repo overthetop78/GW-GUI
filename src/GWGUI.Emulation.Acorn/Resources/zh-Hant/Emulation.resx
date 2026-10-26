@@ -14,4 +14,12 @@
   <data name="Emulation.Acorn.Video.Output"><value>视频输出</value></data>
   <data name="Emulation.Acorn.Video.Output.Monochrome"><value>复合(单色)</value></data>
   <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>复合材料(颜色, S39) , (中文(简体) ).</value></data>
+  <data name="Emulation.Acorn.Network.Enabled"><value>安装 Econet 接口</value></data>
+  <data name="Emulation.Acorn.Network.Station"><value>站点编号</value></data>
+  <data name="Emulation.Acorn.Network.Clock"><value>网络时钟</value></data>
+  <data name="Emulation.Acorn.Network.Mode"><value>网络连接</value></data>
+  <data name="Emulation.Acorn.Network.Disconnected"><value>断开连接</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress"><value>本地IPv4 地址</value></data>
+  <data name="Emulation.Acorn.Network.Port"><value>UDP 端口</value></data>
+  <data name="Emulation.Acorn.Network.Peers"><value>远程站</value></data>
 </root>

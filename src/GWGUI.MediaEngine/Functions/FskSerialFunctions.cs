@@ -44,12 +44,17 @@ public static class FskSerialFunctions
         for (var phase = 0; phase < Math.Max(1, (int)Math.Round(samplesPerBit)); phase++)
         {
             var bits = new List<bool>();
-            for (var start = phase; start + samplesPerBit <= samples.Count; start = (int)Math.Round(start + samplesPerBit))
-                bits.Add(ClassifyTone(samples, start, Math.Min(samples.Count, (int)Math.Round(start + samplesPerBit)), sampleRate, zeroFrequency, oneFrequency));
+            for (var bit = 0; ; bit++)
+            {
+                var start = (int)Math.Round(phase + bit * samplesPerBit);
+                var end = (int)Math.Round(phase + (bit + 1) * samplesPerBit);
+                if (end > samples.Count) break;
+                bits.Add(ClassifyTone(samples, start, end, sampleRate, zeroFrequency, oneFrequency));
+            }
             var candidate = DecodeFrames(bits, dataBits, stopBits);
             if (candidate.ValidFrames > best.ValidFrames
                 || candidate.ValidFrames == best.ValidFrames && candidate.Bytes.Count > best.Bytes.Count)
-                best = candidate;
+                best = new FskSerialDecodeResult(candidate.Bytes, candidate.ValidFrames, candidate.TestedFrames, candidate.Positions.Select(position => (int)Math.Round(phase + position * samplesPerBit)).ToArray());
         }
         return best;
     }
@@ -77,10 +82,12 @@ public static class FskSerialFunctions
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(oneFrequency);
         var frequency = value ? oneFrequency : zeroFrequency;
         var halfWaveCount = checked((int)Math.Round(frequency * 2d / baudRate));
-        var samplesPerHalfWave = Math.Max(1, (int)Math.Round(sampleRate / (frequency * 2d)));
+        var start = samples.Count;
+        var end = checked((int)Math.Round((Math.Round(start * (double)baudRate / sampleRate) + 1) * sampleRate / baudRate));
         for (var halfWave = 0; halfWave < halfWaveCount; halfWave++)
         {
-            for (var sample = 0; sample < samplesPerHalfWave; sample++) samples.Add(level);
+            var next = start + (int)Math.Round((halfWave + 1) * (end - start) / (double)halfWaveCount);
+            while (samples.Count < next) samples.Add(level);
             level = (short)-level;
         }
     }
@@ -91,6 +98,7 @@ public static class FskSerialFunctions
         if (dataBits is < 1 or > 8) throw new ArgumentOutOfRangeException(nameof(dataBits));
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(stopBits);
         var bytes = new List<byte>();
+        var positions = new List<int>();
         var tested = 0;
         var valid = 0;
         var frameBits = 1 + dataBits + stopBits;
@@ -114,9 +122,10 @@ public static class FskSerialFunctions
             for (var bit = 0; bit < dataBits; bit++)
                 if (bits[index + bit + 1]) value |= (byte)(1 << bit);
             bytes.Add(value);
+            positions.Add(index);
             valid++;
             index += frameBits;
         }
-        return new FskSerialDecodeResult(bytes, valid, tested);
+        return new FskSerialDecodeResult(bytes, valid, tested, positions);
     }
 }

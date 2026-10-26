@@ -1,4 +1,6 @@
 using GWGUI.MediaEngine.Images.Formats.Floppy.Apple;
+using GWGUI.MediaEngine.Images.Formats.Tape.Csw;
+using GWGUI.MediaEngine.Images.Formats.Tape.Raw;
 using GWGUI.MediaEngine.Images.Formats.Floppy.AcornAtom;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Apridisk;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Atr;
@@ -128,6 +130,8 @@ public sealed class MediaRecognitionComposition
                 new WiiUReader(),
                 new IsoReader(),
                 new WavTapeReader(),
+                new CswReader(),
+                new RawTapeReader(),
                 new AudioTapeReader(),
                 new VocReader(),
                 new UefReader(),
@@ -143,6 +147,7 @@ public sealed class MediaRecognitionComposition
                 new VdiReader(),
                 new VmdkReader(),
                 new ChdHardDiskReader(),
+                new GWGUI.MediaEngine.Images.Formats.HardDisk.Acorn.AcornWinchesterReader(),
                 new RawHardDiskReader()
             ]);
     }

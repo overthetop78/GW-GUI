@@ -16,4 +16,23 @@
   <data name="Emulation.Cassette.State.Paused"><value>Duraklatıldı</value></data>
   <data name="Emulation.Cassette.State.Recording"><value>Kaydediliyor</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>Bant sonu</value></data>
+  <data name="Emulation.Cassette.Settings.Baud"><value>Data rate (baud)</value></data>
+  <data name="Emulation.Cassette.Settings.Automatic"><value>Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik</value></data>
+  <data name="Emulation.Cassette.Settings.Mode"><value>Yükleniyor mod</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.RealTime"><value>Gerçek zamanlı okuma</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Accelerated"><value>Acelerated reading</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Direct"><value>Doğrudan yükleme</value></data>
+  <data name="Emulation.Cassette.Settings.Speed"><value>Bant hızı</value></data>
+  <data name="Emulation.Cassette.Settings.Wind"><value>Hızlı rüzgar hızı</value></data>
+  <data name="Emulation.Cassette.Settings.ReadLatency"><value>Motor gecikme gecikmesi</value></data>
+  <data name="Emulation.Cassette.Settings.WriteLatency"><value>Kayıt motoru gecikme gecikme gecikme gecikme</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Mekanik sesler</value></data>
+  <data name="Emulation.Cassette.Settings.Protected"><value>Write protection</value></data>
+  <data name="Emulation.Cassette.Pcm.SampleRate"><value>RAW Örnek oranı (Hz)</value></data>
+  <data name="Emulation.Cassette.Pcm.Channels"><value>RAW kanalları kanal kanal kanal kanal kanalları</value></data>
+  <data name="Emulation.Cassette.Pcm.Bits"><value>RAW Örnek başına biraz</value></data>
+  <data name="Emulation.Cassette.Pcm.Signed"><value>RAW İmzalanmış örnekler imzalanmış örnekler imzalanmış örnekler imzalanmış örnekler imzalanmış örnekler imzalanmış örnekler imzalanmış örnekler imzalanmış örnekler</value></data>
+  <data name="Emulation.Cassette.Pcm.LittleEndian"><value>RAW Küçük-endian örnekleri</value></data>
+  <data name="Emulation.Cassette.Pcm.Input"><value>RAW casssette input Profil</value></data>
+  <data name="Emulation.Cassette.Pcm.Output"><value>RAW casssette kayıt profili</value></data>
 </root>

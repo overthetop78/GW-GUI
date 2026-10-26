@@ -4,6 +4,10 @@
     - Concevoir ces modifications pour toute catégorie d'émulateur : ordinateur, console, arcade, flipper ou autre électronique.
     - Adapter tous les consommateurs concernés pour disposer d'un parcours cohérent et unique.
   - Donner la priorité aux touches système et aux affectations existantes lors du traitement des entrées.
+  - Faire passer les signaux cassette et leur écriture par Common, les interfaces Emulation et MediaEngine pour tous les émulateurs internes ; conserver l'émulation du matériel dans les composants de la machine.
+    - Proposer les modes réel, accéléré et direct, les débits propres à la machine et les déplacements entre blocs ; associer les bruits mécaniques au mode réel.
+    - Préserver les données hors de la zone enregistrée, respecter la protection en écriture et sauvegarder avant éjection et extinction.
+    - Utiliser 48 kHz mono PCM signé 16 bits little-endian par défaut pour le RAW ; proposer son profil dans la configuration du lecteur en lecture, dans REC en écriture et dans les options d'entrée/sortie de conversion.
 - Séparer les modèles dans l'émulateur et réunir les traitements réellement communs.
   - Répertorier les identités des BIOS/ROM dans un catalogue partagé de Common/Machines et définir leurs compatibilités dans les profils des machines, indépendamment des émulateurs qui les utilisent.
     - Afficher les ROM connues avec leur compatibilité définie pour la machine, et conserver le statut inconnu pour les fichiers non reconnus ; distinguer cette identification des contraintes de chargement.

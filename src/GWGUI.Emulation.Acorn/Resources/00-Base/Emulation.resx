@@ -18,4 +18,17 @@
   <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>Composite (colour, S39)</value></data>
   <data name="Emulation.Acorn.Video.Output.Uhf" xml:space="preserve"><value>UHF PAL</value></data>
   <data name="Emulation.Acorn.Video.Output.Rgb" xml:space="preserve"><value>RGB</value></data>
+  <data name="Emulation.Acorn.Network.Title"><value>Econet</value></data>
+  <data name="Emulation.Acorn.Network.Rom"><value>NFS ROM</value></data>
+  <data name="Emulation.Acorn.Network.Udp"><value>UDP (BeebEm)</value></data>
+  <data name="Emulation.Acorn.Network.Aun"><value>AUN</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>0.254=127.0.0.1:32769;0.3=127.0.0.1:32770</value></data>
+  <data name="Emulation.Acorn.Network.Enabled"><value>Install Econet interface</value></data>
+  <data name="Emulation.Acorn.Network.Station"><value>Station number</value></data>
+  <data name="Emulation.Acorn.Network.Clock"><value>Network clock</value></data>
+  <data name="Emulation.Acorn.Network.Mode"><value>Network connection</value></data>
+  <data name="Emulation.Acorn.Network.Disconnected"><value>Disconnected</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress"><value>Local IPv4 address</value></data>
+  <data name="Emulation.Acorn.Network.Port"><value>UDP port</value></data>
+  <data name="Emulation.Acorn.Network.Peers"><value>Remote stations</value></data>
 </root>

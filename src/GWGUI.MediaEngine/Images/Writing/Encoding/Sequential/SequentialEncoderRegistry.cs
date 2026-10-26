@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Contracts;
+using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Interfaces.Encoding;
 using GWGUI.MediaEngine.Images.Models.Sequential;
 
@@ -20,6 +21,7 @@ public sealed class SequentialEncoderRegistry
     public IReadOnlyList<ISequentialMediaEncoder> FindCompatible(SequentialEncodeRequest request)
     {
         ArgumentNullException.ThrowIfNull(request);
+        request = SignalRequest(request);
         return encoders.Where(encoder => encoder.CanEncode(request)).ToArray();
     }
 
@@ -34,5 +36,13 @@ public sealed class SequentialEncoderRegistry
         };
     }
 
-    public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default) => GetRequired(request).EncodeAsync(request, cancellationToken);
+    public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)
+    {
+        request = SignalRequest(request);
+        return GetRequired(request).EncodeAsync(request, cancellationToken);
+    }
+
+    /// <summary>Les conteneurs CSW et RAW reçoivent le même signal que WAV ; le protocole est encodé une seule fois.</summary>
+    private static SequentialEncodeRequest SignalRequest(SequentialEncodeRequest request) => request.TargetFormatId is TapeImageFormatIds.Csw or TapeImageFormatIds.Raw
+        ? new(TapeImageFormatIds.Wav, request.MachineId, request.Blocks, request.RetainedSegments, request.Parameters) : request;
 }

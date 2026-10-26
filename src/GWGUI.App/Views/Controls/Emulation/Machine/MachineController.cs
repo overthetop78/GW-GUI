@@ -387,6 +387,45 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
     {
         var cassette = _session.Machine.CassetteTransport;
         if (cassette is null) return;
+        if (command == EmulationCassetteCommand.Record)
+        {
+            var device = _mediaDevices.FirstOrDefault(device => device.MediaType == EmulationMediaType.Cassette);
+            if (device is null) return;
+            var extensions = EmulationSdk.MediaProcessing.CassetteRecordingExtensions.Where(extension => device.AcceptedExtensions.Contains(extension, StringComparer.OrdinalIgnoreCase)).ToArray();
+            if (extensions.Length == 0) return;
+            var dialog = new SaveFileDialog
+            {
+                Title = CassetteCommandText(command),
+                Filter = string.Join("|", extensions.Select(extension => $"{extension[1..].ToUpperInvariant()} (*{extension})|*{extension}")),
+                AddExtension = true, DefaultExt = extensions[0], OverwritePrompt = true,
+                InitialDirectory = _options.InitialMediaDirectory(device),
+                ClientGuid = EmulationMediaDialogFunctions.ClientGuid(_options.ModuleId, _options.MachineId, device.Slot)
+            };
+            if (dialog.ShowDialog() != true) return;
+            IReadOnlyDictionary<string, string>? pcm = null;
+            var recordingRate = 48000;
+            if (Path.GetExtension(dialog.FileName).Equals(".raw", StringComparison.OrdinalIgnoreCase))
+            {
+                var defaults = (device.ConfigurationFields ?? []).Where(field => field.Id.StartsWith(EmulationCassettePcmSettings.Prefix, StringComparison.Ordinal) && field.Value is not null).ToDictionary(field => field.Id, field => field.Value!);
+                var profileDialog = new ManagedStorageConfigurationDialog(CassetteCommandText(command), "RAW", _options.ModuleId, EmulationCassettePcmSettings.Describe(defaults), null);
+                try
+                {
+                    if (profileDialog.ShowDialog() != true) return;
+                    var profile = EmulationCassettePcmSettings.Read(profileDialog.Options);
+                    pcm = profile.ToParameters(); recordingRate = profile.SampleRate;
+                }
+                finally { profileDialog.Close(); }
+            }
+            if (cassette.AvailableCommands.Contains(EmulationCassetteCommand.Stop)) await cassette.ExecuteAsync(EmulationCassetteCommand.Stop);
+            if (!File.Exists(dialog.FileName)) await EmulationSdk.MediaProcessing.WriteCassetteAsync(dialog.FileName, new EmulationCassetteSignal(ReadOnlyMemory<short>.Empty, recordingRate), parameters: pcm);
+            var current = _session.MountedMedia.FirstOrDefault(media => media.Slot == device.Slot);
+            var profileChanged = pcm is not null && (current?.Parameters is null || pcm.Any(pair => !current.Parameters.TryGetValue(pair.Key, out var value) || value != pair.Value));
+            if (current is null || profileChanged || !Path.GetFullPath(current.Path).Equals(Path.GetFullPath(dialog.FileName), StringComparison.OrdinalIgnoreCase))
+                await _session.InsertAsync(new EmulationMedia(dialog.FileName, device.Slot, EmulationMediaType.Cassette, new FileInfo(dialog.FileName).IsReadOnly, true) { Parameters = pcm }, device.RequiresMachineRecreation);
+            cassette = _session.Machine.CassetteTransport;
+            if (cassette is null) return;
+            RebuildMediaDevices();
+        }
         await cassette.ExecuteAsync(command);
         UpdateCassetteTransport(cassette);
     }

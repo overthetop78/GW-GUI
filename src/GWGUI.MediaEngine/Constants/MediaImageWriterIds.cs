@@ -25,6 +25,7 @@ public static class MediaImageWriterIds
     public const string EpsonQx10 = "epson-qx10";
     public const string Hfe = "hfe";
     public const string HardDiskRaw = "hard-disk-raw";
+    public const string AcornWinchester = "acorn-winchester";
     public const string HardDiskVhd = "hard-disk-vhd";
     public const string HardDiskVhdx = "hard-disk-vhdx";
     public const string HardDiskVdi = "hard-disk-vdi";
@@ -36,6 +37,8 @@ public static class MediaImageWriterIds
     public const string OpticalBinCue = "optical-bin-cue";
     public const string OpticalGdi = "optical-gdi";
     public const string TapeWav = "tape-wav";
+    public const string TapeCsw = "tape-csw";
+    public const string TapeRaw = "tape-raw";
     public const string TapeVoc = "tape-voc";
     public const string TapeAtariCas = "tape-atari-cas";
     public const string TapeTzx = "tape-tzx";

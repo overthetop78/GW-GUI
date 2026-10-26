@@ -83,4 +83,12 @@
   <data name="Format.bandai.wonderswan"><value>Bandai WonderSwan</value></data>
   <data name="Format.tape.voc"><value>VOC</value></data>
   <data name="Format.tape.audio"><value>Audio</value></data>
+  <data name="Format.tape.uef"><value>UEF</value></data>
+  <data name="Format.tape.csw"><value>CSW</value></data>
+  <data name="Format.tape.wav"><value>WAV</value></data>
+  <data name="Format.tape.raw"><value>RAW</value></data>
+  <data name="Format.hdd.acorn-winchester" xml:space="preserve"><value>Acorn Winchester (DAT/DSC)</value></data>
+  <data name="Format.acorn.adfs.160" xml:space="preserve"><value>Acorn ADFS S — 160 KiB</value></data>
+  <data name="Format.acorn.adfs.320" xml:space="preserve"><value>Acorn ADFS M — 320 KiB</value></data>
+  <data name="Format.acorn.adfs.640" xml:space="preserve"><value>Acorn ADFS L — 640 KiB</value></data>
 </root>

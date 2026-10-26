@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>게임 종료 시 비우기</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>메모리 카드</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>카드 이름</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>전송 속도</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>대기 시간</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>연중 무휴</value></data>
 </root>

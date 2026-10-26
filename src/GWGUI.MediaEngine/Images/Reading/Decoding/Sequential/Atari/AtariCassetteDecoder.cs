@@ -12,7 +12,7 @@ namespace GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Atari;
 /// <summary>Decodes retained Atari CAS data chunks and compatible PCM WAV FSK serial frames.</summary>
 public sealed class AtariCassetteDecoder : ISequentialMediaDecoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.AtariCas, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.AtariCas, TapeImageFormatIds.Wav, TapeImageFormatIds.Csw, TapeImageFormatIds.Raw }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Atari8Bit }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => AtariCasConstants.DecoderId;

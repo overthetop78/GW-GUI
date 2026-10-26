@@ -16,4 +16,23 @@
   <data name="Emulation.Cassette.State.Paused"><value>Pausiert</value></data>
   <data name="Emulation.Cassette.State.Recording"><value>Aufnahme</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>Bandende</value></data>
+  <data name="Emulation.Cassette.Settings.Baud"><value>Datenrate (baud)</value></data>
+  <data name="Emulation.Cassette.Settings.Automatic"><value>Automatik</value></data>
+  <data name="Emulation.Cassette.Settings.Mode"><value>Ladezustand</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.RealTime"><value>Echtzeit-Lesezeit</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Accelerated"><value>Beschleunigtes Ablesen</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Direct"><value>Direktbeladung</value></data>
+  <data name="Emulation.Cassette.Settings.Speed"><value>Bandgeschwindigkeit</value></data>
+  <data name="Emulation.Cassette.Settings.Wind"><value>Schnelle Wickelgeschwindigkeit</value></data>
+  <data name="Emulation.Cassette.Settings.ReadLatency"><value>Motorverzögerung lesen</value></data>
+  <data name="Emulation.Cassette.Settings.WriteLatency"><value>Motorverzögerung aufzeichnen</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Mechanische Geräusche</value></data>
+  <data name="Emulation.Cassette.Settings.Protected"><value>Schreibschutz</value></data>
+  <data name="Emulation.Cassette.Pcm.SampleRate"><value>RAW Abtastrate (Hz)</value></data>
+  <data name="Emulation.Cassette.Pcm.Channels"><value>RAW Kanäle</value></data>
+  <data name="Emulation.Cassette.Pcm.Bits"><value>RAW Bits pro Probe</value></data>
+  <data name="Emulation.Cassette.Pcm.Signed"><value>RAW Signierte Proben</value></data>
+  <data name="Emulation.Cassette.Pcm.LittleEndian"><value>RAW Proben aus Kleinendianen</value></data>
+  <data name="Emulation.Cassette.Pcm.Input"><value>RAW Kassetteneingabeprofil</value></data>
+  <data name="Emulation.Cassette.Pcm.Output"><value>RAW Kassettenaufnahmeprofil</value></data>
 </root>

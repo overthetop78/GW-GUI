@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Töm när spelet stängs</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>Minneskort</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>Kortnamn</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>Överföringshastighet</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>Läs latens</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>Skriv latens</value></data>
 </root>

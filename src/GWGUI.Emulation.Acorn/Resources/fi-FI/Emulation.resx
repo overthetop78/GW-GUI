@@ -14,4 +14,12 @@
   <data name="Emulation.Acorn.Video.Output"><value>Videotuloste</value></data>
   <data name="Emulation.Acorn.Video.Output.Monochrome"><value>Komposiitti (yksivärinen)</value></data>
   <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>Yhdistelmä (väri, S39)</value></data>
+  <data name="Emulation.Acorn.Network.Enabled"><value>Asenna Econet-liitäntä</value></data>
+  <data name="Emulation.Acorn.Network.Station"><value>Aseman numero</value></data>
+  <data name="Emulation.Acorn.Network.Clock"><value>Verkkokello</value></data>
+  <data name="Emulation.Acorn.Network.Mode"><value>Verkkoyhteys</value></data>
+  <data name="Emulation.Acorn.Network.Disconnected"><value>Yhteys katkaistu</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress"><value>Paikallinen IPv4-osoite</value></data>
+  <data name="Emulation.Acorn.Network.Port"><value>UDP satama</value></data>
+  <data name="Emulation.Acorn.Network.Peers"><value>Etäasemat</value></data>
 </root>

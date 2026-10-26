@@ -14,4 +14,12 @@
   <data name="Emulation.Acorn.Video.Output"><value>Έξοδος βίντεο</value></data>
   <data name="Emulation.Acorn.Video.Output.Monochrome"><value>Σύνθετο (μονοχρωμικό)</value></data>
   <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>Σύνθετο (χρώμα, S39)</value></data>
+  <data name="Emulation.Acorn.Network.Enabled"><value>Εγκατάσταση διασύνδεσης Econet</value></data>
+  <data name="Emulation.Acorn.Network.Station"><value>Αριθμός σταθμού</value></data>
+  <data name="Emulation.Acorn.Network.Clock"><value>Ρολόι δικτύου</value></data>
+  <data name="Emulation.Acorn.Network.Mode"><value>Σύνδεση δικτύου</value></data>
+  <data name="Emulation.Acorn.Network.Disconnected"><value>Αποσυνδεδεμένη</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress"><value>Τοπική διεύθυνση IPv4</value></data>
+  <data name="Emulation.Acorn.Network.Port"><value>UDP θύρα</value></data>
+  <data name="Emulation.Acorn.Network.Peers"><value>Απομακρυσμένοι σταθμοί</value></data>
 </root>

@@ -1,9 +1,11 @@
+using System.IO;
+
 namespace GWGUI.MediaEngine.Images.Writing;
 
 /// <summary>Publishes a related set of output files as one recoverable operation.</summary>
 internal static class AtomicMediaFileSetWriter
 {
-    public static async Task WriteAsync(IReadOnlyDictionary<string, Func<Stream, CancellationToken, Task>> files, CancellationToken cancellationToken = default)
+    public static async Task WriteAsync(IReadOnlyDictionary<string, Func<Stream, CancellationToken, Task>> files, CancellationToken cancellationToken = default, bool replaceExisting = true)
     {
         ArgumentNullException.ThrowIfNull(files);
         if (files.Count == 0) throw new ArgumentException("At least one output file is required.", nameof(files));
@@ -11,6 +13,7 @@ internal static class AtomicMediaFileSetWriter
         var outputs = files.Select(pair => CreateOutput(pair.Key, pair.Value)).ToArray();
         if (outputs.Select(output => output.Path).Distinct(StringComparer.OrdinalIgnoreCase).Count() != outputs.Length)
             throw new ArgumentException("Output file paths must be unique.", nameof(files));
+        if (!replaceExisting && outputs.Any(output => File.Exists(output.Path))) throw new IOException("An output file already exists.");
 
         var publicationComplete = false;
         try
@@ -26,7 +29,7 @@ internal static class AtomicMediaFileSetWriter
             foreach (var output in outputs)
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                if (File.Exists(output.Path)) File.Move(output.Path, output.BackupPath);
+                if (replaceExisting && File.Exists(output.Path)) File.Move(output.Path, output.BackupPath);
                 File.Move(output.TemporaryPath, output.Path);
                 output.Published = true;
             }

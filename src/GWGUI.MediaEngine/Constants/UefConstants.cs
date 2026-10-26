@@ -19,6 +19,7 @@ internal static class UefConstants
     public const ushort MultiplexedData = 0x0101;
     public const ushort ExplicitData = 0x0102;
     public const ushort DefinedData = 0x0104;
+    public const ushort ImplicitAtomData = 0x0105;
     public const ushort CarrierTone = 0x0110;
     public const ushort CarrierToneWithDummy = 0x0111;
     public const ushort IntegerGap = 0x0112;
@@ -76,7 +77,7 @@ internal static class UefConstants
 
     public static readonly IReadOnlySet<ushort> UnderstoodTapeChunks = new ushort[]
     {
-        ImplicitData, MultiplexedData, ExplicitData, DefinedData, CarrierTone, CarrierToneWithDummy,
+        ImplicitData, MultiplexedData, ExplicitData, DefinedData, ImplicitAtomData, CarrierTone, CarrierToneWithDummy,
         IntegerGap, BaseFrequency, SecurityCycles, PhaseChange, FloatingGap, BaudRate,
         PositionMarker, TapeSetInformation, TapeSide
     }.ToFrozenSet();

@@ -7,6 +7,20 @@ namespace GWGUI.Emulation.Interfaces;
 /// Les types des bibliothèques médias restent encapsulés derrière ces contrats.</remarks>
 public interface IEmulationMediaProcessing
 {
+    /// <summary>Crée l'image vierge correspondant au format déclaré par le modèle du lecteur.</summary>
+    Task CreateBlankDiskAsync(string path, string formatId, CancellationToken cancellationToken = default);
+    /// <summary>Crée un disque et ses fichiers associés avec la géométrie déclarée et une préparation de volume facultative.</summary>
+    Task CreateHardDiskAsync(string path, string formatId, GWGUI.Emulation.HardDisks.DiskImageGeometry geometry, string? fileSystemId = null, CancellationToken cancellationToken = default);
+    /// <summary>Ouvre un disque pour un cœur ; le propriétaire libère le résultat après sauvegarde et détachement.</summary>
+    Task<IEmulationDiskImage> OpenDiskAsync(string path, bool writable = false, string? formatId = null, CancellationToken cancellationToken = default);
+    /// <summary>Prépare le signal d'une cassette UEF, CSW, WAV ou RAW sans exposer les types de MediaEngine au module.</summary>
+    Task<EmulationCassetteSignal> ReadCassetteAsync(string path, CancellationToken cancellationToken = default, string? machineId = null, IReadOnlyDictionary<string, string>? parameters = null);
+    /// <summary>Extensions d'images dans lesquelles le signal d'un enregistreur peut être conservé intégralement.</summary>
+    IReadOnlyList<string> CassetteRecordingExtensions { get; }
+    /// <summary>Bruit mécanique Play/Record/FastForward/Rewind/Stop/Eject ; le consommateur possède l'horloge et la sortie audio.</summary>
+    short[] RenderCassetteSound(string operation, int sampleRate, int sampleCount, long offset);
+    /// <summary>Enregistre la bande complète via MediaEngine ; les échantillons restent empruntés pendant l'appel.</summary>
+    Task WriteCassetteAsync(string path, EmulationCassetteSignal signal, CancellationToken cancellationToken = default, IReadOnlyDictionary<string, string>? parameters = null);
     /// <summary>Extensions du catalogue, indexées par leur nom invariant, par exemple Iso ou Scp.</summary>
     IReadOnlyDictionary<string, string> FileExtensions { get; }
     /// <summary>Taille en octets d'un secteur optique brut.</summary>

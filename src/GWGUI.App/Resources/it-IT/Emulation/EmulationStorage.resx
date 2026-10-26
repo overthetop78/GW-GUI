@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Svuota alla chiusura del gioco</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>Scheda di memoria</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>Nome della carta</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>Velocità di trasferimento</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>Leggi la latenza</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>Scrivi la latenza</value></data>
 </root>

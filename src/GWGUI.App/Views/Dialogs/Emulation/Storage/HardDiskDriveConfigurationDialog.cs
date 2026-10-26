@@ -41,15 +41,28 @@ public sealed class HardDiskDriveConfigurationDialog : Window
     private readonly TextBox _sectors = new() { Text = EmulationControlDefaults.HardDiskSectorsPerTrack.ToString() };
     private readonly TextBox _bytesPerSector = new() { Text = EmulationControlDefaults.HardDiskBytesPerSector.ToString() };
     private readonly TextBlock _capacity = new() { TextWrapping = TextWrapping.Wrap };
+    private readonly Dictionary<string, FrameworkElement> _fields = new(StringComparer.Ordinal);
+    private readonly IReadOnlyDictionary<string, string> _initialOptions;
 
     public string? SupportPath { get; private set; }
     public string? InterfaceId { get; private set; }
+    /// <summary>Réglages opaques du lecteur, conservés avec les champs fournis par le module.</summary>
+    public IReadOnlyDictionary<string, string> Options
+    {
+        get
+        {
+            var values = new Dictionary<string, string>(_initialOptions, StringComparer.Ordinal);
+            foreach (var entry in _fields) values[entry.Key] = StorageConfigurationFieldFunctions.Read(entry.Value);
+            return values;
+        }
+    }
 
     public HardDiskDriveConfigurationDialog(string identifier, string machineName, string? currentPath,
         string imageDirectory, IReadOnlyList<HardDiskImageFormat> formats, Guid clientGuid,
         Func<string, Task<bool>>? deleteImage = null, int? fixedImageSizeBytes = null,
-        string? defaultImageFileName = null, EmulationStorageDialogPresentation? presentation = null)
+        string? defaultImageFileName = null, EmulationStorageDialogPresentation? presentation = null, IReadOnlyList<EmulationSettingsField>? configurationFields = null, IReadOnlyDictionary<string, string>? options = null, string? moduleId = null)
     {
+        _initialOptions = options ?? new Dictionary<string, string>();
         _identifier = identifier;
         _fixedImageSizeBytes = fixedImageSizeBytes;
         _presentation = presentation;
@@ -129,6 +142,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         _sizeUnit.SelectionChanged += (_, _) => UpdateDiskGeometry();
         _automaticGeometry.Checked += (_, _) => UpdateDiskGeometry();
         _automaticGeometry.Unchecked += (_, _) => UpdateDiskGeometry();
+        foreach (var field in new[] { _cylinders, _heads, _sectors, _bytesPerSector }) field.TextChanged += (_, _) => UpdateCapacity();
         _cylinders.TextChanged += (_, _) => UpdateCapacity();
         _heads.TextChanged += (_, _) => UpdateCapacity();
         _sectors.TextChanged += (_, _) => UpdateCapacity();
@@ -214,6 +228,16 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         var body = new StackPanel();
         if (_fixedImageSizeBytes is null) body.Children.Add(reader);
         body.Children.Add(StorageDialogUi.Card(LocExtension.Get(_presentation?.AssociatedResourceKey ?? "Emulation.Storage.Media.Associated"), support));
+        if (configurationFields?.Count > 0)
+        {
+            var behavior = new StackPanel();
+            foreach (var field in configurationFields)
+            {
+                var control = StorageConfigurationFieldFunctions.Create(field, moduleId, _initialOptions);
+                _fields[field.Id] = control; behavior.Children.Add(StorageConfigurationFieldFunctions.Present(field, control, moduleId));
+            }
+            body.Children.Add(StorageDialogUi.IconCard(IconGlyphs.Settings, LocExtension.Get("Emulation.Input.Behavior"), behavior));
+        }
 
         var root = new Grid { Margin = new Thickness(18) };
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -324,7 +348,14 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         }
         if (!IsSupportedCapacity(byteSize, SelectedFormat))
         { ShowError(_limits.Text); return; }
-        HardDiskImageCreation.Create(path, byteSize, SelectedFormat, SelectedFormat.SupportsFixedAllocation && _preallocate.IsChecked == true, _preparation.SelectedValue is HardDiskPreparation preparation ? preparation : HardDiskPreparation.Blank);
+        DiskImageGeometry? geometry = null;
+        if (SelectedFormat.SupportsExplicitGeometry)
+        {
+            if (!long.TryParse(_cylinders.Text, out var cylinders) || !int.TryParse(_heads.Text, out var heads) || !int.TryParse(_sectors.Text, out var sectors) || !int.TryParse(_bytesPerSector.Text, out var sectorSize))
+            { ShowError(LocExtension.Get("Emulation.Storage.Disk.InvalidSize")); return; }
+            geometry = new(cylinders, heads, sectors, sectorSize);
+        }
+        HardDiskImageCreation.Create(path, byteSize, SelectedFormat, SelectedFormat.SupportsFixedAllocation && _preallocate.IsChecked == true, _preparation.SelectedValue is HardDiskPreparation preparation ? preparation : HardDiskPreparation.Blank, geometry);
         SupportPath = path;
         InterfaceId = SelectedFormat.InterfaceName;
         DialogResult = true;
@@ -338,6 +369,8 @@ public sealed class HardDiskDriveConfigurationDialog : Window
     {
         var format = SelectedFormat;
         _preparation.ItemsSource = format.SupportedPreparations.Select(value => new { Value = value, Label = LocExtension.Get("Emulation.Hdd.Prepare." + value) }).ToArray();
+        _automaticGeometry.IsEnabled = format.SupportsExplicitGeometry;
+        if (!format.SupportsExplicitGeometry) _automaticGeometry.IsChecked = true;
         _preparation.SelectedIndex = 0;
         _limits.Text = LocExtension.Get("Emulation.Hdd.Limits", StorageSizeFormatter.FormatCapacity(format.MaximumBytes));
         _preallocate.IsEnabled = format.SupportsFixedAllocation;
@@ -383,7 +416,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
 
     private bool TryGetByteSize(out long byteSize)
     {
-        if (_automaticGeometry.IsChecked == true) return TryGetSelectedSize(out byteSize);
+        if (_automaticGeometry.IsChecked == true && !SelectedFormat.SupportsExplicitGeometry) return TryGetSelectedSize(out byteSize);
         if (long.TryParse(_cylinders.Text, out var cylinders) && cylinders > 0 &&
             long.TryParse(_heads.Text, out var heads) && heads > 0 &&
             long.TryParse(_sectors.Text, out var sectors) && sectors > 0 &&

@@ -8,6 +8,25 @@ internal interface IAcornMachine
     byte[] RunFrame();
     /// <summary>Transfère les échantillons mono produits depuis le dernier prélèvement.</summary>
     short[] DrainAudio();
+    IEmulatorCassetteTransport CassetteTransport { get; }
+    void InsertCassette(EmulationCassetteSignal signal, bool writable = false);
+    bool CassetteHasChanges { get; }
+    EmulationCassetteSignal RecordedCassette { get; }
+    void MarkCassetteSaved();
+    void RefreshCassetteIndex(EmulationCassetteSignal signal);
+    void ConfigureCassette(EmulationCassetteSettings settings);
+    void EjectCassette();
+    void AttachFloppy(int index, IEmulationDiskImage? image);
+    bool FloppyActive(int index);
+    void ConfigureFloppySpeed(int index, int percent);
+    void AttachHardDisk(int unit, IEmulationDiskImage? image);
+    bool HardDiskActive(int unit);
+    void ConfigureHardDisk(int unit, int latencyMilliseconds, int speedPercent, int? writeLatencyMilliseconds = null);
+    /// <summary>Raccorde les trames et l'état de ligne du transport possédé par le cœur.</summary>
+    Action<ReadOnlyMemory<byte>>? NetworkFrameTransmitted { get; set; }
+    Action<int>? NetworkPoll { get; set; }
+    bool ReceiveNetworkFrame(ReadOnlySpan<byte> frame, bool validFcs = true);
+    void SetNetworkLine(bool clockPresent, bool clearToSend = true, bool idle = true);
     void SetInput(EmulationInputSnapshot snapshot);
     void Reset(bool cold);
     void SetOption(string key, string value);

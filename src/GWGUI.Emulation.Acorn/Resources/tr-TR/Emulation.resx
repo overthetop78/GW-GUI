@@ -14,4 +14,12 @@
   <data name="Emulation.Acorn.Video.Output"><value>Video çıktı</value></data>
   <data name="Emulation.Acorn.Video.Output.Monochrome"><value>Kompozit (monokrom)</value></data>
   <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>Kompozit (Renk, S39)</value></data>
+  <data name="Emulation.Acorn.Network.Enabled"><value>Econet arayüzü</value></data>
+  <data name="Emulation.Acorn.Network.Station"><value>İstasyon numarası</value></data>
+  <data name="Emulation.Acorn.Network.Clock"><value>Ağ saat</value></data>
+  <data name="Emulation.Acorn.Network.Mode"><value>Ağ bağlantısı</value></data>
+  <data name="Emulation.Acorn.Network.Disconnected"><value>Bağlantısız</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress"><value>Yerel IPv4 adresi</value></data>
+  <data name="Emulation.Acorn.Network.Port"><value>UDP port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port port</value></data>
+  <data name="Emulation.Acorn.Network.Peers"><value>Uzak istasyon istasyonları</value></data>
 </root>

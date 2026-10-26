@@ -27,7 +27,8 @@ public static class AcornAdfsDirectoryReader
         if (!TryRead(image, address, resolver, out var directory))
             throw AcornAdfsExceptions.InvalidDirectory(address);
         var entries = new List<FileSystemEntry>();
-        for (var index = 0; index < AcornAdfsLayout.EntryCount; index++)
+        var bbc = image.BlockSize == AcornAdfsLayout.FileCoreUnitSize;
+        for (var index = 0; index < (bbc ? AcornAdfsLayout.BbcEntryCount : AcornAdfsLayout.EntryCount); index++)
         {
             var offset = AcornAdfsLayout.EntriesOffset + index * AcornAdfsLayout.EntrySize;
             if (directory[offset] == AcornAdfsLayout.EndOfEntries)
@@ -39,7 +40,7 @@ public static class AcornAdfsDirectoryReader
             var execute = BinaryPrimitives.ReadUInt32LittleEndian(directory.AsSpan(offset + AcornAdfsLayout.EntryExecuteOffset, sizeof(uint)));
             var length = BinaryPrimitives.ReadUInt32LittleEndian(directory.AsSpan(offset + AcornAdfsLayout.EntryLengthOffset, sizeof(uint)));
             var indirectAddress = LittleEndianUInt24.Read(directory, offset + AcornAdfsLayout.EntryIndirectAddressOffset);
-            var attributes = directory[offset + AcornAdfsLayout.EntryAttributesOffset];
+            var attributes = bbc ? (byte)(((directory[offset] >> 7) & 1) | ((directory[offset + 1] >> 6) & 2) | ((directory[offset + 2] >> 5) & 4) | ((directory[offset + 3] >> 4) & 8)) : directory[offset + AcornAdfsLayout.EntryAttributesOffset];
             var isDirectory = (attributes & AcornAdfsLayout.DirectoryAttribute) != 0;
             IReadOnlyList<FileSystemEntry> children = [];
             IReadOnlyList<byte>? content = null;
@@ -73,19 +74,20 @@ public static class AcornAdfsDirectoryReader
                 ));
         }
 
-        var title = AcornAdfsNameCodec.Decode(directory.AsSpan(AcornAdfsLayout.TitleOffset, AcornAdfsLayout.TitleLength));
-        var directoryName = AcornAdfsNameCodec.Decode(directory.AsSpan(AcornAdfsLayout.DirectoryNameOffset, AcornAdfsLayout.DirectoryNameLength));
+        var title = AcornAdfsNameCodec.Decode(directory.AsSpan(bbc ? AcornAdfsLayout.BbcTitleOffset : AcornAdfsLayout.TitleOffset, AcornAdfsLayout.TitleLength));
+        var directoryName = AcornAdfsNameCodec.Decode(directory.AsSpan(bbc ? AcornAdfsLayout.BbcDirectoryNameOffset : AcornAdfsLayout.DirectoryNameOffset, AcornAdfsLayout.DirectoryNameLength));
         return new(directoryName, title, entries.OrderBy(entry => entry.Kind != FileSystemEntryKind.Directory).ThenBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase));
     }
 
     /// <summary>Tente de lire et de valider un répertoire complet.</summary>
     public static bool TryRead(IMediaSectorImage image, int address, IFileCoreAddressResolver resolver, out byte[] directory)
     {
-        if (!TryReadBytes(image, address, resolver, AcornAdfsLayout.DirectorySize, out directory))
+        var size = image.BlockSize == AcornAdfsLayout.FileCoreUnitSize ? AcornAdfsLayout.BbcDirectorySize : AcornAdfsLayout.DirectorySize;
+        if (!TryReadBytes(image, address, resolver, size, out directory))
             return false;
         var header = directory.AsSpan(AcornAdfsLayout.HeaderSignatureOffset, AcornAdfsLayout.SignatureLength);
-        var footer = directory.AsSpan(AcornAdfsLayout.FooterSignatureOffset, AcornAdfsLayout.SignatureLength);
-        return (header.SequenceEqual(AcornAdfsLayout.HugoSignature) || header.SequenceEqual(AcornAdfsLayout.NickSignature)) && footer.SequenceEqual(header) && directory[0] == directory[AcornAdfsLayout.TailSequenceOffset];
+        var footer = directory.AsSpan(size - 5, AcornAdfsLayout.SignatureLength);
+        return (header.SequenceEqual(AcornAdfsLayout.HugoSignature) || header.SequenceEqual(AcornAdfsLayout.NickSignature)) && footer.SequenceEqual(header) && directory[0] == directory[size - 6];
     }
 
     /// <summary>Tente de lire une plage d'octets à travers un résolveur FileCore.</summary>
@@ -97,11 +99,11 @@ public static class AcornAdfsDirectoryReader
         {
             if (!resolver.TryResolveByteOffset(address, copied, out var byteOffset))
                 return false;
-            var blockNumber = checked((int)(byteOffset / AcornAdfsLayout.BlockSize));
-            var offsetInBlock = checked((int)(byteOffset % AcornAdfsLayout.BlockSize));
-            if (!image.TryGetBlock(blockNumber, out var block) || block.Data.Count != AcornAdfsLayout.BlockSize)
+            var blockNumber = checked((int)(byteOffset / image.BlockSize));
+            var offsetInBlock = checked((int)(byteOffset % image.BlockSize));
+            if (!image.TryGetBlock(blockNumber, out var block) || block.Data.Count != image.BlockSize)
                 return false;
-            var count = Math.Min(AcornAdfsLayout.BlockSize - offsetInBlock, length - copied);
+            var count = Math.Min(image.BlockSize - offsetInBlock, length - copied);
             block.Data.ToArray().AsSpan(offsetInBlock, count).CopyTo(output.AsSpan(copied));
             copied += count;
         }

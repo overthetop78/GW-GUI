@@ -27,6 +27,7 @@ public sealed class MediaImageExplorationService(MediaImageReadingService reader
         }
 
         cancellationToken.ThrowIfCancellationRequested();
+        document = await GWGUI.MediaEngine.Functions.CassetteBlockFunctions.IndexAsync(document, cancellationToken).ConfigureAwait(false);
         reportProgress?.Invoke(new(MediaExplorationProgressStage.ReadingFileSystem, document.FormatId, 78, document.MediaKind));
 
         var explored = await explorer.ExploreAsync(document, cancellationToken).ConfigureAwait(false);

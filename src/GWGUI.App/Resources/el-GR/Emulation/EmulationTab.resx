@@ -15,4 +15,5 @@
   <data name="Emulation.Tab.Advanced"><value>Για προχωρημένους</value></data>
   <data name="Emulation.Tab.Shortcuts"><value>Συντομεύσεις</value></data>
   <data name="Emulation.Tab.Audio"><value>Ήχος</value></data>
+  <data name="Emulation.Tab.Ethernet"><value>Δίκτυο</value></data>
 </root>

@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Vymazat při zavření hry</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>Paměťová karta</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>Název karty</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>Rychlost přenosu</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>Přečíst latenci</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>Napsat latenci</value></data>
 </root>

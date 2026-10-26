@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Очищать при закрытии игры</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>Карта памяти</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>Имя на карте</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>Скорость передачи</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>Читать латентность</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>Написать латентность</value></data>
 </root>

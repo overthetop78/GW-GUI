@@ -54,6 +54,8 @@ public sealed class MediaConversionService
             throw new ArgumentException("The media output path requires a file extension.", nameof(request));
 
         var document = request.Source;
+        if (request.TargetFormatId == GWGUI.MediaEngine.Constants.TapeImageFormatIds.Raw && request.Options.Count > 0)
+            document = new MediaImageDocument(document.Source with { Parameters = request.Options }, document.FormatId, document.MediaKind, document.Representation, document.FileSystemVolumes, document.Diagnostics, document.Metadata);
         var diagnostics = new List<string>(document.Diagnostics);
         var losses = new List<string>();
 

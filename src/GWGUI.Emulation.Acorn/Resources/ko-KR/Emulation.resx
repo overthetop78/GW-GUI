@@ -14,4 +14,12 @@
   <data name="Emulation.Acorn.Video.Output"><value>영상 출력</value></data>
   <data name="Emulation.Acorn.Video.Output.Monochrome"><value>합성 (monochrome)</value></data>
   <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>합성 (냉각, S39) )</value></data>
+  <data name="Emulation.Acorn.Network.Enabled"><value>Econet 인터페이스 설치</value></data>
+  <data name="Emulation.Acorn.Network.Station"><value>역 번호</value></data>
+  <data name="Emulation.Acorn.Network.Clock"><value>네트워크 시계</value></data>
+  <data name="Emulation.Acorn.Network.Mode"><value>Network 연결</value></data>
+  <data name="Emulation.Acorn.Network.Disconnected"><value>연결하기</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress"><value>지역 IPv4 주소</value></data>
+  <data name="Emulation.Acorn.Network.Port"><value>UDP 의 특징</value></data>
+  <data name="Emulation.Acorn.Network.Peers"><value>원격 역</value></data>
 </root>

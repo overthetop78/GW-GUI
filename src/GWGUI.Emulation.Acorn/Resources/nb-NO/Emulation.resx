@@ -14,4 +14,12 @@
   <data name="Emulation.Acorn.Video.Output"><value>Videoutgang</value></data>
   <data name="Emulation.Acorn.Video.Output.Monochrome"><value>Kompositt (monokrom)</value></data>
   <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>Sammensatt (farge, S39)</value></data>
+  <data name="Emulation.Acorn.Network.Enabled"><value>Installer Econet grensesnitt</value></data>
+  <data name="Emulation.Acorn.Network.Station"><value>Stasjonsnummer</value></data>
+  <data name="Emulation.Acorn.Network.Clock"><value>Nettverksklokke</value></data>
+  <data name="Emulation.Acorn.Network.Mode"><value>Nettforbindelse</value></data>
+  <data name="Emulation.Acorn.Network.Disconnected"><value>Avkoblet</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress"><value>Lokal IPv4-adresse</value></data>
+  <data name="Emulation.Acorn.Network.Port"><value>UDP port</value></data>
+  <data name="Emulation.Acorn.Network.Peers"><value>Fjernstasjoner</value></data>
 </root>

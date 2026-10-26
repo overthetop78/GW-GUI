@@ -13,6 +13,7 @@ public readonly record struct EmulationMediaSlot(EmulationMediaCategory Category
     public static EmulationMediaSlot Cassette0 { get; } = new(EmulationMediaCategory.CassetteDrive, EmulationMediaSlotConstants.FirstIndex);
     public static EmulationMediaSlot MemoryCard0 { get; } = new(EmulationMediaCategory.MemoryCard, EmulationMediaSlotConstants.FirstIndex);
 
+    [System.Text.Json.Serialization.JsonIgnore]
     public int ProtocolValue => Category switch
     {
         EmulationMediaCategory.FloppyDrive when Index is >= EmulationMediaSlotConstants.FirstIndex and <= EmulationMediaSlotConstants.FourthIndex => Index,

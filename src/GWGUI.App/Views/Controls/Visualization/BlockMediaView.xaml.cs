@@ -52,10 +52,15 @@ public partial class BlockMediaView : UserControl, IMediaVisualizationView
 
     public void SelectElement(int surface, long position)
     {
-        _selectedRange = _model?.Ranges.FirstOrDefault(range => range.Start == position);
+        _selectedRange = _model?.Ranges.FirstOrDefault(range => position >= range.Start && position < range.Start + range.Length);
+        if (_model?.Geometry is { } geometry && surface < geometry.Heads) SurfaceSelector.SelectedIndex = surface;
         UpdateSelectionLabel();
         LogicalCanvas.InvalidateVisual();
+        RangeSelected?.Invoke(_selectedRange);
     }
+
+    /// <summary>Actualise les états du scan sans réinitialiser la sélection, le zoom ou la géométrie.</summary>
+    public void RefreshRanges() => InvalidateCanvases();
 
     private void LogicalCanvas_PaintSurface(object? sender, SKPaintSurfaceEventArgs e)
     {
@@ -118,12 +123,17 @@ public partial class BlockMediaView : UserControl, IMediaVisualizationView
     private void SelectGeometryAt(Point pointer)
     {
         var point = MapPointer(GeometryCanvas, _geometryRenderSize, pointer);
-        var surface = _geometryRenderer.HitTest(_model, Math.Max(1, _geometryRenderSize.Width), Math.Max(1, _geometryRenderSize.Height), point);
+        var surface = _geometryRenderer.HitTest(_model, Math.Max(1, _geometryRenderSize.Width), Math.Max(1, _geometryRenderSize.Height), point, _zoom);
         if (surface is null) return;
         _selectedSurface = surface;
         SurfaceSelector.SelectedItem = SurfaceSelector.Items.Cast<KeyValuePair<int, string>>().FirstOrDefault(item => item.Key == surface);
         GeometryCanvas.InvalidateVisual();
         SurfaceSelected?.Invoke(surface);
+        if (_geometryRenderer.HitTestPosition(_model, Math.Max(1, _geometryRenderSize.Width), Math.Max(1, _geometryRenderSize.Height), point, _zoom) is { } position)
+        {
+            SelectElement(surface.Value, position);
+            ElementSelected?.Invoke(surface.Value, position);
+        }
     }
 
     private void SurfaceSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)

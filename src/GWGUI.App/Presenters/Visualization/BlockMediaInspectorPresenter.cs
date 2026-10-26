@@ -23,6 +23,12 @@ public sealed class BlockMediaInspectorPresenter(Func<string, object[], string> 
         var cartridge = document.MediaKind == MediaKind.Cartridge;
 
         var boundaries = new SortedSet<long> { 0, logicalLength };
+        if (blocks.Geometry is { } declaredGeometry)
+        {
+            var trackLength = (long)declaredGeometry.SectorsPerTrack * blocks.LogicalBlockSize;
+            for (long trackStart = 0; trackStart < declaredGeometry.Capacity; trackStart += trackLength) boundaries.Add(trackStart);
+            boundaries.Add(declaredGeometry.Capacity);
+        }
         foreach (var sourceRange in blocks.Ranges)
         {
             boundaries.Add(sourceRange.Address);
@@ -52,7 +58,7 @@ public sealed class BlockMediaInspectorPresenter(Func<string, object[], string> 
                 volume?.PartitionNumber,
                 volume?.FileSystemId,
                 cartridge ? CartridgeBankLabel(document.Metadata, start) : null),
-                mergeAdjacent: !cartridge);
+                mergeAdjacent: !cartridge && blocks.Geometry is null);
         }
 
         var geometry = blocks.Geometry is null ? null : new BlockMediaGeometry(blocks.Geometry.Cylinders, blocks.Geometry.Heads, blocks.Geometry.SectorsPerTrack);

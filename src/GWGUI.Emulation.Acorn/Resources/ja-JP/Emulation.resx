@@ -14,4 +14,12 @@
   <data name="Emulation.Acorn.Video.Output"><value>ビデオ出力</value></data>
   <data name="Emulation.Acorn.Video.Output.Monochrome"><value>複合体(モノクロ)</value></data>
   <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>合成(色、 S39) ) )</value></data>
+  <data name="Emulation.Acorn.Network.Enabled"><value>Econetインターフェイスをインストール</value></data>
+  <data name="Emulation.Acorn.Network.Station"><value>駅番号</value></data>
+  <data name="Emulation.Acorn.Network.Clock"><value>ネットワーククロック</value></data>
+  <data name="Emulation.Acorn.Network.Mode"><value>ネットワーク接続</value></data>
+  <data name="Emulation.Acorn.Network.Disconnected"><value>切断された接続</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress"><value>ローカルIPv4アドレス</value></data>
+  <data name="Emulation.Acorn.Network.Port"><value>UDP ポート</value></data>
+  <data name="Emulation.Acorn.Network.Peers"><value>遠隔場所</value></data>
 </root>

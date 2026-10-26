@@ -1,4 +1,6 @@
 using GWGUI.MediaEngine.Images.Formats;
+using GWGUI.MediaEngine.Images.Formats.Tape.Csw;
+using GWGUI.MediaEngine.Images.Formats.Tape.Raw;
 using GWGUI.MediaEngine.Images.Formats.Floppy.AcornAtom;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Apridisk;
 using GWGUI.MediaEngine.Images.Reading.Reconstruction;
@@ -109,6 +111,7 @@ public sealed class MediaWritingComposition
         var scp = new ScpWriter();
         var hfe = new HfeWriter();
         var hardDiskRaw = new RawHardDiskWriter();
+        var acornWinchester = new GWGUI.MediaEngine.Images.Formats.HardDisk.Acorn.AcornWinchesterWriter();
         var hardDiskQcow2 = new Qcow2Writer();
         var hardDiskVhd = new VhdWriter();
         var hardDiskVhdx = new VhdxWriter();
@@ -150,7 +153,8 @@ public sealed class MediaWritingComposition
             Sector(MediaImageWriterIds.Apridisk, [DiskImageFileExtensions.Dsk],
                 (format, extension) => format.Equals(DiskImageFormatIds.ApricotPcXi315, StringComparison.OrdinalIgnoreCase) && extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase),
                 (image, _, path, _, token) => WriteSingleAsync(apridisk.WriteAsync(image.WithFormatId(DiskImageFormatIds.ApricotPcXi315), path, token), path)),
-            Sector(MediaImageWriterIds.AcornAdf, [DiskImageFileExtensions.Adf], AcornAdfConversionService.CanCreate, (image, _, path, _, token) => WriteSingleAsync(acornAdf.WriteAsync(image, path, token), path)),
+            new SectorMediaImageWriterAdapter(MediaImageWriterIds.AcornAdf, AcornAdfGeometry.All.Select(geometry => geometry.FormatId), [DiskImageFileExtensions.Adf, DiskImageFileExtensions.Ads, DiskImageFileExtensions.Adm, DiskImageFileExtensions.Adl],
+                (image, _, format, extension) => image.FormatId.Equals(format, StringComparison.OrdinalIgnoreCase) && AcornAdfConversionService.CanCreate(format, extension), (image, _, path, _, token) => WriteSingleAsync(acornAdf.WriteAsync(image, path, token), path)),
             Sector(MediaImageWriterIds.AmigaAdf, [DiskImageFileExtensions.Adf], AmigaAdfConversionService.CanCreate, (image, _, path, _, token) => WriteSingleAsync(amigaAdf.WriteAsync(image, path, token), path)),
             Sector(MediaImageWriterIds.BbcDfs, [DiskImageFileExtensions.Ssd, DiskImageFileExtensions.Dsd], BbcDfsConversionService.CanCreate,
                 (image, _, path, formatId, token) => WriteSingleAsync(bbcDfs.WriteAsync(image, path, formatId, token), path)),
@@ -181,6 +185,7 @@ public sealed class MediaWritingComposition
             Flux(MediaImageWriterIds.Scp, DiskImageFormatIds.RawScp, DiskImageFileExtensions.Scp, (image, metadata, path, token) => WriteSingleAsync(scp.WriteAsync(path, ProtectedTrackScpImageAdapter.Create(image, metadata), token), path)),
             Flux(MediaImageWriterIds.Hfe, DiskImageFormatIds.RawHfe, DiskImageFileExtensions.Hfe, (image, metadata, path, token) => WriteSingleAsync(hfe.WriteAsync(ProtectedTrackHfeImageAdapter.Create(image, metadata), path, token), path)),
             hardDiskRaw,
+            acornWinchester,
             hardDiskQcow2,
             hardDiskVhd,
             hardDiskVhdx,
@@ -193,6 +198,8 @@ public sealed class MediaWritingComposition
             opticalXboxXdvdfs,
             nintendoWiiU,
             tapeWav,
+            new CswWriter(),
+            new RawTapeWriter(),
             tapeVoc,
             tapeAtariCas,
             tapeTzx,

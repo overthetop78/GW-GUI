@@ -15,4 +15,5 @@
   <data name="Emulation.Tab.Advanced"><value>Speciális</value></data>
   <data name="Emulation.Tab.Shortcuts"><value>Gyorsbillentyűk</value></data>
   <data name="Emulation.Tab.Audio"><value>Hang</value></data>
+  <data name="Emulation.Tab.Ethernet"><value>Hálózat</value></data>
 </root>

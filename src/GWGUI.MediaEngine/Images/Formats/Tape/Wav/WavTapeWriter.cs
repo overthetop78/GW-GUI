@@ -97,11 +97,10 @@ public sealed class WavTapeWriter : IMediaImageWriter
     {
         ranges = [];
         if (document.Representation is not SequentialMediaImageRepresentation { Segments: { } segments }
-            || segments.Count == 0
             || segments.Any(segment => segment.Kind != SequentialSegmentKind.Samples || segment.DataRange?.Source is null))
             return false;
         var selected = segments.Where(segment => segment.ChannelNumber is null or 0).Select(segment => segment.DataRange!).ToArray();
-        if (selected.Length == 0 || selected.Any(range => range.Kind != MediaDataRangeKind.Stored)) return false;
+        if (selected.Any(range => range.Kind != MediaDataRangeKind.Stored)) return false;
         ranges = selected;
         return true;
     }

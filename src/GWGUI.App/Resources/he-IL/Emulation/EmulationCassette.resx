@@ -16,4 +16,23 @@
   <data name="Emulation.Cassette.State.Paused"><value>מושהית</value></data>
   <data name="Emulation.Cassette.State.Recording"><value>הקלטה</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>סוף הקלטת</value></data>
+  <data name="Emulation.Cassette.Settings.Baud"><value>שיעור נתונים (baud)</value></data>
+  <data name="Emulation.Cassette.Settings.Automatic"><value>אוטומטי אוטומטי</value></data>
+  <data name="Emulation.Cassette.Settings.Mode"><value>המונחים: mode</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.RealTime"><value>קריאה בזמן אמת</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Accelerated"><value>קריאה</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Direct"><value>טעינה ישירה</value></data>
+  <data name="Emulation.Cassette.Settings.Speed"><value>מהירות Tape</value></data>
+  <data name="Emulation.Cassette.Settings.Wind"><value>מהירות רוח מהירה</value></data>
+  <data name="Emulation.Cassette.Settings.ReadLatency"><value>קרא עיכוב מנוע</value></data>
+  <data name="Emulation.Cassette.Settings.WriteLatency"><value>עיכוב מנוע</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>צלילים מכניים</value></data>
+  <data name="Emulation.Cassette.Settings.Protected"><value>לכתוב הגנה</value></data>
+  <data name="Emulation.Cassette.Pcm.SampleRate"><value>RAW שיעור הדגימה (Hz)</value></data>
+  <data name="Emulation.Cassette.Pcm.Channels"><value>RAW ערוצים</value></data>
+  <data name="Emulation.Cassette.Pcm.Bits"><value>RAW bits to Sample</value></data>
+  <data name="Emulation.Cassette.Pcm.Signed"><value>RAW דגימות חתום</value></data>
+  <data name="Emulation.Cassette.Pcm.LittleEndian"><value>RAW דגימות קטנות</value></data>
+  <data name="Emulation.Cassette.Pcm.Input"><value>RAW פרופיל קלט קלט</value></data>
+  <data name="Emulation.Cassette.Pcm.Output"><value>RAW פרופיל הקלטת קלטת</value></data>
 </root>

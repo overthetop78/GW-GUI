@@ -15,7 +15,7 @@ namespace GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Commodore;
 /// <summary>Recognizes standard Commodore ROM byte frames in TAP pulses or a selected PCM WAV channel.</summary>
 public sealed class CommodoreTapeDecoder : ISequentialMediaDecoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.CommodoreTap, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.CommodoreTap, TapeImageFormatIds.Wav, TapeImageFormatIds.Csw, TapeImageFormatIds.Raw }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Commodore }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => CommodoreTapConstants.DecoderId;
@@ -29,7 +29,7 @@ public sealed class CommodoreTapeDecoder : ISequentialMediaDecoder
         if (!CanDecode(document, machineId))
             throw new InvalidDataException("The media document is not compatible with the Commodore tape decoder.");
         var representation = (SequentialMediaImageRepresentation)document.Representation;
-        if (document.FormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase))
+        if (document.FormatId is TapeImageFormatIds.Wav or TapeImageFormatIds.Csw or TapeImageFormatIds.Raw)
             return await DecodeWaveAsync(document, representation, cancellationToken).ConfigureAwait(false);
         return DecodeTap(document, representation, cancellationToken);
     }

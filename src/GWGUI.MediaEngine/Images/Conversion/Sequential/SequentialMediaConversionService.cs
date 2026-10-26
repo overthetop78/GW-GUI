@@ -1,6 +1,8 @@
 using MediaSourceDescriptor = GWGUI.MediaEngine.Contracts.MediaSourceDescriptor;
+using System.IO;
 using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Contracts;
+using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Sequential;
 using GWGUI.MediaEngine.Images.Writing.Encoding.Sequential;
 
@@ -42,10 +44,10 @@ public sealed class SequentialMediaConversionService
         ArgumentNullException.ThrowIfNull(source);
         if (source.MediaKind != MediaKind.Tape || source.Representation.RepresentationKind != MediaRepresentationKind.Sequential)
             return [];
-        var resolvedMachineId = ResolveMachineId(source, machineId);
+        var resolvedMachineId = await ResolveMachineIdAsync(source, machineId, cancellationToken).ConfigureAwait(false);
         if (resolvedMachineId is null) return [];
         var decoded = await decoders.DecodeAsync(source, resolvedMachineId, cancellationToken).ConfigureAwait(false);
-        var selectedParameters = parameters ?? new Dictionary<string, string>(StringComparer.Ordinal);
+        var selectedParameters = Parameters(parameters);
         var destinations = new List<MediaConversionDestination>();
         foreach (var writer in writers.Writers)
         foreach (var formatId in writer.FormatIds)
@@ -70,9 +72,9 @@ public sealed class SequentialMediaConversionService
         if (source.MediaKind != MediaKind.Tape || source.Representation is not SequentialMediaImageRepresentation)
             throw new NotSupportedException("The source is not a sequential tape image.");
 
-        var resolvedMachineId = ResolveMachineId(source, machineId) ?? throw new InvalidOperationException("The sequential source requires an explicit machine selection.");
+        var resolvedMachineId = await ResolveMachineIdAsync(source, machineId, cancellationToken).ConfigureAwait(false) ?? throw new InvalidOperationException("The sequential source requires an explicit machine selection.");
         var decoded = await decoders.DecodeAsync(source, resolvedMachineId, cancellationToken).ConfigureAwait(false);
-        var selectedParameters = parameters ?? new Dictionary<string, string>(StringComparer.Ordinal);
+        var selectedParameters = Parameters(parameters);
         var request = SelectEncodableRequest(decoded, targetFormatId, resolvedMachineId, selectedParameters) ?? throw new NotSupportedException($"No sequential encoder can convert '{source.FormatId}' to '{targetFormatId}' for '{resolvedMachineId}'.");
         var encoded = await encoders.EncodeAsync(request, cancellationToken).ConfigureAwait(false);
         var losses = new List<string>();
@@ -82,7 +84,7 @@ public sealed class SequentialMediaConversionService
             losses.Add("The target signal timing is a standard reconstruction rather than the original recording timing.");
 
         var metadata = BuildTargetMetadata(selectedParameters, encoded);
-        var target = new MediaImageDocument(source.Source, targetFormatId, MediaKind.Tape, encoded, [], decoded.Diagnostics, metadata);
+        var target = new MediaImageDocument(source.Source with { Parameters = selectedParameters }, targetFormatId, MediaKind.Tape, encoded, [], decoded.Diagnostics, metadata);
         return new SequentialMediaConversionPlan(target, decoded.Diagnostics.Distinct(StringComparer.Ordinal).ToArray(), losses.Distinct(StringComparer.Ordinal).ToArray());
     }
 
@@ -108,7 +110,8 @@ public sealed class SequentialMediaConversionService
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(sourcePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
-        var source = await reading.ReadAsync(new MediaSourceDescriptor(sourcePath, []), cancellationToken).ConfigureAwait(false);
+        var sourceParameters = parameters?.Where(pair => pair.Key.StartsWith("source.", StringComparison.Ordinal)).ToDictionary(pair => pair.Key[7..], pair => pair.Value);
+        var source = await reading.ReadAsync(new MediaSourceDescriptor(sourcePath, [], RequestedFormatId: Path.GetExtension(sourcePath).Equals(".raw", StringComparison.OrdinalIgnoreCase) ? TapeImageFormatIds.Raw : null) { Parameters = sourceParameters }, cancellationToken).ConfigureAwait(false);
         var plan = await PlanAsync(source, targetFormatId, machineId, parameters, cancellationToken).ConfigureAwait(false);
         if (plan.Losses.Count > 0 && !acceptLosses)
             throw new InvalidOperationException("The sequential conversion has declared information losses that were not accepted.");
@@ -128,11 +131,28 @@ public sealed class SequentialMediaConversionService
         return encoders.FindCompatible(lossy).Count == 1 ? lossy : null;
     }
 
-    private string? ResolveMachineId(MediaImageDocument source, string? requestedMachineId)
+    private async Task<string?> ResolveMachineIdAsync(MediaImageDocument source, string? requestedMachineId, CancellationToken token)
     {
         if (!string.IsNullOrWhiteSpace(requestedMachineId)) return requestedMachineId;
         var machineIds = decoders.FindCompatible(source).SelectMany(decoder => decoder.MachineIds).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
-        return machineIds.Length == 1 ? machineIds[0] : null;
+        if (machineIds.Length == 1) return machineIds[0];
+        // Un signal PCM n'identifie pas sa machine par son conteneur : les blocs validés donnent cette preuve.
+        var candidates = new List<(string Machine, int Valid)>();
+        foreach (var machine in machineIds)
+        {
+            var result = await decoders.DecodeAsync(source, machine, token).ConfigureAwait(false);
+            var valid = result.Blocks.Count(block => block.IntegrityValid == true);
+            if (valid > 0) candidates.Add((machine, valid));
+        }
+        var best = candidates.OrderByDescending(candidate => candidate.Valid).ToArray();
+        return best.Length == 0 || best.Length > 1 && best[0].Valid == best[1].Valid ? null : best[0].Machine;
+    }
+
+    private static IReadOnlyDictionary<string, string> Parameters(IReadOnlyDictionary<string, string>? values)
+    {
+        var parameters = new Dictionary<string, string>(values ?? new Dictionary<string, string>(), StringComparer.Ordinal);
+        parameters.TryAdd("sampleRate", "48000");
+        return parameters;
     }
 
     private static IReadOnlyDictionary<string, string> BuildTargetMetadata(IReadOnlyDictionary<string, string> parameters, SequentialMediaImageRepresentation representation)

@@ -14,4 +14,12 @@
   <data name="Emulation.Acorn.Video.Output"><value>Video-uitvoer</value></data>
   <data name="Emulation.Acorn.Video.Output.Monochrome"><value>Composiet (monochroom)</value></data>
   <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>Samengesteld (kleur, S39)</value></data>
+  <data name="Emulation.Acorn.Network.Enabled"><value>Installeer Econet interface</value></data>
+  <data name="Emulation.Acorn.Network.Station"><value>Stationnummer</value></data>
+  <data name="Emulation.Acorn.Network.Clock"><value>Netwerkklok</value></data>
+  <data name="Emulation.Acorn.Network.Mode"><value>Netwerkverbinding</value></data>
+  <data name="Emulation.Acorn.Network.Disconnected"><value>Verbinding verbroken</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress"><value>Lokaal IPv4-adres</value></data>
+  <data name="Emulation.Acorn.Network.Port"><value>UDP poort</value></data>
+  <data name="Emulation.Acorn.Network.Peers"><value>Afstandsstations</value></data>
 </root>

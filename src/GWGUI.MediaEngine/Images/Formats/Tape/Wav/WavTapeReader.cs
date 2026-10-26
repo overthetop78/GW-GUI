@@ -92,6 +92,7 @@ public sealed class WavTapeReader : IMediaImageReader
             {
                 if (chunk.Length % blockAlign != 0) throw new InvalidDataException("A WAV data chunk ends inside a PCM sample frame.");
                 var frames = chunk.Length / blockAlign;
+                if (frames == 0) continue;
                 var start = TimeSpan.FromSeconds(totalFrames / (double)sampleRate);
                 var duration = TimeSpan.FromSeconds(frames / (double)sampleRate);
                 for (var channel = 0; channel < channels; channel++)

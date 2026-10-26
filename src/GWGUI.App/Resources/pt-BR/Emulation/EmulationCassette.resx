@@ -16,4 +16,23 @@
   <data name="Emulation.Cassette.State.Paused"><value>Pausada</value></data>
   <data name="Emulation.Cassette.State.Recording"><value>Gravando</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>Fim da fita</value></data>
+  <data name="Emulation.Cassette.Settings.Baud"><value>Taxa de dados (baud)</value></data>
+  <data name="Emulation.Cassette.Settings.Automatic"><value>Automático</value></data>
+  <data name="Emulation.Cassette.Settings.Mode"><value>Modo de carregamento</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.RealTime"><value>Leitura em tempo real</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Accelerated"><value>Leitura acelerada</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Direct"><value>Carga directa</value></data>
+  <data name="Emulation.Cassette.Settings.Speed"><value>Velocidade da fita</value></data>
+  <data name="Emulation.Cassette.Settings.Wind"><value>Velocidade de enrolamento rápida</value></data>
+  <data name="Emulation.Cassette.Settings.ReadLatency"><value>Ler o atraso do motor</value></data>
+  <data name="Emulation.Cassette.Settings.WriteLatency"><value>Gravação do atraso do motor</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Sons mecânicos</value></data>
+  <data name="Emulation.Cassette.Settings.Protected"><value>Protecção de escrita</value></data>
+  <data name="Emulation.Cassette.Pcm.SampleRate"><value>RAW Taxa de amostragem (Hz)</value></data>
+  <data name="Emulation.Cassette.Pcm.Channels"><value>RAW canais</value></data>
+  <data name="Emulation.Cassette.Pcm.Bits"><value>RAW bits por amostra</value></data>
+  <data name="Emulation.Cassette.Pcm.Signed"><value>RAW Amostras assinadas</value></data>
+  <data name="Emulation.Cassette.Pcm.LittleEndian"><value>RAW amostras de pouco fim</value></data>
+  <data name="Emulation.Cassette.Pcm.Input"><value>RAW perfil de entrada em cassete</value></data>
+  <data name="Emulation.Cassette.Pcm.Output"><value>RAW perfil de gravação em cassete</value></data>
 </root>

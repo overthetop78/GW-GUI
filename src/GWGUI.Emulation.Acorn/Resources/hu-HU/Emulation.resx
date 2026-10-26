@@ -14,4 +14,12 @@
   <data name="Emulation.Acorn.Video.Output"><value>Videokimenet</value></data>
   <data name="Emulation.Acorn.Video.Output.Monochrome"><value>Összetett (monokróm)</value></data>
   <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>Összetett (szín, S39)</value></data>
+  <data name="Emulation.Acorn.Network.Enabled"><value>Econet interfész telepítése</value></data>
+  <data name="Emulation.Acorn.Network.Station"><value>A pályaudvar száma</value></data>
+  <data name="Emulation.Acorn.Network.Clock"><value>Hálózati óra</value></data>
+  <data name="Emulation.Acorn.Network.Mode"><value>Hálózati kapcsolat</value></data>
+  <data name="Emulation.Acorn.Network.Disconnected"><value>Kikapcsolás</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress"><value>Helyi IPv4-cím</value></data>
+  <data name="Emulation.Acorn.Network.Port"><value>UDP kikötő</value></data>
+  <data name="Emulation.Acorn.Network.Peers"><value>Távirányító állomások</value></data>
 </root>

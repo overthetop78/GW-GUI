@@ -10,11 +10,19 @@ public static class HardDiskImageCreation
         Publish(path, plan.FixedSize && string.Equals(plan.ContainerId, "raw", StringComparison.OrdinalIgnoreCase) ? plan.CapacityBytes : 0, write);
     }
 
-    public static void Create(string path, long bytes, HardDiskImageFormat format, bool preallocate, HardDiskPreparation preparation = HardDiskPreparation.Blank)
+    public static void Create(string path, long bytes, HardDiskImageFormat format, bool preallocate, HardDiskPreparation preparation = HardDiskPreparation.Blank, DiskImageGeometry? geometry = null)
     {
         HardDiskImageValidation.Validate(path, bytes, format);
         if (preparation != HardDiskPreparation.Blank && format.Preparations?.Contains(preparation) != true)
             throw new ArgumentException("Unsupported disk preparation.", nameof(preparation));
+        if (format.SupportsExplicitGeometry && (geometry is null || geometry.Capacity != bytes || !format.LogicalSectorSizes.Contains(geometry.SectorSize)))
+            throw new ArgumentException("An explicit geometry matching the disk capacity and sector size is required.", nameof(geometry));
+        if (format.ImageCreator is { } create)
+        {
+            if (File.Exists(Path.GetFullPath(path))) throw new IOException("The disk image already exists.");
+            create(path, bytes, preallocate, preparation, geometry);
+            return;
+        }
         Publish(path, preallocate && format.Container == Containers.DiskContainerKind.Raw ? bytes : 0,
             stream => Containers.DiskContainerWriter.Write(stream, bytes, format.Container,
                 content =>

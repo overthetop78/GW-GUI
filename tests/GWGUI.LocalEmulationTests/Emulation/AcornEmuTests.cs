@@ -18,6 +18,34 @@ namespace GWGUI.Tests.Emulation;
 /// <summary>Vérifications autonomes : aucun firmware, fichier, processus ou périphérique externe.</summary>
 public sealed class AcornEmuTests
 {
+    [Fact]
+    public void NmiIsEdgeTriggeredAndReturnsThroughTheNormalStack()
+    {
+        var bus = new MemoryBus(); Array.Fill(bus.Bytes, (byte)0xea, 0x200, 16);
+        bus.Bytes[0xfffa] = 0; bus.Bytes[0xfffb] = 3;
+        bus.Bytes[0x300] = 0xe6; bus.Bytes[0x301] = 0x10; bus.Bytes[0x302] = 0x40;
+        var cpu = Start(bus); bus.Nmi = true;
+        cpu.Step(); Assert.Equal(0x201, cpu.PC);
+        var cycles = cpu.Cycles;
+        cpu.Step(); Assert.Equal(0x300, cpu.PC); Assert.Equal(cycles + 7, cpu.Cycles);
+        Assert.Equal(0x02, bus.Bytes[0x1fd]); Assert.Equal(0x01, bus.Bytes[0x1fc]); Assert.Equal(0, bus.Bytes[0x1fb] & 0x10);
+        cpu.Step(); cpu.Step(); Assert.Equal(1, bus.Bytes[0x10]); Assert.Equal(0x201, cpu.PC);
+        cpu.Step(); Assert.Equal(0x202, cpu.PC); // NMI toujours haute : aucune seconde interruption.
+        bus.Nmi = false; cpu.Step(); bus.Nmi = true; cpu.Step(); cpu.Step(); Assert.Equal(0x300, cpu.PC);
+    }
+
+    [Fact]
+    public void NmiTakesPriorityOverAnUnmaskedIrq()
+    {
+        var bus = new MemoryBus(); bus.Bytes[0x200] = 0x58; // CLI
+        bus.Bytes[0xfffa] = 0; bus.Bytes[0xfffb] = 3; bus.Bytes[0x300] = 0x40;
+        bus.Bytes[0xfffe] = 0; bus.Bytes[0xffff] = 4;
+        var cpu = Start(bus); bus.Irq = true; bus.Nmi = true;
+        cpu.Step(); cpu.Step(); Assert.Equal(0x300, cpu.PC);
+        cpu.Step(); Assert.Equal(0x201, cpu.PC);
+        cpu.Step(); Assert.Equal(0x400, cpu.PC);
+    }
+
     [Theory]
     [InlineData("0d9bcaf6a393c9ce2359ed700ddb53c232c2c45d", EmulationFirmwareCompatibility.Official)]
     [InlineData("890f6e3e7fab3340f75b85e93ff29332bc9ecb2e", EmulationFirmwareCompatibility.Official)]
@@ -67,7 +95,7 @@ public sealed class AcornEmuTests
     public void UnknownSidewaysRomIsRecognizedFromHeaderInsteadOfFilename()
     {
         var image = new byte[16384];
-        image[7] = 14; image[14] = (byte)'('; image[15] = (byte)'C'; image[16] = (byte)')';
+        image[6] = 0x60; image[7] = 14; image[14] = 0; image[15] = (byte)'('; image[16] = (byte)'C'; image[17] = (byte)')';
         var entry = Assert.Single(BbcFirmware.Inspect(image, "renamed.bin", MachineModel.BbcMicroModelA, NativeFirmware.Field));
         Assert.Equal("acornemu.basic", entry.DestinationFieldId);
         Assert.Equal(EmulationFirmwareCompatibility.Unknown, entry.Compatibility);
@@ -79,6 +107,18 @@ public sealed class AcornEmuTests
         var image = new byte[16384]; image[^4] = 0xcd; image[^3] = 0xd9;
         var entry = Assert.Single(BbcFirmware.Inspect(image, "renamed.bin", MachineModel.BbcMicroModelA, NativeFirmware.Field));
         Assert.Equal("acornemu.mos", entry.DestinationFieldId);
+    }
+
+    [Fact]
+    public void ServiceRomUsesTheOptionalDiskBankAndKnownDfsRequiresTheMachineExtension()
+    {
+        var image = new byte[8192]; image[6] = 0x82; image[7] = 16;
+        image[17] = (byte)'('; image[18] = (byte)'C'; image[19] = (byte)')';
+        var candidate = Assert.Single(BbcFirmware.Inspect(image, "service.rom", MachineModel.BbcMicroModelA, NativeFirmware.Field));
+        Assert.Equal("acornemu.dfs", candidate.DestinationFieldId); Assert.Equal(EmulationFirmwareCompatibility.Unknown, candidate.Compatibility);
+        Assert.Equal(16384, BbcFirmware.GetRomBytes(image, FirmwareCategory.DiscFilingSystem).Length);
+        Assert.Equal(EmulationFirmwareCompatibility.PartiallyCompatible, BbcMicroFirmwareCompatibilityCatalog.Get(MachineModel.BbcMicroModelA, "dbbec4d2540a854c120be3194c7566a2b79d153b"));
+        Assert.Throws<InvalidDataException>(() => BbcFirmware.GetRomBytes(new byte[32768], FirmwareCategory.DiscFilingSystem));
     }
 
     [Fact]
@@ -320,7 +360,8 @@ public sealed class AcornEmuTests
     private sealed class MemoryBus : ICpuBus
     {
         internal byte[] Bytes { get; } = new byte[65536];
-        public bool Irq => false;
+        public bool Irq { get; set; }
+        public bool Nmi { get; set; }
         public byte Read(ushort address) => Bytes[address];
         public void Write(ushort address, byte value) => Bytes[address] = value;
         public void Tick() { }

@@ -17,12 +17,15 @@ public sealed class AdfReader : IMediaImageReader
     {
         DiskImageFormatIds.AcornAdfs800,
         DiskImageFormatIds.AcornAdfs1600,
+        DiskImageFormatIds.AcornAdfs160,
+        DiskImageFormatIds.AcornAdfs320,
+        DiskImageFormatIds.AcornAdfs640,
         DiskImageFormatIds.AmigaDos,
         DiskImageFormatIds.AmigaDosHighDensity
     }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<string> SupportedExtensions = new[]
     {
-        DiskImageFileExtensions.Adf
+        DiskImageFileExtensions.Adf, DiskImageFileExtensions.Ads, DiskImageFileExtensions.Adm, DiskImageFileExtensions.Adl
     }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[]
     {
@@ -41,7 +44,7 @@ public sealed class AdfReader : IMediaImageReader
         this.readBytes = readBytes ?? throw new ArgumentNullException(nameof(readBytes));
     }
 
-    private static readonly int[] AcceptedSizes = [AcornAdfGeometry.Capacity, AcornAdfGeometry.PaddedCapacity, AcornAdfGeometry.HighDensityCapacity, AmigaAdfGeometry.DoubleDensityCapacity, AmigaAdfGeometry.HighDensityCapacity];
+    private static readonly int[] AcceptedSizes = AcornAdfGeometry.All.Select(geometry => geometry.Capacity).Concat([AcornAdfGeometry.PaddedCapacity, AmigaAdfGeometry.DoubleDensityCapacity, AmigaAdfGeometry.HighDensityCapacity]).ToArray();
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
 
@@ -69,6 +72,8 @@ public sealed class AdfReader : IMediaImageReader
         cancellationToken.ThrowIfCancellationRequested();
         var requestedFormatMatches = context.RequestedFormatId is null || SupportedFormatIds.Contains(context.RequestedFormatId);
         var lengthMatches = context.Length <= int.MaxValue && AcceptedSizes.Contains((int)context.Length);
+        if (AcornAdfGeometry.BbcGeometries.FirstOrDefault(geometry => geometry.Capacity == context.Length) is { } bbc)
+            return ValueTask.FromResult(requestedFormatMatches && (context.RequestedFormatId is null ? SupportedExtensions.Contains(context.Extension) : context.RequestedFormatId.Equals(bbc.FormatId, StringComparison.OrdinalIgnoreCase)));
         return ValueTask.FromResult(requestedFormatMatches && lengthMatches);
     }
 
@@ -81,6 +86,7 @@ public sealed class AdfReader : IMediaImageReader
 
     private static SectorImage Read(byte[] data, CancellationToken cancellationToken)
     {
+        if (AcornAdfGeometry.BbcGeometries.FirstOrDefault(geometry => geometry.Capacity == data.Length) is { } bbc) return RegularSectorImageBuilder.Create(data, bbc, cancellationToken);
         if (data.Length == AcornAdfGeometry.Capacity) return RegularSectorImageBuilder.Create(data, AcornAdfGeometry.Geometry, cancellationToken);
         if (data.Length == AcornAdfGeometry.PaddedCapacity) return RegularSectorImageBuilder.Create(data, AcornAdfGeometry.Geometry, cancellationToken, AcornAdfGeometry.PaddedTrailingByteCount);
         if (data.Length == AcornAdfGeometry.HighDensityCapacity) return RegularSectorImageBuilder.Create(data, AcornAdfGeometry.HighDensityGeometry, cancellationToken);

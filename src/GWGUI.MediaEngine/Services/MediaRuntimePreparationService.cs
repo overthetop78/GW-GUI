@@ -13,7 +13,46 @@ namespace GWGUI.MediaEngine.Services;
 /// <summary>Adapte les lecteurs CUE et convertisseurs SCP existants aux contrats de préparation.</summary>
 internal sealed class MediaRuntimePreparationService : IMediaRuntimePreparation
 {
+    public async Task<IMediaRuntimeDisk> OpenDiskAsync(string path, bool writable = false, string? formatId = null, CancellationToken cancellationToken = default)
+    {
+        var engine = Conversion.Value;
+        var document = await engine.ReadingService.ReadAsync(new(path, [], RequestedFormatId: formatId), cancellationToken).ConfigureAwait(false);
+        return new MediaRuntimeDisk(engine, document, writable);
+    }
+    public Task<GWGUI.MediaEngine.Contracts.MediaCassetteSignal> ReadCassetteAsync(string path, CancellationToken cancellationToken = default, string? machineId = null, IReadOnlyDictionary<string, string>? parameters = null) => GWGUI.MediaEngine.Functions.CassetteSignalFunctions.ReadAsync(path, cancellationToken, machineId, parameters);
+    public IReadOnlyList<string> CassetteRecordingExtensions => GWGUI.MediaEngine.Functions.CassetteSignalFunctions.WritableExtensions;
+    public short[] RenderCassetteSound(string operation, int sampleRate, int sampleCount, long offset) => GWGUI.MediaEngine.Functions.CassetteSoundFunctions.Render(operation, sampleRate, sampleCount, offset);
+    public Task WriteCassetteAsync(string path, MediaCassetteSignal signal, CancellationToken cancellationToken = default, IReadOnlyDictionary<string, string>? parameters = null) => GWGUI.MediaEngine.Functions.CassetteSignalFunctions.WriteAsync(path, signal, cancellationToken, parameters);
     private static readonly Lazy<MediaEngineComposition> Conversion = new(MediaEngineComposition.CreateDefault);
+
+    /// <inheritdoc/>
+    public Task CreateHardDiskAsync(string path, string formatId, HardDiskGeometry geometry, string? fileSystemId = null, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(geometry); cancellationToken.ThrowIfCancellationRequested();
+        if (formatId != HardDiskImageFormatIds.AcornWinchester) throw new NotSupportedException("No runtime HDD creator is registered for this format.");
+        if (geometry.SectorSize != 256 || geometry.SectorsPerTrack != 33 || geometry.Heads > 255 || geometry.Cylinders > 65535) throw new ArgumentException("Acorn Winchester requires 256-byte sectors, 33 sectors per track and a DSC-compatible geometry.", nameof(geometry));
+        var ranges = new List<MediaDataRange>();
+        var position = 0L;
+        if (fileSystemId is not null)
+        {
+            if (fileSystemId != GWGUI.MediaFileSystems.Definitions.FileSystemIds.AcornAdfs) throw new NotSupportedException("The requested filesystem preparation is not registered for this disk.");
+            var header = GWGUI.MediaFileSystems.FileSystems.Acorn.Adfs.AcornAdfsFormatter.CreateHeader(checked((int)geometry.LogicalSectorCount));
+            ranges.Add(new(0, header.Length, MediaDataRangeKind.Stored, new MemoryRandomAccessData(header))); position = header.Length;
+        }
+        if (position < geometry.Capacity) ranges.Add(new(position, geometry.Capacity - position, MediaDataRangeKind.Zero));
+        var representation = new GWGUI.MediaEngine.Images.Models.Blocks.BlockMediaImageRepresentation(geometry.Capacity, geometry.SectorSize, ranges, geometry);
+        var document = MediaImageDocument.CreateUnexplored(new(path, []), formatId, MediaKind.HardDisk, representation, [], new Dictionary<string, string>());
+        return new GWGUI.MediaEngine.Images.Formats.HardDisk.Acorn.AcornWinchesterWriter().CreateAsync(document, path, formatId, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public Task CreateBlankDiskAsync(string path, string formatId, CancellationToken cancellationToken = default)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        var image = GWGUI.MediaEngine.Images.Creation.BlankSectorImageFactory.Create(formatId);
+        var document = MediaImageDocument.CreateUnexplored(new(path, []), formatId, GWGUI.MediaEngine.Enums.MediaKind.Floppy, new GWGUI.MediaEngine.Images.Models.Sectors.SectorMediaImageRepresentation(image), [], new Dictionary<string, string>());
+        return Conversion.Value.Writing.WritingService.WriteAsync(document, path, formatId, cancellationToken: cancellationToken);
+    }
 
     /// <inheritdoc/>
     public IReadOnlyDictionary<string, string> FileExtensions { get; } = new ReadOnlyDictionary<string, string>(typeof(DiskImageFileExtensions).GetFields(BindingFlags.Public | BindingFlags.Static).Where(field => field.IsLiteral && field.FieldType == typeof(string)).ToDictionary(field => field.Name, field => (string)field.GetRawConstantValue()!, StringComparer.Ordinal));

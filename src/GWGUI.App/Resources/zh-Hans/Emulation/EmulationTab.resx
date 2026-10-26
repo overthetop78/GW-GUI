@@ -15,4 +15,5 @@
   <data name="Emulation.Tab.Advanced"><value>高级</value></data>
   <data name="Emulation.Tab.Shortcuts"><value>快捷键</value></data>
   <data name="Emulation.Tab.Audio"><value>音频</value></data>
+  <data name="Emulation.Tab.Ethernet"><value>网络</value></data>
 </root>

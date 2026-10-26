@@ -14,4 +14,12 @@
   <data name="Emulation.Acorn.Video.Output"><value>Video výstup</value></data>
   <data name="Emulation.Acorn.Video.Output.Monochrome"><value>Kompozitní (monochromní)</value></data>
   <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>složený (barevný, S39)</value></data>
+  <data name="Emulation.Acorn.Network.Enabled"><value>Nainstalovat rozhraní Econet</value></data>
+  <data name="Emulation.Acorn.Network.Station"><value>Číslo stanice</value></data>
+  <data name="Emulation.Acorn.Network.Clock"><value>Síťové hodiny</value></data>
+  <data name="Emulation.Acorn.Network.Mode"><value>Síťové připojení</value></data>
+  <data name="Emulation.Acorn.Network.Disconnected"><value>Odpojeno</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress"><value>Místní IPv4 adresa</value></data>
+  <data name="Emulation.Acorn.Network.Port"><value>UDP přístav</value></data>
+  <data name="Emulation.Acorn.Network.Peers"><value>Vzdálené stanice</value></data>
 </root>

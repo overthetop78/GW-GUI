@@ -14,4 +14,12 @@
   <data name="Emulation.Acorn.Video.Output"><value>Videoausgang</value></data>
   <data name="Emulation.Acorn.Video.Output.Monochrome"><value>Verbundwerkstoff (monochrom)</value></data>
   <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>Verbundwerkstoff (Farbe), S39)</value></data>
+  <data name="Emulation.Acorn.Network.Enabled"><value>Installieren Sie Econet Interface</value></data>
+  <data name="Emulation.Acorn.Network.Station"><value>Nummer des Bahnhofs</value></data>
+  <data name="Emulation.Acorn.Network.Clock"><value>Netztakt</value></data>
+  <data name="Emulation.Acorn.Network.Mode"><value>Netzanschluss</value></data>
+  <data name="Emulation.Acorn.Network.Disconnected"><value>Abgetrennt</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress"><value>Lokale IPv4-Adresse</value></data>
+  <data name="Emulation.Acorn.Network.Port"><value>UDP Hafen</value></data>
+  <data name="Emulation.Acorn.Network.Peers"><value>Fernstationen</value></data>
 </root>

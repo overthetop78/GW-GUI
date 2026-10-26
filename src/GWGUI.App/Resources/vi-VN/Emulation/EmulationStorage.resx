@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Xóa khi đóng trò chơi</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>Thẻ nhớ</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>Tên quân bài</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>Tốc độ truyền:</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>Đọc độ chịu đựng</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>Ghi độ trễ</value></data>
 </root>

@@ -55,7 +55,7 @@ public sealed class UefReader : IMediaImageReader
         var diagnostics = new List<string>();
         var offset = UefConstants.HeaderSize;
         var position = 0L;
-        var baseFrequency = UefConstants.DefaultBaseFrequency;
+        double baseFrequency = UefConstants.DefaultBaseFrequency;
         var baudRate = UefConstants.DefaultBaudRate;
         ushort phase = 180;
         while (offset < bytes.Length)
@@ -83,7 +83,7 @@ public sealed class UefReader : IMediaImageReader
             if (id == UefConstants.BaseFrequency && payload.Length == sizeof(float))
             {
                 var value = BinaryPrimitives.ReadSingleLittleEndian(payload);
-                if (float.IsFinite(value) && value > 0) baseFrequency = checked((int)Math.Round(value));
+                if (float.IsFinite(value) && value > 0) baseFrequency = value;
                 metadata[UefConstants.BaseFrequencyMetadataKey] = baseFrequency.ToString(CultureInfo.InvariantCulture);
             }
             else if (id == UefConstants.BaudRate && payload.Length == sizeof(float))
@@ -131,7 +131,7 @@ public sealed class UefReader : IMediaImageReader
 
     private static SequentialSegmentKind SegmentKind(ushort id) => id switch
     {
-        UefConstants.ImplicitData or UefConstants.MultiplexedData or UefConstants.ExplicitData or UefConstants.DefinedData =>
+        UefConstants.ImplicitData or UefConstants.MultiplexedData or UefConstants.ExplicitData or UefConstants.DefinedData or UefConstants.ImplicitAtomData =>
             SequentialSegmentKind.DataBlock,
         UefConstants.CarrierTone or UefConstants.CarrierToneWithDummy => SequentialSegmentKind.Carrier,
         UefConstants.IntegerGap or UefConstants.FloatingGap => SequentialSegmentKind.Silence,

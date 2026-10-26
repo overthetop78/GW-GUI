@@ -17,28 +17,37 @@ internal sealed partial class Cpu6502(ICpuBus bus)
     internal byte P { get; private set; } = InterruptDisable | Unused;
     internal ushort PC { get; private set; }
     internal long Cycles { get; private set; }
+    /// <summary>Termine un appel MOS traité explicitement par l'assemblage de la machine, comme un RTS matériel.</summary>
+    /// <remarks>Le CPU ne décide pas quel appel intercepter. Le modèle choisit le contrat MOS et les données à charger.</remarks>
+    internal void CompleteHostCall(byte result)
+    {
+        A = result; P &= unchecked((byte)~Carry);
+        var start = Cycles; var low = Pop(); PC = (ushort)((low | Pop() << 8) + 1); Pad(start, 6);
+    }
 
     /// <summary>Applique RESET et lit le vecteur FFFC/FFFD. Le bus et les périphériques sont réinitialisés par leur propriétaire.</summary>
     internal void Reset()
     {
+        _nmiPending = false; _nmiLevel = bus.Nmi;
         S = 0xfd;
         P = (byte)(P | InterruptDisable | Unused);
         for (var i = 0; i < 5; i++) Tick();
         PC = ReadWord(0xfffc);
     }
 
-    /// <summary>Exécute une instruction ou une interruption IRQ et renvoie au planificateur de la machine.</summary>
+    /// <summary>Exécute une instruction, une NMI ou une IRQ et renvoie au planificateur de la machine.</summary>
     internal void Step()
     {
         var start = Cycles;
+        if (_nmiPending)
+        {
+            _nmiPending = false;
+            EnterInterrupt(start, 0xfffa);
+            return;
+        }
         if (bus.Irq && (P & InterruptDisable) == 0)
         {
-            Push((byte)(PC >> 8));
-            Push((byte)PC);
-            Push((byte)((P | Unused) & ~Break));
-            P |= InterruptDisable;
-            PC = ReadWord(0xfffe);
-            Pad(start, 7);
+            EnterInterrupt(start, 0xfffe);
             return;
         }
         var opcode = Fetch();
@@ -47,7 +56,7 @@ internal sealed partial class Cpu6502(ICpuBus bus)
         P |= Unused;
     }
 
-    private void Tick() { bus.Tick(); Cycles++; }
+    private void Tick() { bus.Tick(); Cycles++; SampleNmi(); }
     private byte Read(ushort address) { Tick(); return bus.Read(address); }
     private void Write(ushort address, byte value) { Tick(); bus.Write(address, value); }
     private byte Fetch() => Read(PC++);

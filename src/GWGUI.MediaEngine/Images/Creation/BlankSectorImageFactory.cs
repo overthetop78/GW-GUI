@@ -4,7 +4,9 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.Adf;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Apple;
 using GWGUI.MediaEngine.Images.Formats.Floppy.CommodoreDos;
 using GWGUI.MediaEngine.Images.Formats.Floppy.Raw;
+using GWGUI.MediaEngine.Images.Formats.Floppy.BbcDfs;
 using GWGUI.MediaEngine.Images.Models.Sectors;
+using GWGUI.MediaEngine.Images.Reading.Reconstruction;
 using GWGUI.MediaEngine.Images.Reading.Reconstruction.Sectors;
 using GWGUI.MediaEngine.Images.Reading.Reconstruction.Sectors.Apple;
 using GWGUI.MediaFileSystems.Formats.Commodore;
@@ -16,6 +18,24 @@ internal static class BlankSectorImageFactory
 {
     public static SectorImage Create(string formatId)
     {
+        if (AcornAdfGeometry.BbcGeometries.FirstOrDefault(geometry => geometry.FormatId == formatId) is { } adfs)
+        {
+            var bytes = new byte[adfs.Capacity];
+            GWGUI.MediaFileSystems.FileSystems.Acorn.Adfs.AcornAdfsFormatter.CreateHeader(adfs.BlockCount).CopyTo(bytes, 0);
+            return RegularSectorImageBuilder.Create(bytes, adfs, CancellationToken.None);
+        }
+        if (BbcDfsGeometry.FindByFormatId(formatId) is { } dfs)
+        {
+            var bytes = new byte[dfs.Capacity];
+            var sectorsPerSide = dfs.Cylinders * BbcDfsGeometry.SectorsPerTrack;
+            for (var head = 0; head < dfs.Heads; head++)
+            {
+                var catalogue = head * BbcDfsGeometry.TrackSize + BbcDfsGeometry.SectorSize;
+                bytes[catalogue + 6] = (byte)(sectorsPerSide >> 8);
+                bytes[catalogue + 7] = (byte)sectorsPerSide;
+            }
+            return LinearSectorImageBuilder.Create(bytes, formatId, new LinearSectorImageGeometry(BbcDfsGeometry.SectorSize, dfs.Cylinders, dfs.Heads, BbcDfsGeometry.SectorsPerTrack, SectorNumbering.ZeroBased));
+        }
         if (Fat12TargetGeometryCatalog.TryResolve(formatId, out var fat))
             return CreateLinearBlank(formatId, fat.SectorSize, fat.Cylinders, fat.Heads, fat.SectorsPerTrack, SectorNumbering.OneBased);
         if (formatId is DiskImageFormatIds.AmigaDos or DiskImageFormatIds.AmigaDosHighDensity)

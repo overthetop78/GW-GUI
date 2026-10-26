@@ -13,6 +13,7 @@ public static class DiskImageFileExtensions
 
     /// <summary>Extension des images ADF Acorn ou Amiga.</summary>
     public const string Adf = ".adf";
+    public const string Ads = ".ads", Adm = ".adm", Adl = ".adl";
 
     /// <summary>Extension des images Atari ATR.</summary>
     public const string Atr = ".atr";
@@ -165,6 +166,7 @@ public static class DiskImageFileExtensions
     public const string Tsx = ".tsx";
     public const string Tap = ".tap";
     public const string Uef = ".uef";
+    public const string Csw = ".csw";
 
     /// <summary>Extension des cartouches Amstrad Plus/GX4000.</summary>
     public const string Cpr = ".cpr";

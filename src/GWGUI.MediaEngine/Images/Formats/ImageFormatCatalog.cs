@@ -271,6 +271,9 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
                 F("acorn.adfs.800", "Acorn", "Acorn — ADFS · 800 KiB", [E(".adf", "Extension.adf.acorn", "Acorn Disk File", true)], true, "ACORN-800", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".adf", ".hfe"),
                 FloppyDensity.DoubleDensity
             ),
+            new("acorn.adfs.160", "Acorn / BBC Micro", "ADFS S — 160 KiB", [new(".ads", "ADS", true), new(".adf", "ADF")], true, Set(".ads", ".adf", ".hfe"), "BBC-ADFS-S", FloppyFormFactor.FiveAndQuarterInch, true, true, FloppyDensity.DoubleDensity),
+            new("acorn.adfs.320", "Acorn / BBC Micro", "ADFS M — 320 KiB", [new(".adm", "ADM", true), new(".adf", "ADF")], true, Set(".adm", ".adf", ".hfe"), "BBC-ADFS-M", FloppyFormFactor.FiveAndQuarterInch, true, true, FloppyDensity.DoubleDensity),
+            new("acorn.adfs.640", "Acorn / BBC Micro", "ADFS L — 640 KiB", [new(".adl", "ADL", true), new(".adf", "ADF")], true, Set(".adl", ".adf", ".hfe"), "BBC-ADFS-L", FloppyFormFactor.FiveAndQuarterInch, true, true, FloppyDensity.DoubleDensity),
             new("acorn.dfs.atom", "Acorn Atom", "Acorn Atom DOS — 100 KiB", [new(".dsk", "Atom DSK", true)], false, Set(".dsk", ".scp", ".hfe"), "ACORN-ATOM-DOS", FloppyFormFactor.FiveAndQuarterInch, true, true),
             new("apricot.pcxi.315", "ACT Apricot", "ACT Apricot PC/Xi — ApriDisk 315 KiB", [new(".dsk", "ApriDisk", true)], false, Set(".dsk"), "APRICOT-PCXI-315", FloppyFormFactor.ThreeAndHalfInch, true, true, FloppyDensity.DoubleDensity),
             new("acorn.dfs.ss", "Acorn / BBC Micro", "BBC DFS — 100 KiB", [new(".ssd", "SSD", true)], true, Set(".scp", ".ssd", ".img", ".hfe"), "BBC-DFS-SS", FloppyFormFactor.FiveAndQuarterInch, true, true),

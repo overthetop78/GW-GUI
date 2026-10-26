@@ -14,4 +14,12 @@
   <data name="Emulation.Acorn.Video.Output"><value>Видео выход</value></data>
   <data name="Emulation.Acorn.Video.Output.Monochrome"><value>Композит (монохром)</value></data>
   <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>Композит (цвет, S39)</value></data>
+  <data name="Emulation.Acorn.Network.Enabled"><value>Установить интерфейс Econet</value></data>
+  <data name="Emulation.Acorn.Network.Station"><value>Номер станции</value></data>
+  <data name="Emulation.Acorn.Network.Clock"><value>Сетевые часы</value></data>
+  <data name="Emulation.Acorn.Network.Mode"><value>Сетевое подключение</value></data>
+  <data name="Emulation.Acorn.Network.Disconnected"><value>отключенный</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress"><value>Локальный IPv4 адрес</value></data>
+  <data name="Emulation.Acorn.Network.Port"><value>UDP порт</value></data>
+  <data name="Emulation.Acorn.Network.Peers"><value>Удалённые станции</value></data>
 </root>

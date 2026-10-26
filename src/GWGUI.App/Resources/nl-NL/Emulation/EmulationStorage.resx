@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Leegmaken bij het sluiten van het spel</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>Geheugenkaart</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>Naam kaart</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>Transfersnelheid</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>Lees latentie</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>Schrijf latentie</value></data>
 </root>

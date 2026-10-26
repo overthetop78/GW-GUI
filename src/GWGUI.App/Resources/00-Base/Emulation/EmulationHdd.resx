@@ -21,4 +21,5 @@
   <data name="Emulation.Hdd.Prepare.AmigaRdbOfs" xml:space="preserve"><value>RDB + OFS</value></data>
   <data name="Emulation.Hdd.Prepare.AmigaRdbFfs" xml:space="preserve"><value>RDB + FFS</value></data>
   <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Formatting creates an empty volume, without an operating system. Atari HDD booting also requires a compatible disk driver installed from the emulated machine. Compressed images may redirect writes to an extracted copy.</value></data>
+  <data name="Emulation.Hdd.Prepare.AcornAdfs"><value>Acorn ADFS</value></data>
 </root>

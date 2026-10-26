@@ -16,7 +16,7 @@ namespace GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Msx;
 /// <summary>Validates MSX byte groups retained in CAS or TSX and decodes standard FSK serial frames from PCM WAV.</summary>
 public sealed class MsxTapeDecoder : ISequentialMediaDecoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.MsxCas, TapeImageFormatIds.Tzx, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.MsxCas, TapeImageFormatIds.Tzx, TapeImageFormatIds.Wav, TapeImageFormatIds.Csw, TapeImageFormatIds.Raw }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Msx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => MsxCasConstants.DecoderId;

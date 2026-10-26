@@ -16,4 +16,23 @@
   <data name="Emulation.Cassette.State.Paused"><value>Wstrzymana</value></data>
   <data name="Emulation.Cassette.State.Recording"><value>Nagrywanie</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>Koniec taśmy</value></data>
+  <data name="Emulation.Cassette.Settings.Baud"><value>Wskaźnik danych (baud)</value></data>
+  <data name="Emulation.Cassette.Settings.Automatic"><value>Automatyczne</value></data>
+  <data name="Emulation.Cassette.Settings.Mode"><value>Tryb wczytywania</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.RealTime"><value>Czytanie w czasie rzeczywistym</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Accelerated"><value>Przyspieszone odczytywanie</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Direct"><value>Załadowanie bezpośrednie</value></data>
+  <data name="Emulation.Cassette.Settings.Speed"><value>Prędkość taśmy</value></data>
+  <data name="Emulation.Cassette.Settings.Wind"><value>Szybkie nawijanie</value></data>
+  <data name="Emulation.Cassette.Settings.ReadLatency"><value>Odczyt opóźnienia silnika</value></data>
+  <data name="Emulation.Cassette.Settings.WriteLatency"><value>Opóźnienie zapisu silnika</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Dźwięki mechaniczne</value></data>
+  <data name="Emulation.Cassette.Settings.Protected"><value>Ochrona zapisu</value></data>
+  <data name="Emulation.Cassette.Pcm.SampleRate"><value>RAW częstotliwość próbkowania (Hz)</value></data>
+  <data name="Emulation.Cassette.Pcm.Channels"><value>RAW kanały</value></data>
+  <data name="Emulation.Cassette.Pcm.Bits"><value>RAW bity na próbkę</value></data>
+  <data name="Emulation.Cassette.Pcm.Signed"><value>RAW podpisane próbki</value></data>
+  <data name="Emulation.Cassette.Pcm.LittleEndian"><value>RAW próbki z lekkiej endywii</value></data>
+  <data name="Emulation.Cassette.Pcm.Input"><value>RAW profil wejściowy kasety</value></data>
+  <data name="Emulation.Cassette.Pcm.Output"><value>RAW profil zapisu kasetowego</value></data>
 </root>

@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>مسح عند إغلاق اللعبة</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>بطاقة الذاكرة</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>اسم كارد</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>سرعة النقل</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>اقرأي البطولة</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>طقوس البطولة</value></data>
 </root>

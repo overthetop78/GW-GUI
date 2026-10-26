@@ -14,4 +14,12 @@
   <data name="Emulation.Acorn.Video.Output"><value>ناتج الفيديو</value></data>
   <data name="Emulation.Acorn.Video.Output.Monochrome"><value>مركبة (مونكروم)</value></data>
   <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>مركبة (الكولورة) S39)</value></data>
+  <data name="Emulation.Acorn.Network.Enabled"><value>تركيب واجهة إيكون</value></data>
+  <data name="Emulation.Acorn.Network.Station"><value>رقم المحطة</value></data>
+  <data name="Emulation.Acorn.Network.Clock"><value>ساعة الشبكة</value></data>
+  <data name="Emulation.Acorn.Network.Mode"><value>الاتصال الشبكي</value></data>
+  <data name="Emulation.Acorn.Network.Disconnected"><value>مفصَّلة</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress"><value>العنوان المحلي IPv4</value></data>
+  <data name="Emulation.Acorn.Network.Port"><value>UDP الميناء</value></data>
+  <data name="Emulation.Acorn.Network.Peers"><value>محطات التطهير</value></data>
 </root>

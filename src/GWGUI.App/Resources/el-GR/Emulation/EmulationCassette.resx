@@ -16,4 +16,23 @@
   <data name="Emulation.Cassette.State.Paused"><value>Παύση</value></data>
   <data name="Emulation.Cassette.State.Recording"><value>Εγγραφή</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>Τέλος ταινίας</value></data>
+  <data name="Emulation.Cassette.Settings.Baud"><value>Ποσοστό δεδομένων (σωλήνας)</value></data>
+  <data name="Emulation.Cassette.Settings.Automatic"><value>Αυτόματο</value></data>
+  <data name="Emulation.Cassette.Settings.Mode"><value>Λειτουργία φόρτωσης</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.RealTime"><value>Ανάγνωση σε πραγματικό χρόνο</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Accelerated"><value>Επιταχυνόμενη ανάγνωση</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Direct"><value>Άμεση φόρτωση</value></data>
+  <data name="Emulation.Cassette.Settings.Speed"><value>Ταχύτητα ταινίας</value></data>
+  <data name="Emulation.Cassette.Settings.Wind"><value>Ταχύτητα ταχείας περιέλιξης</value></data>
+  <data name="Emulation.Cassette.Settings.ReadLatency"><value>Ανάγνωση καθυστέρησης κινητήρα</value></data>
+  <data name="Emulation.Cassette.Settings.WriteLatency"><value>Καθυστέρηση εγγραφής κινητήρα</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Μηχανικοί ήχοι</value></data>
+  <data name="Emulation.Cassette.Settings.Protected"><value>Προστασία εγγραφής</value></data>
+  <data name="Emulation.Cassette.Pcm.SampleRate"><value>RAW ρυθμός δειγματοληψίας (Hz)</value></data>
+  <data name="Emulation.Cassette.Pcm.Channels"><value>RAW κανάλια</value></data>
+  <data name="Emulation.Cassette.Pcm.Bits"><value>RAW bits ανά δείγμα</value></data>
+  <data name="Emulation.Cassette.Pcm.Signed"><value>RAW υπογεγραμμένα δείγματα</value></data>
+  <data name="Emulation.Cassette.Pcm.LittleEndian"><value>RAW δείγματα μικροεγκλωβισμού</value></data>
+  <data name="Emulation.Cassette.Pcm.Input"><value>RAW προφίλ εισαγωγής κασέτας</value></data>
+  <data name="Emulation.Cassette.Pcm.Output"><value>RAW προφίλ εγγραφής κασέτας</value></data>
 </root>

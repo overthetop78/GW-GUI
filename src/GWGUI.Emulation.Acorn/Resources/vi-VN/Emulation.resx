@@ -14,4 +14,12 @@
   <data name="Emulation.Acorn.Video.Output"><value>Kết xuất ảnh động</value></data>
   <data name="Emulation.Acorn.Video.Output.Monochrome"><value>Tổng hợp (monoorome)</value></data>
   <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>Chất kết hợp (có màu, S39)</value></data>
+  <data name="Emulation.Acorn.Network.Enabled"><value>Cài đặt giao diện Econet</value></data>
+  <data name="Emulation.Acorn.Network.Station"><value>Số Trạm</value></data>
+  <data name="Emulation.Acorn.Network.Clock"><value>Đồng hồ mạng</value></data>
+  <data name="Emulation.Acorn.Network.Mode"><value>Kết nối mạng</value></data>
+  <data name="Emulation.Acorn.Network.Disconnected"><value>Ngắt kết nối</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress"><value>Địa chỉ IPv4 cục bộ</value></data>
+  <data name="Emulation.Acorn.Network.Port"><value>UDP Cổng</value></data>
+  <data name="Emulation.Acorn.Network.Peers"><value>Trạm ở xa</value></data>
 </root>

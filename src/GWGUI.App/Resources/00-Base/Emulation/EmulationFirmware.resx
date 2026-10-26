@@ -18,4 +18,5 @@
   <data name="Emulation.Firmware.Rom.Xegs"><value>XEGS ROM</value></data>
   <data name="Emulation.Firmware" xml:space="preserve"><value>Firmware</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>Voice samples</value></data>
+  <data name="Emulation.Acorn.Firmware.Dfs"><value>DFS / ADFS ROM</value></data>
 </root>

@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Wyczyść przy zamknięciu gry</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>Karta pamięci</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>Nazwa karty</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>Prędkość transferu</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>Odczyt opóźnienia</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>Pisz latencję</value></data>
 </root>

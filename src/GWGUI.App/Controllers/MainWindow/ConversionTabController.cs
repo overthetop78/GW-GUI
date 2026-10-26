@@ -33,6 +33,9 @@ using GWGUI.MediaEngine.Images.Conversion;
 using GWGUI.MediaEngine.Images.Conversion.Sequential;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Images.Reading;
+using GWGUI.Emulation.Contracts;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.App.Views.Dialogs.Emulation.Storage;
 
 namespace GWGUI.App.Controllers.MainWindow;
 
@@ -75,6 +78,8 @@ internal sealed class ConversionTabController(
     private DetectedImageFormat? sourceDetection;
     private IReadOnlyList<MediaConversionDestination>? engineDestinations;
     private MediaImageDocument? engineSourceDocument;
+    private IReadOnlyDictionary<string, string>? sourcePcmParameters;
+    private IReadOnlyDictionary<string, string>? targetPcmParameters;
     private bool UsesInternal => settings().Engines.Conversion == OperationEngine.Internal;
     private ComboBox ProfileCombo => view.ProfileBlock.ProfileCombo;
 
@@ -119,6 +124,12 @@ internal sealed class ConversionTabController(
     {
         var path = selectSource();
         if (path is null) return;
+        sourcePcmParameters = null;
+        if (UsesInternal && Path.GetExtension(path).Equals(".raw", StringComparison.OrdinalIgnoreCase) && formatDetector().Detect(path, new FileInfo(path).Length).Format is null)
+        {
+            sourcePcmParameters = SelectPcmProfile("Emulation.Cassette.Pcm.Input");
+            if (sourcePcmParameters is null) return;
+        }
         viewModel.Conversion.SourcePath = path; viewModel.Conversion.OutputName = Path.GetFileNameWithoutExtension(path);
         var detection = detectSource is null ? formatDetector().Detect(path, new FileInfo(path).Length) : detectSource(path);
         view.OutputBlock.SourceInformation.Text = detection.Format?.DisplayName ?? LocExtension.Get("Conversion.SourceAmbiguous");
@@ -130,7 +141,7 @@ internal sealed class ConversionTabController(
         {
             try
             {
-                var document = await mediaReader.ReadAsync(new GWGUI.MediaEngine.Contracts.MediaSourceDescriptor(path, []));
+                var document = await mediaReader.ReadAsync(new GWGUI.MediaEngine.Contracts.MediaSourceDescriptor(path, [], RequestedFormatId: sourcePcmParameters is null ? null : TapeImageFormatIds.Raw) { Parameters = sourcePcmParameters });
                 engineSourceDocument = document;
                 var directDestinations = mediaConversion.GetAvailableDestinations(document);
                 var sequentialDestinations = await sequentialMediaConversion.GetAvailableDestinationsAsync(document);
@@ -239,6 +250,12 @@ internal sealed class ConversionTabController(
         if (UsesInternal && outputs.Any(x => !IsInternalOutput(x)))
         { dialogs.Show(LocExtension.Get("Conversion.EngineInternalUnavailable", outputs.First(x => !IsInternalOutput(x)).OutputPath), LocExtension.Get("Conversion.Title")); return; }
         var acceptSequentialLosses = false;
+        targetPcmParameters = null;
+        if (UsesInternal && outputs.Any(output => output.FormatId == TapeImageFormatIds.Raw))
+        {
+            targetPcmParameters = SelectPcmProfile("Emulation.Cassette.Pcm.Output");
+            if (targetPcmParameters is null) return;
+        }
         if (UsesInternal)
         {
             engineSourceDocument ??= await mediaReader.ReadAsync(new GWGUI.MediaEngine.Contracts.MediaSourceDescriptor(viewModel.Conversion.SourcePath, []));
@@ -249,7 +266,7 @@ internal sealed class ConversionTabController(
                     destination.FormatId.Equals(output.FormatId, StringComparison.OrdinalIgnoreCase)
                     && destination.Extension.Equals(output.Extension, StringComparison.OrdinalIgnoreCase));
                 if (direct) continue;
-                var plan = await sequentialMediaConversion.PlanAsync(engineSourceDocument, output.FormatId);
+                var plan = await sequentialMediaConversion.PlanAsync(engineSourceDocument, output.FormatId, parameters: targetPcmParameters);
                 losses.AddRange(plan.Losses);
             }
             var distinctLosses = losses.Distinct(StringComparer.Ordinal).ToArray();
@@ -276,7 +293,7 @@ internal sealed class ConversionTabController(
         {
             var items = outputs.Select(x => (Output: x, Command: commandBuilder.BuildConversion(settings().GwExecutablePath ?? "gw.exe", viewModel.Conversion.SourcePath, x, Options(), viewModel.Conversion.ExpertArguments))).ToArray();
             return new ConversionBatchExecutor(runner, mediaReader, mediaConversion, sequentialMediaConversion).RunAsync(viewModel.Conversion.SourcePath, items, progress, item => dispatcher.Invoke(() =>
-            { operation.Begin(); operation.AppendText($"{Environment.NewLine}→ {item.Label}{Environment.NewLine}"); }, DispatcherPriority.ContextIdle), token, settings().Engines.Conversion, acceptSequentialLosses);
+            { operation.Begin(); operation.AppendText($"{Environment.NewLine}→ {item.Label}{Environment.NewLine}"); }, DispatcherPriority.ContextIdle), token, settings().Engines.Conversion, acceptSequentialLosses, sourcePcmParameters, targetPcmParameters);
         });
         await operation.FlushPendingAsync(); operation.Apply(operation.Present(outcome)); operation.End();
         view.ExecuteActionButton.Content = LocExtension.Get("Common.Execute");
@@ -287,6 +304,14 @@ internal sealed class ConversionTabController(
         var folder = Path.GetDirectoryName(path)!; var name = Path.GetFileNameWithoutExtension(path); var extension = Path.GetExtension(path);
         for (var number = 1; number < int.MaxValue; number++) { var candidate = Path.Combine(folder, $"{name} ({number}){extension}"); if (!exists(candidate)) return candidate; }
         throw new IOException(LocExtension.Get("Conversion.NoAvailableOutputName"));
+    }
+
+    /// <summary>Le profil RAW d'entrée décrit le fichier ; celui de sortie décrit le résultat demandé.</summary>
+    private static IReadOnlyDictionary<string, string>? SelectPcmProfile(string titleKey)
+    {
+        var dialog = new ManagedStorageConfigurationDialog(LocExtension.Get(titleKey), "RAW", string.Empty, EmulationCassettePcmSettings.Describe(new Dictionary<string, string>()), null);
+        try { return dialog.ShowDialog() == true ? EmulationCassettePcmSettings.Read(dialog.Options).ToParameters() : null; }
+        finally { dialog.Close(); }
     }
 
     internal void CaptureSettings()

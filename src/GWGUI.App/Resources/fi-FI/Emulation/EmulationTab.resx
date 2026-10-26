@@ -15,4 +15,5 @@
   <data name="Emulation.Tab.Advanced"><value>Lisäasetukset</value></data>
   <data name="Emulation.Tab.Shortcuts"><value>Pikanäppäimet</value></data>
   <data name="Emulation.Tab.Audio"><value>Ääni</value></data>
+  <data name="Emulation.Tab.Ethernet"><value>Verkko</value></data>
 </root>

@@ -16,4 +16,23 @@
   <data name="Emulation.Cassette.State.Paused"><value>In pausa</value></data>
   <data name="Emulation.Cassette.State.Recording"><value>Registrazione</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>Fine nastro</value></data>
+  <data name="Emulation.Cassette.Settings.Baud"><value>Tasso di dati (baud)</value></data>
+  <data name="Emulation.Cassette.Settings.Automatic"><value>Automatico</value></data>
+  <data name="Emulation.Cassette.Settings.Mode"><value>Modalità di caricamento</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.RealTime"><value>Lettura in tempo reale</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Accelerated"><value>Lettura accelerata</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Direct"><value>Caricamento diretto</value></data>
+  <data name="Emulation.Cassette.Settings.Speed"><value>Velocità del nastro</value></data>
+  <data name="Emulation.Cassette.Settings.Wind"><value>Velocità di avvolgimento veloce</value></data>
+  <data name="Emulation.Cassette.Settings.ReadLatency"><value>Ritardo motore di lettura</value></data>
+  <data name="Emulation.Cassette.Settings.WriteLatency"><value>Ritardo motore di registrazione</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Suoni meccanici</value></data>
+  <data name="Emulation.Cassette.Settings.Protected"><value>Protezione della scrittura</value></data>
+  <data name="Emulation.Cassette.Pcm.SampleRate"><value>RAW tasso di campionamento (Hz)</value></data>
+  <data name="Emulation.Cassette.Pcm.Channels"><value>RAW canali</value></data>
+  <data name="Emulation.Cassette.Pcm.Bits"><value>RAW bit per campione</value></data>
+  <data name="Emulation.Cassette.Pcm.Signed"><value>RAW campioni firmati</value></data>
+  <data name="Emulation.Cassette.Pcm.LittleEndian"><value>RAW campioni di piccola e media</value></data>
+  <data name="Emulation.Cassette.Pcm.Input"><value>RAW profilo di ingresso della cassetta</value></data>
+  <data name="Emulation.Cassette.Pcm.Output"><value>RAW profilo di registrazione a cassetta</value></data>
 </root>

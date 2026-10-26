@@ -17,6 +17,7 @@ using GWGUI.MediaEngine.Images.Models.Optical;
 using GWGUI.MediaEngine.Images.Models.Sectors;
 using GWGUI.MediaEngine.Images.Models.Sequential;
 using GWGUI.MediaEngine.Images.Visualization;
+using GWGUI.MediaEngine.Images.Visualization.Providers;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -130,26 +131,36 @@ internal sealed class MediaVisualizationController
     private async Task PresentBlockImageAsync(MediaImageDocument document, MediaVisualizationDescriptor descriptor, CancellationToken cancellationToken)
     {
         _blockRenderModel = _blockPresenter.BuildRenderModel(document);
+        var originalRanges = _blockRenderModel.Ranges.ToArray();
+        var scannedRanges = originalRanges.Select(range => range with { State = BlockMediaRangeState.Unknown }).ToArray();
+        var rangeStarts = originalRanges.Select(range => range.Start).ToArray();
+        _blockRenderModel = _blockRenderModel with { Ranges = scannedRanges };
         _selectedBlockRange = null;
         _selectedBlockSurface = null;
         _blockView.SetDocument(_blockRenderModel);
 
-        var positions = descriptor.Elements.Where(element => element.Surface is 0 or null).Select(element => element.Position).Distinct().Order().ToArray();
-        _face0Progress.Configure(descriptor.ProgressUnit, 0, positions, _localize(DiskImageResourceKeys.VisualSurface, [0]));
+        var positions = descriptor.Elements.Select(element => element.Position).Distinct().Order().ToArray();
+        _face0Progress.Configure(descriptor.ProgressUnit, 0, positions, descriptor.Surfaces.Count > 1 ? _localize("Visual.All", []) : _localize(DiskImageResourceKeys.VisualSurface, [0]));
         _viewModel.ProgressVisibility = Visibility.Visible;
         _viewModel.Face0ProgressVisibility = positions.Length > 0 ? Visibility.Visible : Visibility.Collapsed;
         _viewModel.Face1ProgressVisibility = Visibility.Collapsed;
 
         _visualizer.ShowDocument(document, descriptor);
         _visualizer.SetInspectorModel(_blockPresenter.BuildInspectorModel(_blockRenderModel, null));
-        foreach (var position in positions)
+        foreach (var element in descriptor.Elements)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var range = _blockRenderModel.Ranges.FirstOrDefault(item => position >= item.Start && position < item.Start + item.Length);
+            var readable = await BlockMediaVisualizationProvider.ReadElementAsync(document, element, cancellationToken);
+            var rangeIndex = Array.BinarySearch(rangeStarts, element.Position);
+            if (rangeIndex < 0) rangeIndex = Math.Max(0, ~rangeIndex - 1);
+            var end = element.Position + (element.Length ?? 1);
+            for (var index = rangeIndex; index < scannedRanges.Length && scannedRanges[index].Start < end; index++)
+                scannedRanges[index] = originalRanges[index] with { State = readable ? originalRanges[index].State : BlockMediaRangeState.Unknown };
             await _visualizer.Dispatcher.InvokeAsync(() =>
             {
-                _face0Progress.SetState(position, TrackSegmentState.Success);
-                _visualizer.Overview.MarkBlockRange(0, position, range?.State ?? BlockMediaRangeState.Unknown);
+                _face0Progress.SetState(element.Position, readable ? TrackSegmentState.Success : TrackSegmentState.Failed);
+                _visualizer.Overview.MarkBlockRange(element.Surface ?? 0, element.Position, readable ? scannedRanges.ElementAtOrDefault(rangeIndex)?.State ?? BlockMediaRangeState.Unknown : BlockMediaRangeState.Unknown);
+                _blockView.RefreshRanges();
             }, DispatcherPriority.Background, cancellationToken);
         }
     }

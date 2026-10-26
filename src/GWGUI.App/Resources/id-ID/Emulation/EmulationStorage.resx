@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Kosongkan saat gim ditutup</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>Kartu memori</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>Nama kartu</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>Kecepatan transfer</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>Baca latensi</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>Tulis latensi</value></data>
 </root>

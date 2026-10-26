@@ -16,4 +16,23 @@
   <data name="Emulation.Cassette.State.Paused"><value>Pozastaveno</value></data>
   <data name="Emulation.Cassette.State.Recording"><value>Nahrávání</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>Konec pásky</value></data>
+  <data name="Emulation.Cassette.Settings.Baud"><value>Datová rychlost (baud)</value></data>
+  <data name="Emulation.Cassette.Settings.Automatic"><value>Automatické</value></data>
+  <data name="Emulation.Cassette.Settings.Mode"><value>Režim načítání</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.RealTime"><value>Čtení v reálném čase</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Accelerated"><value>Zrychlené čtení</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Direct"><value>Přímé zatížení</value></data>
+  <data name="Emulation.Cassette.Settings.Speed"><value>Rychlost pásky</value></data>
+  <data name="Emulation.Cassette.Settings.Wind"><value>Rychlost rychlého navíjení</value></data>
+  <data name="Emulation.Cassette.Settings.ReadLatency"><value>Přečíst zpoždění motoru</value></data>
+  <data name="Emulation.Cassette.Settings.WriteLatency"><value>Zpoždění nahrávání motoru</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Mechanické zvuky</value></data>
+  <data name="Emulation.Cassette.Settings.Protected"><value>Ochrana před psaním</value></data>
+  <data name="Emulation.Cassette.Pcm.SampleRate"><value>RAW rychlost odběru vzorků (Hz)</value></data>
+  <data name="Emulation.Cassette.Pcm.Channels"><value>RAW kanály</value></data>
+  <data name="Emulation.Cassette.Pcm.Bits"><value>RAW bity na vzorek</value></data>
+  <data name="Emulation.Cassette.Pcm.Signed"><value>RAW podepsané vzorky</value></data>
+  <data name="Emulation.Cassette.Pcm.LittleEndian"><value>RAW malé endické vzorky</value></data>
+  <data name="Emulation.Cassette.Pcm.Input"><value>RAW vstupní profil kazety</value></data>
+  <data name="Emulation.Cassette.Pcm.Output"><value>RAW profil záznamu kazety</value></data>
 </root>

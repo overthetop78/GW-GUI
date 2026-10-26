@@ -14,4 +14,12 @@
   <data name="Emulation.Acorn.Video.Output"><value>การแสดงผลวิดีโอ</value></data>
   <data name="Emulation.Acorn.Video.Output.Monochrome"><value>โทนสี (โมโนโครเมี่ยม)</value></data>
   <data name="Emulation.Acorn.Video.Output.ColourComposite"><value>โทนสี S39)</value></data>
+  <data name="Emulation.Acorn.Network.Enabled"><value>ติดตั้งอินเทอร์เฟส Econet</value></data>
+  <data name="Emulation.Acorn.Network.Station"><value>หมายเลขสถานี</value></data>
+  <data name="Emulation.Acorn.Network.Clock"><value>นาฬิกาเครือข่าย</value></data>
+  <data name="Emulation.Acorn.Network.Mode"><value>การเชื่อมต่อเครือข่าย</value></data>
+  <data name="Emulation.Acorn.Network.Disconnected"><value>ยกเลิกการเชื่อมต่อแล้ว</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress"><value>ที่อยู่ IPv4 ภายใน</value></data>
+  <data name="Emulation.Acorn.Network.Port"><value>UDP พอร์ต</value></data>
+  <data name="Emulation.Acorn.Network.Peers"><value>สถานีระยะไกล</value></data>
 </root>

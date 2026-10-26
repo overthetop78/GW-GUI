@@ -15,4 +15,5 @@
   <data name="Emulation.Tab.Advanced"><value>Avançado</value></data>
   <data name="Emulation.Tab.Shortcuts"><value>Atalhos</value></data>
   <data name="Emulation.Tab.Audio"><value>Áudio</value></data>
+  <data name="Emulation.Tab.Ethernet"><value>Rede</value></data>
 </root>

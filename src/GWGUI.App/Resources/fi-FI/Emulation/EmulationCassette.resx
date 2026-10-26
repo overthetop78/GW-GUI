@@ -16,4 +16,23 @@
   <data name="Emulation.Cassette.State.Paused"><value>Keskeytetty</value></data>
   <data name="Emulation.Cassette.State.Recording"><value>Tallennetaan</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>Nauhan loppu</value></data>
+  <data name="Emulation.Cassette.Settings.Baud"><value>Tietotiheys (katetut tiedot)</value></data>
+  <data name="Emulation.Cassette.Settings.Automatic"><value>Automaattinen</value></data>
+  <data name="Emulation.Cassette.Settings.Mode"><value>Lataustila</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.RealTime"><value>Reaaliaikainen lukeminen</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Accelerated"><value>Nopeutettu lukeminen</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Direct"><value>Suora kuormitus</value></data>
+  <data name="Emulation.Cassette.Settings.Speed"><value>Nauhan nopeus</value></data>
+  <data name="Emulation.Cassette.Settings.Wind"><value>Nopea käämintänopeus</value></data>
+  <data name="Emulation.Cassette.Settings.ReadLatency"><value>Lue moottorin viive</value></data>
+  <data name="Emulation.Cassette.Settings.WriteLatency"><value>Moottorin tallennusviive</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Mekaaniset äänet</value></data>
+  <data name="Emulation.Cassette.Settings.Protected"><value>Kirjoitussuoja</value></data>
+  <data name="Emulation.Cassette.Pcm.SampleRate"><value>RAW Näytenopeus (Hz)</value></data>
+  <data name="Emulation.Cassette.Pcm.Channels"><value>RAW kanavat</value></data>
+  <data name="Emulation.Cassette.Pcm.Bits"><value>RAW bittiä näytettä kohti</value></data>
+  <data name="Emulation.Cassette.Pcm.Signed"><value>RAW allekirjoitetut näytteet</value></data>
+  <data name="Emulation.Cassette.Pcm.LittleEndian"><value>RAW pienikokoiset näytteet</value></data>
+  <data name="Emulation.Cassette.Pcm.Input"><value>RAW Kasetin syöttöprofiili</value></data>
+  <data name="Emulation.Cassette.Pcm.Output"><value>RAW kasettien tallennusprofiili</value></data>
 </root>

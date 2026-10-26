@@ -38,7 +38,7 @@ public sealed class MediaConversionComposition
         sectorFormatIds.UnionWith(GWGUI.MediaEngine.Images.Formats.DiskDefsFormatReader.RawDefinitions.Keys);
         var sectorToFlux = new SectorToFluxRepresentationConverter(new SectorImageScpConversionService(new SectorImageTrackEncoder(), new ScpEncodedTrackFluxService(), new ScpWriter()));
         Converters = [new ScpFluxToSectorRepresentationConverter(scpDecoding.Reader, sectorFormatIds), sectorToFlux,
-            new GWGUI.MediaEngine.Images.Conversion.Flux.FluxToHfeRepresentationConverter()];
+            new GWGUI.MediaEngine.Images.Conversion.Flux.FluxToHfeRepresentationConverter(), new CassetteSignalRepresentationConverter()];
         Registry = new MediaRepresentationConverterRegistry(Converters);
         SequentialDecoders = sequentialMedia.Decoders;
         SequentialEncoders = sequentialMedia.Encoders;

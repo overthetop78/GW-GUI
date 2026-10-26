@@ -84,4 +84,7 @@
   <data name="Emulation.Storage.Cache.ClearOnGameClose"><value>Ryd, når spillet lukkes</value></data>
   <data name="Emulation.Storage.MemoryCard.Device"><value>Hukommelseskort</value></data>
   <data name="Emulation.Storage.MemoryCard.Name"><value>Kortnavn</value></data>
+  <data name="Emulation.Storage.Disk.TransferSpeed"><value>Transferhastighed</value></data>
+  <data name="Emulation.Storage.Disk.ReadLatency"><value>Læs latenstid</value></data>
+  <data name="Emulation.Storage.Disk.WriteLatency"><value>Skriv latency</value></data>
 </root>

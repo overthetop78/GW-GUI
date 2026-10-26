@@ -16,4 +16,23 @@
   <data name="Emulation.Cassette.State.Paused"><value>متوقف مؤقتًا</value></data>
   <data name="Emulation.Cassette.State.Recording"><value>تسجيل</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>نهاية الشريط</value></data>
+  <data name="Emulation.Cassette.Settings.Baud"><value>معدل البيانات (الرصين)</value></data>
+  <data name="Emulation.Cassette.Settings.Automatic"><value>الآلية</value></data>
+  <data name="Emulation.Cassette.Settings.Mode"><value>طريقة تحديد الموقع</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.RealTime"><value>القراءة في الوقت الحقيقي</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Accelerated"><value>القراءة المعجلة</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Direct"><value>التحميل المباشر</value></data>
+  <data name="Emulation.Cassette.Settings.Speed"><value>سرعة التأليب</value></data>
+  <data name="Emulation.Cassette.Settings.Wind"><value>سرعة الرياح</value></data>
+  <data name="Emulation.Cassette.Settings.ReadLatency"><value>اقرأوا تأخيراً في المحرك</value></data>
+  <data name="Emulation.Cassette.Settings.WriteLatency"><value>تسجيل التأخير في السير</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>أصوات ميكانيكية</value></data>
+  <data name="Emulation.Cassette.Settings.Protected"><value>حماية الكتابة</value></data>
+  <data name="Emulation.Cassette.Pcm.SampleRate"><value>RAW معدل العينة (هرتز)</value></data>
+  <data name="Emulation.Cassette.Pcm.Channels"><value>RAW القنوات</value></data>
+  <data name="Emulation.Cassette.Pcm.Bits"><value>RAW العينة الواحدة</value></data>
+  <data name="Emulation.Cassette.Pcm.Signed"><value>RAW عينات موقعة</value></data>
+  <data name="Emulation.Cassette.Pcm.LittleEndian"><value>RAW عينات صغيرة من الهند</value></data>
+  <data name="Emulation.Cassette.Pcm.Input"><value>RAW موجز بيانات مدخلات نظامية</value></data>
+  <data name="Emulation.Cassette.Pcm.Output"><value>RAW ملف تسجيلات نظامية</value></data>
 </root>

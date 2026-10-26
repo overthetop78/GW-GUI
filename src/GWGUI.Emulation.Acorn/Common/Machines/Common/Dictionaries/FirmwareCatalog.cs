@@ -2,12 +2,16 @@ namespace GWGUI.Emulation.Acorn.Common.Machines.Common.Dictionaries;
 
 /// <summary>Identités des ROM Acorn et machines apparentées, partagées par tous les adaptateurs du module.</summary>
 /// <remarks>Ce catalogue ne décide ni du modèle compatible, ni du cœur, ni des champs de configuration.
-/// Les empreintes proviennent des déclarations MAME bbcb.cpp, révision 84981cc15cfc1429e48f098d80c6dd97bc82a0bc.
+/// Les empreintes matérielles proviennent de MAME bbcb.cpp, révision 84981cc15cfc1429e48f098d80c6dd97bc82a0bc ;
+/// les ROM NFS complémentaires sont identifiées sur les fichiers externes indiqués dans la documentation BBC.
 /// Les règles de compatibilité appartiennent au profil matériel de chaque machine.</remarks>
 internal static class FirmwareCatalog
 {
     internal static IReadOnlyDictionary<string, FirmwareDefinition> BySha1 { get; } = new Dictionary<string, FirmwareDefinition>(StringComparer.OrdinalIgnoreCase)
     {
+        // NFS Acorn : empreintes vérifiées sur les ROM externes du dépôt historique nvg, répertoire Acorn/fs.
+        ["8564d944fedd17caf2023454ba5a7c3947aedc1f"] = new("Acorn NFS", "3.34", FirmwareCategory.Network),
+        ["7081f1d834645e501c8c9862cf4a50f282ca1f32"] = new("Acorn NFS", "3.35K", FirmwareCategory.Network),
         ["6c8daba70374e5aa3a6402f24cdc5f8677d58a0f"] = new("SAA5050", null, FirmwareCategory.CharacterGenerator),
         ["9ab9d24b845fe2964fba2f4770d54025d2c8026a"] = new("SAA5051", "MAME 0.203", FirmwareCategory.CharacterGenerator),
         ["07cd9b7edbed6ef7b527622533d6957f5d56aa91"] = new("SAA5051", null, FirmwareCategory.CharacterGenerator),

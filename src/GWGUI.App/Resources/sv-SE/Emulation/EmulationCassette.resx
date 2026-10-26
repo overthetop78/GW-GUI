@@ -16,4 +16,23 @@
   <data name="Emulation.Cassette.State.Paused"><value>Pausad</value></data>
   <data name="Emulation.Cassette.State.Recording"><value>Spelar in</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>Bandets slut</value></data>
+  <data name="Emulation.Cassette.Settings.Baud"><value>Datahastighet (baud)</value></data>
+  <data name="Emulation.Cassette.Settings.Automatic"><value>Automatisk</value></data>
+  <data name="Emulation.Cassette.Settings.Mode"><value>Loading läge</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.RealTime"><value>Realtidsläsning</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Accelerated"><value>Accelererad läsning</value></data>
+  <data name="Emulation.Cassette.Settings.Mode.Direct"><value>Direkt lastning</value></data>
+  <data name="Emulation.Cassette.Settings.Speed"><value>Tape speed</value></data>
+  <data name="Emulation.Cassette.Settings.Wind"><value>Snabba vindhastighet</value></data>
+  <data name="Emulation.Cassette.Settings.ReadLatency"><value>Läs motorförseningen</value></data>
+  <data name="Emulation.Cassette.Settings.WriteLatency"><value>Inspelning av motorförseningen</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Mekaniska ljud</value></data>
+  <data name="Emulation.Cassette.Settings.Protected"><value>Skrivskydd</value></data>
+  <data name="Emulation.Cassette.Pcm.SampleRate"><value>RAW Provfrekvens (Hz)</value></data>
+  <data name="Emulation.Cassette.Pcm.Channels"><value>RAW kanaler</value></data>
+  <data name="Emulation.Cassette.Pcm.Bits"><value>RAW bitar per prov</value></data>
+  <data name="Emulation.Cassette.Pcm.Signed"><value>RAW signerade prover</value></data>
+  <data name="Emulation.Cassette.Pcm.LittleEndian"><value>RAW Little-endian prover</value></data>
+  <data name="Emulation.Cassette.Pcm.Input"><value>RAW Cassette Input Profil</value></data>
+  <data name="Emulation.Cassette.Pcm.Output"><value>RAW Cassette inspelningsprofil</value></data>
 </root>

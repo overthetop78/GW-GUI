@@ -15,4 +15,5 @@
   <data name="Emulation.Tab.Advanced"><value>متقدم</value></data>
   <data name="Emulation.Tab.Shortcuts"><value>اختصارات</value></data>
   <data name="Emulation.Tab.Audio"><value>الصوت</value></data>
+  <data name="Emulation.Tab.Ethernet"><value>الشبكة</value></data>
 </root>
