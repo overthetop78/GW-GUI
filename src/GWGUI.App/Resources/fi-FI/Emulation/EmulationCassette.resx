@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>Kelaa taaksepäin ja kelaa taaksepäin</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>Moottorin käynnistysviive ennen toistoa</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>Moottorin käynnistysviive ennen kirjaamista</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>Mekaaniset äänet</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Käytä tallennuslaitteen ääniä</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>Suojaa kirjoittamiselta</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>Näytteenottotiheys (Hz)</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>Äänikanavat</value></data>

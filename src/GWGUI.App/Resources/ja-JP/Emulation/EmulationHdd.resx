@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>オペレーティングシステムなしで空のディスクを作成します。 組み込みマシン内のディスクツールを使用して準備し、フォーマットします。</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>ディスクの準備</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>ブランク(未定)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>フォーマットは、オペレーティングシステムなしで空のボリュームを作成します。 Atari HDD 起動には、エミュレートされたマシンからインストールされている互換性のあるディスクドライバが必要です。圧縮された画像は、抽出されたコピーに書き込みをリダイレクトする場合があります。</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>フォーマットは、オペレーティングシステムなしで空のボリュームを作成します。 ブートは、エミュレートマシンによってサポートされているシステムソフトウェアとドライバが必要です。</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>容量: {0} に に へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ へ {1}. バイトのセクターサイズ: {2}.</value></data>
 </root>

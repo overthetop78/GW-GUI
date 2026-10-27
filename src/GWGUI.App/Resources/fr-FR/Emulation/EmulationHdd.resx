@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Crée un disque brut vierge sans système d’exploitation. Préparez et formatez-le avec les outils de disque dans la machine émulée.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Préparation du disque</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Vierge (non formaté)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Le formatage crée un volume vide, sans système d’exploitation. Le démarrage sur HDD Atari nécessite aussi un pilote disque compatible installé depuis la machine émulée. Les écritures sur une image compressée peuvent être redirigées vers une copie extraite.</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>Le formatage crée un volume vide, sans système d’exploitation. Le démarrage nécessite un système et des pilotes compatibles avec la machine émulée.</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>Capacité : de {0} à {1}. Taille des secteurs en octets : {2}.</value></data>
 </root>

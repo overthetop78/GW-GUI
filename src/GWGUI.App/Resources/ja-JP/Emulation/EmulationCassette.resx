@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>速度を速く、巻き戻す速度</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>再生前のモーター開始遅れ</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>録音前のモーター開始遅れ</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>メカニカルな音</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>ストレージデバイスが音を鳴らす</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>文章から保護</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>見本抽出の頻度(Hz)</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>オーディオチャンネル</value></data>

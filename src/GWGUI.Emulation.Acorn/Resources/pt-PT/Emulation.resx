@@ -22,4 +22,19 @@
   <data name="Emulation.Acorn.Network.BindAddress"><value>Endereço IPv4 local</value></data>
   <data name="Emulation.Acorn.Network.Port"><value>UDP porto</value></data>
   <data name="Emulation.Acorn.Network.Peers"><value>Estações remotas</value></data>
+  <data name="Emulation.Acorn.Extensions.Floppy"><value>Extensões de disquete</value></data>
+  <data name="Emulation.Acorn.Memory.Shadow"><value>Memória adicional do ecrã</value></data>
+  <data name="Emulation.Acorn.Memory.Card"><value>Expansão da memória da tela</value></data>
+  <data name="Emulation.Acorn.Memory.None"><value>Nenhuma</value></data>
+  <data name="Emulation.Acorn.Memory.Rom"><value>ROM para o cartão de expansão de memória</value></data>
+  <data name="Emulation.Acorn.Memory.Help"><value>Estas placas de expansão requerem 32 KiB de principal RAM e MOS 1.20. Carregar a correspondência ROM para o cartão selecionado. Selecione sem expansão antes de reduzir o main RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMainRam"><value>Esta placa de expansão requer 32 KiB de principal RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMos"><value>Esta carta de expansão requer MOS 1.20. Selecione um sistema operacional compatível ROM.</value></data>
+  <data name="Emulation.Acorn.Memory.RomMissing"><value>O cartão de expansão de memória ROM está faltando. Selecione seu arquivo na RAM aba das configurações da máquina.</value></data>
+  <data name="Emulation.Acorn.Memory.Rom.Help"><value>Selecione o software de controle para esta expansão de memória a partir dos arquivos detectados, ou procure por um arquivo compatível. Nenhum arquivo é carregado quando o caminho está vazio.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways"><value>Memória lateral</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Módulos de memória em banco</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Soquetes de microplaquetas de expansão</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Estes módulos adicionam memória bancária sem aumentar o espaço principal do endereço de memória. Selecione imagens de chip nas tomadas de expansão para definir o seu conteúdo. O firmware individual previamente selecionado permanece em uso até que o seu soquete receba uma imagem de chip explícita.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Imagem de 'chip'{0}« tem uma dimensão incompatível. {1}.</value></data>
 </root>

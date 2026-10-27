@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>A jármű legnagyobb sebessége</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>A motor indításának késleltetése a lejátszás előtt</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>A motor indításának késleltetése a rögzítés előtt</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>Mechanikus hangok</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>A tárolóeszköz hangjainak engedélyezése</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>Az írás elleni védelem</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>Mintavételi gyakoriság (Hz)</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>Hangcsatornák</value></data>

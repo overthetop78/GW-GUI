@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Contracts;
 using GWGUI.Emulation.Acorn.Common.Machines.BbcMicro.Constants;
 using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Services;
 using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Machines.BbcMicro.Common.Services;
@@ -16,6 +17,7 @@ namespace GWGUI.Emulation.Acorn.Emulators.AcornEmu.Machines.BbcMicro.ModelA.Serv
 internal sealed class ModelAMachine : ICpuBus, IAcornMachine
 {
     private readonly byte[] _ram;
+    private readonly MemoryExtension _memoryExtension;
     private readonly byte[] _mos;
     private readonly SidewaysRoms _roms;
     private readonly Disks _disks;
@@ -64,13 +66,16 @@ internal sealed class ModelAMachine : ICpuBus, IAcornMachine
     public void ConfigureCassette(EmulationCassetteSettings settings) => _cassette.Configure(settings);
     public void EjectCassette() => _cassette.Eject();
 
-    internal ModelAMachine(ReadOnlySpan<byte> mos, ReadOnlySpan<byte> basic, int memoryBytes = (int)BbcMicroModelConstants.SixteenKibibytes, ReadOnlySpan<byte> characters = default, bool diskInterface = false, IReadOnlyDictionary<int, byte[]>? optionRoms = null, bool wd1770 = false, bool winchesterInterface = false, bool econetInterface = false, int econetStation = 1, int econetCyclesPerByte = Mc6854Constants.DefaultCyclesPerByte)
+    internal ModelAMachine(ReadOnlySpan<byte> mos, ReadOnlySpan<byte> basic, int memoryBytes = (int)BbcMicroModelConstants.SixteenKibibytes, ReadOnlySpan<byte> characters = default, bool diskInterface = false, IReadOnlyDictionary<int, byte[]>? optionRoms = null, bool wd1770 = false, bool winchesterInterface = false, bool econetInterface = false, int econetStation = 1, int econetCyclesPerByte = Mc6854Constants.DefaultCyclesPerByte, MemoryExtensionSettings? memoryExtension = null, SidewaysExpansionSettings? sidewaysExpansion = null)
     {
         if (mos.Length != BbcMicroFirmwareConstants.BankSize || basic.Length != BbcMicroFirmwareConstants.BankSize) throw new ArgumentException("MOS et BASIC doivent chacun contenir 16 384 octets.");
         if (memoryBytes != BbcMicroModelConstants.SixteenKibibytes && memoryBytes != BbcMicroModelConstants.ThirtyTwoKibibytes) throw new ArgumentOutOfRangeException(nameof(memoryBytes));
+        memoryExtension ??= new(MemoryExtensionConstants.None);
+        if (memoryExtension.Enabled && memoryBytes != BbcMicroModelConstants.ThirtyTwoKibibytes) throw new ArgumentOutOfRangeException(nameof(memoryBytes));
         _ram = new byte[memoryBytes];
+        _memoryExtension = new(memoryExtension);
         _mos = mos.ToArray();
-        _roms = new SidewaysRoms(basic, optionRoms);
+        _roms = new SidewaysRoms(basic, optionRoms, sidewaysExpansion);
         _disks = new Disks(diskInterface, wd1770);
         _winchester = new Winchester(winchesterInterface);
         _econet = new Econet(econetInterface, econetStation, econetCyclesPerByte);
@@ -86,6 +91,7 @@ internal sealed class ModelAMachine : ICpuBus, IAcornMachine
     public void Reset(bool cold)
     {
         if (cold) { Array.Clear(_ram); _via.Reset(); Video.Reset(); _audio.Reset(); _cassette.ResetHardware(); _roms.Reset(); _latch = 255; }
+        _memoryExtension.Reset(cold);
         _disks.Reset();
         _winchester.Reset();
         _econet.Reset();
@@ -133,7 +139,7 @@ internal sealed class ModelAMachine : ICpuBus, IAcornMachine
     }
     public byte Read(ushort address)
     {
-        if (address < 0x8000) return _ram[address & (_ram.Length - 1)];
+        if (address < MemoryExtensionConstants.RamEnd) return _memoryExtension.Read(address, _ram);
         if (address < 0xc000) return _roms.Read(address);
         if (address < 0xfc00 || address >= 0xff00) return _mos[address & 0x3fff];
         if (address is >= AcornScsiConstants.Start and < AcornScsiConstants.End) return _winchester.Read(address);
@@ -150,7 +156,9 @@ internal sealed class ModelAMachine : ICpuBus, IAcornMachine
     }
     public void Write(ushort address, byte value)
     {
-        if (address < 0x8000) { _ram[address & (_ram.Length - 1)] = value; return; }
+        if (address < MemoryExtensionConstants.RamEnd) { _memoryExtension.Write(address, value, _ram); return; }
+        if (address < MemoryExtensionConstants.RamEnd + BbcMicroFirmwareConstants.BankSize) { _roms.Write(address, value); return; }
+        if (_memoryExtension.Control(address)) return;
         if (address is >= AcornScsiConstants.Start and < AcornScsiConstants.End) { _winchester.Write(address, value); return; }
         if (address is >= 0xfe00 and < 0xfe08)
         {

@@ -16,4 +16,5 @@
   <data name="Emulation.Tab.Shortcuts"><value>Genveje</value></data>
   <data name="Emulation.Tab.Audio"><value>Lyd</value></data>
   <data name="Emulation.Tab.Ethernet"><value>Netværk</value></data>
+  <data name="Emulation.Tab.Extensions"><value>Hardwareudvidelser</value></data>
 </root>

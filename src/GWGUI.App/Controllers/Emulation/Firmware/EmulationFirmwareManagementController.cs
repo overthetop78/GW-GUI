@@ -16,8 +16,10 @@ internal sealed class EmulationFirmwareManagementController
     private readonly IEmulationFirmwareManager _manager;
     private readonly Func<IEmulationConfiguration> _getConfiguration;
     private readonly Action<IEmulationConfiguration> _setConfiguration;
-    private ListBox _firmwares = null!;
-    private Button _use = null!;
+    private readonly Dictionary<EmulationMachineTab, FirmwareView> _views = [];
+
+    /// <summary>Chaque onglet possède sa liste et son action, sans déplacer les contrôles d'un autre onglet.</summary>
+    private sealed record FirmwareView(EmulationMachineTab Tab, ListBox Firmwares, Button Use);
 
     internal EmulationFirmwareManagementController(IEmulationModule module, IEmulationFirmwareManager manager, Func<IEmulationConfiguration> getConfiguration, Action<IEmulationConfiguration> setConfiguration)
     {
@@ -29,63 +31,80 @@ internal sealed class EmulationFirmwareManagementController
 
     internal event EventHandler? ConfigurationChanged;
 
-    internal UIElement CreateView(UIElement configuredFirmware)
+    /// <summary>Relâche les anciennes vues avant reconstruction de l'éditeur de machine.</summary>
+    internal void ClearViews() => _views.Clear();
+
+    internal UIElement CreateView(UIElement configuredFirmware, EmulationMachineTab tab = EmulationMachineTab.Rom)
     {
-        _firmwares = new ListBox();
-        _use = new Button();
-        _firmwares.SelectionChanged += (_, _) => UpdateUseButton();
-        _use.Click += (_, _) => UseSelected();
-        return EmulationSettingsLayout.FirmwareSettingsPage(new EmulationFirmwareSettingsContent(configuredFirmware, _firmwares, _ => RefreshAsync(), _use, _ => OpenFolderAsync()));
+        var view = new FirmwareView(tab, new ListBox(), new Button());
+        _views[tab] = view;
+        view.Firmwares.SelectionChanged += (_, _) => UpdateUseButton(view);
+        view.Use.Click += (_, _) => UseSelected(view);
+        return EmulationSettingsLayout.FirmwareSettingsPage(new EmulationFirmwareSettingsContent(configuredFirmware, view.Firmwares, _ => RefreshAsync(), view.Use, _ => OpenFolderAsync()));
     }
 
     internal async Task RefreshAsync()
     {
-        var firmwares = _firmwares;
         var configuration = _getConfiguration();
-        var settingsFields = _module.Describe(configuration.MachineId, configuration).Blocks.SelectMany(block => block.Fields).ToArray();
+        var views = _views.Values.ToArray();
+        if (views.Length == 0) return;
+        var fields = _module.Describe(configuration.MachineId, configuration).Blocks.SelectMany(block => block.Fields).ToArray();
         var entries = await _manager.ScanFirmwareAsync(configuration.MachineId, configuration);
-        if (!ReferenceEquals(_firmwares, firmwares)
-            || _getConfiguration().Id != configuration.Id
-            || _getConfiguration().MachineId != configuration.MachineId) return;
-        firmwares.Items.Clear();
-        foreach (var firmware in entries.OrderBy(item => EmulationSettingsLayout.FirmwareCompatibilityOrder(item.Compatibility)).ThenBy(item => item.DisplayName, StringComparer.CurrentCultureIgnoreCase))
+        if (_getConfiguration().Id != configuration.Id || _getConfiguration().MachineId != configuration.MachineId) return;
+        foreach (var view in views)
         {
-            var destinationField = settingsFields.FirstOrDefault(field => string.Equals(field.Id, firmware.DestinationFieldId, StringComparison.Ordinal));
-            var destination = destinationField is null ? string.Empty : LocExtension.GetForModule(_module, destinationField.LabelResourceKey);
-            firmwares.Items.Add(new ListBoxItem
+            if (!_views.TryGetValue(view.Tab, out var current) || !ReferenceEquals(current, view)) continue;
+            view.Firmwares.Items.Clear();
+            foreach (var firmware in entries.OrderBy(item => EmulationSettingsLayout.FirmwareCompatibilityOrder(item.Compatibility)).ThenBy(item => item.DisplayName, StringComparer.CurrentCultureIgnoreCase))
             {
-                Tag = firmware,
-                Padding = new Thickness(0),
-                HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                Content = EmulationSettingsLayout.FirmwareRow(firmware.DisplayName, firmware.Version, firmware.Compatibility, firmware.Path, destination)
-            });
+                var destinationField = fields.FirstOrDefault(field => string.Equals(field.Id, firmware.DestinationFieldId, StringComparison.Ordinal));
+                // Les fichiers non identifiés restent consultables. Une destination connue appartient à son onglet.
+                if (destinationField is not null && destinationField.Tab != view.Tab) continue;
+                var destination = destinationField is null ? string.Empty : LocExtension.GetForModule(_module, destinationField.LabelResourceKey);
+                view.Firmwares.Items.Add(new ListBoxItem
+                {
+                    Tag = firmware,
+                    Padding = new Thickness(0),
+                    HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                    Content = EmulationSettingsLayout.FirmwareRow(firmware.DisplayName, firmware.Version, firmware.Compatibility, firmware.Path, destination)
+                });
+            }
+            UpdateUseButton(view);
         }
-        UpdateUseButton();
     }
 
     internal string GetFirmwareDirectory() => _manager.GetFirmwareDirectory(_getConfiguration().MachineId);
 
-    private void UseSelected()
+    private void UseSelected(FirmwareView view)
     {
-        if ((_firmwares.SelectedItem as ListBoxItem)?.Tag is EmulationFirmwareCandidate firmware)
-            Use(firmware);
-    }
-
-    private void Use(EmulationFirmwareCandidate firmware)
-    {
-        if (firmware.DestinationFieldId is null || firmware.Compatibility == EmulationFirmwareCompatibility.Incompatible) return;
+        if ((view.Firmwares.SelectedItem as ListBoxItem)?.Tag is not EmulationFirmwareCandidate firmware
+            || !CanUse(view, firmware)) return;
         _setConfiguration(_manager.UseFirmware(_getConfiguration(), firmware));
         ConfigurationChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    private void UpdateUseButton() => EmulationSettingsLayout.UpdateFirmwareUseButton(_use, (_firmwares.SelectedItem as ListBoxItem)?.Tag is EmulationFirmwareCandidate { DestinationFieldId: not null } firmware ? firmware.Compatibility : null);
+    private bool CanUse(FirmwareView view, EmulationFirmwareCandidate firmware)
+    {
+        if (firmware.DestinationFieldId is null || firmware.Compatibility == EmulationFirmwareCompatibility.Incompatible) return false;
+        var configuration = _getConfiguration();
+        return _module.Describe(configuration.MachineId, configuration).Blocks
+            .Where(block => block.Tab == view.Tab && block.IsVisible)
+            .SelectMany(block => block.Fields)
+            .Any(field => field.Id == firmware.DestinationFieldId && field.IsEnabled && field.IsVisible);
+    }
+
+    private void UpdateUseButton(FirmwareView view)
+    {
+        var firmware = (view.Firmwares.SelectedItem as ListBoxItem)?.Tag as EmulationFirmwareCandidate;
+        EmulationSettingsLayout.UpdateFirmwareUseButton(view.Use, firmware is not null && CanUse(view, firmware) ? firmware.Compatibility : null);
+    }
 
     private Task OpenFolderAsync()
     {
         var configuration = _getConfiguration();
         var directory = _manager.GetFirmwareDirectory(configuration.MachineId);
         Directory.CreateDirectory(directory);
-        Process.Start(new ProcessStartInfo(directory) { UseShellExecute = true });
+        using var request = Process.Start(new ProcessStartInfo(directory) { UseShellExecute = true });
         return Task.CompletedTask;
     }
 }

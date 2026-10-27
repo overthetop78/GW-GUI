@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>Snelheid doorspoelen en terugspoelen</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>Motorstartvertraging voor afspelen</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>Motorstartvertraging voor opname</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>Mechanische geluiden</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Opbergapparaatgeluiden inschakelen</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>Beschermen tegen schrijven</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>Monsterfrequentie (Hz)</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>Audiokanalen</value></data>

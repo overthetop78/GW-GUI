@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Crea un disco grezzo vuoto senza un sistema operativo. Prepara e formattalo utilizzando strumenti di disco all'interno della macchina emulata.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Preparazione del disco</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Coperto (non formattato)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>La formattazione crea un volume vuoto, senza un sistema operativo. Atari HDD Il boot richiede anche un driver disco compatibile installato dalla macchina emulata. Le immagini compresse possono reindirizzare le scritture a una copia estratta.</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>La formattazione crea un volume vuoto senza un sistema operativo. L'avvio richiede il software di sistema e i driver supportati dalla macchina emulata.</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>Capacità: {0} a {1}. Dimensione del settore in byte: {2}.</value></data>
 </root>

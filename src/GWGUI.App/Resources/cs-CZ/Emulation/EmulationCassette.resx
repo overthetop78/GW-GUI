@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>Rychlost otáčení vpřed a přetáčení</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>Zpoždění startu motoru před přehráváním</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>Zpoždění při startu motoru před nahráním</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>Mechanické zvuky</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Povolit zvuky úložiště</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>Chraňte před psaním</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>Frekvence odběru vzorků (Hz)</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>Audio kanály</value></data>

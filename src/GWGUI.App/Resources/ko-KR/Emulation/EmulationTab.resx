@@ -16,4 +16,5 @@
   <data name="Emulation.Tab.Shortcuts"><value>바로 가기</value></data>
   <data name="Emulation.Tab.Audio"><value>오디오</value></data>
   <data name="Emulation.Tab.Ethernet"><value>의정부</value></data>
+  <data name="Emulation.Tab.Extensions"><value>하드웨어 확장</value></data>
 </root>

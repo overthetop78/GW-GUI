@@ -87,9 +87,10 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>Overføringshastighet</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>Les latens</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>Skriv latens</value></data>
-  <data name="Emulation.Storage.Sound.Profile"><value>Mekanisk lydprofil</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>Lydprofil</value></data>
   <data name="Emulation.Storage.Media.CreateAndMount"><value>Opprette og montere</value></data>
   <data name="Emulation.Storage.Media.Created"><value>Bilde opprettet: {0}</value></data>
   <data name="Emulation.Storage.Media.AlreadyExists"><value>Denne filen eksisterer allerede. Velg en ny bildefil: {0}</value></data>
-  <data name="Emulation.Storage.Sound.Volume"><value>Mekanisk lydvolum</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>Volum</value></data>
+  <data name="Emulation.Storage.Sound.Group"><value>Lagringsenhet lyder</value></data>
 </root>

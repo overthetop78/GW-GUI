@@ -17,6 +17,53 @@ namespace GWGUI.Tests.Emulation;
 public sealed class AcornEmuScsiTests
 {
     [Fact]
+    public void StorageFieldsUseHardwareSoundAndCompactControlsWithoutAProfileSelector()
+    {
+        var factory = new AcornEmuMachineFactory();
+        var configuration = new MachineConfiguration(MachineModel.BbcMicroModelA, core: Emulator.AcornEmu);
+        var devices = factory.DescribeStorage(configuration).AvailableDevices;
+        foreach (var device in devices.Where(item => item.Slot.Category is EmulationMediaCategory.HardDisk or EmulationMediaCategory.FloppyDrive))
+        {
+            var fields = device.ConfigurationFields!;
+            Assert.DoesNotContain(fields, field => field.Id == StorageConstants.SoundProfileOption);
+            var volume = Assert.Single(fields, field => field.Id == StorageConstants.SoundVolumeOption);
+            Assert.True(volume.NumericRange!.IsVertical);
+            if (device.Slot.Category == EmulationMediaCategory.HardDisk)
+            {
+                Assert.True(Assert.Single(fields, field => field.Id == StorageConstants.SpeedOption).UseRadioButtons);
+                foreach (var field in fields.Where(field => field.Id is StorageConstants.ReadLatencyOption or StorageConstants.WriteLatencyOption))
+                {
+                    Assert.True(field.NumericRange!.IsVertical);
+                    Assert.NotEmpty(field.Choices!);
+                }
+            }
+            else Assert.NotEmpty(device.FloppyOptions!.SpeedChoices!);
+        }
+    }
+
+    [Fact]
+    public void WinchesterProfilesKeepExactNativeGeometriesAndAnAddressBoundedCustomProfile()
+    {
+        var formats = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Dictionaries.HardDiskFormats.All;
+        var native = formats.Where(format => format.FixedGeometry is not null).ToArray();
+        Assert.Equal(2, native.Length);
+        foreach (var format in native)
+        {
+            Assert.Equal(format.FixedGeometry!.Capacity, format.DefaultBytes);
+            Assert.True(format.SupportsFixedAllocation);
+            Assert.Equal(format.DefaultBytes, Assert.Single(format.AllowedCapacitiesBytes!));
+            Assert.True(GWGUI.Emulation.HardDisks.HardDiskImageValidation.IsSupportedCapacity(format.DefaultBytes, format));
+            Assert.False(GWGUI.Emulation.HardDisks.HardDiskImageValidation.IsSupportedCapacity(format.DefaultBytes + 256, format));
+        }
+        var custom = Assert.Single(formats, format => format.FixedGeometry is null);
+        Assert.Null(custom.AllowedCapacitiesBytes);
+        Assert.Equal(512L * 1024 * 1024, custom.MaximumBytes);
+        Assert.True(GWGUI.Emulation.HardDisks.HardDiskImageValidation.IsSupportedCapacity(custom.DefaultBytes, custom));
+        Assert.False(GWGUI.Emulation.HardDisks.HardDiskImageValidation.IsSupportedCapacity(custom.MaximumBytes + 256, custom));
+        Assert.False(GWGUI.Emulation.HardDisks.HardDiskImageValidation.IsSupportedCapacity(custom.DefaultBytes + 1, custom));
+    }
+
+    [Fact]
     public void AdfsProbeReadDuringSelectionReleasesTheBus()
     {
         using var disk = new Disk(); var controller = Controller(_ => disk);
@@ -44,13 +91,14 @@ public sealed class AcornEmuScsiTests
         Assert.Equal(MediaCategory.HardDisk, Assert.Single(restored.Media).Category);
         Assert.Equal(EmulationMediaType.HardDisk, Assert.Single(factory.ResolveConfiguredMedia(restored)).Type);
         var device = Assert.Single(factory.DescribeMediaDevices(restored)); Assert.Equal(slot, device.Slot); Assert.False(device.IsRemovable);
-        Assert.True(Assert.Single(device.HardDiskFormats!).SupportsExplicitGeometry); Assert.NotNull(Assert.Single(device.HardDiskFormats!).ImageCreator);
+        Assert.Equal(3, device.HardDiskFormats!.Count);
+        Assert.All(device.HardDiskFormats, format => { Assert.True(format.SupportsExplicitGeometry); Assert.NotNull(format.ImageCreator); });
         var saved = Assert.Single(factory.DescribeDeviceSettings(restored)); Assert.Equal("200", saved.Options!["speed"]); Assert.Equal("7", saved.Options["writeLatency"]);
-        Assert.Contains(factory.GetFirmwareSlots(restored), firmware => firmware.FieldId == StorageConstants.DfsFirmware && firmware.IsRequired);
+        Assert.Contains(factory.GetFirmwareSlots(restored), firmware => firmware.FieldId == FloppyExtensionConstants.IntelRom && firmware.IsRequired);
         Assert.True(factory.RequiresOptionRestart(restored, StorageConstants.HardDiskKey(unit, "speed")));
         var activity = factory.MediaActivity(restored, new Dictionary<int, bool> { [StorageConstants.HardDiskLedStart + unit] = true }); Assert.True(activity[slot]);
         var removed = factory.ApplyStorage(restored, stored with { ConfiguredSlots = [], MountedMedia = [], DeviceSettings = [] });
-        Assert.Empty(factory.DescribeMediaDevices(removed)); Assert.DoesNotContain(factory.GetFirmwareSlots(removed), firmware => firmware.FieldId == StorageConstants.DfsFirmware);
+        Assert.Empty(factory.DescribeMediaDevices(removed)); Assert.DoesNotContain(factory.GetFirmwareSlots(removed), firmware => firmware.FieldId is FloppyExtensionConstants.IntelRom or FloppyExtensionConstants.WdRom && firmware.IsRequired);
         Assert.Throws<ArgumentException>(() => factory.ApplyStorage(empty, settings with { DeviceSettings = [new(slot, InterfaceId: "IDE")] }));
     }
 

@@ -30,6 +30,9 @@ public static class FloppyDriveModelIds
     /// <summary>Format du libellé : nombre de faces, densité et capacité en Kio, pour un lecteur de 5,25 pouces.</summary>
     internal const string DisplayFormat = "5.25″ {0} · {1} · {2} KiB";
 
+    /// <summary>Présentation technique d'un format vierge : extension, faces, densité et capacité.</summary>
+    internal const string CreationDisplayFormat = "{0} · {1} · {2} · {3} KiB";
+
     /// <summary>Abréviation technique d’un lecteur simple face.</summary>
     internal const string SingleSided = "SS";
 

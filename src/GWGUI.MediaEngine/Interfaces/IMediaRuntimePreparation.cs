@@ -7,12 +7,14 @@ public interface IMediaRuntimePreparation
 {
     /// <summary>Décrit les modèles de la famille déclarée, avec leurs formats, capacités et extensions centrales.</summary>
     IReadOnlyList<GWGUI.MediaEngine.Contracts.MediaFloppyDriveModel> FloppyDriveModels(string family, bool doubleDensity);
+    /// <summary>Décrit les mécanismes HDD réellement proposés pour la famille.</summary>
+    IReadOnlyList<GWGUI.MediaEngine.Contracts.MediaHardDiskDriveModel> HardDiskDriveModels(string family);
     /// <summary>Vérifie la géométrie réelle d'un support contre les capacités physiques du lecteur choisi.</summary>
     bool SupportsFloppyImage(string model, long cylinders, int heads, int sectorSize, int sectorsPerTrack, long sectorCount);
     /// <summary>Crée un disque vierge au format demandé par la fabrique et l'écrivain du catalogue.</summary>
     Task CreateBlankDiskAsync(string path, string formatId, CancellationToken cancellationToken = default);
     /// <summary>Crée le conteneur HDD et ses annexes, sans écraser une destination existante.</summary>
-    Task CreateHardDiskAsync(string path, string formatId, GWGUI.MediaEngine.Contracts.HardDiskGeometry geometry, string? fileSystemId = null, CancellationToken cancellationToken = default);
+    Task CreateHardDiskAsync(string path, string formatId, GWGUI.MediaEngine.Contracts.HardDiskGeometry geometry, string? fileSystemId = null, CancellationToken cancellationToken = default, bool preallocate = false);
     /// <summary>Ouvre une image disque par ses lecteurs existants ; le consommateur possède et libère le résultat.</summary>
     Task<IMediaRuntimeDisk> OpenDiskAsync(string path, bool writable = false, string? formatId = null, CancellationToken cancellationToken = default, IMediaDriveMechanics? mechanics = null);
 

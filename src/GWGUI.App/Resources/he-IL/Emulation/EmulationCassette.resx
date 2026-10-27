@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>מהירות מהירה ומהירות החזרה</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>רכב מתחיל לדחות לפני משחק</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>להתחיל לדחות את המנוע לפני הקלטת</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>צלילים מכניים</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>מכשיר אחסון אמין נשמע</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>הגנה מפני כתיבה</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>תדירות (Hz)</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>ערוצים אודיו</value></data>

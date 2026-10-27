@@ -9,12 +9,14 @@ public interface IEmulationMediaProcessing
 {
     /// <summary>Choix de lecteurs fournis par MediaEngine, sans recopier leurs données dans les modules.</summary>
     IReadOnlyList<FloppyDriveModelChoice> FloppyDriveModels(string family, bool doubleDensity);
+    /// <summary>Profils physiques HDD déclarés dans MediaEngine et adaptés au contrat du SDK.</summary>
+    IReadOnlyList<GWGUI.Emulation.HardDisks.HardDiskDriveModelChoice> HardDiskDriveModels(string family);
     /// <summary>Relaye la géométrie de l'image au contrôle central avant tout montage ou copie.</summary>
     bool SupportsFloppyImage(string model, IEmulationDiskImage image);
     /// <summary>Crée l'image vierge correspondant au format déclaré par le modèle du lecteur.</summary>
     Task CreateBlankDiskAsync(string path, string formatId, CancellationToken cancellationToken = default);
     /// <summary>Crée un disque et ses fichiers associés avec la géométrie déclarée et une préparation de volume facultative.</summary>
-    Task CreateHardDiskAsync(string path, string formatId, GWGUI.Emulation.HardDisks.DiskImageGeometry geometry, string? fileSystemId = null, CancellationToken cancellationToken = default);
+    Task CreateHardDiskAsync(string path, string formatId, GWGUI.Emulation.HardDisks.DiskImageGeometry geometry, string? fileSystemId = null, CancellationToken cancellationToken = default, bool preallocate = false);
     /// <summary>Ouvre un disque pour un cœur ; le propriétaire libère le résultat après sauvegarde et détachement.</summary>
     Task<IEmulationDiskImage> OpenDiskAsync(string path, bool writable = false, string? formatId = null, CancellationToken cancellationToken = default, IEmulationDriveMechanics? mechanics = null);
     /// <summary>Crée la mécanique commune d’un lecteur, indépendante de l’image qui y sera montée.</summary>

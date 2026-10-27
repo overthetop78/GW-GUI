@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Luo tyhjän raakalevyn ilman käyttöjärjestelmää. Valmistele ja muotoile se emulgoidun koneen sisällä olevilla levytyökaluilla.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Levyn valmistelu</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Tyhjä (formatoitumaton)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Muotoilu luo tyhjän äänenvoimakkuuden, ilman käyttöjärjestelmää. HDD Käynnistäminen edellyttää myös yhteensopivaa levyohjainta, joka on asennettu emulgoidusta koneesta. Pakatut kuvat voivat ohjata kirjoitukset kopioituun kopioon.</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>Muotoilu luo tyhjän äänenvoimakkuuden ilman käyttöjärjestelmää. Käynnistys vaatii järjestelmän ohjelmiston ja ohjaimet tukee emulgoitu kone.</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>Kapasiteetti: {0} - {1}. Alan koko tavuina: {2}.</value></data>
 </root>

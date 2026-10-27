@@ -110,7 +110,7 @@ internal sealed partial class EmulationModuleSettingsSection
         Content = rebuilt;
         if (_emulatorManagement is not null)
             _ = ExecuteAsync(_emulatorManagement.RefreshAsync);
-        if (_selectedTab == EmulationMachineTab.Rom && _firmwareManagement is not null)
+        if (HasFirmwareFields(_selectedTab) && _firmwareManagement is not null)
             _ = ExecuteAsync(_firmwareManagement.RefreshAsync);
     }
 
@@ -131,7 +131,7 @@ internal sealed partial class EmulationModuleSettingsSection
     private async Task RememberTabAndActivateAsync(EmulationMachineTab tab)
     {
         _selectedTab = tab;
-        if (tab == EmulationMachineTab.Rom && _firmwareManagement is not null)
+        if (HasFirmwareFields(tab) && _firmwareManagement is not null)
             await _firmwareManagement.RefreshAsync();
     }
 

@@ -87,9 +87,10 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>传输速度</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>读取延迟</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>写长空</value></data>
-  <data name="Emulation.Storage.Sound.Profile"><value>机械音响简介</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>声音配置</value></data>
   <data name="Emulation.Storage.Media.CreateAndMount"><value>创建和挂载</value></data>
   <data name="Emulation.Storage.Media.Created"><value>创建的图像 : {0}</value></data>
   <data name="Emulation.Storage.Media.AlreadyExists"><value>此文件已经存在。 选择新图像文件 : {0}</value></data>
-  <data name="Emulation.Storage.Sound.Volume"><value>机械音量</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>音量</value></data>
+  <data name="Emulation.Storage.Sound.Group"><value>存储设备声音</value></data>
 </root>

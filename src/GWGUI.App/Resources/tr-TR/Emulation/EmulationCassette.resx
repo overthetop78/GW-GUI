@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>Hızlı ileri ve geri dönüşümlü hız</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>Motor oyun geri dönmeden önce gecikmeye başlar</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>Motor kayıt gecikmeden önce gecikmeye başlar</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>Mekanik sesler</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Enable depolama cihazı sesleri</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>Yazmaya karşı koruma</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>Örnekleme frekansı (Hz)</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>Ses kanalları</value></data>

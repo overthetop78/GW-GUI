@@ -64,9 +64,9 @@ internal static class BbcMicroFirmwareFunctions
     {
         if (role == FirmwareCategory.CharacterGenerator)
             return bytes.Length == BbcMicroFirmwareConstants.CharacterRomSize ? bytes.ToArray() : throw new InvalidDataException(role.ToString());
-        if (role is not (FirmwareCategory.OperatingSystem or FirmwareCategory.Basic or FirmwareCategory.Language or FirmwareCategory.DiscFilingSystem or FirmwareCategory.Network)) throw new ArgumentOutOfRangeException(nameof(role));
+        if (role is not (FirmwareCategory.OperatingSystem or FirmwareCategory.Basic or FirmwareCategory.Language or FirmwareCategory.DiscFilingSystem or FirmwareCategory.Network or FirmwareCategory.MemoryExtension)) throw new ArgumentOutOfRangeException(nameof(role));
         if (bytes.Length == BbcMicroFirmwareConstants.BankSize) return bytes.ToArray();
-        if (bytes.Length == BbcMicroFirmwareConstants.BankSize * 2 && role is not (FirmwareCategory.DiscFilingSystem or FirmwareCategory.Network)) return bytes.Slice(role == FirmwareCategory.OperatingSystem ? BbcMicroFirmwareConstants.BankSize : 0, BbcMicroFirmwareConstants.BankSize).ToArray();
+        if (bytes.Length == BbcMicroFirmwareConstants.BankSize * 2 && role is not (FirmwareCategory.DiscFilingSystem or FirmwareCategory.Network or FirmwareCategory.MemoryExtension)) return bytes.Slice(role == FirmwareCategory.OperatingSystem ? BbcMicroFirmwareConstants.BankSize : 0, BbcMicroFirmwareConstants.BankSize).ToArray();
         if (bytes.Length == BbcMicroFirmwareConstants.BankSize / 2 && role != FirmwareCategory.OperatingSystem)
         {
             var image = new byte[BbcMicroFirmwareConstants.BankSize];

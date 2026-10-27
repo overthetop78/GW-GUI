@@ -868,3 +868,35 @@ AcornEmu ouvre et modifie l’image montée, en respectant sa protection en écr
 Depuis REC, `MachineController.cs` conserve le choix du format cassette et du profil RAW, puis ouvre la même validation. « Créer » seul ne modifie pas la bande en cours ; « Créer et monter » monte la nouvelle image via `MachineSession.InsertAsync` puis arme l’enregistrement. Les paramètres RAW proviennent aussi des blocs de configuration déclarés par le module, pas seulement de la liste plate de champs.
 
 Les trois nouveaux messages sont traduits dans les 29 langues avec Argos ; le français a été relu. Vérification XML des ressources et vérification statique des références et des espaces Git effectuées. Aucune compilation, aucun essai GUI, aucune modification du build : validation compilée restant à faire à la reprise autorisée.
+
+
+### Configuration des extensions disquette dans AcornEmu
+
+L'onglet Extensions contient le cadre Extensions disquette. Les boutons radio Intel 8271 et Acorn WD1770 choisissent le contrôleur actif commun aux deux lecteurs. Chaque contrôleur a son champ ROM externe, enregistré dans les options de la configuration. Le champ du contrôleur non sélectionné est grisé ; son chemin est conservé. Solidisk rend les deux champs modifiables, ce qui prépare les deux possibilités sans imposer une ROM par lecteur.
+
+Les nouvelles options sont `acornemu.floppy.rom8271`, `acornemu.floppy.rom1770` et `acornemu.floppy.solidisk`. Le choix actif reste `acornemu.floppy.controller`. L'ancien champ `acornemu.dfs` est relu pour la configuration ancienne tant que les champs séparés ne sont pas enregistrés. Une fois un nouveau champ enregistré, il ne sert plus de repli pour l'autre contrôleur.
+
+Les deux ROM peuvent être renseignées avec Solidisk ; seule celle du contrôleur actif est exposée dans la banque disque au démarrage. Cela évite de laisser une ancienne ROM piloter les registres d'un contrôleur absent. Le choix d'interface nécessite un redémarrage de la machine émulée ; il ne ferme pas GW GUI. Il n'y a pas de choix par lecteur ni de bascule automatique au montage d'une image. Le second chemin ne correspond pas à une seconde ROM de système de fichiers sur le même contrôleur : cette interface propose une ROM par contrôleur.
+
+`FloppyExtensionConstants.cs` définit les clés et ressources de cette extension. `FloppyExtensionFunctions.cs` décrit ses champs, leurs autorisations et la projection des ROM candidates vers chaque contrôleur. La reconnaissance matérielle reste dans les définitions Common/Machines : `FirmwareDiskController.cs` et le champ `FirmwareDefinition.DiskController`. Une identité non évaluée reste inconnue ; le nom du fichier ne suffit pas à certifier son interface. Le gestionnaire App réutilise la présentation ROM avec une liste distincte par onglet, et interdit l'action Utiliser sur une destination grisée.
+
+Les formats d'image acceptés sont issus des profils de lecteur de MediaEngine. Leur liste ne dépend plus du contrôleur sélectionné. Le montage conserve la validation de la géométrie et des capacités physiques du lecteur ; la lecture effective dépend ensuite du contrôleur actif, de sa ROM et du programme exécuté, notamment pour les protections qui accèdent directement au matériel.
+
+
+### Réglages et création des lecteurs — révision du 27 octobre 2026
+
+Le modèle de lecteur de disquette continue de provenir du catalogue physique MediaEngine (faces, densité, géométrie et formats vierges). Les huit profils 5,25 pouces restent disponibles indépendamment du contrôleur commun : monter un conteneur accepté par un lecteur ne certifie pas que la ROM et le contrôleur sauront exécuter son contenu. Les réglages exposent des vitesses discrètes, une protection et les seuls contrôles d'activation/volume sonore. Aucun sélecteur de banque sonore n'est proposé.
+
+Le profil sonore de disquette est automatiquement celui du lecteur BBC Micro enregistré, dont la marque exacte est inconnue. Le service commun applique les replis déjà définis, dont Alps Electric pour une opération manquante. Pour Winchester, la banque ne possède aucun enregistrement attesté Rodime RO203E : le profil enregistré Miniscribe 8425 est un repli de mécanisme Winchester, pas un enregistrement présenté comme celui d'un Winchester Acorn officiel. Le choix arbitraire Seagate ST3120A conservé dans une ancienne configuration n'est plus appliqué.
+
+Les profils HDD sont désormais fournis par `MediaEngine/Dictionaries/HardDiskDriveCatalog.cs` et `AcornWinchesterModelConstants.cs`, via `IMediaRuntimePreparation`, `IEmulationMediaProcessing` et `HardDiskDriveModelChoice`. Ils décrivent les présélections Winchester 110 (306 cylindres, 4 têtes) et 130 (640 cylindres, 6 têtes), dans la disposition DAT/DSC de 33 secteurs de 256 octets par piste. Le profil Acorn SCSI conserve les géométries compatibles personnalisées ; sa limite est de 512 Mio pour l'adressage 21 bits des commandes à six octets utilisées par la ROM. Les modèles commerciaux ne sont pas une liste blanche de tout ce que le contrôleur émulé accepte. Le préparateur ADFS impose aussi ses propres limites et le créateur contrôle la géométrie et la capacité réelles.
+
+Les deux présélections imposent leur géométrie et leur capacité exactes, sans taille personnalisée ni arrondi silencieux. Le profil compatible permet une géométrie explicite dans les limites du conteneur et du contrôleur. La préallocation est transmise jusqu'au fichier temporaire DAT avant la publication atomique DAT/DSC ; elle n'est plus désactivée par le profil. Les deux fichiers sont publiés ensemble sans écraser une destination créée entre-temps.
+
+La création de disquette n'essaie plus de créer un dossier de destination vide. Le dialogue de sauvegarde laisse choisir le fichier et réutilise son dossier initial uniquement s'il existe. Les actions Créer, Créer et monter, Fermer et Annuler restent dans le dialogue commun existant.
+
+Les fenêtres utilisent le nom localisé de la machine. Les identifiants de périphérique et l'interface HDD figurent dans l'en-tête, les groupes de réglages sont déclarés par le module et les curseurs verticaux ont une hauteur bornée. Aucun texte de préparation Atari ne s'applique au dialogue générique.
+
+Les quatre unités logiques du cœur restent disponibles. Le manuel officiel ADFS décrit un Winchester à l'adresse 0 et réserve 1–3 aux extensions futures ; il ne documente pas quatre unités standard livrées avec la machine. Cette distinction ne supprime pas les unités effectivement émulées.
+
+Sources : [manuel de maintenance Winchester Acorn](https://www.theoddys.com/acorn/acorn_system_filing_systems/winchester_disks/Acorn%20Winchester%20Disc%20Service%20Manual.pdf), [manuel Acorn ADFS](https://8bs.com/othrdnld/manuals/hnooijen/Acorn/Advanced-Disc-Filing-System-User-Guide.pdf). Le tableau matériel secondaire du Winchester 130 mentionne aussi un format à 32 secteurs ; le profil DAT/DSC actuel utilise explicitement les 33 secteurs attendus par ses lecteurs, sans confondre les capacités des deux dispositions.

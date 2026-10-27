@@ -87,9 +87,10 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>전송 속도</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>대기 시간</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>연중 무휴</value></data>
-  <data name="Emulation.Storage.Sound.Profile"><value>기계식 사운드 프로파일</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>소리 프로파일</value></data>
   <data name="Emulation.Storage.Media.CreateAndMount"><value>생성 및 마운트</value></data>
   <data name="Emulation.Storage.Media.Created"><value>생성 된 이미지 : {0}</value></data>
   <data name="Emulation.Storage.Media.AlreadyExists"><value>이 파일은 이미 존재합니다. 새 이미지 파일을 선택하십시오. {0}</value></data>
-  <data name="Emulation.Storage.Sound.Volume"><value>기계적인 음량</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>의논문</value></data>
+  <data name="Emulation.Storage.Sound.Group"><value>저장 장치 소리</value></data>
 </root>

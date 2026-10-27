@@ -7,7 +7,6 @@ internal sealed partial class EmulatorCore
 {
     private readonly int[] _hardDiskSoundVolume = new int[C.HardDiskCount];
     private readonly bool[] _hardDiskSoundEnabled = new bool[C.HardDiskCount];
-    private readonly string?[] _hardDiskSoundProfiles = new string?[C.HardDiskCount];
     private readonly IEmulationDriveMechanics?[] _hardDiskMechanics = new IEmulationDriveMechanics?[C.HardDiskCount];
 
     /// <summary>Rend les mouvements et la rotation du Winchester par la mécanique commune.</summary>
@@ -17,7 +16,7 @@ internal sealed partial class EmulatorCore
         for (var unit = 0; unit < C.HardDiskCount; unit++)
         {
             if (_hardDiskMechanics[unit] is not { } mechanics) continue;
-            mechanics.Configure(_hardDiskSoundProfiles[unit], _hardDiskSoundVolume[unit],
+            mechanics.Configure(GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants.StoragePresentationConstants.WinchesterSound, _hardDiskSoundVolume[unit],
                 _hardDiskConnected[unit] && _hardDiskSoundEnabled[unit] && _hardDiskSettings[unit].Speed == C.DefaultSpeedPercent);
             mechanics.SetMotor(_hardDiskConnected[unit] && machine.HardDiskMotor(unit));
             mechanics.SetActivity(machine.HardDiskActive(unit) && !machine.HardDiskWriting(unit), machine.HardDiskWriting(unit));

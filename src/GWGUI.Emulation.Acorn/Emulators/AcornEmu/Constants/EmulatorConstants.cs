@@ -3,6 +3,9 @@ namespace GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants;
 /// <summary>Identité stable du cœur interne ; ses ROM sont toujours fournies séparément par l'utilisateur.</summary>
 internal static class EmulatorConstants
 {
+    /// <summary>Nom invariant de la ROM MOS dans les réglages BBC.</summary>
+    internal const string SystemFirmwareLabel = "Emulation.Acorn.Firmware.Mos";
+
     internal const string Id = "acornemu";
     internal const string Name = "AcornEmu";
     internal const string Version = "0.1.0";

@@ -14,6 +14,7 @@ namespace GWGUI.MediaEngine.Services;
 internal sealed class MediaRuntimePreparationService : IMediaRuntimePreparation
 {
     public IReadOnlyList<MediaFloppyDriveModel> FloppyDriveModels(string family, bool doubleDensity) => GWGUI.MediaEngine.Dictionaries.FloppyDriveCatalog.Models(family, doubleDensity);
+    public IReadOnlyList<MediaHardDiskDriveModel> HardDiskDriveModels(string family) => GWGUI.MediaEngine.Dictionaries.HardDiskDriveCatalog.Models(family);
     public bool SupportsFloppyImage(string model, long cylinders, int heads, int sectorSize, int sectorsPerTrack, long sectorCount) => GWGUI.MediaEngine.Dictionaries.FloppyDriveCatalog.Supports(model, cylinders, heads, sectorSize, sectorsPerTrack, sectorCount);
     public IMediaDriveMechanics CreateDriveMechanics(string device) => new MediaDriveMechanics(device);
 
@@ -34,7 +35,7 @@ internal sealed class MediaRuntimePreparationService : IMediaRuntimePreparation
     private static readonly Lazy<MediaEngineComposition> Conversion = new(MediaEngineComposition.CreateDefault);
 
     /// <inheritdoc/>
-    public Task CreateHardDiskAsync(string path, string formatId, HardDiskGeometry geometry, string? fileSystemId = null, CancellationToken cancellationToken = default)
+    public Task CreateHardDiskAsync(string path, string formatId, HardDiskGeometry geometry, string? fileSystemId = null, CancellationToken cancellationToken = default, bool preallocate = false)
     {
         ArgumentNullException.ThrowIfNull(geometry); cancellationToken.ThrowIfCancellationRequested();
         if (formatId != HardDiskImageFormatIds.AcornWinchester) throw new NotSupportedException("No runtime HDD creator is registered for this format.");
@@ -50,7 +51,7 @@ internal sealed class MediaRuntimePreparationService : IMediaRuntimePreparation
         if (position < geometry.Capacity) ranges.Add(new(position, geometry.Capacity - position, MediaDataRangeKind.Zero));
         var representation = new GWGUI.MediaEngine.Images.Models.Blocks.BlockMediaImageRepresentation(geometry.Capacity, geometry.SectorSize, ranges, geometry);
         var document = MediaImageDocument.CreateUnexplored(new(path, []), formatId, MediaKind.HardDisk, representation, [], new Dictionary<string, string>());
-        return new GWGUI.MediaEngine.Images.Formats.HardDisk.Acorn.AcornWinchesterWriter().CreateAsync(document, path, formatId, cancellationToken);
+        return new GWGUI.MediaEngine.Images.Formats.HardDisk.Acorn.AcornWinchesterWriter().CreateAsync(document, path, formatId, cancellationToken, preallocate);
     }
 
     /// <inheritdoc/>

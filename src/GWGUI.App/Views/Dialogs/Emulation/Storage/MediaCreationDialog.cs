@@ -16,7 +16,15 @@ internal sealed class MediaCreationDialog : Window
     private readonly StackPanel _buttons = new() { Orientation = Orientation.Horizontal, HorizontalAlignment = HorizontalAlignment.Right };
     private readonly TextBlock _status = new() { TextWrapping = TextWrapping.Wrap };
 
+    /// <summary>Fichier effectivement créé, conservé lorsque la configuration est ensuite verrouillée.</summary>
+    internal string? CreatedPath { get; private set; }
+
     internal MediaCreationDialog(Window owner, string title, string path, Func<Task> create)
+        : this(owner, title, new TextBox { Text = path, IsReadOnly = true, TextWrapping = TextWrapping.Wrap }, () => path, create)
+    {
+    }
+
+    internal MediaCreationDialog(Window owner, string title, FrameworkElement configuration, Func<string> destinationPath, Func<Task> create)
     {
         Owner = owner;
         Title = title;
@@ -25,9 +33,8 @@ internal sealed class MediaCreationDialog : Window
         Width = Math.Min(MediaCreationConstants.Width, SystemParameters.WorkArea.Width * StorageConfigurationLayoutConstants.WorkAreaWidthRatio);
         SizeToContent = SizeToContent.Height;
         ResizeMode = ResizeMode.NoResize;
-        var destination = new TextBox { Text = path, IsReadOnly = true, TextWrapping = TextWrapping.Wrap };
         var body = new StackPanel();
-        body.Children.Add(destination);
+        body.Children.Add(configuration);
         body.Children.Add(_status);
         var mount = Button(LocExtension.Get(MediaCreationConstants.CreateAndMount));
         var onlyCreate = Button(LocExtension.Get("Common.Create"));
@@ -50,9 +57,13 @@ internal sealed class MediaCreationDialog : Window
             {
                 if (!_created)
                 {
+                    var path = destinationPath();
+                    if (string.IsNullOrWhiteSpace(path)) throw new ArgumentException(LocExtension.Get(MediaCreationConstants.PathRequired));
                     if (File.Exists(path)) throw new IOException(LocExtension.Get(MediaCreationConstants.AlreadyExists, path));
                     await create();
                     _created = true;
+                    CreatedPath = path;
+                    configuration.IsEnabled = false;
                     onlyCreate.IsEnabled = false;
                     cancel.IsEnabled = false;
                     _status.Text = LocExtension.Get(MediaCreationConstants.Created, path);

@@ -87,9 +87,10 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>Siirtonopeus</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>Lue latenssi</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>Kirjoita viive</value></data>
-  <data name="Emulation.Storage.Sound.Profile"><value>Mekaaninen ääniprofiili</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>Ääniprofiili</value></data>
   <data name="Emulation.Storage.Media.CreateAndMount"><value>Luo ja liitä</value></data>
   <data name="Emulation.Storage.Media.Created"><value>Kuva luotu: {0}</value></data>
   <data name="Emulation.Storage.Media.AlreadyExists"><value>Tämä tiedosto on jo olemassa. Valitse uusi kuvatiedosto: {0}</value></data>
-  <data name="Emulation.Storage.Sound.Volume"><value>Mekaaninen äänen tilavuus</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>Määrä</value></data>
+  <data name="Emulation.Storage.Sound.Group"><value>Tallennuslaitteen äänet</value></data>
 </root>

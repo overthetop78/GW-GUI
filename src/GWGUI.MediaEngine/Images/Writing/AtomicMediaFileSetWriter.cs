@@ -5,7 +5,7 @@ namespace GWGUI.MediaEngine.Images.Writing;
 /// <summary>Publishes a related set of output files as one recoverable operation.</summary>
 internal static class AtomicMediaFileSetWriter
 {
-    public static async Task WriteAsync(IReadOnlyDictionary<string, Func<Stream, CancellationToken, Task>> files, CancellationToken cancellationToken = default, bool replaceExisting = true)
+    public static async Task WriteAsync(IReadOnlyDictionary<string, Func<Stream, CancellationToken, Task>> files, CancellationToken cancellationToken = default, bool replaceExisting = true, IReadOnlyDictionary<string, long>? preallocationSizes = null)
     {
         ArgumentNullException.ThrowIfNull(files);
         if (files.Count == 0) throw new ArgumentException("At least one output file is required.", nameof(files));
@@ -22,7 +22,15 @@ internal static class AtomicMediaFileSetWriter
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 Directory.CreateDirectory(Path.GetDirectoryName(output.Path) ?? Directory.GetCurrentDirectory());
-                await using var stream = new FileStream(output.TemporaryPath, FileMode.CreateNew, FileAccess.Write, FileShare.None, 64 * 1_024, FileOptions.Asynchronous);
+                await using var stream = new FileStream(output.TemporaryPath, new FileStreamOptions
+                {
+                    Mode = FileMode.CreateNew,
+                    Access = FileAccess.Write,
+                    Share = FileShare.None,
+                    Options = FileOptions.Asynchronous,
+                    BufferSize = 64 * 1_024,
+                    PreallocationSize = preallocationSizes?.GetValueOrDefault(output.Path) ?? 0
+                });
                 await output.Write(stream, cancellationToken).ConfigureAwait(false);
             }
 

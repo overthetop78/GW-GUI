@@ -22,4 +22,19 @@
   <data name="Emulation.Acorn.Network.BindAddress"><value>Lokale IPv4-Adresse</value></data>
   <data name="Emulation.Acorn.Network.Port"><value>UDP Hafen</value></data>
   <data name="Emulation.Acorn.Network.Peers"><value>Fernstationen</value></data>
+  <data name="Emulation.Acorn.Extensions.Floppy"><value>Diskettenverlängerungen</value></data>
+  <data name="Emulation.Acorn.Memory.Shadow"><value>Zusätzlicher Bildschirmspeicher</value></data>
+  <data name="Emulation.Acorn.Memory.Card"><value>Bildschirmspeichererweiterung</value></data>
+  <data name="Emulation.Acorn.Memory.None"><value>Keine</value></data>
+  <data name="Emulation.Acorn.Memory.Rom"><value>ROM für die Speichererweiterungskarte</value></data>
+  <data name="Emulation.Acorn.Memory.Help"><value>Diese Erweiterungskarten erfordern 32 KiB Haupt RAM und MOS 1.20. Das Matching laden ROM Wählen Sie keine Erweiterung vor der Reduzierung der Hauptfunktion RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMainRam"><value>Diese Erweiterungskarte benötigt 32 KiB Haupt RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMos"><value>Diese Erweiterungskarte erfordert MOS 1.20. Wählen Sie ein kompatibles Betriebssystem ROM.</value></data>
+  <data name="Emulation.Acorn.Memory.RomMissing"><value>Die Memory Erweiterungskarte ROM fehlt. Wählen Sie seine Datei in der RAM Tab der Maschineneinstellungen.</value></data>
+  <data name="Emulation.Acorn.Memory.Rom.Help"><value>Wählen Sie die Steuerungssoftware für diese Speichererweiterung aus den erkannten Dateien oder suchen Sie nach einer kompatiblen Datei.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways"><value>Bankumschaltbarer Speicher</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Speichermodule mit Bankfunktion</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Spreizspan-Buchsen</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Diese Module fügen einen Bankspeicher hinzu, ohne den Hauptspeicher-Adressraum zu vergrößern. Wählen Sie Chipbilder in den Erweiterungs-Sockets aus, um ihren Inhalt zu definieren. Vorher ausgewählte individuelle Firmware bleibt in Gebrauch, bis der Sockel ein explizites Chipbild erhält.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Chipbild '{0}' eine inkompatible Größe hat. {1}.</value></data>
 </root>

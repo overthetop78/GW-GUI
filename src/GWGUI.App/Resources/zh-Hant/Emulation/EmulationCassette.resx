@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>快速前进并倒转速度</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>重播前的汽车启动延迟</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>记录前的汽车启动延迟</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>机械声</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>启用存储设备声音</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>防止书面行为</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>取样频率(Hz)</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>音频频道</value></data>

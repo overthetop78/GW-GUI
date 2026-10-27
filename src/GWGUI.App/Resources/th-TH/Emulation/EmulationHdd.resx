@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>สร้างแผ่นฟลอปปีที่ว่างอยู่โดยไม่มีระบบปฏิบัติการ เตรียมการและฟอร์แมตดิสก์โดยใช้เครื่องมือดิสก์ภายในเครื่องจําลอง</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>เตรียมการดิสก์</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>ล้างข้อมูล (ยังไม่กําหนด)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>การฟอร์แมตสร้างปริมาตรว่าง ไม่มีระบบปฏิบัติการ HDD การบูตต้องการไดรเวอร์ที่เข้ากันได้กับดิสก์ ที่ติดตั้งจากเครื่องจําลองเสียง ภาพที่ถูกบีบอัดอาจจะส่งเส้นทางไปยังสําเนาที่สกัดได้</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>การฟอร์แมตจะสร้างปริมาตรว่างโดยไม่มีระบบปฏิบัติการ การบูตต้องการซอฟต์แวร์และไดรเวอร์ของระบบที่เครื่องจําลองเสียงรองรับ</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>ความจุ: {0} ถึง {1}. ขนาดแบ่งเขตในไบต์: {2}.</value></data>
 </root>

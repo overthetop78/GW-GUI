@@ -26,9 +26,9 @@ public sealed class AcornWinchesterWriter : IMediaImageWriter
     public Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string format, CancellationToken token = default) => WriteFilesAsync(document, outputPath, format, true, token);
 
     /// <summary>Publie une nouvelle paire sans remplacer un DAT ou un DSC déjà présent, y compris après une concurrence.</summary>
-    public Task<IReadOnlyList<string>> CreateAsync(MediaImageDocument document, string outputPath, string format, CancellationToken token = default) => WriteFilesAsync(document, outputPath, format, false, token);
+    public Task<IReadOnlyList<string>> CreateAsync(MediaImageDocument document, string outputPath, string format, CancellationToken token = default, bool preallocate = false) => WriteFilesAsync(document, outputPath, format, false, token, preallocate);
 
-    private async Task<IReadOnlyList<string>> WriteFilesAsync(MediaImageDocument document, string outputPath, string format, bool replaceExisting, CancellationToken token)
+    private async Task<IReadOnlyList<string>> WriteFilesAsync(MediaImageDocument document, string outputPath, string format, bool replaceExisting, CancellationToken token, bool preallocate = false)
     {
         if (!CanWrite(document, format, Path.GetExtension(outputPath))) throw new InvalidDataException("Winchester output requires complete 256-byte sectors and a declared 33-sector CHS geometry.");
         var blocks = (BlockMediaImageRepresentation)document.Representation;
@@ -41,7 +41,7 @@ public sealed class AcornWinchesterWriter : IMediaImageWriter
         {
             [dat] = (stream, cancellation) => BlockMediaDataReader.CopyToAsync(blocks, stream, cancellation),
             [dsc] = (stream, cancellation) => stream.WriteAsync(descriptor, cancellation).AsTask()
-        }, token, replaceExisting).ConfigureAwait(false);
+        }, token, replaceExisting, preallocate ? new Dictionary<string, long>(StringComparer.OrdinalIgnoreCase) { [dat] = blocks.Capacity } : null).ConfigureAwait(false);
         return [dat, dsc];
     }
 }

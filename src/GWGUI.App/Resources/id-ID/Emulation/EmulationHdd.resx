@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Membuat disk mentah kosong tanpa sistem operasi. Siapkan dan format itu menggunakan perangkat disk di dalam mesin yang digandakan.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Persiapan disk</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Kosong (tak terformat)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Pemformatan menciptakan volume kosong, tanpa sistem operasi. HDD boot juga memerlukan driver disk yang kompatibel yang dipasang dari mesin yang terukur. Gambar yang terkompresi mungkin dapat mengarahkan menulis ulang ke salinan yang diekstrak.</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>Pemformatan menciptakan volume kosong tanpa sistem operasi. Penelusuran memerlukan perangkat lunak sistem dan driver yang didukung oleh mesin yang terukur.</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>Kapasitas: {0} ke {1}. Ukuran sektor dalam bita: {2}.</value></data>
 </root>

@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Maakt een lege rauwe schijf zonder besturingssysteem. Bereid en formatteer deze met behulp van schijfgereedschappen in de emuleerde machine.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Schijfvoorbereiding</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Blanco (ongeformatteerd)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Formatteren creëert een leeg volume, zonder besturingssysteem. Atari HDD opstarten vereist ook een compatibele schijf driver geïnstalleerd vanaf de emuleerde machine. Gecomprimeerde afbeeldingen kunnen schrijven doorverwijzen naar een uitgepakte kopie.</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>Formatteren creëert een leeg volume zonder besturingssysteem. Het opstarten vereist de systeemsoftware en de stuurprogramma's ondersteund door de emuleerde machine.</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>Capaciteit: {0} tot {1}. Sectorgrootte in bytes: {2}.</value></data>
 </root>

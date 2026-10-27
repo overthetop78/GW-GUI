@@ -55,6 +55,8 @@ public static class MechanicalSoundConstants
     public const string Standard = "Standard";
 
     /// <summary>Identifiant du profil de disquette 5,25 pouces, associé aux enregistrements Panasonic JU-475-5.</summary>
+    /// <summary>Profil enregistré d'un lecteur BBC Micro dont la référence commerciale est inconnue.</summary>
+    public const string BbcMicroFloppy = "Floppy/Unidentified/BBC-Micro-5.25-inch-drive";
     public const string Floppy525 = "Floppy525";
 
     /// <summary>Identifiant du profil de disquette 3,5 pouces, associé aux enregistrements Alps Electric DF354H148F.</summary>

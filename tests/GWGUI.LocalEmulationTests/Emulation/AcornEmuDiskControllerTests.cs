@@ -105,14 +105,39 @@ public sealed class AcornEmuDiskControllerTests
         var restored = new MachineConfiguration(MachineModel.BbcMicroModelA, options: selected.Options, core: Emulator.AcornEmu);
         Assert.Equal(2, factory.DescribeStorage(restored).ConfiguredSlots.Count);
         var first = Assert.Single(factory.DescribeDeviceSettings(restored), item => item.Slot == EmulationMediaSlot.Floppy0).Floppy!;
-        Assert.Equal("ss40", first.Model); Assert.Equal("400", first.Speed); Assert.True(first.WriteProtected); Assert.False(first.RedirectWrites);
-        Assert.Contains(factory.GetFirmwareSlots(restored), slot => slot.FieldId == "acornemu.dfs" && slot.IsRequired);
+        Assert.Equal("ss40", first.Model); Assert.Equal("400", first.Speed); Assert.False(first.WriteProtected); Assert.False(first.RedirectWrites);
+        Assert.Contains(factory.GetFirmwareSlots(restored), slot => slot.FieldId == GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants.FloppyExtensionConstants.IntelRom && slot.IsRequired);
         Assert.True(factory.RequiresOptionRestart(restored, "acornemu.floppy.0.model"));
         var removed = factory.ApplyStorage(restored, factory.DescribeStorage(restored) with { ConfiguredSlots = [], DeviceSettings = [] });
-        Assert.Empty(factory.DescribeMediaDevices(removed)); Assert.DoesNotContain(factory.GetFirmwareSlots(removed), slot => slot.FieldId == "acornemu.dfs");
+        Assert.Empty(factory.DescribeMediaDevices(removed)); Assert.DoesNotContain(factory.GetFirmwareSlots(removed), slot => slot.FieldId == GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants.FloppyExtensionConstants.IntelRom && slot.IsRequired);
         Assert.Throws<ArgumentException>(() => factory.ApplyStorage(configuration, available with { ConfiguredSlots = [EmulationMediaSlot.Floppy0], DeviceSettings = [new(EmulationMediaSlot.Floppy0, new("invalid", "100", false, false))] }));
         var activity = factory.MediaActivity(restored, new Dictionary<int, bool> { [0] = true, [4] = true });
         Assert.True(activity[EmulationMediaSlot.Floppy0]); Assert.True(activity[EmulationMediaSlot.Floppy1]); Assert.False(activity[EmulationMediaSlot.Cassette0]);
+    }
+
+    [Fact]
+    public void LegacyProtectionStaysWithTheMountedImageRatherThanTheDrive()
+    {
+        var factory = new AcornEmuMachineFactory();
+        var slot = EmulationMediaSlot.Floppy0;
+        var configuration = new MachineConfiguration(MachineModel.BbcMicroModelA, core: Emulator.AcornEmu,
+            media: [new("protected.ssd", MediaCategory.Floppy, slot)],
+            options: new Dictionary<string,string> { ["acornemu.floppy.0.protected"] = bool.TrueString });
+        var settings = factory.DescribeStorage(configuration);
+        var updated = factory.ApplyStorage(configuration, settings);
+        Assert.True(Assert.Single(updated.Media).IsReadOnly);
+        Assert.False(Assert.Single(factory.DescribeDeviceSettings(updated)).Floppy!.WriteProtected);
+        Assert.False(Assert.Single(factory.DescribeStorage(updated).AvailableDevices, device => device.Slot == slot).FloppyOptions!.CanConfigureWriteProtection);
+        var replacement = factory.ApplyStorage(updated, factory.DescribeStorage(updated) with
+        {
+            MountedMedia = [new("other.ssd", slot, EmulationMediaType.Floppy, false, true)]
+        });
+        Assert.False(Assert.Single(replacement.Media).IsReadOnly);
+        var protectedReplacement = factory.ApplyStorage(replacement, factory.DescribeStorage(replacement) with
+        {
+            MountedMedia = [new("other.ssd", slot, EmulationMediaType.Floppy, true, true)]
+        });
+        Assert.True(Assert.Single(protectedReplacement.Media).IsReadOnly);
     }
 
     [Fact]

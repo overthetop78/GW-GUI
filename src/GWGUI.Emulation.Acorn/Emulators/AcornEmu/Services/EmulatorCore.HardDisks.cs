@@ -1,3 +1,4 @@
+using GWGUI.Emulation.HardDisks;
 using S = GWGUI.Emulation.Constants.EmulationMechanicalSoundConstants;
 using System.IO;
 using GWGUI.Emulation.Acorn.Common.Machines.BbcMicro.Functions;
@@ -22,7 +23,6 @@ internal sealed partial class EmulatorCore
             var settings = _hardDiskSettings[unit] = NativeStorage.HardDiskSettings(configuration, unit);
             _hardDiskSoundEnabled[unit] = bool.Parse(configuration.Options.GetValueOrDefault(C.HardDiskKey(unit, C.MechanicalSoundOption), bool.TrueString));
             _hardDiskSoundVolume[unit] = EmulationMechanicalSoundSettings.ReadVolume(configuration.Options, C.HardDiskKey(unit, C.SoundVolumeOption));
-            _hardDiskSoundProfiles[unit] = configuration.Options.GetValueOrDefault(C.HardDiskKey(unit, C.SoundProfileOption), S.Winchester);
             _machine!.ConfigureHardDisk(unit, settings.ReadLatency, settings.Speed, settings.WriteLatency);
         }
     }
@@ -36,7 +36,7 @@ internal sealed partial class EmulatorCore
         var transferred = false;
         try
         {
-            if (image.FormatId != C.HardDiskFormat || image.SectorSize % 256 != 0 || image.SectorCount * image.SectorSize > C.MaximumHardDiskBytes) throw new InvalidDataException(ErrorMessages.IncompatibleMedia);
+            if (image.FormatId != C.HardDiskFormat || !GWGUI.Emulation.Acorn.Emulators.AcornEmu.Dictionaries.HardDiskFormats.All.Any(format => HardDiskImageValidation.IsSupportedCapacity(image.SectorCount * image.SectorSize, format))) throw new InvalidDataException(ErrorMessages.IncompatibleMedia);
             EjectHardDisk(unit); _machine!.AttachHardDisk(unit, image); _hardDisks[unit] = image; transferred = true;
         }
         finally { if (!transferred) image.Dispose(); }

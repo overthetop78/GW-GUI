@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>Velocidade de marcha rápida e de ré</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>Atraso no arranque do motor antes da reprodução</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>Atraso do arranque do motor antes da gravação</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>Sons mecânicos</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Activar os sons dos dispositivos de armazenamento</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>Proteger contra a escrita</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>Frequência de amostragem (Hz)</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>Canais de áudio</value></data>

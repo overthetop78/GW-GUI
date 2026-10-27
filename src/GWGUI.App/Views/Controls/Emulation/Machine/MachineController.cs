@@ -335,12 +335,13 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         {
             Filter = $"{LocExtension.Get("Emulation.Storage.Media.Associated")} ({string.Join(";", extensions)})|{string.Join(";", extensions)}",
             InitialDirectory = _options.InitialMediaDirectory(device),
+            ShowReadOnly = device.MediaType is EmulationMediaType.Floppy or EmulationMediaType.Cassette,
             ClientGuid = EmulationMediaDialogFunctions.ClientGuid(_options.ModuleId, _options.MachineId, device.Slot)
         };
         if (dialog.ShowDialog() != true) return;
         var directory = Path.GetDirectoryName(dialog.FileName);
         if (!string.IsNullOrWhiteSpace(directory)) _options.RememberMediaDirectory(device, directory);
-        var media = new EmulationMedia(dialog.FileName, device.Slot, device.MediaType, false, true);
+        var media = new EmulationMedia(dialog.FileName, device.Slot, device.MediaType, dialog.ReadOnlyChecked || new FileInfo(dialog.FileName).IsReadOnly, true);
         if (_prepareMediaAsync is not null)
             media = await _prepareMediaAsync(media, CancellationToken.None);
         await _session.InsertAsync(media, device.RequiresMachineRecreation);
@@ -363,7 +364,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         else
         {
             var dialog = new HardDiskDriveConfigurationDialog(device.DisplayLabel ?? device.Slot.ToString(),
-                _options.MachineId, current, folder, device.HardDiskFormats ?? [],
+                _options.WindowTitle, current, folder, device.HardDiskFormats ?? [],
                 EmulationMediaDialogFunctions.ClientGuid(_options.ModuleId, _options.MachineId, device.Slot),
                 fixedImageSizeBytes: device.FixedImageSizeBytes, defaultImageFileName: device.DefaultImageFileName,
                 presentation: device.DialogPresentation);

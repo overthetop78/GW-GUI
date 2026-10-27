@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Acorn.Common.Machines.BbcMicro.Constants;
+
 namespace GWGUI.Emulation.Acorn.Common.Machines.Common.Dictionaries;
 
 /// <summary>Identités des ROM Acorn et machines apparentées, partagées par tous les adaptateurs du module.</summary>
@@ -9,6 +11,16 @@ internal static class FirmwareCatalog
 {
     internal static IReadOnlyDictionary<string, FirmwareDefinition> BySha1 { get; } = new Dictionary<string, FirmwareDefinition>(StringComparer.OrdinalIgnoreCase)
     {
+        [MemoryFirmwareConstants.AriesB32Sha1] = new(MemoryFirmwareConstants.AriesB32Name, "1.00", FirmwareCategory.MemoryExtension),
+        [MemoryFirmwareConstants.IntegraBSha1] = new(MemoryFirmwareConstants.IntegraBName, "1.20", FirmwareCategory.MemoryExtension),
+        // ROM des cartes mémoire, identités publiées par les définitions matérielles MAME Aries/Watford.
+        ["2590596e0864b97b30050c33b21aa89bb8956204"] = new("Aries B20", "2.4", FirmwareCategory.MemoryExtension),
+        ["d04bfd332d63f6f23dca2ef81a1d2074e3d88ee9"] = new("Aries B20", "2.2", FirmwareCategory.MemoryExtension),
+        ["0a5efb084eb1ae353b9c79c026e9e26cd7695293"] = new("Watford Electronics 32K RAM", "2.40", FirmwareCategory.MemoryExtension),
+        ["7f8536576de449916cd77488e94775ed438c5c6c"] = new("Watford Electronics 32K RAM", "2.20", FirmwareCategory.MemoryExtension),
+        ["98a3084b20c92427c2e9def58ade96f42659e20a"] = new("Watford Electronics 32K RAM", "2.00", FirmwareCategory.MemoryExtension),
+        ["210f6162d634fca8d75197d4f64d9b50abc01e1e"] = new("Watford Electronics 32K RAM", "1.06", FirmwareCategory.MemoryExtension),
+        ["1b59a3354cfc704ad8aa60b0ed16e4cd2d815031"] = new("Watford Electronics 32K RAM", "1.00", FirmwareCategory.MemoryExtension),
         // NFS Acorn : empreintes vérifiées sur les ROM externes du dépôt historique nvg, répertoire Acorn/fs.
         ["8564d944fedd17caf2023454ba5a7c3947aedc1f"] = new("Acorn NFS", "3.34", FirmwareCategory.Network),
         ["7081f1d834645e501c8c9862cf4a50f282ca1f32"] = new("Acorn NFS", "3.35K", FirmwareCategory.Network),
@@ -35,9 +47,9 @@ internal static class FirmwareCatalog
         ["88c93df1854f5fbe6cd6e5f0e29a8bf4ea3b5614"] = new("VIEW A2.1", "A2.1", FirmwareCategory.Language),
         ["b369809275cb67dfd8a749265e91adb2d2558ae6"] = new("CM62024 VSM", null, FirmwareCategory.Speech),
         ["66876702d1d95eecc034d20f25047f893a27cde5"] = new("VM61002 VSM", null, FirmwareCategory.Speech),
-        ["dbbec4d2540a854c120be3194c7566a2b79d153b"] = new("DFS 0.9H", "0.9H", FirmwareCategory.DiscFilingSystem),
-        ["161f585dc45665ea77433c84afd2f95049f7f5a0"] = new("DFS/NET", "1.0", FirmwareCategory.DiscFilingSystem),
-        ["7e3c536baeae84d6498a14e8405319e01ee78232"] = new("DNFS", "1.20", FirmwareCategory.DiscFilingSystem),
+        ["dbbec4d2540a854c120be3194c7566a2b79d153b"] = new("DFS 0.9H", "0.9H", FirmwareCategory.DiscFilingSystem, DiskController: FirmwareDiskController.Intel8271),
+        ["161f585dc45665ea77433c84afd2f95049f7f5a0"] = new("DFS/NET", "1.0", FirmwareCategory.DiscFilingSystem, DiskController: FirmwareDiskController.Intel8271),
+        ["7e3c536baeae84d6498a14e8405319e01ee78232"] = new("DNFS", "1.20", FirmwareCategory.DiscFilingSystem, DiskController: FirmwareDiskController.Intel8271),
         ["7462ced7b83d74b822815bc00ed40a89f84e0276"] = new("Torch NET", "3.35K", FirmwareCategory.Network),
         ["4c9f7cf141ad028fe5e517c45e6e3a43b1a76d24"] = new("Hope DFS", "1.00", FirmwareCategory.DiscFilingSystem),
         ["be10872aeb88714bd56462a2e86929953dee1c01"] = new("Torch MCP", "1.00 (1.01 CI)", FirmwareCategory.Application),

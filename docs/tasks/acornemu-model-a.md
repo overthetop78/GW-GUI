@@ -417,3 +417,11 @@ Export vérifié : 57 fichiers WAV PCM mono 16 bits / 48 kHz (49 opérations ind
   - [x] Modifier ce document après vérification des suppressions : consigner le nettoyage et inclure tous les changements restants dans le commit autorisé.
 
 Les deux scripts temporaires et leurs deux fichiers de préparation ont été supprimés de scripts/tools avant le commit. Les catalogues audio et leurs références sources sont conservés ; aucun build ni push demandé.
+
+## Reprise du suivi des demandes — 27 octobre 2026
+
+Les exigences détaillées sont conservées dans `docs/tasks/acorn-demandes-restantes.md`, avec les critères de chaque capture, et non remplacées par les nouveaux sujets mémoire. Les anciennes cases non cochées ci-dessus ne sont pas une preuve de fonctionnalité absente : certaines ont été remplacées par des étapes ultérieures vérifiées. Les étapes cochées ne constituent pas non plus une validation automatique des demandes postérieures.
+
+Les catalogues et assets FLAC, le classement type/marque/modèle, les replis et le nettoyage de tools disposent de résultats historiques consignés. Ils ne sont pas à recréer par défaut. Restent à vérifier séparément : couverture de toutes les opérations mécaniques dans tous les usages hors émulation, bruitages réels encore manquants, comportement Tape/REC/UEF/CSW/WAV/RAW dans chaque outil, intégration audio sans normalisation erronée, et couverture des assets de tous les modules. Aucun de ces points n'est déclaré terminé sur la seule présence d'un catalogue.
+
+Les corrections des captures stockage sont maintenant compilées et vérifiées isolément (210 contrôles, puis les 2 contrôles images/UI après le dernier ajustement). La livraison en cours d'utilisation n'a pas été remplacée. Les cartes Shadow RAM demandées restent dans `docs/tasks/acorn-memory-extensions.md` et ne seront déclarées fonctionnelles qu'après implémentation et vérification.

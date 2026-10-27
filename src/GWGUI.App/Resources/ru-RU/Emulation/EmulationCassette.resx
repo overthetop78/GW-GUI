@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>Скорость перемотки и перемотки</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>Задержка моторного старта перед воспроизведением</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>Задержка мотора перед записью</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>Механические звуки</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Включить звуки устройства хранения</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>Защита от написания</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>Частота выборки (Hz)</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>Аудиоканалы</value></data>

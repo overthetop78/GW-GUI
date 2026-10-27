@@ -22,4 +22,19 @@
   <data name="Emulation.Acorn.Network.BindAddress"><value>Lokalny adres IPv4</value></data>
   <data name="Emulation.Acorn.Network.Port"><value>UDP port</value></data>
   <data name="Emulation.Acorn.Network.Peers"><value>Stacje zdalne</value></data>
+  <data name="Emulation.Acorn.Extensions.Floppy"><value>Rozszerzenia dyskietek dyskietek</value></data>
+  <data name="Emulation.Acorn.Memory.Shadow"><value>Dodatkowa pamięć ekranu</value></data>
+  <data name="Emulation.Acorn.Memory.Card"><value>Rozszerzenie pamięci ekranu</value></data>
+  <data name="Emulation.Acorn.Memory.None"><value>Brak</value></data>
+  <data name="Emulation.Acorn.Memory.Rom"><value>ROM dla karty rozszerzającej pamięć</value></data>
+  <data name="Emulation.Acorn.Memory.Help"><value>Te karty rozszerzające wymagają 32 KiB głównego RAM oraz MOS 1.20. Załaduj dopasowanie ROM dla wybranej karty. Nie należy wybierać rozszerzenia przed zmniejszeniem głównego RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMainRam"><value>Ta karta rozszerzeń wymaga 32 KiB głównego RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMos"><value>Ta karta rozszerzająca wymaga MOS 1.20. Wybierz kompatybilny system operacyjny ROM.</value></data>
+  <data name="Emulation.Acorn.Memory.RomMissing"><value>Karta rozszerzająca pamięć ROM brak. Wybierz jego plik w RAM zakładka ustawień maszyny.</value></data>
+  <data name="Emulation.Acorn.Memory.Rom.Help"><value>Wybierz oprogramowanie sterujące dla tej ekspansji pamięci z wykrytych plików lub przeglądaj kompatybilny plik. Nie wczytywany jest plik, gdy ścieżka jest pusta.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways"><value>Pamięć boczna</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Moduły pamięci bankowej</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Gniazda czipów ekspansyjnych</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Moduły te dodają pamięć bankową bez zwiększania przestrzeni głównego adresu pamięci. Wybierz obrazy chipów w gniazdach rozszerzających, aby określić ich zawartość. Wcześniej wybrane oprogramowanie firmowe pozostaje w użyciu, dopóki jego gniazdo nie otrzyma wyraźnego obrazu chipowego.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Wizerunek chipu "{0}"ma niekompatybilny rozmiar. Oczekiwany: {1}.</value></data>
 </root>

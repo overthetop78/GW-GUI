@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>빠른 속도 및 재풍 속도</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>playback의 앞에 모터 시작 지연</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>기록의 앞에 모터 시작 지연</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>기계 소리</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Enable 저장 장치 소리</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>관련 기사</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>표본 추출 빈도 (Hz)</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>오디오 채널</value></data>

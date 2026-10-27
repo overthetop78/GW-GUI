@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Crea un disco crudo vacío sin un sistema operativo. Prepare y formatee el uso de herramientas de disco dentro de la máquina emulada.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Preparación de discos</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Blank (sin formato)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>El formato crea un volumen vacío, sin un sistema operativo. HDD El arranque también requiere un controlador de disco compatible instalado desde la máquina emulada. Las imágenes comprimidas pueden redirigir escrituras a una copia extraída.</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>El formato crea un volumen vacío sin un sistema operativo. El booting requiere el software del sistema y los controladores compatibles con la máquina emulada.</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>Capacidad: {0} a {1}. Tamaño del sector en bytes: {2}.</value></data>
 </root>

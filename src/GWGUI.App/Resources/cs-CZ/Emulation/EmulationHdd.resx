@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Vytvoří prázdný surový disk bez operačního systému. Připravuje a formátuje jej pomocí diskových nástrojů uvnitř emulovaného stroje.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Příprava disků</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Prázdné (neformátované)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Formátování vytváří prázdný objem, bez operačního systému. Atari HDD booting také vyžaduje kompatibilní disk ovladač nainstalovaný z emulovaného stroje. Komprimované obrázky mohou přesměrovat zápisy na extrahovanou kopii.</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>Formátování vytváří prázdný objem bez operačního systému. Zavedení vyžaduje systémový software a ovladače podporované emulovaným strojem.</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>Kapacita: {0} do {1}. Velikost sektoru v bytech: {2}.</value></data>
 </root>

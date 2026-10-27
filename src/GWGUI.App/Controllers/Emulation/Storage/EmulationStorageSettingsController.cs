@@ -178,7 +178,7 @@ internal sealed class EmulationStorageSettingsController
         }
         var dialog = new HardDiskDriveConfigurationDialog(
             DeviceLabel(device),
-            _configuration?.MachineId ?? string.Empty, current,
+            MachineDisplayName, current,
             ImageDirectory(device),
             device.HardDiskFormats ?? throw new InvalidOperationException(),
             EmulationMediaDialogFunctions.ClientGuid(_moduleId, _configuration?.MachineId ?? string.Empty, device.Slot),
@@ -242,7 +242,7 @@ internal sealed class EmulationStorageSettingsController
         var current = (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == device.Slot) ?.Cartridge ?? new CartridgeSlotSettings();
         var label = string.IsNullOrWhiteSpace(device.ConfigurationOptionResourceKey) ? string.Empty : LocExtension.GetForModule(_moduleId, device.ConfigurationOptionResourceKey);
         var hint = string.IsNullOrWhiteSpace(device.ConfigurationOptionDetailedResourceKey) ? null : LocExtension.GetForModule(_moduleId, device.ConfigurationOptionDetailedResourceKey);
-        var dialog = new CartridgeSlotConfigurationDialog(device.DisplayLabel ?? device.Slot.ToString(), _configuration?.MachineId ?? string.Empty, current, label, hint, _moduleId, device.ConfigurationFields);
+        var dialog = new CartridgeSlotConfigurationDialog(device.DisplayLabel ?? device.Slot.ToString(), MachineDisplayName, current, label, hint, _moduleId, device.ConfigurationFields);
         CartridgeSlotSettings selected;
         try
         {
@@ -259,12 +259,17 @@ internal sealed class EmulationStorageSettingsController
         SettingsChanged?.Invoke(this, EventArgs.Empty);
     }
 
+    /// <summary>Nom localisé de la machine ; son identifiant reste réservé à la persistance et aux GUID.</summary>
+    private string MachineDisplayName => _manager is IEmulationModule module
+        && module.Machines.FirstOrDefault(machine => machine.Id == _configuration?.MachineId) is { } machine
+            ? LocExtension.GetForModule(module, machine.DisplayResourceKey) : _configuration?.MachineId ?? string.Empty;
+
     private void ConfigureHardDisk(EmulationMediaDevice device)
     {
         var current = _settings.MountedMedia.FirstOrDefault(item => item.Slot == device.Slot);
         var currentSettings = (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == device.Slot);
         var dialog = new HardDiskDriveConfigurationDialog(device.DisplayLabel ?? device.Slot.ToString(),
-            _configuration?.MachineId ?? string.Empty, current?.Path,
+            MachineDisplayName, current?.Path,
             device.ImageDirectory ?? _defaultFolder(EmulationDefaultFolderCategory.HardDisk),
             device.HardDiskFormats ?? [], EmulationMediaDialogFunctions.ClientGuid(_moduleId, _configuration?.MachineId ?? string.Empty, device.Slot),
             path => HardDiskDeletionService.DeleteAsync(path, _configuration!), configurationFields: device.ConfigurationFields, options: currentSettings?.Options, moduleId: _moduleId);
@@ -296,7 +301,7 @@ internal sealed class EmulationStorageSettingsController
     {
         var current = (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == device.Slot)?.Floppy ?? new FloppyDriveSettings(device.FloppyOptions!.Models[0].Value, "100", false, false);
         var dialog = new FloppyDriveConfigurationDialog(device.DisplayLabel ?? device.Slot.ToString(),
-            _configuration?.MachineId ?? string.Empty, current, device.FloppyOptions!,
+            MachineDisplayName, current, device.FloppyOptions!,
             EmulationMediaDialogFunctions.ClientGuid(_moduleId, _configuration?.MachineId ?? string.Empty, device.Slot), _moduleId, device.ConfigurationFields);
         FloppyDriveSettings selectedSettings;
         string? createdMediaToMount;

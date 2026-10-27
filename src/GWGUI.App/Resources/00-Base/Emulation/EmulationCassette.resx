@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>Fast-forward and rewind speed</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>Motor start delay before playback</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>Motor start delay before recording</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>Mechanical sounds</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Enable drive sounds</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>Protect against writing</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>Sampling frequency (Hz)</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>Audio channels</value></data>

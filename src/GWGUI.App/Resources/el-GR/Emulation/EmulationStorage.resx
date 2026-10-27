@@ -87,9 +87,10 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>Ταχύτητα μεταφοράς</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>Λήθη ανάγνωσης</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>Λήθη εγγραφής</value></data>
-  <data name="Emulation.Storage.Sound.Profile"><value>Μηχανικό προφίλ ήχου</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>Προφίλ ήχου</value></data>
   <data name="Emulation.Storage.Media.CreateAndMount"><value>Δημιουργία και προσάρτηση</value></data>
   <data name="Emulation.Storage.Media.Created"><value>Δημιουργήθηκε εικόνα: {0}</value></data>
   <data name="Emulation.Storage.Media.AlreadyExists"><value>Αυτό το αρχείο υπάρχει ήδη. Επιλέξτε ένα νέο αρχείο εικόνας: {0}</value></data>
-  <data name="Emulation.Storage.Sound.Volume"><value>Μηχανικός όγκος ήχου</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>Όγκος</value></data>
+  <data name="Emulation.Storage.Sound.Group"><value>Ήχοι συσκευής αποθήκευσης</value></data>
 </root>

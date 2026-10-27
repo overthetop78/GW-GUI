@@ -22,4 +22,19 @@
   <data name="Emulation.Acorn.Network.BindAddress"><value>Адреса електронної пошти</value></data>
   <data name="Emulation.Acorn.Network.Port"><value>UDP абзац</value></data>
   <data name="Emulation.Acorn.Network.Peers"><value>Віддалені станції</value></data>
+  <data name="Emulation.Acorn.Extensions.Floppy"><value>Покриття диска Floppy</value></data>
+  <data name="Emulation.Acorn.Memory.Shadow"><value>Додаткова пам'ять екрану</value></data>
+  <data name="Emulation.Acorn.Memory.Card"><value>Розширення пам'яті екрану</value></data>
+  <data name="Emulation.Acorn.Memory.None"><value>Ні</value></data>
+  <data name="Emulation.Acorn.Memory.Rom"><value>ROM для карти розширення пам'яті</value></data>
+  <data name="Emulation.Acorn.Memory.Help"><value>Ці карти розширення вимагають 32 КБ головного RAM і MOS 1.20. Завантаження матчу ROM для обраної картки. Виберіть не розширення перед зменшенням основного RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMainRam"><value>Ця карта розширення вимагає 32 KiB основного RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMos"><value>Ця карта розширення вимагає MOS 1.20. Виберіть сумісну операційну систему ROM.</value></data>
+  <data name="Emulation.Acorn.Memory.RomMissing"><value>Картка розширення пам'яті ROM відсутні. Виберіть файл у файлі RAM вкладка параметрів машини.</value></data>
+  <data name="Emulation.Acorn.Memory.Rom.Help"><value>Виберіть програмне забезпечення керування для розширення пам'яті з виявлених файлів або перегляд сумісного файлу. Ні файл завантажується, коли шлях порожній.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways"><value>Банкова пам’ять</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Модулі банкової пам’яті</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Розширювальний роз'єм для чіпів</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Ці модулі додають пам'ять, не підвищуючи основний простір адрес пам'яті. Виберіть зображення чіпа в роз'ємах розширення, щоб визначити їх вміст. Раніше вибрана індивідуальна прошивка залишається в використанні, поки її розетка отримує чітке зображення чіпа.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Чип зображення '{0}- має несумісний розмір. Виявлено: {1}.</value></data>
 </root>

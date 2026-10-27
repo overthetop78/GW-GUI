@@ -22,4 +22,19 @@
   <data name="Emulation.Acorn.Network.BindAddress"><value>العنوان المحلي IPv4</value></data>
   <data name="Emulation.Acorn.Network.Port"><value>UDP الميناء</value></data>
   <data name="Emulation.Acorn.Network.Peers"><value>محطات التطهير</value></data>
+  <data name="Emulation.Acorn.Extensions.Floppy"><value>تمديدات أقراص الزهرة</value></data>
+  <data name="Emulation.Acorn.Memory.Shadow"><value>ذاكرة شاشة إضافية</value></data>
+  <data name="Emulation.Acorn.Memory.Card"><value>التوسع في الذاكرة</value></data>
+  <data name="Emulation.Acorn.Memory.None"><value>لا</value></data>
+  <data name="Emulation.Acorn.Memory.Rom"><value>ROM لبطاقة توسيع الذاكرة</value></data>
+  <data name="Emulation.Acorn.Memory.Help"><value>هذه البطاقات التوسيعية تتطلب 32 كيلو بكر من الكم RAM و MOS 1.20 اسحبوا المطابقة ROM لا تختاروا التوسع قبل أن تخفضوا RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMainRam"><value>هذه البطاقة التوسيعية تتطلب 32 كيلو بكر من الكم RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMos"><value>بطاقة التوسيع هذه تتطلب MOS 1-20- اختيار نظام تشغيل متوافق ROM.</value></data>
+  <data name="Emulation.Acorn.Memory.RomMissing"><value>بطاقة توسيع الذاكرة ROM مفقودة، اختار ملفها في RAM -تحتّى من الآلات .</value></data>
+  <data name="Emulation.Acorn.Memory.Rom.Help"><value>اختيار برنامج التحكم لهذا التوسع في الذاكرة من الملفات المكتشفة أو مصفوفة لملف متوافق لا يوجد ملف محمول عندما يكون الطريق فارغاً</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways"><value>ذاكرة جانبية</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>وحدات الذاكرة المصرفية</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>مقصورة شريحة التوسع</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Help"><value>هذه الوحدات تضيف ذاكرة مصرفية دون زيادة مساحة عنوان الذاكرة الرئيسي، وتختار صور رقائق في جوارب التوسع لتعريف محتوياتها، وسبق أن تم اختيار فرادى البرمجيات ما زالت تستخدم حتى تتلقى جواربها صورة شريحة واضحة.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>صورة شيب{0}"لديه حجم غير متوافق" {1}.</value></data>
 </root>

@@ -22,4 +22,19 @@
   <data name="Emulation.Acorn.Network.BindAddress"><value>Adresa IPv4 locală</value></data>
   <data name="Emulation.Acorn.Network.Port"><value>UDP port</value></data>
   <data name="Emulation.Acorn.Network.Peers"><value>Stații la distanță</value></data>
+  <data name="Emulation.Acorn.Extensions.Floppy"><value>Extensii de disc floppy</value></data>
+  <data name="Emulation.Acorn.Memory.Shadow"><value>Memorie suplimentară ecran</value></data>
+  <data name="Emulation.Acorn.Memory.Card"><value>Expansiune memorie ecran</value></data>
+  <data name="Emulation.Acorn.Memory.None"><value>Niciuna</value></data>
+  <data name="Emulation.Acorn.Memory.Rom"><value>ROM pentru cardul de extindere a memoriei</value></data>
+  <data name="Emulation.Acorn.Memory.Help"><value>Aceste carduri de extindere necesită 32 KiB de main RAM şi MOS 1.20 Încărcaţi potrivirea ROM pentru cardul selectat. Selectaţi nici o extindere înainte de reducerea principal RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMainRam"><value>Acest card de extindere necesită 32 KiB de main RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMos"><value>Acest card de extindere necesită MOS 1.20. Selectaţi un sistem de operare compatibil ROM.</value></data>
+  <data name="Emulation.Acorn.Memory.RomMissing"><value>Cardul de extindere a memoriei ROM Alegeți fișierul său în RAM fila setărilor mașinii.</value></data>
+  <data name="Emulation.Acorn.Memory.Rom.Help"><value>Selectaţi software-ul de control pentru această expansiune de memorie din fişierele detectate, sau naviga pentru un fişier compatibil. Nu fişier este încărcat atunci când calea este goală.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways"><value>Memorie laterală</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Module de memorie Banked</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Priza de expansiune a jetoanelor</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Aceste module adaugă memorie bancară fără a mări spațiul principal de adrese de memorie. Selectați imagini de jetoane în prizele de expansiune pentru a defini conținutul lor. Anterior selectat firmware individual rămâne în uz până când priza sa primește o imagine explicită de chip.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Imaginea Chip '{0}"are o dimensiune incompatibilă. {1}.</value></data>
 </root>

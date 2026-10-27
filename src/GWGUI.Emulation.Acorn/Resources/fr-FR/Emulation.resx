@@ -22,4 +22,19 @@
   <data name="Emulation.Acorn.Network.BindAddress"><value>Adresse IPv4 locale</value></data>
   <data name="Emulation.Acorn.Network.Port"><value>Port UDP</value></data>
   <data name="Emulation.Acorn.Network.Peers"><value>Stations distantes</value></data>
+  <data name="Emulation.Acorn.Extensions.Floppy"><value>Extensions disquette</value></data>
+  <data name="Emulation.Acorn.Memory.Shadow"><value>Mémoire d'écran supplémentaire</value></data>
+  <data name="Emulation.Acorn.Memory.Card"><value>Extension mémoire écran</value></data>
+  <data name="Emulation.Acorn.Memory.None"><value>Aucune</value></data>
+  <data name="Emulation.Acorn.Memory.Rom"><value>ROM de la carte d’extension RAM</value></data>
+  <data name="Emulation.Acorn.Memory.Help"><value>Ces cartes nécessitent 32 Kio de RAM principale et MOS 1.20. Choisissez la ROM correspondant à la carte installée. Sélectionnez Aucune avant de réduire la RAM principale.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMainRam"><value>Cette carte nécessite 32 Kio de RAM principale.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMos"><value>Cette carte nécessite MOS 1.20. Choisissez une ROM système compatible.</value></data>
+  <data name="Emulation.Acorn.Memory.RomMissing"><value>La ROM de la carte d’extension RAM est manquante. Choisissez son fichier dans l’onglet RAM des paramètres de la machine.</value></data>
+  <data name="Emulation.Acorn.Memory.Rom.Help"><value>Choisissez la ROM de gestion de cette extension mémoire dans la liste des fichiers détectés, ou parcourez vos fichiers pour sélectionner une ROM compatible. Un chemin vide ne charge aucune ROM.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways"><value>Mémoire paginée</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Modules de mémoire paginée</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Supports des puces de l’extension</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Ces modules ajoutent des banques de mémoire sans agrandir l’espace d’adressage de la RAM principale. Dans ROM, choisissez les images des puces pour définir leur contenu. Les ROM individuelles déjà choisies restent utilisées tant qu’aucune image de puce ne remplace leur support.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>L’image de puce « {0} » a une taille incompatible. Capacités acceptées : {1}.</value></data>
 </root>

@@ -17,6 +17,8 @@ public static class HardDiskImageCreation
             throw new ArgumentException("Unsupported disk preparation.", nameof(preparation));
         if (format.SupportsExplicitGeometry && (geometry is null || geometry.Capacity != bytes || !format.LogicalSectorSizes.Contains(geometry.SectorSize)))
             throw new ArgumentException("An explicit geometry matching the disk capacity and sector size is required.", nameof(geometry));
+        if (format.FixedGeometry is { } fixedGeometry && geometry != fixedGeometry)
+            throw new ArgumentOutOfRangeException(nameof(geometry));
         if (format.ImageCreator is { } create)
         {
             if (File.Exists(Path.GetFullPath(path))) throw new IOException("The disk image already exists.");

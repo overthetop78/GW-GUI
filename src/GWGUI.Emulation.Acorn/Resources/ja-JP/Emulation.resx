@@ -22,4 +22,19 @@
   <data name="Emulation.Acorn.Network.BindAddress"><value>ローカルIPv4アドレス</value></data>
   <data name="Emulation.Acorn.Network.Port"><value>UDP ポート</value></data>
   <data name="Emulation.Acorn.Network.Peers"><value>遠隔場所</value></data>
+  <data name="Emulation.Acorn.Extensions.Floppy"><value>フロッピーディスク拡張</value></data>
+  <data name="Emulation.Acorn.Memory.Shadow"><value>追加画面メモリ</value></data>
+  <data name="Emulation.Acorn.Memory.Card"><value>スクリーンメモリ拡張</value></data>
+  <data name="Emulation.Acorn.Memory.None"><value>なし</value></data>
+  <data name="Emulation.Acorn.Memory.Rom"><value>ROM メモリ拡張カードの</value></data>
+  <data name="Emulation.Acorn.Memory.Help"><value>拡張カードは、メインの32 KiBが必要です RAM と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と と MOS 1.20. マッチングをロードする ROM 選択したカードの場合。メインを削減する前に、拡張を選択しないでください RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMainRam"><value>拡張カードは、メインの32 KiBが必要です RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMos"><value>拡張カードは必須です。 MOS 1.20. 対応するオペレーティングシステムを選択 ROM.</value></data>
+  <data name="Emulation.Acorn.Memory.RomMissing"><value>メモリ拡張カード ROM 欠落しています。 ファイルの選択 RAM マシン設定のタブ。</value></data>
+  <data name="Emulation.Acorn.Memory.Rom.Help"><value>検出されたファイルからこのメモリ拡張用の制御ソフトウェアを選択するか、互換性のあるファイルを参照します。パスが空の場合、ファイルが読み込まれません。</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways"><value>サイドウェイメモリ</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>銀行メモリモジュール</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>拡張チップソケット</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Help"><value>これらのモジュールは、メインメモリアドレススペースを増加させることなく、銀行メモリを追加します。 拡張ソケットのチップ画像を選択して、そのコンテンツを定義します。 以前の選択された個々のファームウェアは、ソケットが明示的なチップイメージを受信するまで使用中に残っています。</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>チップイメージ '{0}' は互換性のないサイズを持っています。期待: {1}.</value></data>
 </root>

@@ -60,7 +60,7 @@ internal static class StorageConstants
 
     /// <summary>Latence maximale configurable, en millisecondes.</summary>
     internal const int MaximumLatencyMilliseconds = 10000;
-    internal static IReadOnlyList<string> HardDiskOptions { get; } = Array.AsReadOnly<string>([ProtectedOption, ReadLatencyOption, WriteLatencyOption, SpeedOption, MechanicalSoundOption, SoundProfileOption, SoundVolumeOption]);
+    internal static IReadOnlyList<string> HardDiskOptions { get; } = Array.AsReadOnly<string>([ProtectedOption, ReadLatencyOption, WriteLatencyOption, SpeedOption, MechanicalSoundOption, SoundVolumeOption]);
     /// <summary>Préfixe des options persistantes des lecteurs de disquettes AcornEmu.</summary>
     internal const string FloppyPrefix = "acornemu.floppy.";
 
@@ -126,7 +126,7 @@ internal static class StorageConstants
     /// <summary>Premier indice des indicateurs d’activité des disques durs.</summary>
     internal const int HardDiskLedStart = 8;
     /// <summary>Capacité maximale d’une image de disque dur, en octets.</summary>
-    internal const long MaximumHardDiskBytes = 512L * 1024 * 1024;
+    internal static long MaximumHardDiskBytes => CommonHost.MediaProcessing.HardDiskDriveModels(EmulationHardDiskModelConstants.AcornWinchester).Max(model => model.MaximumBytes);
     internal static IReadOnlyList<string> HardDiskExtensions => [MediaConstants.WinchesterImageExtension];
     internal static IReadOnlyList<string> Extensions => CommonHost.MediaProcessing.FloppyDriveModels(FloppyFamily, false).SelectMany(model => model.AcceptedExtensions).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
     internal static IReadOnlyList<string> DoubleDensityExtensions => CommonHost.MediaProcessing.FloppyDriveModels(FloppyFamily, true).SelectMany(model => model.AcceptedExtensions).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();

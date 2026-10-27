@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>운영 체제없이 빈 원시 디스크를 만듭니다. 에뮬레이션 기계 내부 디스크 도구를 사용하여 준비하고 포맷하십시오.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Disk 준비</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>빈 (unformatted)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Formatting는 운영 체계 없이 빈 양을 창조합니다. Atari HDD 부팅은 또한 에뮬레이션 기계에서 설치된 호환 디스크 드라이버가 필요합니다. 압축 된 이미지는 추출 된 복사본에 쓰기를 리디렉션 할 수 있습니다.</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>Formatting는 운영 체계 없이 빈 양을 창조합니다. 부트는 체계 소프트웨어를 필요로 하고 emulated 기계에 의해 지원되는 운전사를.</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>수용 인원: {0} 으로 {1}. 바이트의 종류 크기: {2}.</value></data>
 </root>

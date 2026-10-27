@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>יצירת דיסק גלם ריק ללא מערכת הפעלה. הכינו ותבניתו באמצעות כלים בדיסק בתוך המכונה החיקויה.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>הכנת דיסק</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Blank (לא מצורף)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>עיצוב יוצר נפח ריק, ללא מערכת הפעלה. Atari HDD גם נעילה דורשת נהג דיסק תואם המותקן מהמכונה החיקויה.תמונות קומפרסוכאות עלולות להפנות את הכתיבה לעתק מופק.</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>עיצוב יוצר נפח ריק ללא מערכת הפעלה. Booting דורש את התוכנה והנהגים הנתמכות על ידי המכונה החיקוי.</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>יכולת: {0} to to {1}. גודל המגזר ב Bytes: {2}.</value></data>
 </root>

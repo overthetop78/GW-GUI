@@ -22,4 +22,19 @@
   <data name="Emulation.Acorn.Network.BindAddress"><value>Lokal IPv4- adresse</value></data>
   <data name="Emulation.Acorn.Network.Port"><value>UDP port</value></data>
   <data name="Emulation.Acorn.Network.Peers"><value>Fjernstationer</value></data>
+  <data name="Emulation.Acorn.Extensions.Floppy"><value>Diskettekster</value></data>
+  <data name="Emulation.Acorn.Memory.Shadow"><value>Yderligere skærmhukommelse</value></data>
+  <data name="Emulation.Acorn.Memory.Card"><value>Skærmhukommelsesudvidelse</value></data>
+  <data name="Emulation.Acorn.Memory.None"><value>Ingen</value></data>
+  <data name="Emulation.Acorn.Memory.Rom"><value>ROM til hukommelseseksponering</value></data>
+  <data name="Emulation.Acorn.Memory.Help"><value>Disse udvidelseskort kræver 32 KiB af vigtigste RAM og MOS 1.20. Indlæs matchende ROM for det valgte kort. Vælg ingen udvidelse før reduktion af hoved- RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMainRam"><value>Dette udvidelseskort kræver 32 KiB af vigtigste RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMos"><value>Dette udvidelseskort kræver MOS 1.20. Vælg et kompatibelt operativsystem ROM.</value></data>
+  <data name="Emulation.Acorn.Memory.RomMissing"><value>Hukommelsespas ROM mangler. Vælg sin fil i RAM fanen af maskinens indstillinger.</value></data>
+  <data name="Emulation.Acorn.Memory.Rom.Help"><value>Vælg kontrolsoftware for denne hukommelsesudvidelse fra de fundne filer, eller søg efter en kompatibel fil. Ingen fil indlæses, når stien er tom.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways"><value>Sideways hukommelse</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Båndede hukommelsesmoduler</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Skodder til expansion</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Disse moduler tilføjer banked hukommelse uden at øge hovedhukommelsesadresseplads. Vælg chipbilleder i ekspansionssokkerne for at definere deres indhold. Tidligere valgte individuelle firmware forbliver i brug, indtil dens sokkel modtager et eksplicit chipbillede.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Chip image '{0}'har en uforenelig størrelse. Forventede: {1}.</value></data>
 </root>

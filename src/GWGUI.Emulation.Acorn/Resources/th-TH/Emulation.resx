@@ -22,4 +22,19 @@
   <data name="Emulation.Acorn.Network.BindAddress"><value>ที่อยู่ IPv4 ภายใน</value></data>
   <data name="Emulation.Acorn.Network.Port"><value>UDP พอร์ต</value></data>
   <data name="Emulation.Acorn.Network.Peers"><value>สถานีระยะไกล</value></data>
+  <data name="Emulation.Acorn.Extensions.Floppy"><value>ส่วนขยายของแผ่นฟลอปปี้</value></data>
+  <data name="Emulation.Acorn.Memory.Shadow"><value>หน่วยความจําของหน้าจอเพิ่มเติม</value></data>
+  <data name="Emulation.Acorn.Memory.Card"><value>ปรับขนาดหน่วยความจําของจอภาพ</value></data>
+  <data name="Emulation.Acorn.Memory.None"><value>ไม่มี</value></data>
+  <data name="Emulation.Acorn.Memory.Rom"><value>ROM สําหรับการ์ดขยายหน่วยความจํา</value></data>
+  <data name="Emulation.Acorn.Memory.Help"><value>บัตรขยายเหล่านี้ต้องการ 32 กิโลไบต์หลัก RAM และ MOS 1.20. บรรจุกระสุนที่เข้าคู่กัน ROM สําหรับไพ่ที่เลือกไว้ ไม่ต้องขยายก่อนลดหลัก RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMainRam"><value>ไพ่ขยายนี้ต้องการ 32 กิโลไบต์หลัก RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMos"><value>ไพ่ขยายนี้ต้องการ MOS 1.20. เลือกระบบปฏิบัติการที่เข้ากันได้ ROM.</value></data>
+  <data name="Emulation.Acorn.Memory.RomMissing"><value>การ์ดขยายหน่วยความจํา ROM ไม่มีอยู่ เลือกแฟ้มของมันใน RAM แท็บการตั้งค่าเครื่องจักร</value></data>
+  <data name="Emulation.Acorn.Memory.Rom.Help"><value>เลือกโปรแกรมควบคุมสําหรับขยายหน่วยความจํานี้ จากแฟ้มที่ตรวจพบ หรือเรียกดูแฟ้มที่เข้ากันได้ และไม่มีแฟ้มโหลดเมื่อพาธว่าง</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways"><value>หน่วยความจําด้านด้าน</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>มอดูลหน่วยความจําที่ธนาคาร</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>แปรงทาสี</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Help"><value>มอดูลนี้ทําการเพิ่มหน่วยความจําที่ธนาคารไว้ โดยไม่เพิ่มพื้นที่หน่วยความจําหลัก ให้เลือกใช้ภาพชิปภาพในฐานขยาย เพื่อกําหนดเนื้อหา ภาพที่เลือกไว้ก่อน จะยังคงใช้เครื่องหลักของแต่ละเครื่อง จนกว่าจะได้ภาพจากซ็อกเก็ตที่แสดงอยู่</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>อิมเมจของชิป{0}'มีขนาดไม่เท่ากัน ' คาดว่าจะ ' {1}.</value></data>
 </root>

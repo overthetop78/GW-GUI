@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants;
 using S = GWGUI.Emulation.Constants.EmulationMechanicalSoundConstants;
 using C = GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants.StorageConstants;
 
@@ -17,7 +18,7 @@ internal sealed partial class EmulatorCore
             var settings = _floppySettings[drive];
             var enabled = _floppyConnected[drive] && settings is { Speed: C.DefaultSpeed }
                 && bool.Parse(settings.Options?.GetValueOrDefault(C.MechanicalSoundOption, bool.TrueString) ?? bool.TrueString);
-            mechanics.Configure(settings?.Options?.GetValueOrDefault(C.SoundProfileOption, S.Floppy525),
+            mechanics.Configure(StoragePresentationConstants.FloppySound,
                 EmulationMechanicalSoundSettings.ReadVolume(settings?.Options), enabled);
             mechanics.SetMotor(_floppyConnected[drive] && machine.FloppyMotor(drive));
             mechanics.SetActivity(machine.FloppyReading(drive), machine.FloppyWriting(drive));

@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>يخلق قرصاً خاماً فارغاً بدون نظام تشغيلي، ويجهزه ويشكله باستخدام أدوات قرص داخل الآلة المُحتَزَنة.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>إعداد الأقراص</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>فصيلة (غير رسمية)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>إن الطباعة تخلق حجماً فارغاً، بدون نظام تشغيلي. HDD كما يتطلب الخنازير سائق قرص متوافق مركب من الآلة المحتوية على مضغوطة، ويمكن للصور المكرّسة أن تعيد توجيه الكتابات إلى نسخة مستخرجة.</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>إن الطباعة تخلق حجما فارغا بدون نظام تشغيلي، ويتطلب الازدهار برمجيات النظام وسائقات تدعمها الآلة المُحتَزَمة.</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>القدرة: {0} إلى {1}. حجم القطاع في الطرفيات: {2}.</value></data>
 </root>

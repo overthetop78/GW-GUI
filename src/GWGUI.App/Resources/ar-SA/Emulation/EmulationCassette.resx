@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>السرعة السريعة والانتعاش</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>بدء المعلم بالتأخير قبل العزف</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>بدء المعلم بالتأخير قبل التسجيل</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>أصوات ميكانيكية</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>جهاز تخزين مُمكن</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>الحماية من الكتابة</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>تردد أخذ العينات</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>قنوات الصوت</value></data>

@@ -22,4 +22,19 @@
   <data name="Emulation.Acorn.Network.BindAddress"><value>本地IPv4 地址</value></data>
   <data name="Emulation.Acorn.Network.Port"><value>UDP 端口</value></data>
   <data name="Emulation.Acorn.Network.Peers"><value>远程站</value></data>
+  <data name="Emulation.Acorn.Extensions.Floppy"><value>软盘扩展</value></data>
+  <data name="Emulation.Acorn.Memory.Shadow"><value>額外螢幕記憶體</value></data>
+  <data name="Emulation.Acorn.Memory.Card"><value>螢幕記憶體擴充</value></data>
+  <data name="Emulation.Acorn.Memory.None"><value>无</value></data>
+  <data name="Emulation.Acorn.Memory.Rom"><value>ROM 用于内存扩展卡</value></data>
+  <data name="Emulation.Acorn.Memory.Help"><value>需要32个主KiB的扩展卡 RAM 财务报告和已审计财务报表 MOS 1.20. 装入匹配 ROM 。在缩小主牌之前,选择不扩展 RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMainRam"><value>这张扩展卡需要32个主KiB RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMos"><value>这张扩展卡需要 MOS 1.20. 选择相容的操作系统 ROM.</value></data>
+  <data name="Emulation.Acorn.Memory.RomMissing"><value>内存扩展卡 ROM 中选择文件 RAM 选项卡。</value></data>
+  <data name="Emulation.Acorn.Memory.Rom.Help"><value>請從偵測到的檔案中選擇此記憶體擴充的控制軟體，或瀏覽並選取相容的檔案。路徑留空時不會載入任何檔案。</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways"><value>分頁記憶體</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>分頁記憶體模組</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>擴充模組晶片插槽</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Help"><value>這些模組會增加分頁記憶體，不會擴大主記憶體的位址空間。請在擴充插槽中選擇晶片映像檔以指定其內容。在明確選擇取代其插槽的晶片映像檔之前，先前個別選擇的韌體仍會繼續使用。</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>芯片图像“ ”{0}' 大小不相容。 预期: {1}.</value></data>
 </root>

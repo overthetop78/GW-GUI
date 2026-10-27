@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Δημιουργεί ένα άδειο ακατέργαστο δίσκο χωρίς λειτουργικό σύστημα. Προετοιμάστε και διαμορφώστε το χρησιμοποιώντας εργαλεία δίσκου μέσα στην προσομοίωση μηχανή.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Προετοιμασία δίσκου</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Κενό (μη μορφοποιημένο)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Η διαμόρφωση δημιουργεί μια κενή ένταση, χωρίς λειτουργικό σύστημα. HDD Η εκκίνηση απαιτεί επίσης έναν συμβατό οδηγό δίσκου εγκατεστημένο από το μηχάνημα που μιμείται.</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>Η διαμόρφωση δημιουργεί μια κενή ένταση χωρίς λειτουργικό σύστημα. Η εκκίνηση απαιτεί το λογισμικό του συστήματος και τους οδηγούς που υποστηρίζονται από την μηχανή που μιμείται.</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>Χωρητικότητα: {0} σε {1}. Μέγεθος τομέα σε bytes: {2}.</value></data>
 </root>

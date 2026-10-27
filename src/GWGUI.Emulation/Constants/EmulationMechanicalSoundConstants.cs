@@ -41,7 +41,9 @@ public static class EmulationMechanicalSoundConstants
     public const string Insert = M.Insert;
     /// <summary>Identifiant du profil synthétique standard de lecteur de bande.</summary>
     public const string Standard = M.Standard;
-    /// <summary>Identifiant du profil de disquette 5,25 pouces, associé aux enregistrements Panasonic JU-475-5.</summary>
+    /// <summary>Profil enregistré d’un lecteur BBC Micro 5,25 pouces dont le fabricant n’est pas attesté.</summary>
+    public const string BbcMicroFloppy = M.BbcMicroFloppy;
+    /// <summary>Profil enregistré de lecteur 5,25 pouces Panasonic.</summary>
     public const string Floppy525 = M.Floppy525;
     /// <summary>Identifiant du profil de disquette 3,5 pouces, associé aux enregistrements Alps Electric DF354H148F.</summary>
     public const string Floppy35 = M.Floppy35;

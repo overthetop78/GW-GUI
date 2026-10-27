@@ -201,3 +201,8 @@ Le contrôle isolé, exécuté sur les sources actuelles et les FLAC externes, v
 ### WAV d’écoute régénérés
 
 Le contenu précédent de `artifacts/audio-preview` a été supprimé, puis les 1 759 FLAC définitifs ont été décodés en 1 759 WAV valides. L’arborescence conserve type de lecteur, marque, modèle, action, sens et distance. Les WAV ne sont pas normalisés ; ils permettent d’écouter les prises utilisées par le moteur. Le script temporaire de génération a été supprimé après réussite.
+
+
+## Affectation automatique des lecteurs Acorn
+
+Les dialogues AcornEmu ne proposent plus de choisir arbitrairement une banque sonore. Les disquettes utilisent l'enregistrement BBC Micro 5,25 pouces existant ; les opérations absentes suivent les replis communs, notamment Alps Electric. Winchester utilise le mécanisme Miniscribe 8425 enregistré comme repli. Aucun fichier de cette banque n'a été identifié comme un enregistrement des Rodime RO203E des Winchester Acorn 130 : ce manque reste explicite et les fichiers ne sont pas renommés pour leur attribuer ce matériel. Les niveaux et les enregistrements ne sont pas normalisés pendant cette correction.

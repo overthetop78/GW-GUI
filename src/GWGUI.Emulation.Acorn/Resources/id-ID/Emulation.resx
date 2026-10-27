@@ -22,4 +22,19 @@
   <data name="Emulation.Acorn.Network.BindAddress"><value>Alamat IPv4 lokal</value></data>
   <data name="Emulation.Acorn.Network.Port"><value>UDP port</value></data>
   <data name="Emulation.Acorn.Network.Peers"><value>Stasiun jauh</value></data>
+  <data name="Emulation.Acorn.Extensions.Floppy"><value>Ekstensi disk Floppy</value></data>
+  <data name="Emulation.Acorn.Memory.Shadow"><value>Memori layar tambahan</value></data>
+  <data name="Emulation.Acorn.Memory.Card"><value>Ekspansi memori layar</value></data>
+  <data name="Emulation.Acorn.Memory.None"><value>Nihil</value></data>
+  <data name="Emulation.Acorn.Memory.Rom"><value>ROM untuk kartu ekspansi memori</value></data>
+  <data name="Emulation.Acorn.Memory.Help"><value>Kartu-kartu ekspansi ini memerlukan 32 KiB utama RAM dan MOS 1,20. Muat pencocokan ROM untuk kartu yang dipilih. Pilih tidak ada ekspansi sebelum mengurangi main RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMainRam"><value>Kartu ekspansi ini membutuhkan 32 KiB utama RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMos"><value>Kartu ekspansi ini memerlukan MOS 1,20. Pilih sebuah sistem operasi yang kompatibel ROM.</value></data>
+  <data name="Emulation.Acorn.Memory.RomMissing"><value>Kartu ekspansi memori ROM hilang. Pilih file-nya di RAM tab dari pengaturan mesin.</value></data>
+  <data name="Emulation.Acorn.Memory.Rom.Help"><value>Pilih perangkat lunak kontrol untuk ekspansi memori ini dari berkas yang terdeteksi, atau peramban untuk berkas yang kompatibel. Tak ada berkas yang dimuat ketika path kosong.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways"><value>Memori sisi</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Modul memori yang dipetakan</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Soket chip expansi</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Modul-modul ini menambahkan memori yang banked tanpa meningkatkan ruang alamat memori utama. Pilih gambar chip dalam soket ekspansi untuk mendefinisikan isi mereka. Sebelumnya dipilih individu firmware tetap dalam digunakan sampai soket yang menerima sebuah gambar chip eksplisit.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Gambar Chip '{0}'memiliki ukuran yang tidak kompatibel. Diduga: {1}.</value></data>
 </root>

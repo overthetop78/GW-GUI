@@ -44,6 +44,6 @@ internal static class BbcMicroFirmwareCompatibilityCatalog
         // Les systèmes disque nécessitent l'extension matérielle correspondante du Model A.
         // Cette dépendance appartient à la machine ; elle reste indépendante de l'émulateur choisi.
         if (sha1.Equals("8564d944fedd17caf2023454ba5a7c3947aedc1f", StringComparison.OrdinalIgnoreCase) || sha1.Equals("7081f1d834645e501c8c9862cf4a50f282ca1f32", StringComparison.OrdinalIgnoreCase)) return EmulationFirmwareCompatibility.PartiallyCompatible;
-        return profile.GetValueOrDefault(sha1, FirmwareCatalog.BySha1[sha1].Category == FirmwareCategory.DiscFilingSystem ? EmulationFirmwareCompatibility.PartiallyCompatible : EmulationFirmwareCompatibility.Incompatible);
+        return profile.GetValueOrDefault(sha1, FirmwareCatalog.BySha1[sha1].Category is FirmwareCategory.DiscFilingSystem or FirmwareCategory.MemoryExtension ? EmulationFirmwareCompatibility.PartiallyCompatible : EmulationFirmwareCompatibility.Incompatible);
     }
 }

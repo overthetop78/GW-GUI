@@ -22,4 +22,19 @@
   <data name="Emulation.Acorn.Network.BindAddress"><value>Paikallinen IPv4-osoite</value></data>
   <data name="Emulation.Acorn.Network.Port"><value>UDP satama</value></data>
   <data name="Emulation.Acorn.Network.Peers"><value>Etäasemat</value></data>
+  <data name="Emulation.Acorn.Extensions.Floppy"><value>Levynpidennykset</value></data>
+  <data name="Emulation.Acorn.Memory.Shadow"><value>Lisänäyttömuisti</value></data>
+  <data name="Emulation.Acorn.Memory.Card"><value>Näytön muistin laajennus</value></data>
+  <data name="Emulation.Acorn.Memory.None"><value>Ei ole</value></data>
+  <data name="Emulation.Acorn.Memory.Rom"><value>ROM muistin laajennuskortti</value></data>
+  <data name="Emulation.Acorn.Memory.Help"><value>Nämä laajennuskortit vaativat 32 KiB pää RAM sekä MOS 1.20. Lataa yhteensattuma ROM valittu kortti. Valitse ei laajennusta ennen vähentäminen main RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMainRam"><value>Tämä laajennuskortti vaatii 32 KiB pää RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMos"><value>Tämä lisäkortti vaatii MOS 1.20. Valitse yhteensopiva käyttöjärjestelmä ROM.</value></data>
+  <data name="Emulation.Acorn.Memory.RomMissing"><value>Muistin laajennuskortti ROM puuttuu. Valitse sen tiedosto RAM koneen asetusten välilehti.</value></data>
+  <data name="Emulation.Acorn.Memory.Rom.Help"><value>Valitse tämän muistin laajennusohjelma havaituista tiedostoista tai selaa yhteensopivaa tiedostoa. Tiedostoa ei ladata, kun polku on tyhjä.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways"><value>Sivuttaismuisti</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Tallennetut muistimoduulit</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Laajennussirupistokkeet</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Nämä moduulit lisäävät muistia kasvattamatta päämuistin osoitetilaa. Valitse sirukuvat laajennuspistokkeista määrittääksesi niiden sisällön. Aiemmin valitut yksittäiset firmware pysyy käytössä, kunnes sen pistoke saa selkeän sirukuvan.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Chip-kuva{0}' on yhteensopimaton koko. Odotettu: {1}.</value></data>
 </root>

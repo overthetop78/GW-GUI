@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>Kecepatan maju dan mundur</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>Tunda motor awal sebelum pemutaran</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>Tundaan awal motor sebelum merekam</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>Suara mekanis</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Aktifkan suara perangkat penyimpanan</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>Lindungi terhadap tulisan</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>Sampling Frekuensi (Hz)</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>Saluran audio</value></data>

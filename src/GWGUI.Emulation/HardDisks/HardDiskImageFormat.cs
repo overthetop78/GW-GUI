@@ -16,6 +16,8 @@ public sealed record HardDiskImageFormat(string Id, string Extension, string Int
     public IReadOnlySet<int> LogicalSectorSizes { get; init; } = new[] { 512 }.ToFrozenSet();
 
     public DiskChsGeometry? Geometry { get; init; }
+    /// <summary>Géométrie matérielle imposée par ce profil ; aucune approximation de capacité n'est autorisée.</summary>
+    public DiskImageGeometry? FixedGeometry { get; init; }
     /// <summary>Autorise le dialogue à transmettre une géométrie complète et à dimensionner des cylindres entiers.</summary>
     public bool SupportsExplicitGeometry { get; init; }
 
@@ -32,5 +34,8 @@ public sealed record HardDiskImageFormat(string Id, string Extension, string Int
 
     public IReadOnlyList<HardDiskPreparation> SupportedPreparations => Preparations ?? [HardDiskPreparation.Blank];
 
-    public string DisplayName => $"{InterfaceName} (*{Extension})";
+    /// <summary>Nom invariant du profil matériel, lorsqu'il affine le nom générique de l'interface.</summary>
+    public string? InvariantDisplayName { get; init; }
+
+    public string DisplayName => InvariantDisplayName is { } name ? $"{name} (*{Extension})" : $"{InterfaceName} (*{Extension})";
 }

@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>创建一个没有操作系统的空原始磁盘。使用模拟机器内的磁盘工具来准备和格式化。</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>磁盘准备</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>空白( 未格式化)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>格式化创建空卷, 没有操作系统。 Atari HDD 启动还需要从仿真机安装兼容的磁盘驱动程序。压缩后图像可能会重定向到提取的复制件 。</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>格式化创建了没有操作系统的空卷. Booting需要系统软件和由被模拟的机器支持的驱动程序.</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>容量: {0} 改为 {1}. 以字节表示的扇区大小 : {2}.</value></data>
 </root>

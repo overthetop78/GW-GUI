@@ -16,4 +16,5 @@
   <data name="Emulation.Tab.Shortcuts"><value>Pintasan</value></data>
   <data name="Emulation.Tab.Audio"><value>Audio</value></data>
   <data name="Emulation.Tab.Ethernet"><value>Jaringan</value></data>
+  <data name="Emulation.Tab.Extensions"><value>Ekstensi perangkat keras</value></data>
 </root>

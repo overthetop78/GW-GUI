@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Створює порожній сирий диск без операційної системи. Приготуйте та відформатуйте його за допомогою дискових інструментів всередині емульгованої машини.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Підготовка диска</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Бланк (розформатований)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Форматування створює порожній обсяг, без операційної системи. Atari HDD завантаження також вимагає сумісного драйвера диска, встановленого з емульованої машини. Притискні зображення можуть перенаправляти записи для вилучення копії.</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>Форматування створює порожній обсяг без операційної системи. Завантаження вимагає системного програмного забезпечення та драйверів, які підтримуються емульгованим апаратом.</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>Місткість: {0} до {1}. Розмір сектора в байтах: {2}.</value></data>
 </root>

@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Létrehoz egy üres nyers lemezt operációs rendszer nélkül. Készítse elő és formázza azt a lemezen belül lemezen eszközök az emulált gép.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Lemezgyártás</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Üres (formázatlan)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>A formázás egy üres kötet, operációs rendszer nélkül. Atari HDD A beindításhoz az emulált gépből telepített kompatibilis lemezmeghajtó is szükséges. A tömörített képek átirányíthatják a szövegeket egy kivont példányra.</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>A formázás egy üres kötet, operációs rendszer nélkül. A kilövéshez a rendszer szoftvere és a meghajtók is szükségesek, amelyeket az emulált gép támogat.</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>Kapacitás: {0} - {1}. Szektor mérete bájtokban: {2}.</value></data>
 </root>

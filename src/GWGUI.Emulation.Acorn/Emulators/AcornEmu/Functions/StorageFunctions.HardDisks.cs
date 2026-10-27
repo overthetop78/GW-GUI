@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants;
 using S = GWGUI.Emulation.Constants.EmulationMechanicalSoundConstants;
 using System.Globalization;
 using CommonHost = GWGUI.Emulation.Acorn.Common.Functions.CoreHostFunctions;
@@ -27,14 +28,14 @@ internal static partial class StorageFunctions
     private static IReadOnlyList<EmulationSettingsField> HardDiskFields(MachineConfiguration configuration, int unit)
     {
         var settings = HardDiskSettings(configuration, unit);
-        EmulationSettingsField Flag(string id, string key, bool value) => new(id, EmulationMachineTab.Storage, S.HardDisk, key, EmulationSettingsEditor.Toggle, value.ToString(), EnabledValue: bool.TrueString, DisabledValue: bool.FalseString, RequiresRestart: id != C.MechanicalSoundOption);
-        EmulationSettingsField Delay(string id, string key, int value) => new(id, EmulationMachineTab.Storage, S.HardDisk, key, EmulationSettingsEditor.Slider, value.ToString(CultureInfo.InvariantCulture), RequiresRestart: true, NumericRange: new(0, C.MaximumLatencyMilliseconds, 1, C.MillisecondsSuffix));
+        EmulationSettingsField Flag(string id, string key, bool value) => new(id, EmulationMachineTab.Storage, StoragePresentationConstants.BehaviorGroup, key, EmulationSettingsEditor.Toggle, value.ToString(), EnabledValue: bool.TrueString, DisabledValue: bool.FalseString, RequiresRestart: id != C.MechanicalSoundOption);
+        EmulationSettingsField Delay(string id, string key, int value) => new(id, EmulationMachineTab.Storage, StoragePresentationConstants.BehaviorGroup, key, EmulationSettingsEditor.Slider, value.ToString(CultureInfo.InvariantCulture), StoragePresentationConstants.LatencyPresets.Select(preset => new EmulationSettingsChoice(preset.ToString(CultureInfo.InvariantCulture), string.Empty, preset.ToString(CultureInfo.InvariantCulture))).ToArray(), RequiresRestart: true, NumericRange: new(0, C.MaximumLatencyMilliseconds, 1, C.MillisecondsSuffix, IsVertical: true));
         return
         [
-            new(C.SpeedOption, EmulationMachineTab.Storage, S.HardDisk, C.SpeedResource, EmulationSettingsEditor.Selection, settings.Speed.ToString(CultureInfo.InvariantCulture), C.Speeds.Select(speed => speed == C.MaximumSpeed ? new EmulationSettingsChoice(speed, C.MaximumSpeedResource) : new(speed, string.Empty, speed + C.PercentSuffix)).ToArray(), RequiresRestart: true),
+            new(C.SpeedOption, EmulationMachineTab.Storage, StoragePresentationConstants.BehaviorGroup, C.SpeedResource, EmulationSettingsEditor.Selection, settings.Speed.ToString(CultureInfo.InvariantCulture), C.Speeds.Select(speed => speed == C.MaximumSpeed ? new EmulationSettingsChoice(speed, C.MaximumSpeedResource) : new(speed, string.Empty, speed + C.PercentSuffix)).ToArray(), RequiresRestart: true, UseRadioButtons: true),
             Delay(C.ReadLatencyOption, C.ReadLatencyResource, settings.ReadLatency), Delay(C.WriteLatencyOption, C.WriteLatencyResource, settings.WriteLatency),
             Flag(C.ProtectedOption, C.ProtectionResource, settings.Protected),
-            Flag(C.MechanicalSoundOption, C.SoundResource, bool.Parse(configuration.Options.GetValueOrDefault(C.HardDiskKey(unit, C.MechanicalSoundOption), bool.TrueString))), SoundProfileField(configuration, unit, true), SoundVolumeField(configuration, unit, true)
+            Flag(C.MechanicalSoundOption, C.SoundResource, bool.Parse(configuration.Options.GetValueOrDefault(C.HardDiskKey(unit, C.MechanicalSoundOption), bool.TrueString))), SoundVolumeField(configuration, unit, true) with { BlockId = StoragePresentationConstants.BehaviorGroup }
         ];
     }
 
@@ -55,6 +56,7 @@ internal static partial class StorageFunctions
         {
             if (entry.Slot.Index is < 0 or >= C.HardDiskCount || entry.InterfaceId is not null && !entry.InterfaceId.Equals(C.ScsiInterface, StringComparison.OrdinalIgnoreCase) || entry.Options?.Keys.Any(key => !C.HardDiskOptions.Contains(key, StringComparer.Ordinal)) == true) throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(settings));
             options.Remove(C.HardDiskKey(entry.Slot.Index, C.RedirectOption));
+            options.Remove(C.HardDiskKey(entry.Slot.Index, C.SoundProfileOption));
             options[C.HardDiskKey(entry.Slot.Index, C.InterfaceOption)] = C.ScsiInterface;
             foreach (var pair in entry.Options ?? new Dictionary<string, string>()) options[C.HardDiskKey(entry.Slot.Index, pair.Key)] = pair.Value;
         }
@@ -67,7 +69,7 @@ internal static partial class StorageFunctions
         {
             _ = EmulationMechanicalSoundSettings.ReadVolume(configuration.Options, C.HardDiskKey(unit, C.SoundVolumeOption));
             _ = HardDiskConnected(configuration, unit); var settings = HardDiskSettings(configuration, unit);
-            if (!bool.TryParse(configuration.Options.GetValueOrDefault(C.HardDiskKey(unit, C.MechanicalSoundOption), bool.TrueString), out _) || !CommonHost.MediaProcessing.MechanicalSoundProfiles(S.HardDisk).Contains(configuration.Options.GetValueOrDefault(C.HardDiskKey(unit, C.SoundProfileOption), S.Winchester))) throw new ArgumentException(ErrorMessages.OptionValueInvalidFormat, nameof(configuration));
+            if (!bool.TryParse(configuration.Options.GetValueOrDefault(C.HardDiskKey(unit, C.MechanicalSoundOption), bool.TrueString), out _)) throw new ArgumentException(ErrorMessages.OptionValueInvalidFormat, nameof(configuration));
             if (settings.ReadLatency is < 0 or > C.MaximumLatencyMilliseconds || settings.WriteLatency is < 0 or > C.MaximumLatencyMilliseconds || !C.Speeds.Contains(settings.Speed.ToString(CultureInfo.InvariantCulture)) || !configuration.Options.GetValueOrDefault(C.HardDiskKey(unit, C.InterfaceOption), C.ScsiInterface).Equals(C.ScsiInterface, StringComparison.OrdinalIgnoreCase)) throw new ArgumentException(ErrorMessages.OptionValueInvalidFormat, nameof(configuration));
         }
     }

@@ -18,6 +18,7 @@ internal static class EmulationMachineTabConstants
         new(EmulationMachineTab.Rom, IconGlyphs.File, "Emulation.Tab.Rom"),
         new(EmulationMachineTab.Video, IconGlyphs.Display, "Emulation.Tab.Video"),
         new(EmulationMachineTab.Audio, IconGlyphs.Audio, "Emulation.Tab.Audio"),
+        new(EmulationMachineTab.Extensions, IconGlyphs.Connection, "Emulation.Tab.Extensions"),
         new(EmulationMachineTab.Storage, IconGlyphs.HardDisk, "Emulation.Tab.Storage"),
         new(EmulationMachineTab.Keyboard, EmulationInputSettingsConstants.KeyboardIcon, "Emulation.Tab.Keyboard"),
         new(EmulationMachineTab.Mouse, IconGlyphs.Mouse, "Emulation.Tab.Mouse"),

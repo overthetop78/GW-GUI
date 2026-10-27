@@ -14,7 +14,7 @@ internal static class BbcMicroDiskFunctions
     internal static void CreateWinchester(string path, long bytes, bool fixedSize, HardDiskPreparation preparation, DiskImageGeometry? geometry)
     {
         if (geometry is null || geometry.Capacity != bytes || preparation is not (HardDiskPreparation.Blank or HardDiskPreparation.AcornAdfs)) throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(geometry));
-        CommonHost.MediaProcessing.CreateHardDiskAsync(path, MediaConstants.WinchesterFormatId, geometry, preparation == HardDiskPreparation.AcornAdfs ? MediaConstants.AcornAdfsFileSystemId : null).GetAwaiter().GetResult();
+        CommonHost.MediaProcessing.CreateHardDiskAsync(path, MediaConstants.WinchesterFormatId, geometry, preparation == HardDiskPreparation.AcornAdfs ? MediaConstants.AcornAdfsFileSystemId : null, preallocate: fixedSize).GetAwaiter().GetResult();
     }
 
 }

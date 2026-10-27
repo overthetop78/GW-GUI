@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>ความเร็วเร็วและหมุนกลับ</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>เริ่มทํางานหน่วงเวลาก่อนเล่น</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>เริ่มทํางานหน่วงเวลาก่อนทําการบันทึกเสียง</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>เสียงจักรกล</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>เปิดใช้การเสียงอุปกรณ์จัดเก็บ</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>ป้องกันการเขียน</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>ความถี่การขยายเสียง (hz)</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>ช่องเสียง</value></data>

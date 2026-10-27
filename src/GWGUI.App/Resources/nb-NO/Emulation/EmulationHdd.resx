@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Oppretter en tom rådisk uten et operativsystem. Forbered og formater den ved hjelp av diskverktøy inne i den emulerte maskinen.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Diskforberedelse</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Blank (uformatert)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Formatering skaper et tomt volum, uten operativsystem. Atari HDD oppstart krever også en kompatibel diskdriver installert fra den emulerte maskinen. Komprimerte bilder kan omdirigere skriver til en ekstrahert kopi.</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>Formatering skaper et tomt volum uten operativsystem. Starting krever systemprogramvaren og drivere som støttes av den emulerte maskinen.</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>Kapasitet: {0} til {1}. Sektorstørrelse i byte: {2}.</value></data>
 </root>

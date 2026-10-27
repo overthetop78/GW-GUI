@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Creates an empty raw disk without an operating system. Prepare and format it using disk tools inside the emulated machine.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Disk preparation</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Blank (unformatted)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Formatting creates an empty volume, without an operating system. Atari HDD booting also requires a compatible disk driver installed from the emulated machine. Compressed images may redirect writes to an extracted copy.</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>Formatting creates an empty volume without an operating system. Booting requires the system software and drivers supported by the emulated machine.</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>Capacity: {0} to {1}. Sector size in bytes: {2}.</value></data>
 </root>

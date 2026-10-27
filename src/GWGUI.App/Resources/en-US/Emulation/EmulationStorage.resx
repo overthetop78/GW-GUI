@@ -87,9 +87,10 @@
   <data name="Emulation.Storage.Disk.TransferSpeed"><value>Transfer speed</value></data>
   <data name="Emulation.Storage.Disk.ReadLatency"><value>Read latency</value></data>
   <data name="Emulation.Storage.Disk.WriteLatency"><value>Write latency</value></data>
-  <data name="Emulation.Storage.Sound.Profile"><value>Mechanical sound profile</value></data>
+  <data name="Emulation.Storage.Sound.Profile"><value>Sound profile</value></data>
   <data name="Emulation.Storage.Media.CreateAndMount"><value>Create and mount</value></data>
   <data name="Emulation.Storage.Media.Created"><value>Image created: {0}</value></data>
   <data name="Emulation.Storage.Media.AlreadyExists"><value>This file already exists. Choose a new image file: {0}</value></data>
-  <data name="Emulation.Storage.Sound.Volume"><value>Mechanical sound volume</value></data>
+  <data name="Emulation.Storage.Sound.Volume"><value>Volume</value></data>
+  <data name="Emulation.Storage.Sound.Group"><value>Drive sounds</value></data>
 </root>

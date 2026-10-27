@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>Ταχύτητα γρήγορης και αναστροφής</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>Καθυστέρηση εκκίνησης κινητήρα πριν την αναπαραγωγή</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>Καθυστέρηση εκκίνησης κινητήρα πριν την εγγραφή</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>Μηχανικοί ήχοι</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Ενεργοποίηση ήχων συσκευής αποθήκευσης</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>Προστασία από τη γραφή</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>Συχνότητα δειγματοληψίας (Hz)</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>Καναλιών ήχου</value></data>

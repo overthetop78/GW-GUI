@@ -46,13 +46,20 @@ internal sealed class ManagedStorageConfigurationDialog : Window
                 if (control is CheckBox check) check.Content = label;
                 else row.Children.Add(new TextBlock { Text = label, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 4) });
                 if (field.ExplanationResourceKey is { } help) control.ToolTip = LocExtension.GetForModule(moduleId, help);
+                if (field.NumericRange?.IsVertical == true)
+                {
+                    control.HorizontalAlignment = HorizontalAlignment.Left;
+                    control.Width = C.VerticalFieldWidth;
+                }
                 row.Children.Add(control);
                 var position = index / columns;
                 if (position >= content.RowDefinitions.Count) content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
                 Grid.SetRow(row, position); Grid.SetColumn(row, index % columns); content.Children.Add(row); index++;
             }
             var title = string.IsNullOrWhiteSpace(block.TitleResourceKey) ? model : LocExtension.GetForModule(moduleId, block.TitleResourceKey);
-            cards.Add((block, StorageDialogUi.Card(title, content)));
+            cards.Add((block, block.IsCollapsible
+                ? StorageDialogUi.Card(string.Empty, new Expander { Header = title, Content = content })
+                : StorageDialogUi.Card(title, content)));
         }
         FrameworkElement[] visibleCards = [];
         void RefreshGroups()

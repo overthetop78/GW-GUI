@@ -40,8 +40,28 @@ internal static class FloppyDriveCatalog
         var sectors = doubleDensity ? AcornAdfGeometry.BbcGeometries[0].SectorsPerTrack : BbcDfsGeometry.SectorsPerTrack;
         var capacity = (long)geometry.Cylinders * geometry.Heads * sectors * BbcDfsGeometry.SectorSize;
         var display = string.Format(CultureInfo.InvariantCulture, C.DisplayFormat, geometry.Heads == DiskGeometryConstants.SingleSidedHeadCount ? C.SingleSided : C.DoubleSided, doubleDensity ? C.DoubleDensity : C.SingleDensity, capacity / DataSizeConstants.BytesPerKibibyte);
-        return new(id, display, capacity, extensions.AsReadOnly(), new ReadOnlyDictionary<string, string>(formats));
+        var creationFormats = BbcDfsGeometry.Supported
+            .Where(candidate => candidate.Cylinders <= geometry.Cylinders && candidate.Heads <= geometry.Heads)
+            .Select(candidate => CreationFormat(candidate.FormatId,
+                candidate.Heads == DiskGeometryConstants.SingleSidedHeadCount ? E.Ssd : E.Dsd,
+                candidate.Heads, false, candidate.Capacity)).ToList();
+        if (doubleDensity)
+            creationFormats.AddRange(AcornAdfGeometry.BbcGeometries
+                .Where(candidate => candidate.Cylinders <= geometry.Cylinders && candidate.Heads <= geometry.Heads)
+                .Select(candidate => CreationFormat(candidate.FormatId,
+                    candidate.FormatId switch { DiskImageFormatIds.AcornAdfs160 => E.Ads, DiskImageFormatIds.AcornAdfs320 => E.Adm, _ => E.Adl },
+                    candidate.Heads, true, candidate.Capacity)));
+        return new(id, display, capacity, extensions.AsReadOnly(), new ReadOnlyDictionary<string, string>(formats))
+        {
+            CreationFormats = creationFormats.AsReadOnly()
+        };
     }
+
+    private static MediaFloppyCreationFormat CreationFormat(string id, string extension, int heads, bool doubleDensity, long capacity) =>
+        new(id, extension, string.Format(CultureInfo.InvariantCulture, C.CreationDisplayFormat,
+            extension.TrimStart('.').ToUpperInvariant(),
+            heads == DiskGeometryConstants.SingleSidedHeadCount ? C.SingleSided : C.DoubleSided,
+            doubleDensity ? C.DoubleDensity : C.SingleDensity, capacity / DataSizeConstants.BytesPerKibibyte), capacity);
 
     internal static bool Supports(string model, long cylinders, int heads, int sectorSize, int sectorsPerTrack, long sectorCount)
     {

@@ -22,4 +22,19 @@
   <data name="Emulation.Acorn.Network.BindAddress"><value>Địa chỉ IPv4 cục bộ</value></data>
   <data name="Emulation.Acorn.Network.Port"><value>UDP Cổng</value></data>
   <data name="Emulation.Acorn.Network.Peers"><value>Trạm ở xa</value></data>
+  <data name="Emulation.Acorn.Extensions.Floppy"><value>Phần mở rộng đĩa mềm</value></data>
+  <data name="Emulation.Acorn.Memory.Shadow"><value>Bộ nhớ màn hình thêm</value></data>
+  <data name="Emulation.Acorn.Memory.Card"><value>Mở rộng bộ nhớ màn hình</value></data>
+  <data name="Emulation.Acorn.Memory.None"><value>Không có</value></data>
+  <data name="Emulation.Acorn.Memory.Rom"><value>ROM cho thẻ mở rộng bộ nhớ</value></data>
+  <data name="Emulation.Acorn.Memory.Help"><value>Những lá bài mở rộng này cần 32 KiB chính RAM và MOS 1.20, nạp khớp ROM Chọn thẻ đã chọn. Không mở rộng trước khi cắt chính RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMainRam"><value>Phiếu mở rộng này yêu cầu 32 KiB chính RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMos"><value>Cần thiết thẻ mở rộng MOS 1. 20 hãy chọn một hệ điều hành tương thích ROM.</value></data>
+  <data name="Emulation.Acorn.Memory.RomMissing"><value>Name ROM còn thiếu, hãy chọn tập tin của nó trong đó. RAM Thẻ thiết lập máy tính.</value></data>
+  <data name="Emulation.Acorn.Memory.Rom.Help"><value>Chọn phần mềm điều khiển cho việc mở rộng bộ nhớ này từ tập tin đã phát hiện, hoặc duyệt tìm tập tin tương thích. Không có tập tin nào được nạp khi rỗng.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways"><value>Bộ nhớ hai chiều</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Các mô- đun bộ nhớ đã ngân hàng</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Mở rộng lỗ hổng chip</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Những mô- đun này thêm bộ nhớ đã ngân hàng mà không làm tăng không gian bộ nhớ chính. Hãy chọn những ảnh chip trong các ổ mở rộng để xác định nội dung của chúng. Trước khi phần mềm cá nhân được chọn còn lại sử dụng cho đến khi ổ cắm nhận được ảnh chip rõ ràng.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Hình chip{0}« có kích cỡ không tương thích ». Mong đợi: {1}.</value></data>
 </root>

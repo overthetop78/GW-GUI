@@ -15,13 +15,10 @@ internal sealed partial class EmulatorCore
         var values = new Dictionary<string, string>(StringComparer.Ordinal) { [option] = value };
         if (option == C.SoundVolumeOption) _ = EmulationMechanicalSoundSettings.ReadVolume(values);
         else if (option == C.MechanicalSoundOption) _ = bool.Parse(value);
-        else if (!CommonHost.MediaProcessing.MechanicalSoundProfiles(hardDisk ? S.HardDisk : S.Floppy).Contains(value))
-            throw new ArgumentOutOfRangeException(nameof(value));
         if (hardDisk)
         {
             if (option == C.SoundVolumeOption) _hardDiskSoundVolume[index] = int.Parse(value, CultureInfo.InvariantCulture);
             else if (option == C.MechanicalSoundOption) _hardDiskSoundEnabled[index] = bool.Parse(value);
-            else _hardDiskSoundProfiles[index] = value;
         }
         else if (_floppySettings[index] is { } settings)
         {

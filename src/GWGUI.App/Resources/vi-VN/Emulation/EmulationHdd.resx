@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Tạo ra đĩa sống trống không có hệ điều hành. Chuẩn bị và định dạng nó bằng công cụ đĩa bên trong máy được mô phỏng.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Chuẩn bị đĩa</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Trắng (không có thông tin)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Định dạng tạo ra một khối trống, không có hệ điều hành. Atari HDD khởi động cũng cần thiết trình điều khiển tương thích trên đĩa được cài đặt từ máy mô phỏng. Các hình ảnh đã nén có thể chuyển tiếp sang bản sao được chiết xuất.</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>Định dạng tạo ra một khối trống không có hệ điều hành. Việc khởi động đòi hỏi phần mềm và trình điều khiển của máy tính mô phỏng hỗ trợ.</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>Độ mạnh: {0} phải {1}. Kích thước khu vực theo byte: {2}.</value></data>
 </root>

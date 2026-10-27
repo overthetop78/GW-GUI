@@ -22,4 +22,19 @@
   <data name="Emulation.Acorn.Network.BindAddress"><value>Τοπική διεύθυνση IPv4</value></data>
   <data name="Emulation.Acorn.Network.Port"><value>UDP θύρα</value></data>
   <data name="Emulation.Acorn.Network.Peers"><value>Απομακρυσμένοι σταθμοί</value></data>
+  <data name="Emulation.Acorn.Extensions.Floppy"><value>Επεκτάσεις δισκετών</value></data>
+  <data name="Emulation.Acorn.Memory.Shadow"><value>Πρόσθετη μνήμη οθόνης</value></data>
+  <data name="Emulation.Acorn.Memory.Card"><value>Επέκταση μνήμης οθόνης</value></data>
+  <data name="Emulation.Acorn.Memory.None"><value>Καμία</value></data>
+  <data name="Emulation.Acorn.Memory.Rom"><value>ROM για την κάρτα επέκτασης μνήμης</value></data>
+  <data name="Emulation.Acorn.Memory.Help"><value>Αυτές οι κάρτες επέκτασης απαιτούν 32 KiB της κύριας RAM και MOS 1.20. Φόρτωση του ταίριασμα ROM για την επιλεγμένη κάρτα. Επιλέξτε χωρίς επέκταση πριν από τη μείωση του κύριου RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMainRam"><value>Αυτή η κάρτα επέκτασης απαιτεί 32 KiB της κύριας RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMos"><value>Αυτή η κάρτα επέκτασης απαιτεί MOS 1.20. Επιλέξτε ένα συμβατό λειτουργικό σύστημα ROM.</value></data>
+  <data name="Emulation.Acorn.Memory.RomMissing"><value>Η κάρτα επέκτασης μνήμης ROM λείπει. Επιλέξτε το αρχείο του στο RAM καρτέλα των ρυθμίσεων του μηχανήματος.</value></data>
+  <data name="Emulation.Acorn.Memory.Rom.Help"><value>Επιλέξτε το λογισμικό ελέγχου για αυτή την επέκταση μνήμης από τα αρχεία που ανιχνεύθηκαν, ή περιηγηθείτε σε ένα συμβατό αρχείο. Κανένα αρχείο δεν φορτώνεται όταν η διαδρομή είναι κενή.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways"><value>Μνήμη πλευρικών διαδρομών</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Μονάδες τραπέζης μνήμης</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Υποδοχές τσιπ επέκτασης</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Αυτές οι ενότητες προσθέτουν τραπεζικές μνήμες χωρίς να αυξάνουν τον κύριο χώρο διευθύνσεων μνήμης. Επιλέξτε εικόνες τσιπ στις υποδοχές επέκτασης για να ορίσετε το περιεχόμενό τους. Το προηγούμενο επιλεγμένο μεμονωμένο firmware παραμένει σε χρήση μέχρι η υποδοχή του να λάβει μια σαφή εικόνα τσιπ.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Εικόνα τσιπ '{0}\" έχει ασύμβατο μέγεθος. {1}.</value></data>
 </root>

@@ -23,7 +23,11 @@ internal static class ModelCatalog
     private static ModelAMachine CreateModelA(MachineConfiguration configuration)
     {
         var network = NetworkFunctions.Read(configuration);
-        return new ModelAMachine(FirmwareFunctions.Read(configuration, EmulatorConstants.SystemFirmware), FirmwareFunctions.Read(configuration, EmulatorConstants.BasicFirmware), BbcMicroMemoryFunctions.ModelABytes(configuration), FirmwareFunctions.Read(configuration, EmulatorConstants.CharacterFirmware), StorageFunctions.HasInterface(configuration), FirmwareFunctions.OptionRoms(configuration), StorageFunctions.UsesWd1770(configuration), StorageFunctions.HasWinchester(configuration), network.Enabled, network.Station, network.CyclesPerByte)
+        var chips = SidewaysExpansionFunctions.ChipBanks(configuration);
+        var basic = chips.TryGetValue(SidewaysExpansionFunctions.NativeBank(configuration, Machines.BbcMicro.Common.Constants.DiskConstants.BasicBank), out var programmedBasic) ? programmedBasic : FirmwareFunctions.Read(configuration, EmulatorConstants.BasicFirmware);
+        var mos = FirmwareFunctions.Read(configuration, EmulatorConstants.SystemFirmware);
+        MemoryExtensionFunctions.ValidateMos(configuration, mos);
+        return new ModelAMachine(mos, basic, BbcMicroMemoryFunctions.ModelABytes(configuration), FirmwareFunctions.Read(configuration, EmulatorConstants.CharacterFirmware), StorageFunctions.HasInterface(configuration), FirmwareFunctions.OptionRoms(configuration, chips), StorageFunctions.UsesWd1770(configuration), StorageFunctions.HasWinchester(configuration), network.Enabled, network.Station, network.CyclesPerByte, MemoryExtensionFunctions.Read(configuration), SidewaysExpansionFunctions.Read(configuration))
         {
             Video = { Monochrome = configuration.Options.GetValueOrDefault(EmulatorConstants.VideoOutput, EmulatorConstants.UhfOutput) == EmulatorConstants.MonochromeOutput }
         };

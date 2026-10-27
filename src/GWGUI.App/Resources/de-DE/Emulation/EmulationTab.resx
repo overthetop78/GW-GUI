@@ -16,4 +16,5 @@
   <data name="Emulation.Tab.Shortcuts"><value>Tastenkürzel</value></data>
   <data name="Emulation.Tab.Audio"><value>Audio</value></data>
   <data name="Emulation.Tab.Ethernet"><value>Netz</value></data>
+  <data name="Emulation.Tab.Extensions"><value>Hardware-Erweiterungen</value></data>
 </root>

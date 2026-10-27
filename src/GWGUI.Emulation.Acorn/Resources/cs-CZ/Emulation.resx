@@ -22,4 +22,19 @@
   <data name="Emulation.Acorn.Network.BindAddress"><value>Místní IPv4 adresa</value></data>
   <data name="Emulation.Acorn.Network.Port"><value>UDP přístav</value></data>
   <data name="Emulation.Acorn.Network.Peers"><value>Vzdálené stanice</value></data>
+  <data name="Emulation.Acorn.Extensions.Floppy"><value>Rozšíření disků Floppy</value></data>
+  <data name="Emulation.Acorn.Memory.Shadow"><value>Dodatečná paměť obrazovky</value></data>
+  <data name="Emulation.Acorn.Memory.Card"><value>Rozšíření paměti obrazovky</value></data>
+  <data name="Emulation.Acorn.Memory.None"><value>Žádné</value></data>
+  <data name="Emulation.Acorn.Memory.Rom"><value>ROM pro kartu pro rozšíření paměti</value></data>
+  <data name="Emulation.Acorn.Memory.Help"><value>Tyto expanzní karty vyžadují 32 KiB hlavní RAM a MOS 1.20. Načíst odpovídající ROM pro vybranou kartu. Před snížením hlavního RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMainRam"><value>Tato expanzní karta vyžaduje 32 KiB hlavní RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMos"><value>Tato expanzní karta vyžaduje MOS 1.20. Vyberte kompatibilní operační systém ROM.</value></data>
+  <data name="Emulation.Acorn.Memory.RomMissing"><value>Karta pro rozšíření paměti ROM chybí. Vyberte jeho soubor v souboru RAM záložka nastavení stroje.</value></data>
+  <data name="Emulation.Acorn.Memory.Rom.Help"><value>Vyberte software pro tuto rozšíření paměti z detekovaných souborů nebo projděte kompatibilní soubor. Žádný soubor není načtený, když je cesta prázdná.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways"><value>Paměť postranních drah</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Moduly s upsanou pamětí</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Rozšiřovací čipové zásuvky</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Tyto moduly přidávají ukotvenou paměť, aniž by se zvětšil prostor hlavní adresy. Vyberte čipové snímky v expanzních zásuvkách, abyste definovali jejich obsah. Dříve vybraný individuální firmware zůstává v provozu, dokud jeho zásuvka neobdrží explicitní čipový obrázek.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Obrázek čipu "{0}"má neslučitelnou velikost. Očekáváno: {1}.</value></data>
 </root>

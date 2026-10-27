@@ -8,10 +8,14 @@ internal sealed partial class EmulationMediaProcessingService
     /// <inheritdoc/>
     public Task CreateBlankDiskAsync(string path, string formatId, CancellationToken cancellationToken = default) => Preparation.CreateBlankDiskAsync(path, formatId, cancellationToken);
     /// <inheritdoc/>
-    public Task CreateHardDiskAsync(string path, string formatId, GWGUI.Emulation.HardDisks.DiskImageGeometry geometry, string? fileSystemId = null, CancellationToken cancellationToken = default)
+    public IReadOnlyList<GWGUI.Emulation.HardDisks.HardDiskDriveModelChoice> HardDiskDriveModels(string family) => Preparation.HardDiskDriveModels(family)
+        .Select(model => new GWGUI.Emulation.HardDisks.HardDiskDriveModelChoice(model.Id, model.DisplayName,
+            new(model.Geometry.Cylinders, model.Geometry.Heads, model.Geometry.SectorsPerTrack, model.Geometry.SectorSize)) { AllowsCustomGeometry = model.AllowsCustomGeometry, MaximumBytes = model.MaximumBytes }).ToArray();
+
+    public Task CreateHardDiskAsync(string path, string formatId, GWGUI.Emulation.HardDisks.DiskImageGeometry geometry, string? fileSystemId = null, CancellationToken cancellationToken = default, bool preallocate = false)
     {
         ArgumentNullException.ThrowIfNull(geometry);
-        return Preparation.CreateHardDiskAsync(path, formatId, new GWGUI.MediaEngine.Contracts.HardDiskGeometry(geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, geometry.SectorSize), fileSystemId, cancellationToken);
+        return Preparation.CreateHardDiskAsync(path, formatId, new GWGUI.MediaEngine.Contracts.HardDiskGeometry(geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, geometry.SectorSize), fileSystemId, cancellationToken, preallocate);
     }
     public async Task<IEmulationDiskImage> OpenDiskAsync(string path, bool writable = false, string? formatId = null, CancellationToken cancellationToken = default, IEmulationDriveMechanics? mechanics = null)
     {

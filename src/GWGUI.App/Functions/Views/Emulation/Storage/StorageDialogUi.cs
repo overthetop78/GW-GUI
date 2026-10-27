@@ -23,7 +23,7 @@ internal static class StorageDialogUi
         return root;
     }
 
-    public static FrameworkElement DialogHeader(string icon, string title, string subtitle)
+    public static FrameworkElement DialogHeader(string icon, string title, string subtitle, FrameworkElement? details = null)
     {
         var panel = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(4, 0, 4, 12) };
         panel.Children.Add(new TextBlock
@@ -37,6 +37,7 @@ internal static class StorageDialogUi
         var text = new StackPanel();
         text.Children.Add(new TextBlock { Text = title, FontWeight = FontWeights.SemiBold, FontSize = 20 });
         text.Children.Add(new TextBlock { Text = subtitle, Margin = new Thickness(0, 3, 0, 0) });
+        if (details is not null) text.Children.Add(details);
         panel.Children.Add(text);
         return panel;
     }
@@ -44,7 +45,7 @@ internal static class StorageDialogUi
     public static Border Card(string title, UIElement content)
     {
         var panel = new StackPanel();
-        panel.Children.Add(new TextBlock
+        if (!string.IsNullOrWhiteSpace(title)) panel.Children.Add(new TextBlock
         {
             Text = title,
             FontWeight = FontWeights.SemiBold,

@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>Snabbspola och återvinna hastighet</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>Motorstart försening före uppspelning</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>Motorstart fördröjning innan inspelning</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>Mekaniska ljud</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Aktivera lagringsenhet ljud</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>Skydda mot att skriva</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>Provtagningsfrekvens (Hz)</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>Audio kanaler</value></data>

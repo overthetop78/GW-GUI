@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Erstellt eine leere Rohdiskette ohne Betriebssystem. Bereiten und formatieren Sie sie mit Plattenwerkzeugen innerhalb der emulierten Maschine vor.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Vorbereitung der Scheibe</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Leer (nicht formatiert)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Formatierung erzeugt ein leeres Volume, ohne Betriebssystem. Atari HDD Beim Booten ist außerdem ein kompatibler Festplattentreiber erforderlich, der von der emulierten Maschine installiert ist.</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>Die Formatierung erzeugt ein leeres Volume ohne Betriebssystem.</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>Kapazität: {0} bis {1}. Sektorgröße in Bytes: {2}.</value></data>
 </root>

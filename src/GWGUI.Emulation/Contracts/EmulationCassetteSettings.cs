@@ -42,8 +42,12 @@ public sealed record EmulationCassetteSettings(int BaudRate = 0, EmulationCasset
             Range("wind", "Wind", settings.WindMultiplier, C.WindingSpeeds, C.WindingSpeedStep, "×"),
             Range("readLatency", "ReadLatency", settings.ReadLatencyMilliseconds, C.MotorDelays, C.MotorDelayStep, "ms"),
             Range("writeLatency", "WriteLatency", settings.WriteLatencyMilliseconds, C.MotorDelays, C.MotorDelayStep, "ms"),
-            EmulationMechanicalSoundSettings.DescribeVolume(Prefix + GWGUI.Emulation.Constants.EmulationMechanicalSoundConstants.VolumeOption, "Tape", settings.MechanicalVolumePercent),
-            Toggle("sound", "Sound", settings.MechanicalSound), Toggle("protected", "Protected", settings.WriteProtected),
+            Toggle("sound", "Sound", settings.MechanicalSound),
+            EmulationMechanicalSoundSettings.DescribeVolume(Prefix + GWGUI.Emulation.Constants.EmulationMechanicalSoundConstants.VolumeOption, "Tape", settings.MechanicalVolumePercent) with
+            {
+                NumericRange = new(0, GWGUI.Emulation.Constants.EmulationMechanicalSoundConstants.MaximumVolumePercent, 1, "%", IsVertical: true)
+            },
+            Toggle("protected", "Protected", settings.WriteProtected),
             .. EmulationCassettePcmSettings.Describe(options)
         ];
     }
@@ -54,8 +58,8 @@ public sealed record EmulationCassetteSettings(int BaudRate = 0, EmulationCasset
         return
         [
             new(C.PlaybackGroup, EmulationMachineTab.Storage, C.PlaybackGroup, fields.Where(field => field.Id == C.Baud || field.Id == C.Mode || field.Id == C.Protected).ToArray(), Columns: 2, IsCompact: true),
-            new(C.MechanicsGroup, EmulationMachineTab.Storage, C.MechanicsGroup, fields.Where(field => field.NumericRange is not null || field.Id == C.Sound).ToArray(), IsCompact: true, VisibleWhenFieldId: C.Mode, VisibleWhenValue: EmulationCassettePlaybackMode.RealTime.ToString()),
-            new(C.RawGroup, EmulationMachineTab.Storage, C.RawGroup, fields.Where(field => field.Id.StartsWith(EmulationCassettePcmSettings.Prefix, StringComparison.Ordinal)).ToArray(), IsCompact: true)
+            new(C.MechanicsGroup, EmulationMachineTab.Storage, "Emulation.Input.Behavior", fields.Where(field => field.NumericRange is not null || field.Id == C.Sound).ToArray(), Columns: 2, IsCompact: true, VisibleWhenFieldId: C.Mode, VisibleWhenValue: EmulationCassettePlaybackMode.RealTime.ToString()),
+            new(C.RawGroup, EmulationMachineTab.Storage, C.RawGroup, fields.Where(field => field.Id.StartsWith(EmulationCassettePcmSettings.Prefix, StringComparison.Ordinal)).ToArray(), Columns: 2, IsCollapsible: true, IsCompact: true)
         ];
     }
 }

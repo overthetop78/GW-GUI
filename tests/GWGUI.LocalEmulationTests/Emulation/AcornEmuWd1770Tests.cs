@@ -32,30 +32,33 @@ public sealed class AcornEmuWd1770Tests
     }
 
     [Fact]
-    public void Wd1770IsAnExplicitRestartingChoiceAndExposesTheAdfsImages()
+    public void ControllerChoiceBelongsToExtensionsAndDoesNotFilterImagesForTheSameDrive()
     {
         var factory = new AcornEmuMachineFactory();
         var configuration = new MachineConfiguration(MachineModel.BbcMicroModelA, core: Emulator.AcornEmu);
-        Assert.DoesNotContain(".adl", factory.DescribeStorage(configuration).AvailableDevices.SelectMany(device => device.AcceptedExtensions));
         var storage = factory.DescribeStorage(configuration);
         configuration = factory.ApplyStorage(configuration, storage with { ConfiguredSlots = [EmulationMediaSlot.Floppy0, EmulationMediaSlot.Floppy1] });
         storage = factory.DescribeStorage(configuration);
-        var settings = storage.DeviceSettings!.Select(device => device.Slot == EmulationMediaSlot.Floppy1 ? device with { Floppy = device.Floppy! with { Model = StorageConstants.Double80Dd, Options = new Dictionary<string, string> { [StorageConstants.ControllerOption] = StorageConstants.AcornWd1770 } } } : device).ToArray();
-        configuration = factory.ApplyStorage(configuration, storage with { DeviceSettings = settings });
-        factory.ValidateOptions(configuration);
-        Assert.Contains(".adl", factory.DescribeStorage(configuration).AvailableDevices.SelectMany(device => device.AcceptedExtensions));
-        Assert.True(factory.RequiresOptionRestart(configuration, StorageConstants.ControllerOption));
-        Assert.DoesNotContain(factory.DescribeSettings(configuration).SelectMany(block => block.Fields), field => field.Id == StorageConstants.ControllerOption);
-        storage = factory.DescribeStorage(configuration);
-        foreach (var device in storage.AvailableDevices.Where(device => device.MediaType == EmulationMediaType.Floppy))
+        var settings = storage.DeviceSettings!.Select(device => device with
         {
-            var field = Assert.Single(device.ConfigurationFields!, field => field.Id == StorageConstants.ControllerOption);
-            Assert.Equal(StorageConstants.AcornWd1770, field.Value); Assert.True(field.RequiresRestart);
-        }
-        Assert.All(storage.DeviceSettings!.Where(device => device.Floppy is not null), device => Assert.Equal(StorageConstants.AcornWd1770, device.Floppy!.Options![StorageConstants.ControllerOption]));
-        settings = storage.DeviceSettings!.Select(device => device with { Floppy = device.Floppy! with { Model = StorageConstants.Double80, Options = new Dictionary<string, string> { [StorageConstants.ControllerOption] = StorageConstants.Intel8271 } } }).ToArray();
+            Floppy = device.Floppy! with { Model = StorageConstants.Double80Dd }
+        }).ToArray();
         configuration = factory.ApplyStorage(configuration, storage with { DeviceSettings = settings });
-        Assert.DoesNotContain(".adl", factory.DescribeStorage(configuration).AvailableDevices.SelectMany(device => device.AcceptedExtensions));
+        var intelExtensions = factory.DescribeStorage(configuration).AvailableDevices.SelectMany(device => device.AcceptedExtensions).ToArray();
+        Assert.Contains(".adl", intelExtensions);
+        configuration = configuration with { Options = new Dictionary<string, string>(configuration.Options)
+        {
+            [StorageConstants.ControllerOption] = StorageConstants.AcornWd1770
+        } };
+        factory.ValidateOptions(configuration);
+        Assert.Equal(intelExtensions, factory.DescribeStorage(configuration).AvailableDevices.SelectMany(device => device.AcceptedExtensions).ToArray());
+        Assert.True(factory.RequiresOptionRestart(configuration, StorageConstants.ControllerOption));
+        var field = Assert.Single(factory.DescribeSettings(configuration).SelectMany(block => block.Fields), field => field.Id == StorageConstants.ControllerOption);
+        Assert.Equal(EmulationMachineTab.Extensions, field.Tab);
+        Assert.True(field.UseRadioButtons);
+        Assert.Equal(StorageConstants.AcornWd1770, field.Value);
+        Assert.All(factory.DescribeStorage(configuration).AvailableDevices.Where(device => device.MediaType == EmulationMediaType.Floppy),
+            device => Assert.DoesNotContain(device.ConfigurationFields!, field => field.Id == StorageConstants.ControllerOption));
     }
 
     [Theory]

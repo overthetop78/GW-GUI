@@ -22,4 +22,19 @@
   <data name="Emulation.Acorn.Network.BindAddress"><value>지역 IPv4 주소</value></data>
   <data name="Emulation.Acorn.Network.Port"><value>UDP 의 특징</value></data>
   <data name="Emulation.Acorn.Network.Peers"><value>원격 역</value></data>
+  <data name="Emulation.Acorn.Extensions.Floppy"><value>Floppy 디스크 확장</value></data>
+  <data name="Emulation.Acorn.Memory.Shadow"><value>추가 화면 메모리</value></data>
+  <data name="Emulation.Acorn.Memory.Card"><value>화면 메모리 확장</value></data>
+  <data name="Emulation.Acorn.Memory.None"><value>ᄋᄋᄋ</value></data>
+  <data name="Emulation.Acorn.Memory.Rom"><value>ROM 메모리 확장 카드</value></data>
+  <data name="Emulation.Acorn.Memory.Help"><value>이 확장 카드는 32 KiB의 메인을 요구합니다 RAM 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 MOS 1.20. 일치를 적재하십시오 ROM 선택한 카드에 대한. 메인을 줄이기 전에 확장을 선택 RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMainRam"><value>이 확장 카드는 32 KiB의 메인을 요구합니다 RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMos"><value>이 확장 카드는 요구합니다 MOS 1.20. 호환 운영 체제 선택 ROM.</value></data>
+  <data name="Emulation.Acorn.Memory.RomMissing"><value>메모리 확장 카드 ROM 누락. 파일 선택 RAM 기계 설정 탭.</value></data>
+  <data name="Emulation.Acorn.Memory.Rom.Help"><value>감지된 파일에서 이 메모리 확장을 위한 제어 소프트웨어를 선택하거나 호환되는 파일에 대한 검색. 경로가 빈 때 파일이 로드되지 않습니다.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways"><value>뱅크 메모리</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>뱅크 메모리 모듈</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>확장 모듈 칩 소켓</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Help"><value>이 모듈은 주 메모리의 주소 공간을 늘리지 않고 뱅크 메모리를 추가합니다. 확장 소켓의 칩 이미지 파일을 선택하여 내용을 지정하세요. 기존에 개별 선택한 펌웨어는 해당 소켓의 칩 이미지 파일을 명시적으로 선택하기 전까지 계속 사용됩니다.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>칩 이미지 '{0}'는 호환 크기가 있습니다. 예상 : {1}.</value></data>
 </root>

@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>Швидка і перемотування швидкості</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>Затримка запуску двигуна перед відтворенням</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>Затримка запуску двигуна перед записом</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>Механічні звуки</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Увімкнути пристрій для зберігання</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>Захист від написання</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>Частота затискання (Хз)</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>Аудіоканали</value></data>

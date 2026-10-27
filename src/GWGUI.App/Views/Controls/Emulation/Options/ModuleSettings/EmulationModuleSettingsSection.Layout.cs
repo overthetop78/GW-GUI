@@ -47,12 +47,13 @@ internal sealed partial class EmulationModuleSettingsSection
 
     private UIElement BuildMachineTabs()
     {
+        _firmwareManagement?.ClearViews();
         _fieldControls.Clear();
         _userChangeHandlers.Clear();
         _configuration = EmulationVideoConfigurationFunctions.Apply(_module, _configuration, _profiles.Get(_module.Id, _configuration.Id).Renderer);
         var settings = _module.Describe(_configuration.MachineId, _configuration);
         var tabs = EmulationMachineTabs.Create(tab => settings.Visibility.Tabs.GetValueOrDefault(tab)
-            && (tab is not (EmulationMachineTab.Cheats or EmulationMachineTab.Ethernet)
+            && (tab is not (EmulationMachineTab.Cheats or EmulationMachineTab.Ethernet or EmulationMachineTab.Extensions)
                 || settings.Blocks.Any(block => block.Tab == tab && block.IsVisible && block.Fields.Any(field => field.IsVisible)))
             ? BuildTab(settings, tab) : null, $"{_module.Id}:{_configuration.MachineId}", TabActivatedAsync, _selectedTab);
         AttachUserChangeHandlers();
@@ -84,10 +85,17 @@ internal sealed partial class EmulationModuleSettingsSection
         ApplySettingsRules(settings);
         if (_storageSettings is not null && tab == EmulationMachineTab.Storage)
             panel.Children.Insert(0, _storageSettings.CreateContent(_configuration));
-        if (tab == EmulationMachineTab.Rom && _firmwareManagement is not null)
-            return _firmwareManagement.CreateView(panel);
+        if (HasFirmwareFields(tab) && _firmwareManagement is not null)
+            return _firmwareManagement.CreateView(panel, tab);
         return EmulationSettingsLayout.ScrollPage(panel);
     }
+
+    /// <summary>Réutilise la présentation firmware pour tout onglet déclarant des fichiers ROM.</summary>
+    private bool HasFirmwareFields(EmulationMachineTab tab) => tab == EmulationMachineTab.Rom
+        || _module.Describe(_configuration.MachineId, _configuration).Blocks
+            .Where(block => block.Tab == tab && block.IsVisible).SelectMany(block => block.Fields)
+            .Any(field => field.IsVisible && field.Editor == EmulationSettingsEditor.Path
+                && field.DefaultFolderCategory == EmulationDefaultFolderCategory.Firmware);
 
     private UIElement BuildVideoSettingsTab(EmulationMachineSettings settings)
     {

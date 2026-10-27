@@ -22,4 +22,19 @@
   <data name="Emulation.Acorn.Network.BindAddress"><value>Helyi IPv4-cím</value></data>
   <data name="Emulation.Acorn.Network.Port"><value>UDP kikötő</value></data>
   <data name="Emulation.Acorn.Network.Peers"><value>Távirányító állomások</value></data>
+  <data name="Emulation.Acorn.Extensions.Floppy"><value>Floppy lemez kiterjesztések</value></data>
+  <data name="Emulation.Acorn.Memory.Shadow"><value>További képernyőmemória</value></data>
+  <data name="Emulation.Acorn.Memory.Card"><value>Képernyő memóriakeresése</value></data>
+  <data name="Emulation.Acorn.Memory.None"><value>Nincs</value></data>
+  <data name="Emulation.Acorn.Memory.Rom"><value>ROM a memóriakártya esetében</value></data>
+  <data name="Emulation.Acorn.Memory.Help"><value>Ezek a bővítési kártyák 32 KiB fő RAM és MOS 1.20. Töltse be a megfelelő ROM a kiválasztott kártyához. A nagybetűk csökkentése előtt ne válassza a kiterjesztést RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMainRam"><value>Ez a bővítési kártya 32 KiB fő RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMos"><value>Ez a bővítési kártya megköveteli MOS 1.20. Válasszon ki egy kompatibilis operációs rendszert ROM.</value></data>
+  <data name="Emulation.Acorn.Memory.RomMissing"><value>A memóriakártya ROM hiányzik. Válassza ki a fájlt a RAM a gép beállításainak füle.</value></data>
+  <data name="Emulation.Acorn.Memory.Rom.Help"><value>Válassza ki a vezérlő szoftvert ehhez a memóriához a talált fájlokból, vagy keressen kompatibilis fájlt. Nincs betöltve fájl, ha az útvonal üres.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways"><value>Oldalirányú memória</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Bankjegyes memóriamodulok</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Expanziós chip foglalatok</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Ezek a modulok a memóriakártya-címek számának növelése nélkül is feltöltenek egy bankett memóriát. Válassza ki a chip képeket a bővítési foglalatokban a tartalmuk meghatározásához. A kiválasztott egyéni firmware addig marad használatban, amíg a foglalat nem kap egy explicit chip képet.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Chip image "{0}"összeegyeztethetetlen a mérete. {1}.</value></data>
 </root>

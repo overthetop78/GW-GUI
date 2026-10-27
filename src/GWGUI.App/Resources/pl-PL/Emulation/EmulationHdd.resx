@@ -15,5 +15,6 @@
   <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Tworzy pusty dysk surowy bez systemu operacyjnego. Przygotowuj i formatuj go za pomocą narzędzi dyskowych wewnątrz maszyny emulowanej.</value></data>
   <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Przygotowanie dysku</value></data>
   <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Pusty (niesformatowany)</value></data>
-  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Formatowanie tworzy pusty wolumin, bez systemu operacyjnego. HDD Uruchomienie systemu wymaga również kompatybilnego sterownika dysku zainstalowanego z emulowanej maszyny. Skompresowane obrazy mogą przekierować zapis do ekstrahowanej kopii.</value></data>
+  <data name="Emulation.Hdd.PreparationHint"><value>Formatowanie tworzy pusty wolumin bez systemu operacyjnego. Włączenie wymaga oprogramowania systemowego i sterowników obsługiwanych przez maszynę emulowaną.</value></data>
+  <data name="Emulation.Hdd.CapacityLimits"><value>Zdolność: {0} do {1}. Wielkość sektora w bajtach: {2}.</value></data>
 </root>

@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>Tốc độ tua nhanh và tua lại</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>Máy khởi động trễ trước khi phát lại</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>Khởi động chậm trước khi ghi</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>Giọng cơ khí</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Bật âm thanh thiết bị lưu trữ</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>Bảo vệ chống lại chữ viết</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>Tần số Sampling (Hz)</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>Kênh âm thanh</value></data>

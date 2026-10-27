@@ -26,7 +26,7 @@
   <data name="Emulation.Cassette.Settings.Wind"><value>Viteza de mers înainte și de mers înapoi</value></data>
   <data name="Emulation.Cassette.Settings.ReadLatency"><value>Întârzierea pornirii motorului înainte de redare</value></data>
   <data name="Emulation.Cassette.Settings.WriteLatency"><value>Întârzierea pornirii motorului înainte de înregistrare</value></data>
-  <data name="Emulation.Cassette.Settings.Sound"><value>Sunete mecanice</value></data>
+  <data name="Emulation.Cassette.Settings.Sound"><value>Activează sunetele dispozitivului de stocare</value></data>
   <data name="Emulation.Cassette.Settings.Protected"><value>Protejează împotriva scrierii</value></data>
   <data name="Emulation.Cassette.Pcm.SampleRate"><value>Frecvența de eșantionare (Hz)</value></data>
   <data name="Emulation.Cassette.Pcm.Channels"><value>Canale audio</value></data>

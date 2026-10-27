@@ -22,4 +22,19 @@
   <data name="Emulation.Acorn.Network.BindAddress"><value>Lokaal IPv4-adres</value></data>
   <data name="Emulation.Acorn.Network.Port"><value>UDP poort</value></data>
   <data name="Emulation.Acorn.Network.Peers"><value>Afstandsstations</value></data>
+  <data name="Emulation.Acorn.Extensions.Floppy"><value>Floppy schijfextensies</value></data>
+  <data name="Emulation.Acorn.Memory.Shadow"><value>Extra schermgeheugen</value></data>
+  <data name="Emulation.Acorn.Memory.Card"><value>Scherm geheugen uitbreiding</value></data>
+  <data name="Emulation.Acorn.Memory.None"><value>Geen</value></data>
+  <data name="Emulation.Acorn.Memory.Rom"><value>ROM voor de geheugenuitbreidingskaart</value></data>
+  <data name="Emulation.Acorn.Memory.Help"><value>Deze uitbreidingskaarten vereisen 32 KiB van de belangrijkste RAM en MOS 1.20. Laad de bijpassende ROM voor de geselecteerde kaart. Selecteer geen uitbreiding voordat u hoofdafbraak vermindert RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMainRam"><value>Deze uitbreidingskaart vereist 32 KiB van de hoofd RAM.</value></data>
+  <data name="Emulation.Acorn.Memory.RequiresMos"><value>Deze uitbreidingskaart vereist MOS 1.20. Selecteer een compatibel besturingssysteem ROM.</value></data>
+  <data name="Emulation.Acorn.Memory.RomMissing"><value>De geheugenuitbreidingskaart ROM ontbreekt. Selecteer het bestand in de RAM tabblad van de machineinstellingen.</value></data>
+  <data name="Emulation.Acorn.Memory.Rom.Help"><value>Selecteer de besturingssoftware voor deze geheugenuitbreiding uit de gedetecteerde bestanden, of blader naar een compatibel bestand. Er wordt geen bestand geladen wanneer het pad leeg is.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways"><value>Zijwaarts geheugen</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Gebankte geheugenmodules</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Sjablonen voor expansiechips</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Deze modules voegen gebankeerd geheugen toe zonder de geheugenruimte te verhogen. Selecteer chipafbeeldingen in de uitbreidingssockets om de inhoud ervan te definiëren. Eerder geselecteerde individuele firmware blijft in gebruik totdat de socket een expliciete chipafbeelding ontvangt.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Chip image '{0}' heeft een incompatibele grootte. Verwacht: {1}.</value></data>
 </root>

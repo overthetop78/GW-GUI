@@ -16,4 +16,5 @@
   <data name="Emulation.Tab.Shortcuts"><value>Phím tắt</value></data>
   <data name="Emulation.Tab.Audio"><value>Âm thanh</value></data>
   <data name="Emulation.Tab.Ethernet"><value>Mạng</value></data>
+  <data name="Emulation.Tab.Extensions"><value>Phần mở rộng</value></data>
 </root>

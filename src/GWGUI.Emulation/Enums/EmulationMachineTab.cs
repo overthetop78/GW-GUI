@@ -13,5 +13,7 @@ public enum EmulationMachineTab
     Mouse,
     Controllers,
     Cheats,
-    Ethernet
+    Ethernet,
+    /// <summary>Extensions matérielles déclarées par la machine.</summary>
+    Extensions
 }
