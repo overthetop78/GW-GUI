@@ -18,4 +18,5 @@
   <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 ACORN 저장된 상태는 유효하지 않습니다.</value></data>
   <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>예기치 않은 ACORN 에뮬레이션 오류가 발생했습니다.</value></data>
   <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>알려진 환경 명령: {0}</value></data>
+  <data name="Emulation.Acorn.Error.NamedFirmwareMissing"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 {0} ROM 누락. 파일 선택 ROM 기계 설정 탭.</value></data>
 </root>

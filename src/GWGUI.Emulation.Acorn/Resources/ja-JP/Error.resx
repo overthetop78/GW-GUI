@@ -18,4 +18,5 @@
   <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>とりあえず ACORN 保存状態が無効です。</value></data>
   <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>予期しない ACORN エミュレータエラーが発生しました。</value></data>
   <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>未知の環境コマンド: {0}</value></data>
+  <data name="Emulation.Acorn.Error.NamedFirmwareMissing"><value>とりあえず {0} ROM 欠落しています。 ファイルの選択 ROM マシン設定のタブ。</value></data>
 </root>

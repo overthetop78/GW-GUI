@@ -33,4 +33,6 @@ internal static class CoreErrorResourceKeys
     internal const string OptionInvalid = "Emulation.Acorn.Error.OptionInvalid";
     /// <summary>Clé du diagnostic StateInvalid dans le catalogue du module.</summary>
     internal const string StateInvalid = "Emulation.Acorn.Error.StateInvalid";
+    /// <summary>Diagnostic de ROM absente avec son nom et l’emplacement du réglage à renseigner.</summary>
+    internal const string NamedFirmwareMissing = "Emulation.Acorn.Error.NamedFirmwareMissing";
 }

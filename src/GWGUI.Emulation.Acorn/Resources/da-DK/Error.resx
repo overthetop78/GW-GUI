@@ -18,4 +18,5 @@
   <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>Den ACORN gemet tilstand er ugyldig.</value></data>
   <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>En uventet ACORN der opstod en emuleringsfejl.</value></data>
   <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Ukendt miljøkommando: {0}</value></data>
+  <data name="Emulation.Acorn.Error.NamedFirmwareMissing"><value>Den {0} ROM mangler. Vælg sin fil i ROM fanen af maskinens indstillinger.</value></data>
 </root>

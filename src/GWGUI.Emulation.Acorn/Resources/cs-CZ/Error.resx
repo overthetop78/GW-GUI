@@ -18,4 +18,5 @@
   <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>V ACORN Uložený stav je neplatný.</value></data>
   <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>Nečekané. ACORN došlo k emulaci.</value></data>
   <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Neznámý příkaz prostředí: {0}</value></data>
+  <data name="Emulation.Acorn.Error.NamedFirmwareMissing"><value>V {0} ROM chybí. Vyberte jeho soubor v souboru ROM záložka nastavení stroje.</value></data>
 </root>

@@ -18,4 +18,5 @@
   <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>, ACORN Starea salvată nu este validă.</value></data>
   <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>Un neasteptat ACORN a apărut o eroare de emulare.</value></data>
   <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Comandă de mediu necunoscută: {0}</value></data>
+  <data name="Emulation.Acorn.Error.NamedFirmwareMissing"><value>, {0} ROM Alegeți fișierul său în ROM fila setărilor mașinii.</value></data>
 </root>

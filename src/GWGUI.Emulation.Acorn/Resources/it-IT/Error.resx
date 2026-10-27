@@ -18,4 +18,5 @@
   <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>Il ACORN lo stato salvato non è valido.</value></data>
   <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>Un inaspettato ACORN errore di emulazione si è verificato.</value></data>
   <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Comando ambiente sconosciuto: {0}</value></data>
+  <data name="Emulation.Acorn.Error.NamedFirmwareMissing"><value>Il {0} ROM manca. Selezionare il suo file nel ROM scheda delle impostazioni della macchina.</value></data>
 </root>

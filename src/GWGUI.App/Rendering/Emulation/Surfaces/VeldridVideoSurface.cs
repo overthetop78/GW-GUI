@@ -90,12 +90,6 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
         _hwnd = IntPtr.Zero;
     }
 
-    protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
-    {
-        base.OnRenderSizeChanged(sizeInfo);
-        lock (_deviceGate) ResizeSwapchainToClient();
-    }
-
     public void Present(VideoFrame frame)
     {
         lock (_deviceGate) PresentCore(frame);
@@ -129,6 +123,7 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
             pixels = convertedPixels;
         }
         EnsureDevice(processed.Width, processed.Height, _videoProcessing.Sampling, _videoProcessing.DisplayTechnology);
+        // Le worker possède le redimensionnement GPU ; le thread WPF ne doit jamais attendre sa porte.
         ResizeSwapchainToClient();
         _device!.UpdateTexture(_texture!, pixels, 0, 0, 0, (uint)processed.Width, (uint)processed.Height, 1, 0, 0);
         var gpuConfiguration = _videoProcessing;

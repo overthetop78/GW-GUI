@@ -18,4 +18,5 @@
   <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>电话 ACORN 保存状态无效 。</value></data>
   <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>出乎意料的 来个小小小小的 ACORN 发生了仿真错误 。</value></data>
   <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>未知的环境命令 : {0}</value></data>
+  <data name="Emulation.Acorn.Error.NamedFirmwareMissing"><value>电话 {0} ROM 中选择文件 ROM 选项卡。</value></data>
 </root>

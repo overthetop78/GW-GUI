@@ -18,4 +18,5 @@
   <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>• ACORN tallenne on virheellinen.</value></data>
   <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>Odottamaton ACORN emulointivirhe.</value></data>
   <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Tuntematon ympäristökomento: {0}</value></data>
+  <data name="Emulation.Acorn.Error.NamedFirmwareMissing"><value>• {0} ROM puuttuu. Valitse sen tiedosto ROM koneen asetusten välilehti.</value></data>
 </root>

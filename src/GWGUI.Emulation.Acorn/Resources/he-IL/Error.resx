@@ -18,4 +18,5 @@
   <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>The The The ACORN המדינה הנושחת היא בלתי חוקית.</value></data>
   <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>בלתי צפוי ACORN טעות של חיקוי התרחשה.</value></data>
   <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>פיקוד הסביבה הלא ידוע: {0}</value></data>
+  <data name="Emulation.Acorn.Error.NamedFirmwareMissing"><value>The The The {0} ROM הוא נעדר.בחר את הקובץ שלו בקובץ ROM הכרטיסיה של הגדרות המכונה</value></data>
 </root>

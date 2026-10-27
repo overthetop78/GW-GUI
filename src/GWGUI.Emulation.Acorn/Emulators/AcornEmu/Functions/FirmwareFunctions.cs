@@ -1,4 +1,6 @@
 using System.IO;
+using GWGUI.Emulation.Acorn.Common.Constants;
+using GWGUI.Emulation.Acorn.Common.Exceptions;
 using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants;
 using GWGUI.Emulation.Acorn.Common.Machines.BbcMicro.Functions;
 
@@ -33,9 +35,22 @@ internal static class FirmwareFunctions
     /// <summary>Lit le fichier sélectionné puis demande à Common la banque correspondant au rôle matériel.</summary>
     internal static byte[] Read(MachineConfiguration configuration, string field)
     {
-        if (!configuration.Options.TryGetValue(field, out var path) || string.IsNullOrWhiteSpace(path)) throw new FileNotFoundException(field);
+        if (!configuration.Options.TryGetValue(field, out var path) || string.IsNullOrWhiteSpace(path) || !File.Exists(path))
+            throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareMissing,
+                ExceptionText.Get(CoreErrorResourceKeys.NamedFirmwareMissing, RomName(field)), isLocalized: true);
         return BbcMicroFirmwareFunctions.GetRomBytes(File.ReadAllBytes(path), Role(field));
     }
+    /// <summary>Désigne la ROM manquante sans exposer l’identifiant technique du champ à l’utilisateur.</summary>
+    private static string RomName(string field) => field switch
+    {
+        EmulatorConstants.SystemFirmware => FirmwareRomNames.Mos,
+        EmulatorConstants.BasicFirmware => FirmwareRomNames.Basic,
+        EmulatorConstants.CharacterFirmware => FirmwareRomNames.Characters,
+        StorageConstants.DfsFirmware => FirmwareRomNames.DiskFilingSystem,
+        NetworkConstants.Firmware => FirmwareRomNames.Network,
+        _ => throw new ArgumentOutOfRangeException(nameof(field))
+    };
+
     /// <summary>Place chaque ROM externe dans une banque distincte selon les extensions réellement installées.</summary>
     internal static IReadOnlyDictionary<int, byte[]> OptionRoms(MachineConfiguration configuration)
     {

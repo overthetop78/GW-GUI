@@ -18,4 +18,5 @@
   <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>Hạt ACORN trạng thái đã lưu không hợp lệ.</value></data>
   <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>Một điều không ngờ ACORN Lỗi mô phỏng đã xảy ra.</value></data>
   <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Lệnh môi trường không rõ: {0}</value></data>
+  <data name="Emulation.Acorn.Error.NamedFirmwareMissing"><value>Hạt {0} ROM còn thiếu, hãy chọn tập tin của nó trong đó. ROM Thẻ thiết lập máy tính.</value></data>
 </root>

@@ -18,4 +18,5 @@
   <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>เดอะ ACORN สถานะการบันทึกไว้ไม่ถูกต้อง</value></data>
   <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>ไม่คาดคิด ACORN เกิดการจําลองผิดพลาด</value></data>
   <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>ไม่รู้จักคําสั่งสภาพแวดล้อม: {0}</value></data>
+  <data name="Emulation.Acorn.Error.NamedFirmwareMissing"><value>เดอะ {0} ROM ไม่มีอยู่ เลือกแฟ้มของมันใน ROM แท็บการตั้งค่าเครื่องจักร</value></data>
 </root>
