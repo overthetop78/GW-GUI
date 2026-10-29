@@ -17,7 +17,7 @@
   <data name="Emulation.Storage.Cd.Drive"><value>CD station</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>Aantal diskettestations</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>Aantal harde schijven</value></data>
-  <data name="Emulation.Storage.Floppy.Speed"><value>Snelheid diskettestation</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Snelheid van dit diskettestation</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>Diskette-images tegen schrijven beveiligen</value></data>
   <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Schrijven naar diskette omleiden</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>CD snelheid</value></data>
@@ -93,4 +93,12 @@
   <data name="Emulation.Storage.Media.AlreadyExists"><value>Dit bestand bestaat al. Kies een nieuw imagebestand: {0}</value></data>
   <data name="Emulation.Storage.Sound.Volume"><value>Volume</value></data>
   <data name="Emulation.Storage.Sound.Group"><value>Geluiden van opslagapparaten</value></data>
+  <data name="Emulation.Storage.Floppy.Format"><value>Disketteformaat</value></data>
+  <data name="Emulation.Storage.Floppy.OneSide"><value>1 zijde</value></data>
+  <data name="Emulation.Storage.Floppy.TwoSides"><value>2 zijden</value></data>
+  <data name="Emulation.Storage.Floppy.Tracks"><value>{0} sporen per zijde</value></data>
+  <data name="Emulation.Storage.Floppy.SingleDensity"><value>Enkele dichtheid</value></data>
+  <data name="Emulation.Storage.Floppy.DoubleDensity"><value>Dubbele dichtheid</value></data>
+  <data name="Emulation.Storage.File.Destination"><value>Bestemmingsbestand</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFormat"><value>Schijfimageformaat</value></data>
 </root>

@@ -85,8 +85,6 @@ internal sealed partial class EmulationModuleSettingsSection
         ApplySettingsRules(settings);
         if (_storageSettings is not null && tab == EmulationMachineTab.Storage)
             panel.Children.Insert(0, _storageSettings.CreateContent(_configuration));
-        if (HasFirmwareFields(tab) && _firmwareManagement is not null)
-            return _firmwareManagement.CreateView(panel, tab);
         return EmulationSettingsLayout.ScrollPage(panel);
     }
 
@@ -206,10 +204,22 @@ internal sealed partial class EmulationModuleSettingsSection
         bool IsDisplayed(EmulationSettingsField field) => field.IsVisible && !(tab == EmulationMachineTab.General && field.Editor == EmulationSettingsEditor.DirectoryPath && field.DefaultFolderCategory is not null);
         if (tab == EmulationMachineTab.Rom)
         {
-            foreach (var block in settings.Blocks.Where(block => block.Tab == tab && block.IsVisible && block.Fields.Any(IsDisplayed)))
-                panel.Children.Add(EmulationSettingsLayout.IconCard(
+            var blocks = settings.Blocks.Where(block => block.Tab == tab && block.IsVisible && block.Fields.Any(IsDisplayed))
+                .OrderBy(block => block.TitleResourceKey == "Emulation.Firmware" ? 0 : 1).ToArray();
+            var cards = blocks.Select(block => (FrameworkElement)EmulationSettingsLayout.IconCard(
                     EmulationSettingsLayout.VideoSettingsFields(1, block.Fields.Where(IsDisplayed).Select(CreateVideoSettingsField).ToArray()),
-                    LocExtension.GetForModule(_module, block.TitleResourceKey), block.Icon ?? IconGlyphs.Settings));
+                    LocExtension.GetForModule(_module, block.TitleResourceKey), block.Icon ?? IconGlyphs.Settings)).ToArray();
+            if (cards.Length == 1)
+                panel.Children.Add(cards[0]);
+            else if (cards.Length > 1)
+            {
+                var firmwareCards = blocks.Select((block, index) => (block, card: cards[index]))
+                    .Where(item => item.block.TitleResourceKey == "Emulation.Firmware").Select(item => item.card).ToHashSet();
+                var layout = EmulationSettingsLayout.CompactCards(cards,
+                    firmwareCards.Count == 0 ? null : card => firmwareCards.Contains(card) ? 0 : 1);
+                layout.Margin = new Thickness(0);
+                panel.Children.Add(layout);
+            }
             return;
         }
         if (tab == EmulationMachineTab.Audio)

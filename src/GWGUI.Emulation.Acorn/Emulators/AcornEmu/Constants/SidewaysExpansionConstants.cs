@@ -37,6 +37,10 @@ internal static class SidewaysExpansionConstants
     internal const byte UnprotectCommand = 0x30;
     /// <summary>Titre du bloc RAM sideways.</summary>
     internal const string Group = "Emulation.Acorn.Memory.Sideways";
+    /// <summary>Titre du choix de matériel dans Extensions.</summary>
+    internal const string ExtensionGroup = "Emulation.Acorn.Memory.Sideways.Extension";
+    /// <summary>Capacité informative de la RAM installée par l'extension.</summary>
+    internal const string RamCapacity = "Emulation.Acorn.Memory.Sideways.Capacity";
     /// <summary>Libellé du choix de matériel.</summary>
     internal const string CardLabel = "Emulation.Acorn.Memory.Sideways.Card";
     /// <summary>Explication de la mémoire bankée et des images de puces.</summary>

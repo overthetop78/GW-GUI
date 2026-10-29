@@ -12,4 +12,7 @@
   <data name="Emulation.Firmware.Official"><value>Chính thức</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Không tương thích</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>Mẫu giọng nói</value></data>
+  <data name="Emulation.Firmware.Select"><value>Chọn tập tin</value></data>
+  <data name="Emulation.Firmware.Empty"><value>Thư mục này rỗng.</value></data>
+  <data name="Emulation.Firmware.NotSelected"><value>Chưa chọn gì cả.</value></data>
 </root>

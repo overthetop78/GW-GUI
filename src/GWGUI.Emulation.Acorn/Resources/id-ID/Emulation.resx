@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>Kartu ekspansi memori ROM hilang. Pilih file-nya di RAM tab dari pengaturan mesin.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Pilih perangkat lunak kontrol untuk ekspansi memori ini dari berkas yang terdeteksi, atau peramban untuk berkas yang kompatibel. Tak ada berkas yang dimuat ketika path kosong.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Memori sisi</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Modul memori yang dipetakan</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Kartu ekspansi</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Soket chip expansi</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Modul-modul ini menambahkan memori yang banked tanpa meningkatkan ruang alamat memori utama. Pilih gambar chip dalam soket ekspansi untuk mendefinisikan isi mereka. Sebelumnya dipilih individu firmware tetap dalam digunakan sampai soket yang menerima sebuah gambar chip eksplisit.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Gambar Chip '{0}'memiliki ukuran yang tidak kompatibel. Diduga: {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Kartu ekspansi memori</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Kapasitas memori tambahan</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: Nomor stasiun unik.  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Setiap stasiun membutuhkan nomor yang berbeda. Pengaturan ini menggantikan perangkat keras melompat pada antarmuka nyata. Gunakan tombol panah atas dan bawah untuk mengubah nomor.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Frekuensi jam dari antarmuka jaringan yang telah diemulasi.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>Jam mengontrol waktu antarmuka yang tertimulasi. Pengaturan jam yang berbeda tidak memblokir komunikasi antara emulator.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Pilih bagaimana stasiun ini terhubung ke jaringan.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Diputus: antar muka terpasang tanpa koneksi jaringan. &#xA;UDP: Pertukaran langsung dari bingkai jaringan antara emulator yang kompatibel. Gunakan mode ini antara dua mesin yang diemulasi. &#xA;AUN: Protokol jaringan lain untuk server dan emulator yang kompatibel. Kedua ujung harus menggunakan protokol yang sama.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: Alamat mendengarkan komputer ini.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: Menghubungkan emulator yang berjalan di komputer ini. &#xA;Untuk jaringan lokal, gunakan alamat yang ditugaskan ke komputer ini. &#xA;0.0.0.0: Dengarkan semua antarmuka jaringan komputer ini. &#xA;Masukkan alamat komputer lain di daerah stasiun jauh. Nama host dan alamat komputer lain tidak diterima di sini.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>Port UDP penerima pada komputer ini, 1–65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>Port awal adalah:  32768. Emulator berbagi alamat pendengar yang sama membutuhkan port yang berbeda.  32768 / 32769. Gunakan tombol panah atas dan bawah untuk mengubah nilai. Stasiun jauh mesti menyatakan port tujuan.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Peta nomor stasiun jarak jauh ke alamat dan port jaringan.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;Contoh alamat stasiun 3 pada jaringan 0, berjalan di komputer ini di port 32769. Masukan terpisah dengan semicolons atau istirahat baris. Untuk komputer lain, gunakan alamatnya pada jaringan lokal. Mengkonfigurasi entri kembali yang sesuai di stasiun lain.</value></data>
 </root>

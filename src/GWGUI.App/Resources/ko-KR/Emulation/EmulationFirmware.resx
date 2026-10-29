@@ -12,4 +12,7 @@
   <data name="Emulation.Firmware.Official"><value>공식</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>호환되지 않음</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>음성 샘플</value></data>
+  <data name="Emulation.Firmware.Select"><value>파일 선택</value></data>
+  <data name="Emulation.Firmware.Empty"><value>이 폴더는 비어 있습니다.</value></data>
+  <data name="Emulation.Firmware.NotSelected"><value>선택된 것은 없습니다.</value></data>
 </root>

@@ -3,6 +3,7 @@ using GWGUI.App.Functions.Views.Emulation.Settings;
 using GWGUI.App.Constants.Localization;
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Contracts.Storage;
+using GWGUI.App.Views.Controls.Emulation.Storage;
 using GWGUI.App.Functions.Views.Common;
 using GWGUI.App.Functions.Views.Emulation.Storage;
 using GWGUI.App.Localization.Extensions;
@@ -38,14 +39,17 @@ public sealed class FloppyDriveConfigurationDialog : Window
         Title = $"{LocExtension.Get(EmulationResourceKeys.StorageDeviceConfigure)} {identifier}";
         Owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(window => window.IsActive);
         ShowInTaskbar = false;
+        StorageDialogUi.CompactAppearance(this);
         WindowStartupLocation = WindowStartupLocation.CenterOwner;
         Width = Math.Min(StorageConfigurationLayoutConstants.FloppyWidth, SystemParameters.WorkArea.Width * StorageConfigurationLayoutConstants.WorkAreaWidthRatio);
-        MaxHeight = SystemParameters.WorkArea.Height * StorageConfigurationLayoutConstants.WorkAreaHeightRatio;
+        MinWidth = StorageConfigurationLayoutConstants.MinimumWidth;
+        MaxHeight = Math.Min(StorageConfigurationLayoutConstants.CompactMaximumHeight, SystemParameters.WorkArea.Height * StorageConfigurationLayoutConstants.WorkAreaHeightRatio);
+        MinHeight = StorageConfigurationLayoutConstants.CompactMinimumHeight;
         SizeToContent = SizeToContent.Height;
         ResizeMode = ResizeMode.CanResize;
 
         _model.ItemsSource = options.Models.Select(choice =>
-            new StorageDialogChoice(choice.Value, string.IsNullOrWhiteSpace(choice.DisplayResourceKey) ? choice.InvariantDisplayValue ?? choice.Value : (moduleId is null ? LocExtension.Get(choice.DisplayResourceKey) : LocExtension.GetForModule(moduleId, choice.DisplayResourceKey)))).ToArray();
+            new StorageDialogChoice(choice.Value, FloppyChoicePresentation.Model(choice, moduleId))).ToArray();
         ComboBoxSelection.SelectByValue<StorageDialogChoice>(_model, settings.Model, choice => choice.Value);
         _speed = StorageConfigurationFieldFunctions.Create(new EmulationSettingsField(
             nameof(_speed), EmulationMachineTab.Storage, string.Empty, "Emulation.Storage.Floppy.Speed",
@@ -56,9 +60,14 @@ public sealed class FloppyDriveConfigurationDialog : Window
         _redirectWrites.Content = LocExtension.Get("Emulation.Storage.Floppy.WriteRedirect");
         _redirectWrites.IsChecked = settings.RedirectWrites;
 
+        StorageDialogUi.WrapChoices(_model, nameof(StorageDialogChoice.Text));
         var drive = new StackPanel();
         if (options.Models.Count > 0)
-            drive.Children.Add(StorageDialogUi.CompactFields((LocExtension.Get(EmulationResourceKeys.Model), _model)));
+        {
+            drive.Children.Add(new TextBlock { Text = LocExtension.Get(EmulationResourceKeys.Model), Margin = new Thickness(0, 0, 0, 5) });
+            _model.Margin = new Thickness(0, 0, 0, 8);
+            drive.Children.Add(_model);
+        }
         if (options.CanConfigureBehavior)
         {
             drive.Children.Add(new TextBlock { Text = LocExtension.Get("Emulation.Storage.Floppy.Speed"), TextWrapping = TextWrapping.Wrap });
@@ -68,16 +77,20 @@ public sealed class FloppyDriveConfigurationDialog : Window
             if (options.CanRedirectWrites) drive.Children.Add(_redirectWrites);
         }
         var body = new StackPanel();
-        var driveCard = StorageDialogUi.IconCard(IconGlyphs.Memory, LocExtension.Get("Emulation.Storage.Floppy.Drive"), drive);
-        var groups = StorageConfigurationFieldFunctions.CreateGroups(configurationFields ?? [], moduleId, settings.Options, _fields);
-        body.Children.Add(groups.Children.Count == 0 ? driveCard : StorageDialogUi.SideBySide(driveCard, groups));
+        var driveCard = StorageDialogUi.IconCard(IconGlyphs.Memory, LocExtension.Get("Emulation.Storage.Floppy.Drive"), drive, compact: true);
+        var groups = StorageConfigurationFieldFunctions.CreateGroups(configurationFields ?? [], moduleId, settings.Options, _fields, compact: true);
+        body.Children.Add(groups.Children.Count == 0 ? driveCard : StorageDialogUi.CompactColumns(driveCard, groups));
+        var actions = new DockPanel { LastChildFill = false };
+        var footer = StorageDialogUi.Footer(this, LocExtension.Get("Common.Save"), compact: true);
+        DockPanel.SetDock(footer, Dock.Right); actions.Children.Add(footer);
         if (options.CanCreateBlankMedia)
         {
             var create = new Button
             {
                 Content = LocExtension.Get("Emulation.Storage.Floppy.CreateBlank"),
                 HorizontalAlignment = HorizontalAlignment.Left,
-                Margin = new Thickness(0, 14, 0, 0)
+                Margin = new Thickness(0, 4, 8, 4),
+                VerticalAlignment = VerticalAlignment.Center
             };
             create.Click += (_, _) =>
             {
@@ -87,46 +100,25 @@ public sealed class FloppyDriveConfigurationDialog : Window
                 { MessageBox.Show(this, error.Message, Title, MessageBoxButton.OK, MessageBoxImage.Warning); }
                 finally { create.IsEnabled = true; }
             };
-            var blankMedia = new StackPanel();
-            blankMedia.Children.Add(create);
-        body.Children.Add(StorageDialogUi.IconCard(IconGlyphs.FloppyDisk, LocExtension.Get("Emulation.Storage.Media.Blank"), blankMedia));
+            actions.Children.Add(create);
         }
 
-        Content = StorageDialogUi.DialogLayout( StorageDialogUi.DialogHeader(IconGlyphs.Memory, Title, $"{LocExtension.Get(EmulationResourceKeys.FloppyDevice)} · {machineName}"), new ScrollViewer { Content = body, VerticalScrollBarVisibility = ScrollBarVisibility.Auto, MaxHeight = SystemParameters.WorkArea.Height * StorageConfigurationLayoutConstants.BodyHeightRatio }, StorageDialogUi.Footer(this, LocExtension.Get("Common.Save")));
+        var root = StorageDialogUi.DialogLayout(StorageDialogUi.DialogHeader(IconGlyphs.Memory, Title, $"{LocExtension.Get(EmulationResourceKeys.FloppyDevice)} · {machineName}", compact: true), new ScrollViewer { Content = body, VerticalScrollBarVisibility = ScrollBarVisibility.Auto, HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled, MaxHeight = SystemParameters.WorkArea.Height * StorageConfigurationLayoutConstants.BodyHeightRatio }, actions);
+        root.Margin = new Thickness(12);
+        root.RowDefinitions[1].Height = new GridLength(1, GridUnitType.Star);
+        Content = root;
     }
 
     private void CreateBlankFloppy(FloppyDriveModelChoice model)
     {
-        var format = new ComboBox
+        var configuration = new FloppyCreationSettingsView(model, _options, _clientGuid);
+        Task CreateImage()
         {
-            ItemsSource = model.CreationFormats,
-            DisplayMemberPath = nameof(FloppyCreationFormatChoice.DisplayName),
-            SelectedItem = model.CreationFormats.OrderByDescending(choice => choice.Capacity).First()
-        };
-        var path = new TextBox { IsReadOnly = true };
-        var configuration = new StackPanel();
-        configuration.Children.Add(StorageDialogUi.CompactFields((LocExtension.Get(MediaCreationConstants.FormatLabel), format)));
-        MediaCreationDialog? creation = null;
-        configuration.Children.Add(StorageDialogUi.PathField(LocExtension.Get(MediaCreationConstants.DestinationLabel), path, () =>
-        {
-            var selected = (FloppyCreationFormatChoice)format.SelectedItem;
-            var browse = new SaveFileDialog
-            {
-                Filter = $"{selected.DisplayName}|*{selected.Extension}",
-                DefaultExt = selected.Extension,
-                AddExtension = true,
-                InitialDirectory = Directory.Exists(_options.ImageDirectory) ? _options.ImageDirectory : string.Empty,
-                ClientGuid = _clientGuid,
-                FileName = string.IsNullOrWhiteSpace(path.Text) ? MediaCreationConstants.BlankFileName + selected.Extension : Path.ChangeExtension(Path.GetFileName(path.Text), selected.Extension)
-            };
-            if (browse.ShowDialog(creation!) == true) path.Text = browse.FileName;
-        }));
-        format.SelectionChanged += (_, _) =>
-        {
-            if (!string.IsNullOrWhiteSpace(path.Text)) path.Text = Path.ChangeExtension(path.Text, ((FloppyCreationFormatChoice)format.SelectedItem).Extension);
-        };
-        creation = new MediaCreationDialog(this, LocExtension.Get("Emulation.Storage.Floppy.CreateBlank"), configuration,
-            () => path.Text, () => EmulationSdk.MediaProcessing.CreateBlankDiskAsync(path.Text, ((FloppyCreationFormatChoice)format.SelectedItem).FormatId));
+            var selected = configuration.SelectedFormat ?? throw new InvalidOperationException(LocExtension.Get("Emulation.Hdd.InvalidFormat"));
+            return EmulationSdk.MediaProcessing.CreateBlankDiskAsync(configuration.DestinationPath, selected.FormatId);
+        }
+        var creation = new MediaCreationDialog(this, LocExtension.Get("Emulation.Storage.Floppy.CreateBlank"), configuration,
+            () => configuration.DestinationPath, CreateImage, () => configuration.IsComplete);
         try
         {
             if (creation.ShowDialog() == true)

@@ -17,7 +17,7 @@
   <data name="Emulation.Storage.Cd.Drive"><value>כונן CD</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>מספר כונני תקליטונים</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>מספר כוננים קשיחים</value></data>
-  <data name="Emulation.Storage.Floppy.Speed"><value>מהירות הנהיגה Floppy-Drive</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>מהירות כונן התקליטונים הזה</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>תמונות מרופפיות הגנה</value></data>
   <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Redirect floppy כותב</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>מהירות CD</value></data>
@@ -93,4 +93,12 @@
   <data name="Emulation.Storage.Media.AlreadyExists"><value>קובץ זה כבר קיים.בחר קובץ תמונה חדש: {0}</value></data>
   <data name="Emulation.Storage.Sound.Volume"><value>נפח</value></data>
   <data name="Emulation.Storage.Sound.Group"><value>מכשיר אחסון נשמע</value></data>
+  <data name="Emulation.Storage.Floppy.Format"><value>פורמט תקליטון</value></data>
+  <data name="Emulation.Storage.Floppy.OneSide"><value>צד אחד</value></data>
+  <data name="Emulation.Storage.Floppy.TwoSides"><value>שני צדדים</value></data>
+  <data name="Emulation.Storage.Floppy.Tracks"><value>{0} מסילות בכל צד</value></data>
+  <data name="Emulation.Storage.Floppy.SingleDensity"><value>צפיפות יחידה</value></data>
+  <data name="Emulation.Storage.Floppy.DoubleDensity"><value>צפיפות כפולה</value></data>
+  <data name="Emulation.Storage.File.Destination"><value>קובץ היעד</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFormat"><value>פורמט קובץ תמונת דיסק</value></data>
 </root>

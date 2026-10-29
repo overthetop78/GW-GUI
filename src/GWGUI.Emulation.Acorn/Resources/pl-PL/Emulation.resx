@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>Karta rozszerzająca pamięć ROM brak. Wybierz jego plik w RAM zakładka ustawień maszyny.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Wybierz oprogramowanie sterujące dla tej ekspansji pamięci z wykrytych plików lub przeglądaj kompatybilny plik. Nie wczytywany jest plik, gdy ścieżka jest pusta.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Pamięć boczna</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Moduły pamięci bankowej</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Karta rozszerzeń</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Gniazda czipów ekspansyjnych</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Moduły te dodają pamięć bankową bez zwiększania przestrzeni głównego adresu pamięci. Wybierz obrazy chipów w gniazdach rozszerzających, aby określić ich zawartość. Wcześniej wybrane oprogramowanie firmowe pozostaje w użyciu, dopóki jego gniazdo nie otrzyma wyraźnego obrazu chipowego.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Wizerunek chipu "{0}"ma niekompatybilny rozmiar. Oczekiwany: {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Karty rozszerzenia pamięci</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Pojemność dodatkowej pamięci</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: Niepowtarzalny numer stacji.  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Każda stacja potrzebuje innego numeru. To ustawienie zastępuje sprzętowe skoczki w prawdziwym interfejsie. Użyj klawiszy strzałek w górę i w dół, aby zmienić liczbę.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Częstotliwość zegara emulowanego interfejsu sieciowego.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>Zegar kontroluje czas emulowania interfejsu. Różne ustawienia zegara nie blokują komunikacji między emulatorami.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Wybierz sposób połączenia tej stacji z siecią.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Odłączony: interfejs jest zainstalowany bez połączenia sieciowego. &#xA;UDP: Bezpośrednia wymiana ramek sieciowych między kompatybilnymi emulatorami. Użyj tego trybu pomiędzy dwoma emulowanymi maszynami. &#xA;AUN: Kolejny protokół sieciowy dla kompatybilnych serwerów i emulatorów. Oba końce muszą być tego samego protokołu.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: Adres podsłuchowy tego komputera.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: Łączy emulatory działające na tym komputerze. &#xA;Dla sieci lokalnej, użyj adresu przypisanego do tego komputera. &#xA;0.0.0.0: Posłuchaj wszystkich interfejsów sieciowych tego komputera. &#xA;Wprowadź adresy innych komputerów w polu zdalnych stacji. Nazwy i adresy innych komputerów nie są tu akceptowane.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>Port nasłuchu UDP tego komputera, 1–65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>Początkowy port to:  32768. Emulatorzy posiadający ten sam adres odsłuchowy potrzebują różnych portów.  32768 / 32769. Użyj klawiszy strzałek w górę i w dół, aby zmienić wartość. Stacje zdalne muszą określać port docelowy.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Mapa zdalnych numerów stacji do adresów sieciowych i portów.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;Ten przykład dotyczy stacji 3 w sieci 0, uruchomionej na tym komputerze w porcie 32769. Oddzielne wpisy z średnikami lub przerwami w linii. Dla innego komputera użyj jego adresu w sieci lokalnej. Konfiguracja odpowiedniego wpisu powrotnego na drugiej stacji.</value></data>
 </root>

@@ -12,4 +12,7 @@
   <data name="Emulation.Firmware.Official"><value>Resmi</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Tidak kompatibel</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>Sampel suara</value></data>
+  <data name="Emulation.Firmware.Select"><value>Pilih sebuah berkas</value></data>
+  <data name="Emulation.Firmware.Empty"><value>Folder ini kosong.</value></data>
+  <data name="Emulation.Firmware.NotSelected"><value>Tidak ada yang dipilih.</value></data>
 </root>

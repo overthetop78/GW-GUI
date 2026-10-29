@@ -12,4 +12,7 @@
   <data name="Emulation.Firmware.Official"><value>Officiel</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Ikke kompatibel</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>Stemmeprøver</value></data>
+  <data name="Emulation.Firmware.Select"><value>Vælg en fil</value></data>
+  <data name="Emulation.Firmware.Empty"><value>Denne mappe er tom.</value></data>
+  <data name="Emulation.Firmware.NotSelected"><value>Intet er blevet valgt.</value></data>
 </root>

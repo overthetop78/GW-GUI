@@ -89,6 +89,7 @@ internal sealed partial class EmulationModuleSettingsSection
 
     private static string? ReadValue(FrameworkElement control) => control switch
     {
+        GWGUI.App.Views.Controls.Common.ConstrainedTextBox input => input.CommittedValue,
         Button { Tag: string directory } => directory,
         TextBox text => text.Text,
         Grid { Tag: TextBox path } => path.Text,

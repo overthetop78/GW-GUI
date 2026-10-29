@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>A memóriakártya ROM hiányzik. Válassza ki a fájlt a RAM a gép beállításainak füle.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Válassza ki a vezérlő szoftvert ehhez a memóriához a talált fájlokból, vagy keressen kompatibilis fájlt. Nincs betöltve fájl, ha az útvonal üres.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Oldalirányú memória</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Bankjegyes memóriamodulok</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Bővítőkártya</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Expanziós chip foglalatok</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Ezek a modulok a memóriakártya-címek számának növelése nélkül is feltöltenek egy bankett memóriát. Válassza ki a chip képeket a bővítési foglalatokban a tartalmuk meghatározásához. A kiválasztott egyéni firmware addig marad használatban, amíg a foglalat nem kap egy explicit chip képet.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Chip image "{0}"összeegyeztethetetlen a mérete. {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Memóriabővítő kártyák</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Kiegészítő memória kapacitása</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: Egyedi állomás száma.  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Minden állomásnak más számra van szüksége. Ez a beállítás helyettesíti a hardveres ugrókat az igazi csatolófelületen. Használja a fel és le nyilakkal változtatni a számot.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Az emulált hálózati interfész órajel-frekvenciája.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>Az óra szabályozza az emulált felület időzítését. A különböző órábeállítások nem gátolják az emulátorok közötti kommunikációt.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Válassza ki, hogy ez az állomás hogyan kapcsolódik a hálózathoz.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Kikapcsolás: az interfész hálózati kapcsolat nélkül van telepítve. &#xA;UDP: Hálózati keretek közvetlen cseréje kompatibilis emulátorok között. Ezt az üzemmódot használja két emulált gép között. &#xA;AUN: Egy másik hálózati protokoll kompatibilis szerverekre és emulátorokra. Mindkét végnek ugyanazt a protokollt kell alkalmaznia.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: Ennek a számítógépnek a lehallgató címe.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: Összekapcsolja az emulátorokat ezen a számítógépen. &#xA;Helyi hálózathoz használja a számítógéphez rendelt címet. &#xA;0.0.0.0: Hallgassa meg a számítógép összes hálózati interfészét. &#xA;Adja meg más számítógépek címét a távoli állomások mezőben. A többi számítógép neve és címe itt nem fogadható el.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>A számítógép UDP-figyelőportja, 1–65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>A kezdeti kikötő:  32768. Az azonos hallgatási című emulátoroknak különböző kikötőkre van szükségük.  32768 / 32769. Használja a fel és le nyilakkal változtatni az értéket. A távoli állomásoknak meg kell határozniuk a célkikötőt.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Térkép távoli állomás számok hálózati címek és portok.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;Ez a példa a 3-as állomást érinti a 0-as hálózaton, ezen a számítógépen fut a 32769-es kikötőben. Különálló bejegyzések szemikolonokkal vagy vonaltörésekkel. Egy másik számítógéphez használja a címét a helyi hálózaton. Állítsa be a megfelelő visszatérési bejegyzést a másik állomáson.</value></data>
 </root>

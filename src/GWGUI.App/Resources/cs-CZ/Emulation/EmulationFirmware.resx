@@ -12,4 +12,7 @@
   <data name="Emulation.Firmware.Official"><value>Oficiální</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Nekompatibilní</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>Vzorky hlasu</value></data>
+  <data name="Emulation.Firmware.Select"><value>Vybrat soubor</value></data>
+  <data name="Emulation.Firmware.Empty"><value>Tato složka je prázdná.</value></data>
+  <data name="Emulation.Firmware.NotSelected"><value>Nic nebylo vybráno.</value></data>
 </root>

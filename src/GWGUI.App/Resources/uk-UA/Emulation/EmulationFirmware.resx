@@ -12,4 +12,7 @@
   <data name="Emulation.Firmware.Official"><value>Офіційна</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Несумісна</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>Голосові зразки</value></data>
+  <data name="Emulation.Firmware.Select"><value>Виберіть файл</value></data>
+  <data name="Emulation.Firmware.Empty"><value>Ця папка пуста.</value></data>
+  <data name="Emulation.Firmware.NotSelected"><value>Нічого не вибрано.</value></data>
 </root>

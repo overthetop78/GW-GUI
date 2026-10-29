@@ -12,4 +12,7 @@
   <data name="Emulation.Firmware.Official"><value>Officieel</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Niet compatibel</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>Stemmonsters</value></data>
+  <data name="Emulation.Firmware.Select"><value>Een bestand selecteren</value></data>
+  <data name="Emulation.Firmware.Empty"><value>Deze map is leeg.</value></data>
+  <data name="Emulation.Firmware.NotSelected"><value>Er is niets geselecteerd.</value></data>
 </root>

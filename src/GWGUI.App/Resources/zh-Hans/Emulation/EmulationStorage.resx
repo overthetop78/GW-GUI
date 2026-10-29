@@ -17,7 +17,7 @@
   <data name="Emulation.Storage.Cd.Drive"><value>CD 驱动器</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>软盘驱动器数量</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>硬盘数量</value></data>
-  <data name="Emulation.Storage.Floppy.Speed"><value>软盘驱动器速度</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>此软盘驱动器的速度</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>软盘映像写保护</value></data>
   <data name="Emulation.Storage.Floppy.WriteRedirect"><value>重定向软盘写入</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>CD 速度</value></data>
@@ -93,4 +93,12 @@
   <data name="Emulation.Storage.Media.AlreadyExists"><value>此文件已经存在。 选择新图像文件 : {0}</value></data>
   <data name="Emulation.Storage.Sound.Volume"><value>音量</value></data>
   <data name="Emulation.Storage.Sound.Group"><value>存储设备声音</value></data>
+  <data name="Emulation.Storage.Floppy.Format"><value>软盘格式</value></data>
+  <data name="Emulation.Storage.Floppy.OneSide"><value>单面</value></data>
+  <data name="Emulation.Storage.Floppy.TwoSides"><value>双面</value></data>
+  <data name="Emulation.Storage.Floppy.Tracks"><value>每面 {0} 磁道</value></data>
+  <data name="Emulation.Storage.Floppy.SingleDensity"><value>单密度</value></data>
+  <data name="Emulation.Storage.Floppy.DoubleDensity"><value>双密度</value></data>
+  <data name="Emulation.Storage.File.Destination"><value>目标文件</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFormat"><value>磁盘映像文件格式</value></data>
 </root>

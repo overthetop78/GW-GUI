@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>hafıza genişleme kartı ROM Kayıptır. Dosyasını ekranda seçin RAM Makine ayarlarının sekmesi.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Bu hafıza genişlemesi için kontrol yazılımı tespit edilen dosyalardan seçin veya uyumlu bir dosya arayın. Yol boş olduğunda hiçbir dosya yüklenemez.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Sideways memory</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Bankalı hafıza modülleri</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Genişletme kartı</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Genişlemeli soketler</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Bu modüller ana bellek adresini alanı artırmak olmadan banka hafıza ekler. Genişleme soketlerinde içeriklerini tanımlamak için çipleri seçin. önce seçilmiş bireysel bilgisayar, soketi açık bir çip görüntüsü alana kadar kullanımda kalır.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Chip image{0}"Farklı bir boyuta sahiptir. Beklenmiş: {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Bellek genişletme kartları</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Ek bellek kapasitesi</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: Benzersiz istasyon numarası.  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Her istasyon farklı bir sayıya ihtiyaç duyar. Bu ayar gerçek arayüzdeki donanım atlayıcılarını değiştirir. numarayı değiştirmek için yukarı ve aşağı ok anahtarlarını kullanın.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Öykünülen ağ arayüzünün saat frekansı.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>Saat, emated arayüzün zamanlamayı kontrol eder. Farklı saat ayarları, emülatörler arasında iletişim kurmaz.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Bu istasyonun ağa nasıl bağlandığını seçin.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Bağlanma: arayüz bir ağ bağlantısı olmadan kurulur. &#xA;UDP: Uyumlu emülatörler arasındaki ağ çerçevelerinin doğrudan değişimi. Bu modu iki emated makine arasında kullanın. &#xA;AUN: Uyumlu sunucular ve emülatörler için başka bir ağ protokolü. Her ikisi de aynı protokolü kullanmalıdır.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: Bu bilgisayarın dinleme adresi.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: Connects bu bilgisayarda çalışan emülatörler. &#xA;Yerel bir ağ için, bu bilgisayara atanan bir adres kullanın. &#xA;0.0.0.0: Bu bilgisayarın tüm ağ arayüzlerini dinleyin. &#xA;Uzak istasyon alanında diğer bilgisayarların adreslerini girin. Diğer bilgisayarların ev sahibi isimleri ve adresleri burada kabul edilmez.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>Bu bilgisayarın UDP dinleme portu, 1–65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>İlk liman:  32768. Aynı dinleme adresini paylaşan tarihçiler farklı limanlara ihtiyaç duyar.  32768 / 32769. Değeri değiştirmek için yukarı ve aşağı ok anahtarlarını kullanın. Uzak istasyonlar varış limanını belirtmelidir.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Uzak istasyon numaralarını ağ adresleri ve portlarla eşleştirir.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;Bu örnek, istasyon 3'ü ağ 0'da ele alır, 32769 port'da bu bilgisayar üzerinde çalışır. Yarı sömürgeler veya çizgi molaları ile ayrı girişler. Başka bir bilgisayar için, adresini yerel ağda kullanın. Diğer istasyondaki ilgili geri dönüş girişini yapılandırın.</value></data>
 </root>

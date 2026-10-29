@@ -19,4 +19,7 @@
   <data name="Emulation.Firmware" xml:space="preserve"><value>Firmware</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>Voice samples</value></data>
   <data name="Emulation.Acorn.Firmware.Dfs"><value>DFS / ADFS ROM</value></data>
+  <data name="Emulation.Firmware.Select"><value>Select a ROM</value></data>
+  <data name="Emulation.Firmware.Empty"><value>No ROM found in this folder.</value></data>
+  <data name="Emulation.Firmware.NotSelected"><value>No ROM selected</value></data>
 </root>

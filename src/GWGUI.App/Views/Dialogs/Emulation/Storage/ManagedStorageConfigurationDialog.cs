@@ -22,10 +22,12 @@ internal sealed class ManagedStorageConfigurationDialog : Window
         Title = LocExtension.Get(EmulationResourceKeys.StorageDeviceConfigure) + " " + identifier;
         Owner = Application.Current?.Windows.OfType<Window>().FirstOrDefault(window => window.IsActive);
         ShowInTaskbar = false; WindowStartupLocation = WindowStartupLocation.CenterOwner;
+        StorageDialogUi.CompactAppearance(this);
         var groups = blocks?.Where(block => block.IsVisible).ToArray() ?? [new EmulationSettingsBlock(string.Empty, EmulationMachineTab.Storage, string.Empty, fields)];
         Width = groups.Length > 1 ? C.GroupedWidth : C.ManagedWidth;
         MaxWidth = SystemParameters.WorkArea.Width * C.WorkAreaWidthRatio; MinWidth = C.MinimumWidth;
-        MaxHeight = SystemParameters.WorkArea.Height * C.WorkAreaHeightRatio; SizeToContent = SizeToContent.Height;
+        MaxHeight = Math.Min(C.CompactMaximumHeight, SystemParameters.WorkArea.Height * C.WorkAreaHeightRatio);
+        MinHeight = C.CompactMinimumHeight; SizeToContent = SizeToContent.Height;
         var body = new StackPanel();
         if (!string.IsNullOrWhiteSpace(explanation)) body.Children.Add(StorageDialogUi.Info(explanation));
         var grid = new Grid();
@@ -34,32 +36,11 @@ internal sealed class ManagedStorageConfigurationDialog : Window
         foreach (var block in groups)
         {
             var columns = Math.Clamp(block.Columns, 1, C.MaximumColumns);
-            var content = new Grid();
-            for (var column = 0; column < columns; column++) content.ColumnDefinitions.Add(new ColumnDefinition());
-            var index = 0;
-            foreach (var field in block.Fields.Where(field => field.IsVisible))
-            {
-                var control = StorageConfigurationFieldFunctions.Create(field, moduleId, values);
-                _controls[field.Id] = control;
-                var row = new StackPanel { Margin = new Thickness(0, 3, 10, block.IsCompact ? 7 : 10) };
-                var label = LocExtension.GetForModule(moduleId, field.LabelResourceKey);
-                if (control is CheckBox check) check.Content = label;
-                else row.Children.Add(new TextBlock { Text = label, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 4) });
-                if (field.ExplanationResourceKey is { } help) control.ToolTip = LocExtension.GetForModule(moduleId, help);
-                if (field.NumericRange?.IsVertical == true)
-                {
-                    control.HorizontalAlignment = HorizontalAlignment.Left;
-                    control.Width = C.VerticalFieldWidth;
-                }
-                row.Children.Add(control);
-                var position = index / columns;
-                if (position >= content.RowDefinitions.Count) content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-                Grid.SetRow(row, position); Grid.SetColumn(row, index % columns); content.Children.Add(row); index++;
-            }
+            var content = StorageConfigurationFieldFunctions.CompactGroup(block.Fields, moduleId, values, _controls, columns);
             var title = string.IsNullOrWhiteSpace(block.TitleResourceKey) ? model : LocExtension.GetForModule(moduleId, block.TitleResourceKey);
             cards.Add((block, block.IsCollapsible
-                ? StorageDialogUi.Card(string.Empty, new Expander { Header = title, Content = content })
-                : StorageDialogUi.Card(title, content)));
+                ? StorageDialogUi.Card(string.Empty, new Expander { Header = title, Content = content, IsExpanded = false }, compact: true)
+                : StorageDialogUi.Card(title, content, compact: true)));
         }
         FrameworkElement[] visibleCards = [];
         void RefreshGroups()
@@ -86,14 +67,14 @@ internal sealed class ManagedStorageConfigurationDialog : Window
         grid.AddHandler(ToggleButton.UncheckedEvent, new RoutedEventHandler((_, _) => RefreshGroups()));
         grid.AddHandler(Selector.SelectionChangedEvent, new SelectionChangedEventHandler((_, _) => RefreshGroups()));
         RefreshGroups();
-        var root = new Grid { Margin = new Thickness(18) };
+        var root = new Grid { Margin = new Thickness(12) };
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         root.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        root.Children.Add(StorageDialogUi.DialogHeader(IconGlyphs.Settings, Title, model));
+        root.Children.Add(StorageDialogUi.DialogHeader(IconGlyphs.Settings, Title, model, compact: true));
         var scroll = new ScrollViewer { Content = body, VerticalScrollBarVisibility = ScrollBarVisibility.Auto, HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled };
         Grid.SetRow(scroll, 1); root.Children.Add(scroll);
-        var footer = StorageDialogUi.Footer(this, LocExtension.Get(EmulationResourceKeys.CommonSave));
+        var footer = StorageDialogUi.Footer(this, LocExtension.Get(EmulationResourceKeys.CommonSave), compact: true);
         Grid.SetRow(footer, 2); root.Children.Add(footer); Content = root;
     }
 }

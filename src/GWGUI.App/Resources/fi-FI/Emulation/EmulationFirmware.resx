@@ -12,4 +12,7 @@
   <data name="Emulation.Firmware.Official"><value>Virallinen</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Yhteensopimaton</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>Ääninäytteet</value></data>
+  <data name="Emulation.Firmware.Select"><value>Valitse tiedosto</value></data>
+  <data name="Emulation.Firmware.Empty"><value>Tämä kansio on tyhjä.</value></data>
+  <data name="Emulation.Firmware.NotSelected"><value>Mitään ei ole valittu.</value></data>
 </root>

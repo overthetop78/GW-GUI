@@ -17,7 +17,7 @@
   <data name="Emulation.Storage.Cd.Drive"><value>Unità CD</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>Numero di unità floppy</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>Numero di dischi rigidi</value></data>
-  <data name="Emulation.Storage.Floppy.Speed"><value>Velocità unità floppy</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Velocità di questa unità floppy</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>Proteggi le immagini floppy dalla scrittura</value></data>
   <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Reindirizza le scritture su floppy</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>Velocità CD</value></data>
@@ -93,4 +93,12 @@
   <data name="Emulation.Storage.Media.AlreadyExists"><value>Questo file esiste già. Scegli un nuovo file immagine: {0}</value></data>
   <data name="Emulation.Storage.Sound.Volume"><value>Volume</value></data>
   <data name="Emulation.Storage.Sound.Group"><value>Suoni del dispositivo di memorizzazione</value></data>
+  <data name="Emulation.Storage.Floppy.Format"><value>Formato del dischetto</value></data>
+  <data name="Emulation.Storage.Floppy.OneSide"><value>1 faccia</value></data>
+  <data name="Emulation.Storage.Floppy.TwoSides"><value>2 facce</value></data>
+  <data name="Emulation.Storage.Floppy.Tracks"><value>{0} tracce per faccia</value></data>
+  <data name="Emulation.Storage.Floppy.SingleDensity"><value>Densità singola</value></data>
+  <data name="Emulation.Storage.Floppy.DoubleDensity"><value>Doppia densità</value></data>
+  <data name="Emulation.Storage.File.Destination"><value>File di destinazione</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFormat"><value>Formato del file immagine</value></data>
 </root>

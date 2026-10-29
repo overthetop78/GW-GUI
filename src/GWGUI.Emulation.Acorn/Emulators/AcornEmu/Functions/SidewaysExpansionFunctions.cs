@@ -48,7 +48,7 @@ internal static class SidewaysExpansionFunctions
     /// <summary>Banque physique d'un rôle installé avant l'extension.</summary>
     internal static int NativeBank(MachineConfiguration configuration, int bank) => Read(configuration).MapNativeBank(bank);
 
-    /// <summary>Champ RAM ; son nombre d'octets est fourni au calcul commun du total.</summary>
+    /// <summary>Choix du matériel installé, indépendant de l'affichage de sa capacité RAM.</summary>
     internal static EmulationSettingsBlock Describe(MachineConfiguration configuration)
     {
         _ = Read(configuration);
@@ -60,8 +60,18 @@ internal static class SidewaysExpansionFunctions
         if (BbcMicroMemoryFunctions.ModelABytes(configuration) == BbcMicroModelConstants.ThirtyTwoKibibytes)
             foreach (var model in C.AriesModels)
                 choices.Add(new(model.Key, string.Empty, string.Format(CultureInfo.InvariantCulture, C.AriesDisplayFormat, model.Value / SettingsConstants.Kibibyte), model.Value));
+        return new(C.ExtensionGroup, EmulationMachineTab.Extensions, C.ExtensionGroup,
+            [new(C.Option, EmulationMachineTab.Extensions, C.ExtensionGroup, C.CardLabel, EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(C.Option, C.None), choices, ExplanationResourceKey: C.Help, RequiresRestart: true, RefreshSettingsOnChange: true)]);
+    }
+
+    /// <summary>La RAM physique ajoutée est comptée une seule fois, dans l'onglet RAM.</summary>
+    internal static EmulationSettingsBlock DescribeRam(MachineConfiguration configuration)
+    {
+        var settings = Read(configuration);
         return new(C.Group, EmulationMachineTab.Ram, C.Group,
-            [new(C.Option, EmulationMachineTab.Ram, C.Group, C.CardLabel, EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(C.Option, C.None), choices, ExplanationResourceKey: C.Help, RequiresRestart: true, RefreshSettingsOnChange: true)]);
+            [new(C.RamCapacity, EmulationMachineTab.Ram, C.Group, C.RamCapacity, EmulationSettingsEditor.Information,
+                string.Create(CultureInfo.InvariantCulture, $"{settings.RamBytes / SettingsConstants.Kibibyte} KiB"), NumericValue: settings.RamBytes)],
+            IsVisible: settings.Modules > 0 || settings.AriesB12);
     }
 
     /// <summary>Un chemin par puce, uniquement pour les supports utilisés ; les chemins retirés restent enregistrés.</summary>

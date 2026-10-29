@@ -12,4 +12,7 @@
   <data name="Emulation.Firmware.Official"><value>Ufficiale</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Non compatibile</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>Campioni di voce</value></data>
+  <data name="Emulation.Firmware.Select"><value>Selezionare un file</value></data>
+  <data name="Emulation.Firmware.Empty"><value>Questa cartella è vuota.</value></data>
+  <data name="Emulation.Firmware.NotSelected"><value>Non è stato selezionato nulla.</value></data>
 </root>

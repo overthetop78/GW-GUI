@@ -17,7 +17,7 @@
   <data name="Emulation.Storage.Cd.Drive"><value>Unitate CD</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>Număr de unități de dischetă</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>Număr de discuri fixe</value></data>
-  <data name="Emulation.Storage.Floppy.Speed"><value>Viteza de deplasare a motorului</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Viteza acestei unități de dischetă</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>Imagini dischete cu protecție de scriere</value></data>
   <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Redirectează scrierea floppy</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>Viteză CD</value></data>
@@ -93,4 +93,12 @@
   <data name="Emulation.Storage.Media.AlreadyExists"><value>Acest fișier există deja. Alegeți un fișier de imagine nou: {0}</value></data>
   <data name="Emulation.Storage.Sound.Volume"><value>Volum</value></data>
   <data name="Emulation.Storage.Sound.Group"><value>Sunete ale dispozitivului de stocare</value></data>
+  <data name="Emulation.Storage.Floppy.Format"><value>Formatul dischetei</value></data>
+  <data name="Emulation.Storage.Floppy.OneSide"><value>1 față</value></data>
+  <data name="Emulation.Storage.Floppy.TwoSides"><value>2 fețe</value></data>
+  <data name="Emulation.Storage.Floppy.Tracks"><value>{0} piste pe față</value></data>
+  <data name="Emulation.Storage.Floppy.SingleDensity"><value>Densitate simplă</value></data>
+  <data name="Emulation.Storage.Floppy.DoubleDensity"><value>Densitate dublă</value></data>
+  <data name="Emulation.Storage.File.Destination"><value>Fișier de destinație</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFormat"><value>Formatul fișierului imagine</value></data>
 </root>

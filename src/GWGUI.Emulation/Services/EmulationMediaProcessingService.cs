@@ -7,8 +7,6 @@ namespace GWGUI.Emulation.Services;
 /// <summary>Relie les contrats média des modules à MediaEngine, sans exposer ses types dans le SDK public.</summary>
 internal sealed partial class EmulationMediaProcessingService : IEmulationMediaProcessing
 {
-    public IReadOnlyList<FloppyDriveModelChoice> FloppyDriveModels(string family, bool doubleDensity) => Preparation.FloppyDriveModels(family, doubleDensity).Select(model => new FloppyDriveModelChoice(model.Id, string.Empty, model.DisplayName, model.Capacity) { BlankFormats = model.BlankFormats, AcceptedExtensions = model.AcceptedExtensions, CreationFormats = model.CreationFormats.Select(format => new FloppyCreationFormatChoice(format.FormatId, format.Extension, format.DisplayName, format.Capacity)).ToArray() }).ToArray();
-    public bool SupportsFloppyImage(string model, IEmulationDiskImage image) => Preparation.SupportsFloppyImage(model, image.Cylinders, image.Heads, image.SectorSize, image.SectorsPerTrack, image.SectorCount);
     /// <inheritdoc/>
     public IReadOnlyList<string> CassetteRecordingExtensions => Preparation.CassetteRecordingExtensions;
     /// <inheritdoc/>

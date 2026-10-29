@@ -17,7 +17,7 @@
   <data name="Emulation.Storage.Cd.Drive"><value>CD sürücüsü</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>Disket sürücüsü sayısı</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>Sabit disk sayısı</value></data>
-  <data name="Emulation.Storage.Floppy.Speed"><value>Disket sürücüsü hızı</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Bu disket sürücüsünün hızı</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>Disket görüntülerini yazmaya karşı koru</value></data>
   <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Disket yazmalarını yönlendir</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>CD hızı</value></data>
@@ -93,4 +93,12 @@
   <data name="Emulation.Storage.Media.AlreadyExists"><value>Bu dosya zaten var. Yeni bir görüntü dosyası seçin: {0}</value></data>
   <data name="Emulation.Storage.Sound.Volume"><value>Cilt Cilt</value></data>
   <data name="Emulation.Storage.Sound.Group"><value>Storage device sesler sesler</value></data>
+  <data name="Emulation.Storage.Floppy.Format"><value>Disket biçimi</value></data>
+  <data name="Emulation.Storage.Floppy.OneSide"><value>1 yüz</value></data>
+  <data name="Emulation.Storage.Floppy.TwoSides"><value>2 yüz</value></data>
+  <data name="Emulation.Storage.Floppy.Tracks"><value>Yüz başına {0} iz</value></data>
+  <data name="Emulation.Storage.Floppy.SingleDensity"><value>Tek yoğunluk</value></data>
+  <data name="Emulation.Storage.Floppy.DoubleDensity"><value>Çift yoğunluk</value></data>
+  <data name="Emulation.Storage.File.Destination"><value>Hedef dosya</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFormat"><value>Disk görüntüsü dosya biçimi</value></data>
 </root>

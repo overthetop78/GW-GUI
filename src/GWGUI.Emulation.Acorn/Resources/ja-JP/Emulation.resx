@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>メモリ拡張カード ROM 欠落しています。 ファイルの選択 RAM マシン設定のタブ。</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>検出されたファイルからこのメモリ拡張用の制御ソフトウェアを選択するか、互換性のあるファイルを参照します。パスが空の場合、ファイルが読み込まれません。</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>サイドウェイメモリ</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>銀行メモリモジュール</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>拡張カード</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>拡張チップソケット</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>これらのモジュールは、メインメモリアドレススペースを増加させることなく、銀行メモリを追加します。 拡張ソケットのチップ画像を選択して、そのコンテンツを定義します。 以前の選択された個々のファームウェアは、ソケットが明示的なチップイメージを受信するまで使用中に残っています。</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>チップイメージ '{0}' は互換性のないサイズを持っています。期待: {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>メモリ拡張カード</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>追加メモリ容量</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet のステーション番号。1～254。</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>各駅は異なる番号が必要です。 この設定は、ハードウェアのジャンパーを実際のインターフェイスに置き換えます。 上下矢印キーを使用して数字を変更します。</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>エミュレートされたネットワークインターフェイスのクロック周波数。</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>クロックは、エミュレートされたインターフェースのタイミングを制御します。異なるクロック設定は、エミュレータ間の通信をブロックしません。</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>このステーションがネットワークに接続する方法を選択します。</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>接続解除:ネットワーク接続なしでインターフェイスがインストールされます。 &#xA;UDP: 互換性のあるエミュレータ間のネットワークフレームの直接交換。 2つのエミュレートされた機械間のこのモードを使用して下さい。 &#xA;AUN: 互換サーバーおよびエミュレーターのための別のネットワーク プロトコル。 両端は同じプロトコルを使用する必要があります。</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: このコンピューターのリスニングアドレス。</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: このコンピュータ上で動作するエミュレータを接続します。. &#xA;ローカルネットワークでは、このコンピュータに割り当てられたアドレスを使用します。 &#xA;0.0.0.0: このコンピューターのすべてのネットワーク インターフェイスをオンにします。 &#xA;リモートステーションフィールドに他のコンピューターのアドレスを入力します。 他のコンピューターのホスト名やアドレスは、こちらでは受け付けていません。</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>このコンピューターのUDP待ち受けポート。1～65535。</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>初期ポートは:  32768. 同じリスニングアドレスを共有するエミュレータは、異なるポートを必要とします。  32768 / 32769. 上下矢印キーを使用して、値を変更します。 リモートステーションは、宛先ポートを指定する必要があります。</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>リモートステーション番号をネットワークアドレスやポートにマップします。</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;この例では、ポート32769でこのコンピュータ上で動作するネットワーク0でステーション3をアドレスします。 セミコロンまたはラインブレイクで区切られたエントリ。 別のコンピューターでは、ローカルネットワーク上のアドレスを使用します。 他のステーションで対応する戻りエントリを設定します。</value></data>
 </root>

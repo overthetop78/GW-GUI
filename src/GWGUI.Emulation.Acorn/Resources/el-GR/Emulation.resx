@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>Η κάρτα επέκτασης μνήμης ROM λείπει. Επιλέξτε το αρχείο του στο RAM καρτέλα των ρυθμίσεων του μηχανήματος.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Επιλέξτε το λογισμικό ελέγχου για αυτή την επέκταση μνήμης από τα αρχεία που ανιχνεύθηκαν, ή περιηγηθείτε σε ένα συμβατό αρχείο. Κανένα αρχείο δεν φορτώνεται όταν η διαδρομή είναι κενή.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Μνήμη πλευρικών διαδρομών</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Μονάδες τραπέζης μνήμης</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Κάρτα επέκτασης</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Υποδοχές τσιπ επέκτασης</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Αυτές οι ενότητες προσθέτουν τραπεζικές μνήμες χωρίς να αυξάνουν τον κύριο χώρο διευθύνσεων μνήμης. Επιλέξτε εικόνες τσιπ στις υποδοχές επέκτασης για να ορίσετε το περιεχόμενό τους. Το προηγούμενο επιλεγμένο μεμονωμένο firmware παραμένει σε χρήση μέχρι η υποδοχή του να λάβει μια σαφή εικόνα τσιπ.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Εικόνα τσιπ '{0}\" έχει ασύμβατο μέγεθος. {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Κάρτες επέκτασης μνήμης</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Χωρητικότητα πρόσθετης μνήμης</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: Μοναδικός αριθμός σταθμού.  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Κάθε σταθμός χρειάζεται διαφορετικό αριθμό. Αυτή η ρύθμιση αντικαθιστά τους άλτες υλικού στην πραγματική διασύνδεση. Χρησιμοποιήστε τα πάνω και κάτω βελάκια για να αλλάξετε τον αριθμό.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Συχνότητα ρολογιού της εξομοιωμένης διεπαφής δικτύου.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>Το ρολόι ελέγχει το χρονισμό της εικονιζόμενης διεπαφής. Διαφορετικές ρυθμίσεις ⁇ ολογιού δεν εμποδίζουν την επικοινωνία μεταξύ εξομοιωτών.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Επιλέξτε πώς αυτός ο σταθμός συνδέεται με το δίκτυο.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Αποσυνδεδεμένη: η διεπαφή είναι εγκατεστημένη χωρίς σύνδεση δικτύου. &#xA;UDP: Άμεση ανταλλαγή πλαισίων δικτύου μεταξύ συμβατών εξομοιωτών. Χρησιμοποιήστε αυτή τη λειτουργία μεταξύ δύο όμοιων μηχανών. &#xA;AUN: Ένα άλλο πρωτόκολλο δικτύου για συμβατούς διακομιστές και εξομοιωτές. Και τα δύο άκρα πρέπει να χρησιμοποιούν το ίδιο πρωτόκολλο.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: Η διεύθυνση ακρόασης αυτού του υπολογιστή.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: Συνδέει εξομοιωτές που τρέχουν σε αυτόν τον υπολογιστή. &#xA;Για ένα τοπικό δίκτυο, χρησιμοποιήστε μια διεύθυνση που έχει ανατεθεί σε αυτόν τον υπολογιστή. &#xA;0.0.0.0: Ακούστε όλες τις διεπαφές του δικτύου αυτού του υπολογιστή. &#xA;Εισάγετε τις διευθύνσεις άλλων υπολογιστών στο πεδίο απομακρυσμένων σταθμών. Τα ονόματα και οι διευθύνσεις των υπολογιστών δεν γίνονται δεκτά εδώ.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>Θύρα ακρόασης UDP αυτού του υπολογιστή, 1–65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>Η αρχική θύρα είναι:  32768. Οι εξομοιωτές που μοιράζονται την ίδια ακουστική διεύθυνση χρειάζονται διαφορετικές θύρες.  32768 / 32769. Χρησιμοποιήστε τα πάνω και κάτω πλήκτρα βέλους για να αλλάξετε την τιμή. Οι απομακρυσμένοι σταθμοί πρέπει να προσδιορίζουν τη θύρα προορισμού.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Χαρτογραφήστε τους αριθμούς απομακρυσμένων σταθμών σε διευθύνσεις δικτύου και λιμάνια.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;Το παράδειγμα αυτό απευθύνεται στο σταθμό 3 στο δίκτυο 0, που λειτουργεί σε αυτόν τον υπολογιστή στη θύρα 32769. Ξεχωριστές καταχωρήσεις με ημικολόνια ή διαλείμματα γραμμής. Για έναν άλλο υπολογιστή, χρησιμοποιήστε τη διεύθυνσή του στο τοπικό δίκτυο. Ρυθμίστε την αντίστοιχη είσοδο επιστροφής στον άλλο σταθμό.</value></data>
 </root>

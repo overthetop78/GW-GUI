@@ -53,7 +53,8 @@ internal sealed class ModuleInstallationService
         EnsureNotInstalled(component.Id);
 
         var hostApi = Version.Parse(_hostApiVersion());
-        var release = component.Releases.Where(candidate => Version.Parse(candidate.HostApiMinimum!) <= hostApi && Version.Parse(candidate.HostApiMaximum!) >= hostApi).OrderByDescending(candidate => Version.Parse(candidate.Version))
+        var release = component.Releases.Where(candidate => Version.Parse(candidate.Version) >= EmulationHostApi.MinimumModuleVersion
+                && Version.Parse(candidate.HostApiMinimum!) <= hostApi && Version.Parse(candidate.HostApiMaximum!) >= hostApi).OrderByDescending(candidate => Version.Parse(candidate.Version))
             .FirstOrDefault()
             ?? throw new InvalidDataException($"Module '{component.Id}' has no release compatible with host API {hostApi.ToString(2)}.");
         var plan = new UpdatePlan(UpdateSearchScope.Modules, [new UpdatePlanItem(component.Id, UpdateComponentKind.Module, "0.0.0", release)], true, []);

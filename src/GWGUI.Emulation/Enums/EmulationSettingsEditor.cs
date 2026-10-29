@@ -11,5 +11,6 @@ public enum EmulationSettingsEditor
     Percentage,
     Information,
     Slider,
-    OpenDirectory
+    OpenDirectory,
+    IPv4
 }

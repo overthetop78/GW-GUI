@@ -12,4 +12,7 @@
   <data name="Emulation.Firmware.Official"><value>Oficial</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Incompatibil</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>Probe vocale</value></data>
+  <data name="Emulation.Firmware.Select"><value>Alegeți un fișier</value></data>
+  <data name="Emulation.Firmware.Empty"><value>Acest dosar este gol.</value></data>
+  <data name="Emulation.Firmware.NotSelected"><value>Nimic nu a fost selectat.</value></data>
 </root>

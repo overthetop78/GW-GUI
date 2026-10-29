@@ -74,8 +74,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl, IAsy
         }
         if (module is IEmulationFirmwareManager firmwareManager)
         {
-            _firmwareManagement = new EmulationFirmwareManagementController(_module, firmwareManager, () => _configuration, SetConfiguration);
-            _firmwareManagement.ConfigurationChanged += async (_, _) => await ExecuteUserChangeAsync();
+            _firmwareManagement = new EmulationFirmwareManagementController(_module, firmwareManager, () => _configuration);
         }
         if (module is IEmulationInputSettingsManager inputManager)
         {
@@ -179,8 +178,15 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl, IAsy
         }
         finally
         {
-            _machines.SelectionChanged -= MachineChanged;
-            Content = null;
+            try
+            {
+                if (_firmwareManagement is not null) await _firmwareManagement.DisposeAsync();
+            }
+            finally
+            {
+                _machines.SelectionChanged -= MachineChanged;
+                Content = null;
+            }
         }
     }
 

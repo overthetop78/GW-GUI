@@ -17,7 +17,7 @@
   <data name="Emulation.Storage.Cd.Drive"><value>Привід CD</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>Кількість дисководів</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>Кількість жорстких дисків</value></data>
-  <data name="Emulation.Storage.Floppy.Speed"><value>Швидкість дисковода</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Швидкість цього дисковода</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>Захист образів дискет від запису</value></data>
   <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Переспрямувати запис на дискету</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>Швидкість CD</value></data>
@@ -93,4 +93,12 @@
   <data name="Emulation.Storage.Media.AlreadyExists"><value>Цей файл вже існує. Виберіть новий файл зображення: {0}</value></data>
   <data name="Emulation.Storage.Sound.Volume"><value>Об'єм</value></data>
   <data name="Emulation.Storage.Sound.Group"><value>Зручності для зберігання</value></data>
+  <data name="Emulation.Storage.Floppy.Format"><value>Формат дискети</value></data>
+  <data name="Emulation.Storage.Floppy.OneSide"><value>1 сторона</value></data>
+  <data name="Emulation.Storage.Floppy.TwoSides"><value>2 сторони</value></data>
+  <data name="Emulation.Storage.Floppy.Tracks"><value>{0} доріжок на сторону</value></data>
+  <data name="Emulation.Storage.Floppy.SingleDensity"><value>Одинарна щільність</value></data>
+  <data name="Emulation.Storage.Floppy.DoubleDensity"><value>Подвійна щільність</value></data>
+  <data name="Emulation.Storage.File.Destination"><value>Файл призначення</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFormat"><value>Формат файлу образу</value></data>
 </root>

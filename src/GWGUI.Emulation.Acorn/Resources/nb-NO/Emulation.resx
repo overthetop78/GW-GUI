@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>Minneutvidelseskortet ROM mangler. Velg filen i RAM fliken av maskininnstillingene.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Velg kontrollprogramvaren for denne minneutvidelsen fra de oppdaget filene eller søk etter en kompatibel fil. Ingen fil lastes når banen er tom.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Sideveis minne</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Bankede minnemoduler</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Utvidelseskort</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Utvidelse chip sokkel</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Disse modulene legger bankminne uten å øke hovedminneadressen. Velg chip bilder i ekspansjonskontaktene for å definere innholdet. Tidligere valgte individuelle firmware forblir i bruk til dens sokkel mottar et eksplisitt chipbilde.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Chip-bilde{0}' har en uforenlig størrelse. Ventet: {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Minneutvidelseskort</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Ekstra minnekapasitet</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: Unikt stasjonsnummer.  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Hver stasjon trenger et annet nummer. Denne innstillingen erstatter maskinvarehoppere på det virkelige grensesnittet. Bruk piltastene opp og ned for å endre tallet.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Klokkefrekvensen til det emulerte nettverksgrensesnittet.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>Klokken styrer tidspunktet for det emulerte grensesnittet. Ulike klokkeinnstillinger blokkerer ikke kommunikasjon mellom emulatorer.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Velg hvordan denne stasjonen kobler til nettverket.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Frakoblet: grensesnittet er installert uten nettverkstilkobling. &#xA;UDP: Direkte utveksling av nettverksrammer mellom kompatible emulatorer. Bruk denne modusen mellom to emulerte maskiner. &#xA;AUN: En annen nettverksprotokoll for kompatible servere og emulatorer. Begge målene må bruke den samme protokollen.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: Høringsadressen til denne datamaskinen.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: Kobler emulatorer som kjører på denne datamaskinen. &#xA;For et lokalt nettverk, bruk en adresse som er tildelt denne datamaskinen. &#xA;0.0.0.0: Lytt på alle nettverksgrensesnitt på denne datamaskinen. &#xA;Skriv inn adressene til andre datamaskiner i feltet fjernstasjoner. Vertsnavn og adresser på andre datamaskiner er ikke akseptert her.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>UDP-lytteport på denne datamaskinen, 1–65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>Den opprinnelige havnen er:  32768. Emulatorer som deler den samme lytteadressen trenger forskjellige porter.  32768 / 32769. Bruk piltastene opp og ned for å endre verdien. Fjernstasjonene må angi destinasjonsporten.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Kart fjernstasjonsnummer til nettverksadresser og porter.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;Dette eksempelet adresserer stasjon 3 på nettverk 0, kjører på denne datamaskinen ved port 32769. Separat innlegg med semikoloner eller linjebrudd. For en annen datamaskin, bruk adressen på det lokale nettverket. Konfigurer den tilsvarende returoppføringen på den andre stasjonen.</value></data>
 </root>

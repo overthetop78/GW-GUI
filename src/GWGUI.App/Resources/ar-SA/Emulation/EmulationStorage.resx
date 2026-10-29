@@ -17,7 +17,7 @@
   <data name="Emulation.Storage.Cd.Drive"><value>محرك أقراص CD</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>عدد محركات الأقراص المرنة</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>عدد الأقراص الصلبة</value></data>
-  <data name="Emulation.Storage.Floppy.Speed"><value>سرعة العجلات</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>سرعة محرك الأقراص المرنة هذا</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>صور مُنعّة وقاية من الكتاب</value></data>
   <data name="Emulation.Storage.Floppy.WriteRedirect"><value>إعادة توجيه كتابات النبات</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>سرعة CD</value></data>
@@ -93,4 +93,12 @@
   <data name="Emulation.Storage.Media.AlreadyExists"><value>هذا الملف موجود بالفعل، اختر ملفاً جديداً للصورة {0}</value></data>
   <data name="Emulation.Storage.Sound.Volume"><value>فولوم</value></data>
   <data name="Emulation.Storage.Sound.Group"><value>جهاز تخزين الأصوات</value></data>
+  <data name="Emulation.Storage.Floppy.Format"><value>تنسيق القرص المرن</value></data>
+  <data name="Emulation.Storage.Floppy.OneSide"><value>وجه واحد</value></data>
+  <data name="Emulation.Storage.Floppy.TwoSides"><value>وجهان</value></data>
+  <data name="Emulation.Storage.Floppy.Tracks"><value>{0} مسارًا لكل وجه</value></data>
+  <data name="Emulation.Storage.Floppy.SingleDensity"><value>كثافة مفردة</value></data>
+  <data name="Emulation.Storage.Floppy.DoubleDensity"><value>كثافة مزدوجة</value></data>
+  <data name="Emulation.Storage.File.Destination"><value>ملف الوجهة</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFormat"><value>تنسيق ملف صورة القرص</value></data>
 </root>

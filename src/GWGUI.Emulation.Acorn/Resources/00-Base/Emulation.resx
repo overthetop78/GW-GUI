@@ -20,9 +20,9 @@
   <data name="Emulation.Acorn.Video.Output.Rgb" xml:space="preserve"><value>RGB</value></data>
   <data name="Emulation.Acorn.Network.Title"><value>Econet</value></data>
   <data name="Emulation.Acorn.Network.Rom"><value>NFS ROM</value></data>
-  <data name="Emulation.Acorn.Network.Udp"><value>UDP (BeebEm)</value></data>
-  <data name="Emulation.Acorn.Network.Aun"><value>AUN</value></data>
-  <data name="Emulation.Acorn.Network.Peers.Help"><value>0.254=127.0.0.1:32769;0.3=127.0.0.1:32770</value></data>
+  <data name="Emulation.Acorn.Network.Udp"><value>UDP — User Datagram Protocol</value></data>
+  <data name="Emulation.Acorn.Network.Aun"><value>AUN — Acorn Universal Networking</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Map remote Econet stations to their IPv4 addresses and UDP ports.</value></data>
   <data name="Emulation.Acorn.Network.Enabled"><value>Install Econet interface</value></data>
   <data name="Emulation.Acorn.Network.Station"><value>Station number</value></data>
   <data name="Emulation.Acorn.Network.Clock"><value>Network clock</value></data>
@@ -47,7 +47,7 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>The memory expansion card ROM is missing. Select its file in the RAM tab of the machine settings.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Select the control software for this memory expansion from the detected files, or browse for a compatible file. No file is loaded when the path is empty.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Sideways memory</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Banked memory modules</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Expansion card</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Expansion chip sockets</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>These modules add banked memory without increasing the main memory address space. Select chip images in the expansion sockets to define their contents. Previously selected individual firmware remains in use until its socket receives an explicit chip image.</value></data>
   <data name="Emulation.Acorn.Memory.Socket.IC52"><value>IC52</value></data>
@@ -68,4 +68,17 @@
   <data name="Emulation.Acorn.Memory.Socket.Bank.10"><value>ROM 10</value></data>
   <data name="Emulation.Acorn.Memory.Socket.Bank.11"><value>ROM 11</value></data>
   <data name="Emulation.Acorn.Memory.Socket.Bank.12"><value>ROM 12</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Memory expansion cards</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Additional RAM capacity</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Unique Econet station number, from 1 to 254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Each BBC needs a different station number. This replaces the hardware links on the real interface. Use the Up and Down arrow keys to change the number.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Clock frequency of the emulated Econet interface.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>The clock controls the timing of the emulated interface. Different clock settings do not block communication between emulators.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Choose the connection used by this station.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Disconnected: the interface is installed without a network connection. UDP: raw Econet frames between compatible emulators; use it between two AcornEmu stations. AUN: a different Econet-over-IP protocol for compatible servers and emulators. Both ends must use the same protocol.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4 address on which this PC listens for network packets.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1 connects instances on this PC. To communicate over a local network, use an IPv4 address assigned to this PC, or 0.0.0.0 to listen on all its interfaces. Enter the other PCs in Remote stations. IPv6 and host names are not accepted here.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>UDP listening port on this PC, from 1 to 65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>The initial port is 32768. Instances sharing the same listening address need different ports, for example 32768 and 32769. Use the Up and Down arrow keys to change the value. Remote stations must specify the destination port.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>Write network.station=IPv4:port. For example, 0.3=127.0.0.1:32769 means station 3 on network 0, running on this PC at port 32769. Separate entries with semicolons or line breaks. For another PC, use its local-network IPv4 address. Configure the corresponding return entry on the other station.</value></data>
 </root>

@@ -87,3 +87,15 @@ Régression complète après B12 : 244 tests AcornEmu réussis. Vérification de
   - [x] Modifier le présent suivi et `docs/tasks/acorn-demandes-restantes.md` : consigner le retrait et les versions vérifiées ; vérifier la compilation source sans remplacer la livraison.
 
 Retrait demandé effectué : quatre ROM sources et toutes leurs copies repérées dans build/bin/tests supprimées ; chemins fournis et ajout automatique au scan retirés, reconnaissance des fichiers utilisateur conservée. Compilation Acorn réussie sans avertissement ni erreur. Versions vérifiées dans MAME : B20 2.2/2.4 ; Watford 1.00/1.06/2.00/2.20/2.40 ; IBOS 1.14/1.20/1.20 Y2K. B32 : un seul contenu identifié ici, version interne 1.0 mais étiqueté 2.2 dans MAME.
+
+## Correction des responsabilités matérielles
+
+- [x] Replacer les définitions matérielles dans le module Acorn.
+  - [x] Créer `AcornEmu/Constants/FloppyDriveConstants.cs`, `WinchesterModelConstants.cs` et `Dictionaries/FloppyDriveModels.cs`, puis raccorder les fonctions de stockage et `HardDiskFormats.cs`.
+- [x] Retirer les catalogues de lecteurs matériels de MediaEngine.
+  - [x] Supprimer `FloppyDriveCatalog.cs`, `HardDiskDriveCatalog.cs`, leurs contrats et constantes matériels, et retirer leurs relais des interfaces/services MediaEngine et SDK.
+- [x] Clarifier la création dans App.
+  - [x] Modifier `FloppyChoicePresentation.cs`, `FloppyDriveConfigurationDialog.cs` et `MediaCreationDialog.cs` : noms des formats visibles, choix unique automatique, choix multiple explicite et validation des commandes.
+- [x] Valider et livrer.
+  - [x] Vérifier les contrôleurs et la création réelle ; supprimer le contrôle visuel temporaire et ses artefacts.
+  - [x] Produire et vérifier le build Debug avec les modules.

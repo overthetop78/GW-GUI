@@ -156,6 +156,7 @@ internal sealed class AcornEmuMachineFactory : IEmulatorAdapter
                     [new(BbcMicroModelAConstants.StandardMemoryKib, string.Empty, "16 KiB"), new(BbcMicroModelAConstants.ExpandedMemoryKib, string.Empty, "32 KiB")], IsEnabled: !MemoryExtensionFunctions.Read(configuration).Enabled && !SidewaysExpansionFunctions.Read(configuration).AriesB12, RequiresRestart: true, RefreshSettingsOnChange: true)]),
             MemoryExtensionFunctions.Describe(configuration),
             SidewaysExpansionFunctions.Describe(configuration),
+            SidewaysExpansionFunctions.DescribeRam(configuration),
             SidewaysExpansionFunctions.DescribeRoms(configuration),
             new("Rom", EmulationMachineTab.Rom, "Emulation.Firmware", fields),
             new(EmulatorConstants.VideoOutput, EmulationMachineTab.Video, "Emulation.Acorn.Video.Output",

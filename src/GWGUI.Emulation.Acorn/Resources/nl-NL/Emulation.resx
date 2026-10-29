@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>De geheugenuitbreidingskaart ROM ontbreekt. Selecteer het bestand in de RAM tabblad van de machineinstellingen.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Selecteer de besturingssoftware voor deze geheugenuitbreiding uit de gedetecteerde bestanden, of blader naar een compatibel bestand. Er wordt geen bestand geladen wanneer het pad leeg is.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Zijwaarts geheugen</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Gebankte geheugenmodules</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Uitbreidingskaart</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Sjablonen voor expansiechips</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Deze modules voegen gebankeerd geheugen toe zonder de geheugenruimte te verhogen. Selecteer chipafbeeldingen in de uitbreidingssockets om de inhoud ervan te definiëren. Eerder geselecteerde individuele firmware blijft in gebruik totdat de socket een expliciete chipafbeelding ontvangt.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Chip image '{0}' heeft een incompatibele grootte. Verwacht: {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Geheugenuitbreidingskaarten</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Extra geheugencapaciteit</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: Uniek stationnummer.  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Elk station heeft een ander nummer nodig. Deze instelling vervangt de hardware jumpers op de echte interface. Gebruik de op en neer pijltjestoetsen om het nummer te veranderen.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Klokfrequentie van de emuleerde netwerkinterface.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>De klok regelt de timing van de emuleerde interface. Verschillende klokinstellingen blokkeren de communicatie tussen emulatoren niet.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Kies hoe dit station verbinding maakt met het netwerk.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Verbinding verbroken: de interface is geïnstalleerd zonder netwerkverbinding. &#xA;UDP: Directe uitwisseling van netwerkframes tussen compatibele emulatoren. Gebruik deze modus tussen twee emuleerde machines. &#xA;AUN: Een ander netwerkprotocol voor compatibele servers en emulatoren. Beide uiteinden moeten hetzelfde protocol gebruiken.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: Het luisteradres van deze computer.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: Verbindt emulatoren die draaien op deze computer. &#xA;Gebruik voor een lokaal netwerk een adres dat aan deze computer is toegewezen. &#xA;0.0.0.0: Luister naar alle netwerkinterfaces van deze computer. &#xA;Voer de adressen van andere computers in het veld op afstand. Hostnamen en adressen van andere computers worden hier niet geaccepteerd.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>UDP-luisterpoort van deze computer, 1–65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>De eerste poort is:  32768. Emulatoren die hetzelfde luisteradres delen hebben verschillende poorten nodig.  32768 / 32769. Gebruik de op en neer pijltjestoetsen om de waarde te veranderen. Remote stations moeten de bestemmingspoort specificeren.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Kaart remote stationnummers naar netwerkadressen en poorten.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;Dit voorbeeld adresseert station 3 op netwerk 0, draait op deze computer op poort 32769. Aparte ingangen met puntkomma's of regelonderbrekingen. Gebruik het adres van een andere computer op het lokale netwerk. Configureer de bijbehorende terugkeer op het andere station.</value></data>
 </root>

@@ -7,6 +7,15 @@ public sealed class UpdatePlanBuilder
 {
     public const int SupportedSchemaVersion = 2;
     public const string ApplicationId = "gwgui";
+    private readonly Version? _minimumModuleVersion;
+
+    public UpdatePlanBuilder() { }
+
+    public UpdatePlanBuilder(Version minimumModuleVersion)
+    {
+        ArgumentNullException.ThrowIfNull(minimumModuleVersion);
+        _minimumModuleVersion = minimumModuleVersion;
+    }
 
     public UpdateSearchResult Search(UpdateCatalog catalog, InstalledUpdateState installed, UpdateSearchScope scope, IReadOnlyDictionary<string, string>? selections = null)
     {
@@ -91,7 +100,8 @@ public sealed class UpdatePlanBuilder
         return new(scope, rows, plan);
     }
 
-    private static IReadOnlyList<UpdateCatalogRelease> NewerReleases(UpdateCatalogComponent component, Version installedVersion) => component.Releases.Where(release => ParseVersion(release.Version, 3, $"component '{component.Id}' release version") > installedVersion)
+    private IReadOnlyList<UpdateCatalogRelease> NewerReleases(UpdateCatalogComponent component, Version installedVersion) => component.Releases.Where(release => ParseVersion(release.Version, 3, $"component '{component.Id}' release version") > installedVersion
+            && (component.Kind != UpdateComponentKind.Module || _minimumModuleVersion is null || ParseVersion(release.Version, 3, $"component '{component.Id}' release version") >= _minimumModuleVersion))
         .OrderByDescending(release => ParseVersion(release.Version, 3, $"component '{component.Id}' release version"))
         .ToArray();
 

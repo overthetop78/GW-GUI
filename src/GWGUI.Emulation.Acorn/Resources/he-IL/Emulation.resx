@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>כרטיס הרחבת הזיכרון ROM הוא נעדר.בחר את הקובץ שלו בקובץ RAM הכרטיסיה של הגדרות המכונה</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>בחר את תוכנת הבקרה של הרחבת הזיכרון מרשימת הקבצים שזוהו, או בחר קובץ תואם באמצעות עיון בקבצים. לא נטען קובץ כאשר הנתיב ריק.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>זיכרון ממותג</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>מודולי זיכרון ממותג</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>כרטיס הרחבה</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>תושבות השבבים של ההרחבה</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>מודולים אלה מוסיפים בנקי זיכרון בלי להגדיל את מרחב הכתובות של הזיכרון הראשי. בחר קובצי תמונה לשבבים בתושבות ההרחבה כדי לקבוע את תוכנם. קושחה שנבחרה בנפרד נשארת בשימוש עד שנבחר במפורש קובץ תמונה לשבב המחליף את התושבת שלה.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>תמונת צ'יפ{0}"יש לו גודל לא תואם. {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>כרטיסי הרחבת זיכרון</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>קיבולת הזיכרון הנוסף</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: מספר תחנה ייחודי.  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>כל תחנה צריכה מספר אחר. הגדרה זו מחליפה את קפיצות החומרה על הממשק האמיתי. השתמש במקשי החץ למעלה ולמטה כדי לשנות את המספר.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>תדר השעון של ממשק הרשת המדומה.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>השעון שולט בתזמון של ממשק חיקוי. הגדרות שעון שונות אינן חוסמות תקשורת בין חיקויים.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>בחרו כיצד התחנה הזו מתחברת לרשת.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Disconnected: הממשק מותקן ללא חיבור לרשת. &#xA;UDP: חליפין ישיר של מסגרות רשת בין חיקויים תואמים. השתמש במצב זה בין שתי מכונות חיקוי. &#xA;AUN: פרוטוקול רשת אחר לשרתים ולאביזרים תואמים. שני הקצוות חייבים להשתמש באותה פרוטוקול.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: כתובת ההאזנה של המחשב הזה.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: קישורים לחיקויים שפועלים במחשב זה. &#xA;עבור רשת מקומית, השתמש בכתובת שהוקצה למחשב זה. &#xA;0.0.0.0: הקשב על כל ממשקי הרשת של המחשב. &#xA;הזן את הכתובת של מחשבים אחרים בשדה התחנות המרוחקות. שמות מארחים וכתובות של מחשבים אחרים אינם מתקבלים כאן.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>יציאת UDP להאזנה במחשב זה, 1–65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>הנמל הראשוני הוא:  32768. אמלטורים שחולקים את אותה כתובת האזנה זקוקים לנמלים שונים.  32768 / 32769. השתמש במקשי החץ למעלה ולמטה כדי לשנות את הערך. תחנות מרוחקות צריכות לציין את נמל היעד.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>מספרי תחנה מרחוק במפה לכתובות רשת ונמלים.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;דוגמה זו מתייחסת לתחנת 3 ברשת 0, פועל במחשב זה בנמל 32769. ערכים נפרדים עם סדקים או הפסקות קו. עבור מחשב אחר, השתמש בכתובת שלו ברשת המקומית. הגדירו את כניסה החזרה המתאימה בתחנה האחרת.</value></data>
 </root>

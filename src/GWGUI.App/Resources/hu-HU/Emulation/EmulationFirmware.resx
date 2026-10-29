@@ -12,4 +12,7 @@
   <data name="Emulation.Firmware.Official"><value>Hivatalos</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Nem kompatibilis</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>Hangminták</value></data>
+  <data name="Emulation.Firmware.Select"><value>Válasszon ki egy fájlt</value></data>
+  <data name="Emulation.Firmware.Empty"><value>Ez a mappa üres.</value></data>
+  <data name="Emulation.Firmware.NotSelected"><value>Semmi sem lett kiválasztva.</value></data>
 </root>

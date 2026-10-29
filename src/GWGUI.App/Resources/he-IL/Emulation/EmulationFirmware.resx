@@ -12,4 +12,7 @@
   <data name="Emulation.Firmware.Official"><value>רשמי</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>לא תואם</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>דוגמאות קוליות</value></data>
+  <data name="Emulation.Firmware.Select"><value>בחר קובץ</value></data>
+  <data name="Emulation.Firmware.Empty"><value>התיקיה הזו ריקה.</value></data>
+  <data name="Emulation.Firmware.NotSelected"><value>שום דבר לא נבחר.</value></data>
 </root>

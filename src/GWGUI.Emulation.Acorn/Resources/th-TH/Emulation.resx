@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>การ์ดขยายหน่วยความจํา ROM ไม่มีอยู่ เลือกแฟ้มของมันใน RAM แท็บการตั้งค่าเครื่องจักร</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>เลือกโปรแกรมควบคุมสําหรับขยายหน่วยความจํานี้ จากแฟ้มที่ตรวจพบ หรือเรียกดูแฟ้มที่เข้ากันได้ และไม่มีแฟ้มโหลดเมื่อพาธว่าง</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>หน่วยความจําด้านด้าน</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>มอดูลหน่วยความจําที่ธนาคาร</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>การ์ดขยาย</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>แปรงทาสี</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>มอดูลนี้ทําการเพิ่มหน่วยความจําที่ธนาคารไว้ โดยไม่เพิ่มพื้นที่หน่วยความจําหลัก ให้เลือกใช้ภาพชิปภาพในฐานขยาย เพื่อกําหนดเนื้อหา ภาพที่เลือกไว้ก่อน จะยังคงใช้เครื่องหลักของแต่ละเครื่อง จนกว่าจะได้ภาพจากซ็อกเก็ตที่แสดงอยู่</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>อิมเมจของชิป{0}'มีขนาดไม่เท่ากัน ' คาดว่าจะ ' {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>การ์ดขยายหน่วยความจำ</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>ความจุหน่วยความจำเพิ่มเติม</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: หมายเลขสถานียูนีค  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>แต่ละสถานีต้องมีหมายเลขต่างกัน การตั้งค่านี้จะทําการแทนที่ตัวกระโดดของฮาร์ดแวร์บนส่วนเชื่อมต่อจริง ใช้ปุ่มขึ้นลงเพื่อเปลี่ยนหมายเลข</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>ความถี่ของนาฬิกาของอินเทอร์เฟซเครือข่าย</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>นาฬิกาควบคุมเวลาของอินเทอร์เฟสที่เลียนแบบได้ การตั้งนาฬิกาแตกต่างกัน ไม่เป็นการปิดกั้นการสื่อสารระหว่างตัวจําลอง</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>เลือกวิธีการที่สถานีนี้เชื่อมต่อกับเครือข่าย</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>ยกเลิกการเชื่อมต่อแล้ว: ส่วนเชื่อมต่อได้ถูกติดตั้งโดยไม่มีการเชื่อมต่อบนเครือข่าย &#xA;UDP: แลกเปลี่ยนเฟรมของเครือข่ายโดยตรง ระหว่างตัวจําลองที่เข้ากันได้ ใช้โหมดนี้ระหว่างเครื่องเลียนแบบสองเครื่อง &#xA;AUN: โพรโทคอลเครือข่ายอื่นสําหรับเซิร์ฟเวอร์และตัวจําลองที่เข้ากันได้ ทั้งสองปลายจะต้องใช้โปรโตคอลเดียวกัน</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: ที่อยู่ฟังจากคอมพิวเตอร์เครื่องนี้</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: เชื่อมต่อตัวจําลองบนคอมพิวเตอร์เครื่องนี้ &#xA;สําหรับเครือข่ายท้องถิ่น ให้ใช้ที่อยู่ที่กําหนดไว้ในคอมพิวเตอร์เครื่องนี้ &#xA;0.0.0.0: ฟังระบบเชื่อมต่อของคอมพิวเตอร์นี้ทั้งหมด &#xA;ป้อนที่อยู่ของคอมพิวเตอร์อื่น ๆ ในสถานีทางไกล ใน ที่ นี้ ไม่ มี การ ยอม รับ ชื่อ และ ที่ อยู่ ของ คอมพิวเตอร์ อื่น ๆ.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>พอร์ต UDP สำหรับรับข้อมูลของคอมพิวเตอร์นี้ ตั้งแต่ 1 ถึง 65535</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>พอร์ตเริ่มต้นคือ:  32768. ผู้จําลองแบ่งปันที่อยู่เดียวกัน ต้องการพอร์ตที่แตกต่างกัน  32768 / 32769. ใช้ปุ่มลูกศรขึ้นลง เพื่อเปลี่ยนค่า สถานีปลายทางต้องระบุพอร์ตปลายทาง</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>ส่งหมายเลขสถานีปลายทางไปยังที่อยู่และพอร์ตเครือข่าย</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;ตัวอย่างนี้ สถานีที่อยู่ 3 บนเครือข่าย 0 ทํางานบนคอมพิวเตอร์นี้ที่ท่าเรือ 32769 แยกรายการกับ กึ่งคอรัส หรือ หยุดสาย สําหรับ คอมพิวเตอร์ อีก ตัว หนึ่ง ให้ ใช้ ที่ อยู่ ของ มัน บน เครือ ข่าย. ปรับแต่งรายการที่ส่งกลับบนสถานีอื่น ๆ ที่ตรงกัน</value></data>
 </root>

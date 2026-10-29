@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>Die Memory Erweiterungskarte ROM fehlt. Wählen Sie seine Datei in der RAM Tab der Maschineneinstellungen.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Wählen Sie die Steuerungssoftware für diese Speichererweiterung aus den erkannten Dateien oder suchen Sie nach einer kompatiblen Datei.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Bankumschaltbarer Speicher</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Speichermodule mit Bankfunktion</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Erweiterungskarte</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Spreizspan-Buchsen</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Diese Module fügen einen Bankspeicher hinzu, ohne den Hauptspeicher-Adressraum zu vergrößern. Wählen Sie Chipbilder in den Erweiterungs-Sockets aus, um ihren Inhalt zu definieren. Vorher ausgewählte individuelle Firmware bleibt in Gebrauch, bis der Sockel ein explizites Chipbild erhält.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Chipbild '{0}' eine inkompatible Größe hat. {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Speichererweiterungskarten</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Zusätzliche Speicherkapazität</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: Eindeutige Stationsnummer.  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Jede Station benötigt eine andere Nummer. Diese Einstellung ersetzt die Hardware-Jumper auf der realen Schnittstelle. Verwenden Sie die Pfeiltasten nach oben und unten, um die Nummer zu ändern.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Taktfrequenz der emulierten Netzwerkschnittstelle.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>Die Uhr steuert das Timing der emulierten Schnittstelle, wobei unterschiedliche Uhreinstellungen die Kommunikation zwischen den Emulatoren nicht blockieren.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Wählen Sie aus, wie sich diese Station mit dem Netzwerk verbindet.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Disconnected: Die Schnittstelle wird ohne Netzwerkverbindung installiert. &#xA;UDP: Direkter Austausch von Netzwerkframes zwischen kompatiblen Emulatoren. Verwenden Sie diesen Modus zwischen zwei emulierten Maschinen. &#xA;AUN: Ein weiteres Netzwerkprotokoll für kompatible Server und Emulatoren. Beide Enden müssen das gleiche Protokoll verwenden.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: Die Abhöradresse dieses Computers.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: Verbindet Emulatoren, die auf diesem Computer ausgeführt werden. &#xA;Verwenden Sie für ein lokales Netzwerk eine diesem Computer zugewiesene Adresse. &#xA;0.0.0.0: Hören Sie sich alle Netzwerkschnittstellen dieses Computers an. &#xA;Geben Sie die Adressen anderer Computer im Feld der entfernten Stationen ein. Hostnamen und Adressen anderer Computer werden hier nicht akzeptiert.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>UDP-Empfangsport dieses Computers, 1–65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>Der erste Port ist:  32768. Emulatoren, die die gleiche Höradresse teilen, benötigen unterschiedliche Ports.  32768 / 32769. Verwenden Sie die Pfeiltasten nach oben und unten, um den Wert zu ändern. Remote-Stationen müssen den Zielhafen angeben.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Zuordnung entfernter Stationsnummern zu Netzwerkadressen und Ports.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;Dieses Beispiel adressiert die Station 3 im Netzwerk 0, die auf diesem Computer am Port 32769 läuft. Separate Einträge mit Semikolonen oder Linienumbrüchen. Verwenden Sie für einen anderen Computer seine Adresse im lokalen Netzwerk. Konfigurieren Sie den entsprechenden Rückgabeeintrag auf der anderen Station.</value></data>
 </root>

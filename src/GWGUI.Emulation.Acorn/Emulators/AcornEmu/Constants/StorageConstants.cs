@@ -1,5 +1,5 @@
 using S = GWGUI.Emulation.Constants.EmulationMechanicalSoundConstants;
-using CommonHost = GWGUI.Emulation.Acorn.Common.Functions.CoreHostFunctions;
+using GWGUI.Emulation.Acorn.Emulators.AcornEmu.Dictionaries;
 
 namespace GWGUI.Emulation.Acorn.Emulators.AcornEmu.Constants;
 
@@ -99,8 +99,6 @@ internal static class StorageConstants
 
     /// <summary>Identifiant du lecteur double face à 80 pistes par face en double densité.</summary>
     internal const string Double80Dd = "ds80-dd";
-    /// <summary>Identifiant de la famille de lecteurs de disquettes Acorn BBC dans MediaEngine.</summary>
-    internal const string FloppyFamily = "acorn-bbc";
     /// <summary>Clé persistante d’activation des bruitages mécaniques du lecteur.</summary>
     internal const string MechanicalSoundOption = "mechanicalSound";
     /// <summary>Clé persistante du profil de bruitages mécaniques du lecteur.</summary>
@@ -126,12 +124,12 @@ internal static class StorageConstants
     /// <summary>Premier indice des indicateurs d’activité des disques durs.</summary>
     internal const int HardDiskLedStart = 8;
     /// <summary>Capacité maximale d’une image de disque dur, en octets.</summary>
-    internal static long MaximumHardDiskBytes => CommonHost.MediaProcessing.HardDiskDriveModels(EmulationHardDiskModelConstants.AcornWinchester).Max(model => model.MaximumBytes);
+    internal static long MaximumHardDiskBytes => WinchesterModelConstants.MaximumBytes;
     internal static IReadOnlyList<string> HardDiskExtensions => [MediaConstants.WinchesterImageExtension];
-    internal static IReadOnlyList<string> Extensions => CommonHost.MediaProcessing.FloppyDriveModels(FloppyFamily, false).SelectMany(model => model.AcceptedExtensions).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
-    internal static IReadOnlyList<string> DoubleDensityExtensions => CommonHost.MediaProcessing.FloppyDriveModels(FloppyFamily, true).SelectMany(model => model.AcceptedExtensions).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
+    internal static IReadOnlyList<string> Extensions => FloppyDriveModels.Available(false).SelectMany(model => model.AcceptedExtensions).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
+    internal static IReadOnlyList<string> DoubleDensityExtensions => FloppyDriveModels.All.SelectMany(model => model.AcceptedExtensions).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
     internal static IReadOnlyList<string> Speeds { get; } = Array.AsReadOnly<string>(["100", "200", "400", "800", "0"]);
-    internal static IReadOnlyList<FloppyDriveModelChoice> Models => CommonHost.MediaProcessing.FloppyDriveModels(FloppyFamily, true);
+    internal static IReadOnlyList<FloppyDriveModelChoice> Models => FloppyDriveModels.All;
     internal static string Key(int drive, string name) => FloppyPrefix + drive + "." + name;
     internal static string HardDiskKey(int unit, string name) => HardDiskPrefix + unit + "." + name;
 }

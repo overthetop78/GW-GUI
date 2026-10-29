@@ -11,7 +11,19 @@ présentation du SDK avec son rôle, son installation et le point de départ d'u
 
 | Paquet SDK | API hôte | Schéma du manifeste |
 |---|---|---|
-| `1.2.0` | `1.2` | `2` |
+| `1.3.0` | `1.3` | `2` |
+
+L’API 1.3 fixe la nouvelle base binaire : chemins d’images externes, signatures des réglages et
+périphériques, services cassette/disque, mécanique des lecteurs et caractères du clavier hôte.
+Les 24 modules du dépôt déclarent la plage `1.3` à `1.3`. Les paquets publiés pour l’API 1.2 sont
+refusés avant chargement ; leurs manifestes ne doivent pas être réétiquetés sans recompilation.
+Les 24 modules et le SDK portent tous la version `1.3.0`. Toute version de module inférieure à
+`1.3.0` est refusée au chargement, à l’installation et dans les choix de mise à jour. L’application
+locale est en `0.4.1`.
+
+La propriété MSBuild `Version` du SDK est locale à son projet afin de conserver `1.3.0` lorsqu’un
+module est compilé avec son propre numéro de version. Le build et le catalogue de l’application
+lisent tous deux l’API dans `EmulationHostApi.cs`.
 
 L API 1.2 ajoute le contrat facultatif IEmulationVideoSettingsManager et EmulationGraphicsApi. Le module traduit la préférence vidéo de l application vers ses capacités natives, sans exposer un moteur concret au SDK. Les modules utilisant ce contrat exigent au minimum l API 1.2 ; les autres conservent leur minimum et déclarent leur maximum validé.
 

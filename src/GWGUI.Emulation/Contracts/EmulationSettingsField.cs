@@ -28,4 +28,8 @@ public sealed record EmulationSettingsField(
     string? AutomaticValue = null,
     bool UseChoiceLabelsForSlider = false,
     string? ValueUnitResourceKey = null,
-    bool UseRadioButtons = false);
+    bool UseRadioButtons = false)
+{
+    /// <summary>Présente un champ texte sur plusieurs lignes sans modifier son format de persistance.</summary>
+    public bool IsMultiline { get; init; }
+}

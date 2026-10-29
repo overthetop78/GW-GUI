@@ -12,4 +12,7 @@
   <data name="Emulation.Firmware.Official"><value>เป็นทางการ</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>ไม่รองรับ</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>ตัวอย่างของเสียง</value></data>
+  <data name="Emulation.Firmware.Select"><value>เลือกแฟ้ม</value></data>
+  <data name="Emulation.Firmware.Empty"><value>โฟลเดอร์นี้ว่าง</value></data>
+  <data name="Emulation.Firmware.NotSelected"><value>ยังไม่ได้เลือกไฟล์</value></data>
 </root>

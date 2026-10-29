@@ -12,4 +12,7 @@
   <data name="Emulation.Firmware.Official"><value>公式</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>非対応</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>音声サンプル</value></data>
+  <data name="Emulation.Firmware.Select"><value>ファイルを選択します。</value></data>
+  <data name="Emulation.Firmware.Empty"><value>このフォルダは空です。</value></data>
+  <data name="Emulation.Firmware.NotSelected"><value>何も選択されていません。</value></data>
 </root>

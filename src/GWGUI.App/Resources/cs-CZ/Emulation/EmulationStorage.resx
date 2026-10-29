@@ -17,7 +17,7 @@
   <data name="Emulation.Storage.Cd.Drive"><value>Jednotka CD</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>Počet disketových jednotek</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>Počet pevných disků</value></data>
-  <data name="Emulation.Storage.Floppy.Speed"><value>Rychlost floppy- pohonu</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Rychlost této disketové jednotky</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>Write- protect floppy images</value></data>
   <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Přesměrovat floppy píše</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>Rychlost CD</value></data>
@@ -93,4 +93,12 @@
   <data name="Emulation.Storage.Media.AlreadyExists"><value>Tento soubor již existuje. Vyberte nový soubor obrázků: {0}</value></data>
   <data name="Emulation.Storage.Sound.Volume"><value>Objem</value></data>
   <data name="Emulation.Storage.Sound.Group"><value>Zvuky úložišť</value></data>
+  <data name="Emulation.Storage.Floppy.Format"><value>Formát diskety</value></data>
+  <data name="Emulation.Storage.Floppy.OneSide"><value>1 strana</value></data>
+  <data name="Emulation.Storage.Floppy.TwoSides"><value>2 strany</value></data>
+  <data name="Emulation.Storage.Floppy.Tracks"><value>{0} stop na stranu</value></data>
+  <data name="Emulation.Storage.Floppy.SingleDensity"><value>Jednoduchá hustota</value></data>
+  <data name="Emulation.Storage.Floppy.DoubleDensity"><value>Dvojitá hustota</value></data>
+  <data name="Emulation.Storage.File.Destination"><value>Cílový soubor</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFormat"><value>Formát souboru obrazu disku</value></data>
 </root>

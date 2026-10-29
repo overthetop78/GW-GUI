@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>بطاقة توسيع الذاكرة ROM مفقودة، اختار ملفها في RAM -تحتّى من الآلات .</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>اختيار برنامج التحكم لهذا التوسع في الذاكرة من الملفات المكتشفة أو مصفوفة لملف متوافق لا يوجد ملف محمول عندما يكون الطريق فارغاً</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>ذاكرة جانبية</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>وحدات الذاكرة المصرفية</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>بطاقة التوسعة</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>مقصورة شريحة التوسع</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>هذه الوحدات تضيف ذاكرة مصرفية دون زيادة مساحة عنوان الذاكرة الرئيسي، وتختار صور رقائق في جوارب التوسع لتعريف محتوياتها، وسبق أن تم اختيار فرادى البرمجيات ما زالت تستخدم حتى تتلقى جواربها صورة شريحة واضحة.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>صورة شيب{0}"لديه حجم غير متوافق" {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>بطاقات توسيع الذاكرة</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>سعة الذاكرة الإضافية</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: رقم المحطة الوحيدة  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>كل محطة تحتاج إلى رقم مختلف هذا المكان يُستبدل أجهزة القفز على الواجهة الحقيقية استخدمي مفاتيح السهام لأغير الرقم</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>تواتر الوصلات البينية للشبكة</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>الوقت يتحكم في توقيت الواجهة المُحتكمة، لا تحجب الوصلات بين المُجسّدين.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>اختر كيف تتواصل هذه المحطة مع الشبكة</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>مفصّلة: يتم تركيب واجهة دون وصلة شبكية. &#xA;UDP: تبادل مباشر لإطارات الشبكة بين الأطراف المتوافقة استخدم هذه الطريقة بين آلتين محمولتين &#xA;AUN: بروتوكول شبكة آخر للخواديم المتوافقة والمرشدين. كلا النهايتين يجب أن يستخدما نفس البروتوكول</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: عنوان الاستماع لهذا الحاسوب.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: يتواصل مع المرشدين في هذا الكمبيوتر &#xA;لشبكة محلية، استخدام عنوان مخصص لهذا الحاسوب. &#xA;0.0.0.0: الاستماع على جميع وصلات الشبكة من هذا الكمبيوتر. &#xA;أدخل عناوين الحواسيب الأخرى في مجال المحطات النائية. ولا تُقبل هنا أسماء وعناوين مستضيفة للحواسيب الأخرى.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>منفذ UDP للاستقبال على هذا الحاسوب، من 1 إلى 65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>والميناء الأولي هو:  32768. المرشدون الذين يتشاركون نفس عنوان الإستماع يحتاجون إلى موانئ مختلفة  32768 / 32769. استخدمي مفاتيح السهام لأغير القيمة ويجب أن تحدد محطات التطهير ميناء المقصد.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>خريطة أرقام المحطات عن بعد إلى عناوين الشبكة والموانئ.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;ويتناول هذا المثال المحطة 3 على الشبكة 0، التي تعمل على هذا الحاسوب في الميناء 32769. دخول منفصلة مع شبه كولونز أو استراحة خط. من أجل حاسوب آخر، استخدم عنوانه على الشبكة المحلية. اعترفي بالدخول المقابل للمحطة الأخرى</value></data>
 </root>

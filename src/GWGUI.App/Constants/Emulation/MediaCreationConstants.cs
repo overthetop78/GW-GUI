@@ -4,7 +4,7 @@ namespace GWGUI.App.Constants.Emulation;
 internal static class MediaCreationConstants
 {
     /// <summary>Largeur du dialogue de création de média, en unités logiques WPF.</summary>
-    internal const double Width = 760;
+    internal const double Width = 660;
 
     /// <summary>Largeur des boutons du dialogue, en unités logiques WPF.</summary>
     internal const double ButtonWidth = 110;
@@ -16,10 +16,12 @@ internal static class MediaCreationConstants
     internal const string PathRequired = "Emulation.Storage.Disk.ImageRequired";
 
     /// <summary>Libellé du choix de format fourni par MediaEngine.</summary>
-    internal const string FormatLabel = "Explorer.Format";
+    internal const string FormatLabel = "Emulation.Storage.Floppy.Format";
+    /// <summary>Conteneur du fichier, distinct du format et de la géométrie de la disquette.</summary>
+    internal const string ImageFormatLabel = "Emulation.Storage.Floppy.ImageFormat";
 
     /// <summary>Libellé du fichier de destination.</summary>
-    internal const string DestinationLabel = "Emulation.Storage.Disk.Image";
+    internal const string DestinationLabel = "Emulation.Storage.File.Destination";
 
     /// <summary>Nom initial d'une nouvelle image, sans extension.</summary>
     internal const string BlankFileName = "blank";

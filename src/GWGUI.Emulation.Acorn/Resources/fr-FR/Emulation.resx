@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>La ROM de la carte d’extension RAM est manquante. Choisissez son fichier dans l’onglet RAM des paramètres de la machine.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Choisissez la ROM de gestion de cette extension mémoire dans la liste des fichiers détectés, ou parcourez vos fichiers pour sélectionner une ROM compatible. Un chemin vide ne charge aucune ROM.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Mémoire paginée</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Modules de mémoire paginée</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Carte d’extension</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Supports des puces de l’extension</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Ces modules ajoutent des banques de mémoire sans agrandir l’espace d’adressage de la RAM principale. Dans ROM, choisissez les images des puces pour définir leur contenu. Les ROM individuelles déjà choisies restent utilisées tant qu’aucune image de puce ne remplace leur support.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>L’image de puce « {0} » a une taille incompatible. Capacités acceptées : {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Cartes d’extension mémoire</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Capacité RAM ajoutée</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Numéro unique de la station Econet, de 1 à 254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Chaque BBC doit avoir un numéro de station différent. Ce réglage remplace les cavaliers matériels de l’interface réelle. Les flèches Haut et Bas permettent de modifier le numéro.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Fréquence d’horloge de l’interface Econet émulée.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>L’horloge règle la temporisation de l’interface émulée. Des valeurs différentes n’empêchent pas la communication entre émulateurs.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Connexion utilisée pour relier cette station aux autres.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Déconnecté : l’interface est installée sans liaison réseau. UDP : échange de trames Econet entre émulateurs compatibles ; utilisez ce mode entre deux stations AcornEmu. AUN : autre protocole Econet sur IP, destiné aux serveurs et émulateurs compatibles. Les deux extrémités doivent utiliser le même protocole.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>Adresse IPv4 sur laquelle cet ordinateur reçoit les paquets réseau.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1 relie des émulateurs sur cet ordinateur. Pour communiquer sur le réseau local, utilisez une adresse IPv4 attribuée à cet ordinateur, ou 0.0.0.0 pour écouter sur toutes ses interfaces. Les adresses des autres ordinateurs se renseignent dans Stations distantes. Ce champ n’accepte ni IPv6 ni nom d’hôte.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>Port UDP d’écoute de cet ordinateur, de 1 à 65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>Le port initial est 32768. Deux émulateurs utilisant la même adresse d’écoute doivent avoir des ports différents, par exemple 32768 et 32769. Les flèches Haut et Bas permettent de modifier la valeur. Chaque station distante doit indiquer le port de son destinataire.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Correspondance entre stations Econet distantes et adresses IPv4 avec port UDP.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>Syntaxe : network.station=IPv4:port. Exemple : 0.3=127.0.0.1:32769 désigne la station 3 du réseau 0, sur cet ordinateur au port 32769. Séparez les entrées par des points-virgules ou des sauts de ligne. Pour un autre ordinateur, utilisez son adresse IPv4 sur le réseau local. Configurez aussi l’entrée de retour sur l’autre station.</value></data>
 </root>

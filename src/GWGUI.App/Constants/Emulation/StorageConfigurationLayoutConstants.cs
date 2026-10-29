@@ -4,7 +4,7 @@ namespace GWGUI.App.Constants.Emulation;
 internal static class StorageConfigurationLayoutConstants
 {
     /// <summary>Largeur du dialogue lorsque les champs sont répartis en groupes, en unités logiques WPF.</summary>
-    internal const double GroupedWidth = 820;
+    internal const double GroupedWidth = 760;
 
     /// <summary>Largeur du dialogue de configuration géré, en unités logiques WPF.</summary>
     internal const double ManagedWidth = 720;
@@ -29,7 +29,7 @@ internal static class StorageConfigurationLayoutConstants
     /// <summary>Nombre maximal de colonnes de groupes de réglages.</summary>
     internal const int MaximumColumns = 2;
     /// <summary>Largeur de la fenêtre de lecteur de disquette.</summary>
-    internal const double FloppyWidth = 760;
+    internal const double FloppyWidth = 720;
     /// <summary>Largeur de la fenêtre de disque dur.</summary>
     internal const double HardDiskWidth = 900;
     /// <summary>Hauteur initiale de la fenêtre de disque dur.</summary>
@@ -45,4 +45,8 @@ internal static class StorageConfigurationLayoutConstants
     internal const double BehaviorColumnWidth = 350;
     /// <summary>Part de la zone de travail disponible pour les réglages du lecteur.</summary>
     internal const double BodyHeightRatio = 0.65;
+    /// <summary>Hauteur maximale des réglages compacts sur une surface de travail 1080p.</summary>
+    internal const double CompactMaximumHeight = 680;
+    /// <summary>Hauteur minimale conservant les actions visibles.</summary>
+    internal const double CompactMinimumHeight = 300;
 }

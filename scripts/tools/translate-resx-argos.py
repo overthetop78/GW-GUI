@@ -22,6 +22,9 @@ LANGUAGE_CODES = {
     "vi-VN": "vi", "zh-Hans": "zh", "zh-Hant": "zh",
 }
 CONTEXTUAL_LABEL_SOURCES = {
+    "Emulation.Firmware.Select": "Select a file",
+    "Emulation.Firmware.Empty": "This folder is empty.",
+    "Emulation.Firmware.NotSelected": "Nothing has been selected.",
     "Visual.StartLabel": "Beginning",
     "Explorer.Session": "Disc session",
     "Explorer.Track": "Media track",
@@ -29,7 +32,26 @@ CONTEXTUAL_LABEL_SOURCES = {
     "Explorer.Faces": "Media recording sides",
 }
 CONTEXTUAL_LABEL_OVERRIDES = {
+    "ar-SA": {"Emulation.Firmware.Empty": "هذا المجلد فارغ."},
+    "ja-JP": {"Emulation.Firmware.NotSelected": "何も選択されていません。"},
+    "pt-BR": {"Emulation.Firmware.NotSelected": "Nada foi selecionado."},
+    "pt-PT": {"Emulation.Firmware.Select": "Selecione um ficheiro"},
+    "ro-RO": {"Emulation.Firmware.Empty": "Acest dosar este gol."},
+    "th-TH": {"Emulation.Firmware.NotSelected": "ยังไม่ได้เลือกไฟล์"},
+    "uk-UA": {"Emulation.Firmware.NotSelected": "Нічого не вибрано."},
+    "zh-Hans": {
+        "Emulation.Firmware.Empty": "此文件夹为空。",
+        "Emulation.Firmware.NotSelected": "尚未选择文件。",
+    },
+    "zh-Hant": {
+        "Emulation.Firmware.Select": "選擇檔案",
+        "Emulation.Firmware.Empty": "此資料夾為空。",
+        "Emulation.Firmware.NotSelected": "尚未選擇檔案。",
+    },
     "fr-FR": {
+        "Emulation.Firmware.Select": "Choisir une ROM",
+        "Emulation.Firmware.Empty": "Aucune ROM trouvée dans ce dossier.",
+        "Emulation.Firmware.NotSelected": "Aucune ROM sélectionnée",
         "Visual.StartLabel": "Début",
         "Explorer.Session": "Session",
         "Explorer.Track": "Piste",

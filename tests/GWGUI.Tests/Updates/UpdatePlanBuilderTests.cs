@@ -8,6 +8,29 @@ public sealed class UpdatePlanBuilderTests
     private readonly UpdatePlanBuilder _builder = new();
 
     [Fact]
+    public void Module_version_floor_excludes_older_releases_and_rejects_forced_selection()
+    {
+        var builder = new UpdatePlanBuilder(new Version(1, 3, 0));
+        var catalog = ModuleCatalog(Module("amiga", ModuleRelease("1.2.9", "1.0", "1.0"), ModuleRelease("1.3.0", "1.0", "1.0")));
+        var result = builder.Search(catalog, Installed(), UpdateSearchScope.Modules);
+        Assert.Equal("1.3.0", Assert.Single(result.Plan.Items).Release.Version);
+        Assert.DoesNotContain(Assert.Single(result.Components).Releases, release => release.Version == "1.2.9");
+        var forced = builder.Search(catalog, Installed(), UpdateSearchScope.Modules,
+            new Dictionary<string, string> { ["amiga"] = "1.2.9" });
+        Assert.False(forced.Plan.IsCompatible);
+        Assert.Empty(forced.Plan.Items);
+    }
+
+    [Fact]
+    public void Module_version_floor_never_filters_application_releases()
+    {
+        var builder = new UpdatePlanBuilder(new Version(1, 3, 0));
+        var installed = new InstalledUpdateState("0.4.0", "1.3", []);
+        var result = builder.Search(ApplicationCatalog(Application("0.4.1", "1.3")), installed, UpdateSearchScope.Application);
+        Assert.Equal("0.4.1", Assert.Single(result.Plan.Items).Release.Version);
+    }
+
+    [Fact]
     public void Module_catalog_reports_installed_module_as_up_to_date()
     {
         var result = _builder.Search(ModuleCatalog(Module("amiga", ModuleRelease("1.0.0", "1.0", "1.0"))), Installed(), UpdateSearchScope.Modules);

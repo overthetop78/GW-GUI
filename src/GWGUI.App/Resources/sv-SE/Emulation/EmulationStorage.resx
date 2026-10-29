@@ -17,7 +17,7 @@
   <data name="Emulation.Storage.Cd.Drive"><value>CD-enhet</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>Antal diskettenheter</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>Antal hårddiskar</value></data>
-  <data name="Emulation.Storage.Floppy.Speed"><value>Diskettenhetens hastighet</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Hastighet för den här diskettenheten</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>Skrivskydda diskettavbilder</value></data>
   <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Omdirigera diskettskrivningar</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>CD-hastighet</value></data>
@@ -93,4 +93,12 @@
   <data name="Emulation.Storage.Media.AlreadyExists"><value>Den här filen finns redan. Välj en ny bildfil: {0}</value></data>
   <data name="Emulation.Storage.Sound.Volume"><value>Volymvolym</value></data>
   <data name="Emulation.Storage.Sound.Group"><value>Lagringsenhet låter</value></data>
+  <data name="Emulation.Storage.Floppy.Format"><value>Diskettformat</value></data>
+  <data name="Emulation.Storage.Floppy.OneSide"><value>1 sida</value></data>
+  <data name="Emulation.Storage.Floppy.TwoSides"><value>2 sidor</value></data>
+  <data name="Emulation.Storage.Floppy.Tracks"><value>{0} spår per sida</value></data>
+  <data name="Emulation.Storage.Floppy.SingleDensity"><value>Enkel densitet</value></data>
+  <data name="Emulation.Storage.Floppy.DoubleDensity"><value>Dubbel densitet</value></data>
+  <data name="Emulation.Storage.File.Destination"><value>Målfil</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFormat"><value>Diskavbildningsformat</value></data>
 </root>

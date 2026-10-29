@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>Name ROM còn thiếu, hãy chọn tập tin của nó trong đó. RAM Thẻ thiết lập máy tính.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Chọn phần mềm điều khiển cho việc mở rộng bộ nhớ này từ tập tin đã phát hiện, hoặc duyệt tìm tập tin tương thích. Không có tập tin nào được nạp khi rỗng.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Bộ nhớ hai chiều</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Các mô- đun bộ nhớ đã ngân hàng</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Bo mạch mở rộng</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Mở rộng lỗ hổng chip</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Những mô- đun này thêm bộ nhớ đã ngân hàng mà không làm tăng không gian bộ nhớ chính. Hãy chọn những ảnh chip trong các ổ mở rộng để xác định nội dung của chúng. Trước khi phần mềm cá nhân được chọn còn lại sử dụng cho đến khi ổ cắm nhận được ảnh chip rõ ràng.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Hình chip{0}« có kích cỡ không tương thích ». Mong đợi: {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Bo mạch mở rộng bộ nhớ</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Dung lượng bộ nhớ bổ sung</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Số trạm Econet duy nhất, từ 1 đến 254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Mỗi trạm cần một số khác nhau. Thiết lập này thay thế phần cứng nhảy qua giao diện thật. Sử dụng các phím mũi tên lên và xuống để thay đổi số.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Tần số đồng hồ của giao diện mạng mô phỏng.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>Đồng hồ điều khiển thời gian của giao diện mô phỏng. Thiết lập đồng hồ khác nhau không chặn giao tiếp giữa các giả lập.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Chọn cách trạm này kết nối đến mạng.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Ngắt kết nối: giao diện được cài đặt mà không có kết nối mạng. &#xA;UDP: Trực tiếp trao đổi khung mạng giữa các giả lập tương thích. Sử dụng chế độ này giữa hai máy mô phỏng. &#xA;AUN: Một giao thức mạng khác cho máy phục vụ và giả lập tương thích. Cả hai đầu phải sử dụng cùng một giao thức.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: Địa chỉ lắng nghe của máy tính này.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: Kết nối đang chạy trên máy tính này. &#xA;Với một mạng nội bộ, hãy dùng địa chỉ được chỉ định cho máy tính này. &#xA;0.0.0.0: Nghe trên mọi giao diện mạng của máy tính này. &#xA;Hãy nhập địa chỉ của các máy tính khác trong trường điều khiển từ xa. Tên máy và địa chỉ máy khác không được chấp nhận ở đây.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>Cổng UDP lắng nghe của máy tính này, 1–65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>Cổng đầu tiên là:  32768. Những giả lập chia sẻ cùng một địa chỉ lắng nghe cần những cổng khác nhau.  32768 / 32769. Dùng các phím mũi tên lên và xuống để thay đổi giá trị. Trạm điều khiển phải xác định cổng đích.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Bản đồ số trạm từ xa tới địa chỉ và cổng mạng.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;Địa chỉ ví dụ này trạm 3 trên mạng 0, chạy trên máy tính này tại cổng 32769. Tách các mục ra với các dấu chấm hay các đường thẳng. Với một máy tính khác, hãy dùng địa chỉ của nó trên mạng địa phương. Cấu hình mục quay về vị trí khác.</value></data>
 </root>

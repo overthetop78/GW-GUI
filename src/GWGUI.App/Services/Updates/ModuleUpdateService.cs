@@ -28,7 +28,7 @@ internal sealed class ModuleUpdateService
         _httpClient = httpClient ?? new HttpClient();
         _installedModules = installedModules ?? (() => EmulationModuleRegistry.Packages);
         _catalogValidator = catalogValidator ?? new ModuleUpdateCatalogValidator();
-        _planBuilder = planBuilder ?? new UpdatePlanBuilder();
+        _planBuilder = planBuilder ?? new UpdatePlanBuilder(EmulationHostApi.MinimumModuleVersion);
         _modulesDirectory = Path.GetFullPath(modulesDirectory ?? Path.Combine(AppContext.BaseDirectory, "Modules"));
     }
 

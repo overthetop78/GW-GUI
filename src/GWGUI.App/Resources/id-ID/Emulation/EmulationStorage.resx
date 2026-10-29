@@ -17,7 +17,7 @@
   <data name="Emulation.Storage.Cd.Drive"><value>Drive CD</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>Jumlah drive disket</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>Jumlah hard disk</value></data>
-  <data name="Emulation.Storage.Floppy.Speed"><value>Kecepatan drive disket</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Kecepatan kandar floppy ini</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>Lindungi citra disket dari penulisan</value></data>
   <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Alihkan penulisan disket</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>Kecepatan CD</value></data>
@@ -93,4 +93,12 @@
   <data name="Emulation.Storage.Media.AlreadyExists"><value>Berkas ini sudah ada. Pilih berkas citra baru: {0}</value></data>
   <data name="Emulation.Storage.Sound.Volume"><value>Volume</value></data>
   <data name="Emulation.Storage.Sound.Group"><value>Suara perangkat penyimpanan</value></data>
+  <data name="Emulation.Storage.Floppy.Format"><value>Format disket</value></data>
+  <data name="Emulation.Storage.Floppy.OneSide"><value>1 sisi</value></data>
+  <data name="Emulation.Storage.Floppy.TwoSides"><value>2 sisi</value></data>
+  <data name="Emulation.Storage.Floppy.Tracks"><value>{0} trek per sisi</value></data>
+  <data name="Emulation.Storage.Floppy.SingleDensity"><value>Kepadatan tunggal</value></data>
+  <data name="Emulation.Storage.Floppy.DoubleDensity"><value>Kepadatan ganda</value></data>
+  <data name="Emulation.Storage.File.Destination"><value>Berkas tujuan</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFormat"><value>Format berkas citra disket</value></data>
 </root>

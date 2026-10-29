@@ -6,6 +6,7 @@ using System.Text.Json;
 using GWGUI.Updates.Contracts;
 using GWGUI.Updates.Services;
 using GWGUI.App.Contracts.Updates;
+using GWGUI.Emulation.Constants;
 
 namespace GWGUI.App.Services.Updates;
 
@@ -101,6 +102,7 @@ internal sealed class UpdatePackagePreparationService
             foreach (var installation in installations)
             {
                 cancellationToken.ThrowIfCancellationRequested();
+                ValidateModuleVersion(installation.ModuleId, installation.Component.Version);
                 var destination = Path.Combine(workDirectory, "extracted", installation.ModuleId);
                 CopyRegularDirectory(installation.Component.PreparedDirectory, destination);
                 components.Add(installation.Component with { PreparedDirectory = destination });
@@ -218,11 +220,18 @@ internal sealed class UpdatePackagePreparationService
 
     private static void ValidateModuleHostCompatibility(GWGUI.Emulation.Contracts.EmulationModuleManifest manifest, string hostApiVersion)
     {
+        ValidateModuleVersion(manifest.Id, manifest.ModuleVersion);
         if (!Version.TryParse(hostApiVersion, out var hostApi)
             || !Version.TryParse(manifest.HostApiMinimum, out var minimum)
             || !Version.TryParse(manifest.HostApiMaximum, out var maximum)
             || hostApi < minimum || hostApi > maximum)
             throw new InvalidDataException($"Module '{manifest.Id}' is incompatible with host API {hostApiVersion}.");
+    }
+
+    private static void ValidateModuleVersion(string moduleId, string version)
+    {
+        if (!Version.TryParse(version, out var moduleVersion) || moduleVersion < EmulationHostApi.MinimumModuleVersion)
+            throw new InvalidDataException($"Module '{moduleId}' version {version} is no longer supported. Minimum module version: {EmulationHostApi.MinimumModuleVersion}.");
     }
 
     private void VerifyInstallationIsWritable()

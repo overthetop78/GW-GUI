@@ -35,11 +35,19 @@ internal static partial class StorageConfigurationFieldFunctions
 
     /// <summary>Regroupe les champs déclarés par le module, sans connaître les options d'une machine particulière.</summary>
     internal static StackPanel CreateGroups(IReadOnlyList<EmulationSettingsField> fields, string? moduleId,
-        IReadOnlyDictionary<string, string>? values, IDictionary<string, FrameworkElement> controls)
+        IReadOnlyDictionary<string, string>? values, IDictionary<string, FrameworkElement> controls, bool compact = false)
     {
         var groups = new StackPanel();
         foreach (var group in fields.Where(field => field.IsVisible).GroupBy(field => field.BlockId))
         {
+            if (compact)
+            {
+                var label = LocExtension.GetForModule(moduleId ?? string.Empty, group.Key);
+                if (label == group.Key) label = LocExtension.Get("Emulation.Input.Behavior");
+                groups.Children.Add(StorageDialogUi.IconCard(IconGlyphs.Settings, label,
+                    CompactGroup(group.ToArray(), moduleId, values, controls), compact: true));
+                continue;
+            }
             var body = new StackPanel();
             var vertical = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Center };
             foreach (var field in group)
@@ -78,6 +86,66 @@ internal static partial class StorageConfigurationFieldFunctions
             groups.Children.Add(StorageDialogUi.IconCard(IconGlyphs.Settings, title, content));
         }
         return groups;
+    }
+
+    /// <summary>Aligne les champs ordinaires et réserve une colonne indépendante aux réglages verticaux.</summary>
+    internal static Grid CompactGroup(IReadOnlyList<EmulationSettingsField> fields, string? moduleId,
+        IReadOnlyDictionary<string, string>? values, IDictionary<string, FrameworkElement> controls, int columns = 1)
+    {
+        var content = new Grid();
+        content.ColumnDefinitions.Add(new ColumnDefinition());
+        content.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        var form = new Grid { VerticalAlignment = VerticalAlignment.Center };
+        for (var column = 0; column < columns; column++) form.ColumnDefinitions.Add(new ColumnDefinition());
+        var vertical = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
+        var index = 0;
+        foreach (var field in fields.Where(field => field.IsVisible))
+        {
+            var control = Create(field, moduleId, values);
+            controls[field.Id] = control;
+            var label = LocExtension.GetForModule(moduleId ?? string.Empty, field.LabelResourceKey);
+            var row = new StackPanel { Margin = new Thickness(0, 3, 10, 7) };
+            if (field.ExplanationResourceKey is { } help) control.ToolTip = LocExtension.GetForModule(moduleId ?? string.Empty, help);
+            if (control is CheckBox check) check.Content = new TextBlock { Text = label, TextWrapping = TextWrapping.Wrap };
+            else row.Children.Add(new TextBlock { Text = label, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 4) });
+            row.Children.Add(control);
+            if (field.NumericRange?.IsVertical == true)
+            {
+                if (control is Grid { Tag: Slider } sliderGrid)
+                {
+                    sliderGrid.ColumnDefinitions.Clear();
+                    sliderGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                    sliderGrid.RowDefinitions.Clear();
+                    sliderGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                    sliderGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                    foreach (var child in sliderGrid.Children.OfType<FrameworkElement>())
+                    {
+                        Grid.SetColumn(child, 0);
+                        Grid.SetRow(child, child is Slider ? 0 : 1);
+                        if (child is TextBlock value)
+                        {
+                            value.MinWidth = 0;
+                            value.Margin = new Thickness(0, 4, 0, 0);
+                            value.TextAlignment = TextAlignment.Center;
+                        }
+                    }
+                }
+                row.Width = C.VerticalFieldWidth;
+                row.Margin = new Thickness(8, 0, 0, 0);
+                foreach (var text in row.Children.OfType<TextBlock>()) text.TextAlignment = TextAlignment.Center;
+                control.HorizontalAlignment = HorizontalAlignment.Center;
+                vertical.Children.Add(row);
+            }
+            else
+            {
+                var position = index / columns;
+                if (position == form.RowDefinitions.Count) form.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                Grid.SetRow(row, position); Grid.SetColumn(row, index % columns); form.Children.Add(row); index++;
+            }
+        }
+        content.Children.Add(form);
+        if (vertical.Children.Count > 0) { Grid.SetColumn(vertical, 1); content.Children.Add(vertical); }
+        return content;
     }
 
     private static IEnumerable<Slider> Sliders(DependencyObject root)

@@ -1,3 +1,13 @@
+function Get-GwGuiHostApiVersion {
+    param([Parameter(Mandatory = $true)][string]$RepositoryRoot)
+
+    $source = Join-Path ([IO.Path]::GetFullPath($RepositoryRoot)) 'src\GWGUI.Emulation\Constants\EmulationHostApi.cs'
+    $declaration = [regex]::Match((Get-Content -LiteralPath $source -Raw),
+        'CurrentVersion\s*\{[^}]+\}\s*=\s*new(?:\s+Version)?\s*\(\s*(?<major>\d+)\s*,\s*(?<minor>\d+)\s*\)')
+    if (-not $declaration.Success) { throw "Cannot read the host API version from '$source'." }
+    return [Version]::new([int]$declaration.Groups['major'].Value, [int]$declaration.Groups['minor'].Value)
+}
+
 function Get-GwGuiEmulationModules {
     param(
         [Parameter(Mandatory = $true)]

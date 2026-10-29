@@ -17,7 +17,7 @@
   <data name="Emulation.Storage.Cd.Drive"><value>Unidad de CD</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>Número de disqueteras</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>Número de discos duros</value></data>
-  <data name="Emulation.Storage.Floppy.Speed"><value>Velocidad de disquetera</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Velocidad de esta unidad de disquete</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>Proteger imágenes de disquete contra escritura</value></data>
   <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Redirigir escrituras de disquete</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>Velocidad de CD</value></data>
@@ -93,4 +93,12 @@
   <data name="Emulation.Storage.Media.AlreadyExists"><value>Este archivo ya existe. Elija un nuevo archivo de imagen: {0}</value></data>
   <data name="Emulation.Storage.Sound.Volume"><value>Volumen</value></data>
   <data name="Emulation.Storage.Sound.Group"><value>Almacenamiento de sonidos</value></data>
+  <data name="Emulation.Storage.Floppy.Format"><value>Formato de disquete</value></data>
+  <data name="Emulation.Storage.Floppy.OneSide"><value>1 cara</value></data>
+  <data name="Emulation.Storage.Floppy.TwoSides"><value>2 caras</value></data>
+  <data name="Emulation.Storage.Floppy.Tracks"><value>{0} pistas por cara</value></data>
+  <data name="Emulation.Storage.Floppy.SingleDensity"><value>Densidad simple</value></data>
+  <data name="Emulation.Storage.Floppy.DoubleDensity"><value>Doble densidad</value></data>
+  <data name="Emulation.Storage.File.Destination"><value>Archivo de destino</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFormat"><value>Formato del archivo de imagen</value></data>
 </root>

@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>La scheda di espansione della memoria ROM manca. Selezionare il suo file nel RAM scheda delle impostazioni della macchina.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Selezionare il software di controllo per questa espansione della memoria dai file rilevati, o cercare un file compatibile.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Memoria laterale</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Moduli di memoria bancari</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Scheda di espansione</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Prese di espansione chip</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Questi moduli aggiungono memoria bancaria senza aumentare lo spazio principale dell'indirizzo di memoria. Selezionare immagini chip nelle prese di espansione per definire i loro contenuti.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Immagine del chip{0}' ha una dimensione incompatibile. {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Schede di espansione della memoria</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Capacità della memoria aggiuntiva</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: Numero di stazione unico.  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Ogni stazione ha bisogno di un numero diverso. Questa impostazione sostituisce i saltatori hardware sull'interfaccia reale. Utilizzare i tasti freccia su e giù per modificare il numero.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Frequenza dell'orologio dell'interfaccia di rete emulata.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>L'orologio controlla il tempo dell'interfaccia emulata. Le diverse impostazioni dell'orologio non bloccano la comunicazione tra emulatori.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Scegliere come questa stazione si collega alla rete.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Scollegato: l'interfaccia è installata senza una connessione di rete. &#xA;UDP: Scambio diretto di cornici di rete tra emulatori compatibili. Utilizzare questa modalità tra due macchine emulate. &#xA;AUN: Un altro protocollo di rete per server ed emulatori compatibili. Entrambe le estremità devono usare lo stesso protocollo.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: L'indirizzo di ascolto di questo computer.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: Collega gli emulatori in esecuzione su questo computer. &#xA;Per una rete locale, utilizzare un indirizzo assegnato a questo computer. &#xA;0.0.0.0: Ascolta tutte le interfacce di rete di questo computer. &#xA;Inserisci gli indirizzi di altri computer nel campo delle stazioni remote. I nomi e gli indirizzi host di altri computer non sono accettati qui.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>Porta UDP di ascolto di questo computer, 1–65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>La porta iniziale è:  32768. Gli emulatori che condividono lo stesso indirizzo di ascolto hanno bisogno di porte diverse.  32768 / 32769. Utilizzare i tasti freccia su e giù per cambiare il valore. Le stazioni remote devono specificare la porta di destinazione.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Mappa numeri di stazione remota agli indirizzi di rete e alle porte.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;Questo esempio indirizza la stazione 3 sulla rete 0, in esecuzione su questo computer alla porta 32769. Entrate separate con semicoloni o interruzioni di linea. Per un altro computer, utilizzare il suo indirizzo sulla rete locale. Configurare la corrispondente voce di ritorno sull'altra stazione.</value></data>
 </root>

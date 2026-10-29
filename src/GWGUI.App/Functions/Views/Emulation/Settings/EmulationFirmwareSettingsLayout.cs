@@ -1,9 +1,7 @@
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Constants.Emulation;
-using GWGUI.App.Contracts.Emulation.Firmware;
-using GWGUI.App.Factories.Views.Common;
 using GWGUI.App.Localization.Extensions;
-using System.Globalization;
+using System.IO;
 using System.Windows.Automation;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,47 +13,14 @@ namespace GWGUI.App.Functions.Views.Emulation.Settings;
 
 internal static partial class EmulationSettingsLayout
 {
-    internal static Grid FirmwareSettingsPage(EmulationFirmwareSettingsContent settings)
-    {
-        settings.DetectedFirmware.MinWidth = 360;
-        settings.DetectedFirmware.BorderThickness = new Thickness(0);
-        settings.DetectedFirmware.HorizontalContentAlignment = HorizontalAlignment.Stretch;
-        Grid.SetIsSharedSizeScope(settings.DetectedFirmware, true);
-        ScrollViewer.SetHorizontalScrollBarVisibility(settings.DetectedFirmware, ScrollBarVisibility.Disabled);
-        ScrollViewer.SetVerticalScrollBarVisibility(settings.DetectedFirmware, ScrollBarVisibility.Auto);
-
-        var refresh = ControlUiFactory.IconTextButton(EmulationFirmwareSettingsConstants.RefreshIcon, LocExtension.Get("Common.Refresh"));
-        refresh.Click += async (_, _) => await settings.Refresh(refresh);
-        var use = settings.UseSelected;
-        use.Content = LocExtension.Get("Emulation.Firmware.Use");
-        use.MinWidth = 100;
-        use.Margin = new Thickness(8, 0, 0, 0);
-
-        var actions = new StackPanel { Orientation = Orientation.Horizontal };
-        actions.Children.Add(refresh);
-        actions.Children.Add(use);
-        var configuredCard = new Border { Child = settings.ConfiguredFirmware };
-        var detectedCard = ActionCard(settings.DetectedFirmware, LocExtension.Get("Emulation.Firmware.Rom.Detected"), actions);
-        var page = TwoColumnPage(configuredCard, detectedCard);
-        page.RowDefinitions[0].Height = new GridLength(1, GridUnitType.Star);
-
-        var openFolder = ControlUiFactory.IconTextButton(EmulationFirmwareSettingsConstants.OpenFolderIcon, LocExtension.Get("Emulation.Firmware.Rom.OpenFolder"));
-        openFolder.HorizontalAlignment = HorizontalAlignment.Left;
-        openFolder.Margin = new Thickness(0, 12, 0, 0);
-        openFolder.Click += async (_, _) => await settings.OpenFolder(openFolder);
-        Grid.SetRow(openFolder, 1);
-        Grid.SetColumnSpan(openFolder, 2);
-        page.Children.Add(openFolder);
-        return page;
-    }
-
     internal static Grid FirmwareRow(string name, string? version, EmulationFirmwareCompatibility compatibility, string? sourcePath = null, string destination = "")
     {
         var grid = new Grid { MinHeight = EmulationFirmwareSettingsConstants.FirmwareRowMinimumHeight,
-            Margin = new Thickness(8, 2, 8, 2) };
+            Margin = new Thickness(6, 0, 6, 0) };
         grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(EmulationFirmwareSettingsConstants.FirmwareIconColumnWidth) });
-        grid.ColumnDefinitions.Add(new ColumnDefinition());
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(3, GridUnitType.Star) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto, SharedSizeGroup = "FirmwareCompatibility" });
         grid.ColumnDefinitions.Add(new ColumnDefinition
         {
             Width = GridLength.Auto,
@@ -63,23 +28,26 @@ internal static partial class EmulationSettingsLayout
         });
 
         grid.Children.Add(new TextBlock { Text = EmulationFirmwareSettingsConstants.FirmwareIcon,
-            FontFamily = ControlVisualConstants.IconFont, FontSize = 22,
+            FontFamily = ControlVisualConstants.IconFont, FontSize = 15,
             VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Center });
-        var identityText = string.IsNullOrWhiteSpace(version) ? name : $"{name} — {version}";
+        var identityText = string.IsNullOrWhiteSpace(version) || name.Contains(version, StringComparison.OrdinalIgnoreCase) ? name : $"{name} — {version}";
         var identity = new TextBlock
         {
             Text = identityText,
             ToolTip = sourcePath ?? identityText,
-            FontWeight = FontWeights.SemiBold,
             VerticalAlignment = VerticalAlignment.Center,
             TextTrimming = TextTrimming.CharacterEllipsis,
-            Margin = new Thickness(8, 0, 12, 0)
+            Margin = new Thickness(6, 0, 10, 0)
         };
         Grid.SetColumn(identity, 1); grid.Children.Add(identity);
+        var file = new TextBlock { Text = sourcePath is null ? string.Empty : Path.GetFileName(sourcePath), ToolTip = sourcePath,
+            TextTrimming = TextTrimming.CharacterEllipsis, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 10, 0), Opacity = 0.7 };
+        Grid.SetColumn(file, 2); grid.Children.Add(file);
 
         var colors = FirmwareBadgeColors(compatibility);
         var badge = FirmwareBadge(string.Empty, colors);
-        badge.Child = new TextBlock
+        var status = new StackPanel { Orientation = Orientation.Horizontal };
+        status.Children.Add(new TextBlock
         {
             Text = compatibility switch
             {
@@ -89,20 +57,22 @@ internal static partial class EmulationSettingsLayout
                 _ => IconGlyphs.Information
             },
             FontFamily = ControlVisualConstants.IconFont,
-            FontSize = 18,
+            FontSize = 12,
             Foreground = colors.Foreground,
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center
-        };
-        badge.Padding = new Thickness(6);
+        });
+        status.Children.Add(new TextBlock { Text = colors.Text, Foreground = colors.Foreground, Margin = new Thickness(5, 0, 0, 0), VerticalAlignment = VerticalAlignment.Center });
+        badge.Child = status;
+        badge.Padding = new Thickness(6, 2, 6, 2);
         badge.ToolTip = colors.Text;
         AutomationProperties.SetName(badge, colors.Text);
-        Grid.SetColumn(badge, 2); grid.Children.Add(badge);
+        Grid.SetColumn(badge, 3); grid.Children.Add(badge);
 
         if (!string.IsNullOrWhiteSpace(destination))
         {
-            var destinationBadge = FirmwareBadge(LimitFirmwareDestination(destination), colors);
-            Grid.SetColumn(destinationBadge, 3);
+            var destinationBadge = FirmwareBadge(destination, colors);
+            Grid.SetColumn(destinationBadge, 4);
             grid.Children.Add(destinationBadge);
         }
 
@@ -114,6 +84,7 @@ internal static partial class EmulationSettingsLayout
         Child = new TextBlock
         {
             Text = text,
+            TextWrapping = TextWrapping.Wrap,
             Foreground = colors.Foreground,
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Center
@@ -121,21 +92,12 @@ internal static partial class EmulationSettingsLayout
         Background = colors.Background,
         BorderBrush = colors.Border,
         BorderThickness = new Thickness(1),
-        CornerRadius = new CornerRadius(6),
-        Padding = new Thickness(10, 5, 10, 5),
+        CornerRadius = new CornerRadius(3),
+        Padding = new Thickness(6, 2, 6, 2),
         HorizontalAlignment = HorizontalAlignment.Stretch,
         VerticalAlignment = VerticalAlignment.Center,
         Margin = new Thickness(EmulationFirmwareSettingsConstants.FirmwareBadgeSpacing / 2, 0, EmulationFirmwareSettingsConstants.FirmwareBadgeSpacing / 2, 0)
     };
-
-    private static string LimitFirmwareDestination(string destination)
-    {
-        var characterIndexes = StringInfo.ParseCombiningCharacters(destination);
-        if (characterIndexes.Length <= EmulationFirmwareSettingsConstants.FirmwareDestinationMaximumLength)
-            return destination;
-        var retainedCharacters = EmulationFirmwareSettingsConstants.FirmwareDestinationMaximumLength - EmulationFirmwareSettingsConstants.FirmwareDestinationEllipsis.Length;
-        return destination[..characterIndexes[retainedCharacters]] + EmulationFirmwareSettingsConstants.FirmwareDestinationEllipsis;
-    }
 
     internal static int FirmwareCompatibilityOrder(EmulationFirmwareCompatibility compatibility) => compatibility switch
     {
@@ -146,8 +108,6 @@ internal static partial class EmulationSettingsLayout
         EmulationFirmwareCompatibility.Incompatible => 4,
         _ => 5
     };
-
-    internal static void UpdateFirmwareUseButton(Button button, EmulationFirmwareCompatibility? compatibility) => button.IsEnabled = compatibility is not null and not EmulationFirmwareCompatibility.Incompatible;
 
     private static (string Text, Brush Foreground, Brush Background, Brush Border) FirmwareBadgeColors(EmulationFirmwareCompatibility compatibility) => compatibility switch
         {

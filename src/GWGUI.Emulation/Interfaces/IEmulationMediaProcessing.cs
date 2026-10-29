@@ -7,12 +7,6 @@ namespace GWGUI.Emulation.Interfaces;
 /// Les types des bibliothèques médias restent encapsulés derrière ces contrats.</remarks>
 public interface IEmulationMediaProcessing
 {
-    /// <summary>Choix de lecteurs fournis par MediaEngine, sans recopier leurs données dans les modules.</summary>
-    IReadOnlyList<FloppyDriveModelChoice> FloppyDriveModels(string family, bool doubleDensity);
-    /// <summary>Profils physiques HDD déclarés dans MediaEngine et adaptés au contrat du SDK.</summary>
-    IReadOnlyList<GWGUI.Emulation.HardDisks.HardDiskDriveModelChoice> HardDiskDriveModels(string family);
-    /// <summary>Relaye la géométrie de l'image au contrôle central avant tout montage ou copie.</summary>
-    bool SupportsFloppyImage(string model, IEmulationDiskImage image);
     /// <summary>Crée l'image vierge correspondant au format déclaré par le modèle du lecteur.</summary>
     Task CreateBlankDiskAsync(string path, string formatId, CancellationToken cancellationToken = default);
     /// <summary>Crée un disque et ses fichiers associés avec la géométrie déclarée et une préparation de volume facultative.</summary>

@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>内存扩展卡 ROM 中选择文件 RAM 选项卡。</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>請從偵測到的檔案中選擇此記憶體擴充的控制軟體，或瀏覽並選取相容的檔案。路徑留空時不會載入任何檔案。</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>分頁記憶體</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>分頁記憶體模組</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>擴充卡</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>擴充模組晶片插槽</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>這些模組會增加分頁記憶體，不會擴大主記憶體的位址空間。請在擴充插槽中選擇晶片映像檔以指定其內容。在明確選擇取代其插槽的晶片映像檔之前，先前個別選擇的韌體仍會繼續使用。</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>芯片图像“ ”{0}' 大小不相容。 预期: {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>記憶體擴充卡</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>新增記憶體容量</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>唯一的 Econet 站號，範圍為 1–254。</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>每個站台必須使用不同的站號。此設定取代實體介面上的跳線。使用鍵盤的向上與向下方向鍵調整站號。</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>模擬網路介面的時脈頻率。</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>時脈控制模擬介面的時序。不同的時脈設定不會阻擋模擬器之間的通訊。</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>選擇此站台的網路連線方式。</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>中斷連線：安裝介面但不連接網路。&#xA;UDP：在相容模擬器之間直接交換網路訊框。兩個模擬站台之間請使用此模式。&#xA;AUN：供相容伺服器及模擬器使用的另一種協定。兩端必須使用相同協定。</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>此電腦用於接收封包的 IPv4 位址。</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1：連接此電腦上的模擬器。&#xA;區域網路連線請使用指派給此電腦的位址。&#xA;0.0.0.0：接聽此電腦的所有網路介面。&#xA;其他電腦的位址請填入遠端站台欄位。此欄位不接受主機名稱或其他電腦的位址。</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>此電腦的 UDP 接聽連接埠，範圍為 1–65535。</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>初始連接埠為 32768。共用相同接聽位址的模擬器必須使用不同連接埠，例如 32768 和 32769。使用鍵盤的向上與向下方向鍵調整數值。遠端站台設定必須指定目的地連接埠。</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>將遠端站號對應至網路位址與連接埠。</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;此範例代表網路 0 的站台 3，執行於此電腦的連接埠 32769。各筆設定以分號或換行分隔。其他電腦請使用其區域網路位址。也必須在另一個站台設定對應的回程項目。</value></data>
 </root>

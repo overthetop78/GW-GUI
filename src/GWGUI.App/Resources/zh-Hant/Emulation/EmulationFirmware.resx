@@ -12,4 +12,7 @@
   <data name="Emulation.Firmware.Official"><value>官方</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>不相容</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>语音样本</value></data>
+  <data name="Emulation.Firmware.Select"><value>選擇檔案</value></data>
+  <data name="Emulation.Firmware.Empty"><value>此資料夾為空。</value></data>
+  <data name="Emulation.Firmware.NotSelected"><value>尚未選擇檔案。</value></data>
 </root>

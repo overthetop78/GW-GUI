@@ -17,7 +17,7 @@
   <data name="Emulation.Storage.Cd.Drive"><value>CD drive</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>Floppy-drive count</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>Hard-disk count</value></data>
-  <data name="Emulation.Storage.Floppy.Speed"><value>Floppy-drive speed</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Speed of this floppy drive</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>Write-protect floppy images</value></data>
   <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Redirect floppy writes</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>CD speed</value></data>
@@ -93,4 +93,12 @@
   <data name="Emulation.Storage.Media.AlreadyExists"><value>This file already exists. Choose a new image file: {0}</value></data>
   <data name="Emulation.Storage.Sound.Volume"><value>Volume</value></data>
   <data name="Emulation.Storage.Sound.Group"><value>Drive sounds</value></data>
+  <data name="Emulation.Storage.Floppy.Format"><value>Floppy disk format</value></data>
+  <data name="Emulation.Storage.Floppy.OneSide"><value>1 side</value></data>
+  <data name="Emulation.Storage.Floppy.TwoSides"><value>2 sides</value></data>
+  <data name="Emulation.Storage.Floppy.Tracks"><value>{0} tracks per side</value></data>
+  <data name="Emulation.Storage.Floppy.SingleDensity"><value>Single density</value></data>
+  <data name="Emulation.Storage.Floppy.DoubleDensity"><value>Double density</value></data>
+  <data name="Emulation.Storage.File.Destination"><value>Destination file</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFormat"><value>Image file format</value></data>
 </root>

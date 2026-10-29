@@ -14,6 +14,58 @@ namespace GWGUI.Tests.Emulation;
 public sealed class AcornEmuExtensionTests
 {
     [Theory]
+    [InlineData(StorageConstants.Intel8271, false, 4)]
+    [InlineData(StorageConstants.Intel8271, true, 4)]
+    [InlineData(StorageConstants.AcornWd1770, false, 8)]
+    [InlineData(StorageConstants.AcornWd1770, true, 8)]
+    public void ActiveControllerFiltersModelsCreationFormatsAndAcceptedImages(string controller, bool solidisk, int count)
+    {
+        var factory = new AcornEmuMachineFactory();
+        var configuration = Configuration(controller, solidisk);
+        foreach (var device in factory.DescribeStorage(configuration).AvailableDevices.Where(device => device.FloppyOptions is not null))
+        {
+            var models = device.FloppyOptions!.Models;
+            Assert.Equal(count, models.Count);
+            Assert.All(models, model =>
+            {
+                Assert.True(model.Tracks is 40 or 80);
+                Assert.True(model.Sides is 1 or 2);
+                Assert.All(model.CreationFormats, format =>
+                {
+                    Assert.InRange(format.Tracks, 1, model.Tracks);
+                    Assert.InRange(format.Sides, 1, model.Sides);
+                    if (controller == StorageConstants.Intel8271) Assert.False(format.DoubleDensity);
+                });
+            });
+            if (controller == StorageConstants.Intel8271)
+            {
+                Assert.All(models, model => Assert.False(model.DoubleDensity));
+                Assert.DoesNotContain(".adl", device.AcceptedExtensions);
+                Assert.DoesNotContain(".adl", StorageFunctions.Extensions(configuration));
+            }
+        }
+    }
+
+    [Theory]
+    [InlineData("ss40-dd", "ss40")]
+    [InlineData("ds40-dd", "ds40")]
+    [InlineData("ss80-dd", "ss80")]
+    [InlineData("ds80-dd", "ds80")]
+    public void SwitchingBackToIntelKeepsTheDialogUsableAndRejectsUnavailableChoices(string requestedModel, string effectiveModel)
+    {
+        var factory = new AcornEmuMachineFactory();
+        var wd = Configuration(StorageConstants.AcornWd1770, false);
+        var model = factory.DescribeStorage(wd).AvailableDevices.First(device => device.FloppyOptions is not null).FloppyOptions!.Models.Single(model => model.Value == requestedModel);
+        wd = factory.ApplyDeviceSettings(wd, [new(EmulationMediaSlot.Floppy0, new(model.Value, "100", false, false))]);
+        var intel = wd with { Options = new Dictionary<string, string>(wd.Options) { [StorageConstants.ControllerOption] = StorageConstants.Intel8271 } };
+        var effective = StorageFunctions.Settings(intel, 0);
+        Assert.Equal(effectiveModel, effective.Model);
+        var models = factory.DescribeStorage(intel).AvailableDevices.First(device => device.FloppyOptions is not null).FloppyOptions!.Models;
+        Assert.Contains(models, model => model.Value == effective.Model);
+        Assert.Throws<ArgumentException>(() => factory.ApplyDeviceSettings(intel, [new(EmulationMediaSlot.Floppy0, new(model.Value, "100", false, false))]));
+    }
+
+    [Theory]
     [InlineData(StorageConstants.Intel8271, false, true, false)]
     [InlineData(StorageConstants.AcornWd1770, false, false, true)]
     [InlineData(StorageConstants.Intel8271, true, true, true)]
@@ -22,7 +74,7 @@ public sealed class AcornEmuExtensionTests
     {
         var factory = new AcornEmuMachineFactory();
         var configuration = Configuration(controller, solidisk);
-        var block = Assert.Single(factory.DescribeSettings(configuration), block => block.Tab == EmulationMachineTab.Extensions);
+        var block = Assert.Single(factory.DescribeSettings(configuration), block => block.Id == FloppyExtensionConstants.Group);
         Assert.Equal(intelEnabled, Assert.Single(block.Fields, field => field.Id == FloppyExtensionConstants.IntelRom).IsEnabled);
         Assert.Equal(wdEnabled, Assert.Single(block.Fields, field => field.Id == FloppyExtensionConstants.WdRom).IsEnabled);
         Assert.True(Assert.Single(block.Fields, field => field.Id == StorageConstants.ControllerOption).UseRadioButtons);

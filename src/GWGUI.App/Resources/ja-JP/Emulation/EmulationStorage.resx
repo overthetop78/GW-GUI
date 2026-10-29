@@ -17,7 +17,7 @@
   <data name="Emulation.Storage.Cd.Drive"><value>CDドライブ</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>フロッピードライブ数</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>ハードディスク数</value></data>
-  <data name="Emulation.Storage.Floppy.Speed"><value>フロッピードライブ速度</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>このフロッピードライブの速度</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>フロッピーイメージを書き込み保護</value></data>
   <data name="Emulation.Storage.Floppy.WriteRedirect"><value>フロッピー書き込みをリダイレクト</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>CD 速度</value></data>
@@ -93,4 +93,12 @@
   <data name="Emulation.Storage.Media.AlreadyExists"><value>既に存在するファイル。新しいイメージファイルを選択します。 {0}</value></data>
   <data name="Emulation.Storage.Sound.Volume"><value>ボリューム</value></data>
   <data name="Emulation.Storage.Sound.Group"><value>ストレージデバイスは音を鳴らす</value></data>
+  <data name="Emulation.Storage.Floppy.Format"><value>フロッピーディスク形式</value></data>
+  <data name="Emulation.Storage.Floppy.OneSide"><value>片面</value></data>
+  <data name="Emulation.Storage.Floppy.TwoSides"><value>両面</value></data>
+  <data name="Emulation.Storage.Floppy.Tracks"><value>片面あたり{0}トラック</value></data>
+  <data name="Emulation.Storage.Floppy.SingleDensity"><value>単密度</value></data>
+  <data name="Emulation.Storage.Floppy.DoubleDensity"><value>倍密度</value></data>
+  <data name="Emulation.Storage.File.Destination"><value>保存先ファイル</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFormat"><value>ディスクイメージ形式</value></data>
 </root>

@@ -54,7 +54,8 @@ internal sealed class ModuleDirectoryService
             await using var catalogContent = await catalogResponse.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
             var catalog = await JsonSerializer.DeserializeAsync<UpdateCatalog>(catalogContent, JsonOptions, cancellationToken).ConfigureAwait(false) ?? throw new InvalidDataException($"The update catalog for module '{entry.Id}' is empty.");
             var component = _catalogValidator.Validate(catalog, entry.Id);
-            var release = component.Releases.Where(candidate => Version.Parse(candidate.HostApiMinimum!) <= hostApi && Version.Parse(candidate.HostApiMaximum!) >= hostApi).OrderByDescending(candidate => Version.Parse(candidate.Version)) .FirstOrDefault();
+            var release = component.Releases.Where(candidate => Version.Parse(candidate.Version) >= EmulationHostApi.MinimumModuleVersion
+                && Version.Parse(candidate.HostApiMinimum!) <= hostApi && Version.Parse(candidate.HostApiMaximum!) >= hostApi).OrderByDescending(candidate => Version.Parse(candidate.Version)) .FirstOrDefault();
             installed.TryGetValue(entry.Id, out var installedVersion);
             result.Add(new(entry.Id, entry.DisplayName, entry.CatalogUrl, release?.Version, installedVersion));
         }

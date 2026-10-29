@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>Minnesexpansion kort ROM saknas. Välj filen i RAM Fliken på maskininställningarna.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Välj kontrollprogramvaran för denna minnesutvidgning från de upptäckta filerna eller bläddra för en kompatibel fil. Ingen fil laddas när vägen är tom.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Sideways minne</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Bankerade minnesmoduler</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Expansionskort</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Expansion chip sockets</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Dessa moduler lägger till bankat minne utan att öka huvudminnesadressutrymmet. Välj chip bilder i expansionsuttagen för att definiera deras innehåll. Tidigare vald individuell firmware förblir i bruk tills dess uttag får en explicit chip bild.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Chip bild "{0}"har en oförenlig storlek. förväntas: {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Minnesexpansionskort</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Extra minneskapacitet</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: Unikt stationsnummer.  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Varje station behöver ett annat nummer. Denna inställning ersätter hårdvaruhoppare på det verkliga gränssnittet. Använd upp och ner piltangenterna för att ändra numret.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Klockfrekvensen av det emulerade nätverksgränssnittet.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>Klockan styr tidpunkten för det emulerade gränssnittet. Olika klockinställningar blockerar inte kommunikationen mellan emulatorer.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Välj hur denna station ansluter till nätverket.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Kopplat: gränssnittet är installerat utan en nätverksanslutning. &#xA;UDP: Direkt utbyte av nätverksramar mellan kompatibla emulatorer. Använd detta läge mellan två emulerade maskiner. &#xA;AUN: Ett annat nätverksprotokoll för kompatibla servrar och emulatorer. Båda ändarna måste använda samma protokoll.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: Lyssningsadressen för denna dator.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: Ansluter emulatorer som körs på denna dator. &#xA;För ett lokalt nätverk, använd en adress som tilldelats denna dator. &#xA;0.0.0.0: Lyssna på alla nätverksgränssnitt av denna dator. &#xA;Ange adresserna till andra datorer i fjärrstationsfältet. Värdnamn och adresser till andra datorer accepteras inte här.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>UDP-lyssningsport på den här datorn, 1–65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>Den första porten är:  32768. Emulatorer som delar samma lyssnande adress behöver olika portar.  32768 / 32769. Använd upp och ner piltangenterna för att ändra värdet. Fjärrstationer måste ange destinationsporten.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Karta fjärrstationsnummer till nätverksadresser och portar.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;Det här exemplet adresserar station 3 på nätverk 0, som körs på den här datorn i port 32769. Separata poster med semikoloner eller linjeavbrott. För en annan dator, använd sin adress på det lokala nätverket. Konfigurera motsvarande returpost på den andra stationen.</value></data>
 </root>

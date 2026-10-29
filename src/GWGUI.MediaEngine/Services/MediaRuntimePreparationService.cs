@@ -13,9 +13,6 @@ namespace GWGUI.MediaEngine.Services;
 /// <summary>Adapte les lecteurs CUE et convertisseurs SCP existants aux contrats de préparation.</summary>
 internal sealed class MediaRuntimePreparationService : IMediaRuntimePreparation
 {
-    public IReadOnlyList<MediaFloppyDriveModel> FloppyDriveModels(string family, bool doubleDensity) => GWGUI.MediaEngine.Dictionaries.FloppyDriveCatalog.Models(family, doubleDensity);
-    public IReadOnlyList<MediaHardDiskDriveModel> HardDiskDriveModels(string family) => GWGUI.MediaEngine.Dictionaries.HardDiskDriveCatalog.Models(family);
-    public bool SupportsFloppyImage(string model, long cylinders, int heads, int sectorSize, int sectorsPerTrack, long sectorCount) => GWGUI.MediaEngine.Dictionaries.FloppyDriveCatalog.Supports(model, cylinders, heads, sectorSize, sectorsPerTrack, sectorCount);
     public IMediaDriveMechanics CreateDriveMechanics(string device) => new MediaDriveMechanics(device);
 
     public async Task<IMediaRuntimeDisk> OpenDiskAsync(string path, bool writable = false, string? formatId = null, CancellationToken cancellationToken = default, IMediaDriveMechanics? mechanics = null)

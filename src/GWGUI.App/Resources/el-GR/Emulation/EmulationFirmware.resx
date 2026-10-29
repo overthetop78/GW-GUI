@@ -12,4 +12,7 @@
   <data name="Emulation.Firmware.Official"><value>Επίσημο</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Μη συμβατό</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>Δείγματα φωνής</value></data>
+  <data name="Emulation.Firmware.Select"><value>Επιλογή αρχείου</value></data>
+  <data name="Emulation.Firmware.Empty"><value>Αυτός ο φάκελος είναι άδειος.</value></data>
+  <data name="Emulation.Firmware.NotSelected"><value>Τίποτα δεν έχει επιλεγεί.</value></data>
 </root>

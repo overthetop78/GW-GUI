@@ -17,7 +17,7 @@
   <data name="Emulation.Storage.Cd.Drive"><value>CD-meghajtó</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>Hajlékonylemez-meghajtók száma</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>Merevlemezek száma</value></data>
-  <data name="Emulation.Storage.Floppy.Speed"><value>Floppy- hajtási sebesség</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>A hajlékonylemez-meghajtó sebessége</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>Írás- védje floppy képek</value></data>
   <data name="Emulation.Storage.Floppy.WriteRedirect"><value>A floppy átirata</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>CD sebesség</value></data>
@@ -93,4 +93,12 @@
   <data name="Emulation.Storage.Media.AlreadyExists"><value>Ez a fájl már létezik. Válasszon ki egy új képfájlt: {0}</value></data>
   <data name="Emulation.Storage.Sound.Volume"><value>Mennyiség</value></data>
   <data name="Emulation.Storage.Sound.Group"><value>Tárolóeszköz hangjai</value></data>
+  <data name="Emulation.Storage.Floppy.Format"><value>Hajlékonylemez-formátum</value></data>
+  <data name="Emulation.Storage.Floppy.OneSide"><value>1 oldal</value></data>
+  <data name="Emulation.Storage.Floppy.TwoSides"><value>2 oldal</value></data>
+  <data name="Emulation.Storage.Floppy.Tracks"><value>{0} sáv oldalanként</value></data>
+  <data name="Emulation.Storage.Floppy.SingleDensity"><value>Egyszeres sűrűség</value></data>
+  <data name="Emulation.Storage.Floppy.DoubleDensity"><value>Kétszeres sűrűség</value></data>
+  <data name="Emulation.Storage.File.Destination"><value>Célfájl</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFormat"><value>Lemezképfájl formátuma</value></data>
 </root>

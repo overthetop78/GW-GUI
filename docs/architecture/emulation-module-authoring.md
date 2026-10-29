@@ -46,7 +46,7 @@ doit donc pas reproduire la navigation, les badges, les sélecteurs ou les dialo
     <AssemblyName>gwgui.emulation.commodore</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="GWGUI.Emulation.SDK" Version="1.0.1" />
+    <PackageReference Include="GWGUI.Emulation.SDK" Version="1.3.0" />
     <None Update="module.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>
@@ -63,9 +63,9 @@ Exemple de manifeste pour un module construit et validé avec l'API actuelle :
   "schemaVersion": 2,
   "id": "Commodore",
   "entryAssembly": "gwgui.emulation.commodore.dll",
-  "moduleVersion": "1.0.0",
-  "hostApiMinimum": "1.0",
-  "hostApiMaximum": "1.0",
+  "moduleVersion": "1.3.0",
+  "hostApiMinimum": "1.3",
+  "hostApiMaximum": "1.3",
   "updateCatalogUrl": "https://github.com/OWNER/REPOSITORY/releases/download/module-catalog/update-catalog.json"
 }
 ```

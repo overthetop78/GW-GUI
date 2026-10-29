@@ -1,6 +1,13 @@
-using System.Windows;
-using System.Windows.Controls;
+using GWGUI.Emulation;
 
 namespace GWGUI.App.Contracts.Emulation.Firmware;
 
-internal sealed record EmulationFirmwareSettingsContent(UIElement ConfiguredFirmware, ListBox DetectedFirmware, Func<Button, Task> Refresh, Button UseSelected, Func<Button, Task> OpenFolder);
+/// <summary>Données du sélecteur commun ; la marque et le rôle restent définis par l'appelant.</summary>
+internal sealed record EmulationFirmwareSettingsContent(
+    string Destination,
+    string CurrentPath,
+    Func<CancellationToken, Task<IReadOnlyList<EmulationFirmwareCandidate>>> Refresh,
+    Func<Task> OpenFolder,
+    Func<EmulationFirmwareCandidate, bool> CanUse,
+    Action<Exception> ShowError,
+    Func<EmulationFirmwareCandidate, string> DestinationLabel);

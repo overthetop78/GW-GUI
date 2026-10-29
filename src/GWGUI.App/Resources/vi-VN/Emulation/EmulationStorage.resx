@@ -17,7 +17,7 @@
   <data name="Emulation.Storage.Cd.Drive"><value>Ổ đĩa CD</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>Số ổ đĩa mềm</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>Số ổ đĩa cứng</value></data>
-  <data name="Emulation.Storage.Floppy.Speed"><value>Tốc độ ổ đĩa mềm</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Tốc độ của ổ đĩa mềm này</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>Chống ghi ảnh đĩa mềm</value></data>
   <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Chuyển hướng ghi đĩa mềm</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>Tốc độ CD</value></data>
@@ -93,4 +93,12 @@
   <data name="Emulation.Storage.Media.AlreadyExists"><value>Tập tin này đã có. Hãy chọn một tập tin ảnh mới: {0}</value></data>
   <data name="Emulation.Storage.Sound.Volume"><value>Âm lượng</value></data>
   <data name="Emulation.Storage.Sound.Group"><value>Âm thanh của thiết bị lưu trữ</value></data>
+  <data name="Emulation.Storage.Floppy.Format"><value>Định dạng đĩa mềm</value></data>
+  <data name="Emulation.Storage.Floppy.OneSide"><value>1 mặt</value></data>
+  <data name="Emulation.Storage.Floppy.TwoSides"><value>2 mặt</value></data>
+  <data name="Emulation.Storage.Floppy.Tracks"><value>{0} rãnh mỗi mặt</value></data>
+  <data name="Emulation.Storage.Floppy.SingleDensity"><value>Mật độ đơn</value></data>
+  <data name="Emulation.Storage.Floppy.DoubleDensity"><value>Mật độ kép</value></data>
+  <data name="Emulation.Storage.File.Destination"><value>Tập tin đích</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFormat"><value>Định dạng tệp ảnh đĩa</value></data>
 </root>

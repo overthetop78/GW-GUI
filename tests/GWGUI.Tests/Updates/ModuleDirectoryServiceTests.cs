@@ -14,12 +14,12 @@ public sealed class ModuleDirectoryServiceTests
     {
         using var client = Client(
             (DirectoryUri, DirectoryJson(("amiga", "Amiga", "https://example.test/amiga.json"))),
-            (new Uri("https://example.test/amiga.json"), CatalogJson("amiga", ("1.0.0", "1.0", "1.0"), ("1.2.0", "1.0", "1.0"), ("2.0.0", "2.0", "2.0"))));
-        var service = new ModuleDirectoryService(client, DirectoryUri, installedVersions: () => new Dictionary<string, string>(), hostApiVersion: () => "1.0");
+            (new Uri("https://example.test/amiga.json"), CatalogJson("amiga", ("1.0.0", "1.3", "1.3"), ("1.2.0", "1.3", "1.3"), ("1.3.0", "1.3", "1.3"), ("2.0.0", "2.0", "2.0"))));
+        var service = new ModuleDirectoryService(client, DirectoryUri, installedVersions: () => new Dictionary<string, string>(), hostApiVersion: () => "1.3");
 
         var module = Assert.Single(await service.SearchAsync());
 
-        Assert.Equal("1.2.0", module.AvailableVersion);
+        Assert.Equal("1.3.0", module.AvailableVersion);
         Assert.True(module.CanInstall);
     }
 
@@ -37,6 +37,7 @@ public sealed class ModuleDirectoryServiceTests
         var module = Assert.Single(await service.SearchAsync());
 
         Assert.Equal("1.0.0", module.InstalledVersion);
+        Assert.Null(module.AvailableVersion);
         Assert.False(module.CanInstall);
     }
 

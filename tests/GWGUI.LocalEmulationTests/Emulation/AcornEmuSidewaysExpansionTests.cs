@@ -13,6 +13,52 @@ namespace GWGUI.Tests.Emulation;
 public sealed class AcornEmuSidewaysExpansionTests
 {
     [Theory]
+    [InlineData(C.None, 0, 0)]
+    [InlineData("boobip-ramrom-1", 32, 1)]
+    [InlineData("boobip-ramrom-2", 64, 2)]
+    [InlineData("boobip-ramrom-4", 128, 4)]
+    [InlineData("boobip-eprom-4", 0, 4)]
+    [InlineData(C.AriesWithoutRam, 0, 12)]
+    [InlineData(C.Aries8, 8, 12)]
+    [InlineData(C.Aries16, 16, 12)]
+    public void HardwareChoiceRamCapacityAndRomSocketsBelongToTheirOwnTabs(string card, int ramKib, int sockets)
+    {
+        var configuration = new MachineConfiguration(MachineModel.BbcMicroModelA, core: Emulator.AcornEmu,
+            options: new Dictionary<string, string> { [SettingsConstants.MainMemory] = "32", [C.Option] = card });
+        var blocks = new GWGUI.Emulation.Acorn.Emulators.AcornEmu.Factories.AcornEmuMachineFactory().DescribeSettings(configuration);
+        var hardware = Assert.Single(blocks.SelectMany(block => block.Fields), field => field.Id == C.Option);
+        Assert.Equal(GWGUI.Emulation.Enums.EmulationMachineTab.Extensions, hardware.Tab);
+        var ram = Assert.Single(blocks.SelectMany(block => block.Fields), field => field.Id == C.RamCapacity);
+        Assert.Equal(GWGUI.Emulation.Enums.EmulationMachineTab.Ram, ram.Tab);
+        Assert.Equal(GWGUI.Emulation.Enums.EmulationSettingsEditor.Information, ram.Editor);
+        Assert.Equal(ramKib * 1024L, ram.NumericValue);
+        Assert.Equal(card != C.None, Assert.Single(blocks, block => block.Id == C.Group).IsVisible);
+        var roms = Assert.Single(blocks, block => block.Id == C.RomGroup);
+        Assert.Equal(GWGUI.Emulation.Enums.EmulationMachineTab.Rom, roms.Tab);
+        Assert.Equal(sockets, roms.Fields.Count);
+        Assert.Equal((32 + ramKib) * 1024L, MemoryExtensionFunctions.TotalBytes(configuration));
+        Assert.Equal(card, configuration.Options[C.Option]);
+    }
+
+    [Fact]
+    public void CapacityIsNotPersistedAndDisablingTheCardPreservesRomPaths()
+    {
+        var configuration = new MachineConfiguration(MachineModel.BbcMicroModelA, core: Emulator.AcornEmu,
+            options: new Dictionary<string, string>
+            {
+                [SettingsConstants.MainMemory] = "32", [C.Option] = "boobip-ramrom-2",
+                [C.ChipPrefix + "0"] = "saved-chip.rom"
+            });
+        var engine = new GWGUI.Emulation.Acorn.Common.Services.Engine();
+        var changed = (MachineConfiguration)engine.ApplySettings(configuration,
+            new Dictionary<string, string?> { [C.Option] = C.None, [C.RamCapacity] = "64 KiB" });
+        Assert.Equal(C.None, changed.Options[C.Option]);
+        Assert.Equal("saved-chip.rom", changed.Options[C.ChipPrefix + "0"]);
+        Assert.DoesNotContain(C.RamCapacity, changed.Options.Keys);
+        Assert.Equal("32", changed.Options[SettingsConstants.MainMemory]);
+    }
+
+    [Theory]
     [InlineData(1)]
     [InlineData(2)]
     [InlineData(3)]

@@ -32,17 +32,25 @@ internal sealed partial class EmulationModuleSettingsSection
             EmulationSettingsEditor.DirectoryPath => CreateDirectoryPath(field),
             EmulationSettingsEditor.OpenDirectory => CreateOpenDirectory(field),
             EmulationSettingsEditor.Slider => CreateSlider(field),
+            EmulationSettingsEditor.Number => EmulationSettingsFieldControlFunctions.CreateNumber(field),
+            EmulationSettingsEditor.IPv4 => EmulationSettingsFieldControlFunctions.CreateIpv4(field.Value ?? string.Empty),
             EmulationSettingsEditor.Information => new TextBlock
             {
                 Text = EmulationSettingsValuePresentationFunctions.DisplayValue(field, _module),
                 VerticalAlignment = VerticalAlignment.Center,
                 TextWrapping = TextWrapping.Wrap
             },
-            _ => new TextBox { Text = field.Value ?? string.Empty }
+            _ => new TextBox
+            {
+                Text = field.Value ?? string.Empty, AcceptsReturn = field.IsMultiline,
+                MinLines = field.IsMultiline ? 3 : 1, MaxLines = field.IsMultiline ? 5 : 1,
+                TextWrapping = field.IsMultiline ? TextWrapping.Wrap : TextWrapping.NoWrap,
+                VerticalScrollBarVisibility = field.IsMultiline ? ScrollBarVisibility.Auto : ScrollBarVisibility.Hidden
+            }
         };
         control.IsEnabled = field.IsEnabled;
         if (field.Editor is (EmulationSettingsEditor.Text or EmulationSettingsEditor.Number
-                or EmulationSettingsEditor.Percentage) && control is TextBox input)
+                or EmulationSettingsEditor.Percentage or EmulationSettingsEditor.IPv4) && control is TextBox input)
             input.LostKeyboardFocus += async (_, _) => await ExecuteUserChangeAsync();
         _fieldControls[field.Id] = control;
         return control;
@@ -106,6 +114,8 @@ internal sealed partial class EmulationModuleSettingsSection
 
     private FrameworkElement CreatePath(EmulationSettingsField field)
     {
+        if ((field.Tab == EmulationMachineTab.Rom || field.DefaultFolderCategory == EmulationDefaultFolderCategory.Firmware) && _firmwareManagement is not null)
+            return _firmwareManagement.CreateField(field, () => ExecuteAsync(() => SelectFirmwareAsync(field)));
         var path = new TextBox { Text = field.Value ?? string.Empty };
         path.LostKeyboardFocus += async (_, _) => await ExecuteUserChangeAsync();
         var browse = new Button { Content = LocExtension.Get(ControlVisualConstants.BrowseResource), MinWidth = 90 };
@@ -124,6 +134,22 @@ internal sealed partial class EmulationModuleSettingsSection
             }
         };
         return PathRow(path, browse);
+    }
+
+    private async Task SelectFirmwareAsync(EmulationSettingsField field)
+    {
+        if (_firmwareManagement is null || _disposed) return;
+        CaptureEditorValues();
+        var selected = await _firmwareManagement.SelectAsync(Window.GetWindow(this), field, _showError);
+        if (selected is null || _disposed) return;
+        var previous = _configuration;
+        SetConfiguration(selected);
+        try { await ApplyUserChangeAsync(); }
+        catch
+        {
+            SetConfiguration(previous);
+            throw;
+        }
     }
 
     private FrameworkElement CreateDirectoryPath(EmulationSettingsField field)

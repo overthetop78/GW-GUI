@@ -99,6 +99,14 @@ public sealed class AcornEmuEconetTests
         var block = Assert.Single(factory.DescribeSettings(enabled), block => block.Tab == EmulationMachineTab.Ethernet);
         Assert.All(block.Fields, field => Assert.True(field.RequiresRestart));
         Assert.Contains(block.Fields, field => field.Id == NetworkConstants.Station && field.NumericRange!.Maximum == 254);
+        Assert.Contains(block.Fields, field => field.Id == NetworkConstants.Port && field.NumericRange!.Maximum == 65535);
+        Assert.Contains(block.Fields, field => field.Id == NetworkConstants.BindAddress && field.Editor == EmulationSettingsEditor.IPv4);
+        Assert.Contains(block.Fields, field => field.Id == NetworkConstants.Peers && field.IsMultiline);
+        Assert.All(block.Fields.Where(field => field.Id != NetworkConstants.Enabled), field =>
+        {
+            Assert.NotNull(field.ExplanationResourceKey);
+            Assert.Equal(field.ExplanationResourceKey + ".Detailed", field.DetailedExplanationResourceKey);
+        });
     }
 
     [Theory]
@@ -107,6 +115,12 @@ public sealed class AcornEmuEconetTests
     [InlineData("port", "65536")]
     [InlineData("port", "text")]
     [InlineData("bind", "::1")]
+    [InlineData("bind", "127.1")]
+    [InlineData("bind", "2130706433")]
+    [InlineData("bind", "0x7f.0.0.1")]
+    [InlineData("bind", "192.168.001.2")]
+    [InlineData("bind", "1.2.3.256")]
+    [InlineData("peers", "0.3=127.1:32769")]
     [InlineData("mode", "unknown")]
     [InlineData("peers", "0.2=127.0.0.1:1234;0.2=127.0.0.2:1234")]
     [InlineData("peers", "0.255=127.0.0.1:1234")]
@@ -114,6 +128,17 @@ public sealed class AcornEmuEconetTests
     public void InvalidNetworkSettingsAreRejectedBeforeAnySocketOpens(string key, string value)
     {
         Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.BbcMicroModelA, options: new Dictionary<string, string> { [NetworkConstants.Prefix + key] = value }, core: Emulator.AcornEmu));
+    }
+
+    [Theory]
+    [InlineData("127.0.0.1")]
+    [InlineData("192.168.1.42")]
+    [InlineData("0.0.0.0")]
+    public void ListeningAddressesAcceptLoopbackLanAndAllInterfacesWithoutOpeningSockets(string address)
+    {
+        var configuration = new MachineConfiguration(MachineModel.BbcMicroModelA,
+            options: new Dictionary<string, string> { [NetworkConstants.BindAddress] = address }, core: Emulator.AcornEmu);
+        Assert.Equal(address, NetworkFunctions.Read(configuration).LocalEndPoint.Address.ToString());
     }
 
     [Fact]

@@ -12,4 +12,7 @@
   <data name="Emulation.Firmware.Official"><value>Resmî</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Uyumsuz</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>Ses örnekleri</value></data>
+  <data name="Emulation.Firmware.Select"><value>Bir dosya seçin</value></data>
+  <data name="Emulation.Firmware.Empty"><value>Bu klasör boş.</value></data>
+  <data name="Emulation.Firmware.NotSelected"><value>Hiçbir şey seçilmedi.</value></data>
 </root>

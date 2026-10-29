@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>Карта расширения памяти ROM Выберите его файл в файле RAM Вкладка настроек машины.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Выберите программное обеспечение управления для этого расширения памяти из обнаруженных файлов или просмотрите совместимый файл. Ни один файл не загружается, когда путь пуст.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Банковая память</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Модули банковой памяти</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Плата расширения</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Расширение чип-сокетов</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Эти модули добавляют встроенную память без увеличения основного адресного пространства памяти. Выберите изображения чипов в разъемах расширения для определения их содержимого. Ранее выбранное индивидуальное прошивка остается в использовании до тех пор, пока ее разъем не получит явное изображение чипа.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Чип-изображение{0}"Есть несовместимые размеры. Ожидаемые: {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Платы расширения памяти</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Объём дополнительной памяти</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: Уникальный номер станции.  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Каждая станция нуждается в другом номере. Эта настройка заменяет аппаратные прыгуны на реальном интерфейсе. Используйте клавиши стрелки вверх и вниз, чтобы изменить число.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Часовая частота эмулированного сетевого интерфейса.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>Часы контролируют время эмулируемого интерфейса.Различные настройки часов не блокируют связь между эмуляторами.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Выберите, как эта станция подключается к сети.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Отключено: интерфейс устанавливается без сетевого подключения. &#xA;UDP: Прямой обмен сетевыми кадрами между совместимыми эмуляторами. Используйте этот режим между двумя эмулируемыми машинами. &#xA;AUN: Еще один сетевой протокол для совместимых серверов и эмуляторов. Обе стороны должны использовать один и тот же протокол.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: Адрес прослушивания этого компьютера.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: Подключает эмуляторы, работающие на этом компьютере. &#xA;Для локальной сети используйте адрес, назначенный этому компьютеру. &#xA;0.0.0.0: Слушайте все сетевые интерфейсы этого компьютера. &#xA;Введите адреса других компьютеров в поле удаленных станций. Имена хостов и адреса других компьютеров здесь не принимаются.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>UDP-порт прослушивания этого компьютера, 1–65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>Первоначальным портом является:  32768. Эмуляторы, использующие один и тот же адрес прослушивания, нуждаются в разных портах.  32768 / 32769. Используйте клавиши стрелки вверх и вниз, чтобы изменить значение. Удаленные станции должны указывать порт назначения.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Картографируйте номера удаленных станций на сетевые адреса и порты.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;В этом примере адресована станция 3 в сети 0, работающая на этом компьютере в порту 32769. Отдельные записи с полуколонами или разрывами линий. Для другого компьютера используйте его адрес в локальной сети. Настройка соответствующего обратного входа на другой станции.</value></data>
 </root>

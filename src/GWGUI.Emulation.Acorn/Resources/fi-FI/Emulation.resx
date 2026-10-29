@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>Muistin laajennuskortti ROM puuttuu. Valitse sen tiedosto RAM koneen asetusten välilehti.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Valitse tämän muistin laajennusohjelma havaituista tiedostoista tai selaa yhteensopivaa tiedostoa. Tiedostoa ei ladata, kun polku on tyhjä.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Sivuttaismuisti</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Tallennetut muistimoduulit</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Laajennuskortti</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Laajennussirupistokkeet</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Nämä moduulit lisäävät muistia kasvattamatta päämuistin osoitetilaa. Valitse sirukuvat laajennuspistokkeista määrittääksesi niiden sisällön. Aiemmin valitut yksittäiset firmware pysyy käytössä, kunnes sen pistoke saa selkeän sirukuvan.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Chip-kuva{0}' on yhteensopimaton koko. Odotettu: {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Muistin laajennuskortit</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Lisämuistin kapasiteetti</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: Ainutlaatuinen aseman numero.  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Jokainen asema tarvitsee toisen numeron. Tämä asetus korvaa oikean käyttöliittymän laitteistohyppääjät. Käytä ylös ja alas nuolinäppäimiä muuttaa numero.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Emuloidun verkkoliittymän kellotaajuus.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>Kello ohjaa emulgoidun käyttöliittymän ajoitusta. Eri kelloasetukset eivät estä emulaattoreiden välistä viestintää.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Valitse, miten tämä asema yhdistyy verkkoon.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Yhteys katkesi: liitäntä on asennettu ilman verkkoyhteyttä. &#xA;UDP: Verkkokehysten suora vaihto yhteensopivien emulaattoreiden välillä. Käytä tätä tilaa kahden emulgoidut koneet. &#xA;AUN: Toinen verkkoprotokolla yhteensopivia palvelimia ja emulaattoreita. Molemmissa päissä on käytettävä samaa protokollaa.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: Tietokoneen kuunteluosoite.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: Yhdistää emulaattorit käynnissä tällä tietokoneella. &#xA;Käytä paikallisverkkoa varten tälle tietokoneelle osoitettua osoitetta. &#xA;0.0.0.0: Kuuntele kaikkia tämän tietokoneen verkkoliittymiä. &#xA;Syötä muiden tietokoneiden osoitteet etä-asemien kenttään. Täällä ei hyväksytä muiden tietokoneiden isännän nimiä ja osoitteita.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>Tämän tietokoneen UDP-kuunteluportti, 1–65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>Alkuperäinen satama on:  32768. Emulaattorit, jotka jakavat saman kuunteluosoitteen, tarvitsevat erilaisia satamia.  32768 / 32769. Käytä ylös ja alas nuolinäppäimiä muuttaa arvoa. Etäasemien on ilmoitettava määräsatama.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Kartoita aseman numerot verkko-osoitteisiin ja satamiin.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;Tämä esimerkki osoittaa aseman 3 verkon 0, käynnissä tällä tietokoneella Port 32769. Erilliset merkinnät puolipisteillä tai viivakatkoilla. Toiseen tietokoneeseen, käytä sen osoitetta paikallisessa verkossa. Määrittele vastaava paluumerkintä toisella asemalla.</value></data>
 </root>

@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "id": "acorn",
   "entryAssembly": "gwgui.emulation.acorn.dll",
-  "moduleVersion": "1.0.0",
-  "hostApiMinimum": "1.2",
-  "hostApiMaximum": "1.2",
+  "moduleVersion": "1.3.0",
+  "hostApiMinimum": "1.3",
+  "hostApiMaximum": "1.3",
   "updateCatalogUrl": "https://github.com/overthetop78/GW-GUI/releases/download/module-acorn-catalog/update-catalog.json"
 }
 

@@ -12,4 +12,7 @@
   <data name="Emulation.Firmware.Official"><value>رسمي</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>غير متوافق</value></data>
   <data name="Emulation.Firmware.VoiceSamples"><value>عينات من الأصوات</value></data>
+  <data name="Emulation.Firmware.Select"><value>اختيار ملف</value></data>
+  <data name="Emulation.Firmware.Empty"><value>هذا المجلد فارغ.</value></data>
+  <data name="Emulation.Firmware.NotSelected"><value>لم يتم اختيار شيء</value></data>
 </root>

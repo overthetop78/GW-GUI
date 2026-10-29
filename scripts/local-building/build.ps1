@@ -11,13 +11,8 @@ $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
 $buildRoot = Join-Path $repository 'build'
 $applicationProject = Join-Path $repository 'src\GWGUI.App\GWGUI.App.csproj'
-$hostApiSource = Join-Path $repository 'src\GWGUI.Emulation\Constants\EmulationHostApi.cs'
-$hostApiDeclaration = [regex]::Match((Get-Content -LiteralPath $hostApiSource -Raw),
-    'CurrentVersion\s*\{[^}]+\}\s*=\s*new(?:\s+Version)?\s*\(\s*(?<major>\d+)\s*,\s*(?<minor>\d+)\s*\)')
-if (-not $hostApiDeclaration.Success) {
-    throw "Cannot read the host API version from '$hostApiSource'."
-}
-$hostApiVersion = [Version]::new([int]$hostApiDeclaration.Groups['major'].Value, [int]$hostApiDeclaration.Groups['minor'].Value)
+. (Join-Path $repository 'scripts\release\update-catalog\emulation-modules\emulation-modules.ps1')
+$hostApiVersion = Get-GwGuiHostApiVersion -RepositoryRoot $repository
 if ([string]::IsNullOrWhiteSpace($Version)) {
     [xml]$applicationProjectDocument = Get-Content -LiteralPath $applicationProject -Raw -Encoding UTF8
     $Version = [string]$applicationProjectDocument.Project.PropertyGroup.Version.'#text'
@@ -29,7 +24,6 @@ if ($Version -notmatch '^\d+\.\d+\.\d+$') {
     throw 'The application build version must use X.Y.Z.'
 }
 $configurations = if ([string]::IsNullOrWhiteSpace($Configuration)) { @('Debug', 'Release') } else { @($Configuration) }
-. (Join-Path $repository 'scripts\release\update-catalog\emulation-modules\emulation-modules.ps1')
 . (Join-Path $repository 'scripts\release\package\organize_app\shared-component-files.ps1')
 
 $moduleWasSpecified = $PSBoundParameters.ContainsKey('Module')

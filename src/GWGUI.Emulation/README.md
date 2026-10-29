@@ -7,10 +7,10 @@ states and its own update source without referencing `GWGUI.App`.
 ## Install
 
 ```xml
-<PackageReference Include="GWGUI.Emulation.SDK" Version="1.2.0" />
+<PackageReference Include="GWGUI.Emulation.SDK" Version="1.3.0" />
 ```
 
-The package targets .NET 10. The current host API is `1.2`, and the current `module.json` schema is
+The package targets .NET 10. The current host API is `1.3`, and the current `module.json` schema is
 `2`.
 
 ## Start a module
@@ -19,7 +19,7 @@ The package targets .NET 10. The current host API is `1.2`, and the current `mod
    directory into a new repository.
 2. Replace the example project identity, namespace, assembly name and values in `module.json`.
 3. Implement `IEmulationModuleFactory` and return an `IEmulationModule` from `Create`.
-4. Require host API `1.2` when using the current `AudioChunk` constructor or `IEmulationVideoSettingsManager`. The workspace modules and template target the current development API directly; declare the tested maximum explicitly.
+4. Require host API `1.3` for the current contracts. The workspace modules and template target API `1.3` exclusively; packages targeting `1.2` are rejected before their assemblies are loaded.
 5. Set `updateCatalogUrl` to the stable HTTPS JSON catalogue published by the module repository.
 6. Package the result with this structure:
 
@@ -53,7 +53,7 @@ the [module authoring guide](https://github.com/overthetop78/GW-GUI/blob/main/do
 SDK compatibility and version changes are documented in the
 [versioning policy](https://github.com/overthetop78/GW-GUI/blob/main/docs/architecture/emulation-sdk-versioning.md).
 
-## Shared services (host API 1.2)
+## Shared services (host API 1.3)
 
 `EmulationSdk` exposes shared operations through public interfaces. A module routes its emulator
 adapters through its own `Common` layer, which uses these contracts; the SDK implementations remain
@@ -73,6 +73,14 @@ work has stopped, including on failure. Services and resources borrowed from the
 by the host.
 
 ## Version compatibility
+
+API `1.3` establishes the current binary baseline: external image paths, revised settings and media constructors,
+cassette and disk processing, drive mechanics, and host keyboard characters. Modules must be rebuilt against
+SDK `1.3.0`, use a module version of at least `1.3.0`, and declare API range `1.3` to `1.3`. Existing published packages targeting API `1.2` remain
+associated with their previous host versions; renaming their manifests does not make their binaries compatible.
+
+The SDK project retains its own package version when the application or a module is built with a different
+`Version` property. A module release must not stamp its version onto the SDK dependency.
 
 The NuGet package follows semantic versioning. Every module declares an inclusive host API range in
 `module.json`; compatibility beyond that range is never assumed. A package revision can improve

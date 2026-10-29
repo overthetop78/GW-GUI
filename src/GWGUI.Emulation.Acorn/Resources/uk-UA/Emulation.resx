@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>Картка розширення пам'яті ROM відсутні. Виберіть файл у файлі RAM вкладка параметрів машини.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Виберіть програмне забезпечення керування для розширення пам'яті з виявлених файлів або перегляд сумісного файлу. Ні файл завантажується, коли шлях порожній.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Банкова пам’ять</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Модулі банкової пам’яті</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Плата розширення</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Розширювальний роз'єм для чіпів</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Ці модулі додають пам'ять, не підвищуючи основний простір адрес пам'яті. Виберіть зображення чіпа в роз'ємах розширення, щоб визначити їх вміст. Раніше вибрана індивідуальна прошивка залишається в використанні, поки її розетка отримує чітке зображення чіпа.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Чип зображення '{0}- має несумісний розмір. Виявлено: {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Плати розширення пам’яті</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Обсяг додаткової пам’яті</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: Унікальний номер станції.  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Кожна станція має різний номер. Ця установка замінює апаратні стрибки на реальному інтерфейсі. Використовуйте клавіші з стрілками, щоб змінити номер.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Тактова частота емульованого мережевого інтерфейсу.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>Цілодобова система керування терміном дії емулятора. Різні параметри годинника не блокують зв'язок між емуляторами.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Виберіть, як з'єднується ця станція в мережу.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Відключено: інтерфейс встановлюється без підключення до мережі. &#xA;UDP: Прямий обмін мережевих кадрів між сумісними емуляторами. Використовуйте цей режим між двома ізольованими машинами. &#xA;AUN: Ще один мережевий протокол для сумісних серверів і емуляторів. Обидва кінці повинні використовувати один і той самий протокол.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: Прослуховуємо адресу цього комп’ютера.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: Підключає емулятори, що працюють на цьому комп'ютері. &#xA;Для локальної мережі скористайтеся адресом, призначеною для даного комп’ютера. &#xA;0.0.0.0: Послухайте всі мережеві інтерфейси цього комп’ютера. &#xA;Введіть адреси інших комп'ютерів у полі дистанційних станцій. Не приймаються імена та адреси інших комп'ютерів.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>Порт прослуховування UDP цього комп’ютера, 1–65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>Початковий порт:  32768. Емулятори діляться тими самими слухаючими адресами, які потребують різних портів.  32768 / 32769. Використовуйте клавіші з стрілками, щоб змінити значення. Віддалені станції повинні вказати порт призначення.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Карта номерів віддалених станцій до мережевих адрес і портів.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;Цей приклад адрес станції 3 в мережі 0, що працює на цьому комп'ютері в порту 32769. Окремі записи з напівкольонами або лінійними перервами. Для іншого комп’ютера використовуйте свою адресу на локальній мережі. Налаштуйте відповідний запис повернення на іншу станцію.</value></data>
 </root>

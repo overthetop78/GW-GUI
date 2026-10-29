@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>La tarjeta de expansión de memoria ROM no está. Seleccione su archivo en el RAM pestaña de la configuración de la máquina.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Seleccione el software de control para esta expansión de memoria de los archivos detectados, o busque un archivo compatible. No se carga ningún archivo cuando la ruta está vacía.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Memoria de los laterales</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Módulos de memoria bancarios</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Tarjeta de expansión</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Tomas de chip de expansión</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Estos módulos añaden memoria bancaria sin aumentar el espacio principal de la dirección de memoria. Seleccione imágenes de chip en las tomas de expansión para definir su contenido. El firmware individual seleccionado previamente permanece en uso hasta que su toma reciba una imagen explícita de chip.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Imagen de la película '{0}' tiene un tamaño incompatible. {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Tarjetas de expansión de memoria</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Capacidad de memoria adicional</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: Número de estación único.  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Cada estación necesita un número diferente. Este ajuste reemplaza los puentes de hardware en la interfaz real. Utilice las teclas de flecha arriba y abajo para cambiar el número.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Frecuencia de reloj de la interfaz de red emulada.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>El reloj controla el tiempo de la interfaz emulada. Diferentes configuraciones del reloj no bloquean la comunicación entre los emuladores.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Elija cómo esta estación se conecta a la red.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Desconectado: la interfaz se instala sin conexión de red. &#xA;UDP: Intercambio directo de marcos de red entre los emuladores compatibles. Utilice este modo entre dos máquinas emuladas. &#xA;AUN: Otro protocolo de red para servidores y emuladores compatibles. Ambos extremos deben usar el mismo protocolo.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: La dirección de escucha de esta computadora.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: Conecta a los emuladores corriendo en este ordenador. &#xA;Para una red local, utilice una dirección asignada a este ordenador. &#xA;0.0.0.0: Escucha todas las interfaces de red de este ordenador. &#xA;Introduzca las direcciones de otros ordenadores en el campo de estaciones remotas. Los nombres y direcciones de otros ordenadores no son aceptados aquí.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>Puerto UDP de escucha de este equipo, 1–65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>El puerto inicial es:  32768. Los emuladores que comparten la misma dirección de escucha necesitan diferentes puertos.  32768 / 32769. Utilice las teclas de flecha arriba y abajo para cambiar el valor. Las estaciones remotas deben especificar el puerto de destino.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Mapa remoto números de estación a direcciones de red y puertos.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;Este ejemplo aborda la estación 3 en la red 0, corriendo en este ordenador en el puerto 32769. Entradas separadas con semicolons o roturas de línea. Para otro ordenador, utilice su dirección en la red local. Configure la entrada de retorno correspondiente en la otra estación.</value></data>
 </root>

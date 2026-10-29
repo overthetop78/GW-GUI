@@ -44,7 +44,7 @@ public sealed class ModuleUpdateServiceTests
         Assert.Empty(handler.Requests);
     }
 
-    private static LoadedEmulationModule Package(string id) => new(null!, new EmulationModuleManifest(2, id, $"gwgui.emulation.{id}.dll", "1.0.0", "1.2", "1.2", $"https://example.test/{id}.json"), string.Empty);
+    private static LoadedEmulationModule Package(string id) => new(null!, new EmulationModuleManifest(2, id, $"gwgui.emulation.{id}.dll", "1.3.0", "1.3", "1.3", $"https://example.test/{id}.json"), string.Empty);
 
     private sealed class CatalogHandler(string availableModuleId) : HttpMessageHandler
     {
@@ -64,12 +64,12 @@ public sealed class ModuleUpdateServiceTests
                     "id": "{{availableModuleId}}",
                     "kind": "module",
                     "releases": [{
-                      "version": "1.1.0",
-                      "packageUrl": "https://example.test/{{availableModuleId}}-1.1.0.zip",
+                      "version": "1.3.1",
+                      "packageUrl": "https://example.test/{{availableModuleId}}-1.3.1.zip",
                       "sha256": "{{new string('a', 64)}}",
-                      "notesUrl": "https://example.test/releases/{{availableModuleId}}-1.1.0",
-                      "hostApiMinimum": "1.2",
-                      "hostApiMaximum": "1.2"
+                      "notesUrl": "https://example.test/releases/{{availableModuleId}}-1.3.1",
+                      "hostApiMinimum": "1.3",
+                      "hostApiMaximum": "1.3"
                     }]
                   }]
                 }

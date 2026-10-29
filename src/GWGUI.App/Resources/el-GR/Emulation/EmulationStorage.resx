@@ -17,7 +17,7 @@
   <data name="Emulation.Storage.Cd.Drive"><value>Μονάδα CD</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>Αριθμός μονάδων δισκέτας</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>Αριθμός σκληρών δίσκων</value></data>
-  <data name="Emulation.Storage.Floppy.Speed"><value>Ταχύτητα κίνησης δισκέτας</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Ταχύτητα αυτής της μονάδας δισκέτας</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>Εικόνες με δισκέτα για την προστασία εγγραφής</value></data>
   <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Επανακατεύθυνση δισκέτας γράφει</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>Ταχύτητα CD</value></data>
@@ -93,4 +93,12 @@
   <data name="Emulation.Storage.Media.AlreadyExists"><value>Αυτό το αρχείο υπάρχει ήδη. Επιλέξτε ένα νέο αρχείο εικόνας: {0}</value></data>
   <data name="Emulation.Storage.Sound.Volume"><value>Όγκος</value></data>
   <data name="Emulation.Storage.Sound.Group"><value>Ήχοι συσκευής αποθήκευσης</value></data>
+  <data name="Emulation.Storage.Floppy.Format"><value>Μορφή δισκέτας</value></data>
+  <data name="Emulation.Storage.Floppy.OneSide"><value>1 όψη</value></data>
+  <data name="Emulation.Storage.Floppy.TwoSides"><value>2 όψεις</value></data>
+  <data name="Emulation.Storage.Floppy.Tracks"><value>{0} τροχιές ανά όψη</value></data>
+  <data name="Emulation.Storage.Floppy.SingleDensity"><value>Μονή πυκνότητα</value></data>
+  <data name="Emulation.Storage.Floppy.DoubleDensity"><value>Διπλή πυκνότητα</value></data>
+  <data name="Emulation.Storage.File.Destination"><value>Αρχείο προορισμού</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFormat"><value>Μορφή αρχείου εικόνας δίσκου</value></data>
 </root>

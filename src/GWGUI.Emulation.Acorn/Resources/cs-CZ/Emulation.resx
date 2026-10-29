@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>Karta pro rozšíření paměti ROM chybí. Vyberte jeho soubor v souboru RAM záložka nastavení stroje.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Vyberte software pro tuto rozšíření paměti z detekovaných souborů nebo projděte kompatibilní soubor. Žádný soubor není načtený, když je cesta prázdná.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Paměť postranních drah</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Moduly s upsanou pamětí</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Rozšiřující karta</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Rozšiřovací čipové zásuvky</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Tyto moduly přidávají ukotvenou paměť, aniž by se zvětšil prostor hlavní adresy. Vyberte čipové snímky v expanzních zásuvkách, abyste definovali jejich obsah. Dříve vybraný individuální firmware zůstává v provozu, dokud jeho zásuvka neobdrží explicitní čipový obrázek.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Obrázek čipu "{0}"má neslučitelnou velikost. Očekáváno: {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Paměťové rozšiřující karty</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Kapacita přídavné paměti</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: Jedinečné číslo stanice.  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Každá stanice potřebuje jiné číslo. Toto nastavení nahrazuje hardwarové jumpery na reálném rozhraní. Pomocí kláves se šipkami nahoru a dolů změníte číslo.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Hodinová frekvence emulovaného síťového rozhraní.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>Hodiny řídí načasování emulovaného rozhraní. Různé nastavení hodin neblokuje komunikaci mezi emulátory.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Vyberte si, jak se tato stanice připojí k síti.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Odpojeno: rozhraní je nainstalováno bez síťového připojení. &#xA;UDP: Přímá výměna síťových rámců mezi kompatibilními emulátory. Použijte tento režim mezi dvěma emulovanými stroji. &#xA;AUN: Další síťový protokol pro kompatibilní servery a emulátory. Oba konce musí používat stejný protokol.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: Poslouchací adresa tohoto počítače.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: Připojuje emulátory běží na tomto počítači. &#xA;Pro lokální síť použijte adresu přiřazenou tomuto počítači. &#xA;0.0.0.0: Poslouchejte na všech síťových rozhraních tohoto počítače. &#xA;Zadejte adresy ostatních počítačů v poli vzdálených stanic. Jména hostitelů a adresy ostatních počítačů zde nejsou přijímány.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>Naslouchací port UDP tohoto počítače, 1–65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>Počáteční port je:  32768. Emulátory sdílející stejnou adresu pro poslech potřebují různé porty.  32768 / 32769. Pomocí kláves se šipkami nahoru a dolů změníte hodnotu. Vzdálené stanice musí specifikovat cílový port.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Mapujte čísla vzdálených stanic na síťové adresy a porty.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;Tento příklad adresy stanice3 na síti0, běží na tomto počítači na portu32769. Samostatné položky se středníky nebo čárové přestávky. Pro jiný počítač použijte jeho adresu v lokální síti. Nastavit odpovídající návratový vstup na druhé stanici.</value></data>
 </root>

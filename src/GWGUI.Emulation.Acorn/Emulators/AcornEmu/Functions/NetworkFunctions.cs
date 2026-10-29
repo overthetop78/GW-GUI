@@ -16,13 +16,16 @@ internal static class NetworkFunctions
         var enabled = bool.TryParse(Value(C.Enabled, bool.FalseString), out var parsedEnabled) ? parsedEnabled : throw new ArgumentException(ErrorMessages.OptionValueInvalidFormat, nameof(configuration));
         var station = Number(C.Station, C.DefaultStation); var clock = Number(C.ClockRate, C.DefaultClockRate); var port = Number(C.Port, C.DefaultPort);
         var mode = Value(C.Mode, C.Disconnected);
-        if (station is < 1 or > 254 || port is < 1 or > 65535 || !C.ClockRates.Contains(clock) || mode is not (C.Disconnected or C.RawUdp or C.Aun) || mode == C.Aun && station == 1) throw new ArgumentException(ErrorMessages.OptionValueInvalidFormat, nameof(configuration));
-        if (!IPAddress.TryParse(Value(C.BindAddress, "127.0.0.1"), out var address) || address.AddressFamily != AddressFamily.InterNetwork) throw new ArgumentException(ErrorMessages.OptionValueInvalidFormat, nameof(configuration));
+        if (station is < C.MinimumStation or > C.MaximumStation || port is < C.MinimumPort or > C.MaximumPort || !C.ClockRates.Contains(clock) || mode is not (C.Disconnected or C.RawUdp or C.Aun) || mode == C.Aun && station == 1) throw new ArgumentException(ErrorMessages.OptionValueInvalidFormat, nameof(configuration));
+        var bind = Value(C.BindAddress, "127.0.0.1");
+        if (!IsIpv4(bind) || !IPAddress.TryParse(bind, out var address) || address.AddressFamily != AddressFamily.InterNetwork) throw new ArgumentException(ErrorMessages.OptionValueInvalidFormat, nameof(configuration));
         var peers = new List<EconetPeer>();
         foreach (var item in Value(C.Peers, "").Split([';', '\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
         {
             var pair = item.Split('=', 2, StringSplitOptions.TrimEntries); var id = pair[0].Split('.');
-            if (pair.Length != 2 || id.Length != 2 || !byte.TryParse(id[0], NumberStyles.None, CultureInfo.InvariantCulture, out var network) || !byte.TryParse(id[1], NumberStyles.None, CultureInfo.InvariantCulture, out var target) || target is 0 or 255 || !IPEndPoint.TryParse(pair[1], out var endpoint) || endpoint.AddressFamily != AddressFamily.InterNetwork || endpoint.Port == 0 || peers.Any(peer => peer.Network == network && peer.Station == target)) throw new ArgumentException(ErrorMessages.OptionValueInvalidFormat, nameof(configuration));
+            var endpointText = pair.Length == 2 ? pair[1] : string.Empty;
+            var separator = endpointText.LastIndexOf(':');
+            if (pair.Length != 2 || id.Length != 2 || !byte.TryParse(id[0], NumberStyles.None, CultureInfo.InvariantCulture, out var network) || !byte.TryParse(id[1], NumberStyles.None, CultureInfo.InvariantCulture, out var target) || target is 0 or 255 || separator <= 0 || !IsIpv4(endpointText[..separator]) || !IPEndPoint.TryParse(endpointText, out var endpoint) || endpoint.AddressFamily != AddressFamily.InterNetwork || endpoint.Port == 0 || peers.Any(peer => peer.Network == network && peer.Station == target)) throw new ArgumentException(ErrorMessages.OptionValueInvalidFormat, nameof(configuration));
             peers.Add(new(network, target, endpoint));
         }
         if (mode == C.Aun && peers.Select(peer => peer.EndPoint).Distinct().Count() != peers.Count) throw new ArgumentException(ErrorMessages.OptionValueInvalidFormat, nameof(configuration));
@@ -34,16 +37,22 @@ internal static class NetworkFunctions
         var settings = Read(configuration);
         EmulationSettingsField Field(string key, string label, EmulationSettingsEditor editor, string value, IReadOnlyList<EmulationSettingsChoice>? choices = null, EmulationSettingsNumericRange? range = null, string? explanation = null) =>
             new(key, EmulationMachineTab.Ethernet, C.Block, C.ResourcePrefix + label, editor, value, choices, IsEnabled: key == C.Enabled || settings.Enabled,
-                ExplanationResourceKey: explanation, EnabledValue: bool.TrueString, DisabledValue: bool.FalseString, RefreshSettingsOnChange: key == C.Enabled, RequiresRestart: true, NumericRange: range);
+                ExplanationResourceKey: explanation, DetailedExplanationResourceKey: explanation is null ? null : explanation + ".Detailed",
+                EnabledValue: bool.TrueString, DisabledValue: bool.FalseString, RefreshSettingsOnChange: key == C.Enabled, RequiresRestart: true, NumericRange: range)
+            { IsMultiline = key == C.Peers };
         return new(C.Block, EmulationMachineTab.Ethernet, C.ResourcePrefix + "Title",
         [
             Field(C.Enabled, "Enabled", EmulationSettingsEditor.Toggle, settings.Enabled.ToString()),
-            Field(C.Station, "Station", EmulationSettingsEditor.Number, settings.Station.ToString(CultureInfo.InvariantCulture), range: new(1, 254, 1)),
-            Field(C.ClockRate, "Clock", EmulationSettingsEditor.Selection, settings.ClockRate.ToString(CultureInfo.InvariantCulture), C.ClockRates.Select(rate => new EmulationSettingsChoice(rate.ToString(CultureInfo.InvariantCulture), "", (rate / 1000).ToString(CultureInfo.InvariantCulture) + " kHz")).ToArray()),
-            Field(C.Mode, "Mode", EmulationSettingsEditor.Selection, settings.Mode, [new(C.Disconnected, C.ResourcePrefix + "Disconnected"), new(C.RawUdp, C.ResourcePrefix + "Udp"), new(C.Aun, C.ResourcePrefix + "Aun")]),
-            Field(C.BindAddress, "BindAddress", EmulationSettingsEditor.Text, settings.LocalEndPoint.Address.ToString()),
-            Field(C.Port, "Port", EmulationSettingsEditor.Number, settings.LocalEndPoint.Port.ToString(CultureInfo.InvariantCulture), range: new(1, 65535, 1)),
+            Field(C.Station, "Station", EmulationSettingsEditor.Number, settings.Station.ToString(CultureInfo.InvariantCulture), range: new(C.MinimumStation, C.MaximumStation, 1), explanation: C.ResourcePrefix + "Station.Help"),
+            Field(C.ClockRate, "Clock", EmulationSettingsEditor.Selection, settings.ClockRate.ToString(CultureInfo.InvariantCulture), C.ClockRates.Select(rate => new EmulationSettingsChoice(rate.ToString(CultureInfo.InvariantCulture), "", (rate / 1000).ToString(CultureInfo.InvariantCulture) + " kHz")).ToArray(), explanation: C.ResourcePrefix + "Clock.Help"),
+            Field(C.Mode, "Mode", EmulationSettingsEditor.Selection, settings.Mode, [new(C.Disconnected, C.ResourcePrefix + "Disconnected"), new(C.RawUdp, C.ResourcePrefix + "Udp"), new(C.Aun, C.ResourcePrefix + "Aun")], explanation: C.ResourcePrefix + "Mode.Help"),
+            Field(C.BindAddress, "BindAddress", EmulationSettingsEditor.IPv4, settings.LocalEndPoint.Address.ToString(), explanation: C.ResourcePrefix + "BindAddress.Help"),
+            Field(C.Port, "Port", EmulationSettingsEditor.Number, settings.LocalEndPoint.Port.ToString(CultureInfo.InvariantCulture), range: new(C.MinimumPort, C.MaximumPort, 1), explanation: C.ResourcePrefix + "Port.Help"),
             Field(C.Peers, "Peers", EmulationSettingsEditor.Text, configuration.Options.GetValueOrDefault(C.Peers, ""), explanation: C.ResourcePrefix + "Peers.Help")
         ]);
     }
+
+    private static bool IsIpv4(string value) => value.Split('.') is { Length: 4 } octets
+        && octets.All(octet => octet.Length is >= 1 and <= 3 && octet.All(character => character is >= '0' and <= '9')
+            && (octet.Length == 1 || octet[0] != '0') && byte.TryParse(octet, NumberStyles.None, CultureInfo.InvariantCulture, out _));
 }

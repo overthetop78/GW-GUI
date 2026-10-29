@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>内存扩展卡 ROM 中选择文件 RAM 选项卡。</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>从检测到的文件中选择此内存扩展的控制软件, 或浏览兼容文件。 当路径为空时, 没有载入文件 。</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>侧向内存</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>银行存储模块</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>扩展卡</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>扩展芯片套接字</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>这些模块添加了存储内存, 但不增加主内存地址空间。 在扩展套接字中选择芯片图像来定义其内容。 先前选定的单个固件仍在使用, 直到其套接字收到明确的芯片图像 。</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>芯片图像“ ”{0}' 大小不相容。 预期: {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>内存扩展卡</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>新增内存容量</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: 独一无二的站号.  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>每个站台需要不同的编号. 此设置取代了真实界面上的硬件跳出器. 使用上下箭头键来更改数字.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>模拟网络接口的时钟频率.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>时钟控制了模拟界面的时空。 不同的时钟设置不会阻碍模拟器之间的通信 。</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>选择本站与网络的连接方式.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>已断开连接:接口安装时没有网络连接. &#xA;UDP: 在兼容仿真器之间直接交换网络框架. 在两台模拟机器之间使用此模式 。 &#xA;AUN: 另一个兼容服务器和模拟器的网络协议. 两端必须使用相同的协议.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: 这台电脑的监听地址</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: 连接在此计算机上运行的模拟器 。 &#xA;对于本地网络,请使用指定给此计算机的地址. &#xA;0.0.0.0: 听这台电脑的所有网络接口。 &#xA;输入远程站场中其他计算机的地址。 此处不接受其他计算机的主机名和地址.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>此计算机的 UDP 监听端口，范围为 1–65535。</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>初始端口为:  32768. 共享相同收听地址的模拟器需要不同的端口.  32768 / 32769. 使用上下箭头键来更改值. 远程站必须指定目的地端口.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>将远程站名映射到网络地址和端口.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;这个例子地址是3号站台在0网络上,运行在32769端口的这台计算机上. 以分号或换行符分隔条目。 对于另一台计算机,请在本地网络上使用其地址. 配置另一站对应的回回条目.</value></data>
 </root>

@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>Hukommelsespas ROM mangler. Vælg sin fil i RAM fanen af maskinens indstillinger.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Vælg kontrolsoftware for denne hukommelsesudvidelse fra de fundne filer, eller søg efter en kompatibel fil. Ingen fil indlæses, når stien er tom.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Sideways hukommelse</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Båndede hukommelsesmoduler</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Udvidelseskort</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Skodder til expansion</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Disse moduler tilføjer banked hukommelse uden at øge hovedhukommelsesadresseplads. Vælg chipbilleder i ekspansionssokkerne for at definere deres indhold. Tidligere valgte individuelle firmware forbliver i brug, indtil dens sokkel modtager et eksplicit chipbillede.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Chip image '{0}'har en uforenelig størrelse. Forventede: {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Hukommelsesudvidelseskort</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Ekstra hukommelseskapacitet</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: Unikt stationenummer.  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Hver station har brug for et andet nummer. Denne indstilling erstatter hardwarespringere på den virkelige grænseflade. Brug op og ned piletasterne til at ændre antallet.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Ur frekvens af den emulerede netværksgrænseflade.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>Uret styrer timingen af den emulerede grænseflade. Forskellige ur indstillinger blokerer ikke kommunikation mellem emulatorer.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Vælg hvordan denne station forbinder til netværket.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>frakoblet: grænsefladen er installeret uden netværksforbindelse. &#xA;UDP: Direkte udveksling af netværksrammer mellem kompatible emulatorer. Brug denne tilstand mellem to emulerede maskiner. &#xA;AUN: En anden netværksprotokol for kompatible servere og emulatorer. Begge ender skal bruge den samme protokol.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: Denne computers lytteadresse.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: Forbinder emulatorer der kører på denne computer. &#xA;For et lokalt netværk, skal du bruge en adresse tildelt denne computer. &#xA;0.0.0.0: Lyt til alle netgrænseflader på denne computer. &#xA;Indtast adresser på andre computere i afsidesliggende stationer feltet. Værtsnavne og adresser på andre computere accepteres ikke her.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>UDP-lytteport på denne computer, 1–65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>Den oprindelige havn er:  32768. Emulatorer, der deler den samme lytteadresse, har brug for forskellige havne.  32768 / 32769. Brug op og ned piletasterne til at ændre værdien. Fjernstationer skal angive destinationshavnen.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Kort numre på fjernstationer til netværksadresser og -porte.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;Dette eksempel adresserer station 3 på netværk 0, kører på denne computer i port 32769. Separate indgange med semikoloner eller linjebrud. For en anden computer, bruge sin adresse på det lokale netværk. Indstil den tilsvarende returindgang på den anden station.</value></data>
 </root>

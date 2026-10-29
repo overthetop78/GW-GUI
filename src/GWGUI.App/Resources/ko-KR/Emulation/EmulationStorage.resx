@@ -17,7 +17,7 @@
   <data name="Emulation.Storage.Cd.Drive"><value>CD 드라이브</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>플로피 드라이브 수</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>하드 디스크 수</value></data>
-  <data name="Emulation.Storage.Floppy.Speed"><value>플로피 드라이브 속도</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>이 플로피 드라이브의 속도</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>플로피 이미지 쓰기 보호</value></data>
   <data name="Emulation.Storage.Floppy.WriteRedirect"><value>플로피 쓰기 리디렉션</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>CD 속도</value></data>
@@ -93,4 +93,12 @@
   <data name="Emulation.Storage.Media.AlreadyExists"><value>이 파일은 이미 존재합니다. 새 이미지 파일을 선택하십시오. {0}</value></data>
   <data name="Emulation.Storage.Sound.Volume"><value>의논문</value></data>
   <data name="Emulation.Storage.Sound.Group"><value>저장 장치 소리</value></data>
+  <data name="Emulation.Storage.Floppy.Format"><value>플로피 디스크 형식</value></data>
+  <data name="Emulation.Storage.Floppy.OneSide"><value>단면</value></data>
+  <data name="Emulation.Storage.Floppy.TwoSides"><value>양면</value></data>
+  <data name="Emulation.Storage.Floppy.Tracks"><value>면당 {0}트랙</value></data>
+  <data name="Emulation.Storage.Floppy.SingleDensity"><value>단밀도</value></data>
+  <data name="Emulation.Storage.Floppy.DoubleDensity"><value>배밀도</value></data>
+  <data name="Emulation.Storage.File.Destination"><value>대상 파일</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFormat"><value>디스크 이미지 파일 형식</value></data>
 </root>

@@ -17,7 +17,7 @@
   <data name="Emulation.Storage.Cd.Drive"><value>CD-asema</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>Levykeasemien määrä</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>Kiintolevyjen määrä</value></data>
-  <data name="Emulation.Storage.Floppy.Speed"><value>Levykeajonopeus</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Tämän levykeaseman nopeus</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>Kirjoita suojassa olevat levykuvat</value></data>
   <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Uudelleenohjaa levykekirjoituksia</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>CD-nopeus</value></data>
@@ -93,4 +93,12 @@
   <data name="Emulation.Storage.Media.AlreadyExists"><value>Tämä tiedosto on jo olemassa. Valitse uusi kuvatiedosto: {0}</value></data>
   <data name="Emulation.Storage.Sound.Volume"><value>Määrä</value></data>
   <data name="Emulation.Storage.Sound.Group"><value>Tallennuslaitteen äänet</value></data>
+  <data name="Emulation.Storage.Floppy.Format"><value>Levykkeen muoto</value></data>
+  <data name="Emulation.Storage.Floppy.OneSide"><value>1 puoli</value></data>
+  <data name="Emulation.Storage.Floppy.TwoSides"><value>2 puolta</value></data>
+  <data name="Emulation.Storage.Floppy.Tracks"><value>{0} raitaa per puoli</value></data>
+  <data name="Emulation.Storage.Floppy.SingleDensity"><value>Yksinkertainen tiheys</value></data>
+  <data name="Emulation.Storage.Floppy.DoubleDensity"><value>Kaksinkertainen tiheys</value></data>
+  <data name="Emulation.Storage.File.Destination"><value>Kohdetiedosto</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFormat"><value>Levykuvatiedoston muoto</value></data>
 </root>

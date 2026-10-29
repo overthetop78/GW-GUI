@@ -8,5 +8,6 @@ internal static class NetworkConstants
     internal const string Firmware = "acornemu.nfs", Disconnected = "disconnected", RawUdp = "udp", Aun = "aun";
     internal const string Block = "Econet", ResourcePrefix = "Emulation.Acorn.Network.";
     internal const int DefaultStation = 2, DefaultPort = 32768, DefaultClockRate = 250000;
+    internal const int MinimumStation = 1, MaximumStation = 254, MinimumPort = 1, MaximumPort = 65535;
     internal static IReadOnlyList<int> ClockRates { get; } = Array.AsReadOnly<int>([125000, 250000, 500000]);
 }

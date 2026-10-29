@@ -35,7 +35,9 @@ internal static class EmulationModuleManifestReader
         ValidateFileName(manifest.EntryAssembly, "entryAssembly");
         if (!string.Equals(Path.GetExtension(manifest.EntryAssembly), ".dll", StringComparison.OrdinalIgnoreCase))
             throw new InvalidDataException("The module entryAssembly must name a DLL.");
-        _ = ParseVersion(manifest.ModuleVersion, 3, "moduleVersion");
+        var moduleVersion = ParseVersion(manifest.ModuleVersion, 3, "moduleVersion");
+        if (moduleVersion < EmulationHostApi.MinimumModuleVersion)
+            throw new InvalidDataException($"Module '{manifest.Id}' version {moduleVersion} is no longer supported. Minimum module version: {EmulationHostApi.MinimumModuleVersion}.");
         var minimum = ParseVersion(manifest.HostApiMinimum, 2, "hostApiMinimum");
         var maximum = ParseVersion(manifest.HostApiMaximum, 2, "hostApiMaximum");
         if (minimum > maximum)

@@ -33,8 +33,22 @@
   <data name="Emulation.Acorn.Memory.RomMissing"><value>Cardul de extindere a memoriei ROM Alegeți fișierul său în RAM fila setărilor mașinii.</value></data>
   <data name="Emulation.Acorn.Memory.Rom.Help"><value>Selectaţi software-ul de control pentru această expansiune de memorie din fişierele detectate, sau naviga pentru un fişier compatibil. Nu fişier este încărcat atunci când calea este goală.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways"><value>Memorie laterală</value></data>
-  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Module de memorie Banked</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Card"><value>Placă de extensie</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Sockets"><value>Priza de expansiune a jetoanelor</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.Help"><value>Aceste module adaugă memorie bancară fără a mări spațiul principal de adrese de memorie. Selectați imagini de jetoane în prizele de expansiune pentru a defini conținutul lor. Anterior selectat firmware individual rămâne în uz până când priza sa primește o imagine explicită de chip.</value></data>
   <data name="Emulation.Acorn.Memory.Sideways.InvalidImageSize"><value>Imaginea Chip '{0}"are o dimensiune incompatibilă. {1}.</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Extension"><value>Plăci de extensie a memoriei</value></data>
+  <data name="Emulation.Acorn.Memory.Sideways.Capacity"><value>Capacitatea memoriei suplimentare</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help"><value>Econet: Numărul unic al staţiei.  1–254.</value></data>
+  <data name="Emulation.Acorn.Network.Station.Help.Detailed"><value>Fiecare staţie are nevoie de un număr diferit. Această setare înlocuiește jumpers hardware pe interfața reală. Utilizați tastele săgeată în sus și în jos pentru a schimba numărul.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help"><value>Frecvenţa de ceas a interfeţei de reţea emulate.</value></data>
+  <data name="Emulation.Acorn.Network.Clock.Help.Detailed"><value>Ceasul controlează sincronizarea interfeței emulate. Setări diferite ale ceasului nu blochează comunicarea între emulatoare.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help"><value>Alegeţi cum se conectează această staţie la reţea.</value></data>
+  <data name="Emulation.Acorn.Network.Mode.Help.Detailed"><value>Deconectat: interfata este instalata fara conexiune la retea. &#xA;UDP: Schimbul direct de cadre de rețea între emulatoare compatibile. Utilizați acest mod între două mașini emulate. &#xA;AUN: Un alt protocol de rețea pentru servere compatibile și emulatoare. Ambele capete trebuie să folosească acelaşi protocol.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help"><value>IPv4: Adresa de ascultare a acestui computer.</value></data>
+  <data name="Emulation.Acorn.Network.BindAddress.Help.Detailed"><value>127.0.0.1: Conectează emulatoare care rulează pe acest computer. &#xA;Pentru o rețea locală, utilizați o adresă atribuită acestui computer. &#xA;0.0.0.0: Asculta pe toate interfețele de rețea ale acestui computer. &#xA;Introduceţi adresele altor calculatoare în câmpul staţiilor de la distanţă. Numele gazdelor şi adresele altor calculatoare nu sunt acceptate aici.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help"><value>Port UDP de ascultare al acestui calculator, 1–65535.</value></data>
+  <data name="Emulation.Acorn.Network.Port.Help.Detailed"><value>Portul iniţial este:  32768. Emulatorii care împărtăşesc aceeaşi adresă de ascultare au nevoie de porturi diferite.  32768 / 32769. Utilizați tastele săgeată în sus și în jos pentru a schimba valoarea. Posturile de la distanţă trebuie să specifice portul de destinaţie.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help"><value>Harta numerelor staţiei de la distanţă către adresele de reţea şi porturi.</value></data>
+  <data name="Emulation.Acorn.Network.Peers.Help.Detailed"><value>network.station=IPv4:port&#xA;0.3=127.0.0.1:32769&#xA;Acest exemplu se adresează staţiei 3 din reţeaua 0, funcţionând pe acest computer din portul 32769. Intrări separate cu semicoloane sau pauze de linie. Pentru un alt calculator, utilizați adresa sa pe rețeaua locală. Configurează intrarea de întoarcere corespunzătoare pe cealaltă stație.</value></data>
 </root>
