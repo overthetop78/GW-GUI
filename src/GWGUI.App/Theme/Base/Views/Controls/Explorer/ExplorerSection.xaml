@@ -1,0 +1,238 @@
+<UserControl x:Class="GWGUI.App.Views.Controls.Explorer.ExplorerSection" x:Name="Root"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:common="clr-namespace:GWGUI.App.Views.Controls.Common" xmlns:explorer="clr-namespace:GWGUI.App.Views.Controls.Explorer"
+             xmlns:viewModels="clr-namespace:GWGUI.App.ViewModels.Explorer"
+             xmlns:explorerEnums="clr-namespace:GWGUI.App.Enums.Explorer"
+             xmlns:l="clr-namespace:GWGUI.App.Localization.Extensions">
+    <UserControl.Resources>
+        <Style x:Key="ExplorerFolderItemStyle" TargetType="ListBoxItem">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="0,1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="Row" Background="{TemplateBinding Background}" CornerRadius="5" Padding="5,4">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True"><Setter TargetName="Row" Property="Background" Value="{DynamicResource ExplorerSelectionBrush}"/></Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ExplorerContentItemStyle" TargetType="ListViewItem">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Border x:Name="Row" Background="{TemplateBinding Background}" CornerRadius="4" Padding="7,5" Margin="0,1">
+                            <GridViewRowPresenter Columns="{Binding View.Columns, RelativeSource={RelativeSource AncestorType=ListView}}" Content="{TemplateBinding Content}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True"><Setter TargetName="Row" Property="Background" Value="{DynamicResource ExplorerSelectionBrush}"/></Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <common:CardSection x:Name="HeaderCardRoot" Padding="10" Margin="0,0,0,12">
+            <Grid>
+                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                <common:MediaDocumentIdentity x:Name="DocumentIdentity" Margin="0,0,12,0"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button x:Name="ReadDiskButton" Height="40" MinHeight="0" Margin="0,0,8,0" Content="{l:Loc Explorer.ReadDisk}"/>
+                    <Button x:Name="OpenButton" Height="40" MinHeight="0" Content="{l:Loc Explorer.OpenImage}"/>
+                    <Button x:Name="ManualOptionsButton" Width="40" Height="40" MinWidth="0" MinHeight="0" Padding="0" Margin="8,0,0,0"
+                            Click="ManualOptionsButton_Click" ToolTip="{l:Loc Common.Advanced}" AutomationProperties.Name="{l:Loc Common.Advanced}">
+                                    <TextBlock Text="{l:Loc Icon.Settings}" FontFamily="{StaticResource IconFontFamily}" FontSize="16"/>
+                    </Button>
+                </StackPanel>
+                <Grid Grid.Row="1" Margin="0,9,12,0">
+                    <TextBox x:Name="PathText" Visibility="Collapsed" IsReadOnly="True"/>
+                    <StackPanel x:Name="DetectedFormatPanel" Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock x:Name="DetectedFormatLabel" Text="{l:Loc Explorer.Format}" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,9,0" Visibility="Collapsed"/>
+                        <ComboBox x:Name="DetectedFormatSelector" Height="34" MinWidth="260" Visibility="Collapsed" SelectionChanged="DetectedFormatSelector_SelectionChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse Width="7" Height="7" Margin="0,0,8,0" Fill="{DynamicResource Theme.SuccessBrush}"/>
+                                        <TextBlock Text="{Binding Name}" Foreground="{DynamicResource TextBrush}" FontWeight="SemiBold"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+                <CheckBox x:Name="AutomaticDetection" Grid.Row="1" Grid.Column="1" Content="{l:Loc Classification.Automatic}" IsChecked="True"
+                          HorizontalAlignment="Right" Margin="0,9,0,0" Checked="AutomaticDetection_Changed" Unchecked="AutomaticDetection_Changed"/>
+                <Popup x:Name="ManualOptionsPopup" Placement="Custom" PlacementTarget="{Binding ElementName=ManualOptionsButton}"
+                       CustomPopupPlacementCallback="ManualOptionsPopup_Place" AllowsTransparency="True" StaysOpen="False">
+                    <Border Margin="0,8,0,12" Padding="14" Background="{DynamicResource CardBrush}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="8">
+                        <Border.Effect><DropShadowEffect BlurRadius="18" ShadowDepth="4" Opacity="0.22"/></Border.Effect>
+                        <common:DiskClassificationSelector x:Name="Classification" ShowAutomatic="False"/>
+                    </Border>
+                </Popup>
+            </Grid>
+        </common:CardSection>
+
+        <common:CardSection Grid.Row="1" Padding="12" Margin="0,0,0,12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="1.2*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel x:Name="SessionControl" Grid.Column="0" Margin="0,0,10,0">
+                    <TextBlock Text="{l:Loc Explorer.Session}" Foreground="{DynamicResource MutedTextBrush}"/>
+                    <ComboBox x:Name="SessionSelector" Margin="0,4,0,0" MinWidth="135" DisplayMemberPath="DisplayName" Visibility="Collapsed"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock x:Name="VolumeLabel" Text="{l:Loc Explorer.Volume}" Foreground="{DynamicResource MutedTextBrush}"/>
+                    <TextBlock x:Name="VolumeNameText" FontSize="18" FontWeight="SemiBold" Text="&#x2014;"/>
+                    <ComboBox x:Name="VolumeSelector" Margin="0,4,10,0" MinWidth="190" DisplayMemberPath="DisplayName" Visibility="Collapsed" SelectionChanged="VolumeSelector_SelectionChanged"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2"><TextBlock Text="{l:Loc Explorer.System}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="SystemText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="3"><TextBlock Text="{l:Loc Explorer.Protection}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="ProtectionText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="4"><TextBlock x:Name="FileSystemLabel" Text="{l:Loc Explorer.FileSystem}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="FileSystemText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="5"><TextBlock x:Name="CapacityLabel" Text="{l:Loc Explorer.Capacity}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="CapacityText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="6"><TextBlock x:Name="FreeLabel" Text="{l:Loc Explorer.Free}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="FreeText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="7"><TextBlock x:Name="EntryCountLabel" Text="{l:Loc Explorer.Entries}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="EntryCountText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <Button x:Name="WarningsButton" Grid.Column="8" Visibility="Collapsed" Background="{DynamicResource CardBrush}" BorderBrush="{DynamicResource BorderBrush}"
+                        BorderThickness="1" Padding="10,4" MinHeight="0" VerticalAlignment="Center" Click="WarningsButton_Click">
+                    <TextBlock x:Name="WarningsText" Foreground="{DynamicResource Theme.WarningBrush}"/>
+                </Button>
+            </Grid>
+        </common:CardSection>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="270"/>
+                <ColumnDefinition Width="12"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="12"/>
+                <ColumnDefinition Width="340"/>
+            </Grid.ColumnDefinitions>
+            <common:CardSection x:Name="OpticalTracksSection" Grid.ColumnSpan="5" Padding="8" Margin="0,0,0,12" Visibility="Collapsed">
+                <DockPanel>
+                    <TextBlock Text="{l:Loc Explorer.AudioTracks}" FontWeight="SemiBold" VerticalAlignment="Center" Margin="4,0,12,0"/>
+                    <ListBox x:Name="AudioTrackList" DisplayMemberPath="DisplayName" BorderThickness="0" Background="Transparent"
+                             ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate><StackPanel Orientation="Horizontal"/></ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </DockPanel>
+            </common:CardSection>
+            <common:CardSection Grid.Row="1" Padding="8">
+                <ListBox x:Name="FolderList" BorderThickness="0" Background="Transparent" ItemContainerStyle="{StaticResource ExplorerFolderItemStyle}"
+                         SelectionChanged="FolderList_SelectionChanged" PreviewMouseLeftButtonDown="FolderList_PreviewMouseLeftButtonDown">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type viewModels:ExplorerFolderItem}">
+                            <Grid Margin="{Binding Indent}">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="24"/><ColumnDefinition Width="26"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                                <Button Grid.Column="0" Content="{Binding ToggleText}" Tag="{Binding}" Click="FolderToggle_Click" Width="22" Height="22" MinWidth="0" MinHeight="0" Padding="0" Margin="0" Background="Transparent" BorderBrush="Transparent" FontWeight="Bold"/>
+                                <common:FileEntryIcon Grid.Column="1" Category="Folder" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="2" Text="{Binding Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsSyntheticName}" Value="True">
+                                                    <Setter Property="Foreground" Value="{DynamicResource SyntheticNameBrush}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </common:CardSection>
+
+            <common:CardSection Grid.Row="1" Grid.Column="2" Padding="8">
+                <ListView x:Name="ContentsList" BorderThickness="0" Background="Transparent" ItemContainerStyle="{StaticResource ExplorerContentItemStyle}" SelectionChanged="ContentsList_SelectionChanged" MouseDoubleClick="ContentsList_MouseDoubleClick">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="False">
+                            <GridViewColumn Header="{l:Loc Explorer.Name}" Width="250">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DockPanel>
+                                            <common:FileEntryIcon Category="{Binding IconCategory}" Tone="{Binding Tone}" Width="22" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Tone}" Value="{x:Static explorerEnums:ExplorerEntryTone.Executable}">
+                                                                <Setter Property="Foreground" Value="{DynamicResource Theme.SuccessBrush}"/>
+                                                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Tone}" Value="{x:Static explorerEnums:ExplorerEntryTone.Muted}">
+                                                                <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="{l:Loc Explorer.Modified}" Width="135" DisplayMemberBinding="{Binding ModifiedText}"/>
+                            <GridViewColumn Header="{l:Loc Explorer.Type}" Width="115" DisplayMemberBinding="{Binding TypeText}"/>
+                            <GridViewColumn Header="{l:Loc Explorer.Size}" Width="75" DisplayMemberBinding="{Binding SizeText}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </common:CardSection>
+
+            <common:CardSection Grid.Row="1" Grid.Column="4" Padding="0">
+                <explorer:ExplorerDetailsPanel x:Name="DetailsPanel"/>
+            </common:CardSection>
+
+            <Border x:Name="ExplorerEmptyState" Grid.Row="1" Grid.ColumnSpan="5" Background="{DynamicResource CardBrush}" CornerRadius="8" Panel.ZIndex="5">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border Width="68" Height="68" CornerRadius="34" Background="{DynamicResource CardBrush}" HorizontalAlignment="Center">
+                        <TextBlock Text="{l:Loc Icon.OpenImage}" FontFamily="{StaticResource IconFontFamily}" FontSize="30" Foreground="{DynamicResource AccentBrush}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="{l:Loc Visual.NoFile}" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,16,0,14"/>
+                    <Button x:Name="EmptyOpenButton" Content="{l:Loc Explorer.OpenImage}" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Border x:Name="LoadingOverlay" Grid.Row="2" Background="Transparent" Visibility="Collapsed" Panel.ZIndex="10" IsHitTestVisible="False">
+            <common:MediaRecognitionProgressCard x:Name="LoadingCard" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+    </Grid>
+</UserControl>

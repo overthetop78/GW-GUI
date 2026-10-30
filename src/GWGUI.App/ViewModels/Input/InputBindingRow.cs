@@ -63,20 +63,6 @@ public sealed class InputBindingRow(string id, string label, string binding, str
         InputBindingState.Reserved => "Emulation.Input.Binding.LabelReserved",
         _ => "Emulation.Input.Binding.LabelUnassigned"
     });
-    public Brush StateForeground => State switch
-    {
-        InputBindingState.Valid => Brushes.DarkGreen,
-        InputBindingState.Conflict => Brushes.DarkRed,
-        InputBindingState.Reserved => Brushes.RoyalBlue,
-        _ => Brushes.DimGray
-    };
-    public Brush StateBackground => State switch
-    {
-        InputBindingState.Valid => Brushes.Honeydew,
-        InputBindingState.Conflict => Brushes.MistyRose,
-        InputBindingState.Reserved => Brushes.AliceBlue,
-        _ => Brushes.Gainsboro
-    };
     public string StateIcon => State switch
     {
         InputBindingState.Valid => "✓",
@@ -89,8 +75,6 @@ public sealed class InputBindingRow(string id, string label, string binding, str
     {
         State = state;
         OnPropertyChanged(nameof(StateText));
-        OnPropertyChanged(nameof(StateForeground));
-        OnPropertyChanged(nameof(StateBackground));
         OnPropertyChanged(nameof(StateIcon));
     }
 

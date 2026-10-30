@@ -8,5 +8,6 @@ public enum PreferencesSection
     Hardware,
     Engines,
     Profiles,
-    Controllers
+    Controllers,
+    Themes
 }

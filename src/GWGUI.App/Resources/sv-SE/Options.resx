@@ -12,9 +12,9 @@
   <data name="Options.ImagesFolder" xml:space="preserve"><value>Standard diskbildsmapp</value></data>
   <data name="Options.Language" xml:space="preserve"><value>Språk</value></data>
   <data name="Options.Theme" xml:space="preserve"><value>Tema</value></data>
-  <data name="Options.Theme.System" xml:space="preserve"><value>Systemsystem</value></data>
-  <data name="Options.Theme.Light" xml:space="preserve"><value>Ljus</value></data>
-  <data name="Options.Theme.Dark" xml:space="preserve"><value>Mörk</value></data>
+  <data name="Options.Theme.System" xml:space="preserve"><value>System</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>Ljust</value></data>
+  <data name="Options.Theme.Dark" xml:space="preserve"><value>Mörkt</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>Sökväg till gw.exe</value></data>
   <data name="Options.ToolsHelp" xml:space="preserve"><value>Om verktygen saknas kommer assistenten att erbjuda att ladda ner dem eller välja en befintlig installation. Uppdateringar meddelas endast.</value></data>
   <data name="Options.HardwarePersistence" xml:space="preserve"><value>Hårdvaruinställningarna förblir lagrade när en enhet kopplas bort.</value></data>
@@ -62,4 +62,16 @@
   <data name="Options.PreferencesTitle"><value>Föreställningar</value></data>
   <data name="Options.EmulationTitle"><value>Emuleringspreferenser</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} emuleringsinställningar</value></data>
+  <data name="Options.Themes.Title"><value>Teman</value></data>
+  <data name="Options.Themes.List"><value>Tillgängliga teman</value></data>
+  <data name="Options.Themes.Appearance"><value>Utseende</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>Förhandsvisning saknas.</value></data>
+  <data name="Options.Themes.Active"><value>Aktivt tema: {0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>Det valda temat används direkt och behålls nästa gång programmet startas.</value></data>
+  <data name="Options.Themes.Base.Description"><value>Den ursprungliga layouten med systemets, ljust eller mörkt utseende.</value></data>
+
+
+
+
+
 </root>

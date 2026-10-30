@@ -25,16 +25,25 @@ internal static class SettingsFailureScenarios
         var window = new PreferencesWindow(settings, ControlledDependencies.Reject<IHardwareRegistry>(),
             ControlledDependencies.Reject<IGwInstallationManager>(), settingsStore: store, dataDirectory: "virtual-data",
             fileExists: _ => false, reportSaveError: shown.Add);
-        Assert.Empty(saved); Assert.Empty(shown);
-        window.GeneralSection.Themes.SelectedIndex = (int)AppTheme.Dark;
-        await System.Windows.Threading.Dispatcher.Yield(System.Windows.Threading.DispatcherPriority.ContextIdle);
-        Assert.Same(failure, Assert.Single(shown)); Assert.Equal(AppTheme.Dark, settings.Theme);
-        Assert.Equal((int)AppTheme.Dark, window.GeneralSection.Themes.SelectedIndex);
-        fail = false;
-        window.GeneralSection.Themes.SelectedIndex = (int)AppTheme.Light;
-        await System.Windows.Threading.Dispatcher.Yield(System.Windows.Threading.DispatcherPriority.ContextIdle);
-        Assert.Equal(new[] { AppTheme.Dark, AppTheme.Light }, saved); Assert.Single(shown);
-        Assert.Equal(AppTheme.Light, settings.Theme);
+        try
+        {
+            Assert.Empty(saved); Assert.Empty(shown);
+            var styleChoice = window.ThemesSection.Variants.Children.OfType<RadioButton>().Single(option => Equals(option.Tag, AppTheme.Dark));
+            styleChoice.IsChecked = true;
+            Assert.Empty(saved);
+            Assert.Equal(AppTheme.Light, settings.Theme);
+            await window.ThemesSection.SaveSelectedAsync();
+            Assert.Same(failure, Assert.Single(shown));
+            Assert.Equal(AppTheme.Light, settings.Theme);
+            Assert.True(window.ThemesSection.Variants.Children.OfType<RadioButton>().Single(option => Equals(option.Tag, AppTheme.Dark)).IsChecked);
+            fail = false;
+            await window.ThemesSection.SaveSelectedAsync();
+            Assert.Equal(new[] { AppTheme.Dark, AppTheme.Dark }, saved);
+            Assert.Single(shown);
+            Assert.Equal(AppTheme.Dark, settings.Theme);
+        }
+        finally { window.Close(); }
+
     }
     public static async Task Retry()
     {

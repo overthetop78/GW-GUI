@@ -6,11 +6,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Views/Styles/ApplicationStyles.xaml" />
+                <ResourceDictionary Source="Theme/Base/Tokens.xaml" />
+                <ResourceDictionary Source="Theme/Base/Views/Styles/ApplicationStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="Window" BasedOn="{StaticResource ApplicationWindowStyle}">
-                <EventSetter Event="Loaded" Handler="Window_Loaded"/>
-            </Style>
+            <Style TargetType="Window" BasedOn="{StaticResource ApplicationWindowStyle}"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

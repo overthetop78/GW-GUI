@@ -47,10 +47,8 @@ internal sealed class GeneralOptionsController
         StoragePaths.ConfigureEmulationCaptureDirectory(settings.EmulationCaptureFolder);
         section.Languages.ItemsSource = UiLanguageCatalog.Available;
         section.Languages.SelectedItem = UiLanguageCatalog.Available.FirstOrDefault(language => string.Equals(language.Code, settings.Language, StringComparison.OrdinalIgnoreCase)) ?? UiLanguageCatalog.Fallback;
-        section.Themes.SelectedIndex = (int)settings.Theme;
 
         section.LanguageChanged += LanguageChanged;
-        section.ThemeChanged += ThemeChanged;
         section.BrowseImagesFolderRequested += BrowseImagesFolder;
         section.AutoSaveTextEditingFinished += async (_, _) => await _persistSettings();
     }
@@ -62,7 +60,6 @@ internal sealed class GeneralOptionsController
         StoragePaths.ConfigureEmulationStateDirectory(settings.EmulationStateFolder);
         StoragePaths.ConfigureEmulationCaptureDirectory(settings.EmulationCaptureFolder);
         if (_section.Languages.SelectedItem is UiLanguage language) settings.Language = language.Code;
-        settings.Theme = (AppTheme)Math.Max(0, _section.Themes.SelectedIndex);
     }
 
     private async void LanguageChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -78,14 +75,6 @@ internal sealed class GeneralOptionsController
             LocalizationSource.Instance.Refresh();
             _refreshLocalizedContent();
         }
-    }
-
-    private async void ThemeChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-    {
-        if (_isInitializing() || _section.Themes.SelectedIndex < 0) return;
-        _settings.Theme = (AppTheme)_section.Themes.SelectedIndex;
-        if (Application.Current is App app) app.SetTheme(_settings.Theme);
-        await _persistSettings();
     }
 
     private async void BrowseImagesFolder(object sender, RoutedEventArgs e)

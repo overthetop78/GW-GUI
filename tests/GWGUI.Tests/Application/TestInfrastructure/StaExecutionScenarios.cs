@@ -25,7 +25,7 @@ public sealed class StaExecutionScenarios : IDisposable
                     resources = new ResourceApplication { ShutdownMode = System.Windows.ShutdownMode.OnExplicitShutdown };
                     resources.Resources = new System.Windows.ResourceDictionary
                     {
-                        Source = new Uri("/gwgui.app;component/Views/Styles/ApplicationStyles.xaml", UriKind.Relative)
+                        Source = new Uri("/gwgui.app;component/Theme/Base/Views/Styles/ApplicationStyles.xaml", UriKind.Relative)
                     };
                     ready.SetResult((current, resources));
                     Dispatcher.Run();

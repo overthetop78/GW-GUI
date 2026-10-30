@@ -62,4 +62,16 @@
   <data name="Options.PreferencesTitle"><value>Préférences</value></data>
   <data name="Options.EmulationTitle"><value>Préférences en matière d'émulation</value></data>
   <data name="Options.EmulationModuleTitle"><value>Paramètres d'émulation {0}</value></data>
+  <data name="Options.Themes.Title"><value>Thèmes</value></data>
+  <data name="Options.Themes.List"><value>Thèmes disponibles</value></data>
+  <data name="Options.Themes.Appearance"><value>Apparence</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>Aperçu indisponible.</value></data>
+  <data name="Options.Themes.Active"><value>Thème actif : {0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>Le thème choisi s’applique immédiatement et reste sélectionné aux prochains démarrages.</value></data>
+  <data name="Options.Themes.Base.Description"><value>Disposition d’origine, en mode système, clair ou sombre.</value></data>
+
+
+
+
+
 </root>

@@ -13,8 +13,8 @@
   <data name="Options.Language" xml:space="preserve"><value>Limbă</value></data>
   <data name="Options.Theme" xml:space="preserve"><value>Temă</value></data>
   <data name="Options.Theme.System" xml:space="preserve"><value>Sistem</value></data>
-  <data name="Options.Theme.Light" xml:space="preserve"><value>Aprinde</value></data>
-  <data name="Options.Theme.Dark" xml:space="preserve"><value>Întuneric</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>Luminos</value></data>
+  <data name="Options.Theme.Dark" xml:space="preserve"><value>Întunecat</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>Calea către gw.exe</value></data>
   <data name="Options.ToolsHelp" xml:space="preserve"><value>Dacă instrumentele lipsesc, asistentul se va oferi să le descarce sau să aleagă o instalare existentă. Actualizările sunt doar anunțate.</value></data>
   <data name="Options.HardwarePersistence" xml:space="preserve"><value>Setările hardware rămân stocate atunci când o unitate este deconectată.</value></data>
@@ -62,4 +62,16 @@
   <data name="Options.PreferencesTitle"><value>Preferințe</value></data>
   <data name="Options.EmulationTitle"><value>Preferințe de emulare</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} setări de emulare</value></data>
+  <data name="Options.Themes.Title"><value>Teme</value></data>
+  <data name="Options.Themes.List"><value>Teme disponibile</value></data>
+  <data name="Options.Themes.Appearance"><value>Aspect</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>Previzualizare indisponibilă.</value></data>
+  <data name="Options.Themes.Active"><value>Tema activă: {0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>Tema aleasă se aplică imediat și se păstrează la următoarele porniri ale aplicației.</value></data>
+  <data name="Options.Themes.Base.Description"><value>Aspectul original, cu modul sistemului, luminos sau întunecat.</value></data>
+
+
+
+
+
 </root>

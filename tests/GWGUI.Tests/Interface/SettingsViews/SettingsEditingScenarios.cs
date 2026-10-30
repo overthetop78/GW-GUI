@@ -21,7 +21,7 @@ internal static class SettingsEditingScenarios
         Assert.Equal(response?.Trim() ?? "virtual-old", settings.DefaultImagesFolder);
         Assert.Equal(response ?? "virtual-old", section.ImagesFolder.Text);
         Assert.Equal("en-US", settings.Language);
-        section.Themes.SelectedIndex = -1; controller.ApplyTo(settings);
+        controller.ApplyTo(settings);
         Assert.Equal(AppTheme.System, settings.Theme);
     }
     public static void Engines()
@@ -56,12 +56,13 @@ internal static class SettingsEditingScenarios
         Assert.Equal("virtual-old", section.ImagesFolder.Text);
         Assert.Equal(0, saves);
         section.ImagesFolder.Text = "  virtual-new  ";
-        section.Themes.SelectedIndex = (int)AppTheme.Dark;
+        settings.ThemeDesign = AppThemeDesign.Base;
         controller.ApplyTo(settings);
         Assert.Equal("virtual-new", settings.DefaultImagesFolder);
-        Assert.Equal(AppTheme.Dark, settings.Theme);
+        Assert.Equal(AppTheme.Light, settings.Theme);
+        Assert.Equal(AppThemeDesign.Base, settings.ThemeDesign);
         Assert.Equal("en-US", settings.Language);
-        Assert.Equal(1, saves);
+        Assert.Equal(0, saves);
         Assert.Equal(0, refreshed);
     }
 }

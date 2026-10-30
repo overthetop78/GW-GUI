@@ -1,44 +1,75 @@
 using GWGUI.Infrastructure.Settings;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using Microsoft.Win32;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using GWGUI.App.Constants.Theming;
+using GWGUI.App.Dictionaries.Theming;
 
 namespace GWGUI.App.Services.Theming;
 
 public static class ThemeManager
 {
-    public static bool IsDark { get; private set; }
-
-    public static void Apply(AppTheme requested)
+    static ThemeManager()
     {
-        Apply(requested, requested == AppTheme.System && SystemUsesDarkTheme(), SystemParameters.WindowGlassColor);
+        EventManager.RegisterClassHandler(typeof(Window), FrameworkElement.LoadedEvent,
+            new RoutedEventHandler(WindowLoaded));
     }
 
-    internal static void Apply(AppTheme requested, bool systemUsesDarkTheme, Color systemAccent)
+    private static void WindowLoaded(object sender, RoutedEventArgs args)
     {
-        var dark = requested == AppTheme.Dark || requested == AppTheme.System && systemUsesDarkTheme;
+        if (sender is Window window && ReferenceEquals(args.OriginalSource, window)
+            && Application.Current?.TryFindResource(ThemeConstants.BaseWindowStyleResource) is Style)
+            ApplyWindowTheme(window);
+    }
+
+    public static bool IsDark { get; private set; }
+    public static AppTheme Current { get; private set; } = AppTheme.System;
+    public static AppThemeDesign CurrentDesign { get; private set; } = AppThemeDesign.Base;
+    public static void Apply(AppTheme requested) => Apply(CurrentDesign, requested);
+
+    public static void Apply(AppThemeDesign design, AppTheme variant) => Apply(design, variant,
+        variant == AppTheme.System && SystemUsesDarkTheme(), SystemParameters.WindowGlassColor);
+
+    internal static void Apply(AppTheme requested, bool systemUsesDarkTheme, Color systemAccent) =>
+        Apply(AppThemeDesign.Base, requested, systemUsesDarkTheme, systemAccent);
+
+    internal static void Apply(AppThemeDesign design, AppTheme variant, bool systemUsesDarkTheme, Color systemAccent)
+    {
+        var definition = ThemeCatalog.Get(design);
+        CurrentDesign = definition.Id;
+        Current = definition.Normalize(variant);
+        var dark = Current == AppTheme.Dark || Current == AppTheme.System && systemUsesDarkTheme;
         IsDark = dark;
-        var windowColor = ParseColor(dark ? ThemeConstants.DarkWindow : ThemeConstants.LightWindow);
+        var resources = Application.Current.Resources;
+        CopyResources(ThemeConstants.TokensUri, resources);
+        CopyResources(definition.PaletteUri(dark), resources);
+        var windowColor = ((SolidColorBrush)resources[ThemeConstants.WindowResource]).Color;
         var accent = systemAccent.A == 0 ? ParseColor(ThemeConstants.DefaultAccent) : Color.FromRgb(systemAccent.R, systemAccent.G, systemAccent.B);
-        Set("AccentBrush", EnsureTextContrast(accent, windowColor, dark));
-        Set("WindowBrush", windowColor);
-        Set("CardBrush", dark ? "#23262E" : "#FFFFFF");
-        Set("ControlBrush", dark ? "#2B2F38" : "#FFFFFF");
-        Set("TextBrush", dark ? "#F2F3F5" : "#20242C");
-        Set("BorderBrush", dark ? "#454B57" : "#E1E4EA");
-        Set("HoverBrush", dark ? "#343A46" : "#EEF2FF");
-        Set("SelectedBrush", dark ? "#3D4963" : "#DDE6FF");
-        Set("ExplorerSelectionBrush", dark ? "#34373D" : "#E7E9EC");
-        Set("MutedTextBrush", dark ? ThemeConstants.DarkMutedText : ThemeConstants.LightMutedText);
-        Set("StatusBrush", dark ? "#20232A" : "#FFFFFF");
-        foreach (Window window in Application.Current.Windows) ApplyWindowTheme(window);
+        Set(ThemeConstants.AccentResource, EnsureTextContrast(accent, windowColor, dark));
+        foreach (Window window in Application.Current.Windows)
+        {
+            ApplyWindowTheme(window);
+        }
+    }
+
+    private static void CopyResources(string uri, ResourceDictionary destination)
+    {
+        var source = new ResourceDictionary { Source = new Uri(uri, UriKind.Relative) };
+        foreach (var key in source.Keys) destination[key] = source[key];
     }
 
     public static void ApplyWindowTheme(Window window)
     {
+        var ownsChrome = window.ReadLocalValue(Window.WindowStyleProperty) is WindowStyle.None;
+        if (!ownsChrome && window.ReadLocalValue(FrameworkElement.StyleProperty) == DependencyProperty.UnsetValue)
+            window.SetResourceReference(FrameworkElement.StyleProperty, ThemeConstants.BaseWindowStyleResource);
+        if (window.ReadLocalValue(Control.BackgroundProperty) == DependencyProperty.UnsetValue)
+            window.SetResourceReference(Control.BackgroundProperty, ThemeConstants.WindowResource);
+        if (window.ReadLocalValue(Control.ForegroundProperty) == DependencyProperty.UnsetValue)
+            window.SetResourceReference(Control.ForegroundProperty, ThemeConstants.TextResource);
         var handle = new WindowInteropHelper(window).Handle;
         if (handle == IntPtr.Zero) return;
         var enabled = IsDark ? 1 : 0;
@@ -87,7 +118,7 @@ public static class ThemeManager
 
     private static Color ParseColor(string value) => (Color)ColorConverter.ConvertFromString(value);
 
-    private static bool SystemUsesDarkTheme()
+    internal static bool SystemUsesDarkTheme()
     {
         try
         {

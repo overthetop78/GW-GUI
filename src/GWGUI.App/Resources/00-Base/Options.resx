@@ -63,4 +63,22 @@
   <data name="Options.PreferencesTitle"><value>Preferences</value></data>
   <data name="Options.EmulationTitle"><value>Emulation preferences</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} emulation settings</value></data>
+  <data name="Options.Themes.Title"><value>Themes</value></data>
+  <data name="Options.Themes.List"><value>Available themes</value></data>
+  <data name="Options.Themes.Appearance"><value>Appearance</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>Preview unavailable.</value></data>
+  <data name="Options.Themes.Active"><value>Active theme: {0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>Your choice takes effect immediately and is kept for future launches.</value></data>
+  <data name="Options.Themes.Base.Description"><value>The original application layout. Available in system, light and dark appearances.</value></data>
+
+
+
+
+
+  <data name="Options.Themes.Base.Name"><value>Base</value></data>
+
+
+
+
+
 </root>

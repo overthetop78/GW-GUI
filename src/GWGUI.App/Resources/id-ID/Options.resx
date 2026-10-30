@@ -13,7 +13,7 @@
   <data name="Options.Language" xml:space="preserve"><value>Bahasa</value></data>
   <data name="Options.Theme" xml:space="preserve"><value>Tema</value></data>
   <data name="Options.Theme.System" xml:space="preserve"><value>Sistem</value></data>
-  <data name="Options.Theme.Light" xml:space="preserve"><value>Lampu</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>Terang</value></data>
   <data name="Options.Theme.Dark" xml:space="preserve"><value>Gelap</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>Jalan menuju gw.exe</value></data>
   <data name="Options.ToolsHelp" xml:space="preserve"><value>Jika alatnya hilang, asisten akan menawarkan untuk mengunduhnya atau memilih instalasi yang ada. Pembaruan hanya diumumkan.</value></data>
@@ -62,4 +62,16 @@
   <data name="Options.PreferencesTitle"><value>Preferensi</value></data>
   <data name="Options.EmulationTitle"><value>preferensi emulasi</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} pengaturan emulasi</value></data>
+  <data name="Options.Themes.Title"><value>Tema</value></data>
+  <data name="Options.Themes.List"><value>Tema tersedia</value></data>
+  <data name="Options.Themes.Appearance"><value>Tampilan</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>Pratinjau tidak tersedia.</value></data>
+  <data name="Options.Themes.Active"><value>Tema aktif: {0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>Tema yang dipilih langsung diterapkan dan disimpan untuk penggunaan aplikasi berikutnya.</value></data>
+  <data name="Options.Themes.Base.Description"><value>Tata letak asli dengan tampilan sistem, terang, atau gelap.</value></data>
+
+
+
+
+
 </root>

@@ -27,7 +27,7 @@ internal sealed class AvailableModuleRow
         CanInstall = canInstall;
         StateLabel = stateLabel;
         var state = isInstalled || isDownloaded ? UpdateVisualState.Current : canInstall ? UpdateVisualState.Available : UpdateVisualState.Error;
-        (StateForeground, StateBackground) = UpdateStateBrushes.For(state);
+        State = state;
         StateIcon = StateIconFor(state);
     }
 
@@ -40,8 +40,7 @@ internal sealed class AvailableModuleRow
     public bool ShowsStateBadge => IsInstalled || IsDownloaded;
     public bool CanInstall { get; }
     public string StateLabel { get; }
-    public System.Windows.Media.Brush StateForeground { get; }
-    public System.Windows.Media.Brush StateBackground { get; }
+    public UpdateVisualState State { get; }
     public string StateIcon { get; }
 
     private static string StateIconFor(UpdateVisualState state) => state switch

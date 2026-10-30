@@ -26,7 +26,7 @@ internal sealed class UpdateComponentRow
         Versions = versions;
         SelectedVersion = selectedVersion;
         CanSelectVersion = canSelectVersion;
-        (StateForeground, StateBackground) = UpdateStateBrushes.For(state);
+        State = state;
         StateIcon = state switch
         {
             UpdateVisualState.Current => IconGlyphs.Current,
@@ -45,7 +45,6 @@ internal sealed class UpdateComponentRow
     public IReadOnlyList<string> Versions { get; }
     public string? SelectedVersion { get; set; }
     public bool CanSelectVersion { get; }
-    public System.Windows.Media.Brush StateForeground { get; }
-    public System.Windows.Media.Brush StateBackground { get; }
+    public UpdateVisualState State { get; }
     public string StateIcon { get; }
 }

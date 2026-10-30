@@ -32,7 +32,7 @@ public sealed class AcornEmuWd1770Tests
     }
 
     [Fact]
-    public void ControllerChoiceBelongsToExtensionsAndDoesNotFilterImagesForTheSameDrive()
+    public void ControllerChoiceBelongsToExtensionsAndFiltersDoubleDensityDriveModels()
     {
         var factory = new AcornEmuMachineFactory();
         var configuration = new MachineConfiguration(MachineModel.BbcMicroModelA, core: Emulator.AcornEmu);
@@ -43,15 +43,17 @@ public sealed class AcornEmuWd1770Tests
         {
             Floppy = device.Floppy! with { Model = StorageConstants.Double80Dd }
         }).ToArray();
-        configuration = factory.ApplyStorage(configuration, storage with { DeviceSettings = settings });
+        Assert.Throws<ArgumentException>(() => factory.ApplyStorage(configuration, storage with { DeviceSettings = settings }));
         var intelExtensions = factory.DescribeStorage(configuration).AvailableDevices.SelectMany(device => device.AcceptedExtensions).ToArray();
-        Assert.Contains(".adl", intelExtensions);
+        Assert.DoesNotContain(".adl", intelExtensions);
         configuration = configuration with { Options = new Dictionary<string, string>(configuration.Options)
         {
             [StorageConstants.ControllerOption] = StorageConstants.AcornWd1770
         } };
         factory.ValidateOptions(configuration);
-        Assert.Equal(intelExtensions, factory.DescribeStorage(configuration).AvailableDevices.SelectMany(device => device.AcceptedExtensions).ToArray());
+        configuration = factory.ApplyStorage(configuration, factory.DescribeStorage(configuration) with { DeviceSettings = settings });
+        Assert.All(factory.DescribeStorage(configuration).DeviceSettings!, device => Assert.Equal(StorageConstants.Double80Dd, device.Floppy!.Model));
+        Assert.Contains(".adl", factory.DescribeStorage(configuration).AvailableDevices.SelectMany(device => device.AcceptedExtensions));
         Assert.True(factory.RequiresOptionRestart(configuration, StorageConstants.ControllerOption));
         var field = Assert.Single(factory.DescribeSettings(configuration).SelectMany(block => block.Fields), field => field.Id == StorageConstants.ControllerOption);
         Assert.Equal(EmulationMachineTab.Extensions, field.Tab);

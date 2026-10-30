@@ -62,4 +62,16 @@
   <data name="Options.PreferencesTitle"><value>Voorkeuren</value></data>
   <data name="Options.EmulationTitle"><value>Emulatievoorkeuren</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} emulatie-instellingen</value></data>
+  <data name="Options.Themes.Title"><value>Thema’s</value></data>
+  <data name="Options.Themes.List"><value>Beschikbare thema’s</value></data>
+  <data name="Options.Themes.Appearance"><value>Uiterlijk</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>Voorbeeld niet beschikbaar.</value></data>
+  <data name="Options.Themes.Active"><value>Actief thema: {0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>Het gekozen thema wordt direct toegepast en blijft behouden wanneer de toepassing opnieuw start.</value></data>
+  <data name="Options.Themes.Base.Description"><value>De oorspronkelijke indeling met systeem-, lichte of donkere weergave.</value></data>
+
+
+
+
+
 </root>

@@ -12,9 +12,9 @@
   <data name="Options.ImagesFolder" xml:space="preserve"><value>기본 디스크 이미지 폴더</value></data>
   <data name="Options.Language" xml:space="preserve"><value>언어</value></data>
   <data name="Options.Theme" xml:space="preserve"><value>주제</value></data>
-  <data name="Options.Theme.System" xml:space="preserve"><value>체계</value></data>
-  <data name="Options.Theme.Light" xml:space="preserve"><value>빛</value></data>
-  <data name="Options.Theme.Dark" xml:space="preserve"><value>어두운</value></data>
+  <data name="Options.Theme.System" xml:space="preserve"><value>시스템</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>밝게</value></data>
+  <data name="Options.Theme.Dark" xml:space="preserve"><value>어둡게</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>gw.exe에 대한 경로</value></data>
   <data name="Options.ToolsHelp" xml:space="preserve"><value>도구가 누락된 경우 도우미는 해당 도구를 다운로드하거나 기존 설치를 선택하도록 제안합니다. 업데이트는 공지만 됩니다.</value></data>
   <data name="Options.HardwarePersistence" xml:space="preserve"><value>드라이브 연결이 끊어져도 하드웨어 설정은 계속 저장되어 있습니다.</value></data>
@@ -62,4 +62,16 @@
   <data name="Options.PreferencesTitle"><value>계정 설정</value></data>
   <data name="Options.EmulationTitle"><value>Emulation 선호도</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} emulation 설정</value></data>
+  <data name="Options.Themes.Title"><value>테마</value></data>
+  <data name="Options.Themes.List"><value>사용 가능한 테마</value></data>
+  <data name="Options.Themes.Appearance"><value>모양</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>미리보기를 사용할 수 없습니다.</value></data>
+  <data name="Options.Themes.Active"><value>현재 테마: {0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>선택한 테마는 즉시 적용되며 다음에 앱을 실행할 때도 유지됩니다.</value></data>
+  <data name="Options.Themes.Base.Description"><value>시스템 설정, 밝게 또는 어둡게 모드를 지원하는 기본 레이아웃입니다.</value></data>
+
+
+
+
+
 </root>

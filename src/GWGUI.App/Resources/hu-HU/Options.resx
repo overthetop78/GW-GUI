@@ -13,7 +13,7 @@
   <data name="Options.Language" xml:space="preserve"><value>Nyelv</value></data>
   <data name="Options.Theme" xml:space="preserve"><value>Téma</value></data>
   <data name="Options.Theme.System" xml:space="preserve"><value>Rendszer</value></data>
-  <data name="Options.Theme.Light" xml:space="preserve"><value>Fény</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>Világos</value></data>
   <data name="Options.Theme.Dark" xml:space="preserve"><value>Sötét</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>Útvonal ide: gw.exe</value></data>
   <data name="Options.ToolsHelp" xml:space="preserve"><value>Ha az eszközök hiányoznak, az asszisztens felajánlja azok letöltését vagy egy meglévő telepítés kiválasztását. A frissítéseket csak bejelentik.</value></data>
@@ -62,4 +62,16 @@
   <data name="Options.PreferencesTitle"><value>Előirányzatok</value></data>
   <data name="Options.EmulationTitle"><value>Emulációs preferenciák</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} emuláció beállításai</value></data>
+  <data name="Options.Themes.Title"><value>Témák</value></data>
+  <data name="Options.Themes.List"><value>Elérhető témák</value></data>
+  <data name="Options.Themes.Appearance"><value>Megjelenés</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>Az előnézet nem érhető el.</value></data>
+  <data name="Options.Themes.Active"><value>Aktív téma: {0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>A kiválasztott téma azonnal életbe lép, és az alkalmazás következő indításakor is megmarad.</value></data>
+  <data name="Options.Themes.Base.Description"><value>Az eredeti elrendezés rendszer szerinti, világos vagy sötét megjelenéssel.</value></data>
+
+
+
+
+
 </root>

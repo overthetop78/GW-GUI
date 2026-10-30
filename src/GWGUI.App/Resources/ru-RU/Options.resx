@@ -13,8 +13,8 @@
   <data name="Options.Language" xml:space="preserve"><value>Язык</value></data>
   <data name="Options.Theme" xml:space="preserve"><value>Тема</value></data>
   <data name="Options.Theme.System" xml:space="preserve"><value>Система</value></data>
-  <data name="Options.Theme.Light" xml:space="preserve"><value>Свет</value></data>
-  <data name="Options.Theme.Dark" xml:space="preserve"><value>Темный</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>Светлая</value></data>
+  <data name="Options.Theme.Dark" xml:space="preserve"><value>Тёмная</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>Путь к gw.exe</value></data>
   <data name="Options.ToolsHelp" xml:space="preserve"><value>Если инструменты отсутствуют, помощник предложит их скачать или выбрать существующую установку. Обновления только анонсируются.</value></data>
   <data name="Options.HardwarePersistence" xml:space="preserve"><value>Настройки оборудования сохраняются при отключении диска.</value></data>
@@ -62,4 +62,16 @@
   <data name="Options.PreferencesTitle"><value>Предпочтения</value></data>
   <data name="Options.EmulationTitle"><value>Эмуляционные предпочтения</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} настройки эмуляции</value></data>
+  <data name="Options.Themes.Title"><value>Темы</value></data>
+  <data name="Options.Themes.List"><value>Доступные темы</value></data>
+  <data name="Options.Themes.Appearance"><value>Оформление</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>Предпросмотр недоступен.</value></data>
+  <data name="Options.Themes.Active"><value>Активная тема: {0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>Выбранная тема применяется сразу и сохраняется при следующих запусках приложения.</value></data>
+  <data name="Options.Themes.Base.Description"><value>Исходная компоновка с системным, светлым или тёмным оформлением.</value></data>
+
+
+
+
+
 </root>

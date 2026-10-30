@@ -12,9 +12,9 @@
   <data name="Options.ImagesFolder" xml:space="preserve"><value>默认磁盘映像文件夹</value></data>
   <data name="Options.Language" xml:space="preserve"><value>语言</value></data>
   <data name="Options.Theme" xml:space="preserve"><value>主题</value></data>
-  <data name="Options.Theme.System" xml:space="preserve"><value>系统</value></data>
-  <data name="Options.Theme.Light" xml:space="preserve"><value>光</value></data>
-  <data name="Options.Theme.Dark" xml:space="preserve"><value>黑暗的</value></data>
+  <data name="Options.Theme.System" xml:space="preserve"><value>跟随系统</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>浅色</value></data>
+  <data name="Options.Theme.Dark" xml:space="preserve"><value>深色</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>gw.exe 的路径</value></data>
   <data name="Options.ToolsHelp" xml:space="preserve"><value>如果缺少工具，助手将提供下载或选择现有安装。更新仅公布。</value></data>
   <data name="Options.HardwarePersistence" xml:space="preserve"><value>当驱动器断开连接时，硬件设置仍会被存储。</value></data>
@@ -62,4 +62,16 @@
   <data name="Options.PreferencesTitle"><value>首选项</value></data>
   <data name="Options.EmulationTitle"><value>模拟偏好</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} 模拟设置</value></data>
+  <data name="Options.Themes.Title"><value>主题</value></data>
+  <data name="Options.Themes.List"><value>可用主题</value></data>
+  <data name="Options.Themes.Appearance"><value>外观</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>暂无预览。</value></data>
+  <data name="Options.Themes.Active"><value>当前主题：{0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>所选主题立即生效，并在下次启动应用时保留。</value></data>
+  <data name="Options.Themes.Base.Description"><value>原始布局，可跟随系统或使用浅色、深色外观。</value></data>
+
+
+
+
+
 </root>

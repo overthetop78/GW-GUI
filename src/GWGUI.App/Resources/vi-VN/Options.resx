@@ -12,9 +12,9 @@
   <data name="Options.ImagesFolder" xml:space="preserve"><value>Thư mục ảnh đĩa mặc định</value></data>
   <data name="Options.Language" xml:space="preserve"><value>Ngôn ngữ</value></data>
   <data name="Options.Theme" xml:space="preserve"><value>chủ đề</value></data>
-  <data name="Options.Theme.System" xml:space="preserve"><value>Hệ thống</value></data>
-  <data name="Options.Theme.Light" xml:space="preserve"><value>Ánh sáng</value></data>
-  <data name="Options.Theme.Dark" xml:space="preserve"><value>Tối tăm</value></data>
+  <data name="Options.Theme.System" xml:space="preserve"><value>Theo hệ thống</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>Sáng</value></data>
+  <data name="Options.Theme.Dark" xml:space="preserve"><value>Tối</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>Đường dẫn đến gw.exe</value></data>
   <data name="Options.ToolsHelp" xml:space="preserve"><value>Nếu thiếu công cụ, trợ lý sẽ đề nghị tải chúng xuống hoặc chọn bản cài đặt hiện có. Cập nhật chỉ được công bố.</value></data>
   <data name="Options.HardwarePersistence" xml:space="preserve"><value>Cài đặt phần cứng vẫn được lưu trữ khi ổ đĩa bị ngắt kết nối.</value></data>
@@ -62,4 +62,16 @@
   <data name="Options.PreferencesTitle"><value>Tùy thích</value></data>
   <data name="Options.EmulationTitle"><value>Đang phân loại</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} Thiết lập mô phỏng</value></data>
+  <data name="Options.Themes.Title"><value>Giao diện</value></data>
+  <data name="Options.Themes.List"><value>Các giao diện có sẵn</value></data>
+  <data name="Options.Themes.Appearance"><value>Diện mạo</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>Không có bản xem trước.</value></data>
+  <data name="Options.Themes.Active"><value>Giao diện đang dùng: {0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>Chủ đề đã chọn được áp dụng ngay và được giữ lại trong những lần mở ứng dụng tiếp theo.</value></data>
+  <data name="Options.Themes.Base.Description"><value>Bố cục ban đầu với chế độ theo hệ thống, sáng hoặc tối.</value></data>
+
+
+
+
+
 </root>

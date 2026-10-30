@@ -12,9 +12,9 @@
   <data name="Options.ImagesFolder" xml:space="preserve"><value>المجلد الافتراضي لصورة القرص</value></data>
   <data name="Options.Language" xml:space="preserve"><value>لغة</value></data>
   <data name="Options.Theme" xml:space="preserve"><value>سمة</value></data>
-  <data name="Options.Theme.System" xml:space="preserve"><value>نظام</value></data>
-  <data name="Options.Theme.Light" xml:space="preserve"><value>ضوء</value></data>
-  <data name="Options.Theme.Dark" xml:space="preserve"><value>مظلم</value></data>
+  <data name="Options.Theme.System" xml:space="preserve"><value>النظام</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>فاتح</value></data>
+  <data name="Options.Theme.Dark" xml:space="preserve"><value>داكن</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>المسار إلى gw.exe</value></data>
   <data name="Options.ToolsHelp" xml:space="preserve"><value>إذا كانت الأدوات مفقودة، فسيعرض عليك المساعد تنزيلها أو اختيار تثبيت موجود. يتم الإعلان عن التحديثات فقط.</value></data>
   <data name="Options.HardwarePersistence" xml:space="preserve"><value>تظل إعدادات الأجهزة مخزنة عند فصل محرك الأقراص.</value></data>
@@ -62,4 +62,16 @@
   <data name="Options.PreferencesTitle"><value>الأفضليات</value></data>
   <data name="Options.EmulationTitle"><value>الأفضليات الخلقية</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} أماكن العزل</value></data>
+  <data name="Options.Themes.Title"><value>السمات</value></data>
+  <data name="Options.Themes.List"><value>السمات المتاحة</value></data>
+  <data name="Options.Themes.Appearance"><value>المظهر</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>المعاينة غير متاحة.</value></data>
+  <data name="Options.Themes.Active"><value>السمة النشطة: {0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>يُطبّق اختيارك فورًا ويُحفظ لمرات تشغيل التطبيق التالية.</value></data>
+  <data name="Options.Themes.Base.Description"><value>التخطيط الأصلي بمظهر النظام أو المظهر الفاتح أو الداكن.</value></data>
+
+
+
+
+
 </root>

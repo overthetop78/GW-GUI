@@ -12,9 +12,9 @@
   <data name="Options.ImagesFolder" xml:space="preserve"><value>תיקיית תמונת דיסק המוגדרת כברירת מחדל</value></data>
   <data name="Options.Language" xml:space="preserve"><value>שָׂפָה</value></data>
   <data name="Options.Theme" xml:space="preserve"><value>נוֹשֵׂא</value></data>
-  <data name="Options.Theme.System" xml:space="preserve"><value>מַעֲרֶכֶת</value></data>
-  <data name="Options.Theme.Light" xml:space="preserve"><value>אוֹר</value></data>
-  <data name="Options.Theme.Dark" xml:space="preserve"><value>כֵּהֶה</value></data>
+  <data name="Options.Theme.System" xml:space="preserve"><value>מערכת</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>בהיר</value></data>
+  <data name="Options.Theme.Dark" xml:space="preserve"><value>כהה</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>נתיב אל gw.exe</value></data>
   <data name="Options.ToolsHelp" xml:space="preserve"><value>אם הכלים חסרים, העוזר יציע להוריד אותם או לבחור התקנה קיימת. עדכונים מתפרסמים רק.</value></data>
   <data name="Options.HardwarePersistence" xml:space="preserve"><value>הגדרות החומרה נשארות מאוחסנות כאשר כונן מנותק.</value></data>
@@ -62,4 +62,16 @@
   <data name="Options.PreferencesTitle"><value>העדפות</value></data>
   <data name="Options.EmulationTitle"><value>העדפות</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} הגדרות חיקוי</value></data>
+  <data name="Options.Themes.Title"><value>ערכות נושא</value></data>
+  <data name="Options.Themes.List"><value>ערכות נושא זמינות</value></data>
+  <data name="Options.Themes.Appearance"><value>מראה</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>התצוגה המקדימה אינה זמינה.</value></data>
+  <data name="Options.Themes.Active"><value>ערכת הנושא הפעילה: {0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>ערכת העיצוב שנבחרה תוחל מיד ותישמר להפעלות הבאות של היישום.</value></data>
+  <data name="Options.Themes.Base.Description"><value>הפריסה המקורית במראה מערכת, בהיר או כהה.</value></data>
+
+
+
+
+
 </root>

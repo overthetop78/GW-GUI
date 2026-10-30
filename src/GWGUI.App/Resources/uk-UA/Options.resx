@@ -12,9 +12,9 @@
   <data name="Options.ImagesFolder" xml:space="preserve"><value>Стандартна папка образу диска</value></data>
   <data name="Options.Language" xml:space="preserve"><value>Мова</value></data>
   <data name="Options.Theme" xml:space="preserve"><value>Тема</value></data>
-  <data name="Options.Theme.System" xml:space="preserve"><value>система</value></data>
-  <data name="Options.Theme.Light" xml:space="preserve"><value>світло</value></data>
-  <data name="Options.Theme.Dark" xml:space="preserve"><value>Темний</value></data>
+  <data name="Options.Theme.System" xml:space="preserve"><value>Система</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>Світла</value></data>
+  <data name="Options.Theme.Dark" xml:space="preserve"><value>Темна</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>Шлях до gw.exe</value></data>
   <data name="Options.ToolsHelp" xml:space="preserve"><value>Якщо інструменти відсутні, помічник запропонує завантажити їх або вибрати наявну установку. Оновлення лише анонсуються.</value></data>
   <data name="Options.HardwarePersistence" xml:space="preserve"><value>Налаштування апаратного забезпечення зберігаються, коли диск від’єднано.</value></data>
@@ -62,4 +62,16 @@
   <data name="Options.PreferencesTitle"><value>Навігація</value></data>
   <data name="Options.EmulationTitle"><value>Налаштування емуляційних</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} налаштування емульсії</value></data>
+  <data name="Options.Themes.Title"><value>Теми</value></data>
+  <data name="Options.Themes.List"><value>Доступні теми</value></data>
+  <data name="Options.Themes.Appearance"><value>Оформлення</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>Попередній перегляд недоступний.</value></data>
+  <data name="Options.Themes.Active"><value>Активна тема: {0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>Вибрана тема застосовується одразу та зберігається для наступних запусків програми.</value></data>
+  <data name="Options.Themes.Base.Description"><value>Початкова структура із системним, світлим або темним оформленням.</value></data>
+
+
+
+
+
 </root>

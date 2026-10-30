@@ -2,6 +2,20 @@ namespace GWGUI.App.Constants.Theming;
 
 internal static class ThemeConstants
 {
+    internal const string PackPrefix = "/gwgui.app;component/Theme/";
+    internal const string TokensUri = PackPrefix + "Base/Tokens.xaml";
+    internal const string DarkPaletteSuffix = "/Dark.xaml";
+    internal const string LightPaletteSuffix = "/Light.xaml";
+    internal const string DarkPreviewSuffix = "/DarkPreview.png";
+    internal const string LightPreviewSuffix = "/LightPreview.png";
+    internal const string ResourcePrefix = "Options.Themes.";
+    internal const string NameSuffix = ".Name";
+    internal const string DescriptionSuffix = ".Description";
+    internal const string AccentResource = "AccentBrush";
+    internal const string BaseWindowStyleResource = "ApplicationWindowStyle";
+    internal const string TextResource = "TextBrush";
+    internal const string WindowResource = "WindowBrush";
+    internal const int DefaultIndex = 0;
     internal const string DefaultAccent = "#4D76E8";
     internal const string LightWindow = "#F1F2F4";
     internal const string DarkWindow = "#17191F";

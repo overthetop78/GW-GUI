@@ -1,0 +1,45 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <FontFamily x:Key="Theme.FontFamily">Segoe UI</FontFamily>
+    <sys:Double x:Key="Theme.FontSize">14</sys:Double>
+    <sys:Double x:Key="Theme.ControlHeight">36</sys:Double>
+    <sys:Double x:Key="Theme.TableRowHeight">30</sys:Double>
+    <Thickness x:Key="Theme.ButtonPadding">16,8</Thickness>
+    <Thickness x:Key="Theme.InputPadding">10,7</Thickness>
+    <Thickness x:Key="Theme.ComboPadding">10,6</Thickness>
+    <Thickness x:Key="Theme.TabPadding">22,11</Thickness>
+    <Thickness x:Key="Theme.CardPadding">18</Thickness>
+    <Thickness x:Key="Theme.CardBorder">1</Thickness>
+    <CornerRadius x:Key="Theme.ControlRadius">4</CornerRadius>
+    <CornerRadius x:Key="Theme.CardRadius">8</CornerRadius>
+    <CornerRadius x:Key="Theme.TabRadius">9,9,0,0</CornerRadius>
+    <CornerRadius x:Key="Theme.SurfaceRadius">9</CornerRadius>
+    <CornerRadius x:Key="Theme.PrimaryRadius">9</CornerRadius>
+    <SolidColorBrush x:Key="Theme.PrimaryForeground" Color="White"/>
+    <SolidColorBrush x:Key="Theme.PrimaryShadow" Color="#315C3E"/>
+    <SolidColorBrush x:Key="Theme.PrimaryBorder" Color="#76A883"/>
+    <SolidColorBrush x:Key="Theme.PrimaryHover" Color="#70A77D"/>
+    <Color x:Key="Theme.PrimaryTopColor">#659F73</Color>
+    <Color x:Key="Theme.PrimaryBottomColor">#4F875E</Color>
+    <Dock x:Key="Theme.NavigationDock">Top</Dock>
+    <Dock x:Key="Theme.TerminalDock">Bottom</Dock>
+    <Thickness x:Key="Theme.WorkspaceMargin">16,10,16,0</Thickness>
+    <SolidColorBrush x:Key="Theme.TerminalBackground" Color="#0B0F14"/>
+    <SolidColorBrush x:Key="Theme.TerminalBorder" Color="#303A46"/>
+    <SolidColorBrush x:Key="Theme.TerminalText" Color="#D9DEE7"/>
+    <SolidColorBrush x:Key="Theme.TerminalPrompt" Color="#54E88B"/>
+    <SolidColorBrush x:Key="Theme.TerminalCommand" Color="#B7F7C3"/>
+    <CornerRadius x:Key="Theme.WindowRadius">0</CornerRadius>
+    <Thickness x:Key="Theme.CaptionBorder">0,0,0,1</Thickness>
+    <SolidColorBrush x:Key="Theme.CaptionBrush" Color="#F1F2F4"/>
+    <sys:Double x:Key="Theme.CaptionFontSize">14</sys:Double>
+    <Thickness x:Key="Theme.InputBorder">1</Thickness>
+    <Thickness x:Key="Theme.ButtonBorder">1</Thickness>
+    <sys:Boolean x:Key="Theme.FieldsInRows">False</sys:Boolean>
+    <SolidColorBrush x:Key="Theme.TerminalButtonText" Color="#AEB9C4"/>
+    <SolidColorBrush x:Key="Theme.TerminalButtonHover" Color="#1B2732"/>
+    <SolidColorBrush x:Key="Theme.TerminalButtonBorder" Color="#536576"/>
+    <SolidColorBrush x:Key="Theme.TerminalButtonActiveText" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="Theme.TerminalButtonPressed" Color="#10171E"/>
+</ResourceDictionary>

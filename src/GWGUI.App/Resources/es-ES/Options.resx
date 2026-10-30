@@ -13,7 +13,7 @@
   <data name="Options.Language" xml:space="preserve"><value>Idioma</value></data>
   <data name="Options.Theme" xml:space="preserve"><value>Tema</value></data>
   <data name="Options.Theme.System" xml:space="preserve"><value>Sistema</value></data>
-  <data name="Options.Theme.Light" xml:space="preserve"><value>Luz</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>Claro</value></data>
   <data name="Options.Theme.Dark" xml:space="preserve"><value>Oscuro</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>Camino a gw.exe</value></data>
   <data name="Options.ToolsHelp" xml:space="preserve"><value>Si faltan las herramientas, el asistente le ofrecerá descargarlas o elegir una instalación existente. Las actualizaciones sólo se anuncian.</value></data>
@@ -62,4 +62,16 @@
   <data name="Options.PreferencesTitle"><value>Preferencias</value></data>
   <data name="Options.EmulationTitle"><value>Preferencias de emulación</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} Ajustes de emulación</value></data>
+  <data name="Options.Themes.Title"><value>Temas</value></data>
+  <data name="Options.Themes.List"><value>Temas disponibles</value></data>
+  <data name="Options.Themes.Appearance"><value>Apariencia</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>Vista previa no disponible.</value></data>
+  <data name="Options.Themes.Active"><value>Tema activo: {0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>El tema elegido se aplica de inmediato y se conserva al volver a iniciar la aplicación.</value></data>
+  <data name="Options.Themes.Base.Description"><value>Distribución original con apariencia del sistema, clara u oscura.</value></data>
+
+
+
+
+
 </root>

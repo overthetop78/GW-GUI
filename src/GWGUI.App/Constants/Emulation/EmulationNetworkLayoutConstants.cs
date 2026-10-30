@@ -21,7 +21,7 @@ internal static class EmulationNetworkLayoutConstants
     internal const string EndpointResource = ResourcePrefix + "Endpoint";
     internal const string ValueSeparator = " · ";
     internal const string TypedValueFormat = "{0}: {1}";
-    internal const string StylesUri = "/gwgui.app;component/Views/Styles/EmulationNetworkStyles.xaml";
+    internal const string StylesUri = "/gwgui.app;component/Theme/Base/Views/Styles/EmulationNetworkStyles.xaml";
     internal const string TableStyleResource = "EmulationNetworkTable";
     internal const string TextStyleResource = "EmulationNetworkText";
     internal const string StateStyleResource = "EmulationNetworkState";

@@ -13,8 +13,8 @@
   <data name="Options.Language" xml:space="preserve"><value>Γλώσσα</value></data>
   <data name="Options.Theme" xml:space="preserve"><value>Θέμα</value></data>
   <data name="Options.Theme.System" xml:space="preserve"><value>Σύστημα</value></data>
-  <data name="Options.Theme.Light" xml:space="preserve"><value>Φως</value></data>
-  <data name="Options.Theme.Dark" xml:space="preserve"><value>Σκοτάδι</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>Φωτεινό</value></data>
+  <data name="Options.Theme.Dark" xml:space="preserve"><value>Σκοτεινό</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>Διαδρομή προς gw.exe</value></data>
   <data name="Options.ToolsHelp" xml:space="preserve"><value>Εάν λείπουν τα εργαλεία, ο βοηθός θα προσφερθεί να τα κατεβάσει ή να επιλέξει μια υπάρχουσα εγκατάσταση. Οι ενημερώσεις ανακοινώνονται μόνο.</value></data>
   <data name="Options.HardwarePersistence" xml:space="preserve"><value>Οι ρυθμίσεις υλικού παραμένουν αποθηκευμένες όταν αποσυνδέεται μια μονάδα δίσκου.</value></data>
@@ -62,4 +62,16 @@
   <data name="Options.PreferencesTitle"><value>Προτιμήσεις</value></data>
   <data name="Options.EmulationTitle"><value>Προτιμήσεις εξομοίωσης</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} ⁇  προσομοίωσης</value></data>
+  <data name="Options.Themes.Title"><value>Θέματα</value></data>
+  <data name="Options.Themes.List"><value>Διαθέσιμα θέματα</value></data>
+  <data name="Options.Themes.Appearance"><value>Εμφάνιση</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>Η προεπισκόπηση δεν είναι διαθέσιμη.</value></data>
+  <data name="Options.Themes.Active"><value>Ενεργό θέμα: {0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>Το επιλεγμένο θέμα εφαρμόζεται αμέσως και διατηρείται στις επόμενες εκκινήσεις της εφαρμογής.</value></data>
+  <data name="Options.Themes.Base.Description"><value>Η αρχική διάταξη με εμφάνιση συστήματος, φωτεινή ή σκοτεινή.</value></data>
+
+
+
+
+
 </root>

@@ -62,4 +62,16 @@
   <data name="Options.PreferencesTitle"><value>Indstillinger</value></data>
   <data name="Options.EmulationTitle"><value>Emulationspræferencer</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} emuleringsindstillinger</value></data>
+  <data name="Options.Themes.Title"><value>Temaer</value></data>
+  <data name="Options.Themes.List"><value>Tilgængelige temaer</value></data>
+  <data name="Options.Themes.Appearance"><value>Udseende</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>Forhåndsvisning er ikke tilgængelig.</value></data>
+  <data name="Options.Themes.Active"><value>Aktivt tema: {0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>Det valgte tema anvendes straks og gemmes til næste gang, programmet starter.</value></data>
+  <data name="Options.Themes.Base.Description"><value>Det oprindelige layout med systemets, lyst eller mørkt udseende.</value></data>
+
+
+
+
+
 </root>

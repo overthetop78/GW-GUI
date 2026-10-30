@@ -13,7 +13,7 @@
   <data name="Options.Language" xml:space="preserve"><value>Kieli</value></data>
   <data name="Options.Theme" xml:space="preserve"><value>Teema</value></data>
   <data name="Options.Theme.System" xml:space="preserve"><value>Järjestelmä</value></data>
-  <data name="Options.Theme.Light" xml:space="preserve"><value>Kevyt</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>Vaalea</value></data>
   <data name="Options.Theme.Dark" xml:space="preserve"><value>Tumma</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>Polku gw.exe</value></data>
   <data name="Options.ToolsHelp" xml:space="preserve"><value>Jos työkalut puuttuvat, avustaja ehdottaa niiden lataamista tai valitse olemassa olevan asennuksen. Päivityksistä ilmoitetaan vain.</value></data>
@@ -62,4 +62,16 @@
   <data name="Options.PreferencesTitle"><value>Asetukset</value></data>
   <data name="Options.EmulationTitle"><value>Emulgointiasetukset</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} emulointiasetukset</value></data>
+  <data name="Options.Themes.Title"><value>Teemat</value></data>
+  <data name="Options.Themes.List"><value>Käytettävissä olevat teemat</value></data>
+  <data name="Options.Themes.Appearance"><value>Ulkoasu</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>Esikatselu ei ole käytettävissä.</value></data>
+  <data name="Options.Themes.Active"><value>Aktiivinen teema: {0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>Valittu teema otetaan heti käyttöön ja säilytetään sovelluksen seuraavilla käynnistyskerroilla.</value></data>
+  <data name="Options.Themes.Base.Description"><value>Alkuperäinen asettelu järjestelmän, vaalealla tai tummalla ulkoasulla.</value></data>
+
+
+
+
+
 </root>

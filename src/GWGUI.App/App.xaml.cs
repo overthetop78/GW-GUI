@@ -28,6 +28,7 @@ namespace GWGUI.App;
 public partial class App : Application
 {
     private AppTheme _theme;
+    private AppThemeDesign _themeDesign;
     private UpdateStartupCoordinator? _updateStartup;
     private GWGUI.App.Services.Input.Keyboard.ForegroundKeyboardShortcutGuard? _keyboardShortcutGuard;
     protected override void OnStartup(StartupEventArgs e)
@@ -86,7 +87,8 @@ public partial class App : Application
         base.OnStartup(e);
         LocalizationSource.Instance.SetCultures(culture, uiCulture, refresh: false);
         _theme = settings.Theme;
-        ThemeManager.Apply(settings.Theme);
+        _themeDesign = settings.ThemeDesign;
+        ThemeManager.Apply(settings.ThemeDesign, settings.Theme);
         SystemEvents.UserPreferenceChanged += SystemPreferenceChanged;
         GameInputControllerSource.Instance.StartMonitoring();
         MainWindow = new MainWindow(null, initialSettings: settings);
@@ -109,7 +111,7 @@ public partial class App : Application
 
     private void SystemPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
     {
-        if (_theme == AppTheme.System) Dispatcher.Invoke(() => ThemeManager.Apply(AppTheme.System));
+        if (_theme == AppTheme.System) Dispatcher.Invoke(() => ThemeManager.Apply(_themeDesign, AppTheme.System));
     }
 
     protected override void OnExit(ExitEventArgs e)
@@ -176,13 +178,12 @@ public partial class App : Application
         e.SetObserved();
     }
 
-    public void SetTheme(AppTheme theme) { _theme = theme; ThemeManager.Apply(theme); }
-
-    private void Window_Loaded(object sender, RoutedEventArgs e)
+    public void SetTheme(AppTheme theme) => SetTheme(_themeDesign, theme);
+    public void SetTheme(AppThemeDesign design, AppTheme variant)
     {
-        if (sender is not Window window) return;
-        ThemeManager.ApplyWindowTheme(window);
-        window.Dispatcher.BeginInvoke(() => ThemeManager.ApplyWindowTheme(window), DispatcherPriority.ApplicationIdle);
+        _themeDesign = design;
+        _theme = variant;
+        ThemeManager.Apply(design, variant);
     }
 
     public void SetLanguage(string language)

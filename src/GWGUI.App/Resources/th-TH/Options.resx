@@ -12,8 +12,8 @@
   <data name="Options.ImagesFolder" xml:space="preserve"><value>โฟลเดอร์ดิสก์อิมเมจเริ่มต้น</value></data>
   <data name="Options.Language" xml:space="preserve"><value>ภาษา</value></data>
   <data name="Options.Theme" xml:space="preserve"><value>ธีม</value></data>
-  <data name="Options.Theme.System" xml:space="preserve"><value>ระบบ</value></data>
-  <data name="Options.Theme.Light" xml:space="preserve"><value>แสงสว่าง</value></data>
+  <data name="Options.Theme.System" xml:space="preserve"><value>ตามระบบ</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>สว่าง</value></data>
   <data name="Options.Theme.Dark" xml:space="preserve"><value>มืด</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>เส้นทางสู่ gw.exe</value></data>
   <data name="Options.ToolsHelp" xml:space="preserve"><value>หากเครื่องมือหายไป Assistant จะเสนอให้ดาวน์โหลดหรือเลือกการติดตั้งที่มีอยู่ จะมีการแจ้งอัพเดตเท่านั้น</value></data>
@@ -62,4 +62,16 @@
   <data name="Options.PreferencesTitle"><value>ปรับแต่ง</value></data>
   <data name="Options.EmulationTitle"><value>ปรับแต่งการจําลอง</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} ตั้งค่าการจําลอง</value></data>
+  <data name="Options.Themes.Title"><value>ชุดตกแต่ง</value></data>
+  <data name="Options.Themes.List"><value>ชุดตกแต่งที่มี</value></data>
+  <data name="Options.Themes.Appearance"><value>รูปลักษณ์</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>ไม่มีภาพตัวอย่าง</value></data>
+  <data name="Options.Themes.Active"><value>ชุดตกแต่งปัจจุบัน: {0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>ธีมที่เลือกจะมีผลทันที และยังคงใช้เมื่อเปิดแอปครั้งถัดไป</value></data>
+  <data name="Options.Themes.Base.Description"><value>เค้าโครงเดิม พร้อมรูปลักษณ์ตามระบบ แบบสว่าง หรือแบบมืด</value></data>
+
+
+
+
+
 </root>

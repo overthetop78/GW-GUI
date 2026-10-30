@@ -13,7 +13,7 @@
   <data name="Options.Language" xml:space="preserve"><value>Jazyk</value></data>
   <data name="Options.Theme" xml:space="preserve"><value>Téma</value></data>
   <data name="Options.Theme.System" xml:space="preserve"><value>Systém</value></data>
-  <data name="Options.Theme.Light" xml:space="preserve"><value>Světlo</value></data>
+  <data name="Options.Theme.Light" xml:space="preserve"><value>Světlý</value></data>
   <data name="Options.Theme.Dark" xml:space="preserve"><value>Tmavý</value></data>
   <data name="Options.GwPath" xml:space="preserve"><value>Cesta k gw.exe</value></data>
   <data name="Options.ToolsHelp" xml:space="preserve"><value>Pokud nástroje chybí, asistent nabídne jejich stažení nebo zvolí existující instalaci. Aktualizace jsou pouze oznámeny.</value></data>
@@ -62,4 +62,16 @@
   <data name="Options.PreferencesTitle"><value>Předvolby</value></data>
   <data name="Options.EmulationTitle"><value>Emulační preference</value></data>
   <data name="Options.EmulationModuleTitle"><value>{0} nastavení emulace</value></data>
+  <data name="Options.Themes.Title"><value>Motivy</value></data>
+  <data name="Options.Themes.List"><value>Dostupné motivy</value></data>
+  <data name="Options.Themes.Appearance"><value>Vzhled</value></data>
+  <data name="Options.Themes.PreviewUnavailable"><value>Náhled není k dispozici.</value></data>
+  <data name="Options.Themes.Active"><value>Aktivní motiv: {0}</value></data>
+  <data name="Options.Themes.ApplyHint"><value>Vybraný motiv se použije ihned a zachová se při příštím spuštění aplikace.</value></data>
+  <data name="Options.Themes.Base.Description"><value>Původní rozložení se systémovým, světlým nebo tmavým vzhledem.</value></data>
+
+
+
+
+
 </root>

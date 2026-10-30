@@ -55,8 +55,7 @@ internal static class ControlContractScenarios
                     Assert.False(entry.Title.StartsWith('[') && entry.Title.EndsWith(']'));
                     Assert.False(string.IsNullOrWhiteSpace(entry.Subtitle));
                     Assert.False(string.IsNullOrWhiteSpace(entry.Icon));
-                    Assert.NotNull(entry.Foreground);
-                    Assert.NotNull(entry.Background);
+                    Assert.True(Enum.IsDefined(entry.State));
                 });
                 Assert.True(navigation.Focusable);
                 Assert.True(KeyboardNavigation.GetIsTabStop(navigation));
