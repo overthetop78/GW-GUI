@@ -7,16 +7,37 @@ namespace GWGUI.Emulation.Acorn.Emulators.AcornEmu.Services;
 internal sealed partial class EmulatorCore
 {
     private EconetTransport? _network;
+    private IEmulationNetworkRegistration? _disconnectedNetwork;
     private void ConfigureNetwork(MachineConfiguration configuration)
     {
         var settings = NetworkFunctions.Read(configuration);
-        if (!settings.Enabled || settings.Mode == C.Disconnected) { _machine!.SetNetworkLine(false); return; }
-        _network = new(settings, _machine!);
+        if (!settings.Enabled || settings.Mode == C.Disconnected)
+        {
+            if (settings.Enabled) _disconnectedNetwork = EmulationSdk.Networks.Register(NetworkFunctions.Endpoint(configuration, settings),
+                peer => NetworkFunctions.CanConnect(settings, peer));
+            _machine!.SetNetworkLine(false);
+            return;
+        }
+        _network = new(settings, _machine!, NetworkFunctions.Endpoint(configuration, settings), EmulationSdk.Networks);
         _machine!.NetworkFrameTransmitted = _network.Transmit; _machine.NetworkPoll = _network.Advance; _machine.SetNetworkLine(true);
     }
     private void DisposeNetwork()
     {
         try { if (_machine is not null) { _machine.NetworkPoll = null; _machine.NetworkFrameTransmitted = null; _machine.SetNetworkLine(false); } }
-        finally { var network = _network; _network = null; network?.Dispose(); }
+        finally
+        {
+            try
+            {
+                var network = _network;
+                _network = null;
+                network?.Dispose();
+            }
+            finally
+            {
+                var disconnected = _disconnectedNetwork;
+                _disconnectedNetwork = null;
+                disconnected?.Dispose();
+            }
+        }
     }
 }

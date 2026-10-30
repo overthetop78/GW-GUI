@@ -35,7 +35,7 @@ internal static class LocalExplorerOpeningCheck
                 application = new ResourceApplication { ShutdownMode = ShutdownMode.OnExplicitShutdown };
                 application.Resources = new ResourceDictionary
                 {
-                    Source = new Uri("/gwgui.app;component/Resources/ApplicationStyles.xaml", UriKind.Relative)
+                    Source = new Uri("/gwgui.app;component/Views/Styles/ApplicationStyles.xaml", UriKind.Relative)
                 };
                 scope = new DiskImageCancellationScope();
                 var engine = MediaEngineComposition.CreateDefault();

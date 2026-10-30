@@ -64,6 +64,9 @@ public static class EmulationSdk
     /// <summary>Cycle de vie, commandes et publication des machines sous leur contrat d’exécution commun.</summary>
     public static IEmulationMachineExecution MachineExecution { get; } = new EmulationMachineExecutionService();
 
+    /// <summary>Présence et compatibilité des interfaces ; registre en mémoire sans conversion de réseau.</summary>
+    public static IEmulationNetworks Networks { get; } = new EmulationNetworkService();
+
     /// <summary>Contextualisation des messages sans accès aux services d’implémentation.</summary>
     public static IEmulationMessages Messages { get; } = new EmulationMessageService();
 

@@ -19,7 +19,7 @@
   <data name="Emulation.Acorn.Video.Output.Uhf" xml:space="preserve"><value>UHF PAL</value></data>
   <data name="Emulation.Acorn.Video.Output.Rgb" xml:space="preserve"><value>RGB</value></data>
   <data name="Emulation.Acorn.Network.Title"><value>Econet</value></data>
-  <data name="Emulation.Acorn.Network.Rom"><value>NFS ROM</value></data>
+  <data name="Emulation.Acorn.Network.Rom"><value>Econet — NFS ROM</value></data>
   <data name="Emulation.Acorn.Network.Udp"><value>UDP — User Datagram Protocol</value></data>
   <data name="Emulation.Acorn.Network.Aun"><value>AUN — Acorn Universal Networking</value></data>
   <data name="Emulation.Acorn.Network.Peers.Help"><value>Map remote Econet stations to their IPv4 addresses and UDP ports.</value></data>

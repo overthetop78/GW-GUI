@@ -29,6 +29,7 @@ public sealed partial class EmulationPreferencesSection : UserControl
     private IEmulationModule? _selectedConfigurationModule;
     private IReadOnlyList<EmulationConfigurationTableRow> _configurationRows = [];
     private readonly EmulationConfigurationTable _configurationTable = new();
+    private readonly GWGUI.App.Views.Controls.Emulation.Network.EmulationNetworkSection _network = new();
     private readonly InputBindingEditor _shortcuts = new();
     private readonly TextBox _storageFolder = new();
     private readonly TextBox _captureFolder = new();
@@ -73,6 +74,7 @@ public sealed partial class EmulationPreferencesSection : UserControl
         _generalTab = AddTab(_tabs, IconGlyphs.Settings, "Emulation.Tab.General", BuildGeneralTab());
         _shortcutsTab = AddTab(_tabs, IconGlyphs.Keyboard, "Emulation.Tab.Shortcuts", BuildShortcutsTab());
         AddTab(_tabs, IconGlyphs.Configuration, "Emulation.Configuration", BuildConfigurationsTab());
+        AddTab(_tabs, IconGlyphs.Connection, GWGUI.App.Constants.Emulation.EmulationNetworkLayoutConstants.TitleResource, _network);
         Content = _tabs;
         Loaded += async (_, _) => await LoadConfigurationsWhenVisibleAsync();
         IsVisibleChanged += async (_, _) => await LoadConfigurationsWhenVisibleAsync();
@@ -120,6 +122,7 @@ public sealed partial class EmulationPreferencesSection : UserControl
         _shortcuts.SetRows(GlobalShortcutDefinitions(), shortcutValues);
         _shortcuts.ConfigurePresentation(LocExtension.Get("Emulation.Input.Actions"), LocExtension.Get("Emulation.Input.Binding.Search"));
         _configurationTable.RefreshLocalizedContent();
+        _network.RefreshLocalizedContent();
         if (_configurationsLoaded)
         {
             _configurationRows = EmulationConfigurationTablePresenter.CreateRows(_configurationRows.Select(row => (row.Module, row.Configuration)));

@@ -9,6 +9,40 @@ namespace GWGUI.Emulation.Acorn.Emulators.AcornEmu.Functions;
 /// <summary>Valide et présente les options réseau par les champs de configuration existants.</summary>
 internal static class NetworkFunctions
 {
+    internal static EmulationNetworkEndpoint Endpoint(MachineConfiguration configuration, EconetSettings settings) =>
+        new(ModuleId: configuration.ModuleId, ConfigurationId: configuration.Id, MachineId: configuration.MachineId,
+            InterfaceId: C.Block, InterfaceType: EmulationNetworkInterfaceType.Econet, Network: EmulationNetworkType.Econet,
+            Protocols: settings.Mode == C.Aun ? [EmulationNetworkProtocol.Econet, EmulationNetworkProtocol.Aun] : [EmulationNetworkProtocol.Econet],
+            TransferFormat: settings.Mode == C.Disconnected ? EmulationNetworkTransferFormat.None
+                : settings.Mode == C.Aun ? EmulationNetworkTransferFormat.AunPacket : EmulationNetworkTransferFormat.EconetFrame,
+            Transport: settings.Mode == C.Disconnected ? EmulationNetworkTransport.None : EmulationNetworkTransport.Udp,
+            IpAddress: settings.Mode == C.Disconnected ? null : settings.LocalEndPoint.Address,
+            Port: settings.Mode == C.Disconnected ? null : settings.LocalEndPoint.Port,
+            Addresses: [new(EmulationNetworkAddressType.EconetStation, StationAddress(settings.Station))]);
+
+    private static string StationAddress(byte station) =>
+        string.Format(CultureInfo.InvariantCulture, C.StationAddressFormat, C.LocalNetwork, station);
+
+    internal static EconetPeer? Peer(EmulationNetworkEndpoint endpoint)
+    {
+        var address = endpoint.Addresses?.FirstOrDefault(item => item.Type == EmulationNetworkAddressType.EconetStation)?.Value.Split(C.StationAddressSeparator);
+        if (endpoint.IpAddress is null || endpoint.IpAddress.AddressFamily != AddressFamily.InterNetwork || endpoint.Port is null
+            || address is null || address.Length != C.AddressPartCount
+            || !byte.TryParse(address[C.NetworkPartIndex], NumberStyles.None, CultureInfo.InvariantCulture, out var network)
+            || !byte.TryParse(address[C.StationPartIndex], NumberStyles.None, CultureInfo.InvariantCulture, out var station)
+            || station is < C.MinimumStation or > C.MaximumStation) return null;
+        var ip = endpoint.IpAddress.Equals(IPAddress.Any) ? IPAddress.Loopback : endpoint.IpAddress;
+        return new(network, station, new(ip, endpoint.Port.Value));
+    }
+
+    internal static EmulationNetworkCompatibility CanConnect(EconetSettings settings, EmulationNetworkEndpoint endpoint)
+    {
+        var peer = Peer(endpoint);
+        if (peer is null) return EmulationNetworkCompatibility.NativeParametersMismatch;
+        return peer.Network == C.LocalNetwork && peer.Station == settings.Station
+            ? EmulationNetworkCompatibility.AddressConflict : EmulationNetworkCompatibility.Compatible;
+    }
+
     internal static EconetSettings Read(MachineConfiguration configuration)
     {
         string Value(string key, string fallback) => configuration.Options.GetValueOrDefault(key, fallback);

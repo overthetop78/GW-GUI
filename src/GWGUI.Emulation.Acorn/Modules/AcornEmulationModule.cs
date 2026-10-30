@@ -9,13 +9,20 @@ using System.IO;
 namespace GWGUI.Emulation.Acorn.Modules;
 
 public sealed class AcornEmulationModule : IEmulationModule, IEmulationEmulatorManager,
-    IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization, IEmulationFirmwareManager, IEmulationVideoSettingsManager
+    IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization, IEmulationFirmwareManager, IEmulationVideoSettingsManager, IEmulationNetworkManager
 {
     private readonly Engine _engine;
 
     public AcornEmulationModule(string configurationDirectory, string pathBase, HttpClient httpClient, string coreDirectory) => _engine = new Engine(configurationDirectory, pathBase, httpClient, coreDirectory);
 
     public string Id => _engine.Id;
+
+    public IReadOnlyList<EmulationNetworkEndpoint> DescribeNetworks(IEmulationConfiguration configuration)
+    {
+        if (configuration is not MachineConfiguration machine || machine.Core != Emulator.AcornEmu) return [];
+        var settings = Emulators.AcornEmu.Functions.NetworkFunctions.Read(machine);
+        return settings.Enabled ? [Emulators.AcornEmu.Functions.NetworkFunctions.Endpoint(machine, settings)] : [];
+    }
 
     public string DisplayResourceKey => _engine.DisplayResourceKey;
 

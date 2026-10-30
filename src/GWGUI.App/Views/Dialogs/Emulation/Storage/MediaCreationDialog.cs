@@ -32,7 +32,7 @@ internal sealed class MediaCreationDialog : Window
         ShowInTaskbar = false;
         SetResourceReference(StyleProperty, "ApplicationWindowStyle");
         StorageDialogUi.CompactAppearance(this);
-        var styles = new ResourceDictionary { Source = new Uri("/gwgui.app;component/Resources/StorageCreationStyles.xaml", UriKind.Relative) };
+        var styles = new ResourceDictionary { Source = new Uri("/gwgui.app;component/Views/Styles/StorageCreationStyles.xaml", UriKind.Relative) };
         Resources.MergedDictionaries.Add(styles);
         Resources[typeof(Button)] = styles["StorageCreationButton"];
         Resources[typeof(TextBox)] = styles["StorageCreationTextBox"];

@@ -12,6 +12,7 @@ public sealed partial class EmulationPreferencesSection
     private async Task ReloadConfigurationsAsync()
     {
         var loaded = await Task.WhenAll(_modules.Select(async module => (Module: module, Configurations: await Task.Run(async () => await module.LoadConfigurationsAsync()))));
+        foreach (var item in loaded) GWGUI.Emulation.EmulationSdk.Networks.SetConfigurations(item.Module, item.Configurations);
         _configurationRows = EmulationConfigurationTablePresenter.CreateRows(loaded.SelectMany(item => item.Configurations.Select(configuration => (item.Module, Configuration: configuration))));
         RebuildConfigurationBrands();
         FilterConfigurationTable();

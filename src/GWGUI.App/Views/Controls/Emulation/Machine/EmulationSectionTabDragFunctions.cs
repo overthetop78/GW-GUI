@@ -12,7 +12,7 @@ public sealed partial class EmulationSection
     {
         _tabDragStart = args.GetPosition(_machines);
         _draggedMachineTab = Ancestor<TabItem>(args.OriginalSource as DependencyObject);
-        if (_draggedMachineTab is null || _machines.Items.IndexOf(_draggedMachineTab) <= 0
+        if (_draggedMachineTab is null || _draggedMachineTab.Tag is not GWGUI.Emulation.Contracts.EmulationMachineRuntime
             || Ancestor<Button>(args.OriginalSource as DependencyObject) is not null)
             _draggedMachineTab = null;
         else
@@ -49,7 +49,7 @@ public sealed partial class EmulationSection
     {
         var dragged = args.Data.GetData(typeof(TabItem)) as TabItem;
         var target = Ancestor<TabItem>(args.OriginalSource as DependencyObject);
-        args.Effects = dragged is not null && target is not null && _machines.Items.IndexOf(dragged) > 0 && _machines.Items.IndexOf(target) > 0 ? DragDropEffects.Move : DragDropEffects.None;
+        args.Effects = dragged?.Tag is GWGUI.Emulation.Contracts.EmulationMachineRuntime && target?.Tag is GWGUI.Emulation.Contracts.EmulationMachineRuntime ? DragDropEffects.Move : DragDropEffects.None;
         var position = args.GetPosition(_machines);
         double? insertionX = null;
         if (args.Effects == DragDropEffects.Move && target is not null)
@@ -73,6 +73,7 @@ public sealed partial class EmulationSection
 
     private void MoveMachineTab(TabItem dragged, TabItem target, double pointerX)
     {
+        if (dragged.Tag is not GWGUI.Emulation.Contracts.EmulationMachineRuntime || target.Tag is not GWGUI.Emulation.Contracts.EmulationMachineRuntime) return;
         var sourceIndex = _machines.Items.IndexOf(dragged);
         var targetIndex = _machines.Items.IndexOf(target);
         if (sourceIndex <= 0 || targetIndex <= 0) return;

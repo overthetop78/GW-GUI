@@ -110,7 +110,7 @@ demandé. Les tâches sont exécutées et cochées une par une, dans l’ordre.
     - [x] Modifier `src/GWGUI.App/Services/DiskImages/DiskImageWorkspaceController.cs` pour enregistrer `SequentialMediaView`, lui transmettre les documents `Sequential` et afficher leur modèle d’inspection commun.
 
   - [x] 1.7 Harmoniser l’apparence et l’accessibilité
-    - [x] Modifier `src/GWGUI.App/Resources/ApplicationStyles.xaml` avec les styles communs des surfaces, sélecteurs, légendes, badges, cartes d’informations et états de sélection du Visualiseur sur thèmes clair et sombre.
+    - [x] Modifier `src/GWGUI.App/Views/Styles/ApplicationStyles.xaml` avec les styles communs des surfaces, sélecteurs, légendes, badges, cartes d’informations et états de sélection du Visualiseur sur thèmes clair et sombre.
     - [x] Modifier `src/GWGUI.App/Views/Controls/Visualization/VisualizerTabSection.xaml` pour conserver une utilisation complète aux tailles minimale et maximale de la fenêtre, avec panneau d’informations repliable et défilement uniquement dans les zones nécessaires.
     - [x] Modifier `src/GWGUI.App/Views/Controls/Visualization/MediaInspectorPanel.xaml` pour fournir ordre de tabulation, noms accessibles, contraste et lecture correcte des valeurs indisponibles.
 

@@ -7,6 +7,7 @@ using GWGUI.App.Presenters.Common;
 using GWGUI.App.Presenters.Emulation.Configurations;
 using System.Windows;
 using System.Windows.Controls;
+using GWGUI.Emulation;
 
 
 namespace GWGUI.App.Views.Controls.Emulation.Machine;
@@ -48,7 +49,9 @@ public sealed partial class EmulationSection
         var items = new List<EmulationConfigurationListItem>();
         foreach (var module in _modules)
         {
-            foreach (var configuration in await module.LoadConfigurationsAsync())
+            var configurations = await module.LoadConfigurationsAsync();
+            EmulationSdk.Networks.SetConfigurations(module, configurations);
+            foreach (var configuration in configurations)
             {
                 items.Add(new EmulationConfigurationListItem(module, configuration, EmulationConfigurationPresenter.DisplayName(module, configuration)));
             }

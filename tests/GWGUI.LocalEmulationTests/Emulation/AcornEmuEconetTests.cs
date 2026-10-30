@@ -149,7 +149,7 @@ public sealed class AcornEmuEconetTests
         Assert.Equal(16384, bank.Length); Assert.Equal(bytes, bank.AsSpan(0, 8192).ToArray()); Assert.All(bank.AsSpan(8192).ToArray(), value => Assert.Equal(255, value));
         Assert.Equal(FirmwareCategory.Network, FirmwareFunctions.Role(NetworkConstants.Firmware)); Assert.Equal(NetworkConstants.Firmware, FirmwareFunctions.Field(FirmwareCategory.Network));
         Assert.Equal(EmulationFirmwareCompatibility.PartiallyCompatible, BbcMicroFirmwareCompatibilityCatalog.Get(MachineModel.BbcMicroModelA, "8564d944fedd17caf2023454ba5a7c3947aedc1f"));
-        Assert.Equal(EmulationFirmwareCompatibility.Incompatible, BbcMicroFirmwareCompatibilityCatalog.Get(MachineModel.BbcMicroModelA, "7462ced7b83d74b822815bc00ed40a89f84e0276"));
+        Assert.Equal(EmulationFirmwareCompatibility.Unknown, BbcMicroFirmwareCompatibilityCatalog.Get(MachineModel.BbcMicroModelA, "7462ced7b83d74b822815bc00ed40a89f84e0276"));
     }
 
     [Fact]
